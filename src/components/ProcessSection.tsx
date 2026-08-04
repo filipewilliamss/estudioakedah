@@ -4,30 +4,31 @@ import { useRef } from "react";
 const steps = [
   {
     number: "01",
-    title: "Briefing e Imersão",
-    description: "Iniciamos com uma conversa profunda para entender sua essência, objetivos e o público que deseja alcançar."
+    title: "Diagnóstico",
+    description: "Entendemos a situação comercial e financeira do negócio antes de propor qualquer solução."
   },
   {
     number: "02",
-    title: "Pesquisa e Estratégia",
-    description: "Analisamos o mercado e a concorrência para definir o caminho estratégico único para sua marca."
+    title: "Posicionamento",
+    description: "Definimos identidade, valores e diferenciais que sustentam toda a comunicação."
   },
   {
     number: "03",
-    title: "Criação e Design",
-    description: "Traduzimos a estratégia em formas, cores e tipografia, criando uma identidade visual marcante."
+    title: "Plano Estratégico",
+    description: "Montamos o plano de ação com menor custo e maior eficiência para o momento do negócio."
   },
   {
     number: "04",
-    title: "Apresentação e Ajustes",
-    description: "Apresentamos o conceito e refinamos cada detalhe com base no seu feedback até a perfeição."
+    title: "Execução",
+    description: "Implementamos as estratégias com acompanhamento mensal e produção contínua."
   },
   {
     number: "05",
-    title: "Entrega Final",
-    description: "Entregamos todos os arquivos organizados e prontos para uso em todas as plataformas."
+    title: "Autonomia",
+    description: "Preparamos o cliente para operar com equipe e processos próprios."
   }
 ];
+
 
 const ProcessStep = ({ step, idx }: { step: typeof steps[0], idx: number }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -110,11 +111,15 @@ const ProcessSection = () => {
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="inline-block text-[#C4550A] text-[12px] font-bold uppercase tracking-[0.5em] mb-10">
-              Nossa Metodologia
+              Método Akedah
             </span>
-            <h2 className="font-display text-[54px] md:text-[96px] font-[900] text-white leading-[0.8] tracking-extratighter mb-12">
-              Como damos vida <br /> à sua <span className="text-[#C4550A] italic font-light">visão.</span>
+            <h2 className="font-display text-[48px] md:text-[92px] font-[900] text-white leading-[0.82] tracking-extratighter mb-12">
+              Do diagnóstico <br /> à <span className="text-[#C4550A] italic font-normal">autonomia.</span>
             </h2>
+            <p className="text-white/50 text-[16px] md:text-[18px] max-w-2xl mx-auto leading-relaxed">
+              Cinco etapas, aplicadas em ordem, para transformar marketing em execução de um plano comercial maior.
+            </p>
+
           </motion.div>
         </div>
 

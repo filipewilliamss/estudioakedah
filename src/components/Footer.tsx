@@ -1,77 +1,93 @@
 import { Link } from "react-router-dom";
-import kiiroLogo from "@/assets/logo.webp";
+import akedahLogo from "@/assets/akedah-logo.png";
+import { services, AKEDAH_EMAIL, WHATSAPP_URL } from "@/data/services";
 
 const Footer = () => {
   return (
     <footer className="bg-transparent py-20 px-6 border-t border-white/5">
       <div className="container-editorial">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-8">
-          
+
           {/* Brand Col */}
           <div className="md:col-span-2">
             <Link to="/" className="inline-block transition-transform hover:scale-105 duration-500">
-              <img src={kiiroLogo} alt="Studio Kiiro" className="h-10 w-auto" />
+              <img src={akedahLogo} alt="Akedah" className="h-8 w-auto" />
             </Link>
             <p className="mt-8 text-[14px] text-white/40 max-w-sm leading-relaxed">
-              Design que transforma marcas e projetos em referências visuais. Criamos projetos memoráveis para quem não aceita o comum.
+              Estúdio Akedah de Soluções e Estratégias Comerciais para empresas consolidadas que querem crescer com
+              inteligência.
             </p>
           </div>
 
-          {/* Links Col */}
+          {/* Services Col */}
           <div className="flex flex-col gap-6">
             <h4 className="text-[11px] font-bold text-white uppercase tracking-[0.3em]">
-              Navegação
+              Soluções
             </h4>
             <ul className="flex flex-col gap-4">
-              {["Sobre", "Serviços", "Portfólio", "Contato"].map((link) => {
-                const id = link.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                return (
-                  <li key={link}>
-                    <Link
-                      to={`/#${id}`}
-                      className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                );
-              })}
-
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    to={`/servicos/${service.slug}`}
+                    className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  to="/podcast"
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
+                >
+                  Akedah Podcast
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Social Col */}
+          {/* Contact Col */}
           <div className="flex flex-col gap-6">
             <h4 className="text-[11px] font-bold text-white uppercase tracking-[0.3em]">
-              Conectar
+              Contato
             </h4>
             <ul className="flex flex-col gap-4">
               <li>
-                <a 
-                  href="https://instagram.com/studiokiiro" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300 flex items-center gap-2"
+                <a
+                  href={`mailto:${AKEDAH_EMAIL}`}
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
                 >
-                  Instagram
+                  {AKEDAH_EMAIL}
                 </a>
               </li>
               <li>
-                <a 
-                  href="https://wa.me/5511991076096" 
-                  target="_blank" 
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300 flex items-center gap-2"
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
                 >
                   WhatsApp
                 </a>
               </li>
               <li>
-                <a 
-                  href="mailto:contato@studiokiiro.com"
-                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300 flex items-center gap-2"
+                <a
+                  href="https://instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
                 >
-                  E-mail
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://linkedin.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
+                >
+                  LinkedIn
                 </a>
               </li>
             </ul>
@@ -81,10 +97,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[11px] text-white/20 uppercase tracking-[0.2em]">
-            © 2026 Studio Kiiro. Todos os direitos reservados.
+            © 2026 Akedah — Estúdio de Soluções Comerciais. Todos os direitos reservados.
           </p>
           <div className="flex gap-8">
-            <span className="text-[10px] text-white/10 uppercase tracking-[0.3em]">São Paulo, Brasil</span>
+            <span className="text-[10px] text-white/10 uppercase tracking-[0.3em]">Atendendo em todo o Brasil</span>
           </div>
         </div>
       </div>
