@@ -12,10 +12,13 @@ import Index from "./pages/Index.tsx";
 import Obrigado from "./pages/Obrigado.tsx";
 import AreaDoCliente from "./pages/AreaDoCliente.tsx";
 import ProjectDetail from "./pages/ProjectDetail.tsx";
+import ServiceDetail from "./pages/ServiceDetail.tsx";
+import Podcast from "./pages/Podcast.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
 import CustomCursor from "./components/CustomCursor.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+
 
 const queryClient = new QueryClient();
 
