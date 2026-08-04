@@ -117,7 +117,7 @@ const ParticleBackground: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
     init();
-    animate();
+    animate(performance.now());
 
     return () => {
       window.removeEventListener('resize', handleResize);
