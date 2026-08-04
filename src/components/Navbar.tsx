@@ -7,7 +7,9 @@ type NavItem = { label: string; hash?: string; to?: string };
 
 const navLinks: NavItem[] = [
   { label: "Sobre", hash: "sobre" },
+  { label: "Soluções", hash: "servicos" },
   { label: "Método", hash: "processo" },
+  { label: "Serviços", hash: "portfolio" },
   { label: "Podcast", to: "/podcast" },
   { label: "Contato", hash: "contato" },
 ];
