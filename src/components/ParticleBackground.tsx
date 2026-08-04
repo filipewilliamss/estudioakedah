@@ -55,7 +55,7 @@ const ParticleBackground: React.FC = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
-      const particleCount = Math.min(Math.floor(window.innerWidth / 10), 120);
+      const particleCount = Math.min(Math.floor(window.innerWidth / 20), 60);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -80,7 +80,14 @@ const ParticleBackground: React.FC = () => {
       }
     };
 
-    const animate = () => {
+    let lastTime = performance.now();
+    const animate = (now: number) => {
+      const deltaTime = now - lastTime;
+      if (deltaTime < 24) { // Cap at ~40fps for background particles to save resources
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+      lastTime = now;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Radial gradient background
@@ -110,7 +117,7 @@ const ParticleBackground: React.FC = () => {
 
     window.addEventListener('resize', handleResize);
     init();
-    animate();
+    animate(performance.now());
 
     return () => {
       window.removeEventListener('resize', handleResize);

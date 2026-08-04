@@ -32,7 +32,7 @@ const TestimonialsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
           className="mb-24"
         >
@@ -48,7 +48,7 @@ const TestimonialsSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
             className="p-10 md:p-12 rounded-2xl border border-primary/20 bg-card flex flex-col justify-between"
           >
@@ -73,7 +73,7 @@ const TestimonialsSection = () => {
                 key={t.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
                 className="p-8 rounded-2xl border border-border bg-card flex-1"
               >
