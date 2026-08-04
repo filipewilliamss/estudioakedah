@@ -29,76 +29,62 @@ const ServicesSection = () => {
           >
             <div className="flex items-center gap-4 mb-8">
               <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
-                Soluções Comerciais
+                Diagnóstico
               </span>
             </div>
             <h2 className="font-display text-[52px] md:text-[88px] font-[900] text-white leading-[0.82] tracking-[-0.05em]">
-              Escolha a frente que faz sentido para o seu{" "}
-              <span className="text-[#C4550A] italic font-normal">momento.</span>
+              Onde a operação{" "}
+              <span className="text-[#C4550A] italic font-normal">trava.</span>
             </h2>
-            <p className="mt-10 text-white/50 text-[16px] md:text-[18px] max-w-2xl leading-relaxed">
-              Estratégia, conteúdo e aquisição para empresas que já têm operação comercial ativa. A Consultoria de
-              Processos é a base de todos os serviços: ela não é vendida à parte, está embutida em cada contratação.
+            <p className="mt-10 text-white text-[20px] md:text-[26px] max-w-3xl leading-snug font-medium">
+              Muitas empresas não precisam de mais marketing,
+              <span className="block mt-3 text-white/50 text-[16px] md:text-[18px] leading-relaxed font-normal">
+                Precisam entender por que o esforço que já fazem ainda não se transforma em crescimento previsível.
+              </span>
             </p>
           </motion.div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {services.map((service, idx) => (
+          {[
+            {
+              title: "Processos desorganizados",
+              description: "Cada venda depende de improviso. Sem etapas claras, sem responsáveis, sem previsibilidade."
+            },
+            {
+              title: "Falta de metas e métricas",
+              description: "A operação roda no escuro. Sem número, não há gestão — há palpite."
+            },
+            {
+              title: "Marketing desconectado das vendas",
+              description: "Atração e conversão vivem em planetas diferentes. O comercial não vê o que a mídia produz."
+            },
+            {
+              title: "Experiências ruins com fornecedores",
+              description: "Agências que entregam relatório e resultado nenhum. Consultores que somem depois do slide."
+            }
+          ].map((item, idx) => (
             <motion.div
-              key={service.id}
+              key={item.title}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.8, delay: idx * 0.08 }}
+              className="group relative flex flex-col h-full border border-white/[0.08] p-9 md:p-12 hover:border-[#C4550A]/60 transition-colors duration-700 overflow-hidden"
             >
-              <Link
-                to={`/servicos/${service.slug}`}
-                className="group relative flex flex-col h-full border border-white/[0.08] p-9 md:p-12 hover:border-[#C4550A]/60 transition-colors duration-700 overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-[#C4550A]/[0.04] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-[#C4550A]/[0.04] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                <div className="relative z-10 flex items-start justify-between gap-6">
-                  <span className="font-mono text-[11px] text-white/25 tracking-[0.3em]">{service.number}</span>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    className="text-white/30 group-hover:text-[#C4550A] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500"
-                    aria-hidden
-                  >
-                    <path
-                      d="M5 15L15 5M15 5H7.5M15 5V12.5"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
+              <div className="relative z-10 flex items-start justify-between gap-6">
+                <span className="font-mono text-[11px] text-white/25 tracking-[0.3em]">0{idx + 1}</span>
+              </div>
 
-                <h3 className="relative z-10 mt-8 font-display text-[32px] md:text-[46px] font-[900] text-white leading-[0.9] tracking-[-0.04em] group-hover:text-[#C4550A] transition-colors duration-500">
-                  {service.name}
-                </h3>
+              <h3 className="relative z-10 mt-8 font-display text-[28px] md:text-[38px] font-[900] text-white leading-[0.95] tracking-[-0.04em] group-hover:text-[#C4550A] transition-colors duration-500">
+                {item.title}
+              </h3>
 
-                <p className="relative z-10 mt-6 text-white/50 text-[15px] md:text-[16px] leading-relaxed">
-                  {service.tagline}
-                </p>
-
-                <ul className="relative z-10 mt-10 pt-8 border-t border-white/[0.06] flex flex-col gap-3">
-                  {service.highlights.map((item) => (
-                    <li key={item} className="flex items-start gap-4">
-                      <span className="mt-[9px] w-1.5 h-1.5 flex-shrink-0 bg-[#C4550A]" />
-                      <span className="text-white/40 text-[13.5px] leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <span className="relative z-10 mt-10 text-[11px] uppercase tracking-[0.3em] font-bold text-white/40 group-hover:text-white transition-colors duration-500">
-                  Ver serviço
-                </span>
-              </Link>
+              <p className="relative z-10 mt-6 text-white/50 text-[15px] md:text-[16px] leading-relaxed">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </div>
