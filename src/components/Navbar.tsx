@@ -55,16 +55,17 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${bgClass}`}
     >
       <div className="container-editorial flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2 group" aria-label="Akedah — início">
+        <Link to="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="Akedah — início">
           <img
             src={akedahLogo}
             alt="Akedah"
-            className="h-7 md:h-8 w-auto transition-transform duration-300 group-hover:scale-105"
+            className="h-5 md:h-6 w-auto transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 
         {/* Desktop */}
-        <div className="hidden lg:flex items-center gap-9">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+
           {navLinks.map((link, idx) => (
             <Link key={link.label} to={resolveTo(link)} className={textClass} onClick={handleClick(link)}>
               <span className={`${forceBlack ? 'text-white/30' : 'text-black/30'} mr-2 font-mono text-[9px] tracking-normal`}>
