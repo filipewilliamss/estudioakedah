@@ -80,7 +80,14 @@ const ParticleBackground: React.FC = () => {
       }
     };
 
-    const animate = () => {
+    let lastTime = performance.now();
+    const animate = (now: number) => {
+      const deltaTime = now - lastTime;
+      if (deltaTime < 24) { // Cap at ~40fps for background particles to save resources
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+      lastTime = now;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Radial gradient background

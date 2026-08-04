@@ -162,7 +162,15 @@ const HeroSection = () => {
     canvas.addEventListener('mousemove', handleMouseMove);
     canvas.addEventListener('mouseleave', handleMouseLeave);
 
+    let lastTime = performance.now();
     const animate = (now: number) => {
+      const deltaTime = now - lastTime;
+      // Cap frame rate to ~60fps for consistency and lower CPU usage
+      if (deltaTime < 16) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+      lastTime = now;
       const t = (now - startTime) / 1000;
       globalOpacity = Math.min((now - startTime) / fadeDuration, 1);
 
