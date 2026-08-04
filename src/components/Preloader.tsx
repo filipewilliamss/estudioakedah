@@ -77,7 +77,8 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const AkedahSymbol = () => (
     <div ref={symbolContainerRef} className="relative w-64 h-64 md:w-96 md:h-96">
       <svg 
-        viewBox="420 330 250 250" 
+        viewBox="380 300 320 320" 
+
 
         className="w-full h-full fill-[#C4550A]"
       >
