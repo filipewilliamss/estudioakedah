@@ -1,6 +1,23 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
 
 const ServicesSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  // 6 faces = 360 / 6 = 60 degrees per face
+  // We rotate from 0 to -300 degrees (to show faces 1 to 6)
+  const rotation = useTransform(smoothProgress, [0, 1], [0, -300]);
+
   const diagnosticItems = [
     {
       title: "Processos desorganizados",
@@ -20,84 +37,84 @@ const ServicesSection = () => {
     }
   ];
 
+  // Faces setup
+  const faces = [
+    // Face 1: Intro
+    (
+      <div className="flex flex-col items-center justify-center h-full text-center px-6">
+        <span className="text-[#C4550A] text-[14px] md:text-[18px] font-bold uppercase tracking-[0.4em] mb-4 md:mb-8">
+          Diagnóstico
+        </span>
+        <h2 className="font-display text-[48px] md:text-[100px] font-[900] text-white leading-[0.9] tracking-[-0.05em]">
+          Onde a operação <br />
+          <span className="text-[#C4550A] italic font-normal">trava.</span>
+        </h2>
+      </div>
+    ),
+    // Face 2: Highlight Text
+    (
+      <div className="flex items-center justify-center h-full text-center px-6 max-w-4xl mx-auto">
+        <p className="text-white text-[24px] md:text-[42px] leading-[1.2] font-medium tracking-tight">
+          Muitas empresas não precisam de mais marketing, precisam entender por que o esforço que já fazem ainda não se transforma em crescimento previsível.
+        </p>
+      </div>
+    ),
+    // Faces 3-6: Items
+    ...diagnosticItems.map((item, idx) => (
+      <div key={idx} className="flex flex-col items-center justify-center h-full text-center px-6 max-w-4xl mx-auto">
+        <span className="text-[#C4550A]/40 font-display text-[40px] md:text-[60px] font-black leading-none mb-4 md:mb-6">
+          0{idx + 1}
+        </span>
+        <h3 className="font-display text-[32px] md:text-[64px] font-[900] text-white leading-[1.1] tracking-[-0.03em] mb-6 md:mb-8">
+          {item.title}
+        </h3>
+        <p className="text-white/80 text-[18px] md:text-[28px] leading-relaxed font-light">
+          {item.description}
+        </p>
+      </div>
+    ))
+  ];
+
   return (
-    <section id="servicos" className="relative section-padding bg-[#070807] overflow-hidden">
-      {/* Background visual element */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-white/[0.05] via-white/[0.1] to-transparent pointer-events-none" />
-      
-      <div className="container-editorial relative z-10">
-        <div className="mb-24 lg:mb-40 text-center flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="max-w-4xl"
-          >
-            <span className="inline-block text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-8">
-              Diagnóstico
-            </span>
-            <h2 className="font-display text-[52px] md:text-[88px] font-[900] text-white leading-[0.82] tracking-[-0.05em] mb-12">
-              Onde a operação{" "}
-              <span className="text-[#C4550A] italic font-normal">trava.</span>
-            </h2>
-            <p className="text-white text-[20px] md:text-[26px] leading-snug font-medium max-w-2xl mx-auto">
-              Muitas empresas não precisam de mais marketing, precisam entender por que o esforço que já fazem ainda não se transforma em crescimento previsível.
-            </p>
-          </motion.div>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto">
-          {/* Vertical Path Line */}
-          <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-px bg-white/[0.05] -translate-x-1/2 hidden md:block" />
-
-          <div className="space-y-24 md:space-y-40">
-            {diagnosticItems.map((item, idx) => (
+    <section 
+      ref={sectionRef} 
+      id="diagnostico" 
+      className="relative h-[600vh] bg-[#000000]"
+    >
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center perspective-[2000px]">
+        {/* The 3D Cylinder */}
+        <motion.div 
+          style={{ 
+            rotateX: rotation,
+            transformStyle: "preserve-3d",
+          }}
+          className="relative w-full h-[60vh] flex items-center justify-center transition-transform duration-100 ease-out"
+        >
+          {faces.map((face, index) => {
+            const angle = index * 60;
+            // Radius calculation: half-height / tan(angle/2)
+            // For 60vh container, radius is roughly 52vh
+            const radius = "52vh";
+            
+            return (
               <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-                className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-0 ${
-                  idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                }`}
+                key={index}
+                className="absolute inset-0 flex items-center justify-center backface-hidden"
+                style={{
+                  transform: `rotateX(${angle}deg) translateZ(${radius})`,
+                  backfaceVisibility: "hidden",
+                }}
               >
-                {/* Visual Connector Dot */}
-                <div className="absolute left-[20px] md:left-1/2 top-0 -translate-x-1/2 w-3 h-3 rounded-full bg-[#C4550A] shadow-[0_0_15px_rgba(196,85,10,0.5)] z-20" />
-
-                <div className={`w-full md:w-1/2 ${idx % 2 === 0 ? "md:pr-20 md:text-right" : "md:pl-20 md:text-left"} pl-12 md:pl-0`}>
-                  <motion.span 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 0.1 }}
-                    className="block font-display text-[60px] md:text-[100px] font-black leading-none mb-4 md:mb-0 text-white"
-                  >
-                    0{idx + 1}
-                  </motion.span>
-                  <h3 className="font-display text-[28px] md:text-[42px] font-[900] text-white leading-[1.1] tracking-[-0.03em] mb-4">
-                    {item.title}
-                  </h3>
-                  <p className="text-white/60 text-[16px] md:text-[18px] leading-relaxed max-w-md ml-auto mr-auto md:ml-0 md:mr-0">
-                    {item.description}
-                  </p>
-                </div>
-
-                <div className="hidden md:block w-1/2" />
+                {face}
               </motion.div>
-            ))}
-          </div>
-          
-          {/* Final story closure or path end */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-32 text-center"
-          >
-            <div className="inline-block px-8 py-4 border border-[#C4550A]/30 bg-[#C4550A]/5 text-[#C4550A] font-bold text-[13px] uppercase tracking-[0.2em] rounded-full">
-              Sua jornada começa aqui
-            </div>
-          </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* Subtle Background Elements */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C4550A]/20 to-transparent" />
+          <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-[#C4550A]/10 to-transparent" />
         </div>
       </div>
     </section>
