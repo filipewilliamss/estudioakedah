@@ -8,7 +8,6 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
-import PortfolioSection from "@/components/PortfolioSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
@@ -98,17 +97,8 @@ const Index = () => {
             <SectionDivider />
 
             <section className="snap-start">
-              <ServicesSection />
-            </section>
-
-            <SectionDivider />
-
-            <section className="snap-start">
               <ProcessSection />
             </section>
-
-            {/* Cada serviço em tela cheia, com link para a página detalhada */}
-            <PortfolioSection />
 
             <SectionDivider />
 
