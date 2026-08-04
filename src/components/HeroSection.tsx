@@ -301,24 +301,38 @@ const HeroSection = () => {
             className="mb-10 flex items-center gap-4"
           >
             <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
-              Creative Design Studio
+              Soluções &amp; Estratégias Comerciais
             </span>
           </motion.div>
 
           <h1
-            className="text-white font-[800] leading-[0.82] text-left tracking-[-0.05em] font-display"
-            style={{ fontSize: 'clamp(40px, 10vw, 122px)' }}
+            className="text-white font-[900] leading-[0.82] text-left tracking-[-0.05em] font-display"
+            style={{ fontSize: 'clamp(38px, 9vw, 112px)' }}
           >
-            Sua marca precisa ser <br />
-            <span className="text-[#C4550A] italic font-light">lembrada.</span>
+            Elevamos o seu negócio ao <br />
+            <span className="text-[#C4550A] italic font-normal">próximo patamar.</span>
           </h1>
 
-          <p className="mt-12 text-white/55 text-[17px] md:text-[19px] max-w-none text-left font-light leading-[1.6] font-display tracking-tight">
-            Design para marcas que buscam reconhecimento e diferenciação real,
-            <br />
-            por meio de identidades visuais, sites e presença digital consistentes.
+          <p className="mt-12 text-white/55 text-[17px] md:text-[19px] max-w-2xl text-left font-normal leading-[1.6] font-display tracking-tight">
+            Unindo estratégia comercial e ações de impacto. Antes do marketing, um processo comercial organizado
+            &mdash; do diagnóstico à autonomia.
           </p>
+
+          <div className="mt-12 flex flex-col sm:flex-row gap-5">
+            <a
+              href="https://wa.me/5511991076096"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-premium px-12"
+            >
+              Fale com um especialista
+            </a>
+            <a href="#servicos" className="btn-premium-outline px-12">
+              Conheça nossas soluções
+            </a>
+          </div>
         </div>
+
 
         <div className="hidden lg:flex lg:w-[35%] h-[600px] relative items-center justify-center">
           {/* Subtle ambient glow — refined and integrated */}
@@ -331,12 +345,13 @@ const HeroSection = () => {
           <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#C4550A]/20" />
           
           {/* Branding metadata */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#C4550A]/30 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
-            KIIRO · MARK · 001
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#C4550A]/40 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
+            AKEDAH · MARK · 001
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/15 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
-            MODULAR GEOMETRY · VOL.01
+            ESTRATÉGIA EM MOVIMENTO · VOL.01
           </div>
+
           <canvas 
             ref={canvasRef}
             id="hero-canvas"
