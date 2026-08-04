@@ -88,14 +88,29 @@ const ServicesSection = () => {
             rotateX: rotation,
             transformStyle: "preserve-3d",
           }}
-          className="relative w-full h-[60vh] flex items-center justify-center transition-transform duration-100 ease-out"
+          className="relative w-full h-[60vh] flex items-center justify-center"
         >
           {faces.map((face, index) => {
             const angle = index * 60;
             // Radius calculation: half-height / tan(angle/2)
-            // For 60vh container, radius is roughly 52vh
             const radius = "52vh";
             
+            // Calculate opacity for this face based on current rotation
+            // We want it fully visible only when it's at the front (rotation === -angle)
+            // It should fade out quickly as it moves away
+            const faceOpacity = useTransform(
+              rotation,
+              [-(angle + 30), -angle, -(angle - 30)],
+              [0, 1, 0]
+            );
+
+            // Also slightly scale the active face for better focus
+            const faceScale = useTransform(
+              rotation,
+              [-(angle + 30), -angle, -(angle - 30)],
+              [0.8, 1, 0.8]
+            );
+
             return (
               <motion.div
                 key={index}
@@ -103,6 +118,8 @@ const ServicesSection = () => {
                 style={{
                   transform: `rotateX(${angle}deg) translateZ(${radius})`,
                   backfaceVisibility: "hidden",
+                  opacity: faceOpacity,
+                  scale: faceScale,
                 }}
               >
                 {face}
