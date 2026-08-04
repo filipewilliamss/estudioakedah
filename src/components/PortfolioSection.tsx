@@ -49,7 +49,7 @@ const ServiceShowcase = ({
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
-        <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+        
       </div>
 
       {/* Content */}

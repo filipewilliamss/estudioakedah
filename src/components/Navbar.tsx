@@ -68,17 +68,11 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
 
           {navLinks.map((link, idx) => (
             <Link key={link.label} to={resolveTo(link)} className={textClass} onClick={handleClick(link)}>
-              <span className={`${forceBlack ? 'text-white/30' : 'text-black/30'} hidden xl:inline mr-2 font-mono text-[9px] tracking-normal`}>
-                0{idx + 1}
-              </span>
 
               {link.label}
             </Link>
           ))}
 
-          <Link to="/area-do-cliente" className={`${areaClienteTextClass} rounded-none`}>
-            Área do Cliente
-          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -116,13 +110,6 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
               </Link>
             ))}
 
-            <Link
-              to="/area-do-cliente"
-              onClick={() => setMenuOpen(false)}
-              className={`text-sm transition-colors uppercase tracking-wide font-medium ${areaClienteTextClass}`}
-            >
-              Área do Cliente
-            </Link>
           </div>
         </motion.div>
       )}
