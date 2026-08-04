@@ -128,11 +128,8 @@ const ServicesSection = () => {
           })}
         </motion.div>
 
-        {/* Subtle Background Elements */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C4550A]/20 to-transparent" />
-          <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-[#C4550A]/10 to-transparent" />
-        </div>
+        {/* Solid Black Background (No grid/lines) */}
+        <div className="absolute inset-0 pointer-events-none bg-[#000000]" />
       </div>
     </section>
   );
