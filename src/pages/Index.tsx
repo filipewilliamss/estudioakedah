@@ -98,17 +98,8 @@ const Index = () => {
             <SectionDivider />
 
             <section className="snap-start">
-              <ServicesSection />
-            </section>
-
-            <SectionDivider />
-
-            <section className="snap-start">
               <ProcessSection />
             </section>
-
-            {/* Cada serviço em tela cheia, com link para a página detalhada */}
-            <PortfolioSection />
 
             <SectionDivider />
 
