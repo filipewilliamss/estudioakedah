@@ -81,7 +81,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
 
 
-        className="w-full h-full fill-[#C4550A]"
+        className="w-full h-full fill-none stroke-[#C4550A] stroke-[8]"
       >
         {/* Using the actual paths from akedah-symbol.svg */}
         <path 
