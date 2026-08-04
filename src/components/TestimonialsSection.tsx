@@ -2,24 +2,25 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Daniel Silva",
-    role: "Fundador, Akedah Podcast",
-    text: "O Studio Kiiro entregou muito mais do que um logo, entregou uma identidade que me deu orgulho de apresentar o podcast. Profissionalismo e atenção aos detalhes impressionantes.",
+    name: "Marques Academy",
+    role: "Direção · Educação",
+    text: "Antes da Akedah eu tinha faturamento mas não sabia para onde ia o dinheiro. Após a consultoria, a margem aumentou de forma consistente.",
     featured: true,
   },
   {
-    name: "Danielle",
-    role: "Proprietária, Construmar",
-    text: "Desde que atualizamos nossa identidade visual, os clientes nos enxergam de forma completamente diferente. O manual de marca ficou impecável e fez toda a diferença.",
+    name: "MAP Accounting & Tax",
+    role: "Diretoria · Contabilidade",
+    text: "O social media deles gera leads reais. Nosso comercial recebe contatos quentes todo mês, não curtidas.",
     featured: false,
   },
   {
-    name: "Luisa Santos",
-    role: "Fundadora, Team Luisa CT",
-    text: "A nova marca transmite exatamente a energia que eu queria pro box. Os posts no Instagram ficaram muito mais profissionais e os alunos adoraram.",
+    name: "Heli Barbosa",
+    role: "Proprietária · Joalheria",
+    text: "Em um dia de gravação resolvo três meses de presença digital. Isso não tem preço pra quem tem a agenda cheia de atendimentos.",
     featured: false,
   },
 ];
+
 
 const TestimonialsSection = () => {
   const featured = testimonials.find((t) => t.featured)!;
@@ -36,9 +37,10 @@ const TestimonialsSection = () => {
           className="mb-24"
         >
           <p className="text-sm uppercase tracking-[0.3em] text-primary mb-4">Depoimentos</p>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold">
-            O que dizem os clientes
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-[900]">
+            Clientes que viraram resultados reais.
           </h2>
+
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-8 md:gap-10">

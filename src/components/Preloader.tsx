@@ -17,7 +17,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
     const ctx = gsap.context(() => {
       const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      const targetText = "KIIRO";
+      const targetText = "AKEDAH";
       const textElement = textRef.current;
       
       if (!textElement) return;
@@ -107,10 +107,11 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       
       <div 
         ref={textRef} 
-        className="relative z-10 text-[#C4550A] text-6xl md:text-8xl font-[800] tracking-tighter font-display"
+        className="relative z-10 text-[#C4550A] text-5xl md:text-7xl font-[900] tracking-tighter font-display"
       >
-        KIIRO
+        AKEDAH
       </div>
+
 
       {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 z-20">

@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import kiiroLogo from "@/assets/logo.webp";
+import akedahLogo from "@/assets/akedah-logo.png";
 
-const navLinks = [
-  { label: "Sobre", href: "sobre" },
-  { label: "Serviços", href: "servicos" },
-  { label: "Processo", href: "processo" },
-  { label: "Portfólio", href: "portfolio" },
-  { label: "Contato", href: "contato" },
+type NavItem = { label: string; hash?: string; to?: string };
+
+const navLinks: NavItem[] = [
+  { label: "Sobre", hash: "sobre" },
+  { label: "Soluções", hash: "servicos" },
+  { label: "Método", hash: "processo" },
+  { label: "Serviços", hash: "portfolio" },
+  { label: "Podcast", to: "/podcast" },
+  { label: "Contato", hash: "contato" },
 ];
-
 
 interface NavbarProps {
   forceBlack?: boolean;
@@ -22,21 +24,28 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
   const location = useLocation();
   const isHome = location.pathname === "/";
 
-  
-  const logoHref = "/";
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const bgClass = scrolled 
-    ? (forceBlack ? "bg-black/90 border-white/[0.05]" : "bg-white/90 border-black/[0.05]") + " backdrop-blur-[20px] border-b py-4" 
+  const bgClass = scrolled
+    ? (forceBlack ? "bg-black/90 border-white/[0.05]" : "bg-white/90 border-black/[0.05]") + " backdrop-blur-[20px] border-b py-4"
     : "bg-transparent py-6 md:py-8";
-    
+
   const textClass = `link-magnetic ${forceBlack ? 'text-white/55' : 'text-black/55'} hover:text-[#C4550A] font-bold text-[11px] uppercase tracking-[0.28em] font-display transition-colors duration-500`;
-  const areaClienteTextClass = "relative overflow-hidden text-[#C4550A] border border-[#C4550A]/30 hover:border-[#C4550A] hover:bg-[#C4550A] hover:text-black px-6 py-2.5 transition-all duration-500 text-[11px] font-bold uppercase tracking-[0.25em] font-display";
+  const areaClienteTextClass = "relative overflow-hidden text-[#C4550A] border border-[#C4550A]/40 hover:border-[#C4550A] hover:bg-[#C4550A] hover:text-white px-6 py-2.5 transition-all duration-500 text-[11px] font-bold uppercase tracking-[0.25em] font-display";
+
+  const resolveTo = (link: NavItem) => (link.to ? link.to : `/#${link.hash}`);
+
+  const handleClick = (link: NavItem) => (e: React.MouseEvent) => {
+    setMenuOpen(false);
+    if (link.hash && isHome) {
+      e.preventDefault();
+      document.getElementById(link.hash)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <motion.nav
@@ -46,45 +55,26 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${bgClass}`}
     >
       <div className="container-editorial flex items-center justify-between h-16 md:h-20">
-        <Link to={logoHref} className="flex items-center gap-2 group">
-          <img 
-            src={kiiroLogo} 
-            alt="Studio Kiiro" 
-            className="h-9 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105" 
+        <Link to="/" className="flex items-center gap-2 group" aria-label="Akedah — início">
+          <img
+            src={akedahLogo}
+            alt="Akedah"
+            className="h-7 md:h-8 w-auto transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 
         {/* Desktop */}
-        <div className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link, idx) => {
-            const href = `/#${link.href}`;
-            return (
-              <Link
-                key={link.href}
-                to={href}
-                className={textClass}
-                onClick={(e) => {
-                  if (isHome) {
-                    e.preventDefault();
-                    const element = document.getElementById(link.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }
-                }}
-              >
-                <span className={`${forceBlack ? 'text-white/30' : 'text-black/30'} mr-2 font-mono text-[9px] tracking-normal`}>
-                  0{idx + 1}
-                </span>
-                {link.label}
-              </Link>
-            );
-          })}
+        <div className="hidden lg:flex items-center gap-9">
+          {navLinks.map((link, idx) => (
+            <Link key={link.label} to={resolveTo(link)} className={textClass} onClick={handleClick(link)}>
+              <span className={`${forceBlack ? 'text-white/30' : 'text-black/30'} mr-2 font-mono text-[9px] tracking-normal`}>
+                0{idx + 1}
+              </span>
+              {link.label}
+            </Link>
+          ))}
 
-          <Link
-            to="/area-do-cliente"
-            className={`${areaClienteTextClass} rounded-none`}
-          >
+          <Link to="/area-do-cliente" className={`${areaClienteTextClass} rounded-none`}>
             Área do Cliente
           </Link>
         </div>
@@ -115,18 +105,9 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
           <div className="container-editorial py-6 flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
-                to={`/#${link.href}`}
-                onClick={(e) => {
-                  setMenuOpen(false);
-                  if (isHome) {
-                    e.preventDefault();
-                    const element = document.getElementById(link.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }
-                }}
+                key={link.label}
+                to={resolveTo(link)}
+                onClick={handleClick(link)}
                 className={`text-sm transition-colors uppercase tracking-wide ${textClass}`}
               >
                 {link.label}
