@@ -6,7 +6,7 @@ import akedahLogo from "@/assets/akedah-logo.png";
 type NavItem = { label: string; hash?: string; to?: string };
 
 const navLinks: NavItem[] = [
-  { label: "Sobre", hash: "sobre" },
+  { label: "Nossa história", to: "/sobre" },
   { label: "Soluções", hash: "servicos" },
   { label: "Método", hash: "processo" },
   { label: "Serviços", hash: "portfolio" },
