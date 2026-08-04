@@ -56,7 +56,7 @@ const CustomCursor = () => {
         setIsHovering(!!interactive);
 
         const style = window.getComputedStyle(element);
-        const isYellow = (c: string) => c && (c.includes('255, 202, 22') || c.toLowerCase().includes('#ffca16'));
+        const isYellow = (c: string) => c && (c.includes('196, 85, 10') || c.toLowerCase().includes('#c4550a'));
         
         let currentEl: Element | null = element;
         let overYellow = false;
@@ -81,8 +81,8 @@ const CustomCursor = () => {
 
   if (isMobile) return null;
 
-  const cursorColor = isOverYellow ? 'bg-white' : 'bg-[#FFCA16]';
-  const borderColor = isOverYellow ? 'border-white/20' : 'border-[#FFCA16]/20';
+  const cursorColor = isOverYellow ? 'bg-white' : 'bg-[#C4550A]';
+  const borderColor = isOverYellow ? 'border-white/20' : 'border-[#C4550A]/20';
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden">

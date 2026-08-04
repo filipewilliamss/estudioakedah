@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
-import kiiroLogo from "@/assets/logo.webp";
+import kiiroLogo from "@/assets/akedah-logo.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -105,7 +105,7 @@ const LoginPage = () => {
         {/* Logo */}
         <div className="flex flex-col items-center gap-6">
           <Link to="/">
-            <img src={kiiroLogo} alt="Studio Kiiro" className="h-10 hover:opacity-80 transition-opacity cursor-pointer" />
+            <img src={kiiroLogo} alt="Akedah" className="h-10 hover:opacity-80 transition-opacity cursor-pointer" />
           </Link>
           <div className="text-center space-y-2">
             <h1 className="text-2xl font-semibold text-foreground font-display">
@@ -113,7 +113,7 @@ const LoginPage = () => {
             </h1>
             <p className="text-sm text-muted-foreground font-body">
               {mode === "client" ? (
-                <>Acesse sua área exclusiva no Studio Kiiro.<br />Use seu usuário e senha fornecidos.</>
+                <>Acesse sua área exclusiva no Akedah.<br />Use seu usuário e senha fornecidos.</>
               ) : mode === "admin" ? (
                 <>Acesso restrito para administradores.<br />Gestão interna do estúdio.</>
               ) : (
@@ -198,7 +198,7 @@ const LoginPage = () => {
           </div>
           
           <p className="text-center text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Studio Kiiro. Todos os direitos reservados.
+            © {new Date().getFullYear()} Akedah. Todos os direitos reservados.
           </p>
         </div>
       </div>

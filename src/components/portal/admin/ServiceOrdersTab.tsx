@@ -10,7 +10,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Checkbox } from "@/components/ui/checkbox";
 import { FilePlus, Printer, Hash, Calendar, Trash2, Pencil, Plus, X } from "lucide-react";
 import { toast } from "sonner";
-import kiiroLogo from "@/assets/logo.webp";
+import kiiroLogo from "@/assets/akedah-logo.png";
 
 interface Profile { id: string; full_name: string; company: string | null; phone: string | null; email: string | null; }
 interface Project { id: string; name: string; type: string; }
@@ -43,7 +43,7 @@ const formatDateTimeLong = (dateStr: string) => {
   return `${date.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" })} às ${date.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}`;
 };
 
-// Studio Kiiro provider info
+// Akedah provider info
 const PROVIDER = {
   name: "Filipe Soares",
   document: "449.403.838-57",
@@ -449,7 +449,7 @@ const ServiceOrdersTab = () => {
                     </p>
                   </div>
                   <div className="os-header-logo">
-                    <img src={kiiroLogo} alt="Studio Kiiro" style={{ height: "48px" }} />
+                    <img src={kiiroLogo} alt="Akedah" style={{ height: "48px" }} />
                   </div>
                 </div>
 
@@ -555,7 +555,7 @@ const ServiceOrdersTab = () => {
                 {/* Footer */}
                 <div className="os-footer" style={{ textAlign: "center", padding: "40px", color: "#999", fontSize: "12px", lineHeight: 1.8, borderTop: "1px solid #e5e5e5", marginTop: "20px" }}>
                   OS #{getOsHash(viewOrder)} gerada em {formatDateTimeLong(viewOrder.created_at)}<br />
-                  Documento emitido via Studio Kiiro
+                  Documento emitido via Akedah
                 </div>
               </div>
             </>

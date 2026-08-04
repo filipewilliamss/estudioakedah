@@ -57,21 +57,22 @@ const HeroSection = () => {
     const startTime = performance.now();
     const fadeDuration = 1400;
 
-    // ---- Sample the official Kiiro SVG into a volumetric dot matrix
+    // ---- Sample the official Akedah symbol into a volumetric dot matrix
     // The SVG path lives inside viewBox 0 0 1080 1080. We rasterize
     // it to a small offscreen canvas, then scan pixels at a fixed
     // step. Each filled pixel produces a stack of dots along Z.
     const SVG_MARKUP = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
-  <path fill="#ffca16" d="M693.69,386.46h-114.79l114.78,111.28v-111.28ZM501.1,386.46h-114.79v111.28s114.79-111.28,114.79-111.28ZM576.63,580.07l117.06,113.47v-102.25l-117.06-113.47v102.25ZM386.31,693.54l117.06-113.47v-102.25l-117.06,113.47v102.25Z"/>
+  <path fill="#c4550a" d="M665.95,471.38l-240.33-138.75v33.11l225.99,130.48c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16l-64.91,37.48,36.43,12.1,42.82-24.72c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03ZM885.89,466.6l-389.84-225.08c-28.59-16.52-63.18-14.46-89.53,4.9l-9.44,8.03c-13.03,12.96-21.25,29.88-23.45,48.15l-22.09-12.77-75.42-43.53c-28.59-16.52-63.18-14.46-89.53,4.9l-9.44,8.03c-15.37,15.28-24.05,36.07-24.05,58.09v450.15c0,28.09,14.1,53.88,37.72,69.02,12.65,8.13,27.18,12.62,42.07,13.05.77.02,1.53.05,2.32.05,9.51,0,18.86-1.67,27.85-4.97l2.63-.98.1-.1c3.51-1.41,6.98-3.11,10.33-5.04l77.6-44.8c-2.96-9.73-4.54-19.99-4.59-30.5l-87.38,50.47c-2.77,1.6-5.64,2.94-8.51,3.99l-1,.36c-5.98,2.08-12.19,3.06-18.53,2.87-9.68-.29-19.15-3.23-27.42-8.53-15.56-9.97-24.5-26.32-24.5-44.87v-450.15c0-14.42,5.4-27.54,15.3-37.48l4.4-3.92c17.38-14.06,40.95-15.95,60.29-4.78l87.35,50.44,23.91,13.79v427.32c0,6.36.72,12.6,2.13,18.62,4.76,20.61,17.33,38.68,35.6,50.39,12.65,8.13,27.18,12.62,42.07,13.05.77.02,1.53.05,2.32.05,9.51,0,18.86-1.67,27.85-4.97l2.63-.98.1-.1c3.51-1.41,6.98-3.11,10.33-5.04l183.89-106.17,77.55-44.78,128.4-74.13c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03ZM871.54,583.79l-150.49,86.9-77.55,44.78-161.82,93.43c-2.77,1.6-5.64,2.94-8.51,3.99l-1,.36c-5.98,2.08-12.19,3.06-18.53,2.87-9.68-.29-19.15-3.23-27.42-8.53-14.65-9.4-23.43-24.43-24.41-41.64l23.81-13.75,119.96-69.26,77.55-44.78,42.82-24.72c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03l-240.33-138.75v33.11l225.99,130.48c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16l-64.91,37.48-77.55,44.78-83.53,48.22-23.91,13.79v-420.3c0-14.42,5.4-27.54,15.3-37.48l4.4-3.92c17.38-14.06,40.95-15.95,60.29-4.78l389.84,225.08c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16Z"/>
 </svg>`;
 
-    const SAMPLE_SIZE = 140;          // offscreen rasterization resolution
-    const STEP_PX = 3;                // pixel scan step (density of dots)
+    const SAMPLE_SIZE = 300;          // offscreen rasterization resolution
+    const STEP_PX = 4;                // pixel scan step (density of dots)
     const TARGET_HEIGHT = 320;        // displayed height of the symbol
     const DEPTH = 60;                 // total Z extrusion
     const Z_LAYERS = 5;               // number of Z layers
     const STEP_Z = DEPTH / (Z_LAYERS - 1);
+
 
     const buildFromSVG = () => {
       const off = document.createElement('canvas');
@@ -247,7 +248,7 @@ const HeroSection = () => {
         ctx.arc(p.sx, p.sy, r, 0, Math.PI * 2);
         
         // Use a subtle gradient or solid depending on depth
-        ctx.fillStyle = '#FFCA16';
+        ctx.fillStyle = '#C4550A';
         ctx.globalAlpha = p.alpha;
         ctx.fill();
       }
@@ -287,7 +288,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       
       {/* Radial Gradient for depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,202,22,0.05)_0%,transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(196,85,10,0.05)_0%,transparent_50%)] pointer-events-none" />
 
       {/* Top meta bar — editorial detail */}
 
@@ -299,43 +300,58 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="mb-10 flex items-center gap-4"
           >
-            <span className="text-[#FFCA16] text-[11px] font-bold uppercase tracking-[0.4em]">
-              Creative Design Studio
+            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
+              Soluções &amp; Estratégias Comerciais
             </span>
           </motion.div>
 
           <h1
-            className="text-white font-[800] leading-[0.82] text-left tracking-[-0.05em] font-display"
-            style={{ fontSize: 'clamp(40px, 10vw, 122px)' }}
+            className="text-white font-[900] leading-[0.82] text-left tracking-[-0.05em] font-display"
+            style={{ fontSize: 'clamp(38px, 9vw, 112px)' }}
           >
-            Sua marca precisa ser <br />
-            <span className="text-[#FFCA16] italic font-light">lembrada.</span>
+            Elevamos o seu negócio ao <br />
+            <span className="text-[#C4550A] italic font-normal">próximo patamar.</span>
           </h1>
 
-          <p className="mt-12 text-white/55 text-[17px] md:text-[19px] max-w-none text-left font-light leading-[1.6] font-display tracking-tight">
-            Design para marcas que buscam reconhecimento e diferenciação real,
-            <br />
-            por meio de identidades visuais, sites e presença digital consistentes.
+          <p className="mt-12 text-white/55 text-[17px] md:text-[19px] max-w-2xl text-left font-normal leading-[1.6] font-display tracking-tight">
+            Unindo estratégia comercial e ações de impacto. Antes do marketing, um processo comercial organizado
+            &mdash; do diagnóstico à autonomia.
           </p>
+
+          <div className="mt-12 flex flex-col sm:flex-row gap-5">
+            <a
+              href="https://wa.me/5511991076096"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-premium px-12"
+            >
+              Fale com um especialista
+            </a>
+            <a href="#servicos" className="btn-premium-outline px-12">
+              Conheça nossas soluções
+            </a>
+          </div>
         </div>
+
 
         <div className="hidden lg:flex lg:w-[35%] h-[600px] relative items-center justify-center">
           {/* Subtle ambient glow — refined and integrated */}
-          <div className="absolute w-[380px] h-[380px] bg-[#FFCA16]/[0.03] blur-[120px] rounded-full" />
+          <div className="absolute w-[380px] h-[380px] bg-[#C4550A]/[0.03] blur-[120px] rounded-full" />
           
           {/* Technical frame markers */}
-          <div className="absolute top-10 left-10 w-2 h-2 border-l border-t border-[#FFCA16]/20" />
-          <div className="absolute top-10 right-10 w-2 h-2 border-r border-t border-[#FFCA16]/20" />
-          <div className="absolute bottom-10 left-10 w-2 h-2 border-l border-b border-[#FFCA16]/20" />
-          <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#FFCA16]/20" />
+          <div className="absolute top-10 left-10 w-2 h-2 border-l border-t border-[#C4550A]/20" />
+          <div className="absolute top-10 right-10 w-2 h-2 border-r border-t border-[#C4550A]/20" />
+          <div className="absolute bottom-10 left-10 w-2 h-2 border-l border-b border-[#C4550A]/20" />
+          <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#C4550A]/20" />
           
           {/* Branding metadata */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#FFCA16]/30 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
-            KIIRO · MARK · 001
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#C4550A]/40 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
+            AKEDAH · MARK · 001
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/15 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
-            MODULAR GEOMETRY · VOL.01
+            ESTRATÉGIA EM MOVIMENTO · VOL.01
           </div>
+
           <canvas 
             ref={canvasRef}
             id="hero-canvas"

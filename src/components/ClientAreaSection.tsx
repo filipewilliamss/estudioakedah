@@ -70,7 +70,7 @@ const ClientAreaSection = () => {
             em tempo real
           </h2>
           <p className="text-muted-foreground text-lg md:text-xl max-w-2xl leading-relaxed">
-            No Studio Kiiro, cada cliente tem acesso a um painel exclusivo onde
+            No Akedah, cada cliente tem acesso a um painel exclusivo onde
             acompanha as fases do projeto, acessa arquivos entregues e visualiza
             o financeiro, tudo com transparência e organização.
           </p>
@@ -117,7 +117,7 @@ const ClientAreaSection = () => {
               <span className="w-3 h-3 rounded-full bg-muted-foreground/30" />
               <span className="w-3 h-3 rounded-full bg-muted-foreground/20" />
               <span className="ml-4 text-xs text-muted-foreground/60 font-mono">
-                studiokiiro.com/area-do-cliente
+                akedah.com.br/area-do-cliente
               </span>
             </div>
 
@@ -125,7 +125,7 @@ const ClientAreaSection = () => {
             <div className="overflow-hidden">
               <img
                 src={areaDoClienteMockup}
-                alt="Interface da Área do Cliente do Studio Kiiro"
+                alt="Interface da Área do Cliente do Akedah"
                 className="w-full h-auto block"
                 loading="lazy"
               />

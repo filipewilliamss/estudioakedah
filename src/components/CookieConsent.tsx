@@ -54,7 +54,7 @@ export const CookieConsent = () => {
                   </button>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-                  Nós usamos cookies para melhorar sua experiência no site do Studio Kiiro. Ao continuar navegando, você concorda com a nossa política de privacidade.
+                  Nós usamos cookies para melhorar sua experiência no site do Akedah. Ao continuar navegando, você concorda com a nossa política de privacidade.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button 

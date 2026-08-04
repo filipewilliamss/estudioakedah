@@ -21,7 +21,7 @@ const EditorialQuote = ({ eyebrow = "Manifesto", quote, attribution }: Editorial
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="flex items-center gap-4 mb-12"
           >
-            <span className="text-[#FFCA16] text-[10px] font-bold uppercase tracking-[0.4em]">
+            <span className="text-[#C4550A] text-[10px] font-bold uppercase tracking-[0.4em]">
               {eyebrow}
             </span>
           </motion.div>
@@ -34,9 +34,9 @@ const EditorialQuote = ({ eyebrow = "Manifesto", quote, attribution }: Editorial
             className="font-display font-[300] text-white leading-[1.05] tracking-[-0.03em] text-balance"
             style={{ fontSize: "clamp(34px, 5.2vw, 76px)" }}
           >
-            <span className="text-[#FFCA16]">“</span>
+            <span className="text-[#C4550A]">“</span>
             {quote}
-            <span className="text-[#FFCA16]">”</span>
+            <span className="text-[#C4550A]">”</span>
           </motion.blockquote>
 
           {attribution && (

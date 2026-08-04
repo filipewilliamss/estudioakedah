@@ -6,19 +6,18 @@ interface EditorialMarqueeProps {
 }
 
 const defaultWords = [
-  "Identidade Visual",
-  "Logotipo Essencial",
-  "Branding Completo",
-  "Personal Brand Kit",
-  "Design para Redes Sociais",
-  "Edição de vídeo (reels/ shorts)",
-  "Vídeo institucional",
-  "Video tutorial/ educativo",
-  "Sites",
-  "Landing Pages",
-  "Apresentação comercial",
-  "Apresentação Institucional",
+  "Advocacia",
+  "Contabilidade",
+  "Estética",
+  "Confeitaria",
+  "Clínicas",
+  "Educação",
+  "Imobiliário",
+  "Serviços B2B",
+  "Varejo",
+  "Infoprodutos",
 ];
+
 
 const EditorialMarquee = ({ words = defaultWords, variant = "default" }: EditorialMarqueeProps) => {
   const items = [...words, ...words];
@@ -40,11 +39,11 @@ const EditorialMarquee = ({ words = defaultWords, variant = "default" }: Editori
         {items.map((word, i) => (
           <span
             key={i}
-            className="font-display font-[800] text-white/[0.08] hover:text-[#FFCA16]/30 transition-colors duration-700 px-10 whitespace-nowrap leading-none tracking-extratight"
+            className="font-display font-[800] text-white/[0.08] hover:text-[#C4550A]/30 transition-colors duration-700 px-10 whitespace-nowrap leading-none tracking-extratight"
             style={{ fontSize: variant === "compact" ? "clamp(40px, 6vw, 80px)" : "clamp(64px, 10vw, 140px)" }}
           >
             {word}
-            <span className="inline-block w-3 h-3 bg-[#FFCA16] mx-10 align-middle rounded-full" />
+            <span className="inline-block w-3 h-3 bg-[#C4550A] mx-10 align-middle rounded-full" />
           </span>
         ))}
       </motion.div>

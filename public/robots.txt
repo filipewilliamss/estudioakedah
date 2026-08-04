@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://studiokiiro.com/sitemap.xml
+Sitemap: https://akedah.com.br/sitemap.xml

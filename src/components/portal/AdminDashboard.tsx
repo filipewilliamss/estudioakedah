@@ -103,10 +103,10 @@ const AdminDashboard = () => {
         <header className="border-b border-white/10 bg-black sticky top-[calc(7rem-55px)] md:top-[calc(9rem-55px)] z-[60] mt-[calc(8rem-55px)] md:mt-[calc(10rem-55px)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 h-12 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-[11px] uppercase tracking-[0.3em] text-primary font-semibold">Studio Kiiro Workspace</span>
+              <span className="text-[11px] uppercase tracking-[0.3em] text-primary font-semibold">Akedah Workspace</span>
               <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] text-white/40 ml-2 border-l border-white/10 pl-3">
                 <Clock className="h-3 w-3" />
-                Ferramenta interna do Studio Kiiro
+                Ferramenta interna do Akedah
               </span>
             </div>
             <div className="flex items-center gap-1">
@@ -141,7 +141,7 @@ const AdminDashboard = () => {
                     <span className="text-[10px] uppercase tracking-[0.3em] text-black font-bold">Painel ativo</span>
                   </div>
                   <h1 className="font-display text-2xl sm:text-3xl lg:text-[2.5rem] font-bold text-black leading-[1.15] mb-4">
-                    Bem-vindo {profile?.full_name || ""},<br />ao sistema do Studio Kiiro.
+                    Bem-vindo {profile?.full_name || ""},<br />ao sistema do Akedah.
                   </h1>
                   <p className="text-black/70 text-sm sm:text-[15px] leading-relaxed max-w-xl">
                     Aqui você acompanha clientes, projetos, orçamentos, finanças e ordens de serviço com a mesma atenção aos detalhes que colocamos no design. <span className="hidden sm:inline italic opacity-60">— Gerindo o presente, projetando o futuro.</span>

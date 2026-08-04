@@ -18,7 +18,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { toast } from "sonner";
 import { briefingQuestions } from "@/data/briefingQuestions";
 import { motion, AnimatePresence } from "framer-motion";
-import kiiroLogo from "@/assets/logo.webp";
+import kiiroLogo from "@/assets/akedah-logo.png";
 import ProposalGate from "./ProposalGate";
 
 interface Project {
@@ -840,7 +840,7 @@ const ClientDashboard = () => {
       <header className="border-b border-white/10 bg-black sticky top-[calc(7rem-55px)] md:top-[calc(9rem-55px)] z-[60] mt-[calc(8rem-55px)] md:mt-[calc(10rem-55px)]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <h2 className="text-[11px] font-semibold text-primary uppercase tracking-[0.3em] font-display">Studio Kiiro Workspace</h2>
+            <h2 className="text-[11px] font-semibold text-primary uppercase tracking-[0.3em] font-display">Akedah Workspace</h2>
             <span className="hidden sm:inline-flex items-center gap-1.5 text-[10px] text-white/40 ml-2 border-l border-white/10 pl-3">
               Seu projeto em tempo real
             </span>
@@ -1174,7 +1174,7 @@ const ClientDashboard = () => {
                       <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "28px", fontWeight: 700, color: "#fff", marginBottom: "8px" }}>{PROVIDER.name}</h1>
                       <p style={{ fontSize: "13px", color: "#aaa", lineHeight: 1.5 }}>{PROVIDER.document}<br />{PROVIDER.address}</p>
                     </div>
-                    <img src={kiiroLogo} alt="Studio Kiiro" style={{ height: "48px" }} />
+                    <img src={kiiroLogo} alt="Akedah" style={{ height: "48px" }} />
                   </div>
                   <div style={{ padding: "32px 40px" }}>
                     <div style={{ marginBottom: "28px" }}>
@@ -1258,7 +1258,7 @@ const ClientDashboard = () => {
                   </div>
                   <div style={{ textAlign: "center", padding: "40px", color: "#999", fontSize: "12px", lineHeight: 1.8, borderTop: "1px solid #e5e5e5", marginTop: "20px" }}>
                     OS #{getOsHash(viewOrder)} gerada em {formatDateTimeLong(viewOrder.created_at)}<br />
-                    Documento emitido via Studio Kiiro
+                    Documento emitido via Akedah
                   </div>
                 </div>
               </>

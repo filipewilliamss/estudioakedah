@@ -14,8 +14,7 @@ import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import EditorialMarquee from "@/components/EditorialMarquee";
 import EditorialQuote from "@/components/EditorialQuote";
-import SocialMediaPortfolio from "@/components/SocialMediaPortfolio";
-
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -33,14 +32,15 @@ const Index = () => {
     }
   }, [loading, location.hash]);
 
-
   const studioSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Studio Kiiro",
-    "image": "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d267e9c4-5caf-40ac-a058-3159ed1fe30c/id-preview-1aaaf73e--329d2406-9190-4896-bf7a-d98ea9a495ee.lovable.app-1773278607521.png",
-    "@id": "https://studiokiiro.com",
-    "url": "https://studiokiiro.com",
+    "name": "Akedah",
+    "alternateName": "Estúdio Akedah de Soluções e Estratégias Comerciais",
+    "description": "Estúdio de Soluções e Estratégias Comerciais: social media, tráfego pago, vídeos em lote e treinamentos para empresas consolidadas.",
+    "@id": "https://akedah.com.br",
+    "url": "https://akedah.com.br",
+    "email": "contato@akedah.com.br",
     "telephone": "+5511991076096",
     "address": {
       "@type": "PostalAddress",
@@ -48,32 +48,18 @@ const Index = () => {
       "addressRegion": "SP",
       "addressCountry": "BR"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -23.561414,
-      "longitude": -46.655881
-    },
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       "opens": "09:00",
       "closes": "18:00"
-    },
-    "sameAs": [
-      "https://www.instagram.com/studiokiiro"
-    ]
+    }
   };
 
   return (
     <div className="min-h-screen bg-black">
       <SEO schema={studioSchema} />
-      
+
       <AnimatePresence>
         {loading && <Preloader onComplete={() => setLoading(false)} />}
       </AnimatePresence>
@@ -82,61 +68,60 @@ const Index = () => {
         {!loading && (
           <main className="flex flex-col snap-y snap-proximity">
             <Navbar />
-            
+
             <section className="snap-start">
               <HeroSection />
             </section>
-            
+
             <SectionDivider />
-            
+
             <section className="snap-start">
               <EditorialMarquee variant="compact" />
             </section>
-            
+
             <SectionDivider />
-            
+
             <section className="snap-start">
               <AboutSection />
             </section>
-            
+
             <SectionDivider />
-            
+
             <section className="snap-start">
               <EditorialQuote
-                eyebrow="Direção Criativa"
-                quote={<>Design inteligente para fugir do <span className="italic text-[#FFCA16]">genérico</span>.</>}
-                attribution="Filipe Williams · Studio Kiiro"
+                eyebrow="Posicionamento Akedah"
+                quote={<>Marketing é ferramenta, não <span className="italic text-[#C4550A]">ponto de partida</span>.</>}
+                attribution="Daniel Silva · Fundador da Akedah"
               />
             </section>
-            
+
             <SectionDivider />
-            
+
             <section className="snap-start">
               <ServicesSection />
             </section>
-            
+
             <SectionDivider />
-            
+
             <section className="snap-start">
               <ProcessSection />
             </section>
-            
-            {/* Portfolio Section handles its own snapping per project */}
+
+            {/* Cada serviço em tela cheia, com link para a página detalhada */}
             <PortfolioSection />
-            
-            <SectionDivider />
-            
-            <section className="snap-start">
-              <SocialMediaPortfolio />
-            </section>
-            
+
             <SectionDivider />
 
-            
+            <section className="snap-start">
+              <TestimonialsSection />
+            </section>
+
+            <SectionDivider />
+
             <section className="snap-start">
               <ContactSection />
             </section>
-            
+
             <Footer />
           </main>
         )}
@@ -146,12 +131,12 @@ const Index = () => {
 };
 
 const SectionDivider = () => (
-  <motion.div 
+  <motion.div
     initial={{ scaleX: 0, opacity: 0 }}
     whileInView={{ scaleX: 1, opacity: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-    className="section-divider origin-center h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" 
+    className="section-divider origin-center h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"
   />
 );
 

@@ -12,7 +12,7 @@ import {
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
-import kiiroLogo from "@/assets/logo.webp";
+import kiiroLogo from "@/assets/akedah-logo.png";
 
 interface QuoteItem { description: string; quantity: number; unit_price: number; }
 interface Quote {
@@ -137,7 +137,7 @@ const ProposalGate = ({ quotes, profileId, onQuotesUpdated }: ProposalGateProps)
               Obrigado por aceitar a proposta!
             </h1>
             <p className="text-white/60 max-w-md mx-auto leading-relaxed">
-              Em breve daremos início ao seu projeto. Aguarde a confirmação do Studio Kiiro para acessar seu painel completo.
+              Em breve daremos início ao seu projeto. Aguarde a confirmação do Akedah para acessar seu painel completo.
             </p>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs text-white/40">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
