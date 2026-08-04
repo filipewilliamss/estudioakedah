@@ -336,19 +336,19 @@ const HeroSection = () => {
 
         <div className="hidden lg:flex lg:w-[35%] h-[600px] relative items-center justify-center">
           {/* Subtle ambient glow — refined and integrated */}
-          <div className="absolute w-[380px] h-[380px] bg-[#C4550A]/[0.03] blur-[120px] rounded-full" />
+          <div className="absolute w-[380px] h-[380px] bg-[#C4550A]/[0.03] blur-[120px] rounded-full pointer-events-none" />
           
           {/* Technical frame markers */}
-          <div className="absolute top-10 left-10 w-2 h-2 border-l border-t border-[#C4550A]/20" />
-          <div className="absolute top-10 right-10 w-2 h-2 border-r border-t border-[#C4550A]/20" />
-          <div className="absolute bottom-10 left-10 w-2 h-2 border-l border-b border-[#C4550A]/20" />
-          <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#C4550A]/20" />
+          <div className="absolute top-10 left-10 w-2 h-2 border-l border-t border-[#C4550A]/20 pointer-events-none" />
+          <div className="absolute top-10 right-10 w-2 h-2 border-r border-t border-[#C4550A]/20 pointer-events-none" />
+          <div className="absolute bottom-10 left-10 w-2 h-2 border-l border-b border-[#C4550A]/20 pointer-events-none" />
+          <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#C4550A]/20 pointer-events-none" />
           
           {/* Branding metadata */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#C4550A]/40 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#C4550A]/40 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap pointer-events-none">
             AKEDAH · MARK · 001
           </div>
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/15 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/15 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap pointer-events-none">
             ESTRATÉGIA EM MOVIMENTO · VOL.01
           </div>
 
