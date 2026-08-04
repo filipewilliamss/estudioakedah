@@ -55,7 +55,7 @@ const ParticleBackground: React.FC = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
-      const particleCount = Math.min(Math.floor(window.innerWidth / 10), 120);
+      const particleCount = Math.min(Math.floor(window.innerWidth / 20), 60);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
