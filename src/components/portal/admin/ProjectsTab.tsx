@@ -586,7 +586,7 @@ const ProjectsTab = () => {
                 </div>
                 <div className="flex items-center gap-2 mt-2">
                   <Button variant="outline" size="sm" className="gap-2 text-xs" onClick={() => {
-                    const content = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS DESIGN\n\nCONTRATANTE: ${selectedProject.profiles?.full_name}\nCONTRATADO: Studio Kiiro\n\nSERVIÇO: ${selectedProject.type}\nVALOR: ${payment ? formatCurrency(payment.budget_total) : "—"}\n\nESTE É UM MODELO DE CONTRATO AUTOMATIZADO...`;
+                    const content = `CONTRATO DE PRESTAÇÃO DE SERVIÇOS DESIGN\n\nCONTRATANTE: ${selectedProject.profiles?.full_name}\nCONTRATADO: Akedah\n\nSERVIÇO: ${selectedProject.type}\nVALOR: ${payment ? formatCurrency(payment.budget_total) : "—"}\n\nESTE É UM MODELO DE CONTRATO AUTOMATIZADO...`;
                     const blob = new Blob([content], { type: "text/plain" });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement("a");

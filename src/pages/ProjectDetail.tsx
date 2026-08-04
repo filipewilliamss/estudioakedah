@@ -53,9 +53,9 @@ const ProjectDetail = () => {
     >
       <SEO 
         title={project.title}
-        description={project.subtitle || `Projeto de ${project.category} desenvolvido pelo Studio Kiiro em ${project.year}.`}
+        description={project.subtitle || `Projeto de ${project.category} desenvolvido pelo Akedah em ${project.year}.`}
         image={project.pages[0]}
-        url={`https://studiokiiro.com/projeto/${project.slug}`}
+        url={`https://akedah.com.br/projeto/${project.slug}`}
         type="article"
       />
       <Navbar forceBlack={!isLightBg} />

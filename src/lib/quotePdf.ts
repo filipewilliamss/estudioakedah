@@ -198,7 +198,7 @@ export async function generateQuotePdf(quote: QuotePdfData): Promise<jsPDF> {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor(...BRAND.gray);
-    doc.text("Studio Kiiro · contato@studiokiiro.com · studiokiiro.com", M, pageH - 38);
+    doc.text("Akedah · contato@akedah.com.br · akedah.com.br", M, pageH - 38);
     doc.text(`${code} · Página ${p} de ${pages}`, pageW - M, pageH - 38, { align: "right" });
   }
 

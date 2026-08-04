@@ -17,7 +17,7 @@ const MethodologyDocument = ({ methodology }: Props) => {
           <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">{methodology.title}</h1>
           <p className="italic text-white/70 mt-3 text-sm sm:text-base">{methodology.subtitle}</p>
           <div className="flex items-center gap-6 mt-5 text-xs text-white/50">
-            <span>Apresentado por: <strong className="text-white/70">Studio Kiiro</strong></span>
+            <span>Apresentado por: <strong className="text-white/70">Akedah</strong></span>
             <span>Data: {methodology.date}</span>
           </div>
         </div>
@@ -179,10 +179,10 @@ const MethodologyDocument = ({ methodology }: Props) => {
 
           {/* Footer */}
           <div className="px-8 sm:px-12 py-4 border-t border-black/5 flex items-center justify-between">
-            <span className="font-display text-xs font-bold text-black/30">Studio Kiiro</span>
+            <span className="font-display text-xs font-bold text-black/30">Akedah</span>
             <div className="flex items-center gap-4 text-[10px] text-black/30">
-              <span>studiokiiro.com</span>
-              <span>contato@studiokiiro.com</span>
+              <span>akedah.com.br</span>
+              <span>contato@akedah.com.br</span>
               <span>(11) 99107-6096</span>
             </div>
           </div>

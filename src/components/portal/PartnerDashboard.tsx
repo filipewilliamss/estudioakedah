@@ -294,7 +294,7 @@ const PartnerDashboard = () => {
                 <span className="text-[10px] uppercase tracking-[0.3em] text-black font-bold">Parceiro ativo</span>
               </div>
               <h1 className="font-display text-2xl sm:text-3xl font-bold text-black leading-tight mb-3">Olá {profile?.full_name || "Parceiro"}</h1>
-              <p className="text-sm text-black/70 max-w-xl">Seja bem-vindo ao seu painel de parceiro do Studio Kiiro. Acompanhe o andamento dos projetos que você trouxe para o estúdio e suas comissões. <span className="hidden sm:inline italic opacity-60">— Sua ponte para grandes marcas começa aqui.</span></p>
+              <p className="text-sm text-black/70 max-w-xl">Seja bem-vindo ao seu painel de parceiro do Akedah. Acompanhe o andamento dos projetos que você trouxe para o estúdio e suas comissões. <span className="hidden sm:inline italic opacity-60">— Sua ponte para grandes marcas começa aqui.</span></p>
             </div>
           </div>
         </motion.div>
@@ -393,12 +393,12 @@ const PartnerDashboard = () => {
                   </div>
                 ) : (
                   <div className="space-y-8">
-                    <div className="space-y-2"><h2 className="text-sm font-bold uppercase tracking-wider text-foreground">Materiais de Apoio para Venda</h2><p className="text-xs text-muted-foreground">Utilize estes materiais para facilitar suas vendas e apresentações do Studio Kiiro.</p></div>
+                    <div className="space-y-2"><h2 className="text-sm font-bold uppercase tracking-wider text-foreground">Materiais de Apoio para Venda</h2><p className="text-xs text-muted-foreground">Utilize estes materiais para facilitar suas vendas e apresentações do Akedah.</p></div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-card border border-border rounded-xl p-5 space-y-4 hover:border-primary/30 transition-colors">
                         <div className="flex items-center gap-3"><div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary"><Download className="h-5 w-5" /></div><div><h3 className="text-sm font-bold text-foreground">Tabela de Preços e Serviços</h3><p className="text-[10px] text-muted-foreground uppercase tracking-wider">PDF • Atualizado em Jan/2024</p></div></div>
                         <p className="text-xs text-muted-foreground">Contém os valores de tabela para todos os serviços do estúdio, descrições e prazos médios.</p>
-                        <Button variant="outline" size="sm" className="w-full gap-2 text-xs" onClick={() => window.open('https://studiokiiro.com/servicos.pdf', '_blank')}>Baixar PDF</Button>
+                        <Button variant="outline" size="sm" className="w-full gap-2 text-xs" onClick={() => window.open('https://akedah.com.br/servicos.pdf', '_blank')}>Baixar PDF</Button>
                       </div>
                       <div className="bg-card border border-border rounded-xl p-5 space-y-4 hover:border-primary/30 transition-colors">
                         <div className="flex items-center gap-3"><div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400"><LayoutDashboard className="h-5 w-5" /></div><div><h3 className="text-sm font-bold text-foreground">Modelos de Abordagem</h3><p className="text-[10px] text-muted-foreground uppercase tracking-wider">TEXTO • WhatsApp & E-mail</p></div></div>
@@ -406,9 +406,9 @@ const PartnerDashboard = () => {
                         <Button variant="outline" size="sm" className="w-full gap-2 text-xs" onClick={() => toast.info("Link para modelos em breve!")}>Ver Modelos</Button>
                       </div>
                       <div className="bg-card border border-border rounded-xl p-5 space-y-4 hover:border-primary/30 transition-colors">
-                        <div className="flex items-center gap-3"><div className="w-10 h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center text-emerald-400"><Search className="h-5 w-5" /></div><div><h3 className="text-sm font-bold text-foreground">Portfólio Online</h3><p className="text-[10px] text-muted-foreground uppercase tracking-wider">LINK • studiokiiro.com</p></div></div>
+                        <div className="flex items-center gap-3"><div className="w-10 h-10 rounded-lg bg-emerald-400/10 flex items-center justify-center text-emerald-400"><Search className="h-5 w-5" /></div><div><h3 className="text-sm font-bold text-foreground">Portfólio Online</h3><p className="text-[10px] text-muted-foreground uppercase tracking-wider">LINK • akedah.com.br</p></div></div>
                         <p className="text-xs text-muted-foreground">Link direto para o nosso portfólio oficial para você mostrar aos seus prospects.</p>
-                        <Button variant="outline" size="sm" className="w-full gap-2 text-xs" onClick={() => window.open('https://studiokiiro.com/portfolio', '_blank')}>Abrir Portfólio</Button>
+                        <Button variant="outline" size="sm" className="w-full gap-2 text-xs" onClick={() => window.open('https://akedah.com.br/portfolio', '_blank')}>Abrir Portfólio</Button>
                       </div>
                     </div>
                   </div>

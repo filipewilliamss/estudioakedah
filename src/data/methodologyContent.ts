@@ -182,7 +182,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Uma Marca Única com Essência e Propósito",
     date: "Março, 2026",
     introduction:
-      "O serviço de Logotipo Essencial do Studio Kiiro entrega um logotipo profissional, estratégico e com identidade própria, sem a complexidade de um sistema visual completo. É ideal para negócios que precisam de uma marca forte e memorável com agilidade e objetividade.",
+      "O serviço de Logotipo Essencial do Akedah entrega um logotipo profissional, estratégico e com identidade própria, sem a complexidade de um sistema visual completo. É ideal para negócios que precisam de uma marca forte e memorável com agilidade e objetividade.",
     principles: [
       { title: "Objetividade Criativa", description: "Foco na entrega de um logotipo impactante e funcional." },
       { title: "Estratégia Condensada", description: "Briefing e pesquisa direcionados ao essencial." },
@@ -289,7 +289,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Construindo uma Marca com Propósito, Personalidade e Presença",
     date: "Março, 2026",
     introduction:
-      "O Branding Completo do Studio Kiiro é o serviço mais abrangente que oferecemos. Vai além da identidade visual para construir um posicionamento estratégico sólido, uma personalidade de marca bem definida e um sistema visual completo e versátil, com manual de marca extenso e aplicações em múltiplos pontos de contato.",
+      "O Branding Completo do Akedah é o serviço mais abrangente que oferecemos. Vai além da identidade visual para construir um posicionamento estratégico sólido, uma personalidade de marca bem definida e um sistema visual completo e versátil, com manual de marca extenso e aplicações em múltiplos pontos de contato.",
     principles: [
       { title: "Profundidade Estratégica", description: "Imersão completa no universo do negócio antes de qualquer criação visual." },
       { title: "Coerência Sistêmica", description: "Cada elemento visual, verbal e comportamental reforça a mesma mensagem." },
@@ -547,7 +547,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Conteúdo Visual que Conecta, Engaja e Converte",
     date: "Março, 2026",
     introduction:
-      "O serviço de Design de Conteúdo para Redes Sociais do Studio Kiiro transforma a presença digital do cliente em um feed profissional, consistente e estrategicamente desenhado. Criamos templates, layouts de feed e peças visuais que traduzem a identidade da marca em conteúdo que gera resultados.",
+      "O serviço de Design de Conteúdo para Redes Sociais do Akedah transforma a presença digital do cliente em um feed profissional, consistente e estrategicamente desenhado. Criamos templates, layouts de feed e peças visuais que traduzem a identidade da marca em conteúdo que gera resultados.",
     principles: [
       { title: "Consistência Visual", description: "Cada peça reforça a identidade da marca no feed." },
       { title: "Estratégia de Conteúdo", description: "Design guiado por objetivos de comunicação e conversão." },
@@ -654,7 +654,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Vídeos Curtos que Capturam Atenção e Geram Resultados",
     date: "Março, 2026",
     introduction:
-      "O serviço de edição de Reels e Shorts do Studio Kiiro transforma material bruto em vídeos curtos profissionais, dinâmicos e otimizados para as plataformas. Cada vídeo é editado com atenção ao pacing, ritmo, trilha e identidade visual do cliente.",
+      "O serviço de edição de Reels e Shorts do Akedah transforma material bruto em vídeos curtos profissionais, dinâmicos e otimizados para as plataformas. Cada vídeo é editado com atenção ao pacing, ritmo, trilha e identidade visual do cliente.",
     principles: [
       { title: "Ritmo e Pacing", description: "Cada segundo conta: edição rápida e envolvente." },
       { title: "Identidade Visual", description: "Elementos da marca integrados naturalmente ao vídeo." },
@@ -755,7 +755,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Vídeos Que Comunicam a Essência e a Credibilidade da Sua Marca",
     date: "Março, 2026",
     introduction:
-      "O serviço de edição de vídeo institucional do Studio Kiiro transforma material bruto em peças audiovisuais profissionais que comunicam a essência da marca com sofisticação. Ideal para vídeos de apresentação da empresa, depoimentos, vídeos de cultura e conteúdo corporativo.",
+      "O serviço de edição de vídeo institucional do Akedah transforma material bruto em peças audiovisuais profissionais que comunicam a essência da marca com sofisticação. Ideal para vídeos de apresentação da empresa, depoimentos, vídeos de cultura e conteúdo corporativo.",
     principles: [
       { title: "Narrativa Institucional", description: "Cada corte serve à história e ao posicionamento da marca." },
       { title: "Sofisticação Visual", description: "Color grading cinematográfico e transições elegantes." },
@@ -857,7 +857,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Conteúdo Didático que Ensina com Clareza e Profissionalismo",
     date: "Março, 2026",
     introduction:
-      "O serviço de edição de vídeo educativo do Studio Kiiro transforma aulas, tutoriais e conteúdos didáticos em vídeos profissionais com ritmo adequado, gráficos explicativos e elementos visuais que facilitam o aprendizado e mantêm a atenção do espectador.",
+      "O serviço de edição de vídeo educativo do Akedah transforma aulas, tutoriais e conteúdos didáticos em vídeos profissionais com ritmo adequado, gráficos explicativos e elementos visuais que facilitam o aprendizado e mantêm a atenção do espectador.",
     principles: [
       { title: "Clareza Didática", description: "Cada elemento visual existe para facilitar o aprendizado." },
       { title: "Ritmo Educativo", description: "Pacing ajustado para compreensão, não para entretenimento rápido." },
@@ -958,7 +958,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Uma Página de Conversão Objetiva e Profissional",
     date: "Março, 2026",
     introduction:
-      "A Landing Page Simples do Studio Kiiro é uma página única de até 6 seções, focada em conversão. Ideal para divulgar um serviço, produto ou evento específico, com design estratégico, responsividade completa e otimização para resultados.",
+      "A Landing Page Simples do Akedah é uma página única de até 6 seções, focada em conversão. Ideal para divulgar um serviço, produto ou evento específico, com design estratégico, responsividade completa e otimização para resultados.",
     principles: [
       { title: "Foco em Conversão", description: "Cada seção guia o visitante para a ação desejada." },
       { title: "Design Estratégico", description: "Hierarquia visual que prioriza o que importa." },
@@ -1082,7 +1082,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Uma Experiência Digital Completa e Estratégica",
     date: "Março, 2026",
     introduction:
-      "A Landing Page Completa do Studio Kiiro é uma página robusta de até 12 seções, com estratégia de conversão avançada, design premium e funcionalidades expandidas. Ideal para lançamentos, serviços complexos ou ofertas que exigem mais informação e persuasão visual.",
+      "A Landing Page Completa do Akedah é uma página robusta de até 12 seções, com estratégia de conversão avançada, design premium e funcionalidades expandidas. Ideal para lançamentos, serviços complexos ou ofertas que exigem mais informação e persuasão visual.",
     principles: [
       { title: "Conversão Avançada", description: "Múltiplos pontos de conversão estrategicamente posicionados." },
       { title: "Design Premium", description: "Visual impactante que transmite credibilidade e profissionalismo." },
@@ -1167,7 +1167,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Presença Digital Profissional com Múltiplas Páginas",
     date: "Março, 2026",
     introduction:
-      "O Site Institucional do Studio Kiiro é uma presença digital completa com 3-5 páginas estrategicamente planejadas. Ideal para empresas que precisam de um site profissional com informações sobre a empresa, serviços, portfólio e contato.",
+      "O Site Institucional do Akedah é uma presença digital completa com 3-5 páginas estrategicamente planejadas. Ideal para empresas que precisam de um site profissional com informações sobre a empresa, serviços, portfólio e contato.",
     principles: [
       { title: "Navegação Intuitiva", description: "Experiência fluida entre as páginas." },
       { title: "Presença Profissional", description: "Design que transmite credibilidade institucional." },
@@ -1197,7 +1197,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Uma Experiência Digital Robusta e Completa",
     date: "Março, 2026",
     introduction:
-      "O Site Completo do Studio Kiiro é a solução mais abrangente para presença digital. Com 5-8 páginas, navegação complexa, funcionalidades avançadas e design premium, é ideal para empresas que precisam de um ecossistema digital completo.",
+      "O Site Completo do Akedah é a solução mais abrangente para presença digital. Com 5-8 páginas, navegação complexa, funcionalidades avançadas e design premium, é ideal para empresas que precisam de um ecossistema digital completo.",
     principles: [
       { title: "Ecossistema Digital", description: "Todas as necessidades digitais em uma única solução." },
       { title: "Navegação Complexa", description: "Estrutura de menu e subpáginas para conteúdo extenso." },
@@ -1227,7 +1227,7 @@ export const methodologyContent: Record<string, MethodologyContent> = {
     subtitle: "Identidade Pessoal de Marca para Criadores de Conteúdo",
     date: "Março, 2026",
     introduction:
-      "O Personal Brand Kit foi desenvolvido pelo Studio Kiiro para criadores de conteúdo, influenciadores e profissionais que constroem sua audiência usando o próprio nome como marca. Mais do que um logotipo, entregamos um sistema visual completo e pronto para usar, que transforma sua presença digital em uma marca reconhecível, consistente e profissional em todos os canais onde você aparece.",
+      "O Personal Brand Kit foi desenvolvido pelo Akedah para criadores de conteúdo, influenciadores e profissionais que constroem sua audiência usando o próprio nome como marca. Mais do que um logotipo, entregamos um sistema visual completo e pronto para usar, que transforma sua presença digital em uma marca reconhecível, consistente e profissional em todos os canais onde você aparece.",
     principles: [
       { title: "Autenticidade Visual", description: "O sistema deve refletir quem a pessoa realmente é, não uma versão corporativa de si mesma." },
       { title: "Praticidade Digital", description: "Tudo pensado para uso imediato nas redes sociais, sem depender de um designer para o dia a dia." },
