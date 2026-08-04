@@ -3,7 +3,8 @@ import { gsap } from 'gsap';
 
 const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const symbolLeftRef = useRef<SVGSVGElement>(null);
+  const symbolRightRef = useRef<SVGSVGElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [blocks, setBlocks] = useState<number[]>([]);
 
@@ -16,19 +17,27 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     if (blocks.length === 0) return;
 
     const ctx = gsap.context(() => {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-      const targetText = "AKEDAH";
-      const textElement = textRef.current;
-      
-      if (!textElement) return;
-
       const tl = gsap.timeline();
 
-      // Pulse animation for logo
-      gsap.to(textElement, {
+      // Initial positions for symbols
+      gsap.set(symbolLeftRef.current, { x: -80, opacity: 0, scale: 0.8 });
+      gsap.set(symbolRightRef.current, { x: 80, opacity: 0, scale: 0.8 });
+
+      // Connection animation: move towards each other
+      tl.to([symbolLeftRef.current, symbolRightRef.current], {
+        x: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 1.2,
+        ease: "power3.out",
+        stagger: 0.1
+      });
+
+      // Subtle pulse while progress bar fills
+      tl.to([symbolLeftRef.current, symbolRightRef.current], {
         scale: 1.05,
         duration: 0.8,
-        repeat: -1,
+        repeat: 1,
         yoyo: true,
         ease: "power1.inOut"
       });
@@ -36,41 +45,25 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       // Progress bar animation
       tl.to(progressBarRef.current, {
         width: "100%",
-        duration: 2.5,
+        duration: 2.2,
         ease: "power2.inOut"
-      });
+      }, 0.3);
 
-      // Scramble text effect
-      tl.to({}, {
-        duration: 1.5,
-        onUpdate: function() {
-          const progress = this.progress();
-          let currentText = "";
-          for (let i = 0; i < targetText.length; i++) {
-            if (progress > (i + 0.5) / targetText.length) {
-              currentText += targetText[i];
-            } else {
-              currentText += chars[Math.floor(Math.random() * chars.length)];
-            }
-          }
-          textElement.innerText = currentText;
-        }
-      }, 0);
-
-      tl.to(textElement, {
+      // Final exit animation: symbols scale up and fade
+      tl.to([symbolLeftRef.current, symbolRightRef.current], {
         opacity: 0,
-        scale: 0.8,
+        scale: 1.3,
         duration: 0.5,
         ease: "power2.in"
       });
 
-      // Columns animation
+      // Grid-less exit: columns slide up
       tl.to(".preloader-block", {
         y: "-100%",
         duration: 1,
         stagger: {
-          amount: 0.6,
-          from: "random"
+          amount: 0.4,
+          from: "center"
         },
         ease: "power4.inOut",
         onComplete: onComplete
@@ -81,25 +74,34 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     return () => ctx.revert();
   }, [blocks, onComplete]);
 
+  // Simplified Play Symbol based on the Akedah aesthetic (triangle/play button)
+  const PlaySymbol = ({ ref, className }: { ref: React.RefObject<SVGSVGElement>, className?: string }) => (
+    <svg 
+      ref={ref}
+      viewBox="0 0 100 100" 
+      className={`w-20 h-20 md:w-32 md:h-32 fill-[#C4550A] ${className}`}
+    >
+      <path d="M25 20 L85 50 L25 80 Z" />
+    </svg>
+  );
+
   return (
-    <div ref={containerRef} className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#070807] overflow-hidden">
+    <div ref={containerRef} className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#000000] overflow-hidden">
+      {/* Background blocks for transition, but without borders */}
       <div className="absolute inset-0 flex">
         {blocks.map((i) => (
           <div 
             key={i} 
-            className="preloader-block flex-1 bg-[#070807] border-x border-white/10" 
+            className="preloader-block flex-1 bg-[#000000]" 
           />
         ))}
       </div>
 
-      
-      <div 
-        ref={textRef} 
-        className="relative z-10 text-[#C4550A] text-5xl md:text-7xl font-[900] tracking-tighter font-display"
-      >
-        AKEDAH
+      {/* Modern connection animation */}
+      <div className="relative z-10 flex items-center justify-center gap-0">
+        <PlaySymbol ref={symbolLeftRef} />
+        <PlaySymbol ref={symbolRightRef} className="rotate-180 -ml-8" />
       </div>
-
 
       {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 z-20">
