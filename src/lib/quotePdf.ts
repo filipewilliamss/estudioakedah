@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import logoUrl from "@/assets/logo.png";
+import logoUrl from "@/assets/akedah-logo.png";
 
 export interface QuotePdfItem {
   description: string;

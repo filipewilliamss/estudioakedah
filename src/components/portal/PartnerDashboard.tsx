@@ -10,7 +10,7 @@ import {
   CheckCircle2, Circle, AlertCircle, Filter, MessageSquare, BookOpen, Download, LayoutDashboard, Search,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import kiiroLogo from "@/assets/logo.webp";
+import kiiroLogo from "@/assets/akedah-logo.png";
 import { toast } from "sonner";
 
 const formatCurrency = (v: number) =>

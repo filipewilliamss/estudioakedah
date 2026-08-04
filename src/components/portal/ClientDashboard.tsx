@@ -18,7 +18,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { toast } from "sonner";
 import { briefingQuestions } from "@/data/briefingQuestions";
 import { motion, AnimatePresence } from "framer-motion";
-import kiiroLogo from "@/assets/logo.webp";
+import kiiroLogo from "@/assets/akedah-logo.png";
 import ProposalGate from "./ProposalGate";
 
 interface Project {
