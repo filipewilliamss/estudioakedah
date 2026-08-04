@@ -285,7 +285,7 @@ const HeroSection = () => {
       className="relative min-h-screen w-full bg-[#070807] overflow-hidden flex items-center"
     >
       {/* Dynamic Grid Overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
+      
       
       {/* Radial Gradient for depth */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(196,85,10,0.05)_0%,transparent_50%)] pointer-events-none" />
