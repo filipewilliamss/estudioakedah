@@ -68,9 +68,10 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
 
           {navLinks.map((link, idx) => (
             <Link key={link.label} to={resolveTo(link)} className={textClass} onClick={handleClick(link)}>
-              <span className={`${forceBlack ? 'text-white/30' : 'text-black/30'} mr-2 font-mono text-[9px] tracking-normal`}>
+              <span className={`${forceBlack ? 'text-white/30' : 'text-black/30'} hidden xl:inline mr-2 font-mono text-[9px] tracking-normal`}>
                 0{idx + 1}
               </span>
+
               {link.label}
             </Link>
           ))}
