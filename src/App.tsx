@@ -9,6 +9,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
 import Index from "./pages/Index.tsx";
+import About from "./pages/About.tsx";
 import Obrigado from "./pages/Obrigado.tsx";
 
 import ProjectDetail from "./pages/ProjectDetail.tsx";
@@ -29,6 +30,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
+        <Route path="/sobre" element={<About />} />
         <Route path="/obrigado" element={<Obrigado />} />
         
         <Route path="/servicos/:slug" element={<ServiceDetail />} />
