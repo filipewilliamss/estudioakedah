@@ -75,19 +75,19 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   }, [blocks, onComplete]);
 
   const AkedahSymbol = () => (
-    <div ref={symbolContainerRef} className="relative w-24 h-24 md:w-32 md:h-32">
+    <div ref={symbolContainerRef} className="relative w-48 h-48 md:w-64 md:h-64">
       <svg 
-        viewBox="0 0 100 100" 
+        viewBox="0 0 1080 1080" 
         className="w-full h-full fill-[#C4550A]"
       >
-        {/* Simplified rounded triangles (play buttons) based on Akedah logo style */}
+        {/* Using the actual path from akedah-symbol.svg as base */}
         <path 
           ref={symbol1Ref}
-          d="M20,25 C20,22 23,20 25,22 L75,47 C77,48 77,52 75,53 L25,78 C23,80 20,78 20,75 Z" 
+          d="M665.95,471.38l-240.33-138.75v33.11l225.99,130.48c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16l-64.91,37.48,36.43,12.1,42.82-24.72c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03Z"
         />
         <path 
           ref={symbol2Ref}
-          d="M45,25 C45,22 48,20 50,22 L100,47 C102,48 102,52 100,53 L50,78 C48,80 45,78 45,75 Z" 
+          d="M665.95,471.38l-240.33-138.75v33.11l225.99,130.48c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16l-64.91,37.48,36.43,12.1,42.82-24.72c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03Z"
         />
       </svg>
     </div>
