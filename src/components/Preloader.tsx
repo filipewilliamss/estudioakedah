@@ -21,8 +21,8 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       const tl = gsap.timeline();
 
       // Initial positions for elements
-      gsap.set(symbol1Ref.current, { x: -40, opacity: 0 });
-      gsap.set(symbol2Ref.current, { x: 40, opacity: 0 });
+      gsap.set(symbol1Ref.current, { x: -100, opacity: 0 });
+      gsap.set(symbol2Ref.current, { x: 100, opacity: 0 });
 
       // 1. Players move towards each other and fade in
       tl.to([symbol1Ref.current, symbol2Ref.current], {
