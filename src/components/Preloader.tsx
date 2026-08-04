@@ -4,9 +4,8 @@ import { gsap } from 'gsap';
 const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const symbolContainerRef = useRef<HTMLDivElement>(null);
-  const symbolLeftRef = useRef<SVGPathElement>(null);
-  const symbolRightRef = useRef<SVGPathElement>(null);
-  const playButtonRef = useRef<SVGPathElement>(null);
+  const symbol1Ref = useRef<SVGPathElement>(null);
+  const symbol2Ref = useRef<SVGPathElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const [blocks, setBlocks] = useState<number[]>([]);
 
