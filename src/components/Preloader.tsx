@@ -75,9 +75,9 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   }, [blocks, onComplete]);
 
   // Simplified Play Symbol based on the Akedah aesthetic (triangle/play button)
-  const PlaySymbol = ({ ref, className }: { ref: React.RefObject<SVGSVGElement>, className?: string }) => (
+  const PlaySymbol = ({ svgRef, className }: { svgRef: React.RefObject<SVGSVGElement>, className?: string }) => (
     <svg 
-      ref={ref}
+      ref={svgRef}
       viewBox="0 0 100 100" 
       className={`w-20 h-20 md:w-32 md:h-32 fill-[#C4550A] ${className}`}
     >
@@ -99,8 +99,8 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
       {/* Modern connection animation */}
       <div className="relative z-10 flex items-center justify-center gap-0">
-        <PlaySymbol ref={symbolLeftRef} />
-        <PlaySymbol ref={symbolRightRef} className="rotate-180 -ml-8" />
+        <PlaySymbol svgRef={symbolLeftRef} />
+        <PlaySymbol svgRef={symbolRightRef} className="rotate-180 -ml-8" />
       </div>
 
       {/* Progress Bar */}
