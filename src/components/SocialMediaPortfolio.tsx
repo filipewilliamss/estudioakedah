@@ -102,7 +102,7 @@ const SocialMediaPortfolio = () => {
       className="relative bg-black py-24 flex flex-col items-center overflow-visible min-h-[150vh]"
     >
       <div className="absolute inset-0 grid-pattern opacity-90 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,202,22,0.03)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(196,85,10,0.03)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="container-editorial relative z-10 text-center mb-24 px-6">
         <motion.h2
@@ -113,7 +113,7 @@ const SocialMediaPortfolio = () => {
           className="text-[34.5px] md:text-[55.2px] lg:text-[69px] text-white mb-8 tracking-tight leading-[0.825]"
         >
           <span className="font-black">Portifólio de artes</span><br />
-          <span className="font-black">para </span><span className="text-[#FFCA16] font-normal italic">Redes Sociais</span>
+          <span className="font-black">para </span><span className="text-[#C4550A] font-normal italic">Redes Sociais</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -180,7 +180,7 @@ const SocialMediaPortfolio = () => {
               {images.map((_, i) => (
                 <div
                   key={i}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${i === activeIndex ? "bg-[#FFCA16]" : "bg-white/20"}`}
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${i === activeIndex ? "bg-[#C4550A]" : "bg-white/20"}`}
                 />
               ))}
             </div>

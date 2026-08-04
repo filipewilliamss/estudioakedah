@@ -29,7 +29,7 @@ const Footer = () => {
                   <li key={link}>
                     <Link
                       to={`/#${id}`}
-                      className="text-[13px] text-white/50 hover:text-[#FFCA16] transition-colors duration-300"
+                      className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
                     >
                       {link}
                     </Link>
@@ -51,7 +51,7 @@ const Footer = () => {
                   href="https://instagram.com/studiokiiro" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[13px] text-white/50 hover:text-[#FFCA16] transition-colors duration-300 flex items-center gap-2"
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300 flex items-center gap-2"
                 >
                   Instagram
                 </a>
@@ -61,7 +61,7 @@ const Footer = () => {
                   href="https://wa.me/5511991076096" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[13px] text-white/50 hover:text-[#FFCA16] transition-colors duration-300 flex items-center gap-2"
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300 flex items-center gap-2"
                 >
                   WhatsApp
                 </a>
@@ -69,7 +69,7 @@ const Footer = () => {
               <li>
                 <a 
                   href="mailto:contato@studiokiiro.com"
-                  className="text-[13px] text-white/50 hover:text-[#FFCA16] transition-colors duration-300 flex items-center gap-2"
+                  className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300 flex items-center gap-2"
                 >
                   E-mail
                 </a>

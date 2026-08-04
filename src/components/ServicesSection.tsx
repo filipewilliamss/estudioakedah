@@ -93,7 +93,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
             onClick={() => setActiveIdx(idx)}
             className={`relative px-4 md:px-3 lg:px-8 py-3 md:py-3 lg:py-4 rounded-t-xl font-display text-[12px] md:text-[11px] lg:text-[14px] font-bold tracking-tight transition-all duration-300 z-20 whitespace-nowrap flex-shrink-0
               ${activeIdx === idx 
-                ? 'bg-[#FFCA16] text-black shadow-[0_-4px_10px_rgba(255,202,22,0.15)]' 
+                ? 'bg-[#C4550A] text-black shadow-[0_-4px_10px_rgba(196,85,10,0.15)]' 
                 : 'bg-white/5 text-white/30 hover:bg-white/10 hover:text-white/50'
               }`}
           >
@@ -103,7 +103,7 @@ const ServiceCard = ({ service }: { service: typeof services[0] }) => {
       </div>
 
       {/* Card Content */}
-      <div className="bg-[#FFCA16] rounded-b-3xl rounded-tr-3xl overflow-hidden shadow-2xl relative">
+      <div className="bg-[#C4550A] rounded-b-3xl rounded-tr-3xl overflow-hidden shadow-2xl relative">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIdx}
@@ -160,12 +160,12 @@ const ServicesSection = () => {
               transition={{ duration: 1 }}
             >
               <div className="flex items-center gap-4 mb-8">
-                <span className="text-[#FFCA16] text-[11px] font-bold uppercase tracking-[0.4em]">
+                <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
                   Soluções Estratégicas
                 </span>
               </div>
               <h2 className="font-display text-[52px] md:text-[88px] font-[800] text-white leading-[0.82] tracking-[-0.05em]">
-                Elevando o <span className="text-[#FFCA16] italic font-light">padrão</span> visual da sua marca.
+                Elevando o <span className="text-[#C4550A] italic font-light">padrão</span> visual da sua marca.
               </h2>
             </motion.div>
           </div>

@@ -63,7 +63,7 @@ const HeroSection = () => {
     // step. Each filled pixel produces a stack of dots along Z.
     const SVG_MARKUP = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
-  <path fill="#ffca16" d="M693.69,386.46h-114.79l114.78,111.28v-111.28ZM501.1,386.46h-114.79v111.28s114.79-111.28,114.79-111.28ZM576.63,580.07l117.06,113.47v-102.25l-117.06-113.47v102.25ZM386.31,693.54l117.06-113.47v-102.25l-117.06,113.47v102.25Z"/>
+  <path fill="#c4550a" d="M693.69,386.46h-114.79l114.78,111.28v-111.28ZM501.1,386.46h-114.79v111.28s114.79-111.28,114.79-111.28ZM576.63,580.07l117.06,113.47v-102.25l-117.06-113.47v102.25ZM386.31,693.54l117.06-113.47v-102.25l-117.06,113.47v102.25Z"/>
 </svg>`;
 
     const SAMPLE_SIZE = 140;          // offscreen rasterization resolution
@@ -247,7 +247,7 @@ const HeroSection = () => {
         ctx.arc(p.sx, p.sy, r, 0, Math.PI * 2);
         
         // Use a subtle gradient or solid depending on depth
-        ctx.fillStyle = '#FFCA16';
+        ctx.fillStyle = '#C4550A';
         ctx.globalAlpha = p.alpha;
         ctx.fill();
       }
@@ -287,7 +287,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 grid-pattern opacity-40 pointer-events-none" />
       
       {/* Radial Gradient for depth */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(255,202,22,0.05)_0%,transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(196,85,10,0.05)_0%,transparent_50%)] pointer-events-none" />
 
       {/* Top meta bar — editorial detail */}
 
@@ -299,7 +299,7 @@ const HeroSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="mb-10 flex items-center gap-4"
           >
-            <span className="text-[#FFCA16] text-[11px] font-bold uppercase tracking-[0.4em]">
+            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
               Creative Design Studio
             </span>
           </motion.div>
@@ -309,7 +309,7 @@ const HeroSection = () => {
             style={{ fontSize: 'clamp(40px, 10vw, 122px)' }}
           >
             Sua marca precisa ser <br />
-            <span className="text-[#FFCA16] italic font-light">lembrada.</span>
+            <span className="text-[#C4550A] italic font-light">lembrada.</span>
           </h1>
 
           <p className="mt-12 text-white/55 text-[17px] md:text-[19px] max-w-none text-left font-light leading-[1.6] font-display tracking-tight">
@@ -321,16 +321,16 @@ const HeroSection = () => {
 
         <div className="hidden lg:flex lg:w-[35%] h-[600px] relative items-center justify-center">
           {/* Subtle ambient glow — refined and integrated */}
-          <div className="absolute w-[380px] h-[380px] bg-[#FFCA16]/[0.03] blur-[120px] rounded-full" />
+          <div className="absolute w-[380px] h-[380px] bg-[#C4550A]/[0.03] blur-[120px] rounded-full" />
           
           {/* Technical frame markers */}
-          <div className="absolute top-10 left-10 w-2 h-2 border-l border-t border-[#FFCA16]/20" />
-          <div className="absolute top-10 right-10 w-2 h-2 border-r border-t border-[#FFCA16]/20" />
-          <div className="absolute bottom-10 left-10 w-2 h-2 border-l border-b border-[#FFCA16]/20" />
-          <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#FFCA16]/20" />
+          <div className="absolute top-10 left-10 w-2 h-2 border-l border-t border-[#C4550A]/20" />
+          <div className="absolute top-10 right-10 w-2 h-2 border-r border-t border-[#C4550A]/20" />
+          <div className="absolute bottom-10 left-10 w-2 h-2 border-l border-b border-[#C4550A]/20" />
+          <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#C4550A]/20" />
           
           {/* Branding metadata */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#FFCA16]/30 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
+          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#C4550A]/30 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">
             KIIRO · MARK · 001
           </div>
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/15 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap">

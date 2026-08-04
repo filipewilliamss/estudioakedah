@@ -104,7 +104,7 @@ const Index = () => {
             <section className="snap-start">
               <EditorialQuote
                 eyebrow="Direção Criativa"
-                quote={<>Design inteligente para fugir do <span className="italic text-[#FFCA16]">genérico</span>.</>}
+                quote={<>Design inteligente para fugir do <span className="italic text-[#C4550A]">genérico</span>.</>}
                 attribution="Filipe Williams · Studio Kiiro"
               />
             </section>

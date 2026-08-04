@@ -48,7 +48,7 @@ const ProjectDetail = () => {
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`min-h-screen ${isLightBg ? 'text-[#1A1A1A]' : 'text-white'} selection:bg-[#FFCA16] selection:text-black overflow-x-hidden`}
+      className={`min-h-screen ${isLightBg ? 'text-[#1A1A1A]' : 'text-white'} selection:bg-[#C4550A] selection:text-black overflow-x-hidden`}
       style={{ backgroundColor: pageBgColor }}
     >
       <SEO 
@@ -65,7 +65,7 @@ const ProjectDetail = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 1, 0] }}
         transition={{ duration: 1.5, times: [0, 0.4, 1], ease: "easeInOut" }}
-        className="fixed inset-0 bg-[#FFCA16]/20 mix-blend-overlay z-[100] pointer-events-none"
+        className="fixed inset-0 bg-[#C4550A]/20 mix-blend-overlay z-[100] pointer-events-none"
       />
       <motion.div
         initial={{ scaleY: 0 }}
@@ -100,12 +100,12 @@ const ProjectDetail = () => {
 
           <div className="flex items-center gap-6 md:justify-end shrink-0">
             <div className="flex flex-col">
-              <span className="text-[9px] uppercase tracking-[0.5em] text-[#FFCA16] font-bold mb-1">Categoria</span>
+              <span className="text-[9px] uppercase tracking-[0.5em] text-[#C4550A] font-bold mb-1">Categoria</span>
               <span className={`text-[11px] uppercase tracking-[0.3em] ${mutedTextColorClass}`}>{project.category}</span>
             </div>
             <div className={`w-[1px] h-10 ${borderColorClass}`} />
             <div className="flex flex-col">
-              <span className="text-[9px] uppercase tracking-[0.5em] text-[#FFCA16] font-bold mb-1">Ano</span>
+              <span className="text-[9px] uppercase tracking-[0.5em] text-[#C4550A] font-bold mb-1">Ano</span>
               <span className={`text-[11px] uppercase tracking-[0.3em] ${mutedTextColorClass}`}>{project.year}</span>
             </div>
           </div>
@@ -125,7 +125,7 @@ const ProjectDetail = () => {
             >
               <span
                 className="block text-[11px] uppercase tracking-[2px] font-bold mb-5"
-                style={{ color: project.heroGradient?.from ?? "#FFCA16" }}
+                style={{ color: project.heroGradient?.from ?? "#C4550A" }}
               >
                 CONTEXTO
               </span>
@@ -161,7 +161,7 @@ const ProjectDetail = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Sobre o projeto
                 </h2>
                 <p className={`text-xl md:text-3xl font-light leading-relaxed ${textColorClass}`}>
@@ -183,7 +183,7 @@ const ProjectDetail = () => {
               viewport={{ once: true }}
               transition={{ duration: 1 }}
             >
-              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                 O Desafio
               </h2>
               <p className={`text-xl md:text-3xl font-light leading-relaxed ${textColorClass}`}>
@@ -197,7 +197,7 @@ const ProjectDetail = () => {
               viewport={{ once: true }}
               transition={{ duration: 1, delay: 0.2 }}
             >
-              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                 {project.objective ? "O Objetivo" : "A Solução"}
               </h2>
               <p className={`text-xl md:text-3xl font-light leading-relaxed ${textColorClass}`}>
@@ -222,7 +222,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Logotipo
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -246,7 +246,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Monograma
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -270,7 +270,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Grid de Construção
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -294,7 +294,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Símbolo
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -317,7 +317,7 @@ const ProjectDetail = () => {
               viewport={{ once: true }}
               className="mb-48"
             >
-              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                 Simbologia Bíblica
               </h2>
               <div className="w-full flex justify-center py-8 md:py-12">
@@ -337,7 +337,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Identidade em Inglês
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -361,7 +361,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Logotipo para Missões
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -381,7 +381,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Variações do Logotipo
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -405,7 +405,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Logotipo Animado
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -432,7 +432,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Paleta de Cores
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -456,7 +456,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Tipografia
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -480,7 +480,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Aplicações Proibidas
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -504,7 +504,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="py-24 border-t border-white/5"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Resultado
                 </h2>
                 <p className="text-xl md:text-3xl font-light leading-relaxed text-white/80 max-w-4xl">
@@ -525,7 +525,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Logotipo
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -549,7 +549,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Versões do Logotipo
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -573,7 +573,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Paleta de Cores
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -597,7 +597,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Versões monocromáticas
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -621,7 +621,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Grid de construção
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -645,7 +645,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Redução mínima
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -669,7 +669,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Tipografia
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -693,7 +693,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Aplicações permitidas
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -717,7 +717,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Aplicações Proíbidas
                 </h2>
                 <p className={`text-xl font-light leading-relaxed ${textColorClass} max-w-4xl mb-16 whitespace-pre-line`}>
@@ -741,7 +741,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className={`py-24 border-t ${borderColorClass}`}
               >
-                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4`}>
+                <h2 className={`text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4`}>
                   Resultado
                 </h2>
                 <p className={`text-xl md:text-3xl font-light leading-relaxed ${textColorClass} max-w-4xl`}>
@@ -761,7 +761,7 @@ const ProjectDetail = () => {
               viewport={{ once: true }}
               className="mb-32"
             >
-              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+              <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                 Conceito e solução de design
               </h2>
               <div className="max-w-4xl">
@@ -778,7 +778,7 @@ const ProjectDetail = () => {
                     className="flex flex-col gap-8 w-full"
                   >
                     <div className="flex flex-col gap-4">
-                      <h3 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold">
+                      <h3 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold">
                         {project.videoBlock.title}
                       </h3>
                       <div className="w-full aspect-video relative overflow-hidden bg-black/20 rounded-sm">
@@ -813,7 +813,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Logotipo e variações
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -837,7 +837,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   {project.slug === 'team-luisa-crosstraining' ? 'Grid de construção do logo' : 'Construção, área de proteção e legibilidade'}
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -862,7 +862,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Variações do logotipo
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -887,7 +887,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Paleta de cores
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -905,7 +905,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Tipografia
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -923,7 +923,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Posts Instagram
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -941,7 +941,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Símbolos e elementos de apoio
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -959,7 +959,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Usos não recomendados
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -977,7 +977,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-48"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Aplicações
                 </h2>
                 <p className="text-xl font-light leading-relaxed text-white/80 max-w-4xl mb-16 whitespace-pre-line">
@@ -1002,7 +1002,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="py-24 border-t border-white/5"
               >
-                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#FFCA16] font-bold mb-12 flex items-center gap-4">
+                <h2 className="text-[10px] uppercase tracking-[0.6em] text-[#C4550A] font-bold mb-12 flex items-center gap-4">
                   Resultado
                 </h2>
                 <p className="text-xl md:text-3xl font-light leading-relaxed text-white/80 max-w-4xl">
@@ -1049,7 +1049,7 @@ const ProjectDetail = () => {
           >
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="w-12 h-12 bg-[#FFCA16] text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+              className="w-12 h-12 bg-[#C4550A] text-black rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
               aria-label="Voltar ao topo"
             >
               <ArrowUp size={24} />
@@ -1089,9 +1089,9 @@ const ProjectDetail = () => {
             
             <Link 
               to={`/project/${nextProject.slug}`}
-              className={`pointer-events-auto group/btn relative inline-flex items-center justify-center px-16 py-8 overflow-hidden border transition-all duration-700 hover:border-[#FFCA16] translate-y-[250px] ${isDarkNext ? "border-white/40" : "border-black/20"}`}
+              className={`pointer-events-auto group/btn relative inline-flex items-center justify-center px-16 py-8 overflow-hidden border transition-all duration-700 hover:border-[#C4550A] translate-y-[250px] ${isDarkNext ? "border-white/40" : "border-black/20"}`}
             >
-              <div className="absolute inset-0 bg-[#FFCA16] translate-y-full group-hover/btn:translate-y-0 transition-transform duration-600 ease-[0.22,1,0.36,1]" />
+              <div className="absolute inset-0 bg-[#C4550A] translate-y-full group-hover/btn:translate-y-0 transition-transform duration-600 ease-[0.22,1,0.36,1]" />
               <span className={`relative z-10 text-[12px] uppercase tracking-[0.4em] font-bold transition-colors duration-500 ${isDarkNext ? "text-white group-hover/btn:text-black" : "text-black"}`}>
                 Continuar Jornada
               </span>

@@ -5,7 +5,7 @@ const AboutSection = () => {
   return (
     <section id="sobre" className="relative section-padding overflow-hidden bg-[#070807] border-t border-white/[0.05]">
       {/* Subtle background element */}
-      <div className="absolute right-[-10%] top-[20%] w-[40%] aspect-square bg-[#FFCA16]/[0.02] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute right-[-10%] top-[20%] w-[40%] aspect-square bg-[#C4550A]/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
       {/* Monumental background word */}
       <motion.span
@@ -33,12 +33,12 @@ const AboutSection = () => {
               className="flex flex-col"
             >
               <div className="flex items-center gap-4 mb-8">
-                <span className="text-[#FFCA16] text-[11px] font-bold uppercase tracking-[0.4em]">
+                <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
                   A Mente Criativa
                 </span>
               </div>
               <h2 className="font-display text-[52px] md:text-[88px] font-[800] text-white leading-[0.82] tracking-[-0.05em] max-w-5xl">
-                Design pensado para o <span className="text-[#FFCA16] italic font-light">negócio</span>, não só para a estética.
+                Design pensado para o <span className="text-[#C4550A] italic font-light">negócio</span>, não só para a estética.
               </h2>
             </motion.div>
           </div>
@@ -60,7 +60,7 @@ const AboutSection = () => {
               <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all duration-700" />
             </motion.div>
             
-            <div className="absolute -bottom-6 -right-6 hidden md:block w-32 h-32 border-r border-b border-[#FFCA16]/30" />
+            <div className="absolute -bottom-6 -right-6 hidden md:block w-32 h-32 border-r border-b border-[#C4550A]/30" />
             
             <motion.div 
               initial={{ opacity: 0 }}
@@ -72,7 +72,7 @@ const AboutSection = () => {
               <p className="font-display text-[12px] font-bold text-white tracking-[0.2em] uppercase">
                 Filipe Williams
               </p>
-              <p className="text-[#FFCA16]/60 text-[10px] uppercase tracking-[0.1em] mt-1">
+              <p className="text-[#C4550A]/60 text-[10px] uppercase tracking-[0.1em] mt-1">
                 Fundador do Studio Kiiro
               </p>
             </motion.div>
@@ -115,7 +115,7 @@ const AboutSection = () => {
               ].map((stat, i) => (
                 <div key={i} className={`flex flex-col ${i === 2 ? 'md:col-span-1' : ''}`}>
                   <span className="text-white font-bold text-2xl tracking-tighter leading-none">{stat.value}</span>
-                  <span className="text-[#FFCA16]/60 text-[10px] uppercase tracking-[0.15em] mt-1.5 leading-tight">{stat.label}</span>
+                  <span className="text-[#C4550A]/60 text-[10px] uppercase tracking-[0.15em] mt-1.5 leading-tight">{stat.label}</span>
                 </div>
               ))}
             </motion.div>

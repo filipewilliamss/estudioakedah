@@ -69,7 +69,7 @@ const ParticleBackground: React.FC = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 150) {
-            ctx.strokeStyle = `rgba(255, 202, 22, ${0.15 * (1 - distance / 150)})`;
+            ctx.strokeStyle = `rgba(196, 85, 10, ${0.15 * (1 - distance / 150)})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -88,7 +88,7 @@ const ParticleBackground: React.FC = () => {
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, canvas.width * 0.7
       );
-      gradient.addColorStop(0, 'rgba(255, 202, 22, 0.06)');
+      gradient.addColorStop(0, 'rgba(196, 85, 10, 0.06)');
       gradient.addColorStop(1, '#070807');
       
       ctx.fillStyle = '#070807';

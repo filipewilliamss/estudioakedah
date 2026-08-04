@@ -57,18 +57,18 @@ const ProcessStep = ({ step, idx }: { step: typeof steps[0], idx: number }) => {
         className={`relative flex flex-col md:flex-row items-center gap-12 md:gap-0 ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
       >
         {/* Connection dot */}
-        <div className="absolute left-[16px] md:left-1/2 md:-translate-x-1/2 top-10 w-2.5 h-2.5 bg-[#FFCA16] rounded-full z-10 shadow-[0_0_25px_rgba(255,202,22,0.9)]" />
+        <div className="absolute left-[16px] md:left-1/2 md:-translate-x-1/2 top-10 w-2.5 h-2.5 bg-[#C4550A] rounded-full z-10 shadow-[0_0_25px_rgba(196,85,10,0.9)]" />
         
         {/* Number (Large Background with Parallax) */}
         <motion.span 
           style={{ y: smoothNumberY }}
-          className={`absolute font-display text-[100px] sm:text-[150px] md:text-[280px] font-[800] text-[#FFCA16]/[0.04] md:text-[#FFCA16]/[0.07] leading-none pointer-events-none select-none z-0 ${idx % 2 === 0 ? 'left-6 md:left-auto md:right-[45%]' : 'left-6 md:left-[45%]'}`}
+          className={`absolute font-display text-[100px] sm:text-[150px] md:text-[280px] font-[800] text-[#C4550A]/[0.04] md:text-[#C4550A]/[0.07] leading-none pointer-events-none select-none z-0 ${idx % 2 === 0 ? 'left-6 md:left-auto md:right-[45%]' : 'left-6 md:left-[45%]'}`}
         >
           {step.number}
         </motion.span>
 
         <div className={`w-full md:w-[45%] relative z-10 px-8 md:px-0 ${idx % 2 === 0 ? 'md:text-left' : 'md:text-right'}`}>
-          <h3 className="font-display text-[36px] md:text-[52px] font-[800] text-white mb-8 tracking-tighter leading-[0.9] group-hover:text-[#FFCA16] transition-colors">
+          <h3 className="font-display text-[36px] md:text-[52px] font-[800] text-white mb-8 tracking-tighter leading-[0.9] group-hover:text-[#C4550A] transition-colors">
             {step.title}
           </h3>
           <p className={`text-white/60 text-[17px] md:text-[19px] leading-relaxed max-w-md ${idx % 2 === 0 ? '' : 'md:ml-auto'} font-light tracking-wide`}>
@@ -109,18 +109,18 @@ const ProcessSection = () => {
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="inline-block text-[#FFCA16] text-[12px] font-bold uppercase tracking-[0.5em] mb-10">
+            <span className="inline-block text-[#C4550A] text-[12px] font-bold uppercase tracking-[0.5em] mb-10">
               Nossa Metodologia
             </span>
             <h2 className="font-display text-[54px] md:text-[96px] font-[900] text-white leading-[0.8] tracking-extratighter mb-12">
-              Como damos vida <br /> à sua <span className="text-[#FFCA16] italic font-light">visão.</span>
+              Como damos vida <br /> à sua <span className="text-[#C4550A] italic font-light">visão.</span>
             </h2>
           </motion.div>
         </div>
 
         <div className="relative max-w-6xl mx-auto">
           {/* Vertical line connecting steps */}
-          <div className="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[#FFCA16]/60 via-[#FFCA16]/20 to-transparent" />
+          <div className="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[#C4550A]/60 via-[#C4550A]/20 to-transparent" />
 
           <div className="space-y-20 md:space-y-0">
             {steps.map((step, idx) => (

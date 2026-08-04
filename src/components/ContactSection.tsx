@@ -7,11 +7,11 @@ const ContactSection = () => {
       className="relative bg-[#070807] overflow-hidden py-24 md:py-32 lg:py-40"
     >
       {/* High-Impact Visual Elements */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#FFCA16]/30 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#C4550A]/30 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
       
-      <div className="absolute top-[20%] left-[-10%] w-[50%] aspect-square bg-[#FFCA16]/[0.03] rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[-10%] w-[40%] aspect-square bg-[#FFCA16]/[0.02] rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-[20%] left-[-10%] w-[50%] aspect-square bg-[#C4550A]/[0.03] rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-10%] w-[40%] aspect-square bg-[#C4550A]/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
       <div className="container-editorial relative z-10">
         <div className="flex flex-col items-center text-center">
@@ -24,13 +24,13 @@ const ContactSection = () => {
             className="w-full max-w-6xl"
           >
             <div className="flex items-center justify-center gap-4 mb-12">
-              <span className="text-[#FFCA16] text-[11px] font-bold uppercase tracking-[0.4em]">
+              <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
                 Pronto para o próximo nível?
               </span>
             </div>
 
             <h2 className="font-display text-[64px] md:text-[120px] lg:text-[160px] font-[800] leading-[0.78] tracking-[-0.055em] text-white mb-20">
-              Sua marca <br /> merece ser <br /> <span className="text-[#FFCA16] italic font-light">lembrada.</span>
+              Sua marca <br /> merece ser <br /> <span className="text-[#C4550A] italic font-light">lembrada.</span>
             </h2>
 
             <div className="flex flex-col items-center gap-12">

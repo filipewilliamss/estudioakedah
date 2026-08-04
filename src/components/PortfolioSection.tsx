@@ -94,7 +94,7 @@ const ProjectCard = ({ project, index, total }: { project: any; index: number; t
           <span className={`text-[10px] md:text-[12px] uppercase tracking-[0.6em] font-bold ${
             project.slug === 'akedah-podcast' ? 'text-white' : 
             project.slug === 'construmar' ? 'text-[#3e6884]' : 
-            'text-[#FFCA16]'
+            'text-[#C4550A]'
           }`}>
             {project.category} · {project.year}
           </span>
@@ -111,12 +111,12 @@ const ProjectCard = ({ project, index, total }: { project: any; index: number; t
             className={`group relative inline-flex items-center justify-center px-12 py-6 overflow-hidden border transition-all duration-700 ${
               project.slug === 'construmar' 
                 ? 'border-[#3e6884]/20 hover:border-[#3e6884]' 
-                : 'border-white/20 hover:border-[#FFCA16]'
+                : 'border-white/20 hover:border-[#C4550A]'
             }`}
           >
             {/* Filling Animation */}
             <div className={`absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-600 ease-[0.22,1,0.36,1] ${
-              project.slug === 'construmar' ? 'bg-[#3e6884]' : 'bg-[#FFCA16]'
+              project.slug === 'construmar' ? 'bg-[#3e6884]' : 'bg-[#C4550A]'
             }`} />
             
             <span className={`relative z-10 text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold transition-colors duration-500 ${
@@ -147,7 +147,7 @@ const ProjectCard = ({ project, index, total }: { project: any; index: number; t
               key={i} 
               className={`h-[2px] transition-all duration-700 ${
                 i === index 
-                  ? (project.slug === 'construmar' ? 'w-12 bg-[#3e6884]' : 'w-12 bg-[#FFCA16]') 
+                  ? (project.slug === 'construmar' ? 'w-12 bg-[#3e6884]' : 'w-12 bg-[#C4550A]') 
                   : (project.slug === 'construmar' ? 'w-4 bg-[#3e6884]/10' : 'w-4 bg-white/10')
               }`}
             />
@@ -164,7 +164,7 @@ const ProjectCard = ({ project, index, total }: { project: any; index: number; t
         <div className={`w-[1px] h-16 ${
           project.slug === 'construmar' 
             ? 'bg-gradient-to-b from-[#3e6884] to-transparent' 
-            : 'bg-gradient-to-b from-[#FFCA16] to-transparent'
+            : 'bg-gradient-to-b from-[#C4550A] to-transparent'
         }`} />
       </motion.div>
     </article>
