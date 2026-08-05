@@ -84,8 +84,13 @@ const ServicesSection = () => {
     <section 
       ref={sectionRef} 
       id="diagnostico" 
-      className="relative h-[600vh] bg-[#000000]"
+      className="relative h-[600vh] bg-[#000000] snap-y snap-mandatory"
     >
+      <div className="absolute inset-0 pointer-events-none">
+        {faces.map((_, i) => (
+          <div key={i} className="h-screen w-full snap-start" />
+        ))}
+      </div>
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         {faces.map((face, index) => {
           const step = 1 / (faces.length - 1);
