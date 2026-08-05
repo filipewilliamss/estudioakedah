@@ -16,7 +16,7 @@ const ServicesSection = () => {
 
   // 6 faces = 360 / 6 = 60 degrees per face
   // We rotate from 0 to -300 degrees (to show faces 1 to 6)
-  const rotation = useTransform(smoothProgress, [0, 1], [0, -300]);
+  const rotation = useTransform(smoothProgress, [0, 1], [0, -300]); // Negative rotation for clockwise roll away from viewer
 
   const diagnosticItems = [
     {
@@ -81,7 +81,7 @@ const ServicesSection = () => {
       id="diagnostico" 
       className="relative h-[600vh] bg-[#000000]"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center perspective-[2000px]">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center [perspective:2000px]">
         {/* The 3D Cylinder */}
         <motion.div 
           style={{ 
@@ -93,7 +93,7 @@ const ServicesSection = () => {
           {faces.map((face, index) => {
             const angle = index * 60;
             // Radius calculation: half-height / tan(angle/2)
-            const radius = "52vh";
+            const radius = "50vh"; // Slightly smaller radius to keep it within view bounds
             
             // Calculate opacity for this face based on current rotation
             // We want it fully visible only when it's at the front (rotation === -angle)
@@ -114,12 +114,12 @@ const ServicesSection = () => {
             return (
               <motion.div
                 key={index}
-                className="absolute inset-0 flex items-center justify-center backface-hidden"
+                className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]"
                 style={{
                   transform: `rotateX(${angle}deg) translateZ(${radius})`,
-                  backfaceVisibility: "hidden",
                   opacity: faceOpacity,
                   scale: faceScale,
+                  zIndex: 20,
                 }}
               >
                 {face}
@@ -128,8 +128,8 @@ const ServicesSection = () => {
           })}
         </motion.div>
 
-        {/* Solid Black Background (No grid/lines) */}
-        <div className="absolute inset-0 pointer-events-none bg-[#000000]" />
+        {/* Ensure background is at the very bottom */}
+        <div className="absolute inset-0 pointer-events-none bg-[#000000] -z-10" />
       </div>
     </section>
   );
