@@ -119,7 +119,6 @@ const ServicesSection = () => {
                   transform: `rotateX(${angle}deg) translateZ(${radius})`,
                   opacity: faceOpacity,
                   scale: faceScale,
-                  zIndex: index === 0 ? 10 : 1, // Ensure active faces don't get buried
                 }}
               >
                 {face}
