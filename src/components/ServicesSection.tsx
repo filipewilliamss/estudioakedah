@@ -102,14 +102,14 @@ const ServicesSection = () => {
           
           const opacity = useTransform(
             smoothProgress,
-            [(index - 1) * step, index * step, (index + 1) * step],
+            [(index - 0.8) * step, index * step, (index + 0.8) * step],
             [0, 1, 0]
           );
 
           const scale = useTransform(
             smoothProgress,
-            [(index - 1) * step, index * step, (index + 1) * step],
-            [0.9, 1, 0.9]
+            [(index - 0.8) * step, index * step, (index + 0.8) * step],
+            [0.95, 1, 0.95]
           );
 
           // Subtle parallax for internal content
