@@ -42,7 +42,7 @@ const ProjectDetail = () => {
   const borderMutedClass = isLightBg ? 'border-black/5' : 'border-white/5';
 
   const darkInteriorSlugs = ['akedah-podcast', 'construmar', 'tabernaculo-da-trindade', 'team-luisa-crosstraining'];
-  const pageBgColor = darkInteriorSlugs.includes(project.slug) ? '#030304' : (project.bgColor || '#000000');
+  const pageBgColor = darkInteriorSlugs.includes(project.slug) ? '#101010' : (project.bgColor || '#101010');
 
   return (
     <motion.div 
