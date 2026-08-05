@@ -93,7 +93,7 @@ const ServicesSection = () => {
           {faces.map((face, index) => {
             const angle = index * 60;
             // Radius calculation: half-height / tan(angle/2)
-            const radius = "52vh";
+            const radius = "50vh"; // Slightly smaller radius to keep it within view bounds
             
             // Calculate opacity for this face based on current rotation
             // We want it fully visible only when it's at the front (rotation === -angle)
