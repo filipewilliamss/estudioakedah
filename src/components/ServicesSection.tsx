@@ -128,8 +128,8 @@ const ServicesSection = () => {
           })}
         </motion.div>
 
-        {/* Solid Black Background (No grid/lines) */}
-        <div className="absolute inset-0 pointer-events-none bg-[#000000]" />
+        {/* Ensure background is at the very bottom */}
+        <div className="absolute inset-0 pointer-events-none bg-[#000000] -z-10" />
       </div>
     </section>
   );
