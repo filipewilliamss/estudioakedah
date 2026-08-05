@@ -81,7 +81,7 @@ const ServicesSection = () => {
       id="diagnostico" 
       className="relative h-[600vh] bg-[#000000]"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center perspective-[2000px]">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center [perspective:2000px]">
         {/* The 3D Cylinder */}
         <motion.div 
           style={{ 
