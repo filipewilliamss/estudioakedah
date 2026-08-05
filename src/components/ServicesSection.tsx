@@ -16,7 +16,7 @@ const ServicesSection = () => {
 
   // 6 faces = 360 / 6 = 60 degrees per face
   // We rotate from 0 to -300 degrees (to show faces 1 to 6)
-  const rotation = useTransform(smoothProgress, [0, 1], [0, -300]);
+  const rotation = useTransform(smoothProgress, [0, 1], [0, -300]); // Negative rotation for clockwise roll away from viewer
 
   const diagnosticItems = [
     {
