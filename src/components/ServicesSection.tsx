@@ -88,35 +88,35 @@ const ServicesSection = () => {
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         {faces.map((face, index) => {
-          const step = 1 / faces.length;
-          const start = index * step;
-          const end = (index + 1) * step;
+          const step = 1 / (faces.length - 1);
           
-          // Slide and Parallax effect
-          // The face comes from below (index > current) and goes up (index < current)
+          // Slide effect: each face "pushes" the previous one
+          // When progress is at (index * step), the face is centered (0%)
+          // When progress moves towards ((index + 1) * step), it slides up to -100%
+          // and the next face slides up from 100% to 0%
           const y = useTransform(
             smoothProgress,
-            [start - step, start, end, end + step],
-            ["100%", "0%", "0%", "-100%"]
+            [(index - 1) * step, index * step, (index + 1) * step],
+            ["100%", "0%", "-100%"]
           );
           
           const opacity = useTransform(
             smoothProgress,
-            [start - step * 0.5, start, end, end + step * 0.5],
-            [0, 1, 1, 0]
+            [(index - 0.8) * step, index * step, (index + 0.8) * step],
+            [0, 1, 0]
           );
 
           const scale = useTransform(
             smoothProgress,
-            [start - step, start, end, end + step],
-            [0.8, 1, 1, 0.8]
+            [(index - 0.8) * step, index * step, (index + 0.8) * step],
+            [0.95, 1, 0.95]
           );
 
           // Subtle parallax for internal content
           const contentY = useTransform(
             smoothProgress,
-            [start - step, start, end, end + step],
-            [100, 0, 0, -100]
+            [(index - 1) * step, index * step, (index + 1) * step],
+            [50, 0, -50]
           );
 
           return (
