@@ -114,12 +114,12 @@ const ServicesSection = () => {
             return (
               <motion.div
                 key={index}
-                className="absolute inset-0 flex items-center justify-center backface-hidden"
+                className="absolute inset-0 flex items-center justify-center [backface-visibility:hidden]"
                 style={{
                   transform: `rotateX(${angle}deg) translateZ(${radius})`,
-                  backfaceVisibility: "hidden",
                   opacity: faceOpacity,
                   scale: faceScale,
+                  zIndex: index === 0 ? 10 : 1, // Ensure active faces don't get buried
                 }}
               >
                 {face}
