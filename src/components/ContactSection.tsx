@@ -5,7 +5,7 @@ const ContactSection = () => {
   return (
     <section
       id="contato"
-      className="relative bg-[#070807] overflow-hidden py-24 md:py-32 lg:py-40"
+      className="relative bg-black min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-32 lg:py-40"
     >
       {/* High-Impact Visual Elements */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#C4550A]/30 to-transparent" />
@@ -14,7 +14,7 @@ const ContactSection = () => {
       <div className="absolute top-[20%] left-[-10%] w-[50%] aspect-square bg-[#C4550A]/[0.03] rounded-full blur-[180px] pointer-events-none" />
       <div className="absolute bottom-[20%] right-[-10%] w-[40%] aspect-square bg-[#C4550A]/[0.02] rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="container-editorial relative z-10">
+      <div className="container-editorial relative z-10 w-full">
         <div className="flex flex-col items-center text-center">
 
           <motion.div
@@ -40,20 +40,14 @@ const ContactSection = () => {
                 comunicação para que cada ação execute um planejamento claro e financeiramente inteligente.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-5">
+              <div className="flex justify-center">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-premium px-16"
                 >
-                  Fale com um especialista
-                </a>
-                <a
-                  href={`mailto:${AKEDAH_EMAIL}`}
-                  className="btn-premium-outline px-16"
-                >
-                  Enviar e-mail
+                  Marcar uma reunião
                 </a>
               </div>
 
