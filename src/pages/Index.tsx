@@ -75,12 +75,6 @@ const Index = () => {
               <HeroSection />
             </section>
 
-
-            <SectionDivider />
-
-
-            <SectionDivider />
-
             <section className="snap-start">
               <EditorialQuote
                 eyebrow="Posicionamento Akedah"
@@ -89,13 +83,9 @@ const Index = () => {
               />
             </section>
 
-            <SectionDivider />
-
             <section className="snap-start">
               <ServicesSection />
             </section>
-
-            <SectionDivider />
 
             <section className="snap-start">
               <ProcessSection />
@@ -104,13 +94,9 @@ const Index = () => {
             {/* Cada serviço em tela cheia, com link para a página detalhada */}
             <PortfolioSection />
 
-            <SectionDivider />
-
             <section className="snap-start">
               <TestimonialsSection />
             </section>
-
-            <SectionDivider />
 
             <section className="snap-start">
               <ContactSection />
@@ -123,15 +109,5 @@ const Index = () => {
     </div>
   );
 };
-
-const SectionDivider = () => (
-  <motion.div
-    initial={{ scaleX: 0, opacity: 0 }}
-    whileInView={{ scaleX: 1, opacity: 1 }}
-    viewport={{ once: true }}
-    transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-    className="section-divider origin-center h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"
-  />
-);
 
 export default Index;

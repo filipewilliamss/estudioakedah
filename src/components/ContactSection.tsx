@@ -8,8 +8,6 @@ const ContactSection = () => {
       className="relative bg-transparent min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-32 lg:py-40"
     >
       {/* High-Impact Visual Elements */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#C4550A]/30 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="absolute top-[20%] left-[-10%] w-[50%] aspect-square bg-[#C4550A]/[0.03] rounded-full blur-[180px] pointer-events-none" />
       <div className="absolute bottom-[20%] right-[-10%] w-[40%] aspect-square bg-[#C4550A]/[0.02] rounded-full blur-[150px] pointer-events-none" />
