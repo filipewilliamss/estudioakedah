@@ -474,7 +474,7 @@ export const services: AkedahService[] = [
   {
     id: "consultorias",
     slug: "consultorias",
-    number: "06",
+    number: "04",
     name: "Consultorias e treinamentos",
     tagline: "Estratégia comercial e de marketing para destravar o crescimento.",
     eyebrow: "Consultoria Estratégica",
@@ -532,7 +532,7 @@ export const services: AkedahService[] = [
   {
     id: "locacao-infraestrutura",
     slug: "locacao-infraestrutura",
-    number: "07",
+    number: "05",
     name: "Locação de infraestrutura",
     tagline: "Espaços profissionais para gravação, podcast e eventos corporativos.",
     eyebrow: "Estúdio e Infraestrutura",
@@ -590,7 +590,7 @@ export const services: AkedahService[] = [
   {
     id: "curso-sonoplastia",
     slug: "curso-sonoplastia",
-    number: "08",
+    number: "06",
     name: "Curso de sonoplastia",
     tagline: "Domine a arte do som para podcasts, vídeos e transmissões ao vivo.",
     eyebrow: "Educação Técnica",
