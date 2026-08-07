@@ -85,7 +85,7 @@ const ProcessSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   
   return (
-    <section id="processo" ref={sectionRef} className="relative section-padding bg-[#070807] border-t border-white/[0.05] overflow-hidden">
+    <section id="processo" ref={sectionRef} className="relative section-padding bg-transparent border-t border-white/[0.05] overflow-hidden">
       {/* Monumental backdrop word with slight parallax */}
       <motion.span
         aria-hidden="true"

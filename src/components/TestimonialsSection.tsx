@@ -50,7 +50,7 @@ const TestimonialsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="p-10 md:p-12 rounded-2xl border border-primary/20 bg-card flex flex-col justify-between"
+            className="p-10 md:p-12 rounded-2xl border border-primary/20 bg-white/5 flex flex-col justify-between backdrop-blur-sm"
           >
             <div>
               <svg className="w-10 h-10 text-primary/40 mb-8" fill="currentColor" viewBox="0 0 24 24">
@@ -75,7 +75,7 @@ const TestimonialsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.15 }}
-                className="p-8 rounded-2xl border border-border bg-card flex-1"
+                className="p-8 rounded-2xl border border-border bg-white/5 flex-1 backdrop-blur-sm"
               >
                 <svg className="w-7 h-7 text-primary/30 mb-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />

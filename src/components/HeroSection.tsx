@@ -290,7 +290,7 @@ const HeroSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="relative min-h-screen w-full bg-[#070807] overflow-hidden flex items-center"
+      className="relative min-h-screen w-full bg-transparent overflow-hidden flex items-center"
     >
       {/* Dynamic Grid Overlay */}
       

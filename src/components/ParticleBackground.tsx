@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const ParticleBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const mouse = useRef({ x: 0, y: 0 });
+  const scrollY = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,102 +12,133 @@ const ParticleBackground: React.FC = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Particle[] = [];
+    let stars: Star[] = [];
+    let comets: Comet[] = [];
 
-    class Particle {
+    class Star {
       x: number;
       y: number;
       size: number;
-      speedX: number;
-      speedY: number;
       opacity: number;
+      color: string;
+      parallaxFactor: number;
 
       constructor() {
         this.x = Math.random() * canvas!.width;
         this.y = Math.random() * canvas!.height;
-        this.size = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.3;
-        this.speedY = (Math.random() - 0.5) * 0.3;
-        this.opacity = Math.random() * 0.4 + 0.2; // Opacidade entre 0.2 e 0.6
+        this.size = Math.random() * 1.2 + 0.3;
+        this.opacity = Math.random() * 0.15 + 0.05; // Low opacity as requested
+        this.color = Math.random() > 0.5 ? '#FFFFFF' : '#C4550A'; // White or Orange
+        this.parallaxFactor = Math.random() * 0.05 + 0.02;
+      }
+
+      draw(scroll: number) {
+        if (!ctx) return;
+        const currentY = (this.y - scroll * this.parallaxFactor) % canvas!.height;
+        const finalY = currentY < 0 ? currentY + canvas!.height : currentY;
+        
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = this.opacity;
+        ctx.beginPath();
+        ctx.arc(this.x, finalY, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+    }
+
+    class Comet {
+      x: number;
+      y: number;
+      length: number;
+      speed: number;
+      angle: number;
+      opacity: number;
+      active: boolean;
+
+      constructor() {
+        this.reset();
+        this.active = false;
+        // Start randomly active to spread them out
+        if (Math.random() > 0.8) this.active = true;
+      }
+
+      reset() {
+        this.x = Math.random() * canvas!.width;
+        this.y = Math.random() * canvas!.height;
+        this.length = Math.random() * 80 + 40;
+        this.speed = Math.random() * 15 + 10;
+        this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.2; // roughly diagonal
+        this.opacity = 0;
+        this.active = true;
       }
 
       update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
+        if (!this.active) {
+          if (Math.random() > 0.997) this.reset();
+          return;
+        }
 
-        if (this.x > canvas!.width) this.x = 0;
-        else if (this.x < 0) this.x = canvas!.width;
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed;
         
-        if (this.y > canvas!.height) this.y = 0;
-        else if (this.y < 0) this.y = canvas!.height;
+        // Fade in and out
+        if (this.x < canvas!.width && this.y < canvas!.height) {
+          this.opacity = Math.min(this.opacity + 0.05, 0.2);
+        } else {
+          this.active = false;
+        }
       }
 
       draw() {
-        if (!ctx) return;
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        if (!this.active || !ctx) return;
+        
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.globalAlpha = this.opacity;
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(
+          this.x - Math.cos(this.angle) * this.length,
+          this.y - Math.sin(this.angle) * this.length
+        );
+        ctx.stroke();
+        ctx.globalAlpha = 1;
       }
     }
 
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      particles = [];
-      const particleCount = Math.min(Math.floor(window.innerWidth / 20), 60);
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
+      stars = [];
+      comets = [];
+      
+      const starCount = Math.floor((window.innerWidth * window.innerHeight) / 8000);
+      for (let i = 0; i < starCount; i++) {
+        stars.push(new Star());
+      }
+
+      for (let i = 0; i < 3; i++) {
+        comets.push(new Comet());
       }
     };
 
-    const drawLines = () => {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 150) {
-            ctx.strokeStyle = `rgba(196, 85, 10, ${0.15 * (1 - distance / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
+    const handleScroll = () => {
+      scrollY.current = window.scrollY;
     };
 
-    let lastTime = performance.now();
-    const animate = (now: number) => {
-      const deltaTime = now - lastTime;
-      if (deltaTime < 24) { // Cap at ~40fps for background particles to save resources
-        animationFrameId = requestAnimationFrame(animate);
-        return;
-      }
-      lastTime = now;
+    const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Radial gradient background
-      const gradient = ctx.createRadialGradient(
-        canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, canvas.width * 0.7
-      );
-      gradient.addColorStop(0, 'rgba(196, 85, 10, 0.06)');
-      gradient.addColorStop(1, '#070807');
-      
-      ctx.fillStyle = '#070807';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = gradient;
+      // Keep background color consistent with the site
+      ctx.fillStyle = '#101010';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      particles.forEach(p => {
-        p.update();
-        p.draw();
+      stars.forEach(star => star.draw(scrollY.current));
+      comets.forEach(comet => {
+        comet.update();
+        comet.draw();
       });
-      drawLines();
+
       animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -116,11 +147,14 @@ const ParticleBackground: React.FC = () => {
     };
 
     window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
     init();
-    animate(performance.now());
+    animate();
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -128,7 +162,7 @@ const ParticleBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 pointer-events-none z-0"
+      className="fixed inset-0 pointer-events-none z-[-1]"
     />
   );
 };

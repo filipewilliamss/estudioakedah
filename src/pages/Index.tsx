@@ -15,6 +15,7 @@ import Preloader from "@/components/Preloader";
 import EditorialMarquee from "@/components/EditorialMarquee";
 import EditorialQuote from "@/components/EditorialQuote";
 import TestimonialsSection from "@/components/TestimonialsSection";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#101010]">
+      <ParticleBackground />
       <SEO schema={studioSchema} />
 
       <AnimatePresence>
