@@ -4,7 +4,7 @@ import { services, AKEDAH_EMAIL, WHATSAPP_URL } from "@/data/services";
 
 const Footer = () => {
   return (
-    <footer className="bg-black py-20 px-6 border-t border-white/5 relative z-[20]">
+    <footer className="bg-black py-20 px-6 relative z-[20]">
       <div className="container-editorial">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-8">
 
@@ -95,7 +95,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="mt-24 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[11px] text-white/20 uppercase tracking-[0.2em]">
             © 2026 Akedah — Estúdio de Soluções Comerciais. Todos os direitos reservados.
           </p>
