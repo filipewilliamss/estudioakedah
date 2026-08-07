@@ -12,114 +12,74 @@ const ParticleBackground: React.FC = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let stars: Star[] = [];
-    let comets: Comet[] = [];
+    let hubs: Hub[] = [];
 
-    class Star {
+    class Hub {
       x: number;
       y: number;
+      baseX: number;
+      baseY: number;
       size: number;
-      opacity: number;
       color: string;
       parallaxFactor: number;
+      pulsePhase: number;
+      pulseSpeed: number;
+      connectionRadius: number;
 
       constructor() {
-        this.x = Math.random() * canvas!.width;
-        this.y = Math.random() * canvas!.height;
-        this.size = Math.random() * 1.2 + 0.3;
-        this.opacity = Math.random() * 0.25 + 0.15; // Increased opacity
-        this.color = Math.random() > 0.3 ? '#C4550A' : '#FFFFFF'; // Orange is now predominant
-        this.parallaxFactor = Math.random() * 0.08 + 0.03; // Increased parallax for space depth sensation
+        this.baseX = Math.random() * canvas!.width;
+        this.baseY = Math.random() * (canvas!.height * 5); // Spread across a large scrollable area
+        this.x = this.baseX;
+        this.y = this.baseY;
+        this.size = Math.random() * 3 + 2;
+        this.color = '#C4550A';
+        this.parallaxFactor = Math.random() * 0.4 + 0.1;
+        this.pulsePhase = Math.random() * Math.PI * 2;
+        this.pulseSpeed = Math.random() * 0.05 + 0.02;
+        this.connectionRadius = 300;
       }
 
-      draw(scroll: number) {
-        if (!ctx) return;
-        const currentY = (this.y - scroll * this.parallaxFactor) % canvas!.height;
-        const finalY = currentY < 0 ? currentY + canvas!.height : currentY;
-        
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.opacity;
-        ctx.beginPath();
-        ctx.arc(this.x, finalY, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-    }
-
-    class Comet {
-      x: number;
-      y: number;
-      length: number;
-      speed: number;
-      angle: number;
-      opacity: number;
-      active: boolean;
-
-      constructor() {
-        this.reset();
-        this.active = false;
-        // Start randomly active to spread them out
-        if (Math.random() > 0.8) this.active = true;
-      }
-
-      reset() {
-        this.x = Math.random() * canvas!.width;
-        this.y = Math.random() * canvas!.height;
-        this.length = Math.random() * 80 + 40;
-        this.speed = Math.random() * 12 + 8;
-        // Diverse angles: 0 to 2*PI (all directions)
-        this.angle = Math.random() * Math.PI * 2;
-        this.opacity = 0;
-        this.active = true;
-      }
-
-      update() {
-        if (!this.active) {
-          if (Math.random() > 0.997) this.reset();
-          return;
-        }
-
-        this.x += Math.cos(this.angle) * this.speed;
-        this.y += Math.sin(this.angle) * this.speed;
-        
-        // Fade in and out
-        if (this.x < canvas!.width && this.y < canvas!.height) {
-          this.opacity = Math.min(this.opacity + 0.05, 0.4); // Higher comet opacity
-        } else {
-          this.active = false;
-        }
+      update(scroll: number) {
+        // Apply parallax to vertical position
+        this.y = this.baseY - scroll * this.parallaxFactor;
+        this.pulsePhase += this.pulseSpeed;
       }
 
       draw() {
-        if (!this.active || !ctx) return;
+        if (!ctx) return;
         
-        ctx.strokeStyle = '#FFFFFF';
-        ctx.globalAlpha = this.opacity;
-        ctx.lineWidth = 1;
+        // Only draw if visible in viewport (with some padding)
+        if (this.y < -100 || this.y > canvas!.height + 100) return;
+
+        const pulse = Math.sin(this.pulsePhase) * 2;
+        
+        // Draw hub glow
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
+        gradient.addColorStop(0, 'rgba(196, 85, 10, 0.4)');
+        gradient.addColorStop(1, 'rgba(196, 85, 10, 0)');
+        
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(
-          this.x - Math.cos(this.angle) * this.length,
-          this.y - Math.sin(this.angle) * this.length
-        );
-        ctx.stroke();
-        ctx.globalAlpha = 1;
+        ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Draw hub core
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size + pulse, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
 
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      stars = [];
-      comets = [];
+      hubs = [];
       
-      const starCount = Math.floor((window.innerWidth * window.innerHeight) / 6000); // More stars for depth
-      for (let i = 0; i < starCount; i++) {
-        stars.push(new Star());
-      }
-
-      for (let i = 0; i < 6; i++) { // More comets
-        comets.push(new Comet());
+      // Density-based hub creation
+      const hubCount = 40; 
+      for (let i = 0; i < hubCount; i++) {
+        hubs.push(new Hub());
       }
     };
 
@@ -127,19 +87,45 @@ const ParticleBackground: React.FC = () => {
       scrollY.current = window.scrollY;
     };
 
+    const drawConnections = () => {
+      if (!ctx) return;
+      
+      ctx.lineWidth = 0.5;
+      
+      for (let i = 0; i < hubs.length; i++) {
+        const hubA = hubs[i];
+        
+        // Skip connection logic if hub A is far outside viewport
+        if (hubA.y < -300 || hubA.y > canvas.height + 300) continue;
+
+        for (let j = i + 1; j < hubs.length; j++) {
+          const hubB = hubs[j];
+          
+          const dx = hubA.x - hubB.x;
+          const dy = hubA.y - hubB.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < hubA.connectionRadius) {
+            // Opacity based on distance and visibility
+            const opacity = (1 - distance / hubA.connectionRadius) * 0.3;
+            ctx.strokeStyle = `rgba(196, 85, 10, ${opacity})`;
+            ctx.beginPath();
+            ctx.moveTo(hubA.x, hubA.y);
+            ctx.lineTo(hubB.x, hubB.y);
+            ctx.stroke();
+          }
+        }
+      }
+    };
+
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Keep background color consistent with the site
-      // Using transparent clear to allow CSS background or previous frames to be visible if needed
-      // but here we just want to clear the canvas.
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach(star => star.draw(scrollY.current));
-      comets.forEach(comet => {
-        comet.update();
-        comet.draw();
-      });
+      hubs.forEach(hub => hub.update(scrollY.current));
+      
+      // First draw lines, then hubs (hubs on top)
+      drawConnections();
+      hubs.forEach(hub => hub.draw());
 
       animationFrameId = requestAnimationFrame(animate);
     };
