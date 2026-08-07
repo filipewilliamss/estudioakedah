@@ -94,9 +94,9 @@ const ProcessSection = () => {
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
         className="absolute -left-6 md:-left-10 top-[5%] md:top-[8%] font-display font-[900] text-white/[0.015] leading-none tracking-extratight pointer-events-none select-none"
-        style={{ fontSize: "clamp(120px, 25vw, 400px)" }}
+        style={{ fontSize: "clamp(80px, 15vw, 250px)" }}
       >
-        processo
+        método akedah
       </motion.span>
 
       {/* Dynamic Grid Overlay */}

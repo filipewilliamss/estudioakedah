@@ -39,11 +39,23 @@ const ServicesSection = () => {
     {
       id: "intro",
       content: (
-        <div className="flex flex-col items-center justify-center h-full text-center px-6">
-          <span className="text-[#C4550A] text-[14px] md:text-[18px] font-bold uppercase tracking-[0.4em] mb-4 md:mb-8">
+        <div className="flex flex-col items-center justify-center h-full text-center px-6 relative">
+          {/* Backdrop text for Diagnóstico section */}
+          <motion.span
+            aria-hidden="true"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5 }}
+            className="absolute font-display font-[900] text-white/[0.015] leading-none tracking-extratight pointer-events-none select-none z-[-1]"
+            style={{ fontSize: "clamp(120px, 20vw, 350px)" }}
+          >
+            Dores
+          </motion.span>
+
+          <span className="text-[#C4550A] text-[14px] md:text-[18px] font-bold uppercase tracking-[0.4em] mb-4 md:mb-8 relative z-10">
             Diagnóstico
           </span>
-          <h2 className="font-display text-[48px] md:text-[100px] font-[900] text-white leading-[0.9] tracking-[-0.05em]">
+          <h2 className="font-display text-[48px] md:text-[100px] font-[900] text-white leading-[0.9] tracking-[-0.05em] relative z-10">
             Onde a operação <br />
             <span className="text-[#C4550A] italic font-normal">trava.</span>
           </h2>
