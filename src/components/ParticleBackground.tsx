@@ -36,7 +36,7 @@ const ParticleBackground: React.FC = () => {
         this.parallaxFactor = Math.random() * 0.4 + 0.1;
         this.pulsePhase = Math.random() * Math.PI * 2;
         this.pulseSpeed = Math.random() * 0.05 + 0.02;
-        this.connectionRadius = 350;
+        this.connectionRadius = 220; // Reduced from 350 to decrease connections per hub
       }
 
       update(scroll: number) {
@@ -54,7 +54,7 @@ const ParticleBackground: React.FC = () => {
         const pulse = Math.sin(this.pulsePhase) * 2;
         
         // Draw hub core - No outer glow as requested
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = `rgba(196, 85, 10, 0.45)`; // Added opacity to hub core as requested
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size + pulse, 0, Math.PI * 2);
         ctx.fill();
@@ -67,7 +67,7 @@ const ParticleBackground: React.FC = () => {
       hubs = [];
       
       // Density-based hub creation
-      const hubCount = 180; // Distributed even more hubs as requested
+      const hubCount = 120; // Slightly reduced from 180 to help clear up the visual space
       for (let i = 0; i < hubCount; i++) {
         hubs.push(new Hub());
       }
@@ -94,7 +94,7 @@ const ParticleBackground: React.FC = () => {
       if (!ctx) return;
       
       // More highlighted lines as requested
-      ctx.lineWidth = 1.2;
+      ctx.lineWidth = 0.8; // Reduced from 1.2 to make lines subtler
       
       // Scroll velocity affects connection intensity
       const scrollBoost = Math.min(scrollVelocity * 3, 0.6);
@@ -117,8 +117,8 @@ const ParticleBackground: React.FC = () => {
           if (distance < hubA.connectionRadius) {
             // Dynamic opacity based on distance, scroll, and auto-pulse
             const distanceFactor = (1 - distance / hubA.connectionRadius);
-            const baseOpacity = 0.35;
-            const opacity = distanceFactor * (baseOpacity + scrollBoost + autoPulse);
+            const baseOpacity = 0.15; // Reduced from 0.35
+            const opacity = distanceFactor * (baseOpacity + (scrollBoost * 0.5) + (autoPulse * 0.5)); // Reduced boost/pulse influence
             
             ctx.strokeStyle = `rgba(196, 85, 10, ${Math.min(opacity, 0.8)})`;
             ctx.beginPath();
