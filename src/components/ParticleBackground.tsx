@@ -36,7 +36,7 @@ const ParticleBackground: React.FC = () => {
         this.parallaxFactor = Math.random() * 0.4 + 0.1;
         this.pulsePhase = Math.random() * Math.PI * 2;
         this.pulseSpeed = Math.random() * 0.05 + 0.02;
-        this.connectionRadius = 300;
+        this.connectionRadius = 350;
       }
 
       update(scroll: number) {
@@ -53,17 +53,7 @@ const ParticleBackground: React.FC = () => {
 
         const pulse = Math.sin(this.pulsePhase) * 2;
         
-        // Draw hub glow
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
-        gradient.addColorStop(0, 'rgba(196, 85, 10, 0.4)');
-        gradient.addColorStop(1, 'rgba(196, 85, 10, 0)');
-        
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Draw hub core
+        // Draw hub core - No outer glow as requested
         ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size + pulse, 0, Math.PI * 2);
@@ -77,20 +67,39 @@ const ParticleBackground: React.FC = () => {
       hubs = [];
       
       // Density-based hub creation
-      const hubCount = 40; 
+      const hubCount = 180; // Distributed even more hubs as requested
       for (let i = 0; i < hubCount; i++) {
         hubs.push(new Hub());
       }
     };
 
+    let lastScrollY = window.scrollY;
+    let scrollVelocity = 0;
+    let lastScrollTime = Date.now();
+    let idleFactor = 0;
+
     const handleScroll = () => {
-      scrollY.current = window.scrollY;
+      const currentScroll = window.scrollY;
+      const now = Date.now();
+      const dt = now - lastScrollTime;
+      if (dt > 0) {
+        scrollVelocity = Math.abs(currentScroll - lastScrollY) / dt;
+      }
+      lastScrollY = currentScroll;
+      lastScrollTime = now;
+      scrollY.current = currentScroll;
     };
 
     const drawConnections = () => {
       if (!ctx) return;
       
-      ctx.lineWidth = 0.5;
+      // More highlighted lines as requested
+      ctx.lineWidth = 1.2;
+      
+      // Scroll velocity affects connection intensity
+      const scrollBoost = Math.min(scrollVelocity * 3, 0.6);
+      // Automatic connection pulse when static
+      const autoPulse = (Math.sin(Date.now() / 1500) + 1) * 0.1;
       
       for (let i = 0; i < hubs.length; i++) {
         const hubA = hubs[i];
@@ -106,9 +115,12 @@ const ParticleBackground: React.FC = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < hubA.connectionRadius) {
-            // Opacity based on distance and visibility
-            const opacity = (1 - distance / hubA.connectionRadius) * 0.3;
-            ctx.strokeStyle = `rgba(196, 85, 10, ${opacity})`;
+            // Dynamic opacity based on distance, scroll, and auto-pulse
+            const distanceFactor = (1 - distance / hubA.connectionRadius);
+            const baseOpacity = 0.35;
+            const opacity = distanceFactor * (baseOpacity + scrollBoost + autoPulse);
+            
+            ctx.strokeStyle = `rgba(196, 85, 10, ${Math.min(opacity, 0.8)})`;
             ctx.beginPath();
             ctx.moveTo(hubA.x, hubA.y);
             ctx.lineTo(hubB.x, hubB.y);
@@ -120,6 +132,9 @@ const ParticleBackground: React.FC = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Gradually decay scroll velocity
+      scrollVelocity *= 0.96;
       
       hubs.forEach(hub => hub.update(scrollY.current));
       
