@@ -533,7 +533,7 @@ export const services: AkedahService[] = [
     id: "consultorias",
     slug: "consultorias",
     number: "06",
-    name: "Consultorias",
+    name: "Consultorias e treinamentos",
     tagline: "Estratégia comercial e de marketing para destravar o crescimento.",
     eyebrow: "Consultoria Estratégica",
     heroTitle: "Consultoria para",
