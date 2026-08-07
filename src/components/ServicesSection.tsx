@@ -62,17 +62,6 @@ const ServicesSection = () => {
         </div>
       )
     },
-    // Face 2: Highlight Text
-    {
-      id: "highlight",
-      content: (
-        <div className="flex items-center justify-center h-full text-center px-6 max-w-4xl mx-auto">
-          <p className="text-white text-[24px] md:text-[42px] leading-[1.2] font-medium tracking-tight">
-            Muitas empresas não precisam de mais marketing, precisam entender por que o esforço que já fazem ainda não se transforma em crescimento previsível.
-          </p>
-        </div>
-      )
-    },
     // Faces 3-6: Items
     ...diagnosticItems.map((item, idx) => ({
       id: `item-${idx}`,
