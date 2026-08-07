@@ -133,6 +133,9 @@ const ParticleBackground: React.FC = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      // Gradually decay scroll velocity
+      scrollVelocity *= 0.96;
+      
       hubs.forEach(hub => hub.update(scrollY.current));
       
       // First draw lines, then hubs (hubs on top)
