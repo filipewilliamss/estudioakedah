@@ -1,9 +1,8 @@
-import socialMediaImg from "@/assets/svc-social-media.jpg";
-import trafegoPagoImg from "@/assets/svc-trafego-pago.jpg";
-import videosEmLoteImg from "@/assets/svc-videos-em-lote.jpg";
-import cursosImg from "@/assets/svc-cursos.jpg";
-
 import consultoriasImg from "@/assets/svc-social-media.jpg"; // Placeholder
+import socialMediaImg from "@/assets/svc-social-media.jpg";
+import videosEmLoteImg from "@/assets/svc-videos-em-lote.jpg";
+import trafegoPagoImg from "@/assets/svc-trafego-pago.jpg";
+import cursosImg from "@/assets/svc-cursos.jpg";
 import infraImg from "@/assets/svc-videos-em-lote.jpg"; // Placeholder
 import sonoplastiaImg from "@/assets/svc-trafego-pago.jpg"; // Placeholder
 
