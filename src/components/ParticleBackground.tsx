@@ -67,14 +67,27 @@ const ParticleBackground: React.FC = () => {
       hubs = [];
       
       // Density-based hub creation
-      const hubCount = 40; 
+      const hubCount = 120; // Distributed more hubs as requested
       for (let i = 0; i < hubCount; i++) {
         hubs.push(new Hub());
       }
     };
 
+    let lastScrollY = window.scrollY;
+    let scrollVelocity = 0;
+    let lastScrollTime = Date.now();
+    let idleFactor = 0;
+
     const handleScroll = () => {
-      scrollY.current = window.scrollY;
+      const currentScroll = window.scrollY;
+      const now = Date.now();
+      const dt = now - lastScrollTime;
+      if (dt > 0) {
+        scrollVelocity = Math.abs(currentScroll - lastScrollY) / dt;
+      }
+      lastScrollY = currentScroll;
+      lastScrollTime = now;
+      scrollY.current = currentScroll;
     };
 
     const drawConnections = () => {
