@@ -76,10 +76,8 @@ const Index = () => {
             </section>
 
 
-            <SectionDivider />
 
 
-            <SectionDivider />
 
             <section className="snap-start">
               <EditorialQuote
@@ -89,13 +87,11 @@ const Index = () => {
               />
             </section>
 
-            <SectionDivider />
 
             <section className="snap-start">
               <ServicesSection />
             </section>
 
-            <SectionDivider />
 
             <section className="snap-start">
               <ProcessSection />
@@ -104,13 +100,12 @@ const Index = () => {
             {/* Cada serviço em tela cheia, com link para a página detalhada */}
             <PortfolioSection />
 
-            <SectionDivider />
 
             <section className="snap-start">
               <TestimonialsSection />
             </section>
 
-            <SectionDivider />
+            
 
             <section className="snap-start">
               <ContactSection />
