@@ -153,7 +153,7 @@ export const services: AkedahService[] = [
     id: "trafego-pago",
     slug: "trafego-pago",
     number: "02",
-    name: "Tráfego Pago",
+    name: "Gestão de Tráfego pago",
     tagline: "Campanhas para ampliar uma operação que já sabe vender e precisa de mais demanda.",
     eyebrow: "Meta Ads + Google Ads",
     heroTitle: "Tráfego pago que realmente",
