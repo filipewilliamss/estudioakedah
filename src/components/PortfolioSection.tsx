@@ -5,7 +5,7 @@ import { services, type AkedahService } from "@/data/services";
 
 const PortfolioSection = () => {
   return (
-    <div id="portfolio" className="bg-transparent">
+    <div id="portfolio" className="relative z-20 bg-transparent">
       {services.map((service, index) => (
         <ServiceShowcase key={service.id} service={service} index={index} total={services.length} />
       ))}
