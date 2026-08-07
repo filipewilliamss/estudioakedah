@@ -300,8 +300,8 @@ const HeroSection = () => {
 
       {/* Top meta bar — editorial detail */}
 
-      <div className="relative z-20 container-editorial w-full flex flex-col lg:flex-row items-center gap-12 pt-24 lg:pt-16 pb-20 md:pb-32 lg:pb-0">
-        <div className="w-full lg:w-[65%] flex flex-col items-start" ref={headlineRef}>
+      <div className="relative z-20 container-editorial w-full flex flex-col items-center pt-24 lg:pt-16 pb-20 md:pb-32 lg:pb-0">
+        <div className="w-full flex flex-col items-center" ref={headlineRef}>
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -314,19 +314,19 @@ const HeroSection = () => {
           </motion.div>
 
           <h1
-            className="text-white font-[900] leading-[0.82] text-left tracking-[-0.05em] font-display"
+            className="text-white font-[900] leading-[0.82] text-center tracking-[-0.05em] font-display"
             style={{ fontSize: 'clamp(38px, 9vw, 112px)' }}
           >
             Elevamos o seu negócio ao <br />
             <span className="text-[#C4550A] italic font-normal">próximo patamar.</span>
           </h1>
 
-          <p className="mt-12 text-white/55 text-[17px] md:text-[19px] max-w-2xl text-left font-normal leading-[1.6] font-display tracking-tight">
+          <p className="mt-12 text-white/55 text-[17px] md:text-[19px] max-w-2xl text-center font-normal leading-[1.6] font-display tracking-tight">
             Unindo estratégia comercial e ações de impacto. Antes do marketing, um processo comercial organizado
             &mdash; do diagnóstico à autonomia.
           </p>
 
-          <div className="mt-12 flex flex-col sm:flex-row gap-5">
+          <div className="mt-12 flex flex-col sm:flex-row gap-5 items-center justify-center">
             <a
               href="https://wa.me/5511991076096"
               target="_blank"
@@ -339,32 +339,6 @@ const HeroSection = () => {
               Conheça nossas soluções
             </a>
           </div>
-        </div>
-
-
-        <div className="hidden lg:flex lg:w-[35%] h-[600px] relative items-center justify-center">
-          {/* Subtle ambient glow — refined and integrated */}
-          <div className="absolute w-[380px] h-[380px] bg-[#C4550A]/[0.03] blur-[120px] rounded-full pointer-events-none" />
-          
-          {/* Technical frame markers */}
-          <div className="absolute top-10 left-10 w-2 h-2 border-l border-t border-[#C4550A]/20 pointer-events-none" />
-          <div className="absolute top-10 right-10 w-2 h-2 border-r border-t border-[#C4550A]/20 pointer-events-none" />
-          <div className="absolute bottom-10 left-10 w-2 h-2 border-l border-b border-[#C4550A]/20 pointer-events-none" />
-          <div className="absolute bottom-10 right-10 w-2 h-2 border-r border-b border-[#C4550A]/20 pointer-events-none" />
-          
-          {/* Branding metadata */}
-          <div className="absolute top-8 left-1/2 -translate-x-1/2 text-[#C4550A]/40 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap pointer-events-none">
-            AKEDAH · MARK · 001
-          </div>
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/15 text-[8px] uppercase tracking-[0.6em] font-mono whitespace-nowrap pointer-events-none">
-            ESTRATÉGIA EM MOVIMENTO · VOL.01
-          </div>
-
-          <canvas 
-            ref={canvasRef}
-            id="hero-canvas"
-            className="relative z-10 cursor-none"
-          />
         </div>
       </div>
 
