@@ -403,7 +403,7 @@ export const services: AkedahService[] = [
     id: "cursos-e-treinamentos",
     slug: "cursos-e-treinamentos",
     number: "04",
-    name: "Cursos e Treinamentos",
+    name: "Produção de Cursos",
     tagline: "Estrutura para vender conhecimento ou treinar equipes com método e clareza.",
     eyebrow: "Cursos e Treinamentos",
     heroTitle: "Cursos e treinamentos",
