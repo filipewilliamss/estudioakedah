@@ -2,7 +2,7 @@ import socialMediaImg from "@/assets/svc-social-media.jpg";
 import trafegoPagoImg from "@/assets/svc-trafego-pago.jpg";
 import videosEmLoteImg from "@/assets/svc-videos-em-lote.jpg";
 import cursosImg from "@/assets/svc-cursos.jpg";
-import treinamentosImg from "@/assets/svc-cursos.jpg"; // Placeholder
+
 import consultoriasImg from "@/assets/svc-social-media.jpg"; // Placeholder
 import infraImg from "@/assets/svc-videos-em-lote.jpg"; // Placeholder
 import sonoplastiaImg from "@/assets/svc-trafego-pago.jpg"; // Placeholder
@@ -470,64 +470,6 @@ export const services: AkedahService[] = [
     },
     ctaTitle: "Vamos tirar esse projeto do papel?",
     ctaText: "Uma conversa curta para entender formato, prazo e próximos passos.",
-  },
-  {
-    id: "treinamentos",
-    slug: "treinamentos",
-    number: "05",
-    name: "Treinamentos",
-    tagline: "Capacitação técnica e comportamental para elevar o nível da sua equipe.",
-    eyebrow: "Treinamentos Corporativos",
-    heroTitle: "Treinamentos que",
-    heroHighlight: "transformam.",
-    heroSubtitle: "Desenvolvemos programas personalizados para alinhar processos e cultura na sua empresa.",
-    image: treinamentosImg,
-    highlights: [
-      "Diagnóstico de necessidades",
-      "Conteúdo personalizado",
-      "Metodologia ativa",
-      "Avaliação de resultados",
-      "Material de apoio exclusivo",
-    ],
-    problemTitle: "Sua equipe precisa de evolução?",
-    problems: [
-      { title: "Processos obsoletos", description: "O mercado mudou, mas o modo de trabalhar continua o mesmo." },
-      { title: "Desalinhamento cultural", description: "A equipe não fala a mesma língua ou não entende os valores." },
-      { title: "Baixa produtividade", description: "Falta técnica para executar tarefas com eficiência." },
-      { title: "Retrabalho constante", description: "Erros básicos que poderiam ser evitados com instrução correta." },
-    ],
-    processTitle: "Jornada de aprendizado",
-    process: [
-      { title: "Imersão", description: "Entendemos a dor e o gap técnico da equipe." },
-      { title: "Design", description: "Criamos a trilha de conhecimento específica." },
-      { title: "Execução", description: "Treinamento presencial ou remoto com especialistas." },
-      { title: "Follow-up", description: "Acompanhamento pós-treinamento para fixação." },
-    ],
-    deliverablesTitle: "O que entregamos",
-    deliverables: [
-      { title: "Plano de ensino", description: "Estrutura detalhada do que será ensinado." },
-      { title: "Workshops práticos", description: "Mão na massa para aprender fazendo." },
-      { title: "Dashboards de evolução", description: "Acompanhamento do progresso dos alunos." },
-      { title: "Certificação Akedah", description: "Reconhecimento pela conclusão do programa." },
-    ],
-    fitTitle: "Ideal para empresas que...",
-    fit: [
-      { title: "Buscam excelência", description: "Não aceitam o básico e querem ser referência." },
-      { title: "Valorizam pessoas", description: "Entendem que o capital humano é o maior ativo." },
-      { title: "Estão em escala", description: "Precisam padronizar o conhecimento rapidamente." },
-    ],
-    stats: [
-      { value: "+1000", label: "profissionais treinados" },
-      { value: "98%", label: "taxa de satisfação" },
-      { value: "B2B", label: "foco em resultados corporativos" },
-    ],
-    testimonial: {
-      quote: "O treinamento da Akedah mudou o clima da nossa empresa. A equipe agora trabalha com muito mais segurança.",
-      name: "Ana Silva",
-      role: "Gerente de RH",
-    },
-    ctaTitle: "Prepare sua equipe para o próximo nível.",
-    ctaText: "Vamos conversar sobre o desenvolvimento do seu time.",
   },
   {
     id: "consultorias",
