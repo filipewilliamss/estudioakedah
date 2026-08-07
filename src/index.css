@@ -156,6 +156,7 @@ p {
   justify-content: center;
   gap: 14px;
   padding: 22px 44px;
+  border-radius: 9999px; /* Rounded corners as requested */
   background: #C4550A;
   color: #ffffff;
   font-size: 11px;
@@ -193,6 +194,7 @@ p {
   justify-content: center;
   gap: 14px;
   padding: 22px 44px;
+  border-radius: 9999px; /* Rounded corners as requested */
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #fff;
   font-size: 11px;
