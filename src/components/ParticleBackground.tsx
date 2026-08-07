@@ -93,7 +93,13 @@ const ParticleBackground: React.FC = () => {
     const drawConnections = () => {
       if (!ctx) return;
       
-      ctx.lineWidth = 0.5;
+      // More highlighted lines as requested
+      ctx.lineWidth = 1.2;
+      
+      // Scroll velocity affects connection intensity
+      const scrollBoost = Math.min(scrollVelocity * 3, 0.6);
+      // Automatic connection pulse when static
+      const autoPulse = (Math.sin(Date.now() / 1500) + 1) * 0.1;
       
       for (let i = 0; i < hubs.length; i++) {
         const hubA = hubs[i];
@@ -109,9 +115,12 @@ const ParticleBackground: React.FC = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < hubA.connectionRadius) {
-            // Opacity based on distance and visibility
-            const opacity = (1 - distance / hubA.connectionRadius) * 0.3;
-            ctx.strokeStyle = `rgba(196, 85, 10, ${opacity})`;
+            // Dynamic opacity based on distance, scroll, and auto-pulse
+            const distanceFactor = (1 - distance / hubA.connectionRadius);
+            const baseOpacity = 0.35;
+            const opacity = distanceFactor * (baseOpacity + scrollBoost + autoPulse);
+            
+            ctx.strokeStyle = `rgba(196, 85, 10, ${Math.min(opacity, 0.8)})`;
             ctx.beginPath();
             ctx.moveTo(hubA.x, hubA.y);
             ctx.lineTo(hubB.x, hubB.y);
