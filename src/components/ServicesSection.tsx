@@ -67,7 +67,7 @@ const ServicesSection = () => {
       id: `item-${idx}`,
       content: (
         <div className="flex flex-col items-center justify-center h-full text-center px-6 max-w-4xl mx-auto">
-          <span className="text-[#C4550A]/40 font-display text-[40px] md:text-[60px] font-black leading-none mb-4 md:mb-6">
+          <span className="text-[#C4550A]/70 font-display text-[40px] md:text-[60px] font-black leading-none mb-4 md:mb-6">
             0{idx + 1}
           </span>
           <h3 className="font-display text-[32px] md:text-[64px] font-[900] text-white leading-[1.1] tracking-[-0.03em] mb-6 md:mb-8">
