@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/NotFound";
 import { getServiceBySlug, services, WHATSAPP_URL } from "@/data/services";
+import SocialMediaCover from "@/components/SocialMediaCover";
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -45,13 +46,19 @@ const ServiceDetail = () => {
 
       {/* Hero */}
       <header className="relative min-h-[92vh] flex items-end overflow-hidden">
-        <img
-          src={service.image}
-          alt={`${service.name} — Estúdio Akedah`}
-          width={1600}
-          height={900}
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-        />
+        {service.id === "social-media" ? (
+          <div className="absolute inset-0 w-full h-full">
+            <SocialMediaCover />
+          </div>
+        ) : (
+          <img
+            src={service.image}
+            alt={`${service.name} — Estúdio Akedah`}
+            width={1600}
+            height={900}
+            className="absolute inset-0 w-full h-full object-cover opacity-40"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-[#070807] via-[#070807]/70 to-[#070807]/30" />
         <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
 
