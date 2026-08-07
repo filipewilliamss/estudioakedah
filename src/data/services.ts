@@ -1,9 +1,8 @@
-import socialMediaImg from "@/assets/svc-social-media.jpg";
-import trafegoPagoImg from "@/assets/svc-trafego-pago.jpg";
-import videosEmLoteImg from "@/assets/svc-videos-em-lote.jpg";
-import cursosImg from "@/assets/svc-cursos.jpg";
-
 import consultoriasImg from "@/assets/svc-social-media.jpg"; // Placeholder
+import socialMediaImg from "@/assets/svc-social-media.jpg";
+import videosEmLoteImg from "@/assets/svc-videos-em-lote.jpg";
+import trafegoPagoImg from "@/assets/svc-trafego-pago.jpg";
+import cursosImg from "@/assets/svc-cursos.jpg";
 import infraImg from "@/assets/svc-videos-em-lote.jpg"; // Placeholder
 import sonoplastiaImg from "@/assets/svc-trafego-pago.jpg"; // Placeholder
 
@@ -43,10 +42,68 @@ export interface AkedahService {
 
 export const services: AkedahService[] = [
   {
+    id: "consultorias",
+    slug: "consultorias",
+    number: "01",
+    name: "Consultorias e treinamentos",
+    tagline: "Estratégia comercial e de marketing para destravar o crescimento.",
+    eyebrow: "Consultoria Estratégica",
+    heroTitle: "Consultoria para",
+    heroHighlight: "crescer.",
+    heroSubtitle: "Análise profunda e plano de ação para empresas que precisam de direção clara.",
+    image: consultoriasImg,
+    highlights: [
+      "Auditoria 360 do marketing",
+      "Revisão do funil de vendas",
+      "Definição de canais de tração",
+      "Setup de métricas (KPIs)",
+      "Mentoria direta com fundadores",
+    ],
+    problemTitle: "Onde o crescimento travou?",
+    problems: [
+      { title: "Estagnação", description: "O faturamento não sobe há meses e você não sabe o porquê." },
+      { title: "Desperdício", description: "Investimento em marketing sem retorno claro." },
+      { title: "Caos comercial", description: "Vendas acontecem por acaso, sem processo repetível." },
+      { title: "Falta de visão", description: "Você está no operacional e não consegue olhar o futuro." },
+    ],
+    processTitle: "Método Consultivo",
+    process: [
+      { title: "Diagnóstico", description: "Raio-x completo da operação atual." },
+      { title: "Planejamento", description: "Desenho da nova estratégia e metas." },
+      { title: "Implementação", description: "Acompanhamento da execução do plano." },
+      { title: "Ajuste fino", description: "Otimização com base nos primeiros dados." },
+    ],
+    deliverablesTitle: "Entregáveis estratégicos",
+    deliverables: [
+      { title: "Roadmap de execução", description: "Passo a passo do que fazer nos próximos 90 dias." },
+      { title: "Playbook de vendas", description: "Documentação do seu novo processo comercial." },
+      { title: "Relatório de oportunidades", description: "Onde estão os ganhos rápidos para sua empresa." },
+      { title: "Acesso direto", description: "Canal aberto para dúvidas estratégicas." },
+    ],
+    fitTitle: "É para você se...",
+    fit: [
+      { title: "Fatura > R$100k/mês", description: "Já tem operação e quer eficiência." },
+      { title: "Tem time de execução", description: "Precisa de cabeça estratégica, não braço." },
+      { title: "Busca escala", description: "Quer sair do 'eu-preendedorismo'." },
+    ],
+    stats: [
+      { value: "3.5x", label: "ROI médio observado" },
+      { value: "+50", label: "empresas mentoradas" },
+      { value: "90 dias", label: "ciclo inicial de aceleração" },
+    ],
+    testimonial: {
+      quote: "A consultoria nos deu o norte que faltava. Em 3 meses, dobramos nossa geração de leads qualificados.",
+      name: "João Paulo",
+      role: "CEO Tech Startup",
+    },
+    ctaTitle: "Destrave seu faturamento hoje.",
+    ctaText: "Agende uma sessão estratégica gratuita.",
+  },
+  {
     id: "social-media",
     slug: "social-media",
-    number: "01",
-    name: "Social Media",
+    number: "02",
+    name: "Gestão de redes sociais",
     tagline: "Conteúdo com intenção comercial, pensado para gerar leads e conversas qualificadas.",
     eyebrow: "Social Media Comercial",
     heroTitle: "Conteúdo que gera",
@@ -154,9 +211,130 @@ export const services: AkedahService[] = [
     ctaText: "Uma conversa direta sobre o que faz sentido para a sua empresa.",
   },
   {
+    id: "videos-em-lote",
+    slug: "videos-em-lote",
+    number: "03",
+    name: "Sessão de vídeos",
+    tagline: "Pauta, gravação e edição para transformar uma sessão mensal em presença constante.",
+    eyebrow: "Sessões de Vídeo em Lote",
+    heroTitle: "Grave uma vez. Apareça por",
+    heroHighlight: "1 mês.",
+    heroSubtitle: "Uma sessão mensal de gravação. Conteúdo publicado toda semana. Você aparece, a equipe faz o resto.",
+    image: videosEmLoteImg,
+    highlights: [
+      "Pauta estratégica com foco em generation de leads",
+      "Direção e gravação em set profissional",
+      "Edição profissional com identidade visual",
+      "Legendas e adaptações por formato",
+      "Programação e publicação nas redes",
+    ],
+    problemTitle: "Quem some das redes não some por falta de vontade",
+    problems: [
+      {
+        title: "A agenda não perdoa",
+        description:
+          "Entre atendimentos, reuniões e gestão da equipe, gravar um vídeo passa direto para o final da fila, toda semana.",
+      },
+      {
+        title: "Postar uma vez não basta",
+        description:
+          "Consistência é o que transforma presença digital em resultado comercial. Aparecer esporadicamente não cria autoridade.",
+      },
+      {
+        title: "Produzir consome mais do que parece",
+        description:
+          "Pauta, gravação, edição, legenda, publicação. São horas que você não tem para dar a algo que não é o seu negócio principal.",
+      },
+      {
+        title: "O conteúdo precisa vender, não só aparecer",
+        description:
+          "Views sem estratégia comercial são vaidade. O que importa é conteúdo que atrai o cliente certo e move a conversa para o fechamento.",
+      },
+    ],
+    processTitle: "Quatro etapas. Uma gravação. Um mês no ar.",
+    process: [
+      {
+        title: "Pauta estratégica",
+        description: "Temas definidos com base no seu mercado e no que gera resultado comercial.",
+      },
+      {
+        title: "Sessão de gravação",
+        description: "Você aparece. Nós conduzimos roteiro, direção e gravação do mês.",
+      },
+      {
+        title: "Edição profissional",
+        description: "Corte, trilha, legendas e identidade visual. Cada vídeo pronto para publicar.",
+      },
+      {
+        title: "Publicação e acompanhamento",
+        description: "Programamos, publicamos e enviamos relatório mensal. Zero prazo na sua cabeça.",
+      },
+    ],
+    deliverablesTitle: "Tudo que precisa. Nada que sobra.",
+    deliverables: [
+      {
+        title: "Pautas mensais",
+        description:
+          "Temas definidos com estratégia comercial. Cada pauta tem objetivo claro: atrair, educar ou converter o cliente certo.",
+      },
+      {
+        title: "Gravação mensal em lote",
+        description: "Estrutura para gravar o conteúdo do mês em uma sessão objetiva.",
+      },
+      {
+        title: "Edição profissional",
+        description: "Cortes, trilha, identidade visual e ritmo. Sem parecer improviso amador.",
+      },
+      {
+        title: "Legendas e acessibilidade",
+        description: "Legendas revisadas manualmente. Conteúdo que funciona com e sem som.",
+      },
+      {
+        title: "Programação e publicação",
+        description: "Calendário editorial executado por nós. Nenhum prazo na sua cabeça.",
+      },
+      {
+        title: "Relatório de performance",
+        description: "Dados mensais objetivos: alcance, engajamento e o que importa para o seu comercial.",
+      },
+    ],
+    fitTitle: "Você tem algo a dizer. Não tem tempo de produzir.",
+    fit: [
+      {
+        title: "Médicos e profissionais de saúde",
+        description: "Agenda cheia e um público que confia em quem aparece com consistência.",
+      },
+      {
+        title: "Advogados e escritórios jurídicos",
+        description: "Conteúdo que educa o cliente antes da consulta e posiciona o escritório como referência.",
+      },
+      {
+        title: "Contadores e consultores financeiros",
+        description: "Temas técnico-práticos que geram confiança e diferenciam no mercado.",
+      },
+      {
+        title: "Empresários com equipe e operação",
+        description: "Empresas que querem presença digital proporcional ao tamanho do negócio.",
+      },
+    ],
+    stats: [
+      { value: "1", label: "sessão mensal com direção e roteiro" },
+      { value: "30+", label: "dias de conteúdo planejado por ciclo mensal" },
+      { value: "0", label: "horas extras do cliente com produção semanal" },
+    ],
+    testimonial: {
+      quote:
+        "Eu nunca tinha conseguido manter uma presença consistente nas redes. Com a Akedah gravei uma vez no mês e meu Instagram seguiu com conteúdo toda semana. Os pacientes começaram a chegar já me conhecendo.",
+      name: "Dra. Fernanda Costa",
+      role: "Médica, Clínica Médica",
+    },
+    ctaTitle: "Grave uma vez. Apareça o mês inteiro.",
+    ctaText: "Um serviço mensal para manter presença sem encaixar gravação toda semana na agenda.",
+  },
+  {
     id: "trafego-pago",
     slug: "trafego-pago",
-    number: "02",
+    number: "04",
     name: "Gestão de Tráfego pago",
     tagline: "Campanhas para ampliar uma operação que já sabe vender e precisa de mais demanda.",
     eyebrow: "Meta Ads + Google Ads",
@@ -279,130 +457,9 @@ export const services: AkedahService[] = [
       "Uma conversa direta para entender oferta, canais, verba e o caminho mais claro para gerar demanda.",
   },
   {
-    id: "videos-em-lote",
-    slug: "videos-em-lote",
-    number: "03",
-    name: "Sessão de vídeos",
-    tagline: "Pauta, gravação e edição para transformar uma sessão mensal em presença constante.",
-    eyebrow: "Sessões de Vídeo em Lote",
-    heroTitle: "Grave uma vez. Apareça por",
-    heroHighlight: "1 mês.",
-    heroSubtitle: "Uma sessão mensal de gravação. Conteúdo publicado toda semana. Você aparece, a equipe faz o resto.",
-    image: videosEmLoteImg,
-    highlights: [
-      "Pauta estratégica com foco em geração de leads",
-      "Direção e gravação em set profissional",
-      "Edição profissional com identidade visual",
-      "Legendas e adaptações por formato",
-      "Programação e publicação nas redes",
-    ],
-    problemTitle: "Quem some das redes não some por falta de vontade",
-    problems: [
-      {
-        title: "A agenda não perdoa",
-        description:
-          "Entre atendimentos, reuniões e gestão da equipe, gravar um vídeo passa direto para o final da fila, toda semana.",
-      },
-      {
-        title: "Postar uma vez não basta",
-        description:
-          "Consistência é o que transforma presença digital em resultado comercial. Aparecer esporadicamente não cria autoridade.",
-      },
-      {
-        title: "Produzir consome mais do que parece",
-        description:
-          "Pauta, gravação, edição, legenda, publicação. São horas que você não tem para dar a algo que não é o seu negócio principal.",
-      },
-      {
-        title: "O conteúdo precisa vender, não só aparecer",
-        description:
-          "Views sem estratégia comercial são vaidade. O que importa é conteúdo que atrai o cliente certo e move a conversa para o fechamento.",
-      },
-    ],
-    processTitle: "Quatro etapas. Uma gravação. Um mês no ar.",
-    process: [
-      {
-        title: "Pauta estratégica",
-        description: "Temas definidos com base no seu mercado e no que gera resultado comercial.",
-      },
-      {
-        title: "Sessão de gravação",
-        description: "Você aparece. Nós conduzimos roteiro, direção e gravação do mês.",
-      },
-      {
-        title: "Edição profissional",
-        description: "Corte, trilha, legendas e identidade visual. Cada vídeo pronto para publicar.",
-      },
-      {
-        title: "Publicação e acompanhamento",
-        description: "Programamos, publicamos e enviamos relatório mensal. Zero prazo na sua cabeça.",
-      },
-    ],
-    deliverablesTitle: "Tudo que precisa. Nada que sobra.",
-    deliverables: [
-      {
-        title: "Pautas mensais",
-        description:
-          "Temas definidos com estratégia comercial. Cada pauta tem objetivo claro: atrair, educar ou converter o cliente certo.",
-      },
-      {
-        title: "Gravação mensal em lote",
-        description: "Estrutura para gravar o conteúdo do mês em uma sessão objetiva.",
-      },
-      {
-        title: "Edição profissional",
-        description: "Cortes, trilha, identidade visual e ritmo. Sem parecer improviso amador.",
-      },
-      {
-        title: "Legendas e acessibilidade",
-        description: "Legendas revisadas manualmente. Conteúdo que funciona com e sem som.",
-      },
-      {
-        title: "Programação e publicação",
-        description: "Calendário editorial executado por nós. Nenhum prazo na sua cabeça.",
-      },
-      {
-        title: "Relatório de performance",
-        description: "Dados mensais objetivos: alcance, engajamento e o que importa para o seu comercial.",
-      },
-    ],
-    fitTitle: "Você tem algo a dizer. Não tem tempo de produzir.",
-    fit: [
-      {
-        title: "Médicos e profissionais de saúde",
-        description: "Agenda cheia e um público que confia em quem aparece com consistência.",
-      },
-      {
-        title: "Advogados e escritórios jurídicos",
-        description: "Conteúdo que educa o cliente antes da consulta e posiciona o escritório como referência.",
-      },
-      {
-        title: "Contadores e consultores financeiros",
-        description: "Temas técnico-práticos que geram confiança e diferenciam no mercado.",
-      },
-      {
-        title: "Empresários com equipe e operação",
-        description: "Empresas que querem presença digital proporcional ao tamanho do negócio.",
-      },
-    ],
-    stats: [
-      { value: "1", label: "sessão mensal com direção e roteiro" },
-      { value: "30+", label: "dias de conteúdo planejado por ciclo mensal" },
-      { value: "0", label: "horas extras do cliente com produção semanal" },
-    ],
-    testimonial: {
-      quote:
-        "Eu nunca tinha conseguido manter uma presença consistente nas redes. Com a Akedah gravei uma vez no mês e meu Instagram seguiu com conteúdo toda semana. Os pacientes começaram a chegar já me conhecendo.",
-      name: "Dra. Fernanda Costa",
-      role: "Médica, Clínica Médica",
-    },
-    ctaTitle: "Grave uma vez. Apareça o mês inteiro.",
-    ctaText: "Um serviço mensal para manter presença sem encaixar gravação toda semana na agenda.",
-  },
-  {
     id: "cursos-e-treinamentos",
     slug: "cursos-e-treinamentos",
-    number: "04",
+    number: "05",
     name: "Produção de Cursos",
     tagline: "Estrutura para vender conhecimento ou treinar equipes com método e clareza.",
     eyebrow: "Cursos e Treinamentos",
@@ -472,67 +529,9 @@ export const services: AkedahService[] = [
     ctaText: "Uma conversa curta para entender formato, prazo e próximos passos.",
   },
   {
-    id: "consultorias",
-    slug: "consultorias",
-    number: "04",
-    name: "Consultorias e treinamentos",
-    tagline: "Estratégia comercial e de marketing para destravar o crescimento.",
-    eyebrow: "Consultoria Estratégica",
-    heroTitle: "Consultoria para",
-    heroHighlight: "crescer.",
-    heroSubtitle: "Análise profunda e plano de ação para empresas que precisam de direção clara.",
-    image: consultoriasImg,
-    highlights: [
-      "Auditoria 360 do marketing",
-      "Revisão do funil de vendas",
-      "Definição de canais de tração",
-      "Setup de métricas (KPIs)",
-      "Mentoria direta com fundadores",
-    ],
-    problemTitle: "Onde o crescimento travou?",
-    problems: [
-      { title: "Estagnação", description: "O faturamento não sobe há meses e você não sabe o porquê." },
-      { title: "Desperdício", description: "Investimento em marketing sem retorno claro." },
-      { title: "Caos comercial", description: "Vendas acontecem por acaso, sem processo repetível." },
-      { title: "Falta de visão", description: "Você está no operacional e não consegue olhar o futuro." },
-    ],
-    processTitle: "Método Consultivo",
-    process: [
-      { title: "Diagnóstico", description: "Raio-x completo da operação atual." },
-      { title: "Planejamento", description: "Desenho da nova estratégia e metas." },
-      { title: "Implementação", description: "Acompanhamento da execução do plano." },
-      { title: "Ajuste fino", description: "Otimização com base nos primeiros dados." },
-    ],
-    deliverablesTitle: "Entregáveis estratégicos",
-    deliverables: [
-      { title: "Roadmap de execução", description: "Passo a passo do que fazer nos próximos 90 dias." },
-      { title: "Playbook de vendas", description: "Documentação do seu novo processo comercial." },
-      { title: "Relatório de oportunidades", description: "Onde estão os ganhos rápidos para sua empresa." },
-      { title: "Acesso direto", description: "Canal aberto para dúvidas estratégicas." },
-    ],
-    fitTitle: "É para você se...",
-    fit: [
-      { title: "Fatura > R$100k/mês", description: "Já tem operação e quer eficiência." },
-      { title: "Tem time de execução", description: "Precisa de cabeça estratégica, não braço." },
-      { title: "Busca escala", description: "Quer sair do 'eu-preendedorismo'." },
-    ],
-    stats: [
-      { value: "3.5x", label: "ROI médio observado" },
-      { value: "+50", label: "empresas mentoradas" },
-      { value: "90 dias", label: "ciclo inicial de aceleração" },
-    ],
-    testimonial: {
-      quote: "A consultoria nos deu o norte que faltava. Em 3 meses, dobramos nossa geração de leads qualificados.",
-      name: "João Paulo",
-      role: "CEO Tech Startup",
-    },
-    ctaTitle: "Destrave seu faturamento hoje.",
-    ctaText: "Agende uma sessão estratégica gratuita.",
-  },
-  {
     id: "locacao-infraestrutura",
     slug: "locacao-infraestrutura",
-    number: "05",
+    number: "06",
     name: "Locação de infraestrutura",
     tagline: "Espaços profissionais para gravação, podcast e eventos corporativos.",
     eyebrow: "Estúdio e Infraestrutura",
@@ -590,7 +589,7 @@ export const services: AkedahService[] = [
   {
     id: "curso-sonoplastia",
     slug: "curso-sonoplastia",
-    number: "06",
+    number: "07",
     name: "Curso de sonoplastia",
     tagline: "Domine a arte do som para podcasts, vídeos e transmissões ao vivo.",
     eyebrow: "Educação Técnica",
@@ -609,7 +608,7 @@ export const services: AkedahService[] = [
     problems: [
       { title: "Falta de clareza", description: "Vozes abafadas ou com muito eco que cansam o ouvinte." },
       { title: "Mixagem errada", description: "Música de fundo mais alta que a fala ou cortes secos." },
-      { title: "Medo técnica", description: "Não sabe para que servem todos aqueles botões na mesa." },
+      { title: "Medo técnica", description: "Não sabe para que servem todos those botões na mesa." },
       { title: "Edição lenta", description: "Demora dias para editar um episódio de 30 minutos." },
     ],
     processTitle: "Metodologia Akedah",
