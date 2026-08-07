@@ -52,7 +52,7 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${bgClass}`}
+      className={`fixed top-0 left-0 right-0 z-[80] transition-all duration-700 ${bgClass}`}
     >
       <div className="container-editorial flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="Akedah — início">
