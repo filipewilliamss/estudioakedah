@@ -99,7 +99,7 @@ const HeroSection = () => {
               rel="noopener noreferrer"
               className="btn-premium px-12"
             >
-              Fale com um especialista
+              FALE COM ESPECIALISTA
             </a>
             <a href="#servicos" className="btn-premium-outline px-12">
               Conheça nossas soluções
