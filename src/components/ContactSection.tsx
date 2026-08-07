@@ -5,7 +5,7 @@ const ContactSection = () => {
   return (
     <section
       id="contato"
-      className="relative bg-black min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-32 lg:py-40"
+      className="relative bg-transparent min-h-screen flex items-center justify-center overflow-hidden py-24 md:py-32 lg:py-40"
     >
       {/* High-Impact Visual Elements */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#C4550A]/30 to-transparent" />

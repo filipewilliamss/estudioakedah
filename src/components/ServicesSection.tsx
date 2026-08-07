@@ -84,7 +84,7 @@ const ServicesSection = () => {
     <section 
       ref={sectionRef} 
       id="diagnostico" 
-      className="relative h-[600vh] bg-[#101010] snap-y snap-mandatory"
+      className="relative h-[600vh] bg-transparent snap-y snap-mandatory"
     >
       <div className="absolute inset-0 pointer-events-none">
         {faces.map((_, i) => (
@@ -143,7 +143,7 @@ const ServicesSection = () => {
         })}
 
         {/* Ensure background is at the very bottom */}
-        <div className="absolute inset-0 pointer-events-none bg-[#101010] -z-10" />
+        <div className="absolute inset-0 pointer-events-none bg-transparent -z-10" />
       </div>
     </section>
   );
