@@ -105,7 +105,6 @@ const Index = () => {
               <TestimonialsSection />
             </section>
 
-            
 
             <section className="snap-start">
               <ContactSection />
