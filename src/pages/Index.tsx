@@ -75,11 +75,6 @@ const Index = () => {
               <HeroSection />
             </section>
 
-            <SectionDivider />
-
-            <section className="snap-start">
-              <EditorialMarquee variant="compact" />
-            </section>
 
             <SectionDivider />
 
