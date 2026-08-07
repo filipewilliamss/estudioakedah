@@ -67,7 +67,7 @@ const ParticleBackground: React.FC = () => {
       hubs = [];
       
       // Density-based hub creation
-      const hubCount = 120; // Distributed more hubs as requested
+      const hubCount = 180; // Distributed even more hubs as requested
       for (let i = 0; i < hubCount; i++) {
         hubs.push(new Hub());
       }
