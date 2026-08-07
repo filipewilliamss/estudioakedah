@@ -278,7 +278,7 @@ export const services: AkedahService[] = [
     id: "videos-em-lote",
     slug: "videos-em-lote",
     number: "03",
-    name: "Vídeos em Lote",
+    name: "Sessão de vídeos",
     tagline: "Pauta, gravação e edição para transformar uma sessão mensal em presença constante.",
     eyebrow: "Sessões de Vídeo em Lote",
     heroTitle: "Grave uma vez. Apareça por",
