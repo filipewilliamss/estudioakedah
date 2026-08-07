@@ -115,7 +115,7 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   );
 
   return (
-    <div ref={containerRef} className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#101010] overflow-hidden">
+    <div ref={containerRef} className="fixed inset-0 z-[10000] flex items-center justify-center bg-[#101010] overflow-hidden">
       {/* Background blocks for transition, but without borders */}
       <div className="absolute inset-0 flex">
         {blocks.map((i) => (
