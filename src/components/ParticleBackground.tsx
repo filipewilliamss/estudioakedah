@@ -53,17 +53,7 @@ const ParticleBackground: React.FC = () => {
 
         const pulse = Math.sin(this.pulsePhase) * 2;
         
-        // Draw hub glow
-        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
-        gradient.addColorStop(0, 'rgba(196, 85, 10, 0.4)');
-        gradient.addColorStop(1, 'rgba(196, 85, 10, 0)');
-        
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Draw hub core
+        // Draw hub core - No outer glow as requested
         ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size + pulse, 0, Math.PI * 2);
