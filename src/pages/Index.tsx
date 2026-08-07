@@ -58,7 +58,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#101010]">
+    <div className="min-h-screen bg-[#101010] relative">
       <ParticleBackground />
       <SEO schema={studioSchema} />
 

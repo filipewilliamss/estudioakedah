@@ -130,8 +130,9 @@ const ParticleBackground: React.FC = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Keep background color consistent with the site
-      ctx.fillStyle = '#101010';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Using transparent clear to allow CSS background or previous frames to be visible if needed
+      // but here we just want to clear the canvas.
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       stars.forEach(star => star.draw(scrollY.current));
       comets.forEach(comet => {
@@ -162,7 +163,7 @@ const ParticleBackground: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[-1]"
+      className="fixed inset-0 pointer-events-none z-[0]"
     />
   );
 };
