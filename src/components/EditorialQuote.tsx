@@ -8,7 +8,7 @@ interface EditorialQuoteProps {
 
 const EditorialQuote = ({ eyebrow = "Manifesto", quote, attribution }: EditorialQuoteProps) => {
   return (
-    <section className="relative bg-[#070807] py-32 md:py-48 overflow-hidden">
+    <section className="relative bg-transparent py-32 md:py-48 overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-[0.15] pointer-events-none" />
       
 

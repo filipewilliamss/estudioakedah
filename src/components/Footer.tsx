@@ -4,7 +4,7 @@ import { services, AKEDAH_EMAIL, WHATSAPP_URL } from "@/data/services";
 
 const Footer = () => {
   return (
-    <footer className="bg-transparent py-20 px-6 border-t border-white/5">
+    <footer className="bg-black py-20 px-6 border-t border-white/5 relative z-[20]">
       <div className="container-editorial">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-8">
 
