@@ -60,15 +60,15 @@ const ServiceShowcase = ({
       </div>
 
       {/* Content */}
-      <div className="container-editorial relative z-20 py-32">
+      <div className="container-editorial relative z-20 py-32 flex justify-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl"
+          className="max-w-3xl text-center flex flex-col items-center"
         >
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex items-center justify-center gap-4 mb-8">
             <span className="font-mono text-[10px] text-white/30 tracking-[0.3em]">{service.number}</span>
             <span className="text-[#C4550A] text-[10px] md:text-[12px] uppercase tracking-[0.5em] font-bold">
               Serviço Akedah
@@ -84,10 +84,10 @@ const ServiceShowcase = ({
 
           <p className="mt-8 text-white/55 text-[16px] md:text-[19px] leading-[1.6] max-w-xl">{service.tagline}</p>
 
-          <ul className="mt-10 flex flex-col gap-3">
+          <ul className="mt-10 flex flex-col items-center gap-3">
             {service.highlights.slice(0, 4).map((item) => (
-              <li key={item} className="flex items-start gap-4">
-                <span className="mt-[9px] w-1.5 h-1.5 flex-shrink-0 bg-[#C4550A]" />
+              <li key={item} className="flex items-center gap-4 text-center">
+                <span className="w-1.5 h-1.5 flex-shrink-0 bg-[#C4550A]" />
                 <span className="text-white/45 text-[14px] leading-relaxed">{item}</span>
               </li>
             ))}
@@ -96,7 +96,7 @@ const ServiceShowcase = ({
           <div className="mt-14">
             <Link
               to={`/servicos/${service.slug}`}
-              className="group relative inline-flex items-center justify-center px-12 py-6 overflow-hidden border border-white/20 hover:border-[#C4550A] transition-all duration-700"
+              className="group relative inline-flex items-center justify-center px-12 py-6 overflow-hidden border border-white/20 hover:border-[#C4550A] transition-all duration-700 rounded-[15px]"
             >
               <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] bg-[#C4550A]" />
               <span className="relative z-10 text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold text-white">
