@@ -27,9 +27,9 @@ const ParticleBackground: React.FC = () => {
         this.x = Math.random() * canvas!.width;
         this.y = Math.random() * canvas!.height;
         this.size = Math.random() * 1.2 + 0.3;
-        this.opacity = Math.random() * 0.15 + 0.05; // Low opacity as requested
-        this.color = Math.random() > 0.5 ? '#FFFFFF' : '#C4550A'; // White or Orange
-        this.parallaxFactor = Math.random() * 0.05 + 0.02;
+        this.opacity = Math.random() * 0.25 + 0.15; // Increased opacity
+        this.color = Math.random() > 0.3 ? '#C4550A' : '#FFFFFF'; // Orange is now predominant
+        this.parallaxFactor = Math.random() * 0.08 + 0.03; // Increased parallax for space depth sensation
       }
 
       draw(scroll: number) {
@@ -66,8 +66,9 @@ const ParticleBackground: React.FC = () => {
         this.x = Math.random() * canvas!.width;
         this.y = Math.random() * canvas!.height;
         this.length = Math.random() * 80 + 40;
-        this.speed = Math.random() * 15 + 10;
-        this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.2; // roughly diagonal
+        this.speed = Math.random() * 12 + 8;
+        // Diverse angles: 0 to 2*PI (all directions)
+        this.angle = Math.random() * Math.PI * 2;
         this.opacity = 0;
         this.active = true;
       }
@@ -83,7 +84,7 @@ const ParticleBackground: React.FC = () => {
         
         // Fade in and out
         if (this.x < canvas!.width && this.y < canvas!.height) {
-          this.opacity = Math.min(this.opacity + 0.05, 0.2);
+          this.opacity = Math.min(this.opacity + 0.05, 0.4); // Higher comet opacity
         } else {
           this.active = false;
         }
@@ -112,12 +113,12 @@ const ParticleBackground: React.FC = () => {
       stars = [];
       comets = [];
       
-      const starCount = Math.floor((window.innerWidth * window.innerHeight) / 8000);
+      const starCount = Math.floor((window.innerWidth * window.innerHeight) / 6000); // More stars for depth
       for (let i = 0; i < starCount; i++) {
         stars.push(new Star());
       }
 
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 6; i++) { // More comets
         comets.push(new Comet());
       }
     };
