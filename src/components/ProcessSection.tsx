@@ -63,7 +63,7 @@ const ProcessStep = ({ step, idx }: { step: typeof steps[0], idx: number }) => {
         {/* Number (Large Background with Parallax) */}
         <motion.span 
           style={{ y: smoothNumberY }}
-          className={`absolute font-display text-[100px] sm:text-[150px] md:text-[280px] font-[800] text-[#C4550A]/[0.04] md:text-[#C4550A]/[0.07] leading-none pointer-events-none select-none z-0 ${idx % 2 === 0 ? 'left-6 md:left-auto md:right-[45%]' : 'left-6 md:left-[45%]'}`}
+          className={`absolute font-display text-[100px] sm:text-[150px] md:text-[280px] font-[800] text-[#C4550A]/[0.12] md:text-[#C4550A]/[0.15] leading-none pointer-events-none select-none z-0 ${idx % 2 === 0 ? 'left-6 md:left-auto md:right-[45%]' : 'left-6 md:left-[45%]'}`}
         >
           {step.number}
         </motion.span>
