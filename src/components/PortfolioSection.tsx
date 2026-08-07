@@ -5,7 +5,7 @@ import { services, type AkedahService } from "@/data/services";
 
 const PortfolioSection = () => {
   return (
-    <div id="portfolio" className="bg-black">
+    <div id="portfolio" className="bg-transparent">
       {services.map((service, index) => (
         <ServiceShowcase key={service.id} service={service} index={index} total={services.length} />
       ))}
@@ -35,7 +35,7 @@ const ServiceShowcase = ({
   return (
     <article
       ref={cardRef}
-      className="relative min-h-[100dvh] w-full flex items-center overflow-hidden snap-start bg-black"
+      className="relative min-h-[100dvh] w-full flex items-center overflow-hidden snap-start bg-transparent"
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
@@ -48,7 +48,7 @@ const ServiceShowcase = ({
           style={{ scale: bgScale }}
           className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#101010] via-[#101010]/80 to-transparent" />
         
       </div>
 
