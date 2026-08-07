@@ -36,7 +36,7 @@ const ParticleBackground: React.FC = () => {
         this.parallaxFactor = Math.random() * 0.4 + 0.1;
         this.pulsePhase = Math.random() * Math.PI * 2;
         this.pulseSpeed = Math.random() * 0.05 + 0.02;
-        this.connectionRadius = 300;
+        this.connectionRadius = 350;
       }
 
       update(scroll: number) {
