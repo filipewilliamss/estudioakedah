@@ -14,8 +14,8 @@ const Podcast = () => {
     "@context": "https://schema.org",
     "@type": "PodcastSeries",
     name: "Akedah Podcast",
-    description: "Entrevistas, bastidores e histórias reais. O Podcast oficial da Akedah.",
-    url: "https://akedah.com.br/podcast",
+    description: "Assista ao vivo, veja o calendário de entrevistas, confira as fotos dos episódios e acompanhe nas redes sociais.",
+    url: "https://estudioakedah.com/podcast",
     publisher: { "@type": "Organization", name: "Akedah" },
   };
 
@@ -23,7 +23,6 @@ const Podcast = () => {
     <div className="min-h-screen bg-[#F5E9CB] text-[#42362E]">
       <style>
         {`
-          /* Custom styles for the Podcast page using the brand palette and new fonts */
           .podcast-leather-texture {
             background-color: #F5E9CB;
             background-image: url("https://www.transparenttextures.com/patterns/leather.png");
@@ -38,7 +37,7 @@ const Podcast = () => {
             right: 0;
             bottom: 0;
             background-color: #F5E9CB;
-            opacity: 0.15; /* Subtle blend to maintain the requested background color */
+            opacity: 0.15;
             pointer-events: none;
             z-index: 0;
           }
@@ -48,6 +47,7 @@ const Podcast = () => {
             letter-spacing: 0.08em;
             position: relative;
             z-index: 1;
+            text-transform: uppercase;
           }
           .podcast-accent {
             color: #C4550A;
@@ -58,114 +58,188 @@ const Podcast = () => {
           }
           .podcast-container p, 
           .podcast-container span,
+          .podcast-container li,
           .podcast-container a {
             font-family: 'BebasNeue', sans-serif;
           }
-          .podcast-container p {
+          .podcast-container p,
+          .podcast-container li {
             color: #42362E;
           }
           .podcast-heading-font {
             font-family: 'DarkenJellybean', sans-serif;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+          }
+          .podcast-eyebrow {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            color: #C4550A;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-transform: uppercase;
+          }
+          .podcast-eyebrow::before, .podcast-eyebrow::after {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: #C4550A;
+          }
+          .podcast-btn-or {
+            background: #E2650E;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 14px 30px;
+            border-radius: 100px;
+            transition: all 0.2s;
+          }
+          .podcast-btn-or:hover {
+            background: #a84508;
+            transform: translateY(-2px);
+          }
+          .podcast-btn-ghost {
+            background: transparent;
+            color: #42362E;
+            border: 1px solid rgba(66, 54, 46, 0.28);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 13px 29px;
+            border-radius: 100px;
+            transition: all 0.2s;
+          }
+          .podcast-btn-ghost:hover {
+            background: rgba(66, 54, 46, 0.05);
           }
         `}
       </style>
       <SEO
-        title="Akedah Podcast | Entrevistas"
-        description="Página oficial do Akedah Podcast."
-        url="https://akedah.com.br/podcast"
+        title="Akedah Podcast | Assista ao Vivo e Calendário"
+        description="Akedah Podcast: assista ao vivo, veja o calendário de entrevistas, confira as fotos dos episódios e acompanhe nas redes sociais."
+        url="https://estudioakedah.com/podcast"
         schema={schema}
       />
       <Navbar isPodcastPage={true} />
 
       <main className="podcast-leather-texture pt-40 pb-24">
-        <div className="container-editorial podcast-container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="flex items-center gap-3 mb-8">
-            <span className="w-2 h-2 rounded-full bg-[#C4550A] animate-pulse" />
-            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
-              O PODCAST OFICIAL
-            </span>
-          </div>
-          
-          <h1 className="podcast-title font-[900] leading-[0.9] text-[clamp(44px,8.5vw,110px)] mb-12">
-            Onde a estratégia <br />
-            <span className="italic font-normal">encontra a voz.</span>
-          </h1>
+        <div className="container-editorial podcast-container text-center">
+          {/* Hero Section from HTML */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center"
+          >
+            <div className="podcast-eyebrow mb-6">Podcast Akedah</div>
+            <h1 className="podcast-title leading-[1.1] text-[clamp(40px,6vw,90px)] mb-6 max-w-4xl">
+              ONDE A ESTRATÉGIA <br /> ENCONTRA A VOZ
+            </h1>
+            <p className="text-xl max-w-2xl mb-10 opacity-80 leading-relaxed">
+              Assista ao vivo, acompanhe os bastidores e confira a agenda dos próximos episódios. O podcast oficial do Estúdio Akedah.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-20">
+              <a href="https://www.youtube.com/@EstudioAkedah" target="_blank" rel="noopener noreferrer" className="podcast-btn-or">
+                ASSISTIR NO YOUTUBE
+              </a>
+              <a href="#calendario" className="podcast-btn-ghost">
+                VER CALENDÁRIO
+              </a>
+            </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div className="space-y-8">
-              <p className="text-[20px] md:text-[24px] leading-[1.6] font-medium">
-                Entrevistas, bastidores e histórias reais sobre comercial e estratégia. 
-                Dois programas por semana, gravados no Estúdio Akedah.
-              </p>
-              
-              <div className="space-y-4 pt-6 border-t border-[#42362E]/10">
-                <h3 className="text-[12px] uppercase tracking-[0.3em] font-bold opacity-70">
-                  Próximos passos
-                </h3>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="#" className="inline-flex items-center justify-center px-8 py-4 bg-[#C4550A] text-white text-[11px] font-bold uppercase tracking-[0.2em] rounded-[15px] hover:bg-[#A34508] transition-colors">
-                    Assistir no YouTube
-                  </a>
-                  <a href="#" className="inline-flex items-center justify-center px-8 py-4 border border-[#42362E]/20 text-[#42362E] text-[11px] font-bold uppercase tracking-[0.2em] rounded-[15px] hover:bg-[#42362E]/5 transition-colors">
-                    Ouvir Spotify
-                  </a>
+          {/* Calendário Section */}
+          <section id="calendario" className="mt-32 text-left">
+            <h2 className="podcast-heading-font text-4xl text-[#C4550A] mb-12 text-center underline decoration-2 underline-offset-8">CALENDÁRIO DE ENTREVISTAS</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                { data: "15/08", hora: "19:00", convidado: "Em breve", tema: "Estratégia e Escala" },
+                { data: "22/08", hora: "19:00", convidado: "Em breve", tema: "Marketing de Resposta Direta" },
+                { data: "29/08", hora: "19:00", convidado: "Em breve", tema: "Cultura e Branding" }
+              ].map((item, index) => (
+                <div key={index} className="bg-[#42362E]/5 p-8 rounded-2xl border border-[#42362E]/10 hover:bg-[#42362E]/10 transition-colors">
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-[#C4550A] font-bold text-2xl">{item.data}</span>
+                    <span className="opacity-60 font-bold">{item.hora}</span>
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2">{item.convidado}</h3>
+                  <p className="opacity-70 text-lg uppercase tracking-wide">{item.tema}</p>
                 </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Fotos e Galeria */}
+          <section className="mt-40">
+            <h2 className="podcast-heading-font text-4xl text-[#C4550A] mb-12 text-center underline decoration-2 underline-offset-8">NOS BASTIDORES</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="aspect-square bg-[#42362E]/10 rounded-xl overflow-hidden">
+                <img src={studioImage} alt="Estúdio Akedah" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+              </div>
+              <div className="aspect-square bg-[#42362E]/10 rounded-xl overflow-hidden mt-8 md:mt-12">
+                <div className="w-full h-full bg-[#C4550A]/20 flex items-center justify-center text-[#C4550A] font-bold">EM BREVE</div>
+              </div>
+              <div className="aspect-square bg-[#42362E]/10 rounded-xl overflow-hidden">
+                <div className="w-full h-full bg-[#42362E]/10 flex items-center justify-center opacity-40">FOTO EPISÓDIO</div>
+              </div>
+              <div className="aspect-square bg-[#42362E]/10 rounded-xl overflow-hidden mt-8 md:mt-12">
+                <div className="w-full h-full bg-[#C4550A]/20 flex items-center justify-center text-[#C4550A] font-bold">EM BREVE</div>
               </div>
             </div>
+          </section>
 
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px]">
-              <img 
-                src={studioImage} 
-                alt="Akedah Podcast Studio" 
-                className="w-full h-full object-cover filter sepia-[0.2] contrast-[1.1]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/40 to-transparent" />
+          {/* Onde Ouvir Section */}
+          <section className="mt-40 py-20 bg-[#42362E]/5 rounded-3xl px-8">
+            <h2 className="podcast-heading-font text-4xl text-[#C4550A] mb-12 text-center">ACOMPANHE EM TODAS AS PLATAFORMAS</h2>
+            <div className="flex flex-wrap justify-center gap-12 opacity-80">
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-16 h-16 bg-[#C4550A]/10 rounded-full flex items-center justify-center">
+                  <span className="text-2xl font-bold">YT</span>
+                </div>
+                <span className="font-bold tracking-widest">YOUTUBE</span>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-16 h-16 bg-[#C4550A]/10 rounded-full flex items-center justify-center">
+                  <span className="text-2xl font-bold">SP</span>
+                </div>
+                <span className="font-bold tracking-widest">SPOTIFY</span>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-16 h-16 bg-[#C4550A]/10 rounded-full flex items-center justify-center">
+                  <span className="text-2xl font-bold">AP</span>
+                </div>
+                <span className="font-bold tracking-widest">APPLE</span>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-16 h-16 bg-[#C4550A]/10 rounded-full flex items-center justify-center">
+                  <span className="text-2xl font-bold">IN</span>
+                </div>
+                <span className="font-bold tracking-widest">INSTAGRAM</span>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </section>
 
-        {/* New sections based on typical podcast info that might have been lost */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-12"
-        >
-          <div className="space-y-4">
-            <h3 className="podcast-heading-font text-[#C4550A] text-3xl">Programação</h3>
-            <p className="text-lg">Novos episódios toda terça e quinta-feira, às 19h.</p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="podcast-heading-font text-[#C4550A] text-3xl">Onde ouvir</h3>
-            <p className="text-lg">Disponível no YouTube, Spotify, Apple Podcasts e Deezer.</p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="podcast-heading-font text-[#C4550A] text-3xl">Bastidores</h3>
-            <p className="text-lg">Acompanhe o dia a dia das gravações em nosso Instagram oficial.</p>
-          </div>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="mt-32 bg-[#42362E]/5 p-12 rounded-[20px] text-center space-y-8"
-        >
-          <h2 className="podcast-heading-font text-[#C4550A] text-5xl">Seja um convidado</h2>
-          <p className="max-w-2xl mx-auto text-xl">
-            Tem uma história inspiradora ou uma estratégia que mudou seu negócio? 
-            Queremos ouvir você no Estúdio Akedah.
-          </p>
-          <a href="#" className="inline-flex items-center justify-center px-12 py-5 bg-[#C4550A] text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-[15px] hover:bg-[#A34508] transition-colors">
-            Quero participar
-          </a>
-        </motion.div>
+          {/* Participação */}
+          <section className="mt-40 max-w-3xl mx-auto">
+            <h2 className="podcast-heading-font text-5xl text-[#C4550A] mb-8">SEJA UM CONVIDADO</h2>
+            <p className="text-2xl mb-12 opacity-80">
+              Tem uma história inspiradora ou uma estratégia que mudou seu negócio? Queremos ouvir você no Estúdio Akedah.
+            </p>
+            <a href="/contato" className="podcast-btn-or px-16 py-6 text-lg">
+              QUERO PARTICIPAR
+            </a>
+          </section>
         </div>
       </main>
 
