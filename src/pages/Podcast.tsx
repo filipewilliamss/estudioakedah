@@ -169,7 +169,9 @@ const Podcast = () => {
         </div>
       </main>
 
-      <Footer />
+      <div className="font-sans">
+        <Footer />
+      </div>
     </div>
   );
 };
