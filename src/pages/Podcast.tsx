@@ -20,18 +20,27 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#42362E] font-display">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#42362E] font-['BebasNeue']">
       <style>
         {`
-          /* Custom styles for the Podcast page using the brand palette */
+          /* Custom styles for the Podcast page using the brand palette and new fonts */
           .podcast-title {
             color: #C4550A;
+            font-family: 'DarkenJellybean', sans-serif;
           }
           .podcast-accent {
             color: #C4550A;
           }
+          .podcast-container p, 
+          .podcast-container span,
+          .podcast-container a {
+            font-family: 'BebasNeue', sans-serif;
+          }
           .podcast-container p {
             color: #42362E;
+          }
+          .podcast-heading-font {
+            font-family: 'DarkenJellybean', sans-serif;
           }
         `}
       </style>

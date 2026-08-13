@@ -4,6 +4,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&display=swap');
 
+@font-face {
+  font-family: 'DarkenJellybean';
+  src: url('https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/62ccc3fd-341d-45f4-a48e-384958b06929-Darken_Jellybean.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BebasNeue';
+  src: url('https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/5cb6af52-14f1-4e99-a4ed-cbd88f1e600c-BebasNeue-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
