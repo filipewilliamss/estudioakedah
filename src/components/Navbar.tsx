@@ -7,11 +7,10 @@ type NavItem = { label: string; hash?: string; to?: string };
 
 const navLinks: NavItem[] = [
   { label: "Nossa história", to: "/sobre" },
-  { label: "Soluções", hash: "servicos" },
   { label: "Método", hash: "processo" },
-  { label: "Serviços", hash: "portfolio" },
+  { label: "Soluções", hash: "portfolio" },
   { label: "Podcast", to: "/podcast" },
-  { label: "Contato", hash: "contato" },
+  { label: "Contato", to: "/contato" },
 ];
 
 interface NavbarProps {
