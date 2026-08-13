@@ -20,18 +20,27 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#42362E] font-display">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#42362E] font-['BebasNeue']">
       <style>
         {`
-          /* Custom styles for the Podcast page using the brand palette */
+          /* Custom styles for the Podcast page using the brand palette and new fonts */
           .podcast-title {
             color: #C4550A;
+            font-family: 'DarkenJellybean', sans-serif;
           }
           .podcast-accent {
             color: #C4550A;
           }
+          .podcast-container p, 
+          .podcast-container span,
+          .podcast-container a {
+            font-family: 'BebasNeue', sans-serif;
+          }
           .podcast-container p {
             color: #42362E;
+          }
+          .podcast-heading-font {
+            font-family: 'DarkenJellybean', sans-serif;
           }
         `}
       </style>
@@ -56,7 +65,7 @@ const Podcast = () => {
             </span>
           </div>
           
-          <h1 className="font-display font-[900] podcast-title leading-[0.9] tracking-[-0.05em] text-[clamp(44px,8.5vw,110px)] mb-12">
+          <h1 className="podcast-title font-[900] leading-[0.9] tracking-[-0.05em] text-[clamp(44px,8.5vw,110px)] mb-12">
             Onde a estratégia <br />
             <span className="italic font-normal">encontra a voz.</span>
           </h1>
