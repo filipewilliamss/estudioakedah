@@ -60,7 +60,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false }: NavbarProps) => {
           <img
             src={isPodcastPage ? "https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/9708035d-187a-4a8c-bdf4-3f7fce313c0b-Ativo_7.png" : akedahLogo}
             alt="Akedah"
-            className="h-5 md:h-6 w-auto transition-transform duration-300 group-hover:scale-105"
+            className={`${isPodcastPage ? "h-[26px] md:h-[31.2px]" : "h-5 md:h-6"} w-auto transition-transform duration-300 group-hover:scale-105`}
           />
         </Link>
 
