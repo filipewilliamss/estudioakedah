@@ -45,7 +45,7 @@ const Podcast = () => {
           .podcast-title {
             color: #C4550A;
             font-family: 'DarkenJellybean', sans-serif;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             position: relative;
             z-index: 1;
           }
@@ -66,6 +66,7 @@ const Podcast = () => {
           }
           .podcast-heading-font {
             font-family: 'DarkenJellybean', sans-serif;
+            letter-spacing: 0.05em;
           }
         `}
       </style>
