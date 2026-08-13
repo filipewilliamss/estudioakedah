@@ -58,7 +58,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false }: NavbarProps) => {
       <div className="container-editorial flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="Akedah — início">
           <img
-            src={isPodcastPage ? "https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/30a9448b-dadf-4990-91a2-14ca1c067c27-Ativo_6.png" : akedahLogo}
+            src={isPodcastPage ? "https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/9708035d-187a-4a8c-bdf4-3f7fce313c0b-Ativo_7.png" : akedahLogo}
             alt="Akedah"
             className="h-5 md:h-6 w-auto transition-transform duration-300 group-hover:scale-105"
           />
