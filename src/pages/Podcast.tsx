@@ -77,7 +77,8 @@ const Podcast = () => {
       />
       <Navbar isPodcastPage={true} />
 
-      <main className="podcast-leather-texture pt-40 pb-24 podcast-container">
+      <main className="podcast-leather-texture pt-40 pb-24">
+        <div className="container-editorial podcast-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -164,6 +165,7 @@ const Podcast = () => {
             Quero participar
           </a>
         </motion.div>
+        </div>
       </main>
 
       <Footer />
