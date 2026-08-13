@@ -66,6 +66,7 @@ const Podcast = () => {
           }
           .podcast-heading-font {
             font-family: 'DarkenJellybean', sans-serif;
+            letter-spacing: 0.05em;
           }
         `}
       </style>
