@@ -20,7 +20,7 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F5E9CB] text-[#42362E] font-['BebasNeue']">
+    <div className="min-h-screen bg-[#F5E9CB] text-[#42362E]">
       <style>
         {`
           /* Custom styles for the Podcast page using the brand palette and new fonts */
@@ -169,7 +169,9 @@ const Podcast = () => {
         </div>
       </main>
 
-      <Footer />
+      <div className="font-sans">
+        <Footer />
+      </div>
     </div>
   );
 };
