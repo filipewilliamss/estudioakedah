@@ -24,13 +24,37 @@ const Podcast = () => {
       <style>
         {`
           /* Custom styles for the Podcast page using the brand palette and new fonts */
+          .podcast-leather-texture {
+            background-color: #F5E9CB;
+            background-image: url("https://www.transparenttextures.com/patterns/leather.png");
+            background-repeat: repeat;
+            position: relative;
+          }
+          .podcast-leather-texture::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #F5E9CB;
+            opacity: 0.15; /* Subtle blend to maintain the requested background color */
+            pointer-events: none;
+            z-index: 0;
+          }
           .podcast-title {
             color: #C4550A;
             font-family: 'DarkenJellybean', sans-serif;
             letter-spacing: 0.05em;
+            position: relative;
+            z-index: 1;
           }
           .podcast-accent {
             color: #C4550A;
+          }
+          .podcast-container {
+            position: relative;
+            z-index: 1;
           }
           .podcast-container p, 
           .podcast-container span,
@@ -53,7 +77,7 @@ const Podcast = () => {
       />
       <Navbar isPodcastPage={true} />
 
-      <main className="container-editorial pt-40 pb-24 podcast-container">
+      <main className="podcast-leather-texture pt-40 pb-24 podcast-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
