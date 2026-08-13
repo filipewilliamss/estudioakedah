@@ -27,6 +27,7 @@ const Podcast = () => {
           .podcast-title {
             color: #C4550A;
             font-family: 'DarkenJellybean', sans-serif;
+            letter-spacing: 0.05em;
           }
           .podcast-accent {
             color: #C4550A;
@@ -65,7 +66,7 @@ const Podcast = () => {
             </span>
           </div>
           
-          <h1 className="podcast-title font-[900] leading-[0.9] tracking-[-0.05em] text-[clamp(44px,8.5vw,110px)] mb-12">
+          <h1 className="podcast-title font-[900] leading-[0.9] text-[clamp(44px,8.5vw,110px)] mb-12">
             Onde a estratégia <br />
             <span className="italic font-normal">encontra a voz.</span>
           </h1>
@@ -101,6 +102,43 @@ const Podcast = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/40 to-transparent" />
             </div>
           </div>
+        </motion.div>
+
+        {/* New sections based on typical podcast info that might have been lost */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-12"
+        >
+          <div className="space-y-4">
+            <h3 className="podcast-heading-font text-[#C4550A] text-3xl">Programação</h3>
+            <p className="text-lg">Novos episódios toda terça e quinta-feira, às 19h.</p>
+          </div>
+          <div className="space-y-4">
+            <h3 className="podcast-heading-font text-[#C4550A] text-3xl">Onde ouvir</h3>
+            <p className="text-lg">Disponível no YouTube, Spotify, Apple Podcasts e Deezer.</p>
+          </div>
+          <div className="space-y-4">
+            <h3 className="podcast-heading-font text-[#C4550A] text-3xl">Bastidores</h3>
+            <p className="text-lg">Acompanhe o dia a dia das gravações em nosso Instagram oficial.</p>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          className="mt-32 bg-[#42362E]/5 p-12 rounded-[20px] text-center space-y-8"
+        >
+          <h2 className="podcast-heading-font text-[#C4550A] text-5xl">Seja um convidado</h2>
+          <p className="max-w-2xl mx-auto text-xl">
+            Tem uma história inspiradora ou uma estratégia que mudou seu negócio? 
+            Queremos ouvir você no Estúdio Akedah.
+          </p>
+          <a href="#" className="inline-flex items-center justify-center px-12 py-5 bg-[#C4550A] text-white text-[13px] font-bold uppercase tracking-[0.2em] rounded-[15px] hover:bg-[#A34508] transition-colors">
+            Quero participar
+          </a>
         </motion.div>
       </main>
 
