@@ -16,9 +16,10 @@ const navLinks: NavItem[] = [
 
 interface NavbarProps {
   forceBlack?: boolean;
+  isPodcastPage?: boolean;
 }
 
-const Navbar = ({ forceBlack = true }: NavbarProps) => {
+const Navbar = ({ forceBlack = true, isPodcastPage = false }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -31,8 +32,8 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
   }, []);
 
   const bgClass = scrolled
-    ? (forceBlack ? "bg-black/90 border-white/[0.05]" : "bg-white/90 border-black/[0.05]") + " backdrop-blur-[20px] border-b py-4"
-    : "bg-transparent py-6 md:py-8";
+    ? (isPodcastPage ? "bg-[#2D1A11]/95 border-[#42362E]/20" : (forceBlack ? "bg-black/90 border-white/[0.05]" : "bg-white/90 border-black/[0.05]")) + " backdrop-blur-[20px] border-b py-4"
+    : (isPodcastPage ? "bg-[#2D1A11] py-6 md:py-8" : "bg-transparent py-6 md:py-8");
 
   const textClass = `link-magnetic ${forceBlack ? 'text-white/55' : 'text-black/55'} hover:text-[#C4550A] font-bold text-[11px] uppercase tracking-[0.28em] font-display transition-colors duration-500`;
   const areaClienteTextClass = "relative overflow-hidden text-[#C4550A] border border-[#C4550A]/40 hover:border-[#C4550A] hover:bg-[#C4550A] hover:text-white px-6 py-2.5 transition-all duration-500 text-[11px] font-bold uppercase tracking-[0.25em] font-display";
@@ -57,7 +58,7 @@ const Navbar = ({ forceBlack = true }: NavbarProps) => {
       <div className="container-editorial flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="Akedah — início">
           <img
-            src={akedahLogo}
+            src={isPodcastPage ? "https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/30a9448b-dadf-4990-91a2-14ca1c067c27-Ativo_6.png" : akedahLogo}
             alt="Akedah"
             className="h-5 md:h-6 w-auto transition-transform duration-300 group-hover:scale-105"
           />
