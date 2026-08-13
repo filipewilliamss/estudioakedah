@@ -65,7 +65,7 @@ const Podcast = () => {
             </span>
           </div>
           
-          <h1 className="font-display font-[900] podcast-title leading-[0.9] tracking-[-0.05em] text-[clamp(44px,8.5vw,110px)] mb-12">
+          <h1 className="podcast-title font-[900] leading-[0.9] tracking-[-0.05em] text-[clamp(44px,8.5vw,110px)] mb-12">
             Onde a estratégia <br />
             <span className="italic font-normal">encontra a voz.</span>
           </h1>
