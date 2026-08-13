@@ -51,7 +51,7 @@ const Podcast = () => {
         url="https://akedah.com.br/podcast"
         schema={schema}
       />
-      <Navbar />
+      <Navbar isPodcastPage={true} />
 
       <main className="container-editorial pt-40 pb-24 podcast-container">
         <motion.div
