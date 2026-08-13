@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://estudioakedah.com/podcast/ -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akedah Podcast</title>
+<meta name="description" content="Akedah Podcast: assista ao vivo, veja o calendário de entrevistas, confira as fotos dos episódios e acompanhe nas redes sociais.">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Akedah Podcast_files/css2" rel="stylesheet">
+<style>
+
+@font-face{font-family:'Vipna';src:url('../fonts/Vipnagorgialla1.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Vipna';src:url('../fonts/Vipnagorgialla_it.otf') format('opentype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Vipna';src:url('../fonts/Vipnagorgialla_bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Vipna';src:url('../fonts/Vipnagorgialla_boldait.otf') format('opentype');font-weight:700;font-style:italic;font-display:swap}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
+body{font-family:'Montserrat',sans-serif;background:#fff;color:#2D2727;-webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100%}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:inherit}
+
+:root{
+  --w:#fff;--dk:#131010;--g:#2D2727;--or:#C4550A;
+  --gr:#8C8585;--gl:#F2F0F0;--bd:rgba(45,39,39,.10);
+  --E:cubic-bezier(.22,1,.36,1);
+  /* identidade Akedah Podcast */
+  --pd-or:#E2650E;
+  --pd-or2:#C4550A;
+  --pd-cream:#F4E9C9;
+  --pd-brown:#2B1710;
+  --pd-brown2:#452414;
+  --pd-line:rgba(244,233,201,.16);
+}
+
+#progress{position:fixed;top:0;left:0;height:2px;background:var(--pd-or);width:0%;z-index:500;transition:width .05s linear}
+
+/* NAV (escuro, igual ao resto do site) */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;transition:background .4s var(--E),padding .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav::before{content:'';position:absolute;top:0;left:0;right:0;height:160px;background:linear-gradient(180deg,rgba(10,8,8,.7) 0%,rgba(10,8,8,.4) 55%,rgba(10,8,8,0) 100%);z-index:-1;pointer-events:none;transition:opacity .4s var(--E)}
+.nav.solid::before{opacity:0}
+.nav.solid{background:rgba(19,16,16,.96);backdrop-filter:blur(14px);padding:14px 60px;border-color:rgba(255,255,255,.08)}
+.nav__logo{height:30px}
+.nav__links{display:flex;align-items:center;gap:40px}
+.nav__links a{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#F7F3F0;transition:color .2s;position:relative}
+.nav__links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--or);transition:width .25s var(--E)}
+.nav__links a:hover{color:var(--or)}
+.nav__links a:hover::after,.nav__links a.active::after{width:100%}
+.nav__links a.active{color:var(--or)}
+
+.live-badge{display:inline-flex;align-items:center;gap:4px;margin-left:6px;font-size:.56rem;font-weight:700;letter-spacing:.06em;color:#E1483C;vertical-align:middle}
+.live-badge__dot{width:5px;height:5px;border-radius:50%;background:#E1483C;flex-shrink:0;animation:liveBlink 1.8s ease-in-out infinite}
+@keyframes liveBlink{0%,100%{opacity:1}50%{opacity:.2}}
+.nav__live{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid rgba(225,72,60,.4);border-radius:100px;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#E1483C;transition:background .2s,border-color .2s}
+.nav__live:hover{background:rgba(225,72,60,.08);border-color:#E1483C}
+.nav__live .live-badge__dot{width:6px;height:6px}
+
+.nav__item{position:relative}
+.nav__drop{position:absolute;top:100%;left:50%;margin-top:12px;transform:translateX(-50%);min-width:240px;background:#1B1717;border:1px solid rgba(255,255,255,.1);padding:10px;opacity:0;pointer-events:none;transition:opacity .25s var(--E) .1s;box-shadow:0 18px 36px rgba(19,16,16,.14)}
+.nav__drop::before{content:'';position:absolute;top:-16px;left:0;right:0;height:16px}
+.nav__item:hover .nav__drop{opacity:1;pointer-events:auto;transition:opacity .2s var(--E)}
+.nav__drop a{display:block;padding:11px 14px;font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:none;color:#F7F3F0}
+.nav__drop a::after{display:none}
+.nav__drop a:hover{background:#241E1E;color:var(--or)}
+
+.nav__cta{background:#F7F3F0;color:var(--dk)!important;padding:9px 20px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:background .2s!important;border:none;cursor:pointer;border-radius:100px}
+.nav__cta::after{display:none!important}
+.nav__cta:hover{background:var(--or)!important;color:#fff!important}
+.nav__ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav__ham span{display:block;width:22px;height:2px;background:#F7F3F0;transition:all .3s}
+.nav__ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav__ham.open span:nth-child(2){opacity:0}
+.nav__ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob-nav{display:none;flex-direction:column;background:rgba(19,16,16,.98);border-top:1px solid rgba(255,255,255,.08);padding:90px 32px 32px;gap:18px;position:fixed;top:0;left:0;right:0;z-index:199}
+.mob-nav.open{display:flex}
+.mob-nav a,.mob-nav button{font-size:1rem;font-weight:600;color:#F7F3F0;text-align:left;background:none;border:none;cursor:pointer;padding:0}
+.mob-nav a:hover,.mob-nav button:hover{color:var(--or)}
+
+/* BOTÕES */
+.btn{display:inline-flex;align-items:center;gap:10px;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:14px 30px;cursor:pointer;border:none;transition:background .2s,color .2s,transform .2s;white-space:nowrap;border-radius:100px}
+.btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;flex-shrink:0}
+.btn--or{background:var(--pd-or);color:#fff}
+.btn--or:hover{background:#a84508;transform:translateY(-2px)}
+.btn--ghost-w{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.28);padding:13px 29px}
+.btn--ghost-w:hover{background:rgba(255,255,255,.1)}
+.btn--cream{background:var(--pd-cream);color:var(--pd-brown)}
+.btn--cream:hover{background:#fff;transform:translateY(-2px)}
+
+/* EYEBROW GENÉRICO */
+.eyebrow{font-family:'Newsreader',serif;font-style:italic;font-size:.9rem;letter-spacing:.04em;color:var(--pd-or);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.eyebrow::before{content:attr(data-n);font-family:'Montserrat',sans-serif;font-style:normal;font-size:.65rem;font-weight:700;background:var(--pd-or);color:#fff;padding:2px 7px;border-radius:6px}
+.eyebrow--cream{color:var(--pd-cream)}
+.eyebrow--cream::before{background:var(--pd-cream);color:var(--pd-brown)}
+.sec-h2{font-size:clamp(1.7rem,3.4vw,3.4rem);font-weight:900;line-height:1.05;letter-spacing:-.04em;color:var(--g)}
+.sec-h2 em{font-style:normal;color:var(--pd-or)}
+.sec-h2--w{color:#fff}
+
+/* ═════════════ HERO ═════════════ */
+.hero{
+  padding:130px 60px 0;display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;width:100%;
+  background:radial-gradient(120% 100% at 15% 0%,#4a2716 0%,var(--pd-brown) 55%,#180c07 100%);
+}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(244,233,201,.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.hero__wrap{position:relative;z-index:2;max-width:1300px;margin:0 auto;width:100%;padding-bottom:56px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero__logo{width:min(220px,40vw);margin:0 auto 16px;opacity:0;transform:translateY(14px);transition:opacity .7s var(--E),transform .7s var(--E)}
+.hero.go .hero__logo{opacity:1;transform:translateY(0)}
+.hero__eyebrow{font-family:'Newsreader',serif;font-style:italic;font-size:.9rem;letter-spacing:.1em;color:var(--pd-or);display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px;text-transform:uppercase;opacity:0;transform:translateY(14px);transition:opacity .6s var(--E),transform .6s var(--E)}
+.hero__eyebrow::before,.hero__eyebrow::after{content:'';width:32px;height:1px;background:var(--pd-or)}
+.hero.go .hero__eyebrow{opacity:1;transform:translateY(0)}
+.hero__h1{font-size:clamp(1.9rem,4.4vw,3.8rem);font-weight:900;line-height:.98;letter-spacing:-.045em;color:var(--pd-cream);max-width:820px;position:relative;z-index:1}
+.clip{overflow:hidden;display:block}
+.clip span{display:block;transform:translateY(110%);transition:transform 1s var(--E)}
+.clip:nth-child(2) span{transition-delay:.08s}
+.hero.go .clip span{transform:translateY(0)}
+.hero__h1 em{font-style:normal;color:var(--pd-or)}
+.hero__sub{font-family:'Newsreader',serif;font-style:italic;font-size:1rem;color:rgba(244,233,201,.6);margin-top:16px;max-width:560px;line-height:1.6;opacity:0;transform:translateY(10px);transition:opacity .7s var(--E) .3s,transform .7s var(--E) .3s}
+.hero.go .hero__sub{opacity:1;transform:translateY(0)}
+.hero__cta{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:26px;opacity:0;transform:translateY(10px);transition:opacity .7s var(--E) .42s,transform .7s var(--E) .42s}
+.hero.go .hero__cta{opacity:1;transform:translateY(0)}
+.hero__icon{position:absolute;z-index:1;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(0,0,0,.35));opacity:.85;pointer-events:none}
+.hero__icon--key{width:70px;left:6%;top:20%;transform:rotate(-14deg)}
+.hero__icon--star{width:58px;right:10%;top:16%;transform:rotate(12deg)}
+.hero__icon--trophy{width:68px;right:6%;bottom:14%;transform:rotate(8deg)}
+
+/* ═══════════ 3 BANNERS DE DESTAQUE (estilo e-commerce) ═══════════ */
+.dest{padding:0 60px;margin-top:24px;position:relative;z-index:3}
+.dest__grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dest-card{
+  position:relative;overflow:hidden;aspect-ratio:4/5;border-radius:28px;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
+  box-shadow:0 24px 48px rgba(20,10,5,.28);
+  transition:transform .35s var(--E),box-shadow .35s var(--E);
+}
+.dest-card:hover{transform:translateY(-6px);box-shadow:0 32px 60px rgba(20,10,5,.36)}
+.dest-card::before{content:'';position:absolute;inset:0;z-index:0;transition:opacity .3s var(--E)}
+.dest-card--1::before{background:#180c07 url('../asstes/imgs/podcast/data-akedah-calendario.png') center/cover}
+.dest-card--2::before{background:var(--pd-cream) url('../asstes/imgs/podcast/Logo_Vertical_Backgound_Creme_1080x1920_Smartphone.png') center 30%/cover}
+.dest-card--3::before{background:#131010 url('../asstes/imgs/podcast/img-podcast.png') center/cover}
+.dest-card::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(14,12,12,0) 0%,rgba(14,12,12,.2) 60%,rgba(14,12,12,.7) 100%)}
+.dest-card--2::after{background:linear-gradient(180deg,rgba(43,23,16,0) 0%,rgba(43,23,16,.08) 55%,rgba(43,23,16,.88) 100%)}
+.dest-card--2 .dest-card__tag{color:rgba(43,23,16,.55)}
+.dest-card__icon-wrap{position:relative;z-index:1;width:52px;height:52px;border-radius:50%;background:rgba(244,233,201,.14);display:flex;align-items:center;justify-content:center;margin-bottom:auto;transition:background .3s var(--E),transform .3s var(--E)}
+.dest-card:hover .dest-card__icon-wrap{background:rgba(244,233,201,.22);transform:scale(1.06)}
+.dest-card__icon{position:relative;z-index:1;width:24px;height:24px;stroke:var(--pd-cream);fill:none;stroke-width:1.6}
+.dest-card__tag{position:relative;z-index:1;font-family:'Newsreader',serif;font-style:italic;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,233,201,.65);margin-bottom:8px}
+.dest-card__title{position:relative;z-index:1;font-size:1.35rem;font-weight:800;letter-spacing:-.02em;line-height:1.2;color:#fff}
+.dest-card__cta{position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pd-cream)}
+.dest-card__cta svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;transition:transform .25s var(--E)}
+.dest-card:hover .dest-card__cta svg{transform:translateX(4px)}
+
+/* ═══════════ PLAYER YOUTUBE ═══════════ */
+.player{padding:clamp(96px,10vw,140px) 60px 100px;background:#fff}
+.player__inner{max-width:1300px;margin:0 auto}
+.player__hd{max-width:680px;margin-bottom:40px}
+.player__hd p{font-size:.95rem;color:var(--gr);line-height:1.8;margin-top:16px;max-width:600px}
+.player__frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--pd-brown);overflow:hidden;box-shadow:0 30px 60px rgba(20,10,5,.18);border-radius:24px}
+.player__frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player__bar{margin-top:22px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.player__live{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#E1483C}
+
+/* ═══════════ CALENDÁRIO DE ENTREVISTAS ═══════════ */
+.cal{padding:clamp(96px,10vw,140px) 60px;background:var(--pd-brown);border-top:1px solid rgba(255,255,255,.04);position:relative;overflow:hidden}
+.cal::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(244,233,201,.05) 1px,transparent 1px);background-size:26px 26px;pointer-events:none}
+.cal__inner{max-width:1300px;margin:0 auto;position:relative;z-index:1}
+.cal__hd{max-width:680px;margin-bottom:48px}
+.cal__hd p{font-family:'Newsreader',serif;font-style:italic;font-size:.95rem;color:rgba(244,233,201,.5);line-height:1.8;margin-top:16px;max-width:560px}
+.cal-list{display:flex;flex-direction:column;border-top:1px solid var(--pd-line)}
+.cal-row{display:grid;grid-template-columns:120px 1fr auto;align-items:center;gap:28px;padding:24px 16px;border-bottom:1px solid var(--pd-line);border-radius:18px;transition:padding-left .3s var(--E),background .3s var(--E)}
+.cal-row:hover{padding-left:26px;background:rgba(244,233,201,.05)}
+.cal-row__date{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+.cal-row__day{font-size:2.1rem;font-weight:900;letter-spacing:-.03em;color:var(--pd-or)}
+.cal-row__month{font-family:'Newsreader',serif;font-style:italic;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,233,201,.5);margin-top:4px}
+.cal-row__info{min-width:0}
+.cal-row__ep{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,233,201,.7);margin-bottom:8px;padding:3px 10px;border-radius:100px;background:rgba(226,101,14,.16)}
+.cal-row__title{font-size:1.15rem;font-weight:800;letter-spacing:-.015em;color:var(--pd-cream)}
+.cal-row__time{display:flex;align-items:center;gap:8px;font-size:.8rem;font-weight:600;color:rgba(244,233,201,.6);white-space:nowrap}
+.cal-row__time svg{width:15px;height:15px;stroke:var(--pd-or);fill:none;stroke-width:2}
+.cal__note{max-width:1300px;margin:28px auto 0;font-size:.8rem;color:rgba(244,233,201,.35);line-height:1.6}
+
+/* ═══════════ REDES SOCIAIS ═══════════ */
+.soc{padding:clamp(96px,10vw,140px) 60px;background:var(--gl)}
+.soc__inner{max-width:1300px;margin:0 auto}
+.soc__hd{max-width:680px;margin-bottom:48px}
+.soc__hd p{font-size:.95rem;color:var(--gr);line-height:1.8;margin-top:16px;max-width:560px}
+.soc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.soc-card{
+  background:#fff;padding:36px 32px;display:flex;flex-direction:column;gap:16px;
+  border-radius:24px;box-shadow:0 18px 40px rgba(45,39,39,.08);
+  transition:transform .3s var(--E),box-shadow .3s var(--E);
+}
+.soc-card:hover{transform:translateY(-6px);box-shadow:0 26px 52px rgba(45,39,39,.14)}
+.soc-card__icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.soc-card__icon svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:1.8}
+.soc-card--ig .soc-card__icon{background:linear-gradient(155deg,#f5a542,#e2650e 40%,#b3315f 75%,#5c3a94)}
+.soc-card--yt .soc-card__icon{background:#e1483c}
+.soc-card--tt .soc-card__icon{background:var(--pd-brown)}
+.soc-card--tt .soc-card__icon svg{fill:#fff;stroke:none;width:18px;height:18px}
+.soc-card__tag{font-family:'Newsreader',serif;font-style:italic;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pd-or)}
+.soc-card__title{font-size:1.2rem;font-weight:800;letter-spacing:-.015em;color:var(--g);line-height:1.3}
+.soc-card__desc{font-size:.85rem;color:var(--gr);line-height:1.6}
+.soc-card__cta{display:inline-flex;align-items:center;gap:8px;margin-top:auto;padding-top:6px;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g)}
+.soc-card__cta svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2;transition:transform .25s var(--E)}
+.soc-card:hover .soc-card__cta{color:var(--pd-or)}
+.soc-card:hover .soc-card__cta svg{transform:translateX(4px)}
+
+/* ═════ CTA FINAL ═════ */
+.cta{background:#0E0C0C;padding:clamp(72px,9vw,120px) 60px;border-top:1px solid rgba(255,255,255,.04);overflow:hidden;width:100%}
+.cta__inner{max-width:1300px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:60px;flex-wrap:wrap}
+.cta__h2{font-size:clamp(1.8rem,3.8vw,4.5rem);font-weight:900;line-height:.98;letter-spacing:-.04em;color:#fff}
+.cta__h2 em{font-style:normal;color:var(--pd-or)}
+.cta__side{display:flex;flex-direction:column;gap:12px;align-items:flex-start;flex-shrink:0}
+.cta__note{font-family:'Newsreader',serif;font-style:italic;font-size:.85rem;letter-spacing:.02em;color:rgba(255,255,255,.28)}
+
+/* FOOTER */
+.ft{padding:60px 60px 36px;border-top:1px solid var(--bd)}
+.ft__inner{max-width:1300px;margin:0 auto}
+.ft__top{display:grid;grid-template-columns:280px repeat(3,1fr);gap:60px;padding-bottom:44px;border-bottom:1px solid var(--bd);margin-bottom:32px}
+.ft__logo img{height:28px;margin-bottom:16px}
+.ft__tag{font-size:.875rem;color:var(--gr);line-height:1.65;margin-bottom:22px}
+.ft__soc{display:flex;gap:8px}
+.ft__sl{width:34px;height:34px;border:1px solid var(--bd);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+.ft__sl:hover{background:var(--g);border-color:var(--g)}
+.ft__sl:hover svg{stroke:#fff}
+.ft__sl svg{width:14px;height:14px;stroke:var(--gr);fill:none;stroke-width:2;transition:stroke .2s}
+.ft__ct{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--g);margin-bottom:18px}
+.ft__links{display:flex;flex-direction:column;gap:11px}
+.ft__links a{font-size:.875rem;color:var(--gr);transition:color .2s}
+.ft__links a:hover{color:var(--pd-or)}
+.ft__bot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ft__copy{font-size:.78rem;color:var(--gr)}
+.ft__copy b{color:var(--pd-or);font-weight:600}
+.ft__badge{display:flex;align-items:center;gap:8px;font-family:'Newsreader',serif;font-style:italic;font-size:.8rem;color:var(--gr);letter-spacing:.02em}
+.ft__dot{width:6px;height:6px;background:#4CAF50;animation:blink 2.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* WA */
+.wa{position:fixed;bottom:32px;right:32px;z-index:300;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.wa__tip{background:var(--g);color:#fff;font-size:.75rem;font-weight:600;padding:7px 14px;white-space:nowrap;opacity:0;transform:translateX(8px);transition:opacity .2s,transform .2s;pointer-events:none}
+.wa:hover .wa__tip{opacity:1;transform:translateX(0)}
+.wa__btn{width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s,box-shadow .2s;position:relative}
+.wa__btn:hover{transform:scale(1.1);box-shadow:0 8px 28px rgba(37,211,102,.55)}
+.wa__btn::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid rgba(37,211,102,.4);animation:wa-r 2.5s ease infinite}
+@keyframes wa-r{0%{transform:scale(1);opacity:1}100%{transform:scale(1.9);opacity:0}}
+.wa__btn svg{width:28px;height:28px;fill:#fff}
+
+/* ═════ MODAL — CAPTAÇÃO DE LEAD ═════ */
+.modal-ov{position:fixed;inset:0;background:rgba(15,12,12,.72);z-index:900;opacity:0;pointer-events:none;transition:opacity .3s var(--E);display:flex;justify-content:center;overflow-y:auto;padding:64px 20px}
+.modal-ov.open{opacity:1;pointer-events:auto}
+.modal{background:#fff;width:100%;max-width:560px;padding:44px 40px 40px;position:relative;transform:translateY(-24px);opacity:0;transition:transform .35s var(--E),opacity .35s var(--E);align-self:flex-start;margin-top:24px;border-radius:28px}
+.modal-ov.open .modal{transform:translateY(0);opacity:1}
+.modal__close{position:absolute;top:20px;right:20px;width:34px;height:34px;border:1px solid var(--bd);border-radius:50%;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.modal__close svg{width:15px;height:15px;stroke:var(--g);fill:none;stroke-width:2}
+.modal__close:hover{background:var(--g)}
+.modal__close:hover svg{stroke:#fff}
+.modal__eyebrow{font-family:'Newsreader',serif;font-style:italic;font-size:.9rem;letter-spacing:.02em;color:var(--pd-or);margin-bottom:10px}
+.modal__h3{font-size:1.5rem;font-weight:900;letter-spacing:-.02em;color:var(--g);margin-bottom:8px}
+.modal__sub{font-size:.85rem;color:var(--gr);line-height:1.6;margin-bottom:28px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--g);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--bd);background:var(--gl);padding:12px 14px;font-family:'Montserrat',sans-serif;font-size:.875rem;color:var(--g);transition:border-color .2s,background .2s;border-radius:12px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--pd-or);background:#fff}
+.field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238C8585' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-size:14px}
+.field textarea{resize:vertical;min-height:88px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.modal__submit{width:100%;justify-content:center;margin-top:8px}
+.modal__note{font-size:.72rem;color:var(--gr);margin-top:14px;line-height:1.5;text-align:center}
+.modal__success{display:none;text-align:center;padding:20px 0}
+.modal__success.show{display:block}
+.modal__success svg{width:46px;height:46px;stroke:var(--pd-or);fill:none;stroke-width:1.5;margin:0 auto 18px}
+.modal__success h4{font-size:1.2rem;font-weight:800;color:var(--g);margin-bottom:8px}
+.modal__success p{font-size:.85rem;color:var(--gr);line-height:1.6}
+.modal__form.hide{display:none}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(28px);transition:opacity .8s var(--E),transform .8s var(--E)}
+.rev.on{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ---------------------------------
+   RESPONSIVE
+--------------------------------- */
+@media(max-width:1100px){
+  .nav,.hero,.dest,.player,.cal,.soc,.cta,.ft{padding-left:36px;padding-right:36px}
+  .nav.solid{padding-left:36px;padding-right:36px}
+  .dest__grid{grid-template-columns:1fr}
+  .soc-grid{grid-template-columns:1fr}
+  .hero{padding-top:110px}
+  .hero__wrap{padding-bottom:44px}
+}
+
+@media(max-width:768px){
+  .nav{padding:16px 20px}
+  .nav.solid{padding:12px 20px}
+  .nav__links{display:none}
+  .nav__ham{display:flex}
+
+  .hero{padding:100px 20px 0}
+  .hero__h1{font-size:clamp(2rem,9vw,3.2rem)}
+  .hero__icon{display:none}
+  .hero__cta{flex-direction:column;width:100%}
+  .hero__cta .btn{width:100%;justify-content:center}
+
+  .dest,.player,.cal,.soc,.cta,.ft{padding-left:20px;padding-right:20px}
+  .dest{margin-top:20px}
+  .dest-card{aspect-ratio:4/5}
+
+  .cal-row{grid-template-columns:1fr;gap:10px}
+  .cal-row__time{order:3}
+
+  .cta__inner{flex-direction:column;gap:32px}
+  .ft__top{grid-template-columns:1fr;gap:28px}
+  .wa{bottom:20px;right:20px}
+
+  .modal{padding:36px 22px 28px}
+  .field-row{grid-template-columns:1fr}
+  .modal-ov{padding:0}
+  .modal{margin-top:0;max-width:100%;min-height:100svh}
+}
+</style>
+</head>
+<body cz-shortcut-listen="true">
+
+<div id="progress" style="width: 86.0465%;"></div>
+
+<!-- NAV -->
+<header class="nav solid" id="nav">
+  <a href="https://estudioakedah.com/"><img class="nav__logo" src="./Akedah Podcast_files/akedah-logo.png" alt="Akedah"></a>
+  <nav class="nav__links">
+    <a href="https://estudioakedah.com/podcast/#player" class="nav__live"><span class="live-badge__dot"></span>Assista ao vivo aqui</a>
+    <a href="https://estudioakedah.com/sobre/">Sobre</a>
+    <div class="nav__item">
+      <a href="https://estudioakedah.com/servicos/">Soluções</a>
+      <div class="nav__drop">
+        <a href="https://estudioakedah.com/servicos/social-media/">Social Media</a>
+        <a href="https://estudioakedah.com/servicos/trafego-pago/">Tráfego Pago</a>
+        <a href="https://estudioakedah.com/servicos/videos/">Vídeos em Lote</a>
+        <a href="https://estudioakedah.com/servicos/cursos/">Cursos e Treinamentos</a>
+      </div>
+    </div>
+    <a href="https://estudioakedah.com/#blog">Blog</a>
+    <a href="https://estudioakedah.com/podcast/" class="active">Podcast<span class="live-badge"><span class="live-badge__dot"></span>AO VIVO</span></a>
+    <button class="nav__cta" data-open-modal="">Fale com um especialista</button>
+  </nav>
+  <button class="nav__ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+<nav class="mob-nav" id="mob">
+  <a href="https://estudioakedah.com/podcast/#player">Assista ao vivo aqui</a>
+  <a href="https://estudioakedah.com/sobre/">Sobre</a>
+  <a href="https://estudioakedah.com/servicos/">Soluções</a>
+  <a href="https://estudioakedah.com/#blog">Blog</a>
+  <a href="https://estudioakedah.com/podcast/">Podcast<span class="live-badge"><span class="live-badge__dot"></span>AO VIVO</span></a>
+  <button data-open-modal="">Fale com um especialista</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero go" id="hero">
+  <img class="hero__icon hero__icon--key" src="./Akedah Podcast_files/Chave.png" alt="">
+  <img class="hero__icon hero__icon--star" src="./Akedah Podcast_files/Estrela.png" alt="">
+  <img class="hero__icon hero__icon--trophy" src="./Akedah Podcast_files/Troféu.png" alt="">
+  <div class="hero__wrap">
+    <img class="hero__logo" src="./Akedah Podcast_files/Logo-Laranja-Podcast-Akedah-Fundo-Transparente.png" alt="Akedah Podcast">
+    <div class="hero__eyebrow">2 programas por semana</div>
+    <h1 class="hero__h1">
+      <span class="clip"><span>TUDO SOBRE O</span></span>
+      <span class="clip"><span><em>AKEDAH PODCAST.</em></span></span>
+    </h1>
+    <p class="hero__sub">Entrevistas, bastidores e histórias reais sobre comercial e estratégia. Escolha para onde ir: calendário, canal ao vivo ou os bastidores em fotos.</p>
+    <div class="hero__cta">
+      <a href="https://estudioakedah.com/podcast/#player" class="btn btn--or">Assistir ao vivo<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <a href="https://estudioakedah.com/podcast/#calendario" class="btn btn--ghost-w">Ver calendário</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3 BANNERS DE DESTAQUE ═══ -->
+<section class="dest" id="destaques">
+  <div class="dest__grid rev on">
+    <a class="dest-card dest-card--1" href="https://estudioakedah.com/podcast/#calendario">
+      <span class="dest-card__tag">Próximas entrevistas</span>
+      <span class="dest-card__title">Clique aqui para o calendário de entrevistas.</span>
+      <span class="dest-card__cta">Ver datas e horários<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+    </a>
+    <!-- TODO: substituir pelo link do canal oficial no YouTube -->
+    <a class="dest-card dest-card--2" href="https://www.youtube.com/@PodcastAkedah" target="_blank" rel="noopener">
+      <span class="dest-card__tag">Assista completo</span>
+      <span class="dest-card__title">Vá direto para o nosso canal.</span>
+      <span class="dest-card__cta">Abrir no YouTube<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+    </a>
+    <a class="dest-card dest-card--3" href="https://www.instagram.com/podcastakedah" target="_blank" rel="noopener">
+      <span class="dest-card__icon-wrap"><svg class="dest-card__icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg></span>
+      <span class="dest-card__tag">Bastidores</span>
+      <span class="dest-card__title">Veja as fotos da entrevista.</span>
+      <span class="dest-card__cta">Ver galeria<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ PLAYER YOUTUBE ═══ -->
+<section class="player" id="player">
+  <div class="player__inner">
+    <div class="player__hd rev on">
+      <div class="eyebrow" data-n="01">Ao vivo</div>
+      <h2 class="sec-h2">Assista ao <em>Akedah Podcast</em><br>sem sair da página.</h2>
+      <p>Toda entrevista fica disponível aqui logo após a gravação, direto do nosso canal no YouTube.</p>
+    </div>
+    <div class="player__frame rev on">
+      <iframe src="./Akedah Podcast_files/cZd0bjTWWXs.html" title="Akedah Podcast no YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+    </div>
+    <div class="player__bar rev on">
+      <span class="player__live"><span class="live-badge__dot"></span>Novo episódio toda semana</span>
+      <a href="https://www.youtube.com/@PodcastAkedah" target="_blank" rel="noopener" class="btn btn--or" style="padding:12px 26px;font-size:.7rem">Inscreva-se no canal</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CALENDÁRIO DE ENTREVISTAS ═══ -->
+<section class="cal" id="calendario">
+  <div class="cal__inner">
+    <div class="cal__hd rev on">
+      <div class="eyebrow eyebrow--cream" data-n="02">Calendário</div>
+      <h2 class="sec-h2 sec-h2--w">Próximas <em>entrevistas</em><br>do Akedah Podcast.</h2>
+      <p>Datas e horários confirmados. Marque na agenda e acompanhe ao vivo.</p>
+    </div>
+
+    <!-- TODO: substituir pelas datas, horários e convidados reais das próximas gravações -->
+    <div class="cal-list rev on">
+      <div class="cal-row">
+        <div class="cal-row__date"><span class="cal-row__day">18</span><span class="cal-row__month">Julho</span></div>
+        <div class="cal-row__info"><div class="cal-row__ep">Episódio 101</div><div class="cal-row__title">[Nome do convidado 1]</div></div>
+        <div class="cal-row__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>19h00</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-row__date"><span class="cal-row__day">21</span><span class="cal-row__month">Julho</span></div>
+        <div class="cal-row__info"><div class="cal-row__ep">Episódio 102</div><div class="cal-row__title">[Nome do convidado 2]</div></div>
+        <div class="cal-row__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>19h00</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-row__date"><span class="cal-row__day">25</span><span class="cal-row__month">Julho</span></div>
+        <div class="cal-row__info"><div class="cal-row__ep">Episódio 103</div><div class="cal-row__title">[Nome do convidado 3]</div></div>
+        <div class="cal-row__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>19h00</div>
+      </div>
+      <div class="cal-row">
+        <div class="cal-row__date"><span class="cal-row__day">28</span><span class="cal-row__month">Julho</span></div>
+        <div class="cal-row__info"><div class="cal-row__ep">Episódio 104</div><div class="cal-row__title">[Nome do convidado 4]</div></div>
+        <div class="cal-row__time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg>19h00</div>
+      </div>
+    </div>
+    <p class="cal__note">Datas sujeitas a alteração. A confirmação de cada episódio é publicada com antecedência no Instagram e no YouTube do Akedah Podcast.</p>
+  </div>
+</section>
+
+<!-- ═══ REDES SOCIAIS ═══ -->
+<section class="soc" id="redes">
+  <div class="soc__inner">
+    <div class="soc__hd rev on">
+      <div class="eyebrow" data-n="03">Redes sociais</div>
+      <h2 class="sec-h2">Acompanhe o Akedah Podcast<br><em>em todos os lugares.</em></h2>
+      <p>Cortes, bastidores e conteúdo exclusivo em cada rede. Clique no card e siga a gente.</p>
+    </div>
+
+    <div class="soc-grid rev on">
+      <a class="soc-card soc-card--ig" href="https://www.instagram.com/podcastakedah" target="_blank" rel="noopener">
+        <div class="soc-card__icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg></div>
+        <span class="soc-card__tag">Instagram</span>
+        <h3 class="soc-card__title">Bastidores e stories do dia a dia do estúdio.</h3>
+        <p class="soc-card__desc">Fotos das gravações, chamadas de novos episódios e conteúdo exclusivo.</p>
+        <span class="soc-card__cta">Clique aqui e siga<svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"></path></svg></span>
+      </a>
+      <!-- TODO: substituir pelo link oficial do canal de cortes -->
+      <a class="soc-card soc-card--yt" href="https://www.youtube.com/@akedahcortes" target="_blank" rel="noopener">
+        <div class="soc-card__icon"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14"></rect></svg></div>
+        <span class="soc-card__tag">YouTube — Cortes</span>
+        <h3 class="soc-card__title">Os melhores trechos de cada entrevista.</h3>
+        <p class="soc-card__desc">Cortes curtos das melhores falas do podcast, direto no canal secundário.</p>
+        <span class="soc-card__cta">Clique aqui e assista<svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"></path></svg></span>
+      </a>
+      <!-- TODO: substituir pelo link oficial do TikTok -->
+      <a class="soc-card soc-card--tt" href="https://www.tiktok.com/@akedahpodcast" target="_blank" rel="noopener">
+        <div class="soc-card__icon"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"></path></svg></div>
+        <span class="soc-card__tag">TikTok</span>
+        <h3 class="soc-card__title">Momentos rápidos e virais do programa.</h3>
+        <p class="soc-card__desc">Clipes verticais pensados para o formato do TikTok, publicados toda semana.</p>
+        <span class="soc-card__cta">Clique aqui e siga<svg viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"></path></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA FINAL ═══ -->
+<section class="cta" id="contato">
+  <div class="cta__inner rev on">
+    <div>
+      <p class="cta__note" style="margin-bottom:16px">Quer participar como convidado?</p>
+      <h2 class="cta__h2">Fale com a gente e<br>entre no <em>Akedah Podcast.</em></h2>
+    </div>
+    <div class="cta__side">
+      <button class="btn btn--or" data-open-modal="" style="font-size:.82rem;padding:18px 40px">
+        Fale com um especialista
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+      <p class="cta__note">Resposta em até 1 dia útil.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft" id="ft">
+  <div class="ft__inner">
+    <div class="ft__top">
+      <div>
+        <div class="ft__logo"><img src="./Akedah Podcast_files/logo-horizontal-escura.png" alt="Akedah"></div>
+        <p class="ft__tag">Estúdio Akedah de Soluções e Estratégias Comerciais para empresas consolidadas que querem crescer com inteligência.</p>
+        <div class="ft__soc">
+          <a href="https://www.instagram.com/podcastakedah" target="_blank" rel="noopener" class="ft__sl" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          <a href="https://estudioakedah.com/podcast/#" class="ft__sl" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+          <a href="https://www.youtube.com/@PodcastAkedah" target="_blank" rel="noopener" class="ft__sl" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"></path><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" style="fill:white"></polygon></svg></a>
+        </div>
+      </div>
+      <div><p class="ft__ct">Navegação</p><ul class="ft__links"><li><a href="https://estudioakedah.com/">Início</a></li><li><a href="https://estudioakedah.com/sobre/">Sobre</a></li><li><a href="https://estudioakedah.com/servicos/">Soluções</a></li><li><a href="https://estudioakedah.com/podcast/#contato">Contato</a></li></ul></div>
+      <div><p class="ft__ct">Podcast</p><ul class="ft__links"><li><a href="https://estudioakedah.com/podcast/#player">Assistir ao vivo</a></li><li><a href="https://estudioakedah.com/podcast/#calendario">Calendário</a></li><li><a href="https://estudioakedah.com/podcast/#redes">Redes sociais</a></li></ul></div>
+      <div><p class="ft__ct">Contato</p><ul class="ft__links"><li><a href="mailto:contato@akedah.com.br">contato@akedah.com.br</a></li><li><a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="https://www.instagram.com/podcastakedah" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://estudioakedah.com/podcast/#">LinkedIn</a></li></ul></div>
+    </div>
+    <div class="ft__bot">
+      <p class="ft__copy">© 2026 <b>Akedah</b> Estúdio de Soluções Comerciais. Todos os direitos reservados.</p>
+      <div class="ft__badge"><div class="ft__dot"></div><span>Atendendo em todo o Brasil</span></div>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<div class="wa">
+  <div class="wa__tip">Fale com a Akedah agora</div>
+  <a href="https://wa.me/5500000000000" class="wa__btn" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+  </a>
+</div>
+
+<!-- MODAL — CAPTAÇÃO DE LEAD -->
+<div class="modal-ov" id="modal-ov">
+  <div class="modal">
+    <button class="modal__close" id="modal-close" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"></path></svg></button>
+
+    <form class="modal__form" id="lead-form">
+      <p class="modal__eyebrow">Fale com um especialista</p>
+      <h3 class="modal__h3">Vamos entender o seu negócio.</h3>
+      <p class="modal__sub">Preencha os dados abaixo. Nossa equipe entra em contato para agendar uma conversa estratégica.</p>
+
+      <div class="field">
+        <label for="f-nome">Nome</label>
+        <input type="text" id="f-nome" name="nome" required="" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-empresa">Empresa / Negócio</label>
+        <input type="text" id="f-empresa" name="empresa" required="" autocomplete="organization">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="f-whats">WhatsApp</label>
+          <input type="tel" id="f-whats" name="whatsapp" required="" autocomplete="tel" placeholder="(00) 00000-0000">
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail</label>
+          <input type="email" id="f-email" name="email" required="" autocomplete="email">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-servico">Serviço de interesse</label>
+        <select id="f-servico" name="servico" required="">
+          <option value="" disabled="" selected="">Selecione um serviço</option>
+          <option>Social Media</option>
+          <option>Tráfego Pago</option>
+          <option>Vídeos em Lote</option>
+          <option>Cursos e Treinamentos</option>
+          <option>Participar do Podcast</option>
+          <option>Ainda não sei</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-orcamento">Orçamento estimado</label>
+        <select id="f-orcamento" name="orcamento" required="">
+          <option value="" disabled="" selected="">Selecione uma faixa</option>
+          <option>R$ 500 a R$ 1.000</option>
+          <option>R$ 1.000 a R$ 1.500</option>
+          <option>R$ 1.500 a R$ 2.000</option>
+          <option>Mais de R$ 2.000</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-detalhes">Mais detalhes</label>
+        <textarea id="f-detalhes" name="detalhes" placeholder="Conte um pouco mais sobre o momento do seu negócio"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn--or modal__submit">
+        Enviar solicitação
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
+      <p class="modal__note">Seus dados são usados apenas para retorno da nossa equipe.</p>
+    </form>
+
+    <div class="modal__success" id="modal-success">
+      <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <h4>Recebemos sua solicitação.</h4>
+      <p>Nossa equipe entra em contato em breve para agendar uma conversa estratégica.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* progress */
+  const bar = document.getElementById('progress');
+  window.addEventListener('scroll',()=>{
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (scrollY/Math.max(max,1)*100)+'%';
+  },{passive:true});
+
+  /* nav solid */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('solid',scrollY>30);
+  },{passive:true});
+
+  /* hamburger */
+  const ham = document.getElementById('ham');
+  const mob = document.getElementById('mob');
+  ham.addEventListener('click',()=>{
+    ham.classList.toggle('open');
+    mob.classList.toggle('open');
+  });
+  mob.querySelectorAll('a,button').forEach(el=>el.addEventListener('click',()=>{
+    ham.classList.remove('open');
+    mob.classList.remove('open');
+  }));
+
+  /* hero entrance */
+  setTimeout(()=>document.getElementById('hero').classList.add('go'), 80);
+
+  /* scroll reveal */
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+  /* modal */
+  const ov      = document.getElementById('modal-ov');
+  const form    = document.getElementById('lead-form');
+  const success = document.getElementById('modal-success');
+
+  function openModal(){
+    ov.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    ov.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-open-modal]').forEach(el=>el.addEventListener('click',openModal));
+  document.getElementById('modal-close').addEventListener('click',closeModal);
+  ov.addEventListener('click',e=>{ if(e.target===ov) closeModal(); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+  form.addEventListener('submit',e=>{
+    e.preventDefault();
+    /* formulário ainda não integrado a nenhum CRM: apenas exibe confirmação */
+    form.classList.add('hide');
+    success.classList.add('show');
+  });
+
+})();
+</script>
+
+
+</body></html>
