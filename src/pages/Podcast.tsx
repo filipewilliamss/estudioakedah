@@ -20,8 +20,21 @@ const Podcast = () => {
   };
 
   return (
-    // Beige background from brand manual
-    <div className="min-h-screen bg-[#F5F5DC] text-[#4B3621]">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#42362E] font-display">
+      <style>
+        {`
+          /* Custom styles for the Podcast page using the brand palette */
+          .podcast-title {
+            color: #C4550A;
+          }
+          .podcast-accent {
+            color: #C4550A;
+          }
+          .podcast-container p {
+            color: #42362E;
+          }
+        `}
+      </style>
       <SEO
         title="Akedah Podcast | Entrevistas"
         description="Página oficial do Akedah Podcast."
@@ -30,24 +43,54 @@ const Podcast = () => {
       />
       <Navbar />
 
-      <main className="container-editorial pt-40 pb-24">
+      <main className="container-editorial pt-40 pb-24 podcast-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="font-display font-[900] text-[#C4550A] leading-[0.9] tracking-[-0.05em] text-[clamp(40px,8vw,100px)] mb-10">
-            Akedah <span className="italic font-normal">Podcast</span>
-          </h1>
+          <div className="flex items-center gap-3 mb-8">
+            <span className="w-2 h-2 rounded-full bg-[#C4550A] animate-pulse" />
+            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
+              O PODCAST OFICIAL
+            </span>
+          </div>
           
-          <div className="max-w-3xl space-y-6 text-[18px] leading-relaxed">
-            <p>
-              O Akedah Podcast é o espaço onde conversas estratégicas encontram a prática.
-            </p>
-            <p>
-              Seguindo nossa identidade visual, cada episódio traz convidados que compartilham 
-              suas jornadas, erros e acertos.
-            </p>
+          <h1 className="font-display font-[900] podcast-title leading-[0.9] tracking-[-0.05em] text-[clamp(44px,8.5vw,110px)] mb-12">
+            Onde a estratégia <br />
+            <span className="italic font-normal">encontra a voz.</span>
+          </h1>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-8">
+              <p className="text-[20px] md:text-[24px] leading-[1.6] font-medium">
+                Entrevistas, bastidores e histórias reais sobre comercial e estratégia. 
+                Dois programas por semana, gravados no Estúdio Akedah.
+              </p>
+              
+              <div className="space-y-4 pt-6 border-t border-[#42362E]/10">
+                <h3 className="text-[12px] uppercase tracking-[0.3em] font-bold opacity-70">
+                  Próximos passos
+                </h3>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a href="#" className="inline-flex items-center justify-center px-8 py-4 bg-[#C4550A] text-white text-[11px] font-bold uppercase tracking-[0.2em] rounded-[15px] hover:bg-[#A34508] transition-colors">
+                    Assistir no YouTube
+                  </a>
+                  <a href="#" className="inline-flex items-center justify-center px-8 py-4 border border-[#42362E]/20 text-[#42362E] text-[11px] font-bold uppercase tracking-[0.2em] rounded-[15px] hover:bg-[#42362E]/5 transition-colors">
+                    Ouvir Spotify
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[20px]">
+              <img 
+                src={studioImage} 
+                alt="Akedah Podcast Studio" 
+                className="w-full h-full object-cover filter sepia-[0.2] contrast-[1.1]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7]/40 to-transparent" />
+            </div>
           </div>
         </motion.div>
       </main>
