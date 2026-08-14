@@ -230,7 +230,7 @@ const Podcast = () => {
         </section>
 
         {/* CALENDÁRIO SECTION */}
-        <section id="calendario" className="py-24 px-6 bg-[#2B1710] text-white">
+        <section id="calendario" className="py-24 px-6 podcast-calendario-texture text-white">
           <div className="max-w-7xl mx-auto">
             <div className="text-center md:text-left mb-16">
               <div className="podcast-eyebrow !text-[#F4E9C9] before:!bg-[#F4E9C9] before:!text-[#2B1710]" data-n="02">Calendário</div>
