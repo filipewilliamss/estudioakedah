@@ -126,6 +126,12 @@ const Podcast = () => {
             background: #42362E18;
             transform: translateY(-5px);
           }
+          .podcast-calendario-texture {
+            background-color: #2B1710;
+            background-image: url("https://www.transparenttextures.com/patterns/leather.png");
+            background-repeat: repeat;
+            position: relative;
+          }
         `}
       </style>
       <SEO
