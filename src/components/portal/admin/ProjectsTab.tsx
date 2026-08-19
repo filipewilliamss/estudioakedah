@@ -748,7 +748,7 @@ const ProjectsTab = () => {
                                   const text = prompt("Nova sub-etapa:");
                                   if (!text) return;
                                   const newTasks = [...(stage.internal_tasks || []), { id: crypto.randomUUID(), text, completed: false }];
-                                  await supabase.from("project_stages").update({ internal_tasks: newTasks as any }).eq("id", stage.id);
+                                  await supabase.from("project_stage_internals").upsert({ stage_id: stage.id, internal_tasks: newTasks as any, updated_at: new Date().toISOString() }, { onConflict: "stage_id" });
                                   setStages(stages.map(s => s.id === stage.id ? { ...s, internal_tasks: newTasks } : s));
                                 }}>
                                   <Plus className="h-3 w-3" /> Adicionar sub-etapa
