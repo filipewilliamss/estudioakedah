@@ -737,7 +737,7 @@ const ProjectsTab = () => {
                                       onCheckedChange={async (checked) => {
                                         const newTasks = [...(stage.internal_tasks || [])];
                                         newTasks[idx] = { ...task, completed: !!checked };
-                                        await supabase.from("project_stages").update({ internal_tasks: newTasks as any }).eq("id", stage.id);
+                                        await supabase.from("project_stage_internals").upsert({ stage_id: stage.id, internal_tasks: newTasks as any, updated_at: new Date().toISOString() }, { onConflict: "stage_id" });
                                         setStages(stages.map(s => s.id === stage.id ? { ...s, internal_tasks: newTasks } : s));
                                       }}
                                     />
