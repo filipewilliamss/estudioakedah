@@ -84,9 +84,15 @@ const PartnerDashboard = () => {
       if (projectIds.length > 0) {
         const { data: pData } = await supabase
           .from("projects")
-          .select("id, name, type, status, progress, deadline, start_date, partner_notes, client_id, partner_message")
+          .select("id, name, type, status, progress, deadline, start_date, client_id, partner_message")
           .in("id", projectIds);
         projectsData = pData || [];
+
+        const { data: notesData } = await supabase
+          .from("project_partner_notes")
+          .select("project_id, partner_notes")
+          .in("project_id", projectIds);
+        const notesMap = new Map((notesData || []).map((n: any) => [n.project_id, n.partner_notes]));
 
         const clientIds = [...new Set(projectsData.map(p => p.client_id).filter(Boolean))];
         if (clientIds.length > 0) {
@@ -99,8 +105,10 @@ const PartnerDashboard = () => {
 
         setProjects(projectsData.map(p => ({
           ...p,
+          partner_notes: notesMap.get(p.id) ?? null,
           client_name: profileMap.get(p.client_id) || "Cliente",
         })) as any);
+
       }
 
       // Enrich payments with client full_name so existing UI lookups keep working
