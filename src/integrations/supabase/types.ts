@@ -70,6 +70,78 @@ export type Database = {
         }
         Relationships: []
       }
+      client_display_names: {
+        Row: {
+          company: string | null
+          full_name: string
+          profile_id: string
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          full_name?: string
+          profile_id: string
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          full_name?: string
+          profile_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      client_payment_summaries: {
+        Row: {
+          budget_total: number
+          created_at: string
+          initial_payment: number | null
+          initial_payment_date: string | null
+          installments_paid: number | null
+          installments_total: number | null
+          next_payment_date: string | null
+          payment_id: string
+          payment_method: string | null
+          payment_status: string | null
+          project_id: string
+          remaining_amount: number | null
+          sale_date: string | null
+          updated_at: string
+        }
+        Insert: {
+          budget_total?: number
+          created_at?: string
+          initial_payment?: number | null
+          initial_payment_date?: string | null
+          installments_paid?: number | null
+          installments_total?: number | null
+          next_payment_date?: string | null
+          payment_id: string
+          payment_method?: string | null
+          payment_status?: string | null
+          project_id: string
+          remaining_amount?: number | null
+          sale_date?: string | null
+          updated_at?: string
+        }
+        Update: {
+          budget_total?: number
+          created_at?: string
+          initial_payment?: number | null
+          initial_payment_date?: string | null
+          installments_paid?: number | null
+          installments_total?: number | null
+          next_payment_date?: string | null
+          payment_id?: string
+          payment_method?: string | null
+          payment_status?: string | null
+          project_id?: string
+          remaining_amount?: number | null
+          sale_date?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       fixed_costs: {
         Row: {
           created_at: string
@@ -152,6 +224,39 @@ export type Database = {
           profit_goal?: number
           revenue_goal?: number
           tax_rate?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      partner_commissions: {
+        Row: {
+          commission_amount: number
+          commission_paid_date: string | null
+          commission_paid_to_partner: boolean
+          payment_id: string
+          project_id: string
+          sale_date: string | null
+          sales_rep: string | null
+          updated_at: string
+        }
+        Insert: {
+          commission_amount?: number
+          commission_paid_date?: string | null
+          commission_paid_to_partner?: boolean
+          payment_id: string
+          project_id: string
+          sale_date?: string | null
+          sales_rep?: string | null
+          updated_at?: string
+        }
+        Update: {
+          commission_amount?: number
+          commission_paid_date?: string | null
+          commission_paid_to_partner?: boolean
+          payment_id?: string
+          project_id?: string
+          sale_date?: string | null
+          sales_rep?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -372,13 +477,90 @@ export type Database = {
           },
         ]
       }
+      project_internals: {
+        Row: {
+          project_id: string
+          studio_observation: string | null
+          updated_at: string
+        }
+        Insert: {
+          project_id: string
+          studio_observation?: string | null
+          updated_at?: string
+        }
+        Update: {
+          project_id?: string
+          studio_observation?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_internals_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: true
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_partner_notes: {
+        Row: {
+          partner_notes: string | null
+          project_id: string
+          updated_at: string
+        }
+        Insert: {
+          partner_notes?: string | null
+          project_id: string
+          updated_at?: string
+        }
+        Update: {
+          partner_notes?: string | null
+          project_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_partner_notes_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: true
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_stage_internals: {
+        Row: {
+          internal_tasks: Json
+          stage_id: string
+          updated_at: string
+        }
+        Insert: {
+          internal_tasks?: Json
+          stage_id: string
+          updated_at?: string
+        }
+        Update: {
+          internal_tasks?: Json
+          stage_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_stage_internals_stage_id_fkey"
+            columns: ["stage_id"]
+            isOneToOne: true
+            referencedRelation: "project_stages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       project_stages: {
         Row: {
           completed_at: string | null
           created_at: string
           description: string | null
           id: string
-          internal_tasks: Json | null
           name: string
           project_id: string
           sort_order: number
@@ -389,7 +571,6 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
-          internal_tasks?: Json | null
           name: string
           project_id: string
           sort_order?: number
@@ -400,7 +581,6 @@ export type Database = {
           created_at?: string
           description?: string | null
           id?: string
-          internal_tasks?: Json | null
           name?: string
           project_id?: string
           sort_order?: number
@@ -426,12 +606,10 @@ export type Database = {
           id: string
           name: string
           partner_message: string | null
-          partner_notes: string | null
           priority: string
           progress: number
           start_date: string | null
           status: string
-          studio_observation: string | null
           type: string
           updated_at: string
         }
@@ -444,12 +622,10 @@ export type Database = {
           id?: string
           name: string
           partner_message?: string | null
-          partner_notes?: string | null
           priority?: string
           progress?: number
           start_date?: string | null
           status?: string
-          studio_observation?: string | null
           type?: string
           updated_at?: string
         }
@@ -462,23 +638,14 @@ export type Database = {
           id?: string
           name?: string
           partner_message?: string | null
-          partner_notes?: string | null
           priority?: string
           progress?: number
           start_date?: string | null
           status?: string
-          studio_observation?: string | null
           type?: string
           updated_at?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "projects_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "partner_client_names"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "projects_client_id_fkey"
             columns: ["client_id"]
@@ -517,13 +684,6 @@ export type Database = {
           reason?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "quote_rejections_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "partner_client_names"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "quote_rejections_client_id_fkey"
             columns: ["client_id"]
@@ -596,13 +756,6 @@ export type Database = {
           validity_date?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "quotes_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "partner_client_names"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "quotes_client_id_fkey"
             columns: ["client_id"]
@@ -689,13 +842,6 @@ export type Database = {
           total_value?: number
         }
         Relationships: [
-          {
-            foreignKeyName: "service_orders_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "partner_client_names"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "service_orders_client_id_fkey"
             columns: ["client_id"]
@@ -811,15 +957,7 @@ export type Database = {
           sale_date?: string | null
           updated_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "payments_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       partner_client_names: {
         Row: {
@@ -867,15 +1005,7 @@ export type Database = {
           sale_date?: string | null
           sales_rep?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "payments_project_id_fkey"
-            columns: ["project_id"]
-            isOneToOne: false
-            referencedRelation: "projects"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
     }
     Functions: {
