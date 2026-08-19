@@ -188,15 +188,31 @@ const ProjectsTab = () => {
     setNewMessage("");
 
     setBriefingResponse(null);
-    const [stagesRes, filesRes, paymentRes, messagesRes, briefingRes] = await Promise.all([
+    const [stagesRes, filesRes, paymentRes, messagesRes, briefingRes, internalsRes, partnerNotesRes] = await Promise.all([
       supabase.from("project_stages").select("*").eq("project_id", project.id).order("sort_order"),
       supabase.storage.from("project-files").list(project.id),
       supabase.from("payments").select("*").eq("project_id", project.id).maybeSingle(),
       supabase.from("messages").select("*").eq("project_id", project.id).order("created_at", { ascending: true }),
       supabase.from("briefing_responses").select("responses").eq("project_id", project.id).maybeSingle(),
+      supabase.from("project_internals").select("studio_observation").eq("project_id", project.id).maybeSingle(),
+      supabase.from("project_partner_notes").select("partner_notes").eq("project_id", project.id).maybeSingle(),
     ]);
 
-    if (stagesRes.data) setStages(stagesRes.data as any);
+    setSelectedProject({
+      ...project,
+      studio_observation: internalsRes.data?.studio_observation ?? null,
+      partner_notes: partnerNotesRes.data?.partner_notes ?? null,
+    });
+
+    if (stagesRes.data) {
+      const stageIds = stagesRes.data.map((s: any) => s.id);
+      const { data: stageInternals } = stageIds.length
+        ? await supabase.from("project_stage_internals").select("stage_id, internal_tasks").in("stage_id", stageIds)
+        : { data: [] as any[] };
+      const taskMap = new Map((stageInternals ?? []).map((r: any) => [r.stage_id, r.internal_tasks]));
+      setStages(stagesRes.data.map((s: any) => ({ ...s, internal_tasks: taskMap.get(s.id) ?? [] })) as any);
+    }
+
     if (filesRes.data) setFiles(filesRes.data);
     if (paymentRes.data) {
       setPayment(paymentRes.data);
