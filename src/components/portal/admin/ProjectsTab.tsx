@@ -674,7 +674,10 @@ const ProjectsTab = () => {
                         onBlur={async (e) => {
                           const val = e.target.value.trim() || null;
                           if (val !== selectedProject.studio_observation) {
-                            await supabase.from("projects").update({ studio_observation: val }).eq("id", selectedProject.id);
+                            await supabase.from("project_internals").upsert(
+                              { project_id: selectedProject.id, studio_observation: val, updated_at: new Date().toISOString() },
+                              { onConflict: "project_id" }
+                            );
                             setSelectedProject({ ...selectedProject, studio_observation: val });
                             toast.success("Observação salva");
                           }
@@ -692,13 +695,17 @@ const ProjectsTab = () => {
                         onBlur={async (e) => {
                           const val = e.target.value.trim() || null;
                           if (val !== selectedProject.partner_notes) {
-                            await supabase.from("projects").update({ partner_notes: val }).eq("id", selectedProject.id);
+                            await supabase.from("project_partner_notes").upsert(
+                              { project_id: selectedProject.id, partner_notes: val, updated_at: new Date().toISOString() },
+                              { onConflict: "project_id" }
+                            );
                             setSelectedProject({ ...selectedProject, partner_notes: val });
                             toast.success("Observação salva");
                           }
                         }}
                       />
                     </div>
+
 
                     {/* Stages */}
                     <div className="space-y-3">
