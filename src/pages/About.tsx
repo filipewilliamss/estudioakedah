@@ -85,7 +85,7 @@ const About = () => {
         </section>
 
         {/* Meaning Section */}
-        <section className="bg-[#0A0A0A] py-32 mb-32 border-y border-white/5">
+        <section className="py-32 mb-32">
           <div className="container-editorial">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-display text-4xl md:text-6xl font-bold mb-8">O que significa <span className="text-[#C4550A]">Akedah</span>?</h2>
