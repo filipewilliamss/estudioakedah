@@ -138,6 +138,7 @@ const About = () => {
           </div>
         </section>
       </main>
+      </div>
 
       <Footer />
     </div>
