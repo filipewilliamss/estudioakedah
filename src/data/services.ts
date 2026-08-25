@@ -110,7 +110,7 @@ export const services: AkedahService[] = [
     heroHighlight: "reuniões.",
     heroSubtitle:
       "Seu social media precisa mover o comercial, não só publicar. Medimos em leads e reuniões geradas, não em curtidas.",
-    image: socialMediaImg,
+    image: socialMediaAsset.url,
     highlights: [
       "Mapeamento do ICP e da jornada de compra",
       "Calendário editorial mensal",
