@@ -238,11 +238,11 @@ const Podcast = () => {
         </section>
 
         {/* CALENDÁRIO SECTION */}
-        <section id="calendario" className="py-24 px-6 podcast-calendario-texture text-white">
+        <section id="calendario" className="py-24 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center md:text-left mb-16">
-              <div className="podcast-eyebrow !text-[#F4E9C9] before:!bg-[#F4E9C9] before:!text-[#2B1710]" data-n="02">Calendário</div>
-              <h2 className="podcast-sec-h2 !text-white mb-6">Próximas <em>entrevistas</em> do Akedah Podcast.</h2>
+              <div className="podcast-eyebrow" data-n="02">Calendário</div>
+              <h2 className="podcast-sec-h2 mb-6">Próximas <em>entrevistas</em> do Akedah Podcast.</h2>
               <p className="podcast-body-font text-lg opacity-70">Datas e horários confirmados. Marque na agenda e acompanhe ao vivo.</p>
             </div>
 
@@ -253,9 +253,9 @@ const Podcast = () => {
                 { data: "29/08", hora: "19h", convidado: "EM BREVE", tema: "GESTÃO E ESCALA" },
                 { data: "05/09", hora: "19h", convidado: "EM BREVE", tema: "VENDAS B2B" }
               ].map((item, idx) => (
-                <div key={idx} className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all">
+                <div key={idx} className="podcast-card">
                   <div className="flex justify-between items-center mb-6">
-                    <span className="podcast-body-font text-[#E2650E] text-2xl">{item.data}</span>
+                    <span className="podcast-body-font text-[#C4550A] text-2xl">{item.data}</span>
                     <span className="podcast-body-font opacity-50">{item.hora}</span>
                   </div>
                   <h3 className="podcast-heading-font text-xl mb-2">{item.convidado}</h3>
