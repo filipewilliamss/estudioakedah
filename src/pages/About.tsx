@@ -2,16 +2,19 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import ParticleBackground from "@/components/ParticleBackground";
 import founderPicture from "@/assets/akedah-founder.jpg";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white relative">
+      <ParticleBackground />
       <SEO 
         title="Nossa História | Akedah"
         description="Conheça a história da Akedah, o Método Akedah e a trajetória do fundador Daniel Silva."
       />
       <Navbar forceBlack={true} />
+      <div className="relative z-10">
       
       <main className="pt-32 pb-24">
         {/* Hero Section */}
