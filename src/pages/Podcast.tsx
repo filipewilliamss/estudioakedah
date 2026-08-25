@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PodcastBackground from "@/components/PodcastBackground";
+
 
 const Podcast = () => {
   useEffect(() => {
