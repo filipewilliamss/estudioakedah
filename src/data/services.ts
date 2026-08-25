@@ -1,5 +1,5 @@
 import consultoriasImg from "@/assets/svc-social-media.jpg"; // Placeholder
-import socialMediaImg from "@/assets/svc-social-media.jpg";
+import socialMediaAsset from "@/assets/capa-gestao-redes-sociais.jpg.asset.json";
 import videosEmLoteImg from "@/assets/svc-videos-em-lote.jpg";
 import trafegoPagoImg from "@/assets/svc-trafego-pago.jpg";
 import cursosImg from "@/assets/svc-cursos.jpg";
