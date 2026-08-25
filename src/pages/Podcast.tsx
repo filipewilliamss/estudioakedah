@@ -134,6 +134,10 @@ const Podcast = () => {
             background-repeat: repeat;
             position: relative;
           }
+          .podcast-leather-texture > section {
+            position: relative;
+            z-index: 3;
+          }
         `}
       </style>
       <SEO
@@ -145,6 +149,8 @@ const Podcast = () => {
       <Navbar isPodcastPage={true} />
 
       <main className="podcast-leather-texture overflow-hidden">
+        <PodcastBackground />
+
         {/* HERO SECTION */}
         <section className="pt-40 pb-20 px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
