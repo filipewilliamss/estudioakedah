@@ -40,23 +40,16 @@ const ServiceShowcase = ({
     >
       {/* Background */}
       <div className="absolute inset-0 z-0">
-        {service.id === "social-media" ? (
-          <div className="w-full h-full opacity-40">
-            <SocialMediaCover />
-          </div>
-        ) : (
-          <motion.img
-            src={service.image}
-            alt={`${service.name} — Estúdio Akedah`}
-            loading="lazy"
-            width={1600}
-            height={900}
-            style={{ scale: bgScale }}
-            className="w-full h-full object-cover opacity-40"
-          />
-        )}
+        <motion.img
+          src={service.image}
+          alt={`${service.name} — Estúdio Akedah`}
+          loading="lazy"
+          width={1600}
+          height={900}
+          style={{ scale: bgScale }}
+          className="w-full h-full object-cover opacity-40"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-[#101010] via-[#101010]/80 to-transparent" />
-        
       </div>
 
       {/* Content */}
