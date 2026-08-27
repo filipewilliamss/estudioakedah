@@ -1,14 +1,28 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PodcastBackground from "@/components/PodcastBackground";
 
+const heroTitles = [
+  "ONDE A ESTRATÉGIA ENCONTRA A VOZ",
+  "HISTÓRIAS QUE TRANSFORMAM NEGÓCIOS",
+  "CONVERSAS REAIS COM GRANDES LÍDERES"
+];
 
 const Podcast = () => {
+  const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTitleIndex((prev) => (prev + 1) % heroTitles.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   const schema = {
@@ -154,26 +168,24 @@ const Podcast = () => {
         {/* HERO SECTION */}
         <section className="pt-40 pb-20 px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-            <motion.img 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              src="https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/9708035d-187a-4a8c-bdf4-3f7fce313c0b-Ativo_7.png" 
-              alt="Akedah Podcast" 
-              className="h-24 md:h-32 mb-8"
-            />
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-              className="podcast-title leading-[1.1] text-[clamp(32px,5vw,70px)] mb-8 max-w-5xl"
-            >
-              ONDE A ESTRATÉGIA <br /> ENCONTRA A VOZ
-            </motion.div>
+            <div className="relative min-h-[140px] sm:min-h-[180px] md:min-h-[220px] flex items-center justify-center overflow-hidden w-full max-w-5xl mb-8">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={currentTitleIndex}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  className="podcast-title leading-[1.08] text-[clamp(38px,6.8vw,88px)] font-bold text-center w-full"
+                >
+                  {heroTitles[currentTitleIndex]}
+                </motion.h1>
+              </AnimatePresence>
+            </div>
             <motion.p 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
               className="podcast-body-font text-xl md:text-2xl max-w-2xl mb-10 opacity-70 leading-relaxed"
             >
               Assista ao vivo, acompanhe os bastidores e confira a agenda dos próximos episódios. O podcast oficial do Estúdio Akedah.
@@ -181,7 +193,7 @@ const Podcast = () => {
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.8 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
               className="flex flex-wrap justify-center gap-4"
             >
               <a href="https://www.youtube.com/@EstudioAkedah" target="_blank" rel="noopener noreferrer" className="podcast-btn-or">
