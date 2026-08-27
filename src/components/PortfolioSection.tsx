@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { services, type AkedahService } from "@/data/services";
-import SocialMediaCover from "./SocialMediaCover";
 
 const PortfolioSection = () => {
   return (
