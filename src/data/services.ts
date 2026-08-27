@@ -2,7 +2,7 @@ import consultoriasImg from "@/assets/svc-social-media.jpg"; // Placeholder
 import socialMediaAsset from "@/assets/capa-gestao-redes-sociais.jpg.asset.json";
 import videosEmLoteImg from "@/assets/svc-videos-em-lote.jpg";
 import trafegoPagoImg from "@/assets/svc-trafego-pago.png";
-import cursosImg from "@/assets/svc-cursos.jpg";
+import cursosImg from "@/assets/svc-cursos.png";
 import infraImg from "@/assets/svc-videos-em-lote.jpg"; // Placeholder
 import sonoplastiaImg from "@/assets/svc-trafego-pago.png"; // Placeholder
 
