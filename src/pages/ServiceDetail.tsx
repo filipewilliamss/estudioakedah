@@ -23,8 +23,8 @@ const ServiceDetail = () => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: `${service.name} — Akedah`,
-    serviceType: service.name,
+    name: `${service.name.replace('\n', ' ')} — Akedah`,
+    serviceType: service.name.replace('\n', ' '),
     description: service.heroSubtitle,
     provider: {
       "@type": "Organization",
@@ -37,7 +37,7 @@ const ServiceDetail = () => {
   return (
     <div className="min-h-screen bg-[#070807]">
       <SEO
-        title={`${service.name} | Akedah`}
+        title={`${service.name.replace('\n', ' ')} | Akedah`}
         description={service.heroSubtitle}
         url={`https://akedah.com.br/servicos/${service.slug}`}
         schema={schema}

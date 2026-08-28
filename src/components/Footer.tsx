@@ -31,7 +31,7 @@ const Footer = () => {
                     to={`/servicos/${service.slug}`}
                     className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
                   >
-                    {service.name}
+                    {service.name.replace('\n', ' ')}
                   </Link>
                 </li>
               ))}

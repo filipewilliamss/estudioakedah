@@ -68,7 +68,7 @@ const ServiceShowcase = ({
           </div>
 
           <h3
-            className="font-display font-[900] text-white leading-[0.86] tracking-[-0.05em]"
+            className="font-display font-[900] text-white leading-[0.86] tracking-[-0.05em] whitespace-pre-line"
             style={{ fontSize: "clamp(40px, 7vw, 96px)" }}
           >
             {service.name}
