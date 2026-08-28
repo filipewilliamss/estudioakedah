@@ -17,6 +17,8 @@ import ProjectDetail from "./pages/ProjectDetail.tsx";
 import ServiceDetail from "./pages/ServiceDetail.tsx";
 import Podcast from "./pages/Podcast.tsx";
 import PodcastAbout from "./pages/PodcastAbout.tsx";
+import DanielSilva from "./pages/DanielSilva.tsx";
+import DanielSilvaAbout from "./pages/DanielSilvaAbout.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
 
@@ -40,6 +42,9 @@ const AnimatedRoutes = () => {
         <Route path="/podcast" element={<Podcast />} />
         <Route path="/podcast/sobre" element={<PodcastAbout />} />
         <Route path="/podcast/historia" element={<PodcastAbout />} />
+        <Route path="/daniel-silva" element={<DanielSilva />} />
+        <Route path="/daniel-silva/sobre" element={<DanielSilvaAbout />} />
+        <Route path="/daniel-silva/historia" element={<DanielSilvaAbout />} />
         <Route path="/projeto/:slug" element={<ProjectDetail />} />
         <Route path="/project/:slug" element={<ProjectDetail />} />
 
