@@ -164,76 +164,31 @@ p {
   font-size: clamp(64px, 12vw, 180px);
 }
 
-/* Refined Button — magnetic fill */
-.btn-premium {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  padding: 22px 44px;
-  border-radius: 15px; /* Slightly rounded corners as requested */
-  background: #C4550A;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  overflow: hidden;
-  isolation: isolate;
-  transition: color 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.btn-premium::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #0a0a0a;
-  transform: translateY(101%);
-  transition: transform 600ms cubic-bezier(0.65, 0, 0.35, 1);
-  z-index: -1;
-}
-
-.btn-premium:hover {
-  color: #F07A28;
-}
-
-.btn-premium:hover::before {
-  transform: translateY(0);
-}
-
-
+/* Refined Button — Orange with black hover and orange text */
+.btn-premium,
 .btn-premium-outline {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  padding: 22px 44px;
-  border-radius: 15px; /* Slightly rounded corners as requested */
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #fff;
+  padding: 18px 40px;
+  border-radius: 15px;
+  border: 1px solid #C4550A;
+  background-color: #C4550A;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   overflow: hidden;
-  isolation: isolate;
-  transition: color 500ms cubic-bezier(0.22, 1, 0.36, 1), border-color 500ms;
+  transition: all 300ms ease-in-out;
 }
 
-.btn-premium-outline::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #C4550A;
-  transform: translateY(101%);
-  transition: transform 600ms cubic-bezier(0.65, 0, 0.35, 1);
-  z-index: -1;
-}
-
+.btn-premium:hover,
 .btn-premium-outline:hover {
-  color: #ffffff;
+  background-color: #000000;
+  color: #C4550A;
   border-color: #C4550A;
 }
 

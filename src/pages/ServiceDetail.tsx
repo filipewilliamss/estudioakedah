@@ -88,7 +88,7 @@ const ServiceDetail = () => {
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-premium px-12">
                 Falar com um especialista
               </a>
-              <Link to="/#servicos" className="btn-premium-outline px-12">
+              <Link to="/#servicos" className="btn-premium px-12">
                 Ver todos os serviços
               </Link>
             </div>

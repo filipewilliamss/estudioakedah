@@ -88,10 +88,9 @@ const ServiceShowcase = ({
           <div className="mt-14 flex justify-start">
             <Link
               to={`/servicos/${service.slug}`}
-              className="group relative inline-flex items-center justify-center px-12 py-6 overflow-hidden border border-white/20 hover:border-[#C4550A] transition-all duration-700 rounded-[15px]"
+              className="group inline-flex items-center justify-center px-10 py-5 bg-[#C4550A] text-white border border-[#C4550A] hover:bg-black hover:text-[#C4550A] hover:border-[#C4550A] transition-all duration-300 rounded-[15px]"
             >
-              <div className="absolute inset-0 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] bg-[#C4550A]" />
-              <span className="relative z-10 text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold text-white">
+              <span className="text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold">
                 Ver serviço completo
               </span>
               <svg
@@ -99,7 +98,7 @@ const ServiceShowcase = ({
                 height="18"
                 viewBox="0 0 20 20"
                 fill="none"
-                className="relative z-10 ml-6 text-white translate-x-0 group-hover:translate-x-3 transition-transform duration-500"
+                className="ml-4 text-current translate-x-0 group-hover:translate-x-2 transition-transform duration-300"
                 aria-hidden
               >
                 <path

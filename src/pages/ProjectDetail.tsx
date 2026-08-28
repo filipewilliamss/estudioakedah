@@ -1089,10 +1089,9 @@ const ProjectDetail = () => {
             
             <Link 
               to={`/project/${nextProject.slug}`}
-              className={`pointer-events-auto group/btn relative inline-flex items-center justify-center px-16 py-8 overflow-hidden border transition-all duration-700 hover:border-[#C4550A] translate-y-[250px] ${isDarkNext ? "border-white/40" : "border-black/20"}`}
+              className="pointer-events-auto group/btn inline-flex items-center justify-center px-16 py-7 rounded-[15px] border border-[#C4550A] bg-[#C4550A] text-white hover:bg-black hover:text-[#C4550A] hover:border-[#C4550A] transition-all duration-300 translate-y-[250px]"
             >
-              <div className="absolute inset-0 bg-[#C4550A] translate-y-full group-hover/btn:translate-y-0 transition-transform duration-600 ease-[0.22,1,0.36,1]" />
-              <span className={`relative z-10 text-[12px] uppercase tracking-[0.4em] font-bold transition-colors duration-500 ${isDarkNext ? "text-white group-hover/btn:text-black" : "text-black"}`}>
+              <span className="text-[12px] uppercase tracking-[0.4em] font-bold">
                 Continuar Jornada
               </span>
             </Link>

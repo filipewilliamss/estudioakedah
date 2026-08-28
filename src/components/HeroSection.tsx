@@ -101,7 +101,7 @@ const HeroSection = () => {
             >
               FALE COM ESPECIALISTA
             </a>
-            <a href="#servicos" className="btn-premium-outline px-12">
+            <a href="#servicos" className="btn-premium px-12">
               Conheça nossas soluções
             </a>
           </div>

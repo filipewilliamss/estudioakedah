@@ -81,7 +81,8 @@ const Podcast = () => {
             border-radius: 6px;
           }
           .podcast-btn-or {
-            background: #E2650E;
+            background: #C4550A;
+            border: 1px solid #C4550A;
             color: #fff;
             display: inline-flex;
             align-items: center;
@@ -91,17 +92,19 @@ const Podcast = () => {
             letter-spacing: 0.1em;
             text-transform: uppercase;
             padding: 14px 30px;
-            border-radius: 100px;
-            transition: all 0.2s;
+            border-radius: 15px;
+            transition: all 0.3s;
           }
           .podcast-btn-or:hover {
-            background: #a84508;
+            background: #000000;
+            color: #C4550A;
+            border-color: #C4550A;
             transform: translateY(-2px);
           }
           .podcast-btn-ghost {
-            background: transparent;
-            color: #42362E;
-            border: 1px solid rgba(66, 54, 46, 0.28);
+            background: #C4550A;
+            border: 1px solid #C4550A;
+            color: #ffffff;
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -110,11 +113,13 @@ const Podcast = () => {
             letter-spacing: 0.1em;
             text-transform: uppercase;
             padding: 13px 29px;
-            border-radius: 100px;
-            transition: all 0.2s;
+            border-radius: 15px;
+            transition: all 0.3s;
           }
           .podcast-btn-ghost:hover {
-            background: rgba(66, 54, 46, 0.05);
+            background: #000000;
+            color: #C4550A;
+            border-color: #C4550A;
           }
           .podcast-sec-h2 {
             font-family: 'Montserrat', sans-serif;
