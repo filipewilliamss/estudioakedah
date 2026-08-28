@@ -21,7 +21,14 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#2D1A11] text-white selection:bg-[#C4550A] selection:text-white">
+    <div 
+      className="min-h-screen bg-[#2D1A11] text-white selection:bg-[#C4550A] selection:text-white relative"
+      style={{
+        backgroundColor: "#2D1A11",
+        backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
+        backgroundRepeat: "repeat",
+      }}
+    >
       <SEO
         title="Akedah Podcast | Assista ao Vivo e Calendário"
         description="Akedah Podcast: assista ao vivo, veja o calendário de entrevistas, confira as fotos dos episódios e acompanhe nas redes sociais."
