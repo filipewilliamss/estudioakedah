@@ -52,13 +52,13 @@ const ServiceShowcase = ({
       </div>
 
       {/* Content */}
-      <div className="container-editorial relative z-20 py-32 flex justify-start">
+      <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 py-32 flex justify-start">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl text-left flex flex-col items-start"
+          className="max-w-2xl text-left flex flex-col items-start"
         >
           <div className="flex items-center justify-start gap-4 mb-8">
             <span className="font-mono text-[10px] text-white/40 tracking-[0.3em]">{service.number}</span>
