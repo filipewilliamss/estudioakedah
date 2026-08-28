@@ -31,7 +31,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false }: NavbarProps) => {
   }, []);
 
   const bgClass = scrolled
-    ? (isPodcastPage ? "bg-[#2D1A11]/95 border-[#42362E]/20" : (forceBlack ? "bg-black/90 border-white/[0.05]" : "bg-white/90 border-black/[0.05]")) + " backdrop-blur-[20px] border-b py-4"
+    ? (isPodcastPage ? "bg-[#2D1A11]/85 border-[#42362E]/20" : (forceBlack ? "bg-black/70 border-white/[0.08]" : "bg-white/75 border-black/[0.05]")) + " backdrop-blur-[20px] border-b py-4"
     : (isPodcastPage ? "bg-[#2D1A11] py-6 md:py-8" : "bg-transparent py-6 md:py-8");
 
   const textClass = `link-magnetic ${forceBlack ? 'text-white/55' : 'text-black/55'} hover:text-[#C4550A] font-bold text-[11px] uppercase tracking-[0.28em] font-display transition-colors duration-500`;
