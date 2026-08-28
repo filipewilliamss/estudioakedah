@@ -76,7 +76,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false }: NavbarProps) => {
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-[80] transition-colors duration-500 ${bgClass}`}
     >
-      <div className="container-editorial flex items-center justify-between h-16 md:h-20">
+      <div className={`${isPodcastPage ? "w-full px-6 sm:px-10 md:px-14 lg:px-16 xl:px-20 2xl:px-24" : "container-editorial"} flex items-center justify-between h-16 md:h-20`}>
         <Link to="/" className="flex items-center gap-2 group flex-shrink-0" aria-label="Akedah — início">
           <img
             src={isPodcastPage ? "https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/9708035d-187a-4a8c-bdf4-3f7fce313c0b-Ativo_7.png" : akedahLogo}
