@@ -214,23 +214,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="container-editorial">
-          <div className="bg-[#C4550A] p-12 md:p-24 text-center">
-            <h2 className="font-display text-4xl md:text-7xl font-[900] leading-none mb-8">
-              PRONTO PARA ESCREVER O PRÓXIMO CAPÍTULO?
-            </h2>
-            <p className="text-white/80 text-lg mb-12 max-w-xl mx-auto">
-              Se sua empresa fatura acima de R$ 200k e você sente que a operação comercial está estagnada, vamos conversar.
-            </p>
-            <a 
-              href="/#contato" 
-              className="inline-block bg-black text-white px-12 py-5 font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-all"
-            >
-              Falar com estrategista
-            </a>
-          </div>
-        </section>
       </main>
       </div>
 
