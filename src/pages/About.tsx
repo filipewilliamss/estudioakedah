@@ -197,7 +197,19 @@ const About = () => {
           </motion.div>
         </section>
 
-        {/* 3. Nossa Linha do Tempo (No formato da seção ProcessSection / Método da Home) */}
+        {/* 3. Significado de Akedah */}
+        <section className="py-24 mb-20 border-t border-white/[0.05]">
+          <div className="container-editorial">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="font-display text-4xl md:text-6xl font-bold mb-8">O que significa <span className="text-[#C4550A]">Akedah</span>?</h2>
+              <p className="text-white/60 text-xl leading-relaxed italic">
+                "Akedah é um termo de origem hebraica que remete a entrega e compromisso absoluto. Para nós, representa o nível de dedicação que colocamos em cada estratégia comercial: não aceitamos nada menos que o resultado excepcional."
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Nossa Linha do Tempo (No formato da seção ProcessSection / Método da Home) */}
         <section id="linha-do-tempo" className="relative py-24 bg-transparent border-t border-white/[0.05] overflow-hidden mb-32">
           {/* Fundo monumental */}
           <motion.span
@@ -241,18 +253,6 @@ const About = () => {
                   <TimelineStep key={idx} step={step} idx={idx} />
                 ))}
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. Significado de Akedah */}
-        <section className="py-24 mb-32">
-          <div className="container-editorial">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-display text-4xl md:text-6xl font-bold mb-8">O que significa <span className="text-[#C4550A]">Akedah</span>?</h2>
-              <p className="text-white/60 text-xl leading-relaxed italic">
-                "Akedah é um termo de origem hebraica que remete a entrega e compromisso absoluto. Para nós, representa o nível de dedicação que colocamos em cada estratégia comercial: não aceitamos nada menos que o resultado excepcional."
-              </p>
             </div>
           </div>
         </section>
