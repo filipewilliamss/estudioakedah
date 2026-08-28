@@ -16,8 +16,8 @@ const timelineSteps = [
   },
   {
     number: "02",
-    title: "Desenvolvimento do Método",
-    description: "Criação de processos proprietários focados em diagnóstico, posicionamento claro e tração comercial previsível.",
+    title: "Metodologia Proprietária",
+    description: "Criação de processos estruturados focados em diagnóstico, posicionamento claro e tração comercial previsível.",
   },
   {
     number: "03",
