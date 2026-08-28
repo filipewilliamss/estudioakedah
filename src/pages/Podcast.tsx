@@ -37,7 +37,7 @@ const Podcast = () => {
         style={{
           backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
           backgroundRepeat: "repeat",
-          backgroundSize: "260px 260px",
+          backgroundSize: "340px 340px",
           filter: "contrast(320%) brightness(160%)",
         }}
       />
@@ -48,7 +48,7 @@ const Podcast = () => {
         style={{
           backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
           backgroundRepeat: "repeat",
-          backgroundSize: "260px 260px",
+          backgroundSize: "340px 340px",
           filter: "invert(1) contrast(350%) brightness(120%)",
         }}
       />
