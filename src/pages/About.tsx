@@ -4,6 +4,33 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import ParticleBackground from "@/components/ParticleBackground";
 import founderPicture from "@/assets/akedah-founder.jpg";
+import studioImg from "@/assets/akedah-podcast-studio.jpg";
+import infraImg from "@/assets/svc-infraestrutura.jpg";
+import consultoriaImg from "@/assets/svc-consultorias.jpg";
+
+const structureItems = [
+  {
+    title: "Estúdio de Podcast & Gravações",
+    tag: "Captação 4K",
+    description: "Ambiente tratado acusticamente com setup multicâmera 4K, iluminação cinematográfica e microfones broadcast de alta definição.",
+    image: studioImg,
+    features: ["4 Câmeras 4K", "Microfones Shure", "Cenografia Modular"],
+  },
+  {
+    title: "Central de Produção & Edição",
+    tag: "Pós-Produção",
+    description: "Ilhas de edição com monitores calibrados para color grading, cortes verticais dinâmicos (Reels/Shorts) e finalização em tempo recorde.",
+    image: infraImg,
+    features: ["Color Grading", "Cortes Dinâmicos", "Entrega Rápida"],
+  },
+  {
+    title: "Sala de Reuniões & Estratégia",
+    tag: "Consultoria",
+    description: "Espaço privativo com conforto executivo para imersões comerciais, alinhamento de estratégias, auditoria de marketing e mentorias.",
+    image: consultoriaImg,
+    features: ["Privacidade Total", "Métricas em Tempo Real", "Conforto VIP"],
+  },
+];
 
 const About = () => {
   return (
@@ -28,9 +55,9 @@ const About = () => {
             <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-6 block">
               Nossa História
             </span>
-            <h1 className="font-display text-[54px] md:text-[92px] font-[900] leading-[0.9] tracking-[-0.05em] mb-8">
-              Onde a estratégia <br />
-              <span className="text-[#C4550A] italic font-normal">encontra a execução.</span>
+            <h1 className="font-display text-[44px] sm:text-[64px] md:text-[84px] font-[900] leading-[0.92] tracking-[-0.05em] mb-8">
+              <span className="block">Onde a estratégia</span>
+              <span className="text-[#C4550A] italic font-normal block">encontra a execução.</span>
             </h1>
             <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl">
               A Akedah não nasceu de um plano de negócios de prateleira. Nasceu do campo de batalha comercial, resolvendo problemas reais de empresas que faturavam muito, mas cresciam pouco.
@@ -116,6 +143,73 @@ const About = () => {
                 <h3 className="font-display text-xl font-bold mb-3">{step.title}</h3>
                 <p className="text-white/50 text-sm leading-relaxed">{step.desc}</p>
               </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Studio Structure Section */}
+        <section className="container-editorial mb-32">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
+                Infraestrutura
+              </span>
+              <h2 className="font-display text-4xl md:text-6xl font-bold tracking-tight">
+                Estrutura do Estúdio
+              </h2>
+            </div>
+            <p className="text-white/60 text-base md:text-lg max-w-md leading-relaxed">
+              Equipamentos de última geração, isolamento acústico profissional e ambientes planejados para transformar suas gravações em autoridade imediata.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {structureItems.map((item, idx) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.15 }}
+                className="group relative bg-[#181818] border border-white/10 hover:border-[#C4550A]/50 transition-all duration-500 overflow-hidden flex flex-col"
+              >
+                {/* Image */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#181818] via-transparent to-transparent" />
+                  <span className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 text-[#C4550A] text-[10px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full">
+                    {item.tag}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="p-8 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-[#C4550A] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-white/60 text-sm leading-relaxed mb-6">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Highlights */}
+                  <div className="pt-6 border-t border-white/5 flex flex-wrap gap-2">
+                    {item.features.map((feat) => (
+                      <span
+                        key={feat}
+                        className="text-[11px] font-mono text-white/40 bg-white/5 px-2.5 py-1 rounded"
+                      >
+                        {feat}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
         </section>
