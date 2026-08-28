@@ -3,7 +3,7 @@ import socialMediaAsset from "@/assets/capa-gestao-redes-sociais.jpg.asset.json"
 import videosEmLoteImg from "@/assets/svc-videos-em-lote.png";
 import trafegoPagoImg from "@/assets/svc-trafego-pago.png";
 import cursosImg from "@/assets/svc-cursos.png";
-import infraImg from "@/assets/svc-videos-em-lote.jpg"; // Placeholder
+import infraImg from "@/assets/svc-infraestrutura.jpg";
 import sonoplastiaImg from "@/assets/svc-sonoplastia.jpg";
 
 export interface ServiceBlockItem {
