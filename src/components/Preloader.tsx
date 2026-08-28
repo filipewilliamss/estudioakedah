@@ -1,14 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
-const fullSymbolPath = "M665.95,471.38l-240.33-138.75v33.11l225.99,130.48c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16l-64.91,37.48,36.43,12.1,42.82-24.72c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03ZM885.89,466.6l-389.84-225.08c-28.59-16.52-63.18-14.46-89.53,4.9l-9.44,8.03c-13.03,12.96-21.25,29.88-23.45,48.15l-22.09-12.77-75.42-43.53c-28.59-16.52-63.18-14.46-89.53,4.9l-9.44,8.03c-15.37,15.28-24.05,36.07-24.05,58.09v450.15c0,28.09,14.1,53.88,37.72,69.02,12.65,8.13,27.18,12.62,42.07,13.05.77.02,1.53.05,2.32.05,9.51,0,18.86-1.67,27.85-4.97l2.63-.98.1-.1c3.51-1.41,6.98-3.11,10.33-5.04l77.6-44.8c-2.96-9.73-4.54-19.99-4.59-30.5l-87.38,50.47c-2.77,1.6-5.64,2.94-8.51,3.99l-1,.36c-5.98,2.08-12.19,3.06-18.53,2.87-9.68-.29-19.15-3.23-27.42-8.53-15.56-9.97-24.5-26.32-24.5-44.87v-450.15c0-14.42,5.4-27.54,15.3-37.48l4.4-3.92c17.38-14.06,40.95-15.95,60.29-4.78l87.35,50.44,23.91,13.79v427.32c0,6.36.72,12.6,2.13,18.62,4.76,20.61,17.33,38.68,35.6,50.39,12.65,8.13,27.18,12.62,42.07,13.05.77.02,1.53.05,2.32.05,9.51,0,18.86-1.67,27.85-4.97l2.63-.98.1-.1c3.51-1.41,6.98-3.11,10.33-5.04l183.89-106.17,77.55-44.78,128.4-74.13c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03ZM871.54,583.79l-150.49,86.9-77.55,44.78-161.82,93.43c-2.77,1.6-5.64,2.94-8.51,3.99l-1,.36c-5.98,2.08-12.19,3.06-18.53,2.87-9.68-.29-19.15-3.23-27.42-8.53-14.65-9.4-23.43-24.43-24.41-41.64l23.81-13.75,119.96-69.26,77.55-44.78,42.82-24.72c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03l-240.33-138.75v33.11l225.99,130.48c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16l-64.91,37.48-77.55,44.78-83.53,48.22-23.91,13.79v-420.3c0-14.42,5.4-27.54,15.3-37.48l4.4-3.92c17.38-14.06,40.95-15.95,60.29-4.78l389.84,225.08c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16Z";
+// 1. Triângulo da Esquerda (Faixa Externa)
+const leftChevronPath = "M276.11,246.31c-28.59-16.52-63.18-14.46-89.53,4.9l-9.44,8.03c-15.37,15.28-24.05,36.07-24.05,58.09v450.15c0,28.09,14.1,53.88,37.72,69.02,12.65,8.13,27.18,12.62,42.07,13.05.77.02,1.53.05,2.32.05,9.51,0,18.86-1.67,27.85-4.97l2.63-.98.1-.1c3.51-1.41,6.98-3.11,10.33-5.04l77.6-44.8c-2.96-9.73-4.54-19.99-4.59-30.5l-87.38,50.47c-2.77,1.6-5.64,2.94-8.51,3.99l-1,.36c-5.98,2.08-12.19,3.06-18.53,2.87-9.68-.29-19.15-3.23-27.42-8.53-15.56-9.97-24.5-26.32-24.5-44.87v-450.15c0-14.42,5.4-27.54,15.3-37.48l4.4-3.92c17.38-14.06,40.95-15.95,60.29-4.78l87.35,50.44,23.91,13.79.6-32.78-22.09-12.77-75.42-43.53Z";
+
+// 2. Triângulo da Direita (Faixa Intermediária)
+const rightChevronPath = "M885.89,466.6l-389.84-225.08c-28.59-16.52-63.18-14.46-89.53,4.9l-9.44,8.03c-13.03,12.96-21.25,29.88-23.45,48.15l-.6,32.78v427.32c0,6.36.72,12.6,2.13,18.62,4.76,20.61,17.33,38.68,35.6,50.39,12.65,8.13,27.18,12.62,42.07,13.05.77.02,1.53.05,2.32.05,9.51,0,18.86-1.67,27.85-4.97l2.63-.98.1-.1c3.51-1.41,6.98-3.11,10.33-5.04l183.89-106.17,77.55-44.78,128.4-74.13c25.68-14.82,41.02-41.38,41.02-71.03s-15.35-56.2-41.02-71.03ZM871.54,583.79l-150.49,86.9-77.55,44.78-161.82,93.43c-2.77,1.6-5.64,2.94-8.51,3.99l-1,.36c-5.98,2.08-12.19,3.06-18.53,2.87-9.68-.29-19.15-3.23-27.42-8.53-14.65-9.4-23.43-24.43-24.41-41.64l-.1-33.09v-420.3c0-14.42,5.4-27.54,15.3-37.48l4.4-3.92c17.38-14.06,40.95-15.95,60.29-4.78l389.84,225.08c16.71,9.66,26.68,26.92,26.68,46.19s-9.97,36.53-26.68,46.16Z";
+
+// 3. Triângulo Central (Play Preenchido no Centro)
+const centerTrianglePath = "M559.97,533.21l-20.8-12-.96-.55-15.59-9.01-10.59-6.12-10.45-6.02-18.72-10.81c-5.24-3.01-11.24-2.06-15.3,1.34h-.02c-2.84,2.41-4.76,6-4.76,10.26v89.03c0,4.9,2.53,8.94,6.17,11.26,2.03,1.29,4.4,2.06,6.86,2.13,1.63.05,3.28-.19,4.9-.79l.02-.02c.72-.26,1.43-.57,2.13-.98l10.28-5.93.53-.31,4.42-2.56,17.07-9.85,6.26-3.61.81-.48.19-.12,24.6-14.2.26-.17,3.13-1.79.5-.29,9.04-5.21c4.45-2.58,6.69-7.1,6.69-11.59s-2.25-9.04-6.69-11.59Z";
+
+// Linha guia central (espinha dorsal contínua) que percorre toda a forma
+const singleFlowSpine = "M 215,310 L 215,750 Q 215,790 250,775 L 430,670 L 465,750 Q 465,790 495,775 L 855,555 Q 880,540 855,525 L 495,305 Q 465,288 465,330 L 465,730 L 530,540";
 
 const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoWrapperRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const progressPercentRef = useRef<HTMLSpanElement>(null);
-  const fillPathRef = useRef<SVGPathElement>(null);
+  const fillGroupRef = useRef<SVGGElement>(null);
   const [blocks, setBlocks] = useState<number[]>([]);
 
   useEffect(() => {
@@ -21,11 +31,8 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
-
-      // Progress counter object
       const progress = { value: 0 };
 
-      // Animate progress 0 -> 100%
       tl.to(progress, {
         value: 100,
         duration: 2.4,
@@ -38,31 +45,28 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
           if (progressBarRef.current) {
             progressBarRef.current.style.width = `${current}%`;
           }
-          if (fillPathRef.current) {
-            fillPathRef.current.style.opacity = `${0.15 + (current / 100) * 0.85}`;
+          if (fillGroupRef.current) {
+            fillGroupRef.current.style.opacity = `${0.2 + (current / 100) * 0.8}`;
           }
         }
       }, 0);
 
-      // Subtle pulse during load
       tl.to(logoWrapperRef.current, {
-        scale: 1.04,
+        scale: 1.03,
         duration: 1.2,
         repeat: 1,
         yoyo: true,
         ease: "sine.inOut"
       }, 0.2);
 
-      // Reveal / Glow flash at 100%
       tl.to(logoWrapperRef.current, {
-        scale: 1.1,
+        scale: 1.08,
         opacity: 0,
-        filter: "brightness(1.5)",
+        filter: "brightness(1.4)",
         duration: 0.5,
         ease: "power3.in"
       }, "+=0.1");
 
-      // Columns slide up revealing website
       tl.to(".preloader-block", {
         y: "-100%",
         duration: 0.9,
@@ -84,7 +88,6 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       ref={containerRef} 
       className="fixed inset-0 z-[10000] flex flex-col items-center justify-center bg-[#101010] overflow-hidden select-none"
     >
-      {/* Background slide-out curtain columns */}
       <div className="absolute inset-0 flex pointer-events-none">
         {blocks.map((i) => (
           <div 
@@ -94,64 +97,70 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         ))}
       </div>
 
-      {/* Main Logo and Loading Beam */}
       <div 
         ref={logoWrapperRef} 
         className="relative z-10 flex flex-col items-center justify-center px-6"
       >
-        <div className="relative w-48 h-48 sm:w-60 sm:h-60 md:w-72 md:h-72 flex items-center justify-center">
+        <div className="relative w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 flex items-center justify-center">
           <svg 
-            viewBox="0 0 1080 1080" 
+            viewBox="120 180 840 720" 
             className="w-full h-full overflow-visible"
           >
             <defs>
-              {/* Neon Glow Filter */}
-              <filter id="logoGlow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="8" result="blur" />
+              <mask id="symbolSolidMask">
+                <rect x="0" y="0" width="1080" height="1080" fill="#000" />
+                <path d={leftChevronPath} fill="#fff" />
+                <path d={rightChevronPath} fill="#fff" />
+                <path d={centerTrianglePath} fill="#fff" />
+              </mask>
+
+              <filter id="neonBeamGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="10" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
+
+              <linearGradient id="beamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#C4550A" stopOpacity="0.2" />
+                <stop offset="50%" stopColor="#FF7A28" stopOpacity="1" />
+                <stop offset="100%" stopColor="#FFE0B2" stopOpacity="1" />
+              </linearGradient>
             </defs>
 
-            {/* Base Dimmed Logo */}
-            <path 
-              ref={fillPathRef}
-              d={fullSymbolPath} 
-              fill="#C4550A" 
-              className="transition-opacity duration-300"
-              style={{ opacity: 0.2 }}
-            />
+            <g ref={fillGroupRef} fill="#C4550A" style={{ opacity: 0.2 }} className="transition-opacity duration-300">
+              <path d={leftChevronPath} />
+              <path d={rightChevronPath} />
+              <path d={centerTrianglePath} />
+            </g>
 
-            {/* Outer Subtle Stroke Silhouette */}
-            <path 
-              d={fullSymbolPath} 
-              fill="none" 
-              stroke="#C4550A" 
-              strokeWidth="4" 
-              strokeOpacity="0.3"
-            />
+            <g mask="url(#symbolSolidMask)">
+              <path
+                d={singleFlowSpine}
+                fill="none"
+                stroke="url(#beamGradient)"
+                strokeWidth="110"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                filter="url(#neonBeamGlow)"
+                className="animate-single-beam"
+                style={{
+                  strokeDasharray: "750 2400",
+                }}
+              />
+            </g>
 
-            {/* Laser Stroke Beam Cycling Around the Logo (Without Rotating the Logo) */}
             <path 
-              d={fullSymbolPath} 
-              fill="none" 
-              stroke="#FF7A28" 
-              strokeWidth="10" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              filter="url(#logoGlow)"
-              className="animate-logo-trace"
-              style={{
-                strokeDasharray: "280 850",
-              }}
+              d={centerTrianglePath} 
+              fill="#E2650E" 
+              className="animate-pulse"
+              style={{ opacity: 0.75 }}
             />
           </svg>
         </div>
 
-        {/* Brand & Loading Percentage Counter */}
         <div className="mt-8 flex flex-col items-center gap-2">
           <span 
             ref={progressPercentRef}
@@ -165,7 +174,6 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         </div>
       </div>
 
-      {/* Bottom Progress Bar */}
       <div className="absolute bottom-0 left-0 w-full h-[2px] bg-white/5 z-20 overflow-hidden">
         <div 
           ref={progressBarRef}
@@ -173,22 +181,21 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         />
       </div>
 
-      {/* Inline Keyframes for continuous SVG path tracing */}
       <style>{`
-        @keyframes traceLogoPath {
+        @keyframes singleBeamTravel {
           0% {
-            stroke-dashoffset: 0;
+            stroke-dashoffset: 3150;
           }
           100% {
-            stroke-dashoffset: -1130;
+            stroke-dashoffset: 0;
           }
         }
-        .animate-logo-trace {
-          animation: traceLogoPath 2s linear infinite;
+        .animate-single-beam {
+          animation: singleBeamTravel 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
       `}</style>
     </div>
   );
 };
 
-export default Preloader;
+export default Preloader;
