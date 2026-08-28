@@ -46,22 +46,22 @@ const ServiceShowcase = ({
           width={1600}
           height={900}
           style={{ scale: bgScale }}
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#101010] via-[#101010]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#101010] via-[#101010]/85 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="container-editorial relative z-20 py-32 flex justify-center">
+      <div className="container-editorial relative z-20 py-32 flex justify-start">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl text-center flex flex-col items-center"
+          className="max-w-3xl text-left flex flex-col items-start"
         >
-          <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="font-mono text-[10px] text-white/30 tracking-[0.3em]">{service.number}</span>
+          <div className="flex items-center justify-start gap-4 mb-8">
+            <span className="font-mono text-[10px] text-white/40 tracking-[0.3em]">{service.number}</span>
             <span className="text-[#C4550A] text-[10px] md:text-[12px] uppercase tracking-[0.5em] font-bold">
               Serviço Akedah
             </span>
@@ -74,18 +74,18 @@ const ServiceShowcase = ({
             {service.name}
           </h3>
 
-          <p className="mt-8 text-white/55 text-[16px] md:text-[19px] leading-[1.6] max-w-xl">{service.tagline}</p>
+          <p className="mt-8 text-white/70 text-[16px] md:text-[19px] leading-[1.6] max-w-xl text-left">{service.tagline}</p>
 
-          <ul className="mt-10 flex flex-col items-center gap-3">
+          <ul className="mt-10 flex flex-col items-start gap-3">
             {service.highlights.slice(0, 4).map((item) => (
-              <li key={item} className="flex items-center gap-4 text-center">
+              <li key={item} className="flex items-center gap-4 text-left">
                 <span className="w-1.5 h-1.5 flex-shrink-0 bg-[#C4550A]" />
-                <span className="text-white/45 text-[14px] leading-relaxed">{item}</span>
+                <span className="text-white/60 text-[14px] leading-relaxed">{item}</span>
               </li>
             ))}
           </ul>
 
-          <div className="mt-14">
+          <div className="mt-14 flex justify-start">
             <Link
               to={`/servicos/${service.slug}`}
               className="group relative inline-flex items-center justify-center px-12 py-6 overflow-hidden border border-white/20 hover:border-[#C4550A] transition-all duration-700 rounded-[15px]"
