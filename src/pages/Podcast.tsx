@@ -21,14 +21,7 @@ const Podcast = () => {
   };
 
   return (
-    <div 
-      className="min-h-screen bg-[#2D1A11] text-white selection:bg-[#C4550A] selection:text-white relative"
-      style={{
-        backgroundColor: "#2D1A11",
-        backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
-        backgroundRepeat: "repeat",
-      }}
-    >
+    <div className="min-h-screen bg-[#2D1A11] text-white selection:bg-[#C4550A] selection:text-white relative">
       <SEO
         title="Akedah Podcast | Assista ao Vivo e Calendário"
         description="Akedah Podcast: assista ao vivo, veja o calendário de entrevistas, confira as fotos dos episódios e acompanhe nas redes sociais."
@@ -37,7 +30,30 @@ const Podcast = () => {
       />
       <Navbar isPodcastPage={true} />
 
-      <main className="overflow-hidden">
+      {/* Camada de Textura de Couro em Alto Relevo e Alta Visibilidade */}
+      <div 
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 opacity-60 mix-blend-overlay"
+        style={{
+          backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "260px 260px",
+          filter: "contrast(320%) brightness(160%)",
+        }}
+      />
+      {/* Camada de relevo e poros do couro */}
+      <div 
+        aria-hidden="true"
+        className="fixed inset-0 pointer-events-none z-0 opacity-35 mix-blend-color-dodge"
+        style={{
+          backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "260px 260px",
+          filter: "invert(1) contrast(350%) brightness(120%)",
+        }}
+      />
+
+      <main className="relative z-10 overflow-hidden">
         {/* 1. HERO SECTION (Mesmo sistema de card em tela inteira da página Nossa História) */}
         <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16">
           {/* Background Image com Gradientes Marrons */}
