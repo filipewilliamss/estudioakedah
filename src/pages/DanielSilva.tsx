@@ -1,12 +1,33 @@
-﻿import { useEffect } from "react";
-import { motion } from "framer-motion";
+﻿import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import { WHATSAPP_URL } from "@/data/services";
 
+// Agenda de Apresentações (Palestras, Convenções, Workshops, Mentorias presenciais)
+const agendaApresentacoes = [
+  { data: "18/08", hora: "19h30", tipo: "Palestra Magna", evento: "Convenção de Vendas B2B", local: "São Paulo, SP" },
+  { data: "25/08", hora: "14h00", tipo: "Mentoria Presencial", evento: "Imersão Escala Executiva", local: "Alphaville, SP" },
+  { data: "03/09", hora: "20h00", tipo: "Keynote Speaker", evento: "Fórum de Liderança e Negócios", local: "Belo Horizonte, MG" },
+  { data: "12/09", hora: "19h00", tipo: "Workshop Fechado", evento: "Alinhamento de Funil e Fechamento", local: "Curitiba, PR" },
+  { data: "22/09", hora: "20h30", tipo: "Encontro com Líderes", evento: "Painel Fé & Negócios de Impacto", local: "Rio de Janeiro, RJ" },
+];
+
+// Agenda de Postagens (Masterclasses YouTube, Reels/Instagram, Artigos LinkedIn, Podcasts)
+const agendaPostagens = [
+  { data: "Segunda-feira", hora: "12h00", canal: "YouTube", formato: "Masterclass de Estratégia Comercial", tema: "Como fechar contratos de alto ticket sem desconto" },
+  { data: "Terça-feira", hora: "08h30", canal: "Instagram", formato: "Reels & Carrossel", tema: "5 erros que estão matando sua conversão em vendas" },
+  { data: "Quarta-feira", hora: "19h00", canal: "Spotify & YouTube", formato: "Akedah Podcast", tema: "Episódio inédito com grande líder do mercado" },
+  { data: "Quinta-feira", hora: "11h00", canal: "LinkedIn", formato: "Artigo Executivo", tema: "Por que marketing sem processo comercial é prejuízo" },
+  { data: "Sexta-feira", hora: "18h00", canal: "Instagram & TikTok", formato: "Bastidores & Reflexões", tema: "Princípios de liderança e disciplina na prática" },
+  { data: "Domingo", hora: "20h00", canal: "Instagram / YouTube", formato: "Palavra & Reflexão", tema: "Fé, propósito e consistência inegociável" },
+];
+
 const DanielSilva = () => {
+  const [activeTab, setActiveTab] = useState<"apresentacao" | "postagens">("apresentacao");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,36 +36,34 @@ const DanielSilva = () => {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Daniel Silva",
-    jobTitle: "Estrategista de Negócios e Fundador",
-    description: "Mentoria, palestras, posicionamento de autoridade e estratégias comerciais de alto impacto com Daniel Silva.",
+    jobTitle: "Estrategista de Negócios, Mentor e Palestrante",
+    description: "Empreendedorismo, fé, música e aceleração comercial com Daniel Silva.",
     url: "https://estudioakedah.com/daniel-silva",
   };
 
   return (
     <div className="min-h-screen bg-[#07132B] text-white selection:bg-white selection:text-[#07132B] relative">
       <SEO
-        title="Daniel Silva | Estratégia, Mentoria & Negócios"
-        description="Estratégias comerciais, posicionamento executivo e palestras com Daniel Silva. Conheça a agenda, projetos e parcerias."
+        title="Daniel Silva | Empreendedorismo, Fé, Música & Agenda"
+        description="Site oficial de Daniel Silva: palestras, agenda de apresentações e postagens, empreendedorismo, fé, música e contato direto."
         url="https://estudioakedah.com/daniel-silva"
         schema={schema}
       />
       <Navbar isDanielSilvaPage={true} />
 
       <main className="relative z-10 overflow-hidden">
-        {/* 1. HERO SECTION (Mesmo sistema de card em tela inteira, cores Azul Marinho e Branco) */}
+        {/* 1. HERO SECTION */}
         <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16">
-          {/* Background Image com Gradientes em Azul Marinho */}
           <div className="absolute inset-0 z-0">
             <img 
               src={founderPicture} 
               alt="Daniel Silva" 
-              className="w-full h-full object-cover opacity-60 filter grayscale contrast-125"
+              className="w-full h-full object-cover opacity-55 filter grayscale contrast-125"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/85 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#07132B]/50" />
           </div>
 
-          {/* Conteúdo posicionado à esquerda */}
           <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -53,8 +72,8 @@ const DanielSilva = () => {
               className="max-w-3xl text-left flex flex-col items-start"
             >
               <div className="flex items-center justify-start gap-4 mb-6">
-                <span className="text-white/80 border border-white/20 px-3 py-1 rounded-full text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold">
-                  Mentoria & Estratégia Comercial
+                <span className="text-white/80 border border-white/20 px-3.5 py-1 rounded-full text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold">
+                  Empreendedorismo • Fé • Música
                 </span>
               </div>
 
@@ -64,198 +83,267 @@ const DanielSilva = () => {
               </h1>
 
               <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10">
-                Aceleração de receitas, estruturação de times comerciais de alta performance e posicionamento executivo para líderes que exigem escala real.
+                Estrategista de negócios, mentor executivo e líder visionário. Conectando princípios sólidos de fé, visão empreendedora e sensibilidade artística para transformar vidas e empresas.
               </p>
 
               <div className="flex flex-wrap gap-4 items-center">
                 <a
+                  href="#agenda"
+                  className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[15px] transition-all duration-300 shadow-xl"
+                >
+                  Conferir Agendas
+                </a>
+                <a 
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[15px] transition-all duration-300 shadow-xl"
-                >
-                  Agendar Mentoria
-                </a>
-                <a 
-                  href="#calendario" 
                   className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[15px] transition-all duration-300"
                 >
-                  Ver Agenda
+                  Falar no WhatsApp
                 </a>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* 2. BANNERS SECTION */}
-        <section className="py-20 px-6 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a
-              href="#calendario"
-              className="group bg-[#0B1B3D]/80 hover:bg-[#0F2452] border border-white/10 hover:border-white/40 rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left shadow-lg"
-            >
-              <span className="text-white/60 text-xs font-mono uppercase tracking-[0.25em] mb-4">Agenda Executiva</span>
-              <h3 className="font-display text-2xl font-bold mb-6 text-white group-hover:text-white transition-colors">
-                Palestras, workshops e imersões presenciais.
-              </h3>
-              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto">
-                VER DATAS DISPONÍVEIS →
+        {/* 2. AGENDA DUPLA (Apresentação & Postagens) */}
+        <section id="agenda" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+            <div>
+              <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] mb-3 block">
+                Cronograma Oficial
               </span>
-            </a>
-
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white hover:bg-white/90 border border-white rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left text-[#07132B] shadow-2xl"
-            >
-              <span className="text-[#07132B]/70 text-xs font-mono uppercase tracking-[0.25em] mb-4">Mentoria Individual</span>
-              <h3 className="font-display text-2xl font-bold mb-6 text-[#07132B]">
-                Acompanhamento direto para empresários e CEOs.
-              </h3>
-              <span className="font-mono text-xs text-[#07132B]/90 font-bold flex items-center gap-2 mt-auto">
-                APLICAR PARA VAGA →
-              </span>
-            </a>
-
-            <a
-              href="https://www.instagram.com/estudioakedah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-[#0B1B3D]/80 hover:bg-[#0F2452] border border-white/10 hover:border-white/40 rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left shadow-lg"
-            >
-              <span className="text-white/60 text-xs font-mono uppercase tracking-[0.25em] mb-4">Artigos & Conteúdo</span>
-              <h3 className="font-display text-2xl font-bold mb-6 text-white group-hover:text-white transition-colors">
-                Análises de mercado e lições diárias de gestão.
-              </h3>
-              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto">
-                ACOMPANHAR NO INSTAGRAM →
-              </span>
-            </a>
-          </div>
-        </section>
-
-        {/* 3. PLAYER / TRANSMISSÕES & VÍDEOS */}
-        <section id="player" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
-            <div className="lg:w-1/3">
-              <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
-                Conteúdos & Aulas
-              </span>
-              <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
-                Assista aos conteúdos exclusivos de <span className="text-white/80 italic font-normal">Daniel Silva.</span>
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-white">
+                Agendas de <span className="text-white/80 italic font-normal">Daniel Silva</span>
               </h2>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8">
-                Masterclasses, análises de processos comerciais e bastidores da condução de grandes contas.
-              </p>
-              <a
-                href="https://www.youtube.com/@EstudioAkedah"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-[12px] transition-all"
+            </div>
+
+            {/* Alternador entre as Duas Agendas */}
+            <div className="flex items-center p-1.5 bg-[#0B1B3D] border border-white/15 rounded-[16px]">
+              <button
+                onClick={() => setActiveTab("apresentacao")}
+                className={`px-6 py-2.5 rounded-[12px] font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                  activeTab === "apresentacao"
+                    ? "bg-white text-[#07132B] shadow-lg"
+                    : "text-white/60 hover:text-white"
+                }`}
               >
-                Inscrever-se no Canal
-              </a>
+                Agenda de Apresentação
+              </button>
+              <button
+                onClick={() => setActiveTab("postagens")}
+                className={`px-6 py-2.5 rounded-[12px] font-mono text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+                  activeTab === "postagens"
+                    ? "bg-white text-[#07132B] shadow-lg"
+                    : "text-white/60 hover:text-white"
+                }`}
+              >
+                Agenda de Postagens
+              </button>
             </div>
-            <div className="lg:w-2/3 w-full aspect-video rounded-[24px] overflow-hidden shadow-2xl bg-black border border-white/10">
-              <iframe 
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/videoseries?list=PL_J8x7L_Lp0C_U7A0YyYV0QGZ4I8iN7x5" 
-                title="Daniel Silva"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+          </div>
+
+          {/* Conteúdo da Agenda de Apresentação */}
+          {activeTab === "apresentacao" && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4"
+            >
+              <p className="text-white/60 text-sm font-mono mb-6">
+                Palestras magnas, keynotes corporativos, conferências e imersões presenciais confirmadas.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {agendaApresentacoes.map((item, idx) => (
+                  <div key={idx} className="bg-[#0B1B3D]/80 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all duration-300 flex flex-col justify-between min-h-[220px]">
+                    <div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="font-display text-white font-bold text-3xl">{item.data}</span>
+                        <span className="font-mono text-xs text-white/70 bg-white/10 px-3 py-1 rounded-full">{item.hora}</span>
+                      </div>
+                      <span className="text-white/50 text-[10px] font-mono uppercase tracking-widest block mb-1">{item.tipo}</span>
+                      <h3 className="font-display text-xl font-bold text-white mb-2">{item.evento}</h3>
+                    </div>
+                    <div className="pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-white/60">
+                      <span>📍 {item.local}</span>
+                      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-white hover:underline font-bold">
+                        CONTRATAR →
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Conteúdo da Agenda de Postagens */}
+          {activeTab === "postagens" && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-4"
+            >
+              <p className="text-white/60 text-sm font-mono mb-6">
+                Grade semanal de publicações em redes sociais, podcasts, artigos e masterclasses em vídeo.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {agendaPostagens.map((item, idx) => (
+                  <div key={idx} className="bg-[#0B1B3D]/80 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all duration-300 flex flex-col justify-between min-h-[220px]">
+                    <div>
+                      <div className="flex justify-between items-center mb-4">
+                        <span className="font-display text-white font-bold text-xl">{item.data}</span>
+                        <span className="font-mono text-xs text-[#07132B] font-bold bg-white px-3 py-1 rounded-full">{item.hora}</span>
+                      </div>
+                      <span className="text-white/50 text-[10px] font-mono uppercase tracking-widest block mb-1">
+                        {item.canal} • {item.formato}
+                      </span>
+                      <h3 className="font-display text-lg font-bold text-white mb-2">{item.tema}</h3>
+                    </div>
+                    <div className="pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-white/60">
+                      <span>🔔 Não perca</span>
+                      <span className="text-white font-bold">AO VIVO / NOVO</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </section>
+
+        {/* 3. EMPREENDEDORISMO SECTION */}
+        <section id="empreendedorismo" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
+          <div className="flex flex-col lg:flex-row gap-16 items-start">
+            <div className="lg:w-1/2 space-y-6">
+              <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] block">
+                Pilar de Atuação
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight">
+                Empreendedorismo & <br />
+                <span className="text-white/80 italic font-normal">Estratégia Comercial</span>
+              </h2>
+              <p className="text-white/70 text-lg leading-relaxed">
+                Daniel Silva atua diretamente na reestruturação de times de vendas, modelagem de ofertas de alto valor e governança comercial para empresas que buscam quebrar barreiras de escala.
+              </p>
+              <p className="text-white/60 text-base leading-relaxed">
+                Através de diagnósticos aprofundados e metodologias validadas em campo, os processos comerciais são alinhados para transformar tráfego e autoridade em faturamento previsível e rentável.
+              </p>
+              <div className="pt-4">
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-[12px] transition-all"
+                >
+                  Conhecer Mentorias Executivas
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <p className="text-white font-bold text-3xl mb-2">B2B</p>
+                <h4 className="text-white font-bold text-lg mb-2">Vendas Complexas</h4>
+                <p className="text-white/50 text-sm">Estruturação de discursos e cadências para fechamentos de alto ticket.</p>
+              </div>
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <p className="text-white font-bold text-3xl mb-2">Audiovisual</p>
+                <h4 className="text-white font-bold text-lg mb-2">Autoridade em Vídeo</h4>
+                <p className="text-white/50 text-sm">Posicionamento de marca pessoal e corporativa em estúdio profissional.</p>
+              </div>
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <p className="text-white font-bold text-3xl mb-2">Playbooks</p>
+                <h4 className="text-white font-bold text-lg mb-2">Processos Comerciais</h4>
+                <p className="text-white/50 text-sm">Criação de manuais operacionais e capacitação contínua de times.</p>
+              </div>
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <p className="text-white font-bold text-3xl mb-2">Advisory</p>
+                <h4 className="text-white font-bold text-lg mb-2">Conselho Estratégico</h4>
+                <p className="text-white/50 text-sm">Acompanhamento executivo contínuo para diretores e fundadores.</p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 4. CALENDÁRIO SECTION */}
-        <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center md:text-left mb-16">
-            <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
-              Agenda & Eventos
-            </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Próximos <span className="text-white/80 italic font-normal">compromissos</span> e palestras.
-            </h2>
-            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
-              Consulte as datas de treinamentos in-company, keynotes e encontros de mentoria executiva.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { data: "18/08", hora: "19h", local: "SÃO PAULO", tema: "ESCALA COMERCIAL B2B" },
-              { data: "25/08", hora: "14h", local: "ONLINE", tema: "MENTORIA EXECUTIVA" },
-              { data: "01/09", hora: "20h", local: "SÃO PAULO", tema: "WORKSHOP DE VENDAS" },
-              { data: "08/09", hora: "19h", local: "AO VIVO", tema: "IMERSÃO DESTRACIONANDO" }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-[#0B1B3D]/70 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all duration-300">
-                <div className="flex justify-between items-center mb-6">
-                  <span className="font-display text-white font-bold text-3xl">{item.data}</span>
-                  <span className="font-mono text-xs text-white/70 bg-white/10 px-3 py-1 rounded-full">{item.hora}</span>
-                </div>
-                <h3 className="font-display text-xl font-bold mb-2 text-white">{item.local}</h3>
-                <p className="font-mono text-xs text-white/50 uppercase tracking-wider">{item.tema}</p>
+        {/* 4. FÉ SECTION */}
+        <section id="fe" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
+          <div className="bg-[#0B1B3D] border border-white/15 rounded-[32px] p-10 md:p-20 relative overflow-hidden">
+            <div className="max-w-3xl space-y-6 relative z-10">
+              <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] block">
+                Fundamento & Princípios
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight">
+                Fé, Propósito & <br />
+                <span className="text-white/80 italic font-normal">Valores Inegociáveis</span>
+              </h2>
+              <p className="text-white/70 text-lg leading-relaxed">
+                Para Daniel Silva, o sucesso nos negócios é consequência direta de princípios sólidos, integridade e fidelidade aos valores cristãos. Nenhum resultado financeiro justifica comprometer o caráter ou a família.
+              </p>
+              <p className="text-white/60 text-base leading-relaxed">
+                "A verdadeira liderança nasce no serviço ao próximo e na entrega com excelência. Quando seu trabalho é guiado por um propósito maior, o impacto transcende métricas e constrói legados duradouros."
+              </p>
+              <div className="pt-4 flex flex-wrap gap-4">
+                <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-full text-xs font-mono text-white/80">Integridade</span>
+                <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-full text-xs font-mono text-white/80">Excelência</span>
+                <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-full text-xs font-mono text-white/80">Generosidade</span>
+                <span className="bg-white/10 border border-white/20 px-4 py-2 rounded-full text-xs font-mono text-white/80">Propósito Divino</span>
               </div>
-            ))}
+            </div>
           </div>
-          <p className="text-center mt-12 text-sm text-white/40 font-mono">
-            Para contratação de palestras ou treinamentos corporativos fechados, entre em contato via WhatsApp.
-          </p>
         </section>
 
-        {/* 5. REDES SOCIAIS SECTION */}
-        <section id="redes" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center md:text-left mb-16">
-            <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
-              Conexões
-            </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Acompanhe Daniel Silva <span className="text-white/80 italic font-normal">nas redes.</span>
-            </h2>
-            <p className="text-white/60 text-base md:text-lg leading-relaxed">
-              Conteúdo diário sobre negócios, negociações complexas e liderança.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <a href="https://www.instagram.com/estudioakedah" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
-              <div className="absolute inset-0 bg-[#07132B]/70 group-hover:bg-[#07132B]/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Instagram" />
-              <div className="relative z-20">
-                <span className="text-white/70 font-mono text-xs uppercase tracking-widest mb-1 block">Instagram</span>
-                <span className="font-display text-xl font-bold text-white">Insights Diários</span>
+        {/* 5. MÚSICA SECTION */}
+        <section id="musica" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
+          <div className="flex flex-col lg:flex-row-reverse gap-16 items-start">
+            <div className="lg:w-1/2 space-y-6">
+              <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] block">
+                Sensibilidade Artística
+              </span>
+              <h2 className="font-display text-3xl md:text-5xl font-bold text-white leading-tight">
+                A Música como <br />
+                <span className="text-white/80 italic font-normal">Expressão e Adoração</span>
+              </h2>
+              <p className="text-white/70 text-lg leading-relaxed">
+                A paixão pela música sempre esteve presente na vida de Daniel Silva, trazendo sensibilidade harmônica, precisão estética e conexão emocional profunda em tudo o que realiza.
+              </p>
+              <p className="text-white/60 text-base leading-relaxed">
+                Da composição à produção sonora no Estúdio Akedah, a música representa momentos de inspiração, louvor e entrega, unindo arte de alto nível e atmosfera inspiradora.
+              </p>
+              <div className="pt-4">
+                <a
+                  href="https://open.spotify.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-[12px] transition-all"
+                >
+                  Ouvir no Spotify
+                </a>
               </div>
-            </a>
+            </div>
 
-            <a href="https://www.youtube.com/@EstudioAkedah" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
-              <div className="absolute inset-0 bg-[#07132B]/70 group-hover:bg-[#07132B]/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="YouTube" />
-              <div className="relative z-20">
-                <span className="text-white/70 font-mono text-xs uppercase tracking-widest mb-1 block">YouTube</span>
-                <span className="font-display text-xl font-bold text-white">Aulas Completas</span>
+            <div className="lg:w-1/2 w-full grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <span className="text-white/50 text-xs font-mono uppercase tracking-widest block mb-2">Composição</span>
+                <h4 className="text-white font-bold text-xl mb-2">Harmonia & Letra</h4>
+                <p className="text-white/50 text-sm">Criações que conectam sensibilidade espiritual e poética.</p>
               </div>
-            </a>
-
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
-              <div className="absolute inset-0 bg-[#07132B]/70 group-hover:bg-[#07132B]/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="LinkedIn" />
-              <div className="relative z-20">
-                <span className="text-white/70 font-mono text-xs uppercase tracking-widest mb-1 block">LinkedIn</span>
-                <span className="font-display text-xl font-bold text-white">Artigos Executivos</span>
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <span className="text-white/50 text-xs font-mono uppercase tracking-widest block mb-2">Produção</span>
+                <h4 className="text-white font-bold text-xl mb-2">Gravação em Estúdio</h4>
+                <p className="text-white/50 text-sm">Captação acústica e masterização com tecnologia de ponta.</p>
               </div>
-            </a>
-
-            <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
-              <div className="absolute inset-0 bg-[#07132B]/70 group-hover:bg-[#07132B]/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Spotify" />
-              <div className="relative z-20">
-                <span className="text-white/70 font-mono text-xs uppercase tracking-widest mb-1 block">Spotify</span>
-                <span className="font-display text-xl font-bold text-white">Áudios & Podcasts</span>
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <span className="text-white/50 text-xs font-mono uppercase tracking-widest block mb-2">Ministração</span>
+                <h4 className="text-white font-bold text-xl mb-2">Louvor e Presença</h4>
+                <p className="text-white/50 text-sm">Momentos de adoração e elevação espiritual autêntica.</p>
               </div>
-            </a>
+              <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 rounded-[20px]">
+                <span className="text-white/50 text-xs font-mono uppercase tracking-widest block mb-2">Estética</span>
+                <h4 className="text-white font-bold text-xl mb-2">Sonoplastia & Som</h4>
+                <p className="text-white/50 text-sm">Trilhas sonoras e ambientação acústica cinematográfica.</p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -263,13 +351,13 @@ const DanielSilva = () => {
         <section id="patrocinadores" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="text-center md:text-left mb-16">
             <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
-              Parcerias Estratégicas
+              Marcas & Parcerias
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Marcas & <span className="text-white/80 italic font-normal">Patrocinadores</span>
+              Patrocinadores <span className="text-white/80 italic font-normal">Oficiais</span>
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
-              Empresas e marcas alinhadas ao ecossistema de alto valor e negócios de Daniel Silva.
+              Empresas e marcas visionárias que caminham junto ao ecossistema de alto valor e negócios de Daniel Silva.
             </p>
           </div>
 
@@ -277,7 +365,7 @@ const DanielSilva = () => {
             <div className="bg-[#0B1B3D]/70 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
               <div>
                 <span className="text-white/60 text-xs font-mono uppercase tracking-widest block mb-3">Keynote / Palestras</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Presença em Convenções</h3>
+                <h3 className="font-display text-2xl font-bold text-white mb-2">Convenções Empresariais</h3>
                 <p className="text-white/50 text-sm">Palestra magna para convenções de vendas, liderança e eventos corporativos.</p>
               </div>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-white font-mono text-xs font-bold uppercase tracking-wider hover:underline flex items-center gap-2 mt-6">
@@ -288,7 +376,7 @@ const DanielSilva = () => {
             <div className="bg-[#0B1B3D]/70 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
               <div>
                 <span className="text-white/60 text-xs font-mono uppercase tracking-widest block mb-3">Embaixador de Marca</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Posicionamento B2B</h3>
+                <h3 className="font-display text-2xl font-bold text-white mb-2">Posicionamento Estratégico</h3>
                 <p className="text-white/50 text-sm">Associação de autoridade e conteúdo especializado para softwares e serviços B2B.</p>
               </div>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-white font-mono text-xs font-bold uppercase tracking-wider hover:underline flex items-center gap-2 mt-6">
@@ -299,7 +387,7 @@ const DanielSilva = () => {
             <div className="bg-[#0B1B3D]/70 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
               <div>
                 <span className="text-white/60 text-xs font-mono uppercase tracking-widest block mb-3">Conselho Consultivo</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Advisory Estratégico</h3>
+                <h3 className="font-display text-2xl font-bold text-white mb-2">Advisory Executivo</h3>
                 <p className="text-white/50 text-sm">Acompanhamento contínuo no direcionamento comercial e expansão corporativa.</p>
               </div>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-white font-mono text-xs font-bold uppercase tracking-wider hover:underline flex items-center gap-2 mt-6">
@@ -309,14 +397,14 @@ const DanielSilva = () => {
           </div>
         </section>
 
-        {/* 7. CTA CONTATO */}
+        {/* 7. CONTATO SECTION */}
         <section id="contato" className="py-28 px-6 border-t border-white/[0.08]">
           <div className="max-w-7xl mx-auto bg-[#0B1B3D] border border-white/15 rounded-[32px] p-10 md:p-20 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10 shadow-2xl">
             <div>
-              <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">Contato Direto</span>
+              <span className="text-white/60 text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">Fale Conosco</span>
               <h2 className="font-display text-3xl md:text-6xl font-bold text-white leading-tight">
-                Inicie sua jornada de <br />
-                <span className="text-white/80 italic font-normal">escala comercial.</span>
+                Entre em contato com <br />
+                <span className="text-white/80 italic font-normal">Daniel Silva.</span>
               </h2>
             </div>
             <div className="flex flex-col items-center md:items-end gap-4">
@@ -328,7 +416,7 @@ const DanielSilva = () => {
               >
                 Falar no WhatsApp
               </a>
-              <p className="text-white/40 text-xs font-mono">Atendimento direto pela assessoria comercial.</p>
+              <p className="text-white/40 text-xs font-mono">Atendimento direto pela equipe de assessoria.</p>
             </div>
           </div>
         </section>

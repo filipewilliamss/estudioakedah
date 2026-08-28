@@ -1,4 +1,4 @@
-﻿import { useRef } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -98,8 +98,8 @@ const DanielSilvaAbout = () => {
   return (
     <div className="min-h-screen bg-[#07132B] text-white selection:bg-white selection:text-[#07132B] relative">
       <SEO 
-        title="Nossa História | Daniel Silva"
-        description="Conheça a trajetória, metodologia e princípios de estratégia comercial de Daniel Silva."
+        title="Sobre Mim | Daniel Silva"
+        description="Conheça a trajetória de Daniel Silva nos negócios, liderança, fé e música."
       />
       <Navbar isDanielSilvaPage={true} />
 
@@ -126,17 +126,17 @@ const DanielSilvaAbout = () => {
               >
                 <div className="flex items-center justify-start gap-4 mb-6">
                   <span className="text-white/80 border border-white/20 px-3 py-1 rounded-full text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold">
-                    Trajetória & Autoridade
+                    Daniel Silva
                   </span>
                 </div>
 
                 <h1 className="font-display text-[54px] sm:text-[76px] md:text-[96px] font-[900] leading-[0.88] tracking-[-0.05em] mb-8">
-                  <span className="block text-white">Nossa</span>
-                  <span className="text-white/80 italic font-normal block">história</span>
+                  <span className="block text-white">Sobre</span>
+                  <span className="text-white/80 italic font-normal block">mim</span>
                 </h1>
 
                 <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left">
-                  A evolução contínua de uma mentalidade focada em resultados concretos, fechamentos de alto valor e construção de autoridade definitiva.
+                  A evolução de uma mentalidade forjada na prática comercial, liderança fundamentada em princípios e paixão pela música.
                 </p>
               </motion.div>
             </div>
