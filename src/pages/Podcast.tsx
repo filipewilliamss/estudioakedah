@@ -279,8 +279,58 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 6. CTA PARTICIPAR */}
-        <section id="contato" className="py-28 px-6">
+        {/* 6. PATROCINADORES SECTION */}
+        <section id="patrocinadores" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
+          <div className="text-center md:text-left mb-16">
+            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
+              Marcas & Parcerias
+            </span>
+            <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
+              Patrocinadores <span className="text-[#C4550A] italic font-normal">Oficiais</span>
+            </h2>
+            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
+              Marcas e empresas visionárias que apoiam o ecossistema de conteúdo e estratégia do Akedah Podcast.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-black/30 border border-white/10 hover:border-[#C4550A]/50 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
+              <div>
+                <span className="text-[#C4550A] text-xs font-mono uppercase tracking-widest block mb-3">Cota Master</span>
+                <h3 className="font-display text-2xl font-bold text-white mb-2">Exclusividade de Segmento</h3>
+                <p className="text-white/50 text-sm">Inserção de vinheta, menções no episódio e cortes verticais patrocinados.</p>
+              </div>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-wider hover:text-white flex items-center gap-2 mt-6">
+                SEJA UM PATROCINADOR →
+              </a>
+            </div>
+
+            <div className="bg-black/30 border border-white/10 hover:border-[#C4550A]/50 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
+              <div>
+                <span className="text-[#C4550A] text-xs font-mono uppercase tracking-widest block mb-3">Cota Naming Rights</span>
+                <h3 className="font-display text-2xl font-bold text-white mb-2">Presença em Cenário</h3>
+                <p className="text-white/50 text-sm">Exibição de marca na mesa de gravação, canecas e telão de LED do estúdio.</p>
+              </div>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-wider hover:text-white flex items-center gap-2 mt-6">
+                SEJA UM PATROCINADOR →
+              </a>
+            </div>
+
+            <div className="bg-black/30 border border-white/10 hover:border-[#C4550A]/50 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
+              <div>
+                <span className="text-[#C4550A] text-xs font-mono uppercase tracking-widest block mb-3">Cota Episódio</span>
+                <h3 className="font-display text-2xl font-bold text-white mb-2">Episódio Dedicado</h3>
+                <p className="text-white/50 text-sm">Gravação de episódio temático abordando os cases e soluções da sua marca.</p>
+              </div>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-wider hover:text-white flex items-center gap-2 mt-6">
+                SEJA UM PATROCINADOR →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. CTA PARTICIPAR / CONTATO */}
+        <section id="contato" className="py-28 px-6 border-t border-white/[0.08]">
           <div className="max-w-7xl mx-auto bg-black/40 border border-white/10 rounded-[32px] p-10 md:p-20 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
             <div>
               <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">Seja um Convidado</span>
