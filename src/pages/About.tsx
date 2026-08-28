@@ -197,53 +197,7 @@ const About = () => {
           </motion.div>
         </section>
 
-        {/* 3. A Trajetória do Daniel Silva */}
-        <section className="container-editorial grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-32">
-          <div className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="relative aspect-[4/5] border border-white/10 overflow-hidden rounded-[12px]"
-            >
-              <img 
-                src={founderPicture} 
-                alt="Daniel Silva - Fundador da Akedah" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-            </motion.div>
-          </div>
-          <div className="lg:col-span-7 space-y-8">
-            <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
-              A trajetória do <span className="text-[#C4550A]">Daniel Silva</span>
-            </h2>
-            <div className="space-y-6 text-white/70 leading-relaxed text-lg">
-              <p>
-                Com mais de 5 anos de experiência direta no comercial de empresas de diversos setores, Daniel Silva percebeu um padrão: o marketing trazia leads, mas o comercial não sabia o que fazer com eles. Ou pior, o marketing trazia as pessoas erradas.
-              </p>
-              <p>
-                Foi vivenciando essa desconexão que ele desenvolveu uma metodologia que coloca a estratégia comercial no centro. Se a venda não acontece, o marketing é apenas custo.
-              </p>
-              <p>
-                Hoje, a Akedah é a materialização dessa visão. Um estúdio em São Paulo que une inteligência estratégica, produção de conteúdo de alto nível e automação comercial para garantir que cada centavo investido se transforme em crescimento previsível.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
-              <div>
-                <p className="text-[#C4550A] font-bold text-4xl mb-1">5+</p>
-                <p className="text-white/40 text-[11px] uppercase tracking-widest font-bold">Anos de Experiência</p>
-              </div>
-              <div>
-                <p className="text-[#C4550A] font-bold text-4xl mb-1">200k+</p>
-                <p className="text-white/40 text-[11px] uppercase tracking-widest font-bold">Faturamento dos Clientes</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. Nossa Linha do Tempo (No formato da seção ProcessSection / Método da Home) */}
+        {/* 3. Nossa Linha do Tempo (No formato da seção ProcessSection / Método da Home) */}
         <section id="linha-do-tempo" className="relative py-24 bg-transparent border-t border-white/[0.05] overflow-hidden mb-32">
           {/* Fundo monumental */}
           <motion.span
@@ -291,14 +245,60 @@ const About = () => {
           </div>
         </section>
 
-        {/* 5. Significado de Akedah */}
-        <section className="py-24 mb-16">
+        {/* 4. Significado de Akedah */}
+        <section className="py-24 mb-32">
           <div className="container-editorial">
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-display text-4xl md:text-6xl font-bold mb-8">O que significa <span className="text-[#C4550A]">Akedah</span>?</h2>
               <p className="text-white/60 text-xl leading-relaxed italic">
                 "Akedah é um termo de origem hebraica que remete a entrega e compromisso absoluto. Para nós, representa o nível de dedicação que colocamos em cada estratégia comercial: não aceitamos nada menos que o resultado excepcional."
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. A Trajetória do Daniel Silva */}
+        <section className="container-editorial grid grid-cols-1 lg:grid-cols-12 gap-16 items-start mb-24">
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+              className="relative aspect-[4/5] border border-white/10 overflow-hidden rounded-[12px]"
+            >
+              <img 
+                src={founderPicture} 
+                alt="Daniel Silva - Fundador da Akedah" 
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              />
+            </motion.div>
+          </div>
+          <div className="lg:col-span-7 space-y-8">
+            <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
+              A trajetória do <span className="text-[#C4550A]">Daniel Silva</span>
+            </h2>
+            <div className="space-y-6 text-white/70 leading-relaxed text-lg">
+              <p>
+                Com mais de 5 anos de experiência direta no comercial de empresas de diversos setores, Daniel Silva percebeu um padrão: o marketing trazia leads, mas o comercial não sabia o que fazer com eles. Ou pior, o marketing trazia as pessoas erradas.
+              </p>
+              <p>
+                Foi vivenciando essa desconexão que ele desenvolveu uma metodologia que coloca a estratégia comercial no centro. Se a venda não acontece, o marketing é apenas custo.
+              </p>
+              <p>
+                Hoje, a Akedah é a materialização dessa visão. Um estúdio em São Paulo que une inteligência estratégica, produção de conteúdo de alto nível e automação comercial para garantir que cada centavo investido se transforme em crescimento previsível.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+              <div>
+                <p className="text-[#C4550A] font-bold text-4xl mb-1">5+</p>
+                <p className="text-white/40 text-[11px] uppercase tracking-widest font-bold">Anos de Experiência</p>
+              </div>
+              <div>
+                <p className="text-[#C4550A] font-bold text-4xl mb-1">200k+</p>
+                <p className="text-white/40 text-[11px] uppercase tracking-widest font-bold">Faturamento dos Clientes</p>
+              </div>
             </div>
           </div>
         </section>
