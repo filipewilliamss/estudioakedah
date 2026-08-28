@@ -4,7 +4,7 @@ import videosEmLoteImg from "@/assets/svc-videos-em-lote.png";
 import trafegoPagoImg from "@/assets/svc-trafego-pago.png";
 import cursosImg from "@/assets/svc-cursos.png";
 import infraImg from "@/assets/svc-videos-em-lote.jpg"; // Placeholder
-import sonoplastiaImg from "@/assets/svc-trafego-pago.png"; // Placeholder
+import sonoplastiaImg from "@/assets/svc-sonoplastia.jpg";
 
 export interface ServiceBlockItem {
   title: string;
