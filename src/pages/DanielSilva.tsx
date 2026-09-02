@@ -52,7 +52,7 @@ const DanielSilva = () => {
       />
       <Navbar isDanielSilvaPage={true} />
 
-      <main className="relative z-10 overflow-hidden">
+      <main className="relative z-10 overflow-x-clip">
         {/* 1. EXPERIÊNCIA DE WALKTHROUGH EM 1ª PESSOA (ANIMAÇÃO POR SCROLL NOS 3 CÔMODOS) */}
         <DanielWalkthroughExperience />
 
