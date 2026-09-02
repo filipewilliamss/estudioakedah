@@ -1,4 +1,4 @@
-﻿import { useRef, useState, useEffect } from "react";
+﻿import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
@@ -7,7 +7,7 @@ import { WHATSAPP_URL } from "@/data/services";
 
 // ============================================================================
 // 🎬 CONFIGURAÇÃO DOS VÍDEOS / MÍDIAS DOS 3 CÔMODOS
-// O scroll do mouse agora controla a linha do tempo (frame a frame) dos vídeos!
+// O vídeo roda 100% até o fim antes de transicionar para o próximo cômodo!
 // ============================================================================
 export const DANIEL_ROOMS_MEDIA = {
   // 1. Empreendedor (Social/Formal) - Vídeo Real "Retrato Fiel.mp4"
@@ -18,7 +18,7 @@ export const DANIEL_ROOMS_MEDIA = {
     role: "O Estrategista & Empreendedor",
     visualStyle: "Visual Social & Formal",
     tagline: "Vendas complexas, estruturação de processos e aceleração comercial.",
-    description: "Daniel no comando de reuniões estratégicas e mentorias corporativas. Conforme você rola a página, o vídeo avança e você entra no ambiente executivo.",
+    description: "Daniel no comando de reuniões estratégicas e mentorias corporativas. Conforme você rola a página, o vídeo roda com extrema fluidez até o final da tomada.",
     metrics: [
       { label: "Foco", value: "B2B & Escala" },
       { label: "Atuação", value: "Playbooks & Funil" },
@@ -68,80 +68,117 @@ export const DanielWalkthroughExperience = () => {
   const video2Ref = useRef<HTMLVideoElement>(null);
   const video3Ref = useRef<HTMLVideoElement>(null);
 
+  // Targets de tempo para cada vídeo (suavizados para evitar gargalo no decodificador de vídeo)
+  const targetTime1 = useRef(0);
+  const targetTime2 = useRef(0);
+  const targetTime3 = useRef(0);
+
   const [currentRoomIndex, setCurrentRoomIndex] = useState(0);
   const [video1Loaded, setVideo1Loaded] = useState(false);
 
-  // Monitora o progresso de scroll dentro do trilho imersivo
+  // Altura expandida para 600vh para permitir que o vídeo toque 100% de ponta a ponta
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 30,
-    restDelta: 0.001,
+    stiffness: 120,
+    damping: 32,
+    restDelta: 0.0005,
   });
 
   // --------------------------------------------------------------------------
-  // 🎞️ CONTROLE DO VÍDEO POR SCROLL (VIDEO SCRUBBING FRAME A FRAME)
+  // 🎞️ CONTROLADOR DE ALTA PERFORMANCE PARA O VÍDEO SCRUBBING (SEM TRAVAMENTOS)
   // --------------------------------------------------------------------------
+  const seekVideoSmoothly = (video: HTMLVideoElement | null, target: number) => {
+    if (!video || !video.duration || isNaN(video.duration)) return;
+    const clampedTarget = Math.max(0, Math.min(target, video.duration - 0.05));
+    
+    // Se o decodificador não estiver ocupado buscando outro frame
+    if (!video.seeking) {
+      if (Math.abs(video.currentTime - clampedTarget) > 0.03) {
+        try {
+          // Utiliza fastSeek se disponível no navegador para performance instantânea
+          if ("fastSeek" in video && typeof (video as any).fastSeek === "function") {
+            (video as any).fastSeek(clampedTarget);
+          } else {
+            video.currentTime = clampedTarget;
+          }
+        } catch (e) {
+          video.currentTime = clampedTarget;
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     let animationFrameId: number;
 
-    const updateVideoFrames = () => {
+    const renderLoop = () => {
       const p = smoothProgress.get();
 
-      // Atualiza a sala ativa
+      // Indicador da Sala Ativa
       if (p < 0.33) {
         setCurrentRoomIndex(0);
-      } else if (p < 0.68) {
+      } else if (p < 0.67) {
         setCurrentRoomIndex(1);
       } else {
         setCurrentRoomIndex(2);
       }
 
-      // 1. Controla o vídeo da Sala 1 (Empreendedorismo)
-      // Mapeado no intervalo de scroll 0.00 -> 0.30
+      // ======================================================================
+      // 1. SALA 1 (Empreendedorismo): Roda de 0% a 100% do vídeo no intervalo de scroll 0.00 -> 0.28
+      // ======================================================================
       if (video1Ref.current && video1Ref.current.duration) {
-        const room1Progress = Math.min(Math.max(p / 0.30, 0), 1);
-        const targetTime = room1Progress * video1Ref.current.duration;
-        if (Math.abs(video1Ref.current.currentTime - targetTime) > 0.02) {
-          video1Ref.current.currentTime = targetTime;
-        }
+        // Progresso do vídeo 1 vai de 0.0 até 1.0 dentro de [0.00, 0.28]
+        const progress1 = Math.min(Math.max(p / 0.28, 0), 1);
+        targetTime1.current = progress1 * (video1Ref.current.duration - 0.05);
+        seekVideoSmoothly(video1Ref.current, targetTime1.current);
       }
 
-      // 2. Controla o vídeo da Sala 2 (Música)
-      // Mapeado no intervalo de scroll 0.34 -> 0.65
+      // ======================================================================
+      // 2. SALA 2 (Música): Roda de 0% a 100% do vídeo no intervalo de scroll 0.34 -> 0.62
+      // ======================================================================
       if (video2Ref.current && video2Ref.current.duration) {
-        const room2Progress = Math.min(Math.max((p - 0.34) / (0.65 - 0.34), 0), 1);
-        const targetTime = room2Progress * video2Ref.current.duration;
-        if (Math.abs(video2Ref.current.currentTime - targetTime) > 0.02) {
-          video2Ref.current.currentTime = targetTime;
-        }
+        const progress2 = Math.min(Math.max((p - 0.34) / (0.62 - 0.34), 0), 1);
+        targetTime2.current = progress2 * (video2Ref.current.duration - 0.05);
+        seekVideoSmoothly(video2Ref.current, targetTime2.current);
       }
 
-      // 3. Controla o vídeo da Sala 3 (Fé & Mentoria)
-      // Mapeado no intervalo de scroll 0.68 -> 0.98
+      // ======================================================================
+      // 3. SALA 3 (Fé & Mentoria): Roda de 0% a 100% do vídeo no intervalo de scroll 0.68 -> 0.96
+      // ======================================================================
       if (video3Ref.current && video3Ref.current.duration) {
-        const room3Progress = Math.min(Math.max((p - 0.68) / (0.98 - 0.68), 0), 1);
-        const targetTime = room3Progress * video3Ref.current.duration;
-        if (Math.abs(video3Ref.current.currentTime - targetTime) > 0.02) {
-          video3Ref.current.currentTime = targetTime;
-        }
+        const progress3 = Math.min(Math.max((p - 0.68) / (0.96 - 0.68), 0), 1);
+        targetTime3.current = progress3 * (video3Ref.current.duration - 0.05);
+        seekVideoSmoothly(video3Ref.current, targetTime3.current);
       }
 
-      animationFrameId = requestAnimationFrame(updateVideoFrames);
+      animationFrameId = requestAnimationFrame(renderLoop);
     };
 
-    animationFrameId = requestAnimationFrame(updateVideoFrames);
+    animationFrameId = requestAnimationFrame(renderLoop);
     return () => cancelAnimationFrame(animationFrameId);
   }, [smoothProgress]);
 
-  // Transições de Opacidade suaves entre os 3 cenários
+  // Listener para quando o decodificador do vídeo termina de buscar um frame
+  useEffect(() => {
+    const v1 = video1Ref.current;
+    if (!v1) return;
+
+    const handleSeeked = () => {
+      seekVideoSmoothly(v1, targetTime1.current);
+    };
+
+    v1.addEventListener("seeked", handleSeeked);
+    return () => v1.removeEventListener("seeked", handleSeeked);
+  }, []);
+
+  // Transições de Opacidade suaves: o vídeo termina 100% antes da sala esmaecer
   const room1Opacity = useTransform(smoothProgress, [0, 0.28, 0.34], [1, 1, 0]);
-  const room2Opacity = useTransform(smoothProgress, [0.28, 0.35, 0.62, 0.68], [0, 1, 1, 0]);
-  const room3Opacity = useTransform(smoothProgress, [0.62, 0.69, 1.0], [0, 1, 1]);
+  const room2Opacity = useTransform(smoothProgress, [0.30, 0.35, 0.62, 0.68], [0, 1, 1, 0]);
+  const room3Opacity = useTransform(smoothProgress, [0.64, 0.69, 1.0], [0, 1, 1]);
 
   // Função para navegar diretamente para um cômodo ao clicar no mini-mapa
   const jumpToRoom = (index: number) => {
@@ -156,7 +193,7 @@ export const DanielWalkthroughExperience = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative w-full h-[400vh] bg-[#07132B]">
+    <div ref={containerRef} className="relative w-full h-[600vh] bg-[#07132B]">
       {/* VIEWPORT FIXO EM TELA INTEIRA (STICKY) */}
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
         
@@ -183,7 +220,7 @@ export const DanielWalkthroughExperience = () => {
               playsInline
               src={DANIEL_ROOMS_MEDIA.empreendedor.videoUrl}
               onLoadedMetadata={() => setVideo1Loaded(true)}
-              className="absolute inset-0 w-full h-full object-cover opacity-85 filter contrast-110"
+              className="absolute inset-0 w-full h-full object-cover opacity-90 filter contrast-110"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/75 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#07132B]/60" />
