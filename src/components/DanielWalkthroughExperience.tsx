@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+﻿import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
@@ -7,6 +7,7 @@ import { WHATSAPP_URL } from "@/data/services";
 
 // ============================================================================
 // 🎬 CONFIGURAÇÃO DOS VÍDEOS / MÍDIAS DOS 3 CÔMODOS
+// O scroll do mouse agora controla a linha do tempo (frame a frame) dos vídeos!
 // ============================================================================
 export const DANIEL_ROOMS_MEDIA = {
   // 1. Empreendedor (Social/Formal) - Vídeo Real "Retrato Fiel.mp4"
@@ -17,7 +18,7 @@ export const DANIEL_ROOMS_MEDIA = {
     role: "O Estrategista & Empreendedor",
     visualStyle: "Visual Social & Formal",
     tagline: "Vendas complexas, estruturação de processos e aceleração comercial.",
-    description: "Daniel no comando de reuniões estratégicas e mentorias corporativas. Um ambiente sóbrio, executivo e focado em metas de alta performance.",
+    description: "Daniel no comando de reuniões estratégicas e mentorias corporativas. Conforme você rola a página, o vídeo avança e você entra no ambiente executivo.",
     metrics: [
       { label: "Foco", value: "B2B & Escala" },
       { label: "Atuação", value: "Playbooks & Funil" },
@@ -63,7 +64,12 @@ export const DANIEL_ROOMS_MEDIA = {
 
 export const DanielWalkthroughExperience = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const video2Ref = useRef<HTMLVideoElement>(null);
+  const video3Ref = useRef<HTMLVideoElement>(null);
+
   const [currentRoomIndex, setCurrentRoomIndex] = useState(0);
+  const [video1Loaded, setVideo1Loaded] = useState(false);
 
   // Monitora o progresso de scroll dentro do trilho imersivo
   const { scrollYProgress } = useScroll({
@@ -72,46 +78,70 @@ export const DanielWalkthroughExperience = () => {
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
+    stiffness: 90,
+    damping: 30,
     restDelta: 0.001,
   });
 
-  // Atualiza a sala ativa
+  // --------------------------------------------------------------------------
+  // 🎞️ CONTROLE DO VÍDEO POR SCROLL (VIDEO SCRUBBING FRAME A FRAME)
+  // --------------------------------------------------------------------------
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (v) => {
-      if (v < 0.33) {
+    let animationFrameId: number;
+
+    const updateVideoFrames = () => {
+      const p = smoothProgress.get();
+
+      // Atualiza a sala ativa
+      if (p < 0.33) {
         setCurrentRoomIndex(0);
-      } else if (v < 0.68) {
+      } else if (p < 0.68) {
         setCurrentRoomIndex(1);
       } else {
         setCurrentRoomIndex(2);
       }
-    });
-    return () => unsubscribe();
-  }, [scrollYProgress]);
 
-  // --------------------------------------------------------------------------
-  // CÂMERA 1ª PESSOA: TRANSFORMAÇÕES 3D CONTÍNUAS
-  // --------------------------------------------------------------------------
+      // 1. Controla o vídeo da Sala 1 (Empreendedorismo)
+      // Mapeado no intervalo de scroll 0.00 -> 0.30
+      if (video1Ref.current && video1Ref.current.duration) {
+        const room1Progress = Math.min(Math.max(p / 0.30, 0), 1);
+        const targetTime = room1Progress * video1Ref.current.duration;
+        if (Math.abs(video1Ref.current.currentTime - targetTime) > 0.02) {
+          video1Ref.current.currentTime = targetTime;
+        }
+      }
 
-  // SALA 1: Empreendedor (0.0 -> 0.35)
-  const room1Opacity = useTransform(smoothProgress, [0, 0.28, 0.35], [1, 1, 0]);
-  const room1Scale = useTransform(smoothProgress, [0, 0.32], [1.0, 1.20]);
-  const room1RotateY = useTransform(smoothProgress, [0.22, 0.35], [0, -15]);
-  const room1TranslateX = useTransform(smoothProgress, [0.22, 0.35], [0, -60]);
+      // 2. Controla o vídeo da Sala 2 (Música)
+      // Mapeado no intervalo de scroll 0.34 -> 0.65
+      if (video2Ref.current && video2Ref.current.duration) {
+        const room2Progress = Math.min(Math.max((p - 0.34) / (0.65 - 0.34), 0), 1);
+        const targetTime = room2Progress * video2Ref.current.duration;
+        if (Math.abs(video2Ref.current.currentTime - targetTime) > 0.02) {
+          video2Ref.current.currentTime = targetTime;
+        }
+      }
 
-  // SALA 2: Música (0.28 -> 0.70)
-  const room2Opacity = useTransform(smoothProgress, [0.28, 0.36, 0.62, 0.70], [0, 1, 1, 0]);
-  const room2Scale = useTransform(smoothProgress, [0.28, 0.40, 0.65], [1.2, 1.0, 1.18]);
-  const room2RotateY = useTransform(smoothProgress, [0.28, 0.36, 0.58, 0.70], [15, 0, 0, -15]);
-  const room2TranslateX = useTransform(smoothProgress, [0.28, 0.36, 0.58, 0.70], [60, 0, 0, -60]);
+      // 3. Controla o vídeo da Sala 3 (Fé & Mentoria)
+      // Mapeado no intervalo de scroll 0.68 -> 0.98
+      if (video3Ref.current && video3Ref.current.duration) {
+        const room3Progress = Math.min(Math.max((p - 0.68) / (0.98 - 0.68), 0), 1);
+        const targetTime = room3Progress * video3Ref.current.duration;
+        if (Math.abs(video3Ref.current.currentTime - targetTime) > 0.02) {
+          video3Ref.current.currentTime = targetTime;
+        }
+      }
 
-  // SALA 3: Fé & Mentoria (0.64 -> 1.0)
-  const room3Opacity = useTransform(smoothProgress, [0.64, 0.72, 1.0], [0, 1, 1]);
-  const room3Scale = useTransform(smoothProgress, [0.64, 0.75, 1.0], [1.2, 1.0, 1.15]);
-  const room3RotateY = useTransform(smoothProgress, [0.64, 0.72, 1.0], [15, 0, 0]);
-  const room3TranslateX = useTransform(smoothProgress, [0.64, 0.72, 1.0], [60, 0, 0]);
+      animationFrameId = requestAnimationFrame(updateVideoFrames);
+    };
+
+    animationFrameId = requestAnimationFrame(updateVideoFrames);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [smoothProgress]);
+
+  // Transições de Opacidade suaves entre os 3 cenários
+  const room1Opacity = useTransform(smoothProgress, [0, 0.28, 0.34], [1, 1, 0]);
+  const room2Opacity = useTransform(smoothProgress, [0.28, 0.35, 0.62, 0.68], [0, 1, 1, 0]);
+  const room3Opacity = useTransform(smoothProgress, [0.62, 0.69, 1.0], [0, 1, 1]);
 
   // Função para navegar diretamente para um cômodo ao clicar no mini-mapa
   const jumpToRoom = (index: number) => {
@@ -128,37 +158,33 @@ export const DanielWalkthroughExperience = () => {
   return (
     <div ref={containerRef} className="relative w-full h-[400vh] bg-[#07132B]">
       {/* VIEWPORT FIXO EM TELA INTEIRA (STICKY) */}
-      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center [perspective:1200px]">
+      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
         
         {/* ================================================================== */}
         {/* CÔMODO 1: SALA CORPORATIVA (EMPREENDEDORISMO - SOCIAL/FORMAL)      */}
         {/* ================================================================== */}
         <motion.div
-          style={{
-            opacity: room1Opacity,
-            scale: room1Scale,
-            rotateY: room1RotateY,
-            x: room1TranslateX,
-          }}
-          className="absolute inset-0 w-full h-full [transform-style:preserve-3d]"
+          style={{ opacity: room1Opacity }}
+          className="absolute inset-0 w-full h-full"
         >
-          {/* Fundo com Imagem de Alta Resolução + Vídeo */}
-          <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Fundo com Vídeo Controlado por Scroll */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#07132B]">
             <img 
               src={DANIEL_ROOMS_MEDIA.empreendedor.fallbackImage} 
               alt="Daniel Silva - Sala Executiva" 
-              className="absolute inset-0 w-full h-full object-cover opacity-40 filter grayscale contrast-125"
+              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                video1Loaded ? "opacity-20" : "opacity-60"
+              } filter grayscale contrast-125`}
             />
             <video
-              autoPlay
-              loop
+              ref={video1Ref}
+              preload="auto"
               muted
               playsInline
               src={DANIEL_ROOMS_MEDIA.empreendedor.videoUrl}
-              className="absolute inset-0 w-full h-full object-cover opacity-80 filter contrast-110"
-            >
-              <source src={DANIEL_ROOMS_MEDIA.empreendedor.videoUrl} type="video/mp4" />
-            </video>
+              onLoadedMetadata={() => setVideo1Loaded(true)}
+              className="absolute inset-0 w-full h-full object-cover opacity-85 filter contrast-110"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/75 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#07132B]/60" />
           </div>
@@ -206,8 +232,8 @@ export const DanielWalkthroughExperience = () => {
                 >
                   Contratar Consultoria
                 </a>
-                <span className="text-white/50 text-xs font-mono animate-bounce flex items-center gap-2">
-                  Role a página para caminhar até o Estúdio de Música ↓
+                <span className="text-white/70 text-xs font-mono flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                  🖱️ Role o mouse para avançar o vídeo frame a frame ↓
                 </span>
               </div>
             </div>
@@ -218,30 +244,24 @@ export const DanielWalkthroughExperience = () => {
         {/* CÔMODO 2: ESTÚDIO MUSICAL (MÚSICA - CASUAL ARTÍSTICO)              */}
         {/* ================================================================== */}
         <motion.div
-          style={{
-            opacity: room2Opacity,
-            scale: room2Scale,
-            rotateY: room2RotateY,
-            x: room2TranslateX,
-          }}
-          className="absolute inset-0 w-full h-full [transform-style:preserve-3d]"
+          style={{ opacity: room2Opacity }}
+          className="absolute inset-0 w-full h-full"
         >
-          {/* Fundo Musical */}
-          <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Fundo com Vídeo Controlado por Scroll */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#140827]">
             <img 
               src={DANIEL_ROOMS_MEDIA.musica.fallbackImage} 
               alt="Daniel Silva - Estúdio Musical" 
               className="absolute inset-0 w-full h-full object-cover opacity-60 filter contrast-125 brightness-90"
             />
             <video
-              autoPlay
-              loop
+              ref={video2Ref}
+              preload="auto"
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen"
-            >
-              <source src={DANIEL_ROOMS_MEDIA.musica.videoUrl} type="video/mp4" />
-            </video>
+              src={DANIEL_ROOMS_MEDIA.musica.videoUrl}
+              className="absolute inset-0 w-full h-full object-cover opacity-75 mix-blend-screen"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-[#140827] via-[#140827]/85 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#140827]/70" />
           </div>
@@ -289,8 +309,8 @@ export const DanielWalkthroughExperience = () => {
                 >
                   Ouvir Produções Musicais
                 </a>
-                <span className="text-white/50 text-xs font-mono animate-bounce flex items-center gap-2">
-                  Role a página para entrar no Lounge de Mentoria ↓
+                <span className="text-white/70 text-xs font-mono flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+                  Role para ir ao Lounge de Mentoria em Fé ↓
                 </span>
               </div>
             </div>
@@ -301,30 +321,24 @@ export const DanielWalkthroughExperience = () => {
         {/* CÔMODO 3: LOUNGE DE MENTORIA EM FÉ (FÉ & PODCAST - SPORT FINO)     */}
         {/* ================================================================== */}
         <motion.div
-          style={{
-            opacity: room3Opacity,
-            scale: room3Scale,
-            rotateY: room3RotateY,
-            x: room3TranslateX,
-          }}
-          className="absolute inset-0 w-full h-full [transform-style:preserve-3d]"
+          style={{ opacity: room3Opacity }}
+          className="absolute inset-0 w-full h-full"
         >
-          {/* Fundo Mentoria */}
-          <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {/* Fundo com Vídeo Controlado por Scroll */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#0B1528]">
             <img 
               src={DANIEL_ROOMS_MEDIA.fe.fallbackImage} 
               alt="Daniel Silva - Lounge de Mentoria" 
               className="absolute inset-0 w-full h-full object-cover opacity-60 filter contrast-120"
             />
             <video
-              autoPlay
-              loop
+              ref={video3Ref}
+              preload="auto"
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen"
-            >
-              <source src={DANIEL_ROOMS_MEDIA.fe.videoUrl} type="video/mp4" />
-            </video>
+              src={DANIEL_ROOMS_MEDIA.fe.videoUrl}
+              className="absolute inset-0 w-full h-full object-cover opacity-75 mix-blend-screen"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-[#0B1528] via-[#0B1528]/85 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#0B1528]/70" />
           </div>
@@ -420,9 +434,9 @@ export const DanielWalkthroughExperience = () => {
             </button>
           </div>
 
-          <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-white/80 text-[11px] font-mono">
+          <div className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-white/90 text-[11px] font-mono">
             <span className="w-2 h-2 rounded-full bg-white animate-ping" />
-            <span>Tour 1ª Pessoa • Role a página ou clique nos botões acima</span>
+            <span>Vídeo por Scroll • Gire a roda do mouse para avançar ou retroceder a gravação</span>
           </div>
         </div>
 
