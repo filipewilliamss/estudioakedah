@@ -1,17 +1,17 @@
-﻿import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
+import retratoFielVideo from "@/assets/retrato-fiel.mp4";
 import { WHATSAPP_URL } from "@/data/services";
 
 // ============================================================================
 // 🎬 CONFIGURAÇÃO DOS VÍDEOS / MÍDIAS DOS 3 CÔMODOS
-// Substitua as URLs abaixo pelos seus vídeos finais quando estiverem prontos!
 // ============================================================================
 export const DANIEL_ROOMS_MEDIA = {
-  // 1. Empreendedor (Social/Formal)
+  // 1. Empreendedor (Social/Formal) - Vídeo Real "Retrato Fiel.mp4"
   empreendedor: {
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    videoUrl: retratoFielVideo,
     fallbackImage: founderPicture,
     badge: "01 • SALA CORPORATIVA",
     role: "O Estrategista & Empreendedor",
@@ -147,18 +147,19 @@ export const DanielWalkthroughExperience = () => {
             <img 
               src={DANIEL_ROOMS_MEDIA.empreendedor.fallbackImage} 
               alt="Daniel Silva - Sala Executiva" 
-              className="absolute inset-0 w-full h-full object-cover opacity-60 filter grayscale contrast-125"
+              className="absolute inset-0 w-full h-full object-cover opacity-40 filter grayscale contrast-125"
             />
             <video
               autoPlay
               loop
               muted
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen"
+              src={DANIEL_ROOMS_MEDIA.empreendedor.videoUrl}
+              className="absolute inset-0 w-full h-full object-cover opacity-80 filter contrast-110"
             >
               <source src={DANIEL_ROOMS_MEDIA.empreendedor.videoUrl} type="video/mp4" />
             </video>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/85 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/75 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#07132B]/60" />
           </div>
 
