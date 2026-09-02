@@ -1,8 +1,9 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import DanielWalkthroughExperience from "@/components/DanielWalkthroughExperience";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import { WHATSAPP_URL } from "@/data/services";
 
@@ -45,66 +46,15 @@ const DanielSilva = () => {
     <div className="min-h-screen bg-[#07132B] text-white selection:bg-white selection:text-[#07132B] relative">
       <SEO
         title="Daniel Silva | Empreendedorismo, Fé, Música & Agenda"
-        description="Site oficial de Daniel Silva: palestras, agenda de apresentações e postagens, empreendedorismo, fé, música e contato direto."
+        description="Site oficial de Daniel Silva: experiência imersiva em vídeo pelos 3 pilares, agenda de apresentações e postagens, fé, música e contato direto."
         url="https://estudioakedah.com/daniel-silva"
         schema={schema}
       />
       <Navbar isDanielSilvaPage={true} />
 
       <main className="relative z-10 overflow-hidden">
-        {/* 1. HERO SECTION */}
-        <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src={founderPicture} 
-              alt="Daniel Silva" 
-              className="w-full h-full object-cover opacity-55 filter grayscale contrast-125"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/85 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#07132B]/50" />
-          </div>
-
-          <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-3xl text-left flex flex-col items-start"
-            >
-              <div className="flex items-center justify-start gap-4 mb-6">
-                <span className="text-white/80 border border-white/20 px-3.5 py-1 rounded-full text-[11px] md:text-[12px] uppercase tracking-[0.4em] font-bold">
-                  Empreendedorismo • Fé • Música
-                </span>
-              </div>
-
-              <h1 className="font-display text-[54px] sm:text-[76px] md:text-[96px] font-[900] leading-[0.88] tracking-[-0.05em] mb-8">
-                <span className="block text-white">Daniel</span>
-                <span className="text-white/80 italic font-normal block">Silva</span>
-              </h1>
-
-              <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10">
-                Estrategista de negócios, mentor executivo e líder visionário. Conectando princípios sólidos de fé, visão empreendedora e sensibilidade artística para transformar vidas e empresas.
-              </p>
-
-              <div className="flex flex-wrap gap-4 items-center">
-                <a
-                  href="#agenda"
-                  className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[15px] transition-all duration-300 shadow-xl"
-                >
-                  Conferir Agendas
-                </a>
-                <a 
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[15px] transition-all duration-300"
-                >
-                  Falar no WhatsApp
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        {/* 1. EXPERIÊNCIA DE WALKTHROUGH EM 1ª PESSOA (ANIMAÇÃO POR SCROLL NOS 3 CÔMODOS) */}
+        <DanielWalkthroughExperience />
 
         {/* 2. AGENDA DUPLA (Apresentação & Postagens) */}
         <section id="agenda" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
