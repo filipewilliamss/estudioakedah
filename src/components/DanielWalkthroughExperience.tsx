@@ -1,4 +1,4 @@
-﻿import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WHATSAPP_URL } from "@/data/services";
@@ -44,12 +44,12 @@ export const DanielWalkthroughExperience = () => {
       trigger: ".experience-container",
       start: "top top",
       end: "bottom bottom",
-      scrub: 1.2,
+      scrub: 1.4,
       onUpdate: (self) => {
         setScrollProgress(self.progress);
         if (video && !isNaN(video.duration) && video.duration > 0) {
-          // O vídeo atinge 100% aos 92% da rolagem, mantendo o último frame na tela antes de descer
-          const videoProgress = Math.min(self.progress / 0.92, 1);
+          // O vídeo atinge 100% aos 93% da rolagem, mantendo o último frame na tela antes de descer
+          const videoProgress = Math.min(self.progress / 0.93, 1);
           const targetTime = Math.max(0, Math.min(videoProgress * (video.duration - 0.05), video.duration - 0.05));
           targetTimeRef.current = targetTime;
 
@@ -68,27 +68,26 @@ export const DanielWalkthroughExperience = () => {
   }, []);
 
   return (
-    // 2. HTML Wrapper: .experience-container com pista de 650vh para rolagem fluida e confortável
+    // 2. HTML Wrapper: .experience-container com pista de 850vh para rolagem mais lenta e suave
     <div
       ref={containerRef}
       className="experience-container relative w-full bg-[#07132B]"
-      style={{ minHeight: "650vh" }}
+      style={{ minHeight: "850vh" }}
     >
-      {/* Sticky viewport frame: trava o vídeo na tela durante 100% da rolagem */}
+      {/* Sticky viewport frame: trava o vídeo na tela durante 100% da rolagem em tela cheia */}
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
         
-        {/* Elemento de Vídeo com o wrapper exato solicitado */}
-        <div className="relative w-full h-full flex items-center justify-center">
+        {/* Elemento de Vídeo ocupando 100% da tela sem molduras laterais */}
+        <div className="relative w-full h-full">
           <video
             ref={videoRef}
             width="100%"
-            height="auto"
+            height="100%"
             style={{
               display: "block",
               width: "100%",
-              height: "auto",
-              maxHeight: "100vh",
-              objectFit: "contain",
+              height: "100%",
+              objectFit: "cover",
             }}
             muted
             playsInline
