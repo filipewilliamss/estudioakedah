@@ -9,54 +9,75 @@ export const DanielWalkthroughExperience = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const targetTimeRef = useRef(0);
 
   useEffect(() => {
     const video = videoRef.current;
     const container = containerRef.current;
     if (!video || !container) return;
 
-    // Garante que o vídeo fique pausado e pronto para scrubbing
+    // Pausa inicial para que o vídeo seja conduzido 100% pelo scroll
     video.pause();
 
     const handleLoadedMetadata = () => {
       ScrollTrigger.refresh();
     };
 
+    // Fila suave para o decodificador de vídeo não engasgar / pular frames
+    const handleSeeked = () => {
+      if (!video || isNaN(video.duration)) return;
+      if (Math.abs(video.currentTime - targetTimeRef.current) > 0.04) {
+        video.currentTime = targetTimeRef.current;
+      }
+    };
+
     video.addEventListener("loadedmetadata", handleLoadedMetadata);
+    video.addEventListener("seeked", handleSeeked);
 
     // ========================================================================
-    // 1. ScrollTrigger Integration (com scrub: 1 para máxima suavidade)
+    // 1. ScrollTrigger Integration
+    // - Pista de scroll estendida para suportar a duração total do vídeo
+    // - "bottom bottom" garante que o vídeo permaneça 100% visível na tela até o fim
+    // - scrub: 1.2 suaviza o avanço da roda do mouse
     // ========================================================================
     const trigger = ScrollTrigger.create({
       trigger: ".experience-container",
       start: "top top",
-      end: "bottom top",
-      scrub: 1, // suaviza o scrubbing
+      end: "bottom bottom",
+      scrub: 1.2,
       onUpdate: (self) => {
         setScrollProgress(self.progress);
         if (video && !isNaN(video.duration) && video.duration > 0) {
-          video.currentTime = self.progress * video.duration;
+          // O vídeo atinge 100% aos 92% da rolagem, mantendo o último frame na tela antes de descer
+          const videoProgress = Math.min(self.progress / 0.92, 1);
+          const targetTime = Math.max(0, Math.min(videoProgress * (video.duration - 0.05), video.duration - 0.05));
+          targetTimeRef.current = targetTime;
+
+          if (!video.seeking) {
+            video.currentTime = targetTime;
+          }
         }
       },
     });
 
     return () => {
       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+      video.removeEventListener("seeked", handleSeeked);
       trigger.kill();
     };
   }, []);
 
   return (
-    // 2. HTML Wrapper: .experience-container com pista de scroll
+    // 2. HTML Wrapper: .experience-container com pista de 650vh para rolagem fluida e confortável
     <div
       ref={containerRef}
       className="experience-container relative w-full bg-[#07132B]"
-      style={{ minHeight: "350vh" }}
+      style={{ minHeight: "650vh" }}
     >
-      {/* Sticky viewport frame para manter o vídeo fixo na tela enquanto o scroll avança */}
+      {/* Sticky viewport frame: trava o vídeo na tela durante 100% da rolagem */}
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
         
-        {/* Elemento de Vídeo com wrapper exato */}
+        {/* Elemento de Vídeo com o wrapper exato solicitado */}
         <div className="relative w-full h-full flex items-center justify-center">
           <video
             ref={videoRef}
@@ -78,10 +99,10 @@ export const DanielWalkthroughExperience = () => {
           </video>
         </div>
 
-        {/* Overlay elegante com os textos e botões de Daniel Silva (desvanece ao rolar a página) */}
+        {/* Overlay elegante com os textos e botões de Daniel Silva (desvanece suavemente ao rolar) */}
         <div 
           className="absolute inset-0 z-20 pointer-events-none transition-opacity duration-500 flex flex-col justify-between p-6 sm:p-12 md:p-16 lg:p-24"
-          style={{ opacity: Math.max(0, 1 - scrollProgress * 5) }}
+          style={{ opacity: Math.max(0, 1 - scrollProgress * 6) }}
         >
           <div className="pt-16 max-w-2xl text-left space-y-6">
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md pointer-events-auto">
@@ -119,11 +140,13 @@ export const DanielWalkthroughExperience = () => {
           </div>
         </div>
 
-        {/* Indicador sutil de scroll no rodapé */}
+        {/* Indicador de rolagem e progresso no rodapé */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/15 backdrop-blur-md text-white/80 text-[11px] font-mono">
-            <span className="w-2 h-2 rounded-full bg-white animate-ping" />
-            <span>Role o mouse para avançar pelo vídeo</span>
+          <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/70 border border-white/15 backdrop-blur-md text-white/90 text-xs font-mono shadow-2xl">
+            <span className="w-2 h-2 rounded-full bg-[#3B82F6] animate-ping" />
+            <span>Gire o scroll para avançar a apresentação</span>
+            <span className="text-white/40">|</span>
+            <span className="text-[#3B82F6] font-bold">{Math.round(Math.min(scrollProgress / 0.92, 1) * 100)}%</span>
           </div>
         </div>
 
