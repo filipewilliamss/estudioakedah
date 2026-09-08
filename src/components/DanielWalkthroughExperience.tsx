@@ -139,14 +139,12 @@ export const DanielWalkthroughExperience = () => {
           </div>
         </div>
 
-        {/* Indicador de rolagem e progresso no rodapé */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
-          <div className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-black/70 border border-white/15 backdrop-blur-md text-white/90 text-xs font-mono shadow-2xl">
-            <span className="w-2 h-2 rounded-full bg-[#3B82F6] animate-ping" />
-            <span>Gire o scroll para avançar a apresentação</span>
-            <span className="text-white/40">|</span>
-            <span className="text-[#3B82F6] font-bold">{Math.round(Math.min(scrollProgress / 0.92, 1) * 100)}%</span>
-          </div>
+        {/* Barra de progresso do vídeo na base inferior (estilo YouTube, cor branca) */}
+        <div className="absolute bottom-0 left-0 w-full h-[5px] bg-white/20 z-40 pointer-events-none">
+          <div 
+            className="h-full bg-white transition-[width] duration-75 ease-out shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+            style={{ width: `${Math.min(scrollProgress / 0.93, 1) * 100}%` }}
+          />
         </div>
 
       </div>
