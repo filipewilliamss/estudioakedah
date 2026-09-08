@@ -23,6 +23,10 @@ import NotFound from "./pages/NotFound.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
 
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 
 const queryClient = new QueryClient();
@@ -66,6 +70,8 @@ const App = () => {
       touchMultiplier: 2,
       infinite: false,
     });
+
+    lenis.on('scroll', ScrollTrigger.update);
 
     function raf(time: number) {
       lenis.raf(time);
