@@ -88,6 +88,9 @@ export const DanielPublicLifeSection: React.FC = () => {
 
   const conteudoRef = useRef<HTMLElement>(null);
   const conteudoBgRef = useRef<HTMLDivElement>(null);
+  const conteudoHeaderRef = useRef<HTMLDivElement>(null);
+  const conteudoMetricsRef = useRef<HTMLDivElement>(null);
+  const conteudoLinesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -199,6 +202,47 @@ export const DanielPublicLifeSection: React.FC = () => {
             .to(grain, { opacity: 0.55, ease: "power2.out", duration: 0.38 });
         }
       });
+
+      // 3. Animação sequencial "uma linha por vez" no Ecossistema Online & Presença sincronizada ao scroll
+      if (conteudoRef.current) {
+        const lines: HTMLElement[] = [];
+        if (conteudoHeaderRef.current) lines.push(conteudoHeaderRef.current);
+        if (conteudoMetricsRef.current) lines.push(conteudoMetricsRef.current);
+        conteudoLinesRef.current.forEach((el) => {
+          if (el) lines.push(el);
+        });
+
+        if (lines.length > 0) {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: conteudoRef.current,
+              start: "top 80%",
+              end: "top 10%",
+              scrub: 0.6,
+            },
+          });
+
+          lines.forEach((line, index) => {
+            const startTime = index * 0.16;
+            tl.fromTo(
+              line,
+              {
+                opacity: 0,
+                y: 32,
+                filter: "blur(6px)",
+              },
+              {
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+                ease: "power2.out",
+                duration: 0.22,
+              },
+              startTime
+            );
+          });
+        }
+      }
     });
 
     return () => ctx.revert();
@@ -465,7 +509,12 @@ export const DanielPublicLifeSection: React.FC = () => {
         />
 
         <div className="container w-full text-left relative z-10" data-section="conteudo-digital">
-          <div className="mb-[3.4rem]">
+          {/* Linha 1: Cabeçalho da Seção */}
+          <div
+            ref={conteudoHeaderRef}
+            className="mb-[3.4rem]"
+            style={{ willChange: "transform, opacity, filter" }}
+          >
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[rgba(25,25,25,0.6)] uppercase mb-[1.2rem]">
               Ecossistema Online &amp; Presença
             </div>
@@ -474,8 +523,12 @@ export const DanielPublicLifeSection: React.FC = () => {
             </h3>
           </div>
 
-          {/* Barra Editorial de Métricas Auditadas */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-[2.4rem] border-y border-black/15 py-[2.4rem] mb-[3.4rem] text-left">
+          {/* Linha 2: Barra Editorial de Métricas Auditadas */}
+          <div
+            ref={conteudoMetricsRef}
+            className="grid grid-cols-2 md:grid-cols-4 gap-[2.4rem] border-y border-black/15 py-[2.4rem] mb-[3.4rem] text-left"
+            style={{ willChange: "transform, opacity, filter" }}
+          >
             <div>
               <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">364 mil</span>
               <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
@@ -502,12 +555,16 @@ export const DanielPublicLifeSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Linhas Editoriais dos Canais Digitais (Zero Cards) */}
+          {/* Linhas 3 a 6: Linhas Editoriais dos Canais Digitais (Zero Cards) */}
           <div className="divide-y divide-black/10 border-b border-black/10">
             {conteudosDigitais.map((item, idx) => (
               <div
                 key={idx}
+                ref={(el) => {
+                  conteudoLinesRef.current[idx] = el;
+                }}
                 className="py-[1.8rem] flex flex-col md:flex-row md:items-center justify-between gap-[1.6rem] text-left"
+                style={{ willChange: "transform, opacity, filter" }}
               >
                 <div className="flex items-baseline gap-[2.4rem]">
                   <span className="font-lato font-black text-fluid-26 text-[var(--preto)] uppercase min-w-[200px]">
