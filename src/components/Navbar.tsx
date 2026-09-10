@@ -116,13 +116,13 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
 
   const bgClass = scrolled
     ? (isCurrentDanielSilva 
-        ? "bg-[#07132B]/90 border-white/10" 
+        ? "bg-[#191919]/90 border-[var(--neutra-3)]/40" 
         : isCurrentPodcast 
           ? "bg-[#2D1A11]/90 border-[#42362E]/20" 
           : (forceBlack ? "bg-black/70 border-white/[0.08]" : "bg-white/75 border-black/[0.05]")
-      ) + " backdrop-blur-[20px] border-b py-4"
+      ) + " backdrop-blur-[20px] border-b py-3 md:py-4"
     : (isCurrentDanielSilva 
-        ? "bg-[#07132B] py-6 md:py-8" 
+        ? "bg-[#191919]/70 backdrop-blur-[10px] border-b border-[var(--neutra-3)]/20 py-4 md:py-5" 
         : isCurrentPodcast 
           ? "bg-[#2D1A11] py-6 md:py-8" 
           : "bg-transparent py-6 md:py-8"
@@ -179,8 +179,13 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
             aria-label="Página Inicial"
           >
             {isCurrentDanielSilva ? (
-              <div className="flex items-center gap-2">
-                <DanielSignature variant="white" size="sm" />
+              <div className="flex items-center">
+                <img
+                  src="/daniel-silva-assinatura-white.svg"
+                  alt="Daniel Silva"
+                  className="h-[24px] md:h-[32px] w-auto object-contain select-none"
+                  loading="eager"
+                />
               </div>
             ) : (
               <img

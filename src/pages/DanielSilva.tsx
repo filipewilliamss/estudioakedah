@@ -6,7 +6,7 @@ import DanielCinematicExperience from "@/components/daniel/DanielCinematicExperi
 import DanielPublicLifeSection from "@/components/daniel/DanielPublicLifeSection";
 import DanielPartnersSection from "@/components/daniel/DanielPartnersSection";
 import DanielContactSection from "@/components/daniel/DanielContactSection";
-import { DaniRepetitiveSealStrip, DANIEL_TAGLINE, DANIEL_POSITIONING } from "@/components/daniel/DanielBrandSignature";
+import { DanielBrandMarquee, DANIEL_TAGLINE, DANIEL_POSITIONING } from "@/components/daniel/DanielBrandSignature";
 
 const DanielSilva = () => {
   useEffect(() => {
@@ -50,9 +50,9 @@ const DanielSilva = () => {
         <DanielCinematicExperience />
 
         {/* Camada Estágios 7 & 8: Vida Pública, Patrocinadores e Contato */}
-        <div className="relative z-20 bg-[#191919]">
-          {/* Faixa Repetida do Selo Oficial Dani */}
-          <DaniRepetitiveSealStrip variant="dark" />
+        <div className="relative z-20 bg-[var(--preto)]">
+          {/* Faixa Marquee Oficial 1 com Bullets (3.5) */}
+          <DanielBrandMarquee />
 
           {/* ================================================================ */}
           {/* ESTÁGIO 7: VIDA PÚBLICA (Agenda Pública + Conteúdo Digital)      */}
@@ -64,8 +64,8 @@ const DanielSilva = () => {
           {/* PATROCINADORES & MARCAS PARCEIRAS */}
           <DanielPartnersSection />
 
-          {/* Segunda Faixa Selo Dani em variante Dourada / Institucional */}
-          <DaniRepetitiveSealStrip variant="dark" />
+          {/* Faixa Marquee Oficial 2 com Bullets (3.5) */}
+          <DanielBrandMarquee />
 
           {/* ================================================================ */}
           {/* ESTÁGIO 8: CONTATO & CHAMADA PARA AÇÃO                           */}

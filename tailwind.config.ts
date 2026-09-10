@@ -84,6 +84,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Brand Kit Daniel Silva (Parte 3)
+        'off-white': 'var(--off-white)',
+        preto: 'var(--preto)',
+        bege: 'var(--bege)',
+        marinho: 'var(--marinho)',
+        'azul-claro': 'var(--azul-claro)',
+        taupe: 'var(--taupe)',
+        marrom: 'var(--marrom)',
+        'neutra-1': 'var(--neutra-1)',
+        'neutra-2': 'var(--neutra-2)',
+        'neutra-3': 'var(--neutra-3)',
+        'neutra-4': 'var(--neutra-4)',
       },
       borderRadius: {
         lg: "var(--radius)",

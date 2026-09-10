@@ -79,6 +79,26 @@
     --text-80:  8rem;
     --text-110: 11rem;
     --text-280: 28rem;
+
+    /* ========================================================================
+       PALETA OFICIAL BRAND KIT — DANIEL SILVA (PARTE 3)
+       ======================================================================== */
+    /* primárias */
+    --off-white: #F2F0EF;
+    --preto:     #191919;
+    --bege:      #D6B588;
+    --marinho:   #002867;
+
+    /* secundárias */
+    --azul-claro: #89B8D6;
+    --taupe:      #969086;
+    --marrom:     #574A39;
+
+    /* neutras */
+    --neutra-1: #596170;
+    --neutra-2: #464E5B;
+    --neutra-3: #343C47;
+    --neutra-4: #242B33;
   }
 
   @media (max-width: 768px) {
@@ -94,6 +114,11 @@
   html.daniel-silva-theme {
     font-size: calc(10 * (100vw / var(--design-width)));
     line-height: normal;
+  }
+
+  /* 3.3 Remoção de chrome: sem sombras projetadas no ecossistema Daniel Silva */
+  html.daniel-silva-theme *:not(.functional-shadow) {
+    box-shadow: none !important;
   }
 
   body {
@@ -144,6 +169,63 @@
   /* Entrelinha segura de 0.94 para evitar colisões com diacríticos (PROPÓSITO, CONVERGÊNCIA, MÚSICA) */
   .display--diacritic-safe {
     line-height: 0.94;
+  }
+
+  /* ========================================================================
+     RÓTULO OFICIAL DE SEÇÃO (3.6)
+     ======================================================================== */
+  .label {
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: var(--text-10);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.2rem;
+    background: var(--bege);
+    color: var(--preto);
+    line-height: normal;
+  }
+
+  /* ========================================================================
+     FAIXA MARQUEE OFICIAL COM BULLETS (3.5)
+     ======================================================================== */
+  .marquee {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: var(--text-10);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--bege);
+    color: var(--preto);
+    padding: 1.2rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    user-select: none;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    gap: 2rem;
+    will-change: transform;
+    animation: marquee-horizontal 28s linear infinite;
+  }
+
+  @keyframes marquee-horizontal {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none !important;
+    }
   }
 }
 

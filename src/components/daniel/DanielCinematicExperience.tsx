@@ -220,14 +220,14 @@ export const DanielCinematicExperience: React.FC = () => {
         {/* HUD com Marcadores de Capítulo e Barra de Progresso Estilo YouTube */}
         <div className="absolute bottom-0 left-0 w-full z-40 pointer-events-none">
           {/* Marcadores de Capítulos Sutis */}
-          <div className="hidden sm:flex items-center justify-between px-[32px] py-[8px] text-[10px] font-lato font-normal uppercase tracking-widest text-white/50 pointer-events-auto">
+          <div className="hidden sm:flex items-center justify-between px-[32px] py-[8px] text-[10px] font-lato font-normal uppercase tracking-widest text-[var(--off-white)]/50 pointer-events-auto">
             {chapters.map((ch, idx) => (
               <button
                 key={idx}
                 onClick={() => jumpToStage(ch.ratio)}
-                className={`hover:text-white transition-colors duration-200 ${
+                className={`hover:text-[var(--off-white)] transition-colors duration-200 ${
                   scrollProgress >= ch.ratio - 0.08 && scrollProgress <= ch.ratio + 0.08
-                    ? "text-white font-bold scale-105"
+                    ? "text-[var(--bege)] font-bold scale-105"
                     : ""
                 }`}
               >
@@ -236,10 +236,10 @@ export const DanielCinematicExperience: React.FC = () => {
             ))}
           </div>
 
-          {/* Barra de Progresso Branca na Base Inferior Estilo YouTube */}
-          <div className="w-full h-[5px] bg-white/20 relative">
+          {/* Barra de Progresso na Base Inferior Estilo YouTube */}
+          <div className="w-full h-[4px] bg-[var(--off-white)]/20 relative">
             <div
-              className="h-full bg-white transition-[width] duration-75 ease-out shadow-[0_0_12px_rgba(255,255,255,0.9)]"
+              className="h-full bg-[var(--off-white)] transition-[width] duration-75 ease-out shadow-none"
               style={{ width: `${Math.min(scrollProgress / 0.92, 1) * 100}%` }}
             />
           </div>

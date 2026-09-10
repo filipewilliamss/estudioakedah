@@ -29,16 +29,16 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
 
   const subtextColor =
     variant === "white"
-      ? "text-white/70"
+      ? "text-[var(--off-white)]/80"
       : variant === "gold"
-      ? "text-[#E6C387]/80"
-      : "text-[#191919]/70";
+      ? "text-[var(--bege)]"
+      : "text-[var(--preto)]/80";
 
   const sizeStyles = {
-    sm: "h-[32px] sm:h-[40px]",
-    md: "h-[44px] sm:h-[56px]",
-    lg: "h-[56px] sm:h-[80px]",
-    xl: "h-[80px] sm:h-[112px]",
+    sm: "h-[24px] sm:h-[32px]",
+    md: "h-[36px] sm:h-[48px]",
+    lg: "h-[48px] sm:h-[64px]",
+    xl: "h-[64px] sm:h-[88px]",
   }[size];
 
   return (
@@ -52,7 +52,7 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
       />
 
       {showPositioning && (
-        <span className={`text-fluid-10 font-lato font-normal tracking-[0.25em] uppercase mt-[4px] ${subtextColor}`}>
+        <span className={`text-fluid-10 font-lato font-bold tracking-[0.25em] uppercase mt-[4px] ${subtextColor}`}>
           {DANIEL_POSITIONING}
         </span>
       )}
@@ -67,42 +67,27 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
 };
 
 /**
- * Faixa Repetida do Selo Oficial Curto "Dani"
- * Usada como divisória institucional de prestígio e acabamento de alto padrão.
+ * Faixa Marquee Oficial com Separador de Bullet (Brand Kit 3.5)
+ * Fundo em --bege, texto em --preto, tipografia Lato Black 900, --text-10, tracking 0.14em.
+ * Deslocamento horizontal contínuo e lento, congelado sob prefers-reduced-motion.
  */
-export const DaniRepetitiveSealStrip: React.FC<{
-  variant?: "dark" | "light" | "gold";
+export const DanielBrandMarquee: React.FC<{
   className?: string;
-}> = ({ variant = "dark", className = "" }) => {
-  const bg =
-    variant === "dark"
-      ? "bg-[#191919] text-white/80 border-white/10"
-      : variant === "gold"
-      ? "bg-[#C4550A] text-white border-white/20"
-      : "bg-[#F5E9CB] text-[#191919] border-[#191919]/15";
-
-  const seloSrc =
-    variant === "dark"
-      ? "/dani-selo-white.svg"
-      : "/dani-selo.svg";
+}> = ({ className = "" }) => {
+  const repeatedText = "MENTOR • EMPRESÁRIO • CRIADOR DE CONTEÚDO";
 
   return (
-    <div className={`w-full overflow-hidden py-[12px] border-y select-none ${bg} ${className}`}>
-      <div className="flex items-center gap-[40px] whitespace-nowrap">
+    <div className={`marquee border-y border-[var(--preto)]/20 ${className}`}>
+      <div className="marquee-track">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex items-center gap-[40px] shrink-0">
-            {/* Selo Curto Oficial Dani */}
-            <div className="flex items-center gap-[8px]">
-              <img
-                src={seloSrc}
-                alt="Selo Dani"
-                className="h-[36px] w-auto object-contain"
-                loading="lazy"
-              />
-            </div>
-            <span className="font-lato font-black text-fluid-10 uppercase tracking-[0.3em] opacity-80">
-              Daniel Silva • Oficial
-            </span>
+          <div key={i} className="flex items-center gap-[24px] shrink-0">
+            <img
+              src="/dani-selo.svg"
+              alt="Dani"
+              className="h-[18px] w-auto object-contain inline-block opacity-90"
+              loading="lazy"
+            />
+            <span>{repeatedText} •</span>
           </div>
         ))}
       </div>
@@ -110,4 +95,10 @@ export const DaniRepetitiveSealStrip: React.FC<{
   );
 };
 
+/**
+ * Alias de compatibilidade para a faixa horizontal contínua
+ */
+export const DaniRepetitiveSealStrip = DanielBrandMarquee;
+
 export default DanielSignature;
+
