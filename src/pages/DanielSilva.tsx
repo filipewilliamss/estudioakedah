@@ -1,4 +1,4 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -11,6 +11,10 @@ import { DaniRepetitiveSealStrip, DANIEL_TAGLINE, DANIEL_POSITIONING } from "@/c
 const DanielSilva = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.classList.add("daniel-silva-theme");
+    return () => {
+      document.documentElement.classList.remove("daniel-silva-theme");
+    };
   }, []);
 
   const schema = {

@@ -17,6 +17,18 @@ export default {
         display: ['Montserrat', 'sans-serif'],
         body: ['Montserrat', 'sans-serif'],
         lato: ['Lato', 'sans-serif'],
+        'barlow-condensed': ['"Barlow Condensed"', 'sans-serif'],
+      },
+      fontSize: {
+        'fluid-10': 'var(--text-10)',
+        'fluid-13': 'var(--text-13)',
+        'fluid-16': 'var(--text-16)',
+        'fluid-20': 'var(--text-20)',
+        'fluid-28': 'var(--text-28)',
+        'fluid-44': 'var(--text-44)',
+        'fluid-80': 'var(--text-80)',
+        'fluid-110': 'var(--text-110)',
+        'fluid-280': 'var(--text-280)',
       },
 
       colors: {

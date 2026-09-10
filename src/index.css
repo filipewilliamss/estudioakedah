@@ -1,7 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&display=swap');
 
 #lovable-badge {
   display: none !important;
+}
+
+@font-face {
+  font-family: 'Barlow Condensed';
+  src: url('/font/BarlowCondensed-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -57,18 +65,41 @@
     --radius: 0rem; /* Hard edges for premium look */
 
     --font-display: 'Montserrat', sans-serif;
+
+    /* ========================================================================
+       SISTEMA TIPOGRÁFICO FLUIDO — DANIEL SILVA (AMPLITUDE 28x)
+       ======================================================================== */
+    --design-width: 1440;
+    --text-10:  1rem;
+    --text-13:  1.3rem;
+    --text-16:  1.6rem;
+    --text-20:  2rem;
+    --text-28:  2.8rem;
+    --text-44:  4.4rem;
+    --text-80:  8rem;
+    --text-110: 11rem;
+    --text-280: 28rem;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --design-width: 430;
+    }
   }
 
   html {
     scroll-behavior: initial;
   }
 
+  html.daniel-silva-theme {
+    font-size: calc(10 * (100vw / var(--design-width)));
+    line-height: normal;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-display);
   }
-
-
 
   /* Removed heavy grain texture overlay for performance */
 }
@@ -77,7 +108,6 @@
   .container-editorial {
     @apply max-w-7xl mx-auto px-6 sm:px-10 lg:px-16;
   }
-
 
   .text-balance {
     text-wrap: balance;
@@ -89,6 +119,31 @@
   
   .tracking-widest-xl {
     letter-spacing: 0.3em;
+  }
+
+  /* ========================================================================
+     TRATAMENTO DO DISPLAY OFICIAL (2.5)
+     ======================================================================== */
+  .display {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .display--condensed {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
+  /* Entrelinha segura de 0.94 para evitar colisões com diacríticos (PROPÓSITO, CONVERGÊNCIA, MÚSICA) */
+  .display--diacritic-safe {
+    line-height: 0.94;
   }
 }
 

@@ -52,13 +52,13 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
       />
 
       {showPositioning && (
-        <span className={`text-[10px] sm:text-xs font-lato font-normal tracking-[0.25em] uppercase mt-[4px] ${subtextColor}`}>
+        <span className={`text-fluid-10 font-lato font-normal tracking-[0.25em] uppercase mt-[4px] ${subtextColor}`}>
           {DANIEL_POSITIONING}
         </span>
       )}
 
       {showTagline && (
-        <p className={`text-xs sm:text-sm font-lato italic font-light mt-[6px] max-w-[448px] ${subtextColor}`}>
+        <p className={`text-fluid-13 font-lato italic font-light mt-[6px] max-w-[448px] ${subtextColor}`}>
           "{DANIEL_TAGLINE}"
         </p>
       )}
@@ -100,10 +100,9 @@ export const DaniRepetitiveSealStrip: React.FC<{
                 loading="lazy"
               />
             </div>
-            <span className="text-[11px] font-lato font-light tracking-[0.3em] uppercase opacity-60">
-              {DANIEL_POSITIONING}
+            <span className="font-lato font-black text-fluid-10 uppercase tracking-[0.3em] opacity-80">
+              Daniel Silva • Oficial
             </span>
-            <span className="text-[10px] opacity-40">✦</span>
           </div>
         ))}
       </div>
