@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { AnimatePresence } from "framer-motion";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import DanielPreloader from "@/components/daniel/DanielPreloader";
 import DanielCinematicExperience from "@/components/daniel/DanielCinematicExperience";
 import DanielPublicLifeSection from "@/components/daniel/DanielPublicLifeSection";
 import DanielPartnersSection from "@/components/daniel/DanielPartnersSection";
@@ -9,12 +12,30 @@ import DanielContactSection from "@/components/daniel/DanielContactSection";
 import { DanielBrandMarquee, DANIEL_TAGLINE, DANIEL_POSITIONING } from "@/components/daniel/DanielBrandSignature";
 
 const DanielSilva = () => {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.documentElement.classList.add("daniel-silva-theme");
+
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
     return () => {
       document.documentElement.classList.remove("daniel-silva-theme");
+      document.body.style.overflow = "";
     };
+  }, [loading]);
+
+  const handlePreloaderComplete = useCallback(() => {
+    setLoading(false);
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
   }, []);
 
   const schema = {
@@ -28,6 +49,10 @@ const DanielSilva = () => {
 
   return (
     <div className="min-h-screen bg-[var(--marinho)] text-[var(--off-white)] selection:bg-[var(--bege)] selection:text-[var(--marinho)] relative font-lato">
+      <AnimatePresence>
+        {loading && <DanielPreloader onComplete={handlePreloaderComplete} />}
+      </AnimatePresence>
+
       <SEO
         title={`Daniel Silva | ${DANIEL_POSITIONING}`}
         description={`Daniel Silva: ${DANIEL_TAGLINE} Experiência cinematográfica conduzida por scroll.`}
