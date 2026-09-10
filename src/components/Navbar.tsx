@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import akedahLogo from "@/assets/akedah-logo.png";
+import { DanielSignature } from "./daniel/DanielBrandSignature";
 
 type NavItem = { label: string; hash?: string; to?: string };
 
@@ -178,10 +179,8 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
             aria-label="Página Inicial"
           >
             {isCurrentDanielSilva ? (
-              <div className="flex items-center gap-3">
-                <span className="font-display font-[900] text-xl sm:text-2xl tracking-tighter text-white uppercase">
-                  DANIEL<span className="text-white/60 font-light ml-1.5">SILVA</span>
-                </span>
+              <div className="flex items-center gap-2">
+                <DanielSignature variant="white" size="sm" />
               </div>
             ) : (
               <img

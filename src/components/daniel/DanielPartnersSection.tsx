@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 import { WHATSAPP_URL } from "@/data/services";
 import { Award, ShieldCheck, TrendingUp } from "lucide-react";
 
@@ -18,7 +18,7 @@ export const DanielPartnersSection: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-        <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between min-h-[240px] transition-all">
+        <div className="p-8 bg-[#1f1f1f]/90 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between min-h-[240px] transition-all">
           <div>
             <div className="p-3 bg-blue-500/10 text-blue-400 w-fit rounded-[12px] mb-4">
               <TrendingUp className="w-5 h-5" />
@@ -43,7 +43,7 @@ export const DanielPartnersSection: React.FC = () => {
           </a>
         </div>
 
-        <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between min-h-[240px] transition-all">
+        <div className="p-8 bg-[#1f1f1f]/90 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between min-h-[240px] transition-all">
           <div>
             <div className="p-3 bg-purple-500/10 text-purple-400 w-fit rounded-[12px] mb-4">
               <Award className="w-5 h-5" />
@@ -68,7 +68,7 @@ export const DanielPartnersSection: React.FC = () => {
           </a>
         </div>
 
-        <div className="p-8 bg-[#0B1B3D]/70 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between min-h-[240px] transition-all">
+        <div className="p-8 bg-[#1f1f1f]/90 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between min-h-[240px] transition-all">
           <div>
             <div className="p-3 bg-amber-500/10 text-amber-400 w-fit rounded-[12px] mb-4">
               <ShieldCheck className="w-5 h-5" />

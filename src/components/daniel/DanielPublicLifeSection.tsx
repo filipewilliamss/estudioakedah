@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { WHATSAPP_URL } from "@/data/services";
 import { Play, Instagram, Youtube, Linkedin, Radio, Calendar, ArrowRight } from "lucide-react";
 
@@ -111,8 +111,8 @@ export const DanielPublicLifeSection: React.FC = () => {
                 onClick={() => setActiveFilter(cat)}
                 className={`px-4 py-2 rounded-[12px] text-xs font-mono font-bold uppercase tracking-wider transition-all ${
                   activeFilter === cat
-                    ? "bg-white text-[#07132B] shadow-lg"
-                    : "bg-[#0B1B3D] text-white/60 hover:text-white border border-white/10"
+                    ? "bg-white text-[#191919] shadow-lg"
+                    : "bg-[#1f1f1f] text-white/60 hover:text-white border border-white/10"
                 }`}
               >
                 {cat}
@@ -126,7 +126,7 @@ export const DanielPublicLifeSection: React.FC = () => {
           {filteredAgenda.map((item, idx) => (
             <div
               key={idx}
-              className="p-7 bg-[#0B1B3D]/80 border border-white/10 hover:border-white/30 rounded-[20px] transition-all duration-300 flex flex-col justify-between min-h-[220px] backdrop-blur-md"
+              className="p-7 bg-[#1f1f1f]/90 border border-white/10 hover:border-white/30 rounded-[20px] transition-all duration-300 flex flex-col justify-between min-h-[220px] backdrop-blur-md"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -185,7 +185,7 @@ export const DanielPublicLifeSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-8 bg-[#0B1B3D]/80 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between space-y-6 transition-all duration-300"
+                className="p-8 bg-[#1f1f1f]/90 border border-white/10 hover:border-white/30 rounded-[24px] backdrop-blur-md flex flex-col justify-between space-y-6 transition-all duration-300"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
