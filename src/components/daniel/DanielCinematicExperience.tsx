@@ -24,16 +24,17 @@ export const DANIEL_VIDEO_TIMESTAMPS = {
   HERO_APPROACH_END: 6.0,
   ENTREPRENEUR_START: 6.0,
   ENTREPRENEUR_CLOSEUP: 9.0,
-  ENTREPRENEUR_END: 12.0,
-  TRANSITION_1_START: 12.0, // Saída de quadro, parede, porta 2
-  TRANSITION_1_END: 19.0,
-  MUSIC_ROOM_ENTRY: 19.0,
-  MUSICIAN_START: 21.0,     // Músico enquadrado
-  MUSICIAN_CLOSEUP: 24.0,   // Close musical 24-27s
-  MUSICIAN_END: 28.0,
-  TRANSITION_2_START: 28.0, // Porta 3, abertura
-  TRANSITION_2_END: 33.0,
-  FAITH_START: 33.0,        // Fé enquadrado
+  ENTREPRENEUR_END: 14.0,   // Câmera gira para esquerda e parede preenche o quadro aos 14.0s
+  TRANSITION_1_START: 14.0, // Painel azul "Da rigidez dos negócios..."
+  TRANSITION_1_END: 18.0,
+  MUSIC_ROOM_ENTRY: 18.0,
+  MUSICIAN_START: 18.0,     // Porta de madeira abrindo e entrada na sala
+  MUSICIAN_CLOSEUP: 24.0,   // Dedilhando violão
+  MUSICIAN_SMILE: 26.5,     // Sorriso para a câmera
+  MUSICIAN_END: 28.0,       // Câmera gira para a direita e parede aparece aos 28.0s
+  TRANSITION_2_START: 28.0,
+  TRANSITION_2_END: 30.0,
+  FAITH_START: 30.0,        // Maçaneta dourada, porta clássica abrindo e entrada
   FAITH_CLOSEUP_SMILE: 38.0,// Close com sorriso 38-40s
   FAITH_CONVERGENCE: 40.0,  // Segura o quadro até o final
   TOTAL_DURATION: 40.75,
@@ -41,8 +42,13 @@ export const DANIEL_VIDEO_TIMESTAMPS = {
 
 /**
  * Mapeamento por Trechos (Piecewise Linear) Scroll -> Vídeo
- * Garante que cada dimensão só é visível enquanto Daniel está comprovadamente no enquadramento.
- * Os 12s de deslocamento por corredores e portas (12-19s e 28-33s) tornam-se os respiros institucionais.
+ * Calibrado com os enquadramentos reais do vídeo oficial:
+ * 1. Hero: 0.0s -> 6.0s
+ * 2. Empreendedor: 6.0s -> 14.0s (zoom no rosto + giro até a parede)
+ * 3. Transição 1: Painel Azul
+ * 4. Músico: 18.0s -> 28.0s (porta abrindo, banqueta, sorriso e giro para a parede)
+ * 5. Músico Pilares & Transição 2: Telas Branca e Azul
+ * 6. Mentor de Fé: 30.0s -> 40.0s (porta clássica abrindo, poltrona, Bíblia, sorriso)
  */
 export const getVideoTimeForScroll = (progress: number): number => {
   const p = Math.max(0, Math.min(progress, 1));
@@ -56,7 +62,7 @@ export const getVideoTimeForScroll = (progress: number): number => {
     );
   }
 
-  // 2. Dimensão 01 - Empreendedor (Scroll 0.15 -> 0.35) => Vídeo 6.0s -> 12.0s
+  // 2. Dimensão 01 - Empreendedor (Scroll 0.15 -> 0.35) => Vídeo 6.0s -> 14.0s (até a parede)
   if (p < 0.35) {
     const frac = (p - 0.15) / (0.35 - 0.15);
     return (
@@ -65,7 +71,7 @@ export const getVideoTimeForScroll = (progress: number): number => {
     );
   }
 
-  // 3. Painel de Transição 1 (-20% scroll: 0.35 -> 0.43) => Vídeo 12.0s -> 21.0s (Daniel some da tela)
+  // 3. Painel de Transição 1 (Scroll: 0.35 -> 0.43) => Vídeo 14.0s -> 18.0s
   if (p < 0.43) {
     const frac = (p - 0.35) / (0.43 - 0.35);
     return (
@@ -74,27 +80,27 @@ export const getVideoTimeForScroll = (progress: number): number => {
     );
   }
 
-  // 4. Dimensão 02 - Músico + Agenda (Scroll 0.43 -> 0.66) => Vídeo 21.0s -> 28.0s
-  if (p < 0.66) {
-    const frac = (p - 0.43) / (0.66 - 0.43);
+  // 4. Dimensão 02 - Músico Vídeo (Scroll 0.43 -> 0.55) => Vídeo 18.0s -> 28.0s (porta abre, violão, sorriso, giro parede)
+  if (p < 0.55) {
+    const frac = (p - 0.43) / (0.55 - 0.43);
     return (
       DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_END - DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START)
     );
   }
 
-  // 5. Painel de Transição 2 (-20% scroll: 0.66 -> 0.724) => Vídeo 28.0s -> 33.0s (Daniel some da tela)
-  if (p < 0.724) {
-    const frac = (p - 0.66) / (0.724 - 0.66);
+  // 5. Pilares de Música & Painel Transição 2 (Scroll 0.55 -> 0.72) => Vídeo 28.0s -> 30.0s
+  if (p < 0.72) {
+    const frac = (p - 0.55) / (0.72 - 0.55);
     return (
       DANIEL_VIDEO_TIMESTAMPS.TRANSITION_2_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.FAITH_START - DANIEL_VIDEO_TIMESTAMPS.TRANSITION_2_START)
     );
   }
 
-  // 6. Dimensão 03 - Mentor de Fé (Scroll 0.724 -> 0.88) => Vídeo 33.0s -> 40.0s
+  // 6. Dimensão 03 - Mentor de Fé (Scroll 0.72 -> 0.88) => Vídeo 30.0s -> 40.0s (porta abre, Bíblia, sorriso)
   if (p < 0.88) {
-    const frac = (p - 0.724) / (0.88 - 0.724);
+    const frac = (p - 0.72) / (0.88 - 0.72);
     return (
       DANIEL_VIDEO_TIMESTAMPS.FAITH_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.FAITH_CONVERGENCE - DANIEL_VIDEO_TIMESTAMPS.FAITH_START)
@@ -108,7 +114,7 @@ export const getVideoTimeForScroll = (progress: number): number => {
 const getStaticFrameForProgress = (p: number) => {
   if (p < 0.15) return "/videos/site-video-poster.webp";
   if (p < 0.43) return "/videos/frame-empreendedor.webp";
-  if (p < 0.724) return "/videos/frame-musico.webp";
+  if (p < 0.72) return "/videos/frame-musico.webp";
   return "/videos/frame-fe.webp";
 };
 
@@ -179,8 +185,8 @@ export const DanielCinematicExperience: React.FC = () => {
         setScrollProgress(self.progress);
         const p = self.progress;
 
-        // 4.1 Daniel precisa desaparecer nos painéis de transição marinho:
-        const isTransitionPanel = (p >= 0.35 && p < 0.43) || (p >= 0.66 && p < 0.724);
+        // Daniel precisa desaparecer nos painéis de transição marinho e nas telas de pilares:
+        const isTransitionPanel = (p >= 0.35 && p < 0.43) || (p >= 0.55 && p < 0.72);
         if (videoLayerRef.current) {
           videoLayerRef.current.style.opacity = isTransitionPanel ? "0" : "1";
           videoLayerRef.current.style.visibility = isTransitionPanel ? "hidden" : "visible";

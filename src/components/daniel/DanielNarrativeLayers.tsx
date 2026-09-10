@@ -78,10 +78,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
   const isEmpreendedorA = progress >= 0.12 && progress < 0.22; // Declaração "O ESTRATEGISTA"
   const isEmpreendedorB = progress >= 0.22 && progress < 0.35; // Pilares "01, 02, 03"
   const isTrans1 = progress >= 0.35 && progress < 0.43;        // Transição 1 (Respiro Marinho)
-  const isMusicoA = progress >= 0.43 && progress < 0.54;       // Declaração "O MÚSICO"
-  const isMusicoB = progress >= 0.54 && progress < 0.66;       // Pilares Música
-  const isTrans2 = progress >= 0.66 && progress < 0.724;       // Transição 2 (Respiro Marinho)
-  const isFeA = progress >= 0.724 && progress < 0.81;          // Declaração "O MENTOR"
+  const isMusicoA = progress >= 0.43 && progress < 0.55;       // Músico Vídeo (Porta abrindo, violão, sorriso, giro)
+  const isMusicoB = progress >= 0.55 && progress < 0.65;       // Pilares Música (Tela Branca: 01 Produção...)
+  const isTrans2 = progress >= 0.65 && progress < 0.72;        // Transição 2 (Respiro Marinho)
+  const isFeA = progress >= 0.72 && progress < 0.81;          // Declaração "O MENTOR" (Porta clássica abrindo)
   const isFeB = progress >= 0.81 && progress < 0.88;          // Manifesto de Fé
   const isConvergenciaA = progress >= 0.88 && progress < 0.94; // "NÃO SÃO TRÊS PESSOAS" (Off-white)
   const isConvergenciaB = progress >= 0.94;                     // "É UM SÓ PROPÓSITO" (Preto + 3 thumbs)
@@ -92,7 +92,7 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       {/* TELA 01 — HERO / ENTRADA (CONCEITO DE REMOÇÃO)                    */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-between p-[3rem] sm:p-[4rem] transition-opacity duration-500"
+        className="scr !absolute inset-0 flex flex-col justify-between p-[3rem] sm:p-[4rem] transition-opacity duration-500"
         style={{
           opacity: isHero ? 1 : 0,
           pointerEvents: isHero ? "auto" : "none",
@@ -120,10 +120,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 02 — DECLARAÇÃO EMPREENDEDOR (SÓLIDO MARINHO #002867)        */}
+      {/* TELA 02 — DECLARAÇÃO EMPREENDEDOR (OVERLAY SOBRE O VÍDEO)         */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        className="scr !absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500"
         style={{
           opacity: isEmpreendedorA ? 1 : 0,
           pointerEvents: isEmpreendedorA ? "auto" : "none",
@@ -141,10 +141,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 03 — PILARES DE NEGÓCIOS (SÓLIDO MARINHO #002867)             */}
+      {/* TELA 03 — PILARES DE NEGÓCIOS (OVERLAY SOBRE O VÍDEO)             */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        className="scr !absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500"
         style={{
           opacity: isEmpreendedorB ? 1 : 0,
           pointerEvents: isEmpreendedorB ? "auto" : "none",
@@ -196,10 +196,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 05 — DECLARAÇÃO MÚSICO (SÓLIDO MARINHO #002867)              */}
+      {/* TELA 05 — DECLARAÇÃO MÚSICO (OVERLAY SOBRE O VÍDEO)               */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        className="scr !absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500"
         style={{
           opacity: isMusicoA ? 1 : 0,
           pointerEvents: isMusicoA ? "auto" : "none",
@@ -220,7 +220,7 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       {/* TELA 06 — PILARES DE MÚSICA (SÓLIDO OFF-WHITE #F2F0EF)            */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--off-white)]"
+        className="scr !absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--off-white)]"
         style={{
           opacity: isMusicoB ? 1 : 0,
           pointerEvents: isMusicoB ? "auto" : "none",
@@ -265,17 +265,17 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
           <DanielGroundLiftText
             text="Dos palcos ao altar: o fundamento"
             progress={progress}
-            startRange={0.660}
+            startRange={0.655}
             endRange={0.710}
           />
         </div>
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 08 — DECLARAÇÃO FÉ (SÓLIDO MARINHO #002867)                  */}
+      {/* TELA 08 — DECLARAÇÃO FÉ (OVERLAY SOBRE O VÍDEO)                   */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        className="scr !absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500"
         style={{
           opacity: isFeA ? 1 : 0,
           pointerEvents: isFeA ? "auto" : "none",
@@ -293,10 +293,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 09 — MANIFESTO DE FÉ (SÓLIDO MARINHO #002867)                */}
+      {/* TELA 09 — MANIFESTO DE FÉ (OVERLAY SOBRE O VÍDEO)                 */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        className="scr !absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500"
         style={{
           opacity: isFeB ? 1 : 0,
           pointerEvents: isFeB ? "auto" : "none",
@@ -329,7 +329,7 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       {/* TELA 10 — CONVERGÊNCIA A (SÓLIDO OFF-WHITE #F2F0EF)               */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex items-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--off-white)] text-[var(--preto)]"
+        className="scr !absolute inset-0 flex items-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--off-white)] text-[var(--preto)]"
         style={{
           opacity: isConvergenciaA ? 1 : 0,
           pointerEvents: isConvergenciaA ? "auto" : "none",
@@ -345,7 +345,7 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       {/* TELA 11 — CONVERGÊNCIA B (SÓLIDO MARINHO #002867)                 */}
       {/* ================================================================= */}
       <div
-        className="section--flat scr absolute inset-0 flex flex-col justify-center transition-opacity duration-500 bg-[var(--marinho)]"
+        className="section--flat scr !absolute inset-0 flex flex-col justify-center transition-opacity duration-500 bg-[var(--marinho)]"
         style={{
           opacity: isConvergenciaB ? 1 : 0,
           pointerEvents: isConvergenciaB ? "auto" : "none",

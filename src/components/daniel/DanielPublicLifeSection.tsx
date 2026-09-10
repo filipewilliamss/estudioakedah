@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WHATSAPP_URL } from "@/data/services";
 import { Instagram, Youtube, Linkedin, Radio, ArrowRight } from "lucide-react";
+import { AgendaNoiseLens, SVG_NOISE_DATA_URI } from "./AgendaNoiseLens";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,8 +73,19 @@ const conteudosDigitais = [
 ];
 
 export const DanielPublicLifeSection: React.FC = () => {
+  const agenda1Ref = useRef<HTMLElement>(null);
+  const agenda1ContentRef = useRef<HTMLDivElement>(null);
+  const agenda1GrainRef = useRef<HTMLDivElement>(null);
+
   const agenda2Ref = useRef<HTMLElement>(null);
+  const agenda2ContentRef = useRef<HTMLDivElement>(null);
+  const agenda2GrainRef = useRef<HTMLDivElement>(null);
   const agenda2BgRef = useRef<HTMLDivElement>(null);
+
+  const agenda3Ref = useRef<HTMLElement>(null);
+  const agenda3ContentRef = useRef<HTMLDivElement>(null);
+  const agenda3GrainRef = useRef<HTMLDivElement>(null);
+
   const conteudoRef = useRef<HTMLElement>(null);
   const conteudoBgRef = useRef<HTMLDivElement>(null);
 
@@ -82,6 +94,7 @@ export const DanielPublicLifeSection: React.FC = () => {
     if (motionQuery.matches) return;
 
     const ctx = gsap.context(() => {
+      // 1. Deslocamento parallax suave nos fundos brancos elevados
       const parallaxSections = [
         { section: agenda2Ref.current, bg: agenda2BgRef.current },
         { section: conteudoRef.current, bg: conteudoBgRef.current },
@@ -90,7 +103,6 @@ export const DanielPublicLifeSection: React.FC = () => {
       parallaxSections.forEach(({ section, bg }) => {
         if (!section || !bg) return;
 
-        // Deslocamento parallax suave estritamente vinculado ao scroll
         gsap.fromTo(
           bg,
           { y: -65 },
@@ -103,7 +115,6 @@ export const DanielPublicLifeSection: React.FC = () => {
               end: "bottom top",
               scrub: 0.6,
               onUpdate: (self) => {
-                // Leve deslocamento dinâmico dependendo da direção do scroll
                 const dir = self.direction; // 1 = descendo, -1 = subindo
                 gsap.to(bg, {
                   yPercent: dir === 1 ? 1.8 : -1.8,
@@ -116,6 +127,57 @@ export const DanielPublicLifeSection: React.FC = () => {
           }
         );
       });
+
+      // 2. Animação de aparição das informações da agenda pública (desfoque alto + grain -> nítido)
+      const agendaEntrances = [
+        { section: agenda1Ref.current, content: agenda1ContentRef.current, grain: agenda1GrainRef.current },
+        { section: agenda2Ref.current, content: agenda2ContentRef.current, grain: agenda2GrainRef.current },
+        { section: agenda3Ref.current, content: agenda3ContentRef.current, grain: agenda3GrainRef.current },
+      ];
+
+      agendaEntrances.forEach(({ section, content, grain }) => {
+        if (!section || !content) return;
+
+        // Desfoque alto de 22px que some suavemente até 0px ao parar na seção
+        gsap.fromTo(
+          content,
+          {
+            filter: "blur(22px)",
+            opacity: 0.35,
+            y: 28,
+          },
+          {
+            filter: "blur(0px)",
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 92%",
+              end: "top 25%",
+              scrub: 0.6,
+            },
+          }
+        );
+
+        // Camada de grain de entrada que desvanece
+        if (grain) {
+          gsap.fromTo(
+            grain,
+            { opacity: 0.55 },
+            {
+              opacity: 0,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 92%",
+                end: "top 25%",
+                scrub: 0.6,
+              },
+            }
+          );
+        }
+      });
     });
 
     return () => ctx.revert();
@@ -126,8 +188,31 @@ export const DanielPublicLifeSection: React.FC = () => {
       {/* =================================================================== */}
       {/* BLOCO 1: AGENDA PÚBLICA — TELAS DE 100VH (CONCEITO DE REMOÇÃO)      */}
       {/* =================================================================== */}
-      <section id="agenda-publica" className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full relative z-[1]">
-        <div className="container w-full text-left" data-section="agenda-publica">
+      <section
+        id="agenda-publica"
+        ref={agenda1Ref}
+        className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full relative z-[1] overflow-hidden"
+      >
+        {/* Grain de Entrada vinculado ao scroll */}
+        <div
+          ref={agenda1GrainRef}
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none mix-blend-overlay z-20"
+          style={{
+            backgroundImage: `url("${SVG_NOISE_DATA_URI}")`,
+            backgroundSize: "160px 160px",
+          }}
+        />
+
+        {/* Lente Retangular Móvel com Desfoque e Grain */}
+        <AgendaNoiseLens containerRef={agenda1Ref} theme="dark" />
+
+        <div
+          ref={agenda1ContentRef}
+          className="container w-full text-left relative z-10"
+          data-section="agenda-publica"
+          style={{ willChange: "filter, transform, opacity" }}
+        >
           <div className="flex items-center justify-between mb-[3.4rem]">
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase">
               Agenda pública — 01 de 03
@@ -198,7 +283,26 @@ export const DanielPublicLifeSection: React.FC = () => {
             }}
           />
 
-          <div className="container w-full text-left relative z-10" data-section="agenda-publica-2">
+          {/* Grain de Entrada vinculado ao scroll */}
+          <div
+            ref={agenda2GrainRef}
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none mix-blend-overlay z-20"
+            style={{
+              backgroundImage: `url("${SVG_NOISE_DATA_URI}")`,
+              backgroundSize: "160px 160px",
+            }}
+          />
+
+          {/* Lente Retangular Móvel com Desfoque e Grain */}
+          <AgendaNoiseLens containerRef={agenda2Ref} theme="light" />
+
+          <div
+            ref={agenda2ContentRef}
+            className="container w-full text-left relative z-10"
+            data-section="agenda-publica-2"
+            style={{ willChange: "filter, transform, opacity" }}
+          >
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[rgba(25,25,25,0.6)] uppercase mb-[3.4rem]">
               Agenda pública — 02 de 03
             </div>
@@ -246,8 +350,31 @@ export const DanielPublicLifeSection: React.FC = () => {
         </section>
 
         {/* TELA 14 — AGENDA PÚBLICA (03 DE 03) */}
-        <section id="agenda-publica-3" className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full relative z-[1]">
-          <div className="container w-full text-left" data-section="agenda-publica-3">
+        <section
+          id="agenda-publica-3"
+          ref={agenda3Ref}
+          className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full relative z-[1] overflow-hidden"
+        >
+          {/* Grain de Entrada vinculado ao scroll */}
+          <div
+            ref={agenda3GrainRef}
+            aria-hidden="true"
+            className="absolute inset-0 pointer-events-none mix-blend-overlay z-20"
+            style={{
+              backgroundImage: `url("${SVG_NOISE_DATA_URI}")`,
+              backgroundSize: "160px 160px",
+            }}
+          />
+
+          {/* Lente Retangular Móvel com Desfoque e Grain */}
+          <AgendaNoiseLens containerRef={agenda3Ref} theme="dark" />
+
+          <div
+            ref={agenda3ContentRef}
+            className="container w-full text-left relative z-10"
+            data-section="agenda-publica-3"
+            style={{ willChange: "filter, transform, opacity" }}
+          >
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[3.4rem]">
               Agenda pública — 03 de 03
             </div>
