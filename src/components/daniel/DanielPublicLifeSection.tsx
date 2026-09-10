@@ -216,8 +216,8 @@ export const DanielPublicLifeSection: React.FC = () => {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: conteudoRef.current,
-              start: "top 80%",
-              end: "top 10%",
+              start: "top 40%",
+              end: "top -5%",
               scrub: 0.6,
             },
           });
