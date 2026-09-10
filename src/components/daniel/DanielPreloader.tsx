@@ -15,7 +15,6 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
   const [completed, setCompleted] = useState(false);
 
   useEffect(() => {
-    // Verificação de acessibilidade: prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReducedMotion) {
@@ -33,7 +32,6 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
           if (containerRef.current) {
             containerRef.current.style.pointerEvents = "none";
           }
-          // Transição de saída refinada com dissolve e leve expansão
           gsap.to(containerRef.current, {
             opacity: 0,
             scale: 1.02,
@@ -47,13 +45,58 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
       });
 
       const paths = [
-        { id: "mask-d-stem", el: document.getElementById("p-d-stem"), dur: 0.32, ease: "power2.inOut" },
-        { id: "mask-d-arch", el: document.getElementById("p-d-arch"), dur: 0.52, ease: "power2.inOut" },
-        { id: "mask-aniel", el: document.getElementById("p-aniel"), dur: 0.62, ease: "power1.inOut" },
-        { id: "mask-dot1", dot: document.getElementById("p-dot1"), cx: 488, cy: 535, dur: 0.1 },
-        { id: "mask-s", el: document.getElementById("p-s"), dur: 0.48, ease: "power2.inOut" },
-        { id: "mask-ilva", el: document.getElementById("p-ilva"), dur: 0.62, ease: "power1.inOut" },
-        { id: "mask-dot2", dot: document.getElementById("p-dot2"), cx: 701, cy: 531, dur: 0.1 },
+        // D: Haste
+        { id: "p-d-stem", el: document.getElementById("p-d-stem"), dur: 0.28, ease: "power2.inOut", startX: 335, startY: 475 },
+        // D: Barra transversal de ligação
+        { id: "p-d-cross", el: document.getElementById("p-d-cross"), dur: 0.20, ease: "power1.inOut", startX: 270, startY: 600 },
+        // D: Arco amplo e laço exterior
+        {
+          id: "p-d-arch",
+          el: document.getElementById("p-d-arch"),
+          dur: 0.48,
+          ease: "power2.inOut",
+          startX: 245,
+          startY: 560,
+          onCompleteLetter: () => {
+            const el = document.getElementById("reveal-d");
+            if (el) el.style.display = "block";
+          },
+        },
+        // aniel cursivo
+        { id: "p-aniel", el: document.getElementById("p-aniel"), dur: 0.58, ease: "power1.inOut", startX: 375, startY: 580 },
+        // Pingo no primeiro i
+        {
+          id: "p-dot1",
+          dot: document.getElementById("p-dot1"),
+          cx: 488,
+          cy: 535,
+          dur: 0.1,
+          onCompleteLetter: () => {
+            const el = document.getElementById("reveal-aniel");
+            if (el) el.style.display = "block";
+          },
+        },
+        // S: Arco superior e descida contínua
+        { id: "p-s-arch", el: document.getElementById("p-s-arch"), dur: 0.38, ease: "power2.inOut", startX: 580, startY: 530 },
+        // S: Haste diagonal central completa
+        { id: "p-s-stem", el: document.getElementById("p-s-stem"), dur: 0.28, ease: "power2.inOut", startX: 580, startY: 625 },
+        // S: Laço inferior e saída para conexão
+        {
+          id: "p-s-exit",
+          el: document.getElementById("p-s-exit"),
+          dur: 0.24,
+          ease: "power1.inOut",
+          startX: 580,
+          startY: 625,
+          onCompleteLetter: () => {
+            const el = document.getElementById("reveal-s");
+            if (el) el.style.display = "block";
+          },
+        },
+        // ilva e floreio inferior
+        { id: "p-ilva", el: document.getElementById("p-ilva"), dur: 0.58, ease: "power1.inOut", startX: 695, startY: 568 },
+        // Pingo no segundo i
+        { id: "p-dot2", dot: document.getElementById("p-dot2"), cx: 701, cy: 531, dur: 0.1 },
       ];
 
       const movePen = (x: number, y: number) => {
@@ -83,7 +126,7 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
       // Surgimento da pena de caligrafia
       tl.to(penGroupRef.current, { opacity: 1, duration: 0.15 }, 0);
 
-      // Traçado sequencial que simula a mão escrevendo
+      // Traçado sequencial sincronizado
       paths.forEach((item) => {
         if (item.el && item.el instanceof SVGGeometryElement) {
           const pathEl = item.el;
@@ -97,23 +140,32 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
               duration: item.dur,
               ease: item.ease,
               onStart: () => {
-                const pt0 = pathEl.getPointAtLength(0);
-                movePen(pt0.x, pt0.y);
+                if (item.startX !== undefined && item.startY !== undefined) {
+                  movePen(item.startX, item.startY);
+                } else {
+                  const pt0 = pathEl.getPointAtLength(0);
+                  movePen(pt0.x, pt0.y);
+                }
               },
               onUpdate: () => {
                 pathEl.style.strokeDashoffset = String(len * (1 - progressObj.p));
                 const pt = pathEl.getPointAtLength(progressObj.p * len);
                 movePen(pt.x, pt.y);
               },
+              onComplete: () => {
+                if (item.onCompleteLetter) {
+                  item.onCompleteLetter();
+                }
+              },
             },
-            ">-0.03"
+            ">-0.02"
           );
         } else if (item.dot) {
-          // Pingo no 'i' com expansão da pena
           tl.call(
             () => {
               if (item.cx && item.cy) movePen(item.cx, item.cy);
               if (item.dot) item.dot.style.opacity = "1";
+              if (item.onCompleteLetter) item.onCompleteLetter();
             },
             undefined,
             ">"
@@ -127,19 +179,19 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
       // Suavização da pena ao terminar o floreio
       tl.to(penGroupRef.current, { opacity: 0, duration: 0.2 }, "+=0.04");
 
-      // Revelação suave do subtítulo institucional oficial
+      // Revelação suave do subtítulo oficial
       if (subtitleRef.current) {
         tl.to(subtitleRef.current, { opacity: 0.9, y: 0, duration: 0.45, ease: "power2.out" }, "-=0.1");
       }
 
-      // Desengate da máscara para garantir 100% de precisão e nitidez do vetor original
+      // Desengate definitivo da máscara para garantir 100% de integridade vetorial nativa
       tl.call(() => {
         if (calligraphyRef.current) {
           calligraphyRef.current.removeAttribute("mask");
         }
       });
 
-      // Respiro estético (0.45s) para contemplação antes do fade out
+      // Respiro estético (0.45s) antes do dissolve de saída
       tl.to({}, { duration: 0.45 });
     }, containerRef);
 
@@ -150,6 +202,7 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
     if (completed) return;
     setCompleted(true);
     if (containerRef.current) {
+      containerRef.current.style.pointerEvents = "none";
       gsap.to(containerRef.current, {
         opacity: 0,
         duration: 0.35,
@@ -185,33 +238,58 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
             <defs>
               <mask id="daniel-write-mask" maskUnits="userSpaceOnUse" x="215" y="440" width="650" height="200">
                 <rect x="215" y="440" width="650" height="200" fill="black" />
-                <g fill="none" stroke="white" strokeWidth="40" strokeLinecap="round" strokeLinejoin="round">
-                  {/* 1. Haste do D */}
-                  <path id="p-d-stem" d="M 335,475 L 270,600" />
-                  {/* 2. Laço e arco do D */}
+
+                {/* DESBLOQUEIO PROGRESSIVO DE ALTA PRECISÃO:
+                    Garante que letras finalizadas nunca sofram cortes ou interrupções */}
+                <rect id="reveal-d" x="210" y="430" width="230" height="220" fill="white" style={{ display: "none" }} />
+                <rect id="reveal-aniel" x="370" y="480" width="220" height="150" fill="white" style={{ display: "none" }} />
+                <rect id="reveal-s" x="550" y="430" width="220" height="220" fill="white" style={{ display: "none" }} />
+
+                {/* TRAÇOS REAIS DE ESCRITA EM TEMPO REAL */}
+                <g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round">
+                  {/* D 1: Haste descendente */}
+                  <path id="p-d-stem" d="M 335,475 L 270,600" strokeWidth="44" />
+                  {/* D 2: Barra transversal de ligação */}
+                  <path id="p-d-cross" d="M 270,600 C 295,595 330,580 375,565" strokeWidth="42" />
+                  {/* D 3: Laço amplo e arco superior */}
                   <path
                     id="p-d-arch"
-                    d="M 270,600 C 255,618 222,618 225,575 C 228,525 270,475 320,455 C 365,435 405,455 398,510 C 388,560 325,608 255,626 C 230,632 238,590 265,575 L 310,585"
+                    d="M 245,560 C 235,605 255,628 285,618 C 330,575 385,510 410,470 C 420,445 375,438 325,455 C 275,475 235,515 225,555 C 218,590 240,625 270,625 C 320,610 375,565 425,505"
+                    strokeWidth="44"
                   />
-                  {/* 3. Letras aniel */}
+
+                  {/* aniel cursivo */}
                   <path
                     id="p-aniel"
                     d="M 375,580 C 390,555 405,538 412,558 C 418,578 395,588 388,575 C 382,555 400,542 412,555 L 418,580 C 425,565 435,550 442,558 L 442,580 C 452,560 462,552 468,572 L 468,582 C 478,560 488,552 488,580 C 498,558 514,548 514,575 C 522,588 535,535 550,465 C 560,438 575,465 565,505 C 550,545 540,575 560,580 C 570,582 580,575 585,570"
+                    strokeWidth="40"
                   />
-                  {/* 4. Pingo no i de Daniel */}
-                  <circle id="p-dot1" cx="488" cy="535" r="15" fill="white" stroke="none" opacity="0" />
-                  {/* 5. Letra S */}
+                  {/* Pingo no primeiro i */}
+                  <circle id="p-dot1" cx="488" cy="535" r="16" fill="white" stroke="none" opacity="0" />
+
+                  {/* S 1: Arco superior e laço descendente */}
                   <path
-                    id="p-s"
-                    d="M 580,530 C 620,490 680,455 735,455 C 755,455 755,480 735,505 C 700,545 640,580 595,605 C 570,618 575,635 615,630 C 660,622 690,585 710,565"
+                    id="p-s-arch"
+                    d="M 580,530 C 590,480 650,446 738,446 C 765,450 765,480 740,510 C 700,545 650,580 580,625"
+                    strokeWidth="44"
                   />
-                  {/* 6. Letras ilva + Floreio de Assinatura */}
+                  {/* S 2: Haste diagonal central completa */}
+                  <path id="p-s-stem" d="M 580,625 L 750,465" strokeWidth="42" />
+                  {/* S 3: Laço inferior e saída para conexão */}
+                  <path
+                    id="p-s-exit"
+                    d="M 580,625 C 565,640 605,642 640,625 C 675,605 690,580 715,565"
+                    strokeWidth="42"
+                  />
+
+                  {/* ilva cursivo + floreio dinâmico */}
                   <path
                     id="p-ilva"
                     d="M 695,568 C 708,550 718,548 718,575 C 725,550 740,475 750,505 C 755,530 745,565 745,578 C 755,555 765,550 770,575 L 778,562 C 785,548 795,548 798,575 C 808,555 825,550 862,565"
+                    strokeWidth="40"
                   />
-                  {/* 7. Pingo no i de Silva */}
-                  <circle id="p-dot2" cx="701" cy="531" r="15" fill="white" stroke="none" opacity="0" />
+                  {/* Pingo no segundo i */}
+                  <circle id="p-dot2" cx="701" cy="531" r="16" fill="white" stroke="none" opacity="0" />
                 </g>
               </mask>
             </defs>
