@@ -71,13 +71,22 @@
        ======================================================================== */
     --design-width: 1440;
     --text-10:  1rem;
+    --text-12:  1.2rem;
     --text-13:  1.3rem;
     --text-16:  1.6rem;
     --text-20:  2rem;
+    --text-26:  2.6rem;
     --text-28:  2.8rem;
     --text-44:  4.4rem;
+    --text-50:  5rem;
+    --text-54:  5.4rem;
     --text-80:  8rem;
+    --text-100: 10rem;
     --text-110: 11rem;
+    --text-125: 12.5rem;
+    --text-130: 13rem;
+    --text-150: 15rem;
+    --text-190: 19rem;
     --text-280: 28rem;
 
     /* ========================================================================
@@ -104,8 +113,15 @@
   @media (max-width: 768px) {
     :root {
       --design-width: 430;
+      --text-190: 6.4rem;
+      --text-150: 5.2rem;
+      --text-130: 4.8rem;
+      --text-125: 4.4rem;
       --text-110: 4.4rem;
+      --text-100: 3.8rem;
       --text-80:  2.8rem;
+      --text-54:  2.8rem;
+      --text-50:  2.6rem;
       --text-280: 8rem;
     }
   }
@@ -117,8 +133,8 @@
   html.daniel-silva-theme select:focus-visible,
   html.daniel-silva-theme textarea:focus-visible,
   html.daniel-silva-theme [tabindex]:focus-visible {
-    outline: 2px solid var(--bege) !important;
-    outline-offset: 2px !important;
+    outline: 2px solid var(--bege);
+    outline-offset: 2px;
   }
 
   html {
@@ -132,7 +148,7 @@
 
   /* 3.3 Remoção de chrome: sem sombras projetadas no ecossistema Daniel Silva */
   html.daniel-silva-theme *:not(.functional-shadow) {
-    box-shadow: none !important;
+    box-shadow: none;
   }
 
   body {
@@ -238,8 +254,146 @@
 
   @media (prefers-reduced-motion: reduce) {
     .marquee-track {
-      animation: none !important;
+      animation: none;
     }
+  }
+
+  /* ========================================================================
+     CONCEITO DE REMOÇÃO — UMA IDEIA POR TELA (100VH)
+     ======================================================================== */
+  .scr {
+    position: relative;
+    min-height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    box-sizing: border-box;
+  }
+
+  .cond {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+  }
+
+  /* ========================================================================
+     REGIME B — SEÇÕES SEM VÍDEO (ALVO 1)
+     ======================================================================== */
+  .section--flat {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .section--flat > .container {
+    width: 100%;
+    max-width: none;
+    padding-inline: clamp(24px, 4vw, 72px);
+    box-sizing: border-box;
+  }
+
+  /* ========================================================================
+     PAINÉIS SÓLIDOS EM AZUL-MARINHO (ALVO 2)
+     ======================================================================== */
+  .panel-transition {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    min-height: 100dvh;
+    background: #002867;
+    background-color: #002867;
+    display: flex;
+    align-items: center;
+    padding-inline: clamp(24px, 4vw, 72px);
+    box-sizing: border-box;
+  }
+
+  .panel-transition__text {
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    font-size: var(--text-80);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    color: #F2F0EF;
+    max-width: 16ch;
+  }
+
+  /* ========================================================================
+     ESCALA TIPOGRÁFICA DANIEL SILVA (ALVO 3)
+     ======================================================================== */
+  .hero__h1,
+  .display--hero {
+    font-size: var(--text-110);
+  }
+
+  .dimensao__h2,
+  .display--dimensao {
+    font-size: var(--text-80);
+  }
+
+  .agenda__data {
+    font-size: var(--text-44);
+  }
+
+  .agenda__titulo {
+    font-size: var(--text-28);
+  }
+
+  .corpo__p,
+  .text-corpo {
+    font-size: var(--text-16);
+  }
+
+  /* ========================================================================
+     CONVERGÊNCIA — LINHA E MINIATURAS (ALVO 4)
+     ======================================================================== */
+  .convergencia__linha {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    user-select: none;
+    overflow: visible;
+  }
+
+  .convergencia__letra {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: var(--text-280);
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    flex-shrink: 0;
+  }
+
+  .convergencia__thumb {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(214, 181, 136, 0.7);
+    background: var(--preto);
+    width: clamp(120px, 9.8vw, 140px);
+    min-width: 120px;
+    aspect-ratio: 16 / 10;
+    flex-shrink: 0;
+    align-self: center;
+    box-shadow: none;
+  }
+
+  .proposito-monumental {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: var(--text-280);
+    line-height: 0.94;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 

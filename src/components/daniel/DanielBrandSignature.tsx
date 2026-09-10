@@ -32,7 +32,7 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
       ? "text-[var(--off-white)]/80"
       : variant === "gold"
       ? "text-[var(--bege)]"
-      : "text-[var(--preto)]/80";
+      : "text-[rgba(25,25,25,0.8)]";
 
   const sizeStyles = {
     sm: "h-[24px] sm:h-[32px]",

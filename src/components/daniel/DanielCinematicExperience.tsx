@@ -183,6 +183,7 @@ export const DanielCinematicExperience: React.FC = () => {
         const isTransitionPanel = (p >= 0.35 && p < 0.43) || (p >= 0.66 && p < 0.724);
         if (videoLayerRef.current) {
           videoLayerRef.current.style.opacity = isTransitionPanel ? "0" : "1";
+          videoLayerRef.current.style.visibility = isTransitionPanel ? "hidden" : "visible";
         }
 
         // Se em modo de movimento reduzido, mobile ou fallback ativo, não força scrubbing no elemento video:

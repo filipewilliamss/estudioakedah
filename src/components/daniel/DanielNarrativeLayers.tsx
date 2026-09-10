@@ -47,10 +47,10 @@ const LoopingThumbnail: React.FC<LoopingThumbnailProps> = ({ startTime, endTime,
   }, [startTime, endTime]);
 
   return (
-    <div className="relative inline-flex items-center justify-center overflow-hidden border border-[var(--bege)]/70 bg-[var(--preto)] shadow-2xl aspect-[4/3] w-[11vw] max-w-[100px] min-w-[38px] shrink-0 self-center mx-1 sm:mx-2">
+    <div className="convergencia__thumb">
       <video
         ref={videoRef}
-        src="/videos/site-video-daniel.mp4"
+        src="/videos/site-video-daniel-desktop.mp4"
         muted
         playsInline
         autoPlay
@@ -72,387 +72,298 @@ const musicalEvents = [
 ];
 
 export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ progress }) => {
-  // Reancoragem estrita baseada nos timestamps do vídeo e redução de 20% nas transições:
-  const isStage1 = progress >= 0.00 && progress < 0.15; // Hero / Entrada (Vídeo 0.0s -> 6.0s)
-  const isStage2 = progress >= 0.15 && progress < 0.35; // Dimensão 01: Empreendedor (Vídeo 6.0s -> 12.0s, close 9-12s)
-  const isStage3 = progress >= 0.35 && progress < 0.43; // Painel de Transição 1: Daniel some (-20% scroll)
-  const isStage4 = progress >= 0.43 && progress < 0.66; // Dimensão 02: Músico + Agenda (Vídeo 21.0s -> 28.0s, close 24-27s)
-  const isStage5 = progress >= 0.66 && progress < 0.724; // Painel de Transição 2: Daniel some (-20% scroll)
-  const isStage6 = progress >= 0.724 && progress < 0.88; // Dimensão 03: Mentor de Fé (Vídeo 33.0s -> 40.0s, sorriso 38-40s)
-  const isStage7 = progress >= 0.88;                    // Convergência: O Homem Completo (Vídeo segura em 40.0s)
+  // Mapeamento das telas em 100vh com "uma ideia por tela" (Conceito de Remoção):
+  const isHero = progress >= 0.00 && progress < 0.12;
+  const isEmpreendedorA = progress >= 0.12 && progress < 0.22; // Declaração "O ESTRATEGISTA"
+  const isEmpreendedorB = progress >= 0.22 && progress < 0.35; // Pilares "01, 02, 03"
+  const isTrans1 = progress >= 0.35 && progress < 0.43;        // Transição 1 (Respiro Marinho)
+  const isMusicoA = progress >= 0.43 && progress < 0.54;       // Declaração "O MÚSICO"
+  const isMusicoB = progress >= 0.54 && progress < 0.66;       // Pilares Música
+  const isTrans2 = progress >= 0.66 && progress < 0.724;       // Transição 2 (Respiro Marinho)
+  const isFeA = progress >= 0.724 && progress < 0.81;          // Declaração "O MENTOR"
+  const isFeB = progress >= 0.81 && progress < 0.88;          // Manifesto de Fé
+  const isConvergenciaA = progress >= 0.88 && progress < 0.94; // "NÃO SÃO TRÊS PESSOAS" (Off-white)
+  const isConvergenciaB = progress >= 0.94;                     // "É UM SÓ PROPÓSITO" (Preto + 3 thumbs)
 
   return (
-    <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center px-[24px] sm:px-[48px] md:px-[64px] lg:px-[96px] overflow-hidden">
-      <AnimatePresence mode="wait">
-        {/* ================================================================= */}
-        {/* ESTÁGIO 1 — ENTRADA / PORTAL (0% a 15% | Vídeo 0.0s a 6.0s)        */}
-        {/* Headline em --text-110 com tratamento .display e diacritic-safe   */}
-        {/* ================================================================= */}
-        {isStage1 && (
-          <motion.div
-            key="stage-1"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-[890px] text-left space-y-[24px] pt-[40px]"
-          >
-            {/* Assinatura Manuscrita Oficial Daniel Silva */}
-            <div className="mb-[8px]">
-              <DanielSignature variant="white" size="lg" showPositioning={true} />
-            </div>
+    <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center overflow-hidden w-full">
+      {/* ================================================================= */}
+      {/* TELA 01 — HERO / ENTRADA (CONCEITO DE REMOÇÃO)                    */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex flex-col justify-between p-[3rem] sm:p-[4rem] transition-opacity duration-500"
+        style={{
+          opacity: isHero ? 1 : 0,
+          pointerEvents: isHero ? "auto" : "none",
+          zIndex: isHero ? 25 : -1,
+        }}
+      >
+        <div className="text-left font-serif italic text-[2.4rem] text-[var(--off-white)] select-none">
+          Daniel Silva
+        </div>
 
-            {/* Headline com token --text-110 e entrelinha segura para o diacrítico de MÚSICA */}
-            <h1 className="display display--diacritic-safe text-fluid-110 text-[var(--off-white)]">
-              Estratégia. <br />
-              <span className="text-[var(--bege)] font-normal italic lowercase font-serif">fé. música.</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-[2rem] w-full">
+          <div className="text-left">
+            <h1 className="hero__h1 display text-fluid-125 text-[var(--off-white)] leading-[0.86] tracking-[-0.025em] uppercase">
+              Estratégia.<br />
+              <span className="text-[var(--bege)] font-serif font-light italic lowercase">Fé. Música.</span>
             </h1>
-
-            <p className="font-lato italic font-light text-[var(--off-white)] text-fluid-20 leading-relaxed max-w-[68ch] border-l-2 border-[var(--bege)] pl-[16px]">
+            <p className="corpo__p font-lato italic font-light text-[var(--off-white)]/80 text-fluid-20 mt-[1.6rem] max-w-[68ch]">
               "{DANIEL_TAGLINE}"
             </p>
+          </div>
+          <div className="text-right font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--off-white)]/60 uppercase pb-[1rem]">
+            Role para entrar ↓
+          </div>
+        </div>
+      </div>
 
-            <p className="font-lato font-normal text-[var(--off-white)]/80 text-fluid-16 max-w-[68ch] leading-relaxed">
-              Entre em uma jornada cinematográfica conduzida pelo scroll pelas três facetas complementares de um mesmo propósito.
-            </p>
+      {/* ================================================================= */}
+      {/* TELA 02 — DECLARAÇÃO EMPREENDEDOR (SÓLIDO MARINHO #002867)        */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        style={{
+          opacity: isEmpreendedorA ? 1 : 0,
+          pointerEvents: isEmpreendedorA ? "auto" : "none",
+          zIndex: isEmpreendedorA ? 25 : -1,
+        }}
+      >
+        <div className="absolute top-[4rem] left-[4rem]">
+          <span className="font-lato font-bold text-fluid-12 tracking-[0.2em] text-[var(--bege)] uppercase">
+            01 — CONSULTORIA
+          </span>
+        </div>
+        <h2 className="dimensao__h2 display text-fluid-190 text-[var(--off-white)] leading-[0.84] tracking-[-0.025em] uppercase max-w-[14ch] text-left">
+          O estrategista
+        </h2>
+      </div>
 
-            <div className="pt-[8px] flex items-center gap-[16px]">
-              <span className="inline-flex items-center gap-[8px] px-[16px] py-[8px] bg-[var(--preto)]/90 border border-[var(--neutra-3)] text-[var(--bege)] text-fluid-10 font-lato font-bold uppercase tracking-[0.25em]">
-                <span className="w-2 h-2 bg-[var(--bege)] animate-ping" />
-                Gire o scroll para cruzar o portal de entrada ↓
-              </span>
-            </div>
-          </motion.div>
-        )}
+      {/* ================================================================= */}
+      {/* TELA 03 — PILARES DE NEGÓCIOS (SÓLIDO PRETO #191919)               */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--preto)]"
+        style={{
+          opacity: isEmpreendedorB ? 1 : 0,
+          pointerEvents: isEmpreendedorB ? "auto" : "none",
+          zIndex: isEmpreendedorB ? 25 : -1,
+        }}
+      >
+        <div className="w-full max-w-[1400px] text-left">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">01</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Vendas B2B de escala
+            </span>
+          </div>
+          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">02</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Playbooks operacionais
+            </span>
+          </div>
+          <div className="flex items-baseline gap-[2.4rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">03</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Advisory executivo
+            </span>
+          </div>
+        </div>
+      </div>
 
-        {/* ================================================================= */}
-        {/* ESTÁGIO 2 — DANIEL EMPREENDEDOR (15% a 35% | Vídeo 6.0s a 12.0s)  */}
-        {/* Headline em --text-80 com tratamento .display                     */}
-        {/* ================================================================= */}
-        {isStage2 && (
-          <motion.div
-            key="stage-2"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-[768px] text-left space-y-[20px] pt-[32px]"
+      {/* ================================================================= */}
+      {/* TELA 04 — PAINEL DE TRANSIÇÃO 1 (ALVO 2 — REGIME B)               */}
+      {/* ================================================================= */}
+      <div
+        className="section--flat panel-transition"
+        style={{
+          opacity: isTrans1 ? 1 : 0,
+          pointerEvents: isTrans1 ? "auto" : "none",
+          zIndex: isTrans1 ? 35 : -1,
+          transition: "opacity 0.4s ease-out",
+        }}
+      >
+        <div className="container" data-section="painel-transicao-1">
+          <h2 className="panel-transition__text">
+            Da rigidez dos negócios à harmonia da música
+          </h2>
+        </div>
+      </div>
+
+      {/* ================================================================= */}
+      {/* TELA 05 — DECLARAÇÃO MÚSICO (SÓLIDO MARINHO #002867)              */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        style={{
+          opacity: isMusicoA ? 1 : 0,
+          pointerEvents: isMusicoA ? "auto" : "none",
+          zIndex: isMusicoA ? 25 : -1,
+        }}
+      >
+        <div className="absolute top-[4rem] left-[4rem]">
+          <span className="font-lato font-bold text-fluid-12 tracking-[0.2em] text-[var(--bege)] uppercase">
+            02 — MINISTRAÇÃO
+          </span>
+        </div>
+        <h2 className="display text-fluid-190 text-[var(--off-white)] leading-[0.84] tracking-[-0.025em] uppercase max-w-[14ch] text-left">
+          O músico
+        </h2>
+      </div>
+
+      {/* ================================================================= */}
+      {/* TELA 06 — PILARES DE MÚSICA (SÓLIDO PRETO #191919)                */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--preto)]"
+        style={{
+          opacity: isMusicoB ? 1 : 0,
+          pointerEvents: isMusicoB ? "auto" : "none",
+          zIndex: isMusicoB ? 25 : -1,
+        }}
+      >
+        <div className="w-full max-w-[1400px] text-left">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">01</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Produção Cinematográfica Akedah
+            </span>
+          </div>
+          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">02</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Encontros Acústicos de Adoração
+            </span>
+          </div>
+          <div className="flex items-baseline gap-[2.4rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">03</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Ministrações & Louvor pelo Brasil
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ================================================================= */}
+      {/* TELA 07 — PAINEL DE TRANSIÇÃO 2 (ALVO 2 — REGIME B)               */}
+      {/* ================================================================= */}
+      <div
+        className="section--flat panel-transition"
+        style={{
+          opacity: isTrans2 ? 1 : 0,
+          pointerEvents: isTrans2 ? "auto" : "none",
+          zIndex: isTrans2 ? 35 : -1,
+          transition: "opacity 0.4s ease-out",
+        }}
+      >
+        <div className="container" data-section="painel-transicao-2">
+          <h2 className="panel-transition__text">
+            Dos palcos ao altar: o fundamento
+          </h2>
+        </div>
+      </div>
+
+      {/* ================================================================= */}
+      {/* TELA 08 — DECLARAÇÃO FÉ (SÓLIDO MARINHO #002867)                  */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
+        style={{
+          opacity: isFeA ? 1 : 0,
+          pointerEvents: isFeA ? "auto" : "none",
+          zIndex: isFeA ? 25 : -1,
+        }}
+      >
+        <div className="absolute top-[4rem] left-[4rem]">
+          <span className="font-lato font-bold text-fluid-12 tracking-[0.2em] text-[var(--bege)] uppercase">
+            03 — DISCIPULADO
+          </span>
+        </div>
+        <h2 className="display text-fluid-190 text-[var(--off-white)] leading-[0.84] tracking-[-0.025em] uppercase max-w-[14ch] text-left">
+          O mentor
+        </h2>
+      </div>
+
+      {/* ================================================================= */}
+      {/* TELA 09 — MANIFESTO DE FÉ (SÓLIDO PRETO #191919)                  */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--preto)]"
+        style={{
+          opacity: isFeB ? 1 : 0,
+          pointerEvents: isFeB ? "auto" : "none",
+          zIndex: isFeB ? 25 : -1,
+        }}
+      >
+        <div className="w-full max-w-[1400px] text-left">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">01</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Liderança Servidora & Princípios
+            </span>
+          </div>
+          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">02</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Akedah Podcast & Grandes Diálogos
+            </span>
+          </div>
+          <div className="flex items-baseline gap-[2.4rem]">
+            <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">03</span>
+            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+              Legado Perene que Transcende
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* ================================================================= */}
+      {/* TELA 10 — CONVERGÊNCIA A (SÓLIDO OFF-WHITE #F2F0EF)               */}
+      {/* ================================================================= */}
+      <div
+        className="scr absolute inset-0 flex items-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--off-white)] text-[var(--preto)]"
+        style={{
+          opacity: isConvergenciaA ? 1 : 0,
+          pointerEvents: isConvergenciaA ? "auto" : "none",
+          zIndex: isConvergenciaA ? 30 : -1,
+        }}
+      >
+        <h2 className="display text-fluid-150 text-[var(--preto)] leading-[0.86] tracking-[-0.025em] uppercase max-w-[15ch] text-left">
+          Não são três pessoas.
+        </h2>
+      </div>
+
+      {/* ================================================================= */}
+      {/* TELA 11 — CONVERGÊNCIA B (SÓLIDO PRETO #191919)                   */}
+      {/* ================================================================= */}
+      <div
+        className="section--flat scr absolute inset-0 flex flex-col justify-center transition-opacity duration-500 bg-[var(--preto)]"
+        style={{
+          opacity: isConvergenciaB ? 1 : 0,
+          pointerEvents: isConvergenciaB ? "auto" : "none",
+          zIndex: isConvergenciaB ? 30 : -1,
+        }}
+      >
+        <div className="container w-full text-left" data-section="convergencia">
+          <h2 className="display text-fluid-150 text-[var(--off-white)] leading-[0.86] tracking-[-0.025em] uppercase mb-[4rem]">
+            É um só propósito.
+          </h2>
+
+          <div
+            data-prop="proposito"
+            className="convergencia__linha proposito-monumental"
           >
-            {/* Rótulo Oficial de Seção Sólido em Bege (3.6) */}
-            <div>
-              <span className="label">CONSULTORIA</span>
-            </div>
-
-            <h2 className="display text-fluid-80 text-[var(--off-white)]">
-              O Estrategista & <br />
-              <span className="text-[var(--bege)] font-normal italic lowercase font-serif">negócios</span>
-            </h2>
-
-            <p className="font-lato font-normal text-[var(--off-white)]/85 text-fluid-16 leading-relaxed max-w-[68ch]">
-              Reestruturação de processos de vendas, modelagem de ofertas de alto valor e mentoria executiva para empresas em ritmo de expansão acelerada.
-            </p>
-
-            {/* Cards dos Pilares de Atuação (3.3: Sem Chrome / Retos / Zero Sombra) */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[12px] pt-[8px] max-w-[672px]">
-              <div className="p-[16px] bg-[var(--preto)]/95 border border-[var(--neutra-3)]/80">
-                <span className="text-[var(--bege)] text-fluid-10 font-lato font-bold uppercase tracking-wider block mb-[4px]">Pilar 01</span>
-                <p className="text-[var(--off-white)] font-lato font-black text-fluid-16">Vendas B2B de Escala</p>
-                <p className="text-[var(--off-white)]/70 font-lato font-normal text-fluid-13 mt-[2px]">Discurso comercial e funil de alta conversão.</p>
-              </div>
-              <div className="p-[16px] bg-[var(--preto)]/95 border border-[var(--neutra-3)]/80">
-                <span className="text-[var(--bege)] text-fluid-10 font-lato font-bold uppercase tracking-wider block mb-[4px]">Pilar 02</span>
-                <p className="text-[var(--off-white)] font-lato font-black text-fluid-16">Playbooks Operacionais</p>
-                <p className="text-[var(--off-white)]/70 font-lato font-normal text-fluid-13 mt-[2px]">Sistematização de processos e equipes.</p>
-              </div>
-              <div className="p-[16px] bg-[var(--preto)]/95 border border-[var(--neutra-3)]/80">
-                <span className="text-[var(--bege)] text-fluid-10 font-lato font-bold uppercase tracking-wider block mb-[4px]">Pilar 03</span>
-                <p className="text-[var(--off-white)] font-lato font-black text-fluid-16">Advisory Executivo</p>
-                <p className="text-[var(--off-white)]/70 font-lato font-normal text-fluid-13 mt-[2px]">Aconselhamento direto a fundadores.</p>
-              </div>
-            </div>
-
-            <div className="pt-[8px] flex flex-wrap gap-[16px] items-center pointer-events-auto">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[var(--bege)] text-[var(--preto)] hover:bg-[var(--off-white)] border border-[var(--bege)] font-lato font-black text-fluid-13 uppercase tracking-[0.2em] px-[24px] py-[14px] transition-colors"
-              >
-                Contratar Consultoria
-              </a>
-              <span className="text-[var(--off-white)]/60 text-fluid-13 font-lato font-normal">
-                Continue rolando para a transição musical ↓
-              </span>
-            </div>
-          </motion.div>
-        )}
-
-        {/* ================================================================= */}
-        {/* ESTÁGIO 3 — PAINEL DE TRANSIÇÃO 1 (35% a 43% | Daniel desaparece) */}
-        {/* Painel sólido institucional sem vídeo com fundo --marinho (#002867) */}
-        {/* ================================================================= */}
-        {isStage3 && (
-          <motion.div
-            key="stage-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 bg-[var(--marinho)] flex items-center justify-center px-[24px] sm:px-[48px] md:px-[64px] z-30 pointer-events-auto"
-          >
-            <h2 className="display--condensed display--diacritic-safe text-fluid-44 sm:text-fluid-60 md:text-fluid-80 text-[var(--off-white)] uppercase tracking-wide text-center max-w-[1200px] leading-tight">
-              Da rigidez dos negócios à harmonia da música
-            </h2>
-          </motion.div>
-        )}
-
-        {/* ================================================================= */}
-        {/* ESTÁGIO 4 — DANIEL MÚSICO & AGENDA (45% a 68% | Vídeo 21.0s a 28.0s)*/}
-        {/* Headline em --text-80 (.display) e data da agenda em Barlow Cond 900 */}
-        {/* ================================================================= */}
-        {isStage4 && (
-          <motion.div
-            key="stage-4"
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-[768px] text-left space-y-[20px] pt-[16px]"
-          >
-            {/* Rótulo Oficial de Seção Sólido em Bege (3.6) */}
-            <div>
-              <span className="label">MINISTRAÇÃO</span>
-            </div>
-
-            {/* Headline com tratamento display--diacritic-safe para MÚSICA */}
-            <h2 className="display display--diacritic-safe text-fluid-80 text-[var(--off-white)]">
-              A Música como <br />
-              <span className="text-[var(--bege)] font-normal italic lowercase font-serif">expressão</span>
-            </h2>
-
-            <p className="font-lato font-normal text-[var(--off-white)]/85 text-fluid-16 leading-relaxed max-w-[68ch]">
-              Composições autorais, produção sonora de padrão cinematográfico no Estúdio Akedah e encontros de louvor e ministração pelo Brasil.
-            </p>
-
-            {/* Agenda Musical Integrada (3.3: Sem Chrome / Retos / Zero Sombra) */}
-            <div className="pt-[4px] max-w-[672px]">
-              <span className="text-[var(--bege)] text-fluid-10 font-lato font-bold uppercase tracking-[0.25em] block mb-[8px]">
-                Próximas Apresentações & Ministrações
-              </span>
-              <div className="space-y-[8px]">
-                {musicalEvents.map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="p-[16px] bg-[var(--preto)]/95 border border-[var(--neutra-3)]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-[8px]"
-                  >
-                    <div className="flex items-center gap-[14px]">
-                      {/* Número da data com Barlow Condensed 900 em --text-44 */}
-                      <span className="display--condensed text-fluid-44 text-[var(--bege)] bg-[var(--preto)] border border-[var(--neutra-3)] px-[12px] py-[2px]">
-                        {item.data}
-                      </span>
-                      <div>
-                        {/* Título de evento em Lato Black --text-28 */}
-                        <h4 className="font-lato font-black text-fluid-20 sm:text-fluid-28 text-[var(--off-white)] leading-tight">
-                          {item.evento}
-                        </h4>
-                        {/* Metadados da agenda em Lato 400 --text-13 */}
-                        <span className="text-[var(--off-white)]/60 font-lato font-normal text-fluid-13">
-                          📍 {item.local} • {item.hora}
-                        </span>
-                      </div>
-                    </div>
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--bege)] hover:text-[var(--off-white)] font-lato font-bold text-fluid-13 uppercase tracking-wider transition-colors pointer-events-auto self-end sm:self-center"
-                    >
-                      Detalhes →
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-[4px] flex items-center gap-[16px] pointer-events-auto">
-              <a
-                href="https://open.spotify.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[var(--bege)] text-[var(--preto)] hover:bg-[var(--off-white)] border border-[var(--bege)] font-lato font-black text-fluid-13 uppercase tracking-[0.2em] px-[24px] py-[14px] transition-colors"
-              >
-                Ouvir no Spotify
-              </a>
-              <span className="text-[var(--off-white)]/60 text-fluid-13 font-lato font-normal">
-                Role para a transição de fé ↓
-              </span>
-            </div>
-          </motion.div>
-        )}
-
-        {/* ================================================================= */}
-        {/* ESTÁGIO 5 — PAINEL DE TRANSIÇÃO 2 (66% a 72.4% | Daniel desaparece)*/}
-        {/* Painel sólido institucional sem vídeo com fundo --marinho (#002867) */}
-        {/* ================================================================= */}
-        {isStage5 && (
-          <motion.div
-            key="stage-5"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 bg-[var(--marinho)] flex items-center justify-center px-[24px] sm:px-[48px] md:px-[64px] z-30 pointer-events-auto"
-          >
-            <h2 className="display--condensed display--diacritic-safe text-fluid-44 sm:text-fluid-60 md:text-fluid-80 text-[var(--off-white)] uppercase tracking-wide text-center max-w-[1200px] leading-tight">
-              Dos palcos ao altar: o fundamento
-            </h2>
-          </motion.div>
-        )}
-
-        {/* ================================================================= */}
-        {/* ESTÁGIO 6 — DANIEL MENTOR DE FÉ (76% a 90% | Vídeo 33.0s a 40.0s)  */}
-        {/* Headline em --text-80 e verificação em PROPÓSITO / BÍBLICOS       */}
-        {/* ================================================================= */}
-        {isStage6 && (
-          <motion.div
-            key="stage-6"
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-[768px] text-left space-y-[20px] pt-[32px]"
-          >
-            {/* Rótulo Oficial de Seção Sólido em Bege (3.6) */}
-            <div>
-              <span className="label">MENTORIA</span>
-            </div>
-
-            {/* Headline com display--diacritic-safe para PROPÓSITO e BÍBLICOS */}
-            <h2 className="display display--diacritic-safe text-fluid-80 text-[var(--off-white)]">
-              Princípios Bíblicos & <br />
-              <span className="text-[var(--bege)] font-normal italic lowercase font-serif">propósito</span>
-            </h2>
-
-            <blockquote className="font-lato italic font-light text-[var(--off-white)] text-fluid-20 leading-relaxed border-l-2 border-[var(--bege)] pl-[16px] max-w-[68ch]">
-              "Nenhum sucesso corporativo justifica a perda dos valores essenciais. A liderança verdadeira é forjada no serviço ao próximo, na honra e no compromisso com Deus e a família."
-            </blockquote>
-
-            {/* Cards dos Fundamentos (3.3: Sem Chrome / Retos / Zero Sombra) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px] pt-[8px] max-w-[512px]">
-              <div className="p-[16px] bg-[var(--preto)]/95 border border-[var(--neutra-3)]/80">
-                <span className="text-[var(--bege)] text-fluid-10 font-lato font-bold uppercase tracking-wider block mb-[4px]">Fundamento</span>
-                <p className="text-[var(--off-white)] font-lato font-black text-fluid-16">Liderança Servidora</p>
-                <p className="text-[var(--off-white)]/70 font-lato font-normal text-fluid-13 mt-[4px]">Impacto que transcende resultados financeiros imediatos.</p>
-              </div>
-              <div className="p-[16px] bg-[var(--preto)]/95 border border-[var(--neutra-3)]/80">
-                <span className="text-[var(--bege)] text-fluid-10 font-lato font-bold uppercase tracking-wider block mb-[4px]">Comunicação</span>
-                <p className="text-[var(--off-white)] font-lato font-black text-fluid-16">Akedah Podcast</p>
-                <p className="text-[var(--off-white)]/70 font-lato font-normal text-fluid-13 mt-[4px]">Diálogos de profundidade com pensadores e líderes.</p>
-              </div>
-            </div>
-
-            <div className="pt-[8px] flex items-center gap-[16px] pointer-events-auto">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[var(--bege)] text-[var(--preto)] hover:bg-[var(--off-white)] border border-[var(--bege)] font-lato font-black text-fluid-13 uppercase tracking-[0.2em] px-[24px] py-[14px] transition-colors"
-              >
-                Agendar Mentoria
-              </a>
-              <span className="text-[var(--off-white)]/60 text-fluid-13 font-lato font-normal">
-                Role para ver a convergência total ↓
-              </span>
-            </div>
-          </motion.div>
-        )}
-
-        {/* ================================================================= */}
-        {/* ESTÁGIO 7 — CONVERGÊNCIA (88% a 100% | Vídeo segura em 40.0s)     */}
-        {/* Assinatura visual: PROPÓSITO com miniaturas em loop na mesma base  */}
-        {/* ================================================================= */}
-        {isStage7 && (
-          <motion.div
-            key="stage-7"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.04 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-[1100px] w-full text-left space-y-[24px] pt-[20px] relative pointer-events-auto"
-          >
-            <div>
-              <span className="label">CONVERGÊNCIA</span>
-            </div>
-
-            {/* Movimento de Assinatura (4.2): P R O [emp] P Ó [mús] S I [fé] T O */}
-            {/* Desktop (md e acima): linha única intercalando letras e miniaturas na mesma linha de base */}
-            <div className="hidden md:flex w-full items-center justify-between gap-1 sm:gap-2 my-[8px] select-none">
-              <span className="font-barlow-condensed font-black leading-none text-[var(--off-white)] text-[clamp(2.4rem,7.5vw,9.5rem)] tracking-tight">
-                PRO
-              </span>
-              <LoopingThumbnail startTime={6.0} endTime={12.0} label="Daniel Empreendedor" />
-              <span className="font-barlow-condensed font-black leading-none text-[var(--off-white)] text-[clamp(2.4rem,7.5vw,9.5rem)] tracking-tight display--diacritic-safe">
-                PÓ
-              </span>
-              <LoopingThumbnail startTime={21.0} endTime={28.0} label="Daniel Músico" />
-              <span className="font-barlow-condensed font-black leading-none text-[var(--off-white)] text-[clamp(2.4rem,7.5vw,9.5rem)] tracking-tight">
-                SI
-              </span>
-              <LoopingThumbnail startTime={33.0} endTime={40.0} label="Daniel Mentor de Fé" />
-              <span className="font-barlow-condensed font-black leading-none text-[var(--off-white)] text-[clamp(2.4rem,7.5vw,9.5rem)] tracking-tight">
-                TO
-              </span>
-            </div>
-
-            {/* Mobile (5.4: Miniaturas da convergência empilham em coluna abaixo da palavra): */}
-            <div className="md:hidden space-y-[12px] my-[8px]">
-              <span className="display--condensed display--diacritic-safe text-fluid-80 text-[var(--off-white)] leading-none tracking-tight block">
-                PROPÓSITO
-              </span>
-              <div className="flex flex-col gap-[8px]">
-                <div className="flex items-center gap-[10px]">
-                  <LoopingThumbnail startTime={6.0} endTime={12.0} label="Daniel Empreendedor" />
-                  <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold uppercase tracking-wider">Negócios</span>
-                </div>
-                <div className="flex items-center gap-[10px]">
-                  <LoopingThumbnail startTime={21.0} endTime={28.0} label="Daniel Músico" />
-                  <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold uppercase tracking-wider">Música</span>
-                </div>
-                <div className="flex items-center gap-[10px]">
-                  <LoopingThumbnail startTime={33.0} endTime={40.0} label="Daniel Mentor de Fé" />
-                  <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold uppercase tracking-wider">Fé</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Abaixo da composição: Título e Tagline Oficial */}
-            <div className="space-y-[8px] pt-[4px]">
-              <h2 className="display text-fluid-44 text-[var(--off-white)]">
-                Não são três pessoas.
-              </h2>
-              <p className="font-lato italic font-light text-[var(--bege)] text-fluid-20 leading-relaxed border-l-2 border-[var(--bege)] pl-[16px] max-w-[68ch]">
-                "{DANIEL_TAGLINE}"
-              </p>
-            </div>
-
-            <p className="font-lato font-normal text-[var(--off-white)]/85 text-fluid-16 leading-relaxed max-w-[68ch]">
-              A visão estratégica nos negócios, a sensibilidade nas melodias e a autoridade moral no discipulado convergem para transformar vidas e edificar legados perenes.
-            </p>
-
-            <div className="pt-[8px] flex flex-wrap gap-[16px] items-center pointer-events-auto">
-              <a
-                href="#agenda-publica"
-                className="bg-[var(--bege)] text-[var(--preto)] hover:bg-[var(--off-white)] border border-[var(--bege)] font-lato font-black text-fluid-13 uppercase tracking-[0.2em] px-[32px] py-[14px] transition-colors"
-              >
-                Explorar Vida Pública & Agendas ↓
-              </a>
-              <span className="text-[var(--off-white)]/60 text-fluid-13 font-lato font-normal">
-                Continue rolando para acessar eventos e canais
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <span className="convergencia__letra">PRO</span>
+            <LoopingThumbnail startTime={6.0} endTime={12.0} label="Daniel Empreendedor" />
+            <span className="convergencia__letra display--diacritic-safe">PÓ</span>
+            <LoopingThumbnail startTime={21.0} endTime={28.0} label="Daniel Músico" />
+            <span className="convergencia__letra">SI</span>
+            <LoopingThumbnail startTime={33.0} endTime={40.0} label="Daniel Mentor de Fé" />
+            <span className="convergencia__letra">TO</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

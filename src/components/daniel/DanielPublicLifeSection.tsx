@@ -68,198 +68,232 @@ const conteudosDigitais = [
 ];
 
 export const DanielPublicLifeSection: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState<string>("Todos");
-
-  const filteredAgenda = activeFilter === "Todos"
-    ? agendaPublicaItems
-    : agendaPublicaItems.filter((item) => item.tipo === activeFilter);
-
   return (
-    <section id="agenda-publica" className="py-[112px] px-[24px] max-w-[1280px] mx-auto border-t border-white/[0.08] font-lato">
-      {/* Cabeçalho da Seção Vida Pública */}
-      <div className="mb-[80px] text-left">
-        <div className="mb-[16px]">
-          <span className="label">VIDA PÚBLICA</span>
-        </div>
-        <h2 className="display text-fluid-80 text-[var(--off-white)]">
-          Onde encontrar e acompanhar <br />
-          <span className="text-[var(--bege)] italic font-light lowercase font-serif">Daniel Silva</span>
-        </h2>
-        <p className="text-[var(--off-white)]/70 text-fluid-16 max-w-[68ch] mt-[16px] leading-relaxed font-normal font-lato">
-          Compromissos presenciais e grade de publicações digitais organizados para você se conectar com a mensagem e o trabalho de Daniel.
-        </p>
-      </div>
-
+    <div id="vida-publica-root" className="w-full font-lato">
       {/* =================================================================== */}
-      {/* BLOCO 1: AGENDA PÚBLICA (4.3 - LISTA EDITORIAL ABERTA)               */}
+      {/* BLOCO 1: AGENDA PÚBLICA — TELAS DE 100VH (CONCEITO DE REMOÇÃO)      */}
       {/* =================================================================== */}
-      <div className="mb-[112px]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px] mb-[40px] pb-[24px] border-b border-[var(--neutra-2)]">
-          <div>
-            <div className="mb-[12px]">
-              <span className="label">COMPROMISSOS OFICIAIS</span>
+      <section id="agenda-publica" className="section--flat scr bg-[var(--preto)] flex-col justify-center font-lato w-full">
+        <div className="container w-full text-left" data-section="agenda-publica">
+          <div className="flex items-center justify-between mb-[3.4rem]">
+            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase">
+              Agenda pública — 01 de 03
             </div>
-            <h3 className="display text-fluid-44 text-[var(--off-white)]">
-              Agenda Pública
-            </h3>
+            <span className="agenda__data text-fluid-44 text-[var(--bege)] hidden">18/09</span>
+            <span className="agenda__titulo text-fluid-28 text-[var(--off-white)] hidden">Convenção</span>
           </div>
 
-          {/* Filtros da Agenda Pública (3.3: pílula de filtro ativo permitida) */}
-          <div className="flex flex-wrap gap-[8px]">
-            {["Todos", "Palestra", "Ministração", "Convenção", "Imersão"].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveFilter(cat)}
-                className={`px-[16px] py-[8px] rounded-full text-fluid-13 font-lato font-bold uppercase tracking-wider transition-all ${
-                  activeFilter === cat
-                    ? "bg-[var(--bege)] text-[var(--preto)] shadow-none"
-                    : "bg-[var(--preto)] text-[var(--off-white)]/60 hover:text-[var(--off-white)] border border-[var(--neutra-3)]"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Lista Editorial da Agenda: Linhas de largura total separadas por 1px em --neutra-2 */}
-        {/* Zero cards, zero background, zero radius, zero sombra */}
-        <div className="divide-y divide-[var(--neutra-2)] border-t border-b border-[var(--neutra-2)]">
-          {filteredAgenda.map((item, idx) => (
-            <div
-              key={idx}
-              className="py-[24px] sm:py-[28px] flex flex-col md:flex-row md:items-center justify-between gap-[16px] md:gap-[32px] group"
-            >
-              {/* Esquerda: Data em Barlow Condensed Black 900 (--text-44) em --bege */}
-              <div className="flex items-center gap-[20px] md:w-[140px] shrink-0">
-                <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none">
-                  {item.data}
-                </span>
-                <span className="text-fluid-13 font-lato font-normal text-[var(--neutra-1)] md:hidden">
-                  {item.hora}
-                </span>
-              </div>
-
-              {/* Centro: Título do Evento em Lato Black (--text-28) em --off-white e Local/Hora */}
-              <div className="flex-1 min-w-0 text-left">
-                <h4 className="font-lato font-black text-fluid-28 text-[var(--off-white)] leading-snug group-hover:text-[var(--bege)] transition-colors">
-                  {item.titulo}
-                </h4>
-                <p className="text-[var(--neutra-1)] text-fluid-13 font-lato font-normal mt-[4px] flex flex-wrap items-center gap-x-[8px]">
-                  <span>📍 {item.local} • {item.cidade}</span>
-                  <span className="hidden md:inline text-[var(--neutra-2)]">•</span>
-                  <span className="hidden md:inline">{item.hora}</span>
-                </p>
-              </div>
-
-              {/* Direita: Rótulo de Categoria .label e Ação Integrada */}
-              <div className="flex items-center justify-between md:justify-end gap-[20px] shrink-0 pt-[8px] md:pt-0">
-                <span className="label">
-                  {item.tipo}
-                </span>
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-[6px] text-fluid-13 font-lato font-black text-[var(--bege)] hover:text-[var(--off-white)] transition-colors uppercase tracking-wider"
-                >
-                  Garantir Vaga <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* =================================================================== */}
-      {/* BLOCO 2: CONTEÚDO DIGITAL & AUDIÊNCIA OFICIAL (4.4)                  */}
-      {/* =================================================================== */}
-      <div>
-        <div className="text-left mb-[48px]">
-          <div className="mb-[12px]">
-            <span className="label">ECOSSISTEMA ONLINE</span>
-          </div>
-          <h3 className="display text-fluid-44 text-[var(--off-white)]">
-            Conteúdo Digital & Presença
-          </h3>
-          <p className="text-[var(--off-white)]/70 text-fluid-16 font-lato font-normal mt-[8px] max-w-[68ch]">
-            Acompanhe reflexões, episódios em áudio/vídeo e análises semanais nas plataformas digitais oficiais.
-          </p>
-        </div>
-
-        {/* 4.4 Barra Editorial de Audiência Auditada (Mídia Kit Oficial) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-[24px] mb-[56px] py-[28px] border-y border-[var(--neutra-2)] text-left">
-          <div>
-            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">364 mil</span>
-            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
-              Alcance Mensal
-            </span>
-          </div>
-          <div>
-            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">4,8%</span>
-            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
-              Engajamento Médio
-            </span>
-          </div>
-          <div>
-            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">62% • 38%</span>
-            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
-              Homens • Mulheres (25–44 anos)
-            </span>
-          </div>
-          <div>
-            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">110 mil+</span>
-            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
-              Audiência Integrada
-            </span>
-          </div>
-        </div>
-
-        {/* Grade de Canais Digitais Oficiais */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] text-left">
-          {conteudosDigitais.map((item, idx) => {
-            const IconComponent = item.icon;
-            return (
-              <div
-                key={idx}
-                className="p-[32px] bg-[var(--preto)] border border-[var(--neutra-3)] hover:border-[var(--bege)]/50 flex flex-col justify-between space-y-[24px] transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-[16px]">
-                    <div className="flex items-center gap-[12px]">
-                      <div className="p-[10px] bg-[var(--neutra-4)] text-[var(--bege)]">
-                        <IconComponent className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h4 className="font-lato text-fluid-20 font-black text-[var(--off-white)]">{item.canal}</h4>
-                        <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold">{item.metrica}</span>
-                      </div>
-                    </div>
-                    <span className="px-[12px] py-[4px] text-fluid-10 font-lato font-bold uppercase border border-[var(--neutra-3)] bg-[var(--neutra-4)] text-[var(--off-white)]/80">
-                      {item.frequencia}
-                    </span>
-                  </div>
-                  <p className="text-[var(--off-white)]/75 text-fluid-16 leading-relaxed font-lato font-normal max-w-[68ch]">
-                    {item.descricao}
-                  </p>
+            <div className="flex items-baseline gap-[3rem] border-b border-[#2e2e2e] pb-[2.4rem] mb-[2.4rem]">
+              <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">18/09</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                  Convenção Nacional de Vendas B2B
                 </div>
-
-                <div className="pt-[8px]">
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                  <span>São Paulo, SP &nbsp;·&nbsp; 19h30 &nbsp;·&nbsp; Palestra</span>
                   <a
-                    href={item.link}
-                    target={item.link.startsWith("http") ? "_blank" : undefined}
-                    rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="inline-flex items-center gap-[8px] text-fluid-13 font-lato font-black uppercase tracking-wider text-[var(--preto)] hover:text-[var(--off-white)] bg-[var(--bege)] hover:bg-[var(--neutra-3)] px-[20px] py-[12px] border border-[var(--bege)] transition-colors"
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
                   >
-                    {item.cta} <ArrowRight className="w-3.5 h-3.5" />
+                    Garantir Vaga →
                   </a>
                 </div>
               </div>
-            );
-          })}
+            </div>
+
+            <div className="flex items-baseline gap-[3rem]">
+              <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">25/09</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                  Imersão Executiva: Escala &amp; Governança
+                </div>
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                  <span>Barueri, SP &nbsp;·&nbsp; 14h00 &nbsp;·&nbsp; Imersão</span>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
+                  >
+                    Garantir Vaga →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TELA 13 — AGENDA PÚBLICA (02 DE 03) */}
+        <section id="agenda-publica-2" className="section--flat scr bg-[var(--preto)] flex-col justify-center border-t border-[#2e2e2e] font-lato w-full">
+          <div className="container w-full text-left" data-section="agenda-publica-2">
+            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[3.4rem]">
+              Agenda pública — 02 de 03
+            </div>
+
+            <div className="flex items-baseline gap-[3rem] border-b border-[#2e2e2e] pb-[2.4rem] mb-[2.4rem]">
+              <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">03/10</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                  Fórum de Liderança, Negócios &amp; Princípios
+                </div>
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                  <span>Belo Horizonte, MG &nbsp;·&nbsp; 20h00 &nbsp;·&nbsp; Palestra</span>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
+                  >
+                    Garantir Vaga →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-baseline gap-[3rem]">
+              <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">12/10</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                  Noite de Louvor, Palavra &amp; Propósito
+                </div>
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                  <span>Curitiba, PR &nbsp;·&nbsp; 19h00 &nbsp;·&nbsp; Ministração</span>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
+                  >
+                    Garantir Vaga →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TELA 14 — AGENDA PÚBLICA (03 DE 03) */}
+        <section id="agenda-publica-3" className="section--flat scr bg-[var(--preto)] flex-col justify-center border-t border-[#2e2e2e] font-lato w-full">
+          <div className="container w-full text-left" data-section="agenda-publica-3">
+            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[3.4rem]">
+              Agenda pública — 03 de 03
+            </div>
+
+            <div className="flex items-baseline gap-[3rem] border-b border-[#2e2e2e] pb-[2.4rem] mb-[2.4rem]">
+              <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">22/10</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                  Painel Fé &amp; Negócios de Impacto
+                </div>
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                  <span>Rio de Janeiro, RJ &nbsp;·&nbsp; 20h30 &nbsp;·&nbsp; Convenção</span>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
+                  >
+                    Garantir Vaga →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-baseline gap-[3rem]">
+              <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">05/11</span>
+              <div className="flex-1 min-w-0">
+                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                  Conferência Águas Profundas
+                </div>
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                  <span>Brasília, DF &nbsp;·&nbsp; 19h30 &nbsp;·&nbsp; Ministração</span>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
+                  >
+                    Garantir Vaga →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      {/* =================================================================== */}
+      {/* BLOCO 2: CONTEÚDO DIGITAL & AUDIÊNCIA (TELA DE 100VH)                */}
+      {/* =================================================================== */}
+      <section id="conteudo-digital" className="section--flat scr bg-[var(--preto)] flex-col justify-center border-t border-[#2e2e2e] font-lato w-full">
+        <div className="container w-full text-left" data-section="conteudo-digital">
+          <div className="mb-[3.4rem]">
+            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[1.2rem]">
+              Ecossistema Online &amp; Presença
+            </div>
+            <h3 className="display text-fluid-50 text-[var(--off-white)] uppercase">
+              Conteúdo Digital &amp; Audiência
+            </h3>
+          </div>
+
+          {/* Barra Editorial de Métricas Auditadas */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-[2.4rem] border-y border-[#2e2e2e] py-[2.4rem] mb-[3.4rem] text-left">
+            <div>
+              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">364 mil</span>
+              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+                Alcance Mensal
+              </span>
+            </div>
+            <div>
+              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">43 mil</span>
+              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+                Inscritos YouTube
+              </span>
+            </div>
+            <div>
+              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">48 mil</span>
+              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+                Seguidores Instagram
+              </span>
+            </div>
+            <div>
+              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">20 mil</span>
+              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+                Conexões LinkedIn
+              </span>
+            </div>
+          </div>
+
+          {/* Linhas Editoriais dos Canais Digitais (Zero Cards) */}
+          <div className="divide-y divide-[#2e2e2e] border-b border-[#2e2e2e]">
+            {conteudosDigitais.map((item, idx) => (
+              <div
+                key={idx}
+                className="py-[1.8rem] flex flex-col md:flex-row md:items-center justify-between gap-[1.6rem] text-left"
+              >
+                <div className="flex items-baseline gap-[2.4rem]">
+                  <span className="font-lato font-black text-fluid-26 text-[var(--off-white)] uppercase min-w-[200px]">
+                    {item.canal}
+                  </span>
+                  <span className="text-[#8f8a82] text-fluid-16 font-lato">
+                    {item.formato} &nbsp;·&nbsp; {item.metrica}
+                  </span>
+                </div>
+                <a
+                  href={item.link}
+                  target={item.link.startsWith("http") ? "_blank" : undefined}
+                  rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="inline-flex items-center gap-[6px] text-[var(--bege)] hover:text-[var(--off-white)] font-lato font-black text-fluid-13 uppercase tracking-wider transition-colors shrink-0"
+                >
+                  {item.cta} <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
