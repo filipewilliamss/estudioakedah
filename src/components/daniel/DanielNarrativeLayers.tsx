@@ -1,7 +1,7 @@
 ﻿import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WHATSAPP_URL } from "@/data/services";
-import { DanielSignature, DaniRepetitiveSealStrip, DANIEL_TAGLINE, DANIEL_POSITIONING } from "./DanielBrandSignature";
+import { DanielSignature, DANIEL_TAGLINE, DANIEL_POSITIONING } from "./DanielBrandSignature";
 
 interface DanielNarrativeLayersProps {
   progress: number;
@@ -25,7 +25,7 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
   const isStage7 = progress >= 0.90;                   // Convergência: O Homem Completo (Vídeo segura em 40.0s)
 
   return (
-    <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24">
+    <div className="absolute inset-0 z-20 pointer-events-none flex flex-col justify-center px-[24px] sm:px-[48px] md:px-[64px] lg:px-[96px]">
       <AnimatePresence mode="wait">
         {/* ================================================================= */}
         {/* ESTÁGIO 1 — ENTRADA / PORTAL (0% a 15% | Vídeo 0.0s a 6.0s)        */}
@@ -37,10 +37,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl text-left space-y-6 pt-10"
+            className="max-w-[768px] text-left space-y-[24px] pt-[40px]"
           >
             {/* Assinatura Manuscrita Oficial Daniel Silva */}
-            <div className="mb-2">
+            <div className="mb-[8px]">
               <DanielSignature variant="white" size="lg" showPositioning={true} />
             </div>
 
@@ -49,16 +49,16 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               <span className="text-white/80 font-normal italic">Fé. Música.</span>
             </h1>
 
-            <p className="font-lato italic font-light text-white/90 text-base sm:text-xl md:text-2xl leading-relaxed max-w-2xl border-l-2 border-white/40 pl-4">
+            <p className="font-lato italic font-light text-white/90 text-base sm:text-xl md:text-2xl leading-relaxed max-w-[672px] border-l-2 border-white/40 pl-[16px]">
               "{DANIEL_TAGLINE}"
             </p>
 
-            <p className="font-lato font-light text-white/70 text-sm sm:text-base max-w-xl">
+            <p className="font-lato font-light text-white/70 text-sm sm:text-base max-w-[576px]">
               Entre em uma jornada cinematográfica conduzida pelo scroll pelas três facetas complementares de um mesmo propósito.
             </p>
 
-            <div className="pt-2 flex items-center gap-4">
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 border border-white/20 backdrop-blur-md text-white/90 text-xs font-lato font-normal">
+            <div className="pt-[8px] flex items-center gap-[16px]">
+              <span className="inline-flex items-center gap-[8px] px-[16px] py-[8px] rounded-full bg-black/50 border border-white/20 backdrop-blur-md text-white/90 text-xs font-lato font-normal">
                 <span className="w-2 h-2 rounded-full bg-white animate-ping" />
                 Gire o scroll para cruzar o portal de entrada ↓
               </span>
@@ -76,9 +76,9 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl text-left space-y-5 pt-8"
+            className="max-w-[672px] text-left space-y-[20px] pt-[32px]"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <div className="inline-flex items-center gap-[10px] px-[16px] py-[6px] rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-white" />
               <span className="text-white text-[11px] font-lato font-bold uppercase tracking-[0.25em]">
                 01 • Dimensão Empresário
@@ -90,35 +90,35 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               <span className="text-white/80 font-light italic">Construtor de Negócios</span>
             </h2>
 
-            <p className="font-lato font-light text-white/85 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="font-lato font-light text-white/85 text-sm sm:text-base leading-relaxed max-w-[576px]">
               Reestruturação de processos de vendas, modelagem de ofertas de alto valor e mentoria executiva para empresas em ritmo de expansão acelerada.
             </p>
 
             {/* Cards dos Pilares de Atuação */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 max-w-xl">
-              <div className="p-3.5 bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
-                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-1">Pilar 01</span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[12px] pt-[8px] max-w-[576px]">
+              <div className="p-[14px] bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
+                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-[4px]">Pilar 01</span>
                 <p className="text-white font-lato font-bold text-sm">Vendas B2B de Escala</p>
-                <p className="text-white/60 font-lato font-light text-[11px] mt-0.5">Discurso comercial e funil de alta conversão.</p>
+                <p className="text-white/60 font-lato font-light text-[11px] mt-[2px]">Discurso comercial e funil de alta conversão.</p>
               </div>
-              <div className="p-3.5 bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
-                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-1">Pilar 02</span>
+              <div className="p-[14px] bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
+                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-[4px]">Pilar 02</span>
                 <p className="text-white font-lato font-bold text-sm">Playbooks Operacionais</p>
-                <p className="text-white/60 font-lato font-light text-[11px] mt-0.5">Sistematização de processos e equipes.</p>
+                <p className="text-white/60 font-lato font-light text-[11px] mt-[2px]">Sistematização de processos e equipes.</p>
               </div>
-              <div className="p-3.5 bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
-                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-1">Pilar 03</span>
+              <div className="p-[14px] bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
+                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-[4px]">Pilar 03</span>
                 <p className="text-white font-lato font-bold text-sm">Advisory Executivo</p>
-                <p className="text-white/60 font-lato font-light text-[11px] mt-0.5">Aconselhamento direto a fundadores.</p>
+                <p className="text-white/60 font-lato font-light text-[11px] mt-[2px]">Aconselhamento direto a fundadores.</p>
               </div>
             </div>
 
-            <div className="pt-2 flex flex-wrap gap-4 items-center pointer-events-auto">
+            <div className="pt-[8px] flex flex-wrap gap-[16px] items-center pointer-events-auto">
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-6 py-3.5 rounded-[10px] transition-all shadow-xl"
+                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-[24px] py-[14px] rounded-[10px] transition-all shadow-xl"
               >
                 Contratar Consultoria
               </a>
@@ -140,9 +140,9 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.04 }}
             transition={{ duration: 0.5 }}
-            className="max-w-2xl text-left space-y-5 pt-8"
+            className="max-w-[672px] text-left space-y-[20px] pt-[32px]"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <div className="inline-flex items-center gap-[8px] px-[14px] py-[4px] rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <span className="text-white/80 text-[10px] font-lato font-bold uppercase tracking-[0.3em]">
                 Respiro Institucional • Transição 01
               </span>
@@ -153,11 +153,11 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               <span className="text-white/80 font-light italic">Harmonia da Música</span>
             </h3>
 
-            <blockquote className="border-l-2 border-white/50 pl-4 text-white/90 text-base sm:text-lg font-lato italic font-light">
+            <blockquote className="border-l-2 border-white/50 pl-[16px] text-white/90 text-base sm:text-lg font-lato italic font-light">
               "A mesma disciplina cirúrgica que molda contratos e balanços comerciais encontra na música o espaço para a sensibilidade e adoração sincera."
             </blockquote>
 
-            <div className="pt-2">
+            <div className="pt-[8px]">
               <DanielSignature variant="white" size="sm" showPositioning={true} />
             </div>
           </motion.div>
@@ -174,9 +174,9 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl text-left space-y-5 pt-4"
+            className="max-w-[768px] text-left space-y-[20px] pt-[16px]"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <div className="inline-flex items-center gap-[10px] px-[16px] py-[6px] rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-white" />
               <span className="text-white text-[11px] font-lato font-bold uppercase tracking-[0.25em]">
                 02 • Dimensão Músico
@@ -188,23 +188,23 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               <span className="text-white/80 font-light italic">Expressão & Adoração</span>
             </h2>
 
-            <p className="font-lato font-light text-white/85 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="font-lato font-light text-white/85 text-sm sm:text-base leading-relaxed max-w-[576px]">
               Composições autorais, produção sonora de padrão cinematográfico no Estúdio Akedah e encontros de louvor e ministração pelo Brasil.
             </p>
 
             {/* Agenda Musical Integrada */}
-            <div className="pt-1 max-w-2xl">
-              <span className="text-white/70 text-[10px] font-lato font-bold uppercase tracking-[0.25em] block mb-2">
+            <div className="pt-[4px] max-w-[672px]">
+              <span className="text-white/70 text-[10px] font-lato font-bold uppercase tracking-[0.25em] block mb-[8px]">
                 Próximas Apresentações & Ministrações
               </span>
-              <div className="space-y-2">
+              <div className="space-y-[8px]">
                 {musicalEvents.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-3 bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                    className="p-[12px] bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md flex flex-col sm:flex-row sm:items-center justify-between gap-[8px]"
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="font-lato font-black text-white text-sm sm:text-base bg-white/10 px-2.5 py-1 rounded-[6px]">
+                    <div className="flex items-center gap-[12px]">
+                      <span className="font-lato font-black text-white text-sm sm:text-base bg-white/10 px-[10px] py-[4px] rounded-[6px]">
                         {item.data}
                       </span>
                       <div>
@@ -225,12 +225,12 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               </div>
             </div>
 
-            <div className="pt-1 flex items-center gap-4 pointer-events-auto">
+            <div className="pt-[4px] flex items-center gap-[16px] pointer-events-auto">
               <a
                 href="https://open.spotify.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-6 py-3.5 rounded-[10px] transition-all shadow-xl"
+                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-[24px] py-[14px] rounded-[10px] transition-all shadow-xl"
               >
                 Ouvir no Spotify
               </a>
@@ -252,9 +252,9 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.04 }}
             transition={{ duration: 0.5 }}
-            className="max-w-2xl text-left space-y-5 pt-8"
+            className="max-w-[672px] text-left space-y-[20px] pt-[32px]"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <div className="inline-flex items-center gap-[8px] px-[14px] py-[4px] rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <span className="text-white/80 text-[10px] font-lato font-bold uppercase tracking-[0.3em]">
                 Respiro Institucional • Transição 02
               </span>
@@ -265,11 +265,11 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               <span className="text-white/80 font-light italic">O Fundamento Invisível</span>
             </h3>
 
-            <blockquote className="border-l-2 border-white/50 pl-4 text-white/90 text-base sm:text-lg font-lato italic font-light">
+            <blockquote className="border-l-2 border-white/50 pl-[16px] text-white/90 text-base sm:text-lg font-lato italic font-light">
               "Sem valores espirituais inegociáveis, o sucesso nos negócios e nos palcos desmorona. A integridade moral é o verdadeiro cimento de qualquer legado."
             </blockquote>
 
-            <div className="pt-2">
+            <div className="pt-[8px]">
               <DanielSignature variant="white" size="sm" showPositioning={true} />
             </div>
           </motion.div>
@@ -286,9 +286,9 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl text-left space-y-5 pt-8"
+            className="max-w-[672px] text-left space-y-[20px] pt-[32px]"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <div className="inline-flex items-center gap-[10px] px-[16px] py-[6px] rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-white" />
               <span className="text-white text-[11px] font-lato font-bold uppercase tracking-[0.25em]">
                 03 • Dimensão Mentor de Fé
@@ -300,29 +300,29 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               <span className="text-white/80 font-light italic">Propósito Inegociável</span>
             </h2>
 
-            <p className="font-lato font-light text-white/95 text-base sm:text-lg leading-relaxed border-l-2 border-white/40 pl-4">
+            <p className="font-lato font-light text-white/95 text-base sm:text-lg leading-relaxed border-l-2 border-white/40 pl-[16px]">
               "Nenhum sucesso corporativo justifica a perda dos valores essenciais. A liderança verdadeira é forjada no serviço ao próximo, na honra e no compromisso com Deus e a família."
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 max-w-lg">
-              <div className="p-4 bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
-                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-1">Fundamento</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-[12px] pt-[8px] max-w-[512px]">
+              <div className="p-[16px] bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
+                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-[4px]">Fundamento</span>
                 <p className="text-white font-lato font-bold text-sm">Liderança Servidora</p>
-                <p className="text-white/60 font-lato font-light text-[11px] mt-1">Impacto que transcende resultados financeiros imediatos.</p>
+                <p className="text-white/60 font-lato font-light text-[11px] mt-[4px]">Impacto que transcende resultados financeiros imediatos.</p>
               </div>
-              <div className="p-4 bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
-                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-1">Comunicação</span>
+              <div className="p-[16px] bg-[#191919]/90 border border-white/15 rounded-[12px] backdrop-blur-md">
+                <span className="text-white/60 text-[10px] font-lato font-bold uppercase tracking-wider block mb-[4px]">Comunicação</span>
                 <p className="text-white font-lato font-bold text-sm">Akedah Podcast</p>
-                <p className="text-white/60 font-lato font-light text-[11px] mt-1">Diálogos de profundidade com pensadores e líderes.</p>
+                <p className="text-white/60 font-lato font-light text-[11px] mt-[4px]">Diálogos de profundidade com pensadores e líderes.</p>
               </div>
             </div>
 
-            <div className="pt-2 flex items-center gap-4 pointer-events-auto">
+            <div className="pt-[8px] flex items-center gap-[16px] pointer-events-auto">
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-6 py-3.5 rounded-[10px] transition-all shadow-xl"
+                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-[24px] py-[14px] rounded-[10px] transition-all shadow-xl"
               >
                 Agendar Mentoria
               </a>
@@ -343,9 +343,9 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl text-left space-y-6 pt-6"
+            className="max-w-[768px] text-left space-y-[24px] pt-[24px]"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <div className="inline-flex items-center gap-[10px] px-[16px] py-[6px] rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-white" />
               <span className="text-white text-[11px] font-lato font-bold uppercase tracking-[0.25em]">
                 Convergência • O Homem Completo
@@ -358,34 +358,34 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             </h2>
 
             {/* A fórmula visual de convergência */}
-            <div className="p-4 sm:p-6 bg-[#191919]/95 border border-white/20 rounded-[16px] backdrop-blur-xl max-w-2xl">
-              <div className="flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-lato text-white">
-                <span className="px-3.5 py-1.5 rounded-[8px] bg-white/10 text-white font-bold border border-white/20">
+            <div className="p-[16px] sm:p-[24px] bg-[#191919]/95 border border-white/20 rounded-[16px] backdrop-blur-xl max-w-[672px]">
+              <div className="flex flex-wrap items-center justify-between gap-[12px] text-xs sm:text-sm font-lato text-white">
+                <span className="px-[14px] py-[6px] rounded-[8px] bg-white/10 text-white font-bold border border-white/20">
                   Mentor
                 </span>
                 <span className="text-white/40 font-bold text-lg">+</span>
-                <span className="px-3.5 py-1.5 rounded-[8px] bg-white/10 text-white font-bold border border-white/20">
+                <span className="px-[14px] py-[6px] rounded-[8px] bg-white/10 text-white font-bold border border-white/20">
                   Empresário
                 </span>
                 <span className="text-white/40 font-bold text-lg">+</span>
-                <span className="px-3.5 py-1.5 rounded-[8px] bg-white/10 text-white font-bold border border-white/20">
+                <span className="px-[14px] py-[6px] rounded-[8px] bg-white/10 text-white font-bold border border-white/20">
                   Criador de conteúdo
                 </span>
                 <span className="text-white/40 font-bold text-lg">=</span>
-                <span className="px-4 py-1.5 rounded-[8px] bg-white text-[#191919] font-black shadow-lg">
+                <span className="px-[16px] py-[6px] rounded-[8px] bg-white text-[#191919] font-black shadow-lg">
                   Daniel Silva
                 </span>
               </div>
             </div>
 
-            <p className="font-lato font-light text-white/85 text-sm sm:text-base leading-relaxed max-w-xl">
+            <p className="font-lato font-light text-white/85 text-sm sm:text-base leading-relaxed max-w-[576px]">
               A visão estratégica nos negócios, a sensibilidade nas melodias e a autoridade moral no discipulado convergem para transformar vidas e edificar legados perenes.
             </p>
 
-            <div className="pt-2 flex flex-wrap gap-4 items-center pointer-events-auto">
+            <div className="pt-[8px] flex flex-wrap gap-[16px] items-center pointer-events-auto">
               <a
                 href="#agenda-publica"
-                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-8 py-3.5 rounded-[10px] transition-all shadow-xl"
+                className="bg-white text-[#191919] hover:bg-transparent hover:text-white border border-white font-lato font-bold text-xs uppercase tracking-[0.2em] px-[32px] py-[14px] rounded-[10px] transition-all shadow-xl"
               >
                 Explorar Vida Pública & Agendas ↓
               </a>

@@ -1,4 +1,4 @@
-﻿import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import DanielNarrativeLayers from "./DanielNarrativeLayers";
@@ -220,7 +220,7 @@ export const DanielCinematicExperience: React.FC = () => {
         {/* HUD com Marcadores de Capítulo e Barra de Progresso Estilo YouTube */}
         <div className="absolute bottom-0 left-0 w-full z-40 pointer-events-none">
           {/* Marcadores de Capítulos Sutis */}
-          <div className="hidden sm:flex items-center justify-between px-8 py-2 text-[10px] font-lato font-normal uppercase tracking-widest text-white/50 pointer-events-auto">
+          <div className="hidden sm:flex items-center justify-between px-[32px] py-[8px] text-[10px] font-lato font-normal uppercase tracking-widest text-white/50 pointer-events-auto">
             {chapters.map((ch, idx) => (
               <button
                 key={idx}

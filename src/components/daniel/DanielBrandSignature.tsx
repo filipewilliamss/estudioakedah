@@ -1,4 +1,4 @@
-﻿import React from "react";
+import React from "react";
 
 export const DANIEL_TAGLINE = "Fé que inspira, disciplina que sustenta, conhecimento que transforma vidas.";
 export const DANIEL_POSITIONING = "Mentor · Empresário · Criador de conteúdo";
@@ -35,10 +35,10 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
       : "text-[#191919]/70";
 
   const sizeStyles = {
-    sm: "h-8 sm:h-10",
-    md: "h-11 sm:h-14",
-    lg: "h-14 sm:h-20",
-    xl: "h-20 sm:h-28",
+    sm: "h-[32px] sm:h-[40px]",
+    md: "h-[44px] sm:h-[56px]",
+    lg: "h-[56px] sm:h-[80px]",
+    xl: "h-[80px] sm:h-[112px]",
   }[size];
 
   return (
@@ -52,13 +52,13 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
       />
 
       {showPositioning && (
-        <span className={`text-[10px] sm:text-xs font-lato font-normal tracking-[0.25em] uppercase mt-1 ${subtextColor}`}>
+        <span className={`text-[10px] sm:text-xs font-lato font-normal tracking-[0.25em] uppercase mt-[4px] ${subtextColor}`}>
           {DANIEL_POSITIONING}
         </span>
       )}
 
       {showTagline && (
-        <p className={`text-xs sm:text-sm font-lato italic font-light mt-1.5 max-w-md ${subtextColor}`}>
+        <p className={`text-xs sm:text-sm font-lato italic font-light mt-[6px] max-w-[448px] ${subtextColor}`}>
           "{DANIEL_TAGLINE}"
         </p>
       )}
@@ -87,16 +87,16 @@ export const DaniRepetitiveSealStrip: React.FC<{
       : "/dani-selo.svg";
 
   return (
-    <div className={`w-full overflow-hidden py-3 border-y select-none ${bg} ${className}`}>
-      <div className="flex items-center gap-10 whitespace-nowrap">
+    <div className={`w-full overflow-hidden py-[12px] border-y select-none ${bg} ${className}`}>
+      <div className="flex items-center gap-[40px] whitespace-nowrap">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex items-center gap-10 shrink-0">
+          <div key={i} className="flex items-center gap-[40px] shrink-0">
             {/* Selo Curto Oficial Dani */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-[8px]">
               <img
                 src={seloSrc}
                 alt="Selo Dani"
-                className="h-9 w-auto object-contain"
+                className="h-[36px] w-auto object-contain"
                 loading="lazy"
               />
             </div>
