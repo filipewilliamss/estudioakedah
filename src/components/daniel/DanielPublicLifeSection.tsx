@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { WHATSAPP_URL } from "@/data/services";
 import { Instagram, Youtube, Linkedin, Radio, ArrowRight } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface AgendaItem {
   data: string;
@@ -68,12 +72,61 @@ const conteudosDigitais = [
 ];
 
 export const DanielPublicLifeSection: React.FC = () => {
+  const agenda2Ref = useRef<HTMLElement>(null);
+  const agenda2BgRef = useRef<HTMLDivElement>(null);
+  const conteudoRef = useRef<HTMLElement>(null);
+  const conteudoBgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionQuery.matches) return;
+
+    const ctx = gsap.context(() => {
+      const parallaxSections = [
+        { section: agenda2Ref.current, bg: agenda2BgRef.current },
+        { section: conteudoRef.current, bg: conteudoBgRef.current },
+      ];
+
+      parallaxSections.forEach(({ section, bg }) => {
+        if (!section || !bg) return;
+
+        // Deslocamento parallax suave estritamente vinculado ao scroll
+        gsap.fromTo(
+          bg,
+          { y: -65 },
+          {
+            y: 65,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.6,
+              onUpdate: (self) => {
+                // Leve deslocamento dinâmico dependendo da direção do scroll
+                const dir = self.direction; // 1 = descendo, -1 = subindo
+                gsap.to(bg, {
+                  yPercent: dir === 1 ? 1.8 : -1.8,
+                  duration: 0.35,
+                  ease: "power2.out",
+                  overwrite: "auto",
+                });
+              },
+            },
+          }
+        );
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div id="vida-publica-root" className="w-full font-lato">
       {/* =================================================================== */}
       {/* BLOCO 1: AGENDA PÚBLICA — TELAS DE 100VH (CONCEITO DE REMOÇÃO)      */}
       {/* =================================================================== */}
-      <section id="agenda-publica" className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full">
+      <section id="agenda-publica" className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full relative z-[1]">
         <div className="container w-full text-left" data-section="agenda-publica">
           <div className="flex items-center justify-between mb-[3.4rem]">
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase">
@@ -126,8 +179,26 @@ export const DanielPublicLifeSection: React.FC = () => {
         </section>
 
         {/* TELA 13 — AGENDA PÚBLICA (02 DE 03) */}
-        <section id="agenda-publica-2" className="section--flat scr bg-[var(--off-white)] text-[var(--preto)] flex-col justify-center border-t border-black/10 font-lato w-full">
-          <div className="container w-full text-left" data-section="agenda-publica-2">
+        <section
+          id="agenda-publica-2"
+          ref={agenda2Ref}
+          className="section--flat scr text-[var(--preto)] flex-col justify-center font-lato w-full relative overflow-visible z-[5]"
+        >
+          {/* Camada de Fundo Branco em Parallax Elevado sobre o Azul Marinho */}
+          <div
+            ref={agenda2BgRef}
+            aria-hidden="true"
+            className="absolute inset-x-0 bg-[var(--off-white)] pointer-events-none z-0"
+            style={{
+              top: "-50px",
+              bottom: "-50px",
+              height: "calc(100% + 100px)",
+              boxShadow: "0 0 60px rgba(0, 20, 60, 0.28), 0 25px 45px rgba(0, 0, 0, 0.16)",
+              willChange: "transform",
+            }}
+          />
+
+          <div className="container w-full text-left relative z-10" data-section="agenda-publica-2">
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[rgba(25,25,25,0.6)] uppercase mb-[3.4rem]">
               Agenda pública — 02 de 03
             </div>
@@ -175,7 +246,7 @@ export const DanielPublicLifeSection: React.FC = () => {
         </section>
 
         {/* TELA 14 — AGENDA PÚBLICA (03 DE 03) */}
-        <section id="agenda-publica-3" className="section--flat scr bg-[var(--marinho)] flex-col justify-center border-t border-white/20 font-lato w-full">
+        <section id="agenda-publica-3" className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full relative z-[1]">
           <div className="container w-full text-left" data-section="agenda-publica-3">
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[3.4rem]">
               Agenda pública — 03 de 03
@@ -226,8 +297,26 @@ export const DanielPublicLifeSection: React.FC = () => {
       {/* =================================================================== */}
       {/* BLOCO 2: CONTEÚDO DIGITAL & AUDIÊNCIA (TELA DE 100VH)                */}
       {/* =================================================================== */}
-      <section id="conteudo-digital" className="section--flat scr bg-[var(--off-white)] text-[var(--preto)] flex-col justify-center border-t border-black/10 font-lato w-full">
-        <div className="container w-full text-left" data-section="conteudo-digital">
+      <section
+        id="conteudo-digital"
+        ref={conteudoRef}
+        className="section--flat scr text-[var(--preto)] flex-col justify-center font-lato w-full relative overflow-visible z-[5]"
+      >
+        {/* Camada de Fundo Branco em Parallax Elevado sobre o Azul Marinho */}
+        <div
+          ref={conteudoBgRef}
+          aria-hidden="true"
+          className="absolute inset-x-0 bg-[var(--off-white)] pointer-events-none z-0"
+          style={{
+            top: "-50px",
+            bottom: "-50px",
+            height: "calc(100% + 100px)",
+            boxShadow: "0 0 60px rgba(0, 20, 60, 0.28), 0 25px 45px rgba(0, 0, 0, 0.16)",
+            willChange: "transform",
+          }}
+        />
+
+        <div className="container w-full text-left relative z-10" data-section="conteudo-digital">
           <div className="mb-[3.4rem]">
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[rgba(25,25,25,0.6)] uppercase mb-[1.2rem]">
               Ecossistema Online &amp; Presença
