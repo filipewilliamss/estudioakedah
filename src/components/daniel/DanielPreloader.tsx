@@ -76,15 +76,15 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
             if (el) el.style.display = "block";
           },
         },
-        // S: Arco superior e descida contínua
-        { id: "p-s-arch", el: document.getElementById("p-s-arch"), dur: 0.38, ease: "power2.inOut", startX: 580, startY: 530 },
-        // S: Haste diagonal central completa
-        { id: "p-s-stem", el: document.getElementById("p-s-stem"), dur: 0.28, ease: "power2.inOut", startX: 580, startY: 625 },
+        // S: Arco superior e subida até o ápice
+        { id: "p-s-arch", el: document.getElementById("p-s-arch"), dur: 0.38, ease: "power2.inOut", startX: 640, startY: 550 },
+        // S: Haste diagonal central completa (espinha do S)
+        { id: "p-s-stem", el: document.getElementById("p-s-stem"), dur: 0.28, ease: "power2.inOut", startX: 725, startY: 465 },
         // S: Laço inferior e saída para conexão
         {
           id: "p-s-exit",
           el: document.getElementById("p-s-exit"),
-          dur: 0.24,
+          dur: 0.26,
           ease: "power1.inOut",
           startX: 580,
           startY: 625,
@@ -108,11 +108,12 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
         }
       };
 
-      // Inicializar comprimento e offsets das linhas da máscara
+      // Inicializar comprimento e offsets das linhas da máscara com opacidade 0 para evitar vazamentos prematuros
       paths.forEach((item) => {
         if (item.el && item.el instanceof SVGGeometryElement) {
           const len = item.el.getTotalLength();
           gsap.set(item.el, { strokeDasharray: len + 1, strokeDashoffset: len + 1 });
+          item.el.style.opacity = "0";
         }
       });
 
@@ -140,6 +141,7 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
               duration: item.dur,
               ease: item.ease,
               onStart: () => {
+                pathEl.style.opacity = "1";
                 if (item.startX !== undefined && item.startY !== undefined) {
                   movePen(item.startX, item.startY);
                 } else {
@@ -241,21 +243,22 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
 
                 {/* DESBLOQUEIO PROGRESSIVO DE ALTA PRECISÃO:
                     Garante que letras finalizadas nunca sofram cortes ou interrupções */}
-                <rect id="reveal-d" x="210" y="430" width="230" height="220" fill="white" style={{ display: "none" }} />
-                <rect id="reveal-aniel" x="370" y="480" width="220" height="150" fill="white" style={{ display: "none" }} />
-                <rect id="reveal-s" x="550" y="430" width="220" height="220" fill="white" style={{ display: "none" }} />
+                <rect id="reveal-d" x="210" y="430" width="210" height="210" fill="white" style={{ display: "none" }} />
+                <rect id="reveal-aniel" x="370" y="480" width="195" height="115" fill="white" style={{ display: "none" }} />
+                <rect id="reveal-s" x="550" y="420" width="200" height="230" fill="white" style={{ display: "none" }} />
 
-                {/* TRAÇOS REAIS DE ESCRITA EM TEMPO REAL */}
+                {/* TRAÇOS REAIS DE ESCRITA EM TEMPO REAL (todos com opacity 0 inicial para evitar vazamentos de pontas arredondadas) */}
                 <g fill="none" stroke="white" strokeLinecap="round" strokeLinejoin="round">
                   {/* D 1: Haste descendente */}
-                  <path id="p-d-stem" d="M 335,475 L 270,600" strokeWidth="44" />
+                  <path id="p-d-stem" d="M 335,475 L 270,600" strokeWidth="44" style={{ opacity: 0 }} />
                   {/* D 2: Barra transversal de ligação */}
-                  <path id="p-d-cross" d="M 270,600 C 295,595 330,580 375,565" strokeWidth="42" />
+                  <path id="p-d-cross" d="M 270,600 C 295,595 330,580 375,565" strokeWidth="42" style={{ opacity: 0 }} />
                   {/* D 3: Laço amplo e arco superior */}
                   <path
                     id="p-d-arch"
                     d="M 245,560 C 235,605 255,628 285,618 C 330,575 385,510 410,470 C 420,445 375,438 325,455 C 275,475 235,515 225,555 C 218,590 240,625 270,625 C 320,610 375,565 425,505"
                     strokeWidth="44"
+                    style={{ opacity: 0 }}
                   />
 
                   {/* aniel cursivo */}
@@ -263,23 +266,26 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
                     id="p-aniel"
                     d="M 375,580 C 390,555 405,538 412,558 C 418,578 395,588 388,575 C 382,555 400,542 412,555 L 418,580 C 425,565 435,550 442,558 L 442,580 C 452,560 462,552 468,572 L 468,582 C 478,560 488,552 488,580 C 498,558 514,548 514,575 C 522,588 535,535 550,465 C 560,438 575,465 565,505 C 550,545 540,575 560,580 C 570,582 580,575 585,570"
                     strokeWidth="40"
+                    style={{ opacity: 0 }}
                   />
                   {/* Pingo no primeiro i */}
-                  <circle id="p-dot1" cx="488" cy="535" r="16" fill="white" stroke="none" opacity="0" />
+                  <circle id="p-dot1" cx="488" cy="535" r="16" fill="white" stroke="none" style={{ opacity: 0 }} />
 
-                  {/* S 1: Arco superior e laço descendente */}
+                  {/* S 1: Arco superior e subida até o ápice (sem invadir a haste do 'l' do Silva) */}
                   <path
                     id="p-s-arch"
-                    d="M 580,530 C 590,480 650,446 738,446 C 765,450 765,480 740,510 C 700,545 650,580 580,625"
+                    d="M 640,550 C 600,530 580,505 590,480 C 605,445 660,435 700,446 C 720,450 725,455 725,465"
                     strokeWidth="44"
+                    style={{ opacity: 0 }}
                   />
-                  {/* S 2: Haste diagonal central completa */}
-                  <path id="p-s-stem" d="M 580,625 L 750,465" strokeWidth="42" />
+                  {/* S 2: Haste diagonal central completa (espinha do S) */}
+                  <path id="p-s-stem" d="M 725,465 L 665,525 L 580,625" strokeWidth="50" style={{ opacity: 0 }} />
                   {/* S 3: Laço inferior e saída para conexão */}
                   <path
                     id="p-s-exit"
-                    d="M 580,625 C 565,640 605,642 640,625 C 675,605 690,580 715,565"
-                    strokeWidth="42"
+                    d="M 580,625 C 555,645 600,650 640,625 C 675,605 690,580 720,565"
+                    strokeWidth="46"
+                    style={{ opacity: 0 }}
                   />
 
                   {/* ilva cursivo + floreio dinâmico */}
@@ -287,9 +293,10 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
                     id="p-ilva"
                     d="M 695,568 C 708,550 718,548 718,575 C 725,550 740,475 750,505 C 755,530 745,565 745,578 C 755,555 765,550 770,575 L 778,562 C 785,548 795,548 798,575 C 808,555 825,550 862,565"
                     strokeWidth="40"
+                    style={{ opacity: 0 }}
                   />
                   {/* Pingo no segundo i */}
-                  <circle id="p-dot2" cx="701" cy="531" r="16" fill="white" stroke="none" opacity="0" />
+                  <circle id="p-dot2" cx="701" cy="531" r="16" fill="white" stroke="none" style={{ opacity: 0 }} />
                 </g>
               </mask>
             </defs>
