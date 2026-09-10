@@ -385,7 +385,8 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
             </div>
 
             {/* Movimento de Assinatura (4.2): P R O [emp] P Ó [mús] S I [fé] T O */}
-            <div className="w-full flex items-center justify-between gap-1 sm:gap-2 my-[8px] select-none">
+            {/* Desktop (md e acima): linha única intercalando letras e miniaturas na mesma linha de base */}
+            <div className="hidden md:flex w-full items-center justify-between gap-1 sm:gap-2 my-[8px] select-none">
               <span className="font-barlow-condensed font-black leading-none text-[var(--off-white)] text-[clamp(2.4rem,7.5vw,9.5rem)] tracking-tight">
                 PRO
               </span>
@@ -401,6 +402,27 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
               <span className="font-barlow-condensed font-black leading-none text-[var(--off-white)] text-[clamp(2.4rem,7.5vw,9.5rem)] tracking-tight">
                 TO
               </span>
+            </div>
+
+            {/* Mobile (5.4: Miniaturas da convergência empilham em coluna abaixo da palavra): */}
+            <div className="md:hidden space-y-[12px] my-[8px]">
+              <span className="display--condensed display--diacritic-safe text-fluid-80 text-[var(--off-white)] leading-none tracking-tight block">
+                PROPÓSITO
+              </span>
+              <div className="flex flex-col gap-[8px]">
+                <div className="flex items-center gap-[10px]">
+                  <LoopingThumbnail startTime={6.0} endTime={12.0} label="Daniel Empreendedor" />
+                  <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold uppercase tracking-wider">Negócios</span>
+                </div>
+                <div className="flex items-center gap-[10px]">
+                  <LoopingThumbnail startTime={21.0} endTime={28.0} label="Daniel Músico" />
+                  <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold uppercase tracking-wider">Música</span>
+                </div>
+                <div className="flex items-center gap-[10px]">
+                  <LoopingThumbnail startTime={33.0} endTime={40.0} label="Daniel Mentor de Fé" />
+                  <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold uppercase tracking-wider">Fé</span>
+                </div>
+              </div>
             </div>
 
             {/* Abaixo da composição: Título e Tagline Oficial */}

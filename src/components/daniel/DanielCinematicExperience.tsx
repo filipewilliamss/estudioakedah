@@ -105,39 +105,76 @@ export const getVideoTimeForScroll = (progress: number): number => {
   return DANIEL_VIDEO_TIMESTAMPS.FAITH_CONVERGENCE;
 };
 
+const getStaticFrameForProgress = (p: number) => {
+  if (p < 0.15) return "/videos/site-video-poster.webp";
+  if (p < 0.43) return "/videos/frame-empreendedor.webp";
+  if (p < 0.724) return "/videos/frame-musico.webp";
+  return "/videos/frame-fe.webp";
+};
+
 export const DanielCinematicExperience: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoLayerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isFallbackActive, setIsFallbackActive] = useState(false);
+  const videoLoadedRef = useRef(false);
+  const fallbackTimerRef = useRef<NodeJS.Timeout>();
   const targetTimeRef = useRef(0);
 
   useEffect(() => {
+    // 5.3 Suporte a Movimento Reduzido
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setIsReducedMotion(motionQuery.matches);
+    const handleMotionChange = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
+    motionQuery.addEventListener("change", handleMotionChange);
+
+    // 5.4 Detecção de tela mobile (<768px)
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     const video = videoRef.current;
     const container = containerRef.current;
-    if (!video || !container) return;
 
-    video.pause();
-
-    const handleLoadedMetadata = () => {
-      ScrollTrigger.refresh();
-    };
-
-    const handleSeeked = () => {
-      if (!video || isNaN(video.duration)) return;
-      if (Math.abs(video.currentTime - targetTimeRef.current) > 0.04) {
-        video.currentTime = targetTimeRef.current;
+    // 5.2 Estado Inicial: Fallback de 4 segundos se loadeddata não disparar
+    fallbackTimerRef.current = setTimeout(() => {
+      if (!videoLoadedRef.current) {
+        setIsFallbackActive(true);
       }
-    };
+    }, 4000);
 
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-    video.addEventListener("seeked", handleSeeked);
+    if (video) {
+      video.pause();
+
+      const handleLoadedData = () => {
+        videoLoadedRef.current = true;
+        if (fallbackTimerRef.current) clearTimeout(fallbackTimerRef.current);
+      };
+
+      const handleLoadedMetadata = () => {
+        ScrollTrigger.refresh();
+      };
+
+      const handleSeeked = () => {
+        if (!video || isNaN(video.duration)) return;
+        if (Math.abs(video.currentTime - targetTimeRef.current) > 0.04) {
+          video.currentTime = targetTimeRef.current;
+        }
+      };
+
+      video.addEventListener("loadeddata", handleLoadedData);
+      video.addEventListener("loadedmetadata", handleLoadedMetadata);
+      video.addEventListener("seeked", handleSeeked);
+    }
 
     const trigger = ScrollTrigger.create({
       trigger: ".experience-container",
       start: "top top",
       end: "bottom bottom",
-      scrub: 1.2,
+      scrub: window.innerWidth < 768 ? 0.3 : 1.2,
       onUpdate: (self) => {
         setScrollProgress(self.progress);
         const p = self.progress;
@@ -148,7 +185,11 @@ export const DanielCinematicExperience: React.FC = () => {
           videoLayerRef.current.style.opacity = isTransitionPanel ? "0" : "1";
         }
 
-        if (video && !isNaN(video.duration) && video.duration > 0) {
+        // Se em modo de movimento reduzido, mobile ou fallback ativo, não força scrubbing no elemento video:
+        const shouldUseStaticFrames =
+          motionQuery.matches || window.innerWidth < 768 || !videoLoadedRef.current;
+
+        if (!shouldUseStaticFrames && video && !isNaN(video.duration) && video.duration > 0) {
           const targetTime = getVideoTimeForScroll(self.progress);
           targetTimeRef.current = targetTime;
 
@@ -171,8 +212,14 @@ export const DanielCinematicExperience: React.FC = () => {
     });
 
     return () => {
-      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      video.removeEventListener("seeked", handleSeeked);
+      if (fallbackTimerRef.current) clearTimeout(fallbackTimerRef.current);
+      motionQuery.removeEventListener("change", handleMotionChange);
+      window.removeEventListener("resize", checkMobile);
+      if (video) {
+        video.removeEventListener("loadeddata", () => {});
+        video.removeEventListener("loadedmetadata", () => {});
+        video.removeEventListener("seeked", () => {});
+      }
       trigger.kill();
     };
   }, []);
@@ -195,11 +242,13 @@ export const DanielCinematicExperience: React.FC = () => {
     { label: "05 Convergência", ratio: 0.94 },
   ];
 
+  const useStaticFrames = isReducedMotion || isMobile || isFallbackActive;
+
   return (
     <div
       ref={containerRef}
       className="experience-container relative w-full bg-[#191919]"
-      style={{ minHeight: "850vh" }}
+      style={{ minHeight: isReducedMotion ? "100vh" : isMobile ? "500vh" : "850vh" }}
     >
       {/* Sticky Viewport Frame com 100dvh */}
       <div className="sticky top-0 left-0 w-full h-[100dvh] overflow-hidden flex items-center justify-center">
@@ -207,22 +256,51 @@ export const DanielCinematicExperience: React.FC = () => {
         <div
           ref={videoLayerRef}
           className="video-layer transition-opacity duration-500 ease-out"
+          aria-hidden="true"
         >
-          <video
-            ref={videoRef}
-            muted
-            playsInline
-            preload="auto"
-          >
-            <source src="/videos/site-video-daniel.mp4" type="video/mp4" />
-            Seu navegador não suporta a tag de vídeo.
-          </video>
+          {/* 5.2 O poster cobre a viewport desde o primeiro paint */}
+          <img
+            src="/videos/site-video-poster.webp"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none -z-10"
+            style={{ objectPosition: "center 40%" }}
+          />
+
+          {/* 5.3 / 5.4 / Fallback: Frame estático representativo por seção */}
+          {useStaticFrames ? (
+            <img
+              src={getStaticFrameForProgress(scrollProgress)}
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover transition-opacity duration-300 pointer-events-none"
+              style={{ objectPosition: "center 40%" }}
+            />
+          ) : (
+            <video
+              ref={videoRef}
+              poster="/videos/site-video-poster.webp"
+              muted
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: "center 40%" }}
+            >
+              {/* 5.1 Duas versões (desktop e mobile), WebM (VP9) antes do MP4 */}
+              <source src="/videos/site-video-daniel-desktop.webm" type="video/webm" media="(min-width: 769px)" />
+              <source src="/videos/site-video-daniel-desktop.mp4" type="video/mp4" media="(min-width: 769px)" />
+              <source src="/videos/site-video-daniel-mobile.webm" type="video/webm" media="(max-width: 768px)" />
+              <source src="/videos/site-video-daniel-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+              Seu navegador não suporta a tag de vídeo.
+            </video>
+          )}
 
           {/* Scrim Oficial Preto da Marca (rgb(25 25 25 / ...)) */}
-          <div className="scrim" />
+          <div className="scrim" aria-hidden="true" />
         </div>
 
-        {/* Camada Narrativa em HTML Real (Estágios 1 ao 6) */}
+        {/* Camada Narrativa em HTML Real (Estágios 1 ao 7) */}
         <DanielNarrativeLayers progress={scrollProgress} />
 
         {/* HUD com Marcadores de Capítulo e Barra de Progresso Estilo YouTube */}

@@ -104,7 +104,21 @@
   @media (max-width: 768px) {
     :root {
       --design-width: 430;
+      --text-110: 4.4rem;
+      --text-80:  2.8rem;
+      --text-280: 8rem;
     }
+  }
+
+  /* 5.5 Acessibilidade: foco de teclado visível em todo elemento interativo */
+  html.daniel-silva-theme a:focus-visible,
+  html.daniel-silva-theme button:focus-visible,
+  html.daniel-silva-theme input:focus-visible,
+  html.daniel-silva-theme select:focus-visible,
+  html.daniel-silva-theme textarea:focus-visible,
+  html.daniel-silva-theme [tabindex]:focus-visible {
+    outline: 2px solid var(--bege) !important;
+    outline-offset: 2px !important;
   }
 
   html {
@@ -634,6 +648,13 @@ p {
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  /* 5.4 Mobile: scrim cobrindo a viewport inteira em vez de gradiente lateral */
+  .scrim {
+    background: rgba(25, 25, 25, 0.88) !important;
+  }
+}
+
 @media (min-width: 1600px) {
   .scrim {
     background: linear-gradient(
@@ -643,5 +664,28 @@ p {
       rgb(25 25 25 / 0.55) 45%,
       rgb(25 25 25 / 0)    70%
     );
+  }
+}
+
+/* 5.3 Movimento Reduzido (prefers-reduced-motion: reduce) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* 5.4 Mobile: marquee mantém-se com velocidade reduzida */
+  .marquee-track {
+    animation-duration: 48s;
   }
 }
