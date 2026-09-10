@@ -27,7 +27,7 @@ const DanielSilva = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#191919] text-white selection:bg-white selection:text-[#191919] relative font-lato">
+    <div className="min-h-screen bg-[var(--marinho)] text-[var(--off-white)] selection:bg-[var(--bege)] selection:text-[var(--marinho)] relative font-lato">
       <SEO
         title={`Daniel Silva | ${DANIEL_POSITIONING}`}
         description={`Daniel Silva: ${DANIEL_TAGLINE} Experiência cinematográfica conduzida por scroll.`}
@@ -50,7 +50,7 @@ const DanielSilva = () => {
         <DanielCinematicExperience />
 
         {/* Camada Estágios 7 & 8: Vida Pública, Patrocinadores e Contato */}
-        <div className="relative z-20 bg-[var(--preto)]">
+        <div className="relative z-20 bg-[var(--marinho)]">
           {/* Faixa Marquee Oficial 1 com Bullets (3.5) */}
           <DanielBrandMarquee />
 

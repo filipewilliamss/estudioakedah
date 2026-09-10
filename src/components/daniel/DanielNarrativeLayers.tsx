@@ -140,10 +140,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 03 — PILARES DE NEGÓCIOS (SÓLIDO PRETO #191919)               */}
+      {/* TELA 03 — PILARES DE NEGÓCIOS (SÓLIDO MARINHO #002867)             */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--preto)]"
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
         style={{
           opacity: isEmpreendedorB ? 1 : 0,
           pointerEvents: isEmpreendedorB ? "auto" : "none",
@@ -151,13 +151,13 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
         }}
       >
         <div className="w-full max-w-[1400px] text-left">
-          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-white/20 pb-[1.6rem] mb-[1.6rem]">
             <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">01</span>
             <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
               Vendas B2B de escala
             </span>
           </div>
-          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-white/20 pb-[1.6rem] mb-[1.6rem]">
             <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">02</span>
             <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
               Playbooks operacionais
@@ -286,10 +286,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 09 — MANIFESTO DE FÉ (SÓLIDO PRETO #191919)                  */}
+      {/* TELA 09 — MANIFESTO DE FÉ (SÓLIDO MARINHO #002867)                */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--preto)]"
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--marinho)]"
         style={{
           opacity: isFeB ? 1 : 0,
           pointerEvents: isFeB ? "auto" : "none",
@@ -297,13 +297,13 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
         }}
       >
         <div className="w-full max-w-[1400px] text-left">
-          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-white/20 pb-[1.6rem] mb-[1.6rem]">
             <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">01</span>
             <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
               Liderança Servidora & Princípios
             </span>
           </div>
-          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-white/20 pb-[1.6rem] mb-[1.6rem]">
             <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">02</span>
             <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
               Akedah Podcast & Grandes Diálogos
@@ -335,10 +335,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 11 — CONVERGÊNCIA B (SÓLIDO PRETO #191919)                   */}
+      {/* TELA 11 — CONVERGÊNCIA B (SÓLIDO MARINHO #002867)                 */}
       {/* ================================================================= */}
       <div
-        className="section--flat scr absolute inset-0 flex flex-col justify-center transition-opacity duration-500 bg-[var(--preto)]"
+        className="section--flat scr absolute inset-0 flex flex-col justify-center transition-opacity duration-500 bg-[var(--marinho)]"
         style={{
           opacity: isConvergenciaB ? 1 : 0,
           pointerEvents: isConvergenciaB ? "auto" : "none",

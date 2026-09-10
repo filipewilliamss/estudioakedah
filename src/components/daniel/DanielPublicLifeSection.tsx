@@ -73,7 +73,7 @@ export const DanielPublicLifeSection: React.FC = () => {
       {/* =================================================================== */}
       {/* BLOCO 1: AGENDA PÚBLICA — TELAS DE 100VH (CONCEITO DE REMOÇÃO)      */}
       {/* =================================================================== */}
-      <section id="agenda-publica" className="section--flat scr bg-[var(--preto)] flex-col justify-center font-lato w-full">
+      <section id="agenda-publica" className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full">
         <div className="container w-full text-left" data-section="agenda-publica">
           <div className="flex items-center justify-between mb-[3.4rem]">
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase">
@@ -83,7 +83,7 @@ export const DanielPublicLifeSection: React.FC = () => {
             <span className="agenda__titulo text-fluid-28 text-[var(--off-white)] hidden">Convenção</span>
           </div>
 
-            <div className="flex items-baseline gap-[3rem] border-b border-[#2e2e2e] pb-[2.4rem] mb-[2.4rem]">
+            <div className="flex items-baseline gap-[3rem] border-b border-white/20 pb-[2.4rem] mb-[2.4rem]">
               <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">18/09</span>
               <div className="flex-1 min-w-0">
                 <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
@@ -175,13 +175,13 @@ export const DanielPublicLifeSection: React.FC = () => {
         </section>
 
         {/* TELA 14 — AGENDA PÚBLICA (03 DE 03) */}
-        <section id="agenda-publica-3" className="section--flat scr bg-[var(--preto)] flex-col justify-center border-t border-[#2e2e2e] font-lato w-full">
+        <section id="agenda-publica-3" className="section--flat scr bg-[var(--marinho)] flex-col justify-center border-t border-white/20 font-lato w-full">
           <div className="container w-full text-left" data-section="agenda-publica-3">
             <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[3.4rem]">
               Agenda pública — 03 de 03
             </div>
 
-            <div className="flex items-baseline gap-[3rem] border-b border-[#2e2e2e] pb-[2.4rem] mb-[2.4rem]">
+            <div className="flex items-baseline gap-[3rem] border-b border-white/20 pb-[2.4rem] mb-[2.4rem]">
               <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">22/10</span>
               <div className="flex-1 min-w-0">
                 <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">

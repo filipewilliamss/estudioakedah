@@ -116,13 +116,13 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
 
   const bgClass = scrolled
     ? (isCurrentDanielSilva 
-        ? "bg-[#191919]/90 border-[var(--neutra-3)]/40" 
+        ? "bg-[#002867]/95 border-white/10 shadow-lg" 
         : isCurrentPodcast 
           ? "bg-[#2D1A11]/90 border-[#42362E]/20" 
           : (forceBlack ? "bg-black/70 border-white/[0.08]" : "bg-white/75 border-black/[0.05]")
       ) + " backdrop-blur-[20px] border-b py-3 md:py-4"
     : (isCurrentDanielSilva 
-        ? "bg-[#191919]/70 backdrop-blur-[10px] border-b border-[var(--neutra-3)]/20 py-4 md:py-5" 
+        ? "bg-[#002867]/90 backdrop-blur-[10px] border-b border-white/10 py-4 md:py-5" 
         : isCurrentPodcast 
           ? "bg-[#2D1A11] py-6 md:py-8" 
           : "bg-transparent py-6 md:py-8"
@@ -183,7 +183,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
                 <img
                   src="/daniel-silva-assinatura-white.svg"
                   alt="Daniel Silva"
-                  className="h-[24px] md:h-[32px] w-auto object-contain select-none"
+                  className="h-[28px] md:h-[36px] w-auto object-contain select-none"
                   loading="eager"
                 />
               </div>
@@ -268,7 +268,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
             animate={{ opacity: 1, y: 0 }}
             className={`lg:hidden border-b ${
               isCurrentDanielSilva
-                ? "bg-[#07132B]/95 backdrop-blur-md border-white/10"
+                ? "bg-[#002867]/98 backdrop-blur-md border-white/10"
                 : isCurrentPodcast 
                   ? "bg-[#2D1A11]/95 backdrop-blur-md border-white/10" 
                   : (forceBlack ? "bg-black/95 backdrop-blur-md border-white/10" : "bg-background/95 backdrop-blur-md border-border")
