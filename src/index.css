@@ -318,6 +318,27 @@
     text-transform: uppercase;
     color: #F2F0EF;
     max-width: 16ch;
+    perspective: 1000px;
+    perspective-origin: 50% 100%;
+  }
+
+  .panel-transition__word {
+    display: inline-block;
+    white-space: nowrap;
+    margin-right: 0.32em;
+    perspective: 800px;
+    transform-style: preserve-3d;
+  }
+
+  .panel-transition__word:last-child {
+    margin-right: 0;
+  }
+
+  .panel-transition__char {
+    display: inline-block;
+    transform-origin: 50% 100%;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
 
   /* ========================================================================

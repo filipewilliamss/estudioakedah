@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { WHATSAPP_URL } from "@/data/services";
 import { DanielSignature, DANIEL_TAGLINE, DANIEL_POSITIONING } from "./DanielBrandSignature";
+import { DanielGroundLiftText } from "./DanielGroundLiftText";
 
 interface DanielNarrativeLayersProps {
   progress: number;
@@ -185,9 +186,12 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
         }}
       >
         <div className="container" data-section="painel-transicao-1">
-          <h2 className="panel-transition__text">
-            Da rigidez dos negócios à harmonia da música
-          </h2>
+          <DanielGroundLiftText
+            text="Da rigidez dos negócios à harmonia da música"
+            progress={progress}
+            startRange={0.350}
+            endRange={0.410}
+          />
         </div>
       </div>
 
@@ -258,9 +262,12 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
         }}
       >
         <div className="container" data-section="painel-transicao-2">
-          <h2 className="panel-transition__text">
-            Dos palcos ao altar: o fundamento
-          </h2>
+          <DanielGroundLiftText
+            text="Dos palcos ao altar: o fundamento"
+            progress={progress}
+            startRange={0.660}
+            endRange={0.710}
+          />
         </div>
       </div>
 
