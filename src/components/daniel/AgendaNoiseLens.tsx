@@ -25,66 +25,72 @@ export const AgendaNoiseLens: React.FC<AgendaNoiseLensProps> = ({
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motionQuery.matches) return;
 
-    // Posição inicial orgânica
+    // Posição inicial perfeitamente nivelada (sem inclinação)
     gsap.set(lens, {
       x: 60,
-      y: 80,
+      y: 90,
       opacity: 0.95,
-      rotation: -1,
+      rotation: 0,
     });
 
     // Função para mover a lente para uma nova coordenada aleatória dentro do container
+    // Movimento lento, suave e orgânico (sem "tilt" ou pulos bruscos)
     const moveRandomly = () => {
       if (!lens || !container) return;
       const cRect = container.getBoundingClientRect();
-      
+
       // Só move se a seção estiver visível ou próxima da viewport
       if (cRect.bottom < -100 || cRect.top > window.innerHeight + 100) return;
 
       const lensWidth = lens.offsetWidth || 340;
-      const lensHeight = lens.offsetHeight || 150;
+      const lensHeight = lens.offsetHeight || 140;
 
-      const maxW = Math.max(20, cRect.width - lensWidth - 40);
-      const maxH = Math.max(20, cRect.height - lensHeight - 40);
+      const maxW = Math.max(30, cRect.width - lensWidth - 50);
+      const maxH = Math.max(30, cRect.height - lensHeight - 50);
 
-      const targetX = 20 + Math.random() * maxW;
-      const targetY = 20 + Math.random() * maxH;
-      const targetRotation = (Math.random() - 0.5) * 4; // inclinação sutil entre -2deg e +2deg
+      // Posição atual da lente
+      const currentX = (gsap.getProperty(lens, "x") as number) || 60;
+      const currentY = (gsap.getProperty(lens, "y") as number) || 90;
 
+      // Deslocamento orgânico e suave (passo calmo de 110px a 240px em direção aleatória)
+      const angle = Math.random() * Math.PI * 2;
+      const step = 110 + Math.random() * 130;
+
+      let targetX = currentX + Math.cos(angle) * step;
+      let targetY = currentY + Math.sin(angle) * step;
+
+      // Bounding seguro dentro do container
+      if (targetX < 30) targetX = 30 + Math.random() * 100;
+      if (targetX > maxW) targetX = maxW - Math.random() * 100;
+      if (targetY < 30) targetY = 30 + Math.random() * 80;
+      if (targetY > maxH) targetY = maxH - Math.random() * 80;
+
+      // Movimento lento, calmo e estável (rotação 0 constante para evitar qualquer sensação de tilt ou bug)
       gsap.to(lens, {
         x: targetX,
         y: targetY,
-        rotation: targetRotation,
-        duration: 0.85,
-        ease: "power3.out",
+        rotation: 0,
+        duration: 2.8,
+        ease: "power2.out",
         overwrite: "auto",
       });
     };
 
-    // Listener do scroll do mouse (wheel) throttled a cada 110ms
-    const handleWheel = () => {
+    // Listener do scroll do mouse (wheel e scroll geral) com throttle calmo de 1200ms
+    const handleScrollActivity = () => {
       const now = Date.now();
-      if (now - lastScrollTime.current > 110) {
+      if (now - lastScrollTime.current > 1200) {
         lastScrollTime.current = now;
         moveRandomly();
       }
     };
 
-    // Listener de scroll geral
-    const handleScroll = () => {
-      const now = Date.now();
-      if (now - lastScrollTime.current > 160) {
-        lastScrollTime.current = now;
-        moveRandomly();
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: true });
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("wheel", handleScrollActivity, { passive: true });
+    window.addEventListener("scroll", handleScrollActivity, { passive: true });
 
     return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("wheel", handleScrollActivity);
+      window.removeEventListener("scroll", handleScrollActivity);
     };
   }, [containerRef]);
 

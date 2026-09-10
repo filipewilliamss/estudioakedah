@@ -138,44 +138,65 @@ export const DanielPublicLifeSection: React.FC = () => {
       agendaEntrances.forEach(({ section, content, grain }) => {
         if (!section || !content) return;
 
-        // Desfoque alto de 22px que some suavemente até 0px ao parar na seção
-        gsap.fromTo(
+        // O desfoque permanece por mais tempo na rolagem e fica 100% nítido e normal
+        // apenas quando as informações se aproximam do centro da viewport de scroll.
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 0.6,
+          },
+        });
+
+        tl.fromTo(
           content,
           {
             filter: "blur(22px)",
             opacity: 0.35,
-            y: 28,
+            y: 32,
           },
           {
             filter: "blur(0px)",
             opacity: 1,
             y: 0,
+            ease: "power2.in",
+            duration: 0.38,
+          }
+        )
+          .to(content, {
+            filter: "blur(0px)",
+            opacity: 1,
+            y: 0,
+            duration: 0.24, // Ampla zona central de leitura 100% nítida e normal
+          })
+          .to(content, {
+            filter: "blur(22px)",
+            opacity: 0.35,
+            y: -32,
             ease: "power2.out",
+            duration: 0.38,
+          });
+
+        // Camada de grain de entrada vinculada que desaparece na zona central nítida
+        if (grain) {
+          const grainTl = gsap.timeline({
             scrollTrigger: {
               trigger: section,
-              start: "top 92%",
-              end: "top 25%",
+              start: "top bottom",
+              end: "bottom top",
               scrub: 0.6,
             },
-          }
-        );
+          });
 
-        // Camada de grain de entrada que desvanece
-        if (grain) {
-          gsap.fromTo(
-            grain,
-            { opacity: 0.55 },
-            {
-              opacity: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 92%",
-                end: "top 25%",
-                scrub: 0.6,
-              },
-            }
-          );
+          grainTl
+            .fromTo(
+              grain,
+              { opacity: 0.55 },
+              { opacity: 0, ease: "power2.in", duration: 0.38 }
+            )
+            .to(grain, { opacity: 0, duration: 0.24 })
+            .to(grain, { opacity: 0.55, ease: "power2.out", duration: 0.38 });
         }
       });
     });
