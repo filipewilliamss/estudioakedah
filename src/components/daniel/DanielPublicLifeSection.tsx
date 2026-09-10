@@ -126,25 +126,25 @@ export const DanielPublicLifeSection: React.FC = () => {
         </section>
 
         {/* TELA 13 — AGENDA PÚBLICA (02 DE 03) */}
-        <section id="agenda-publica-2" className="section--flat scr bg-[var(--preto)] flex-col justify-center border-t border-[#2e2e2e] font-lato w-full">
+        <section id="agenda-publica-2" className="section--flat scr bg-[var(--off-white)] text-[var(--preto)] flex-col justify-center border-t border-black/10 font-lato w-full">
           <div className="container w-full text-left" data-section="agenda-publica-2">
-            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[3.4rem]">
+            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[rgba(25,25,25,0.6)] uppercase mb-[3.4rem]">
               Agenda pública — 02 de 03
             </div>
 
-            <div className="flex items-baseline gap-[3rem] border-b border-[#2e2e2e] pb-[2.4rem] mb-[2.4rem]">
+            <div className="flex items-baseline gap-[3rem] border-b border-black/15 pb-[2.4rem] mb-[2.4rem]">
               <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">03/10</span>
               <div className="flex-1 min-w-0">
-                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                <div className="text-fluid-50 font-lato font-black text-[var(--preto)] uppercase leading-[0.95]">
                   Fórum de Liderança, Negócios &amp; Princípios
                 </div>
-                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#596170] mt-[1rem] tracking-[0.04em]">
                   <span>Belo Horizonte, MG &nbsp;·&nbsp; 20h00 &nbsp;·&nbsp; Palestra</span>
                   <a
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
+                    className="text-[var(--marinho)] hover:text-[var(--preto)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
                   >
                     Garantir Vaga →
                   </a>
@@ -155,16 +155,16 @@ export const DanielPublicLifeSection: React.FC = () => {
             <div className="flex items-baseline gap-[3rem]">
               <span className="cond text-fluid-130 text-[var(--bege)] leading-[0.78] shrink-0">12/10</span>
               <div className="flex-1 min-w-0">
-                <div className="text-fluid-50 font-lato font-black text-[var(--off-white)] uppercase leading-[0.95]">
+                <div className="text-fluid-50 font-lato font-black text-[var(--preto)] uppercase leading-[0.95]">
                   Noite de Louvor, Palavra &amp; Propósito
                 </div>
-                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#8f8a82] mt-[1rem] tracking-[0.04em]">
+                <div className="flex items-center justify-between gap-[2rem] text-fluid-16 text-[#596170] mt-[1rem] tracking-[0.04em]">
                   <span>Curitiba, PR &nbsp;·&nbsp; 19h00 &nbsp;·&nbsp; Ministração</span>
                   <a
                     href={WHATSAPP_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--bege)] hover:text-[var(--off-white)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
+                    className="text-[var(--marinho)] hover:text-[var(--preto)] text-fluid-13 font-black uppercase tracking-wider transition-colors shrink-0"
                   >
                     Garantir Vaga →
                   </a>
@@ -226,57 +226,57 @@ export const DanielPublicLifeSection: React.FC = () => {
       {/* =================================================================== */}
       {/* BLOCO 2: CONTEÚDO DIGITAL & AUDIÊNCIA (TELA DE 100VH)                */}
       {/* =================================================================== */}
-      <section id="conteudo-digital" className="section--flat scr bg-[var(--preto)] flex-col justify-center border-t border-[#2e2e2e] font-lato w-full">
+      <section id="conteudo-digital" className="section--flat scr bg-[var(--off-white)] text-[var(--preto)] flex-col justify-center border-t border-black/10 font-lato w-full">
         <div className="container w-full text-left" data-section="conteudo-digital">
           <div className="mb-[3.4rem]">
-            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[1.2rem]">
+            <div className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[rgba(25,25,25,0.6)] uppercase mb-[1.2rem]">
               Ecossistema Online &amp; Presença
             </div>
-            <h3 className="display text-fluid-50 text-[var(--off-white)] uppercase">
+            <h3 className="display text-fluid-50 text-[var(--preto)] uppercase">
               Conteúdo Digital &amp; Audiência
             </h3>
           </div>
 
           {/* Barra Editorial de Métricas Auditadas */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-[2.4rem] border-y border-[#2e2e2e] py-[2.4rem] mb-[3.4rem] text-left">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-[2.4rem] border-y border-black/15 py-[2.4rem] mb-[3.4rem] text-left">
             <div>
-              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">364 mil</span>
-              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">364 mil</span>
+              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
                 Alcance Mensal
               </span>
             </div>
             <div>
-              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">43 mil</span>
-              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">43 mil</span>
+              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
                 Inscritos YouTube
               </span>
             </div>
             <div>
-              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">48 mil</span>
-              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">48 mil</span>
+              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
                 Seguidores Instagram
               </span>
             </div>
             <div>
-              <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] block">20 mil</span>
-              <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">20 mil</span>
+              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
                 Conexões LinkedIn
               </span>
             </div>
           </div>
 
           {/* Linhas Editoriais dos Canais Digitais (Zero Cards) */}
-          <div className="divide-y divide-[#2e2e2e] border-b border-[#2e2e2e]">
+          <div className="divide-y divide-black/10 border-b border-black/10">
             {conteudosDigitais.map((item, idx) => (
               <div
                 key={idx}
                 className="py-[1.8rem] flex flex-col md:flex-row md:items-center justify-between gap-[1.6rem] text-left"
               >
                 <div className="flex items-baseline gap-[2.4rem]">
-                  <span className="font-lato font-black text-fluid-26 text-[var(--off-white)] uppercase min-w-[200px]">
+                  <span className="font-lato font-black text-fluid-26 text-[var(--preto)] uppercase min-w-[200px]">
                     {item.canal}
                   </span>
-                  <span className="text-[#8f8a82] text-fluid-16 font-lato">
+                  <span className="text-[#596170] text-fluid-16 font-lato">
                     {item.formato} &nbsp;·&nbsp; {item.metrica}
                   </span>
                 </div>
@@ -284,7 +284,7 @@ export const DanielPublicLifeSection: React.FC = () => {
                   href={item.link}
                   target={item.link.startsWith("http") ? "_blank" : undefined}
                   rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="inline-flex items-center gap-[6px] text-[var(--bege)] hover:text-[var(--off-white)] font-lato font-black text-fluid-13 uppercase tracking-wider transition-colors shrink-0"
+                  className="inline-flex items-center gap-[6px] text-[var(--marinho)] hover:text-[var(--preto)] font-lato font-black text-fluid-13 uppercase tracking-wider transition-colors shrink-0"
                 >
                   {item.cta} <ArrowRight className="w-3.5 h-3.5" />
                 </a>

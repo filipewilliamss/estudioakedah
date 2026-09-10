@@ -213,10 +213,10 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
       </div>
 
       {/* ================================================================= */}
-      {/* TELA 06 — PILARES DE MÚSICA (SÓLIDO PRETO #191919)                */}
+      {/* TELA 06 — PILARES DE MÚSICA (SÓLIDO OFF-WHITE #F2F0EF)            */}
       {/* ================================================================= */}
       <div
-        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--preto)]"
+        className="scr absolute inset-0 flex flex-col justify-center px-[3rem] sm:px-[4rem] transition-opacity duration-500 bg-[var(--off-white)]"
         style={{
           opacity: isMusicoB ? 1 : 0,
           pointerEvents: isMusicoB ? "auto" : "none",
@@ -224,21 +224,21 @@ export const DanielNarrativeLayers: React.FC<DanielNarrativeLayersProps> = ({ pr
         }}
       >
         <div className="w-full max-w-[1400px] text-left">
-          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-black/15 pb-[1.6rem] mb-[1.6rem]">
             <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">01</span>
-            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+            <span className="font-lato font-black text-fluid-54 text-[var(--preto)] uppercase leading-[0.95]">
               Produção Cinematográfica Akedah
             </span>
           </div>
-          <div className="flex items-baseline gap-[2.4rem] border-b border-[#2e2e2e] pb-[1.6rem] mb-[1.6rem]">
+          <div className="flex items-baseline gap-[2.4rem] border-b border-black/15 pb-[1.6rem] mb-[1.6rem]">
             <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">02</span>
-            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+            <span className="font-lato font-black text-fluid-54 text-[var(--preto)] uppercase leading-[0.95]">
               Encontros Acústicos de Adoração
             </span>
           </div>
           <div className="flex items-baseline gap-[2.4rem]">
             <span className="cond text-fluid-110 text-[var(--bege)] leading-[0.8] w-[9rem] shrink-0">03</span>
-            <span className="font-lato font-black text-fluid-54 text-[var(--off-white)] uppercase leading-[0.95]">
+            <span className="font-lato font-black text-fluid-54 text-[var(--preto)] uppercase leading-[0.95]">
               Ministrações & Louvor pelo Brasil
             </span>
           </div>

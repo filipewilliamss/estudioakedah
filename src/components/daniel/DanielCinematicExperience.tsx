@@ -248,7 +248,7 @@ export const DanielCinematicExperience: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="experience-container relative w-full bg-[#191919]"
+      className="experience-container relative w-full bg-[var(--marinho)]"
       style={{ minHeight: isReducedMotion ? "100vh" : isMobile ? "500vh" : "850vh" }}
     >
       {/* Sticky Viewport Frame com 100dvh */}
@@ -304,26 +304,8 @@ export const DanielCinematicExperience: React.FC = () => {
         {/* Camada Narrativa em HTML Real (Estágios 1 ao 7) */}
         <DanielNarrativeLayers progress={scrollProgress} />
 
-        {/* HUD com Marcadores de Capítulo e Barra de Progresso Estilo YouTube */}
+        {/* Barra de Progresso na Base Inferior Estilo YouTube */}
         <div className="absolute bottom-0 left-0 w-full z-40 pointer-events-none">
-          {/* Marcadores de Capítulos Sutis */}
-          <div className="hidden sm:flex items-center justify-between px-[32px] py-[8px] text-[10px] font-lato font-normal uppercase tracking-widest text-[var(--off-white)]/50 pointer-events-auto">
-            {chapters.map((ch, idx) => (
-              <button
-                key={idx}
-                onClick={() => jumpToStage(ch.ratio)}
-                className={`hover:text-[var(--off-white)] transition-colors duration-200 ${
-                  scrollProgress >= ch.ratio - 0.08 && scrollProgress <= ch.ratio + 0.08
-                    ? "text-[var(--bege)] font-bold scale-105"
-                    : ""
-                }`}
-              >
-                {ch.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Barra de Progresso na Base Inferior Estilo YouTube */}
           <div className="w-full h-[4px] bg-[var(--off-white)]/20 relative">
             <div
               className="h-full bg-[var(--off-white)] transition-[width] duration-75 ease-out shadow-none"
