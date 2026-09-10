@@ -234,6 +234,7 @@
     position: relative;
     width: 100%;
     user-select: none;
+    border: none;
   }
 
   .marquee-track {

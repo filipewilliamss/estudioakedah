@@ -77,15 +77,15 @@ export const DanielBrandMarquee: React.FC<{
   const repeatedText = "MENTOR • EMPRESÁRIO • CRIADOR DE CONTEÚDO";
 
   return (
-    <div className={`marquee border-y border-[var(--preto)]/20 ${className}`} aria-hidden="true">
+    <div className={`marquee border-none ${className}`} aria-hidden="true">
       <div className="marquee-track">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex items-center gap-[24px] shrink-0">
+          <div key={i} className="flex items-center gap-[20px] sm:gap-[24px] shrink-0">
             <img
               src="/dani-selo.svg"
-              alt=""
+              alt="Dani"
               aria-hidden="true"
-              className="h-[18px] w-auto object-contain inline-block opacity-90"
+              className="h-[26px] sm:h-[28px] w-auto object-contain inline-block select-none"
               loading="lazy"
             />
             <span>{repeatedText} •</span>
