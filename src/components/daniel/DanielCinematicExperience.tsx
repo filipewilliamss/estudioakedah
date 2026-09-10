@@ -53,68 +53,53 @@ export const DANIEL_VIDEO_TIMESTAMPS = {
 export const getVideoTimeForScroll = (progress: number): number => {
   const p = Math.max(0, Math.min(progress, 1));
 
-  // 1. Hero / Entrada (Scroll 0.00 -> 0.15) => Vídeo 0.0s -> 6.0s
-  if (p < 0.15) {
-    const frac = p / 0.15;
+  // 1. Empreendedor: Scroll 0.00 -> 0.32 => Vídeo 0.0s -> 14.0s (entrada, escritório, zoom, giro até a parede)
+  if (p < 0.32) {
+    const frac = p / 0.32;
     return (
       DANIEL_VIDEO_TIMESTAMPS.HERO_START +
-      frac * (DANIEL_VIDEO_TIMESTAMPS.HERO_APPROACH_END - DANIEL_VIDEO_TIMESTAMPS.HERO_START)
+      frac * (DANIEL_VIDEO_TIMESTAMPS.ENTREPRENEUR_END - DANIEL_VIDEO_TIMESTAMPS.HERO_START)
     );
   }
 
-  // 2. Dimensão 01 - Empreendedor (Scroll 0.15 -> 0.35) => Vídeo 6.0s -> 14.0s (até a parede)
-  if (p < 0.35) {
-    const frac = (p - 0.15) / (0.35 - 0.15);
-    return (
-      DANIEL_VIDEO_TIMESTAMPS.ENTREPRENEUR_START +
-      frac * (DANIEL_VIDEO_TIMESTAMPS.ENTREPRENEUR_END - DANIEL_VIDEO_TIMESTAMPS.ENTREPRENEUR_START)
-    );
-  }
-
-  // 3. Painel de Transição 1 (Scroll: 0.35 -> 0.43) => Vídeo 14.0s -> 18.0s
-  if (p < 0.43) {
-    const frac = (p - 0.35) / (0.43 - 0.35);
+  // 2. Transição 1 (Scroll: 0.32 -> 0.44) => Vídeo 14.0s -> 18.0s
+  if (p < 0.44) {
+    const frac = (p - 0.32) / (0.44 - 0.32);
     return (
       DANIEL_VIDEO_TIMESTAMPS.TRANSITION_1_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START - DANIEL_VIDEO_TIMESTAMPS.TRANSITION_1_START)
     );
   }
 
-  // 4. Dimensão 02 - Músico Vídeo (Scroll 0.43 -> 0.55) => Vídeo 18.0s -> 28.0s (porta abre, violão, sorriso, giro parede)
-  if (p < 0.55) {
-    const frac = (p - 0.43) / (0.55 - 0.43);
+  // 3. Músico: Scroll 0.44 -> 0.62 => Vídeo 18.0s -> 28.0s (porta abre, violão, sorriso, giro para parede)
+  if (p < 0.62) {
+    const frac = (p - 0.44) / (0.62 - 0.44);
     return (
       DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_END - DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START)
     );
   }
 
-  // 5. Pilares de Música & Painel Transição 2 (Scroll 0.55 -> 0.72) => Vídeo 28.0s -> 30.0s
-  if (p < 0.72) {
-    const frac = (p - 0.55) / (0.72 - 0.55);
+  // 4. Pilares de Música & Painel Transição 2 (Scroll 0.62 -> 0.80) => Vídeo 28.0s -> 30.0s
+  if (p < 0.80) {
+    const frac = (p - 0.62) / (0.80 - 0.62);
     return (
       DANIEL_VIDEO_TIMESTAMPS.TRANSITION_2_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.FAITH_START - DANIEL_VIDEO_TIMESTAMPS.TRANSITION_2_START)
     );
   }
 
-  // 6. Dimensão 03 - Mentor de Fé (Scroll 0.72 -> 0.88) => Vídeo 30.0s -> 40.0s (porta abre, Bíblia, sorriso)
-  if (p < 0.88) {
-    const frac = (p - 0.72) / (0.88 - 0.72);
-    return (
-      DANIEL_VIDEO_TIMESTAMPS.FAITH_START +
-      frac * (DANIEL_VIDEO_TIMESTAMPS.FAITH_CONVERGENCE - DANIEL_VIDEO_TIMESTAMPS.FAITH_START)
-    );
-  }
-
-  // 7. Estágio Final - Convergência (Scroll 0.88 -> 1.00) => Mantém o quadro de sorriso em 40.0s
-  return DANIEL_VIDEO_TIMESTAMPS.FAITH_CONVERGENCE;
+  // 5. Mentor de Fé (Scroll 0.80 -> 1.00) => Vídeo 30.0s -> 40.0s (porta com maçaneta dourada abre, Bíblia, sorriso)
+  const frac = (p - 0.80) / (1.00 - 0.80);
+  return (
+    DANIEL_VIDEO_TIMESTAMPS.FAITH_START +
+    frac * (DANIEL_VIDEO_TIMESTAMPS.FAITH_CONVERGENCE - DANIEL_VIDEO_TIMESTAMPS.FAITH_START)
+  );
 };
 
 const getStaticFrameForProgress = (p: number) => {
-  if (p < 0.15) return "/videos/site-video-poster.webp";
-  if (p < 0.43) return "/videos/frame-empreendedor.webp";
-  if (p < 0.72) return "/videos/frame-musico.webp";
+  if (p < 0.44) return "/videos/frame-empreendedor.webp";
+  if (p < 0.80) return "/videos/frame-musico.webp";
   return "/videos/frame-fe.webp";
 };
 
@@ -186,7 +171,7 @@ export const DanielCinematicExperience: React.FC = () => {
         const p = self.progress;
 
         // Daniel precisa desaparecer nos painéis de transição marinho e nas telas de pilares:
-        const isTransitionPanel = (p >= 0.35 && p < 0.43) || (p >= 0.55 && p < 0.72);
+        const isTransitionPanel = (p >= 0.32 && p < 0.44) || (p >= 0.62 && p < 0.80);
         if (videoLayerRef.current) {
           videoLayerRef.current.style.opacity = isTransitionPanel ? "0" : "1";
           videoLayerRef.current.style.visibility = isTransitionPanel ? "hidden" : "visible";
@@ -231,31 +216,13 @@ export const DanielCinematicExperience: React.FC = () => {
     };
   }, []);
 
-  const jumpToStage = (targetRatio: number) => {
-    if (!containerRef.current) return;
-    const containerTop = containerRef.current.getBoundingClientRect().top + window.scrollY;
-    const totalHeight = containerRef.current.offsetHeight - window.innerHeight;
-    window.scrollTo({
-      top: containerTop + totalHeight * targetRatio,
-      behavior: "smooth",
-    });
-  };
-
-  const chapters = [
-    { label: "01 Entrada", ratio: 0.05 },
-    { label: "02 Empreendedor", ratio: 0.25 },
-    { label: "03 Músico", ratio: 0.54 },
-    { label: "04 Fé", ratio: 0.80 },
-    { label: "05 Convergência", ratio: 0.94 },
-  ];
-
   const useStaticFrames = isReducedMotion || isMobile || isFallbackActive;
 
   return (
     <div
       ref={containerRef}
       className="experience-container relative w-full bg-[var(--marinho)]"
-      style={{ minHeight: isReducedMotion ? "100vh" : isMobile ? "500vh" : "850vh" }}
+      style={{ minHeight: isReducedMotion ? "100vh" : isMobile ? "400vh" : "650vh" }}
     >
       {/* Sticky Viewport Frame com 100dvh */}
       <div className="sticky top-0 left-0 w-full h-[100dvh] overflow-hidden flex items-center justify-center">
@@ -315,7 +282,7 @@ export const DanielCinematicExperience: React.FC = () => {
           <div className="w-full h-[4px] bg-[var(--off-white)]/20 relative">
             <div
               className="h-full bg-[var(--off-white)] transition-[width] duration-75 ease-out shadow-none"
-              style={{ width: `${Math.min(scrollProgress / 0.92, 1) * 100}%` }}
+              style={{ width: `${Math.min(scrollProgress, 1) * 100}%` }}
             />
           </div>
         </div>
