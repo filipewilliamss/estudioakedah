@@ -40,7 +40,7 @@ export const DanielContactSection: React.FC = () => {
             </a>
 
             <a
-              href="mailto:contato@estudioakedah.com"
+              href="mailto:comercial@danielsilva.com"
               className="inline-flex items-center justify-center gap-[12px] bg-[var(--preto)] hover:bg-[var(--neutra-3)] text-[var(--off-white)] border border-[var(--neutra-3)] font-lato font-bold text-fluid-13 uppercase tracking-[0.2em] px-[40px] py-[20px] transition-colors"
             >
               <Mail className="w-4 h-4" />

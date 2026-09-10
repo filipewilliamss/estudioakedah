@@ -65,43 +65,43 @@ export const getVideoTimeForScroll = (progress: number): number => {
     );
   }
 
-  // 3. Painel de Transição 1 (Scroll 0.35 -> 0.45) => Vídeo 12.0s -> 21.0s
-  if (p < 0.45) {
-    const frac = (p - 0.35) / (0.45 - 0.35);
+  // 3. Painel de Transição 1 (-20% scroll: 0.35 -> 0.43) => Vídeo 12.0s -> 21.0s (Daniel some da tela)
+  if (p < 0.43) {
+    const frac = (p - 0.35) / (0.43 - 0.35);
     return (
       DANIEL_VIDEO_TIMESTAMPS.TRANSITION_1_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START - DANIEL_VIDEO_TIMESTAMPS.TRANSITION_1_START)
     );
   }
 
-  // 4. Dimensão 02 - Músico + Agenda (Scroll 0.45 -> 0.68) => Vídeo 21.0s -> 28.0s
-  if (p < 0.68) {
-    const frac = (p - 0.45) / (0.68 - 0.45);
+  // 4. Dimensão 02 - Músico + Agenda (Scroll 0.43 -> 0.66) => Vídeo 21.0s -> 28.0s
+  if (p < 0.66) {
+    const frac = (p - 0.43) / (0.66 - 0.43);
     return (
       DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_END - DANIEL_VIDEO_TIMESTAMPS.MUSICIAN_START)
     );
   }
 
-  // 5. Painel de Transição 2 (Scroll 0.68 -> 0.76) => Vídeo 28.0s -> 33.0s
-  if (p < 0.76) {
-    const frac = (p - 0.68) / (0.76 - 0.68);
+  // 5. Painel de Transição 2 (-20% scroll: 0.66 -> 0.724) => Vídeo 28.0s -> 33.0s (Daniel some da tela)
+  if (p < 0.724) {
+    const frac = (p - 0.66) / (0.724 - 0.66);
     return (
       DANIEL_VIDEO_TIMESTAMPS.TRANSITION_2_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.FAITH_START - DANIEL_VIDEO_TIMESTAMPS.TRANSITION_2_START)
     );
   }
 
-  // 6. Dimensão 03 - Mentor de Fé (Scroll 0.76 -> 0.90) => Vídeo 33.0s -> 40.0s
-  if (p < 0.90) {
-    const frac = (p - 0.76) / (0.90 - 0.76);
+  // 6. Dimensão 03 - Mentor de Fé (Scroll 0.724 -> 0.88) => Vídeo 33.0s -> 40.0s
+  if (p < 0.88) {
+    const frac = (p - 0.724) / (0.88 - 0.724);
     return (
       DANIEL_VIDEO_TIMESTAMPS.FAITH_START +
       frac * (DANIEL_VIDEO_TIMESTAMPS.FAITH_CONVERGENCE - DANIEL_VIDEO_TIMESTAMPS.FAITH_START)
     );
   }
 
-  // 7. Estágio Final - Convergência (Scroll 0.90 -> 1.00) => Mantém o quadro de sorriso em 40.0s
+  // 7. Estágio Final - Convergência (Scroll 0.88 -> 1.00) => Mantém o quadro de sorriso em 40.0s
   return DANIEL_VIDEO_TIMESTAMPS.FAITH_CONVERGENCE;
 };
 
@@ -140,6 +140,14 @@ export const DanielCinematicExperience: React.FC = () => {
       scrub: 1.2,
       onUpdate: (self) => {
         setScrollProgress(self.progress);
+        const p = self.progress;
+
+        // 4.1 Daniel precisa desaparecer nos painéis de transição marinho:
+        const isTransitionPanel = (p >= 0.35 && p < 0.43) || (p >= 0.66 && p < 0.724);
+        if (videoLayerRef.current) {
+          videoLayerRef.current.style.opacity = isTransitionPanel ? "0" : "1";
+        }
+
         if (video && !isNaN(video.duration) && video.duration > 0) {
           const targetTime = getVideoTimeForScroll(self.progress);
           targetTimeRef.current = targetTime;
@@ -182,9 +190,9 @@ export const DanielCinematicExperience: React.FC = () => {
   const chapters = [
     { label: "01 Entrada", ratio: 0.05 },
     { label: "02 Empreendedor", ratio: 0.25 },
-    { label: "03 Músico", ratio: 0.56 },
-    { label: "04 Fé", ratio: 0.83 },
-    { label: "05 Convergência", ratio: 0.95 },
+    { label: "03 Músico", ratio: 0.54 },
+    { label: "04 Fé", ratio: 0.80 },
+    { label: "05 Convergência", ratio: 0.94 },
   ];
 
   return (

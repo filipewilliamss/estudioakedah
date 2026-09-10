@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { WHATSAPP_URL } from "@/data/services";
-import { Play, Instagram, Youtube, Linkedin, Radio, Calendar, ArrowRight } from "lucide-react";
+import { Instagram, Youtube, Linkedin, Radio, ArrowRight } from "lucide-react";
 
 interface AgendaItem {
   data: string;
@@ -23,43 +23,47 @@ const agendaPublicaItems: AgendaItem[] = [
 const conteudosDigitais = [
   {
     canal: "YouTube",
+    handle: "youtube.com/danielsilva",
     icon: Youtube,
     formato: "Masterclasses & Aulas",
+    metrica: "43 mil inscritos",
     frequencia: "Semanal",
     descricao: "Aprofundamentos em estratégia comercial, discursos de alto ticket e bastidores de produções audiovisuais.",
-    link: "https://youtube.com",
-    cta: "Acessar Canal no YouTube",
-    tagColor: "bg-red-500/20 text-red-300 border-red-500/30",
+    link: "https://youtube.com/danielsilva",
+    cta: "Acessar youtube.com/danielsilva",
   },
   {
     canal: "Spotify & Apple Podcasts",
+    handle: "Akedah Podcast",
     icon: Radio,
     formato: "Akedah Podcast",
+    metrica: "Distribuição Global",
     frequencia: "Toda Quarta-feira",
     descricao: "Conversas com grandes líderes, fundadores e vozes influentes sobre negócios, família, fé e maturidade.",
     link: "/podcast",
     cta: "Ouvir no Spotify",
-    tagColor: "bg-green-500/20 text-green-300 border-green-500/30",
   },
   {
     canal: "Instagram",
+    handle: "@danielsilva",
     icon: Instagram,
     formato: "Reflexões Diárias & Bastidores",
+    metrica: "48 mil seguidores",
     frequencia: "Diário",
-    descricao: "Recortes pontuais, pensamentos sobre liderança, rotina de gravações e avisos de novos lançamentos.",
-    link: "https://instagram.com",
-    cta: "Seguir no Instagram",
-    tagColor: "bg-pink-500/20 text-pink-300 border-pink-500/30",
+    descricao: "Recortes pontuais, reflexões sobre liderança, rotina e avisos de novos lançamentos.",
+    link: "https://instagram.com/danielsilva",
+    cta: "Seguir @danielsilva",
   },
   {
     canal: "LinkedIn",
+    handle: "Daniel Silva",
     icon: Linkedin,
     formato: "Artigos & Articulação B2B",
+    metrica: "20 mil conexões",
     frequencia: "Semanal",
     descricao: "Análises técnicas sobre vendas consultivas, liderança executiva e cultura corporativa baseada em princípios.",
-    link: "https://linkedin.com",
+    link: "https://linkedin.com/in/danielsilva",
     cta: "Conectar no LinkedIn",
-    tagColor: "bg-blue-500/20 text-blue-300 border-blue-400/30",
   },
 ];
 
@@ -87,10 +91,10 @@ export const DanielPublicLifeSection: React.FC = () => {
       </div>
 
       {/* =================================================================== */}
-      {/* BLOCO 1: AGENDA PÚBLICA                                             */}
+      {/* BLOCO 1: AGENDA PÚBLICA (4.3 - LISTA EDITORIAL ABERTA)               */}
       {/* =================================================================== */}
       <div className="mb-[112px]">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px] mb-[40px] pb-[24px] border-b border-[var(--neutra-3)]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-[24px] mb-[40px] pb-[24px] border-b border-[var(--neutra-2)]">
           <div>
             <div className="mb-[12px]">
               <span className="label">COMPROMISSOS OFICIAIS</span>
@@ -118,35 +122,41 @@ export const DanielPublicLifeSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Grade de Eventos da Agenda Pública (3.3: Sem Chrome / Retos / Zero Sombra) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
+        {/* Lista Editorial da Agenda: Linhas de largura total separadas por 1px em --neutra-2 */}
+        {/* Zero cards, zero background, zero radius, zero sombra */}
+        <div className="divide-y divide-[var(--neutra-2)] border-t border-b border-[var(--neutra-2)]">
           {filteredAgenda.map((item, idx) => (
             <div
               key={idx}
-              className="p-[28px] bg-[var(--preto)] border border-[var(--neutra-3)] hover:border-[var(--bege)]/50 transition-colors flex flex-col justify-between min-h-[220px]"
+              className="py-[24px] sm:py-[28px] flex flex-col md:flex-row md:items-center justify-between gap-[16px] md:gap-[32px] group"
             >
-              <div>
-                <div className="flex items-center justify-between mb-[16px]">
-                  {/* Número da Data com Barlow Condensed 900 (--text-44) */}
-                  <span className="display--condensed text-fluid-44 text-[var(--bege)]">{item.data}</span>
-                  <span className="text-fluid-13 font-lato font-normal text-[var(--off-white)]/80 bg-[var(--neutra-4)] px-[12px] py-[4px]">
-                    {item.hora}
-                  </span>
-                </div>
-                <span className="text-[var(--bege)] text-fluid-10 font-lato uppercase tracking-widest block mb-[8px] font-bold">
-                  {item.tipo}
+              {/* Esquerda: Data em Barlow Condensed Black 900 (--text-44) em --bege */}
+              <div className="flex items-center gap-[20px] md:w-[140px] shrink-0">
+                <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none">
+                  {item.data}
                 </span>
-                {/* Título de evento com Lato Black (--text-28) */}
-                <h4 className="font-lato font-black text-fluid-28 text-[var(--off-white)] mb-[8px] leading-snug">
+                <span className="text-fluid-13 font-lato font-normal text-[var(--neutra-1)] md:hidden">
+                  {item.hora}
+                </span>
+              </div>
+
+              {/* Centro: Título do Evento em Lato Black (--text-28) em --off-white e Local/Hora */}
+              <div className="flex-1 min-w-0 text-left">
+                <h4 className="font-lato font-black text-fluid-28 text-[var(--off-white)] leading-snug group-hover:text-[var(--bege)] transition-colors">
                   {item.titulo}
                 </h4>
-                <p className="text-[var(--neutra-1)] text-fluid-13 font-lato font-normal">
-                  📍 {item.local} • {item.cidade}
+                <p className="text-[var(--neutra-1)] text-fluid-13 font-lato font-normal mt-[4px] flex flex-wrap items-center gap-x-[8px]">
+                  <span>📍 {item.local} • {item.cidade}</span>
+                  <span className="hidden md:inline text-[var(--neutra-2)]">•</span>
+                  <span className="hidden md:inline">{item.hora}</span>
                 </p>
               </div>
 
-              <div className="pt-[16px] border-t border-[var(--neutra-3)] mt-[16px] flex items-center justify-between">
-                <span className="text-fluid-10 text-[var(--off-white)]/40 font-lato uppercase tracking-wider font-bold">Inscrições abertas</span>
+              {/* Direita: Rótulo de Categoria .label e Ação Integrada */}
+              <div className="flex items-center justify-between md:justify-end gap-[20px] shrink-0 pt-[8px] md:pt-0">
+                <span className="label">
+                  {item.tipo}
+                </span>
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -162,22 +172,50 @@ export const DanielPublicLifeSection: React.FC = () => {
       </div>
 
       {/* =================================================================== */}
-      {/* BLOCO 2: CONTEÚDO DIGITAL                                           */}
+      {/* BLOCO 2: CONTEÚDO DIGITAL & AUDIÊNCIA OFICIAL (4.4)                  */}
       {/* =================================================================== */}
       <div>
-        <div className="text-left mb-[64px]">
+        <div className="text-left mb-[48px]">
           <div className="mb-[12px]">
             <span className="label">ECOSSISTEMA ONLINE</span>
           </div>
           <h3 className="display text-fluid-44 text-[var(--off-white)]">
-            Conteúdo Digital
+            Conteúdo Digital & Presença
           </h3>
           <p className="text-[var(--off-white)]/70 text-fluid-16 font-lato font-normal mt-[8px] max-w-[68ch]">
-            Acompanhe reflexões, episódios em áudio/vídeo e materiais semanais nas principais plataformas.
+            Acompanhe reflexões, episódios em áudio/vídeo e análises semanais nas plataformas digitais oficiais.
           </p>
         </div>
 
-        {/* Grade de Canais Digitais (3.3: Sem Chrome / Retos / Zero Sombra) */}
+        {/* 4.4 Barra Editorial de Audiência Auditada (Mídia Kit Oficial) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-[24px] mb-[56px] py-[28px] border-y border-[var(--neutra-2)] text-left">
+          <div>
+            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">364 mil</span>
+            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
+              Alcance Mensal
+            </span>
+          </div>
+          <div>
+            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">4,8%</span>
+            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
+              Engajamento Médio
+            </span>
+          </div>
+          <div>
+            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">62% • 38%</span>
+            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
+              Homens • Mulheres (25–44 anos)
+            </span>
+          </div>
+          <div>
+            <span className="display--condensed text-fluid-44 text-[var(--bege)] leading-none block">110 mil+</span>
+            <span className="text-[var(--off-white)]/70 text-fluid-13 font-lato uppercase tracking-wider block mt-[6px]">
+              Audiência Integrada
+            </span>
+          </div>
+        </div>
+
+        {/* Grade de Canais Digitais Oficiais */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px] text-left">
           {conteudosDigitais.map((item, idx) => {
             const IconComponent = item.icon;
@@ -194,10 +232,10 @@ export const DanielPublicLifeSection: React.FC = () => {
                       </div>
                       <div>
                         <h4 className="font-lato text-fluid-20 font-black text-[var(--off-white)]">{item.canal}</h4>
-                        <span className="text-[var(--off-white)]/50 text-fluid-13 font-lato font-normal">{item.formato}</span>
+                        <span className="text-[var(--bege)] text-fluid-13 font-lato font-bold">{item.metrica}</span>
                       </div>
                     </div>
-                    <span className="px-[12px] py-[4px] text-fluid-10 font-lato font-bold uppercase border border-[var(--neutra-3)] bg-[var(--neutra-4)] text-[var(--bege)]">
+                    <span className="px-[12px] py-[4px] text-fluid-10 font-lato font-bold uppercase border border-[var(--neutra-3)] bg-[var(--neutra-4)] text-[var(--off-white)]/80">
                       {item.frequencia}
                     </span>
                   </div>
