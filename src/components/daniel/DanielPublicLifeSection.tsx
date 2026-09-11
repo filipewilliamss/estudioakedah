@@ -253,7 +253,7 @@ export const DanielPublicLifeSection: React.FC = () => {
         }
       });
 
-      // 3. Animação sequencial "uma linha por vez" no Ecossistema Online & Presença sincronizada ao scroll
+      // 3. Animação sequencial "uma linha por vez" no Ecossistema Online com scroll runway espaçado
       if (conteudoRef.current) {
         const lines: HTMLElement[] = [];
         if (conteudoHeaderRef.current) lines.push(conteudoHeaderRef.current);
@@ -266,14 +266,19 @@ export const DanielPublicLifeSection: React.FC = () => {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: conteudoRef.current,
-              start: "top 40%",
-              end: "top -5%",
-              scrub: 0.6,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.8,
             },
           });
 
+          // Pacing calmo e progressivo: cada linha ganha tempo real de rolagem para ser apreciada
+          const lineTimes = [0.00, 0.12, 0.44, 0.54, 0.64, 0.74];
+          const lineDurations = [0.14, 0.16, 0.12, 0.12, 0.12, 0.12];
+
           lines.forEach((line, index) => {
-            const startTime = index * 0.16;
+            const startTime = lineTimes[index] ?? (index * 0.14);
+            const duration = lineDurations[index] ?? 0.14;
             tl.fromTo(
               line,
               {
@@ -286,7 +291,7 @@ export const DanielPublicLifeSection: React.FC = () => {
                 y: 0,
                 filter: "blur(0px)",
                 ease: "power2.out",
-                duration: 0.22,
+                duration: duration,
               },
               startTime
             );
@@ -295,16 +300,24 @@ export const DanielPublicLifeSection: React.FC = () => {
       }
 
       // 4. Animação de roleta numérica nos 4 números do Ecossistema Online
-      // Cada número roda de cima para baixo acelerado, desacelerando até parar no valor exato ao centralizar na viewport
-      if (conteudoMetricsRef.current) {
+      // Com o scroll runway expandido, a roleta tem tempo generoso para rodar acelerada e desacelerar visivelmente
+      if (conteudoRef.current) {
         const rouletteTl = gsap.timeline({
           scrollTrigger: {
-            trigger: conteudoMetricsRef.current,
-            start: "top 85%",
-            end: "center center",
-            scrub: 0.6,
+            trigger: conteudoRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.8,
           },
         });
+
+        // Cada número desacelera e trava em um tempo próprio com espaço de sobra para visualização:
+        const rouletteTimings = [
+          { start: 0.12, end: 0.34 }, // 364 mil trava primeiro
+          { start: 0.14, end: 0.38 }, // 43 mil trava em segundo
+          { start: 0.16, end: 0.42 }, // 48 mil trava em terceiro
+          { start: 0.14, end: 0.46 }, // 20 mil trava em quarto
+        ];
 
         METRICS_ROULETTE_DATA.forEach((item, idx) => {
           const reelEl = metricReelsRef.current[idx];
@@ -312,7 +325,8 @@ export const DanielPublicLifeSection: React.FC = () => {
 
           const totalItems = item.sequence.length;
           const initialYPercent = -((totalItems - 1) / totalItems) * 100;
-          const duration = item.endTime - item.startTime;
+          const timing = rouletteTimings[idx] || { start: item.startTime, end: item.endTime };
+          const duration = timing.end - timing.start;
 
           rouletteTl.fromTo(
             reelEl,
@@ -326,7 +340,7 @@ export const DanielPublicLifeSection: React.FC = () => {
               ease: "power3.out",
               duration: duration,
             },
-            item.startTime
+            timing.start
           );
         });
       }
@@ -574,28 +588,27 @@ export const DanielPublicLifeSection: React.FC = () => {
         </section>
 
       {/* =================================================================== */}
-      {/* BLOCO 2: CONTEÚDO DIGITAL & AUDIÊNCIA (TELA DE 100VH)                */}
+      {/* BLOCO 2: CONTEÚDO DIGITAL & AUDIÊNCIA (STICKY SCROLL RUNWAY)        */}
       {/* =================================================================== */}
       <section
         id="conteudo-digital"
         ref={conteudoRef}
-        className="section--flat scr text-[var(--preto)] flex-col justify-center font-lato w-full relative overflow-visible z-[5]"
+        className="relative w-full z-[5]"
+        style={{ minHeight: "220vh" }}
       >
-        {/* Camada de Fundo Branco em Parallax Elevado sobre o Azul Marinho */}
-        <div
-          ref={conteudoBgRef}
-          aria-hidden="true"
-          className="absolute inset-x-0 bg-[var(--off-white)] pointer-events-none z-0"
-          style={{
-            top: "-50px",
-            bottom: "-50px",
-            height: "calc(100% + 100px)",
-            boxShadow: "0 0 60px rgba(0, 20, 60, 0.28), 0 25px 45px rgba(0, 0, 0, 0.16)",
-            willChange: "transform",
-          }}
-        />
+        {/* Sticky Viewport Frame que segura as informações no centro da tela */}
+        <div className="sticky top-0 left-0 w-full h-[100dvh] flex flex-col justify-center overflow-hidden font-lato text-[var(--preto)]">
+          {/* Camada de Fundo Branco em Parallax Elevado sobre o Azul Marinho */}
+          <div
+            ref={conteudoBgRef}
+            aria-hidden="true"
+            className="absolute inset-0 bg-[var(--off-white)] pointer-events-none z-0"
+            style={{
+              boxShadow: "0 0 60px rgba(0, 20, 60, 0.28), 0 25px 45px rgba(0, 0, 0, 0.16)",
+            }}
+          />
 
-        <div className="container w-full text-left relative z-10" data-section="conteudo-digital">
+          <div className="container w-full text-left relative z-10" data-section="conteudo-digital">
           {/* Linha 1: Cabeçalho da Seção */}
           <div
             ref={conteudoHeaderRef}
@@ -675,6 +688,7 @@ export const DanielPublicLifeSection: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </section>
     </div>

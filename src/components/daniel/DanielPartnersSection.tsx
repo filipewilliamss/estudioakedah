@@ -25,14 +25,15 @@ export const DanielPartnersSection: React.FC = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 80%",
-          end: "top 15%",
-          scrub: 0.6,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.8,
         },
       });
 
       // Efeito "levantando do chão" (Ground Lift 3D) idêntico ao hero:
       // rotação no eixo X articulada na base (transformOrigin: 50% 100%) + elevação no eixo Y + fade de opacidade
+      // Distribuído com tempo de sobra ao longo da rolagem para visualização clara de cada elemento
 
       // 1. Tag Alianças & Patrocínios
       if (tagRef.current) {
@@ -50,7 +51,7 @@ export const DanielPartnersSection: React.FC = () => {
             opacity: 1,
             filter: "blur(0px)",
             ease: "power2.out",
-            duration: 0.22,
+            duration: 0.20,
           },
           0.00
         );
@@ -74,7 +75,7 @@ export const DanielPartnersSection: React.FC = () => {
             ease: "power2.out",
             duration: 0.24,
           },
-          0.14
+          0.16
         );
       }
 
@@ -96,7 +97,7 @@ export const DanielPartnersSection: React.FC = () => {
             ease: "power2.out",
             duration: 0.24,
           },
-          0.26
+          0.34
         );
       }
 
@@ -116,9 +117,9 @@ export const DanielPartnersSection: React.FC = () => {
             opacity: 1,
             filter: "blur(0px)",
             ease: "power2.out",
-            duration: 0.26,
+            duration: 0.22,
           },
-          0.44
+          0.52
         );
       }
 
@@ -138,9 +139,9 @@ export const DanielPartnersSection: React.FC = () => {
             opacity: 1,
             filter: "blur(0px)",
             ease: "power2.out",
-            duration: 0.22,
+            duration: 0.20,
           },
-          0.66
+          0.68
         );
       }
     });
@@ -152,13 +153,16 @@ export const DanielPartnersSection: React.FC = () => {
     <section
       id="patrocinadores"
       ref={sectionRef}
-      className="section--flat scr bg-[var(--marinho)] flex-col justify-center font-lato w-full relative z-[1] overflow-hidden"
+      className="relative w-full z-[1] bg-[var(--marinho)]"
+      style={{ minHeight: "200vh" }}
     >
-      <div
-        className="container w-full text-left"
-        data-section="patrocinadores"
-        style={{ perspective: "1000px", perspectiveOrigin: "50% 100%" }}
-      >
+      {/* Sticky Viewport Frame que segura a seção estável na tela enquanto os elementos se erguem */}
+      <div className="sticky top-0 left-0 w-full h-[100dvh] flex flex-col justify-center overflow-hidden font-lato">
+        <div
+          className="container w-full text-left"
+          data-section="patrocinadores"
+          style={{ perspective: "1000px", perspectiveOrigin: "50% 100%" }}
+        >
         <div
           ref={tagRef}
           className="font-lato font-bold text-fluid-12 tracking-[0.22em] text-[var(--bege)] uppercase mb-[2rem]"
@@ -213,6 +217,7 @@ export const DanielPartnersSection: React.FC = () => {
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
+      </div>
       </div>
     </section>
   );
