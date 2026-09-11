@@ -160,9 +160,8 @@ const TimelineItem = ({ step, idx }: { step: typeof DANIEL_TIMELINE_STEPS[0]; id
           }`}
         >
           <div className="flex items-center gap-3 mb-4">
-            <span className="label !text-[1.1rem] !py-[0.4rem] !px-[1rem]">{step.year}</span>
-            <span className="text-[var(--off-white)]/60 text-fluid-12 uppercase tracking-widest font-mono">
-              {step.subtitle}
+            <span className="text-[var(--bege)] text-fluid-12 uppercase tracking-widest font-mono font-bold">
+              {step.year} • {step.subtitle}
             </span>
           </div>
 
@@ -225,11 +224,6 @@ const DanielSilvaAbout = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               {/* Coluna Esquerda: Textos & Posicionamento Oficial */}
               <div className="lg:col-span-7 flex flex-col items-start text-left">
-                {/* Tag de Seção Oficial */}
-                <div className="mb-6">
-                  <span className="label">Trajetória &amp; Propósito</span>
-                </div>
-
                 {/* Título Monumental (+40% maior) */}
                 <h1 className="display--condensed text-fluid-130 sm:text-fluid-150 text-[var(--off-white)] leading-[0.86] tracking-[-0.03em] uppercase mb-6">
                   Daniel <span className="text-[var(--bege)]">Silva</span>
@@ -287,8 +281,6 @@ const DanielSilvaAbout = () => {
         <section className="py-24 md:py-36 border-b border-white/10 bg-[#001D4D]">
           <div className="container-editorial">
             <div className="max-w-6xl mx-auto text-center flex flex-col items-center">
-              <span className="label mb-8">A Tese Central</span>
-
               <h2 className="font-lato uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.8rem] tracking-tight leading-[1.02] mb-10 text-center w-full">
                 <span className="block font-black text-[var(--off-white)] whitespace-normal lg:whitespace-nowrap">
                   Não são três personas
@@ -331,7 +323,6 @@ const DanielSilvaAbout = () => {
           <div className="container-editorial">
             {/* Cabeçalho da Seção */}
             <div className="text-center max-w-6xl mx-auto mb-20">
-              <span className="label mb-4">Os Pilares de Atuação</span>
               <h2 className="font-lato uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.8rem] tracking-tight leading-[1.02] mb-6 text-center w-full">
                 <span className="block font-black text-[var(--off-white)] whitespace-normal lg:whitespace-nowrap">
                   Três dimensões
@@ -364,11 +355,6 @@ const DanielSilvaAbout = () => {
                         loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[var(--marinho)] via-transparent to-black/40 opacity-80" />
-                      <div className="absolute top-4 left-4">
-                        <span className="label !text-[1rem] !py-[0.35rem] !px-[0.9rem]">
-                          {item.badge}
-                        </span>
-                      </div>
                       <div className="absolute bottom-4 right-4">
                         <span className="font-display font-black text-fluid-28 text-white/40">
                           {item.number}
@@ -436,7 +422,6 @@ const DanielSilvaAbout = () => {
           <div className="container-editorial relative z-10">
             {/* Cabeçalho */}
             <div className="text-center max-w-6xl mx-auto mb-24">
-              <span className="label mb-4">Marcos Históricos</span>
               <h2 className="font-lato uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.8rem] tracking-tight leading-[1.02] mb-6 text-center w-full">
                 <span className="block font-black text-[var(--off-white)] whitespace-normal lg:whitespace-nowrap">
                   Do campo de batalha
@@ -475,9 +460,6 @@ const DanielSilvaAbout = () => {
           <div className="container-editorial">
             {/* Header da Seção Claro */}
             <div className="max-w-4xl mb-16 text-left">
-              <span className="label !bg-[var(--preto)] !text-[var(--off-white)] mb-4">
-                Ecossistema &amp; Impacto
-              </span>
               <h2 className="display text-fluid-100 sm:text-fluid-110 text-[var(--preto)] uppercase mb-6 leading-[0.88]">
                 Estrutura que Gera <span className="text-[var(--marinho)]">Resultado</span>
               </h2>
