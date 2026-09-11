@@ -23,7 +23,7 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
   showPositioning = false,
 }) => {
   const imgSrc =
-    variant === "white"
+    variant === "white" || variant === "gold"
       ? "/daniel-silva-assinatura-white.svg"
       : "/daniel-silva-assinatura-dark.svg";
 
@@ -47,7 +47,9 @@ export const DanielSignature: React.FC<DanielSignatureProps> = ({
       <img
         src={imgSrc}
         alt="Daniel Silva - Assinatura Oficial"
-        className={`${sizeStyles} w-auto object-contain select-none`}
+        className={`${sizeStyles} w-auto object-contain select-none ${
+          variant === "gold" ? "brightness-105 contrast-90 [filter:sepia(0.6)_saturate(2)_hue-rotate(5deg)]" : ""
+        }`}
         loading="eager"
       />
 
