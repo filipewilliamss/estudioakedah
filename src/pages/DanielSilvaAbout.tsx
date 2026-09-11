@@ -10,67 +10,13 @@ import {
   DANIEL_POSITIONING,
 } from "@/components/daniel/DanielBrandSignature";
 import DanielContactSection from "@/components/daniel/DanielContactSection";
+import DanielDimensionsStack from "@/components/daniel/DanielDimensionsStack";
 import danielPicture from "@/assets/imagem-daniel.png";
 import { ArrowUpRight, ShieldCheck, TrendingUp, Music, CheckCircle2, Award, Building2, Radio } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // ============================================================================
-// 1. DADOS DAS TRÊS DIMENSÕES ESTRUTURAIS
-// ============================================================================
-const DANIEL_DIMENSIONS = [
-  {
-    number: "01",
-    role: "O Empresário & Estrategista",
-    title: "Estratégia & Operação B2B",
-    tagline: "Processos preditivos, negociações consultivas e autoridade de marca.",
-    image: "/videos/frame-empreendedor.webp",
-    badge: "Negócios & Escala",
-    icon: TrendingUp,
-    description:
-      "Fundador do Estúdio Akedah. Especialista em desbloquear gargalos comerciais complexos, desenhar esteiras de conversão de alto ticket e construir operações de vendas que não dependem do acaso.",
-    deliverables: [
-      "Estruturação de processos comerciais B2B",
-      "Fundação e governança do Estúdio Akedah",
-      "Conselhos consultivos para empresas em escala",
-      "Alinhamento cirúrgico de marketing e vendas",
-    ],
-  },
-  {
-    number: "02",
-    role: "O Homem de Fé & Mentor",
-    title: "Mentoria de Fundamentos",
-    tagline: "Liderança forjada em princípios bíblicos imutáveis e sabedoria executiva.",
-    image: "/videos/frame-fe.webp",
-    badge: "Princípios & Sabedoria",
-    icon: ShieldCheck,
-    description:
-      "A convicção de que resultados financeiros expressivos só têm valor duradouro quando construídos sobre alicerces éticos, honra familiar e fidelidade a princípios inegociáveis.",
-    deliverables: [
-      "Mentorias executivas para fundadores e líderes",
-      "Imersões de liderança fundamentada em princípios",
-      "Orientação estratégica para decisões de alto impacto",
-      "Cultura corporativa pautada em integridade",
-    ],
-  },
-  {
-    number: "03",
-    role: "O Músico & Adorador",
-    title: "Produção Musical & Louvor",
-    tagline: "Da rigidez dos negócios à harmonia da adoração e da produção cinematográfica.",
-    image: "/videos/frame-musico.webp",
-    badge: "Harmonia & Arte",
-    icon: Music,
-    description:
-      "A música como expressão genuína de entrega e reverência. Direção e produção de encontros acústicos intimistas, registros cinematográficos de adoração e ministrações pelo país.",
-    deliverables: [
-      "Produções cinematográficas musicais no Estúdio Akedah",
-      "Encontros acústicos e celebrações intimistas",
-      "Ministrações públicas em congressos e conferências",
-      "Composição autoral com estética artística de elite",
-    ],
-  },
-];
-
+// 1. MARCOS DA TRAJETÓRIA HISTÓRICA
 // ============================================================================
 // 2. MARCOS DA TRAJETÓRIA HISTÓRICA
 // ============================================================================
@@ -317,95 +263,9 @@ const DanielSilvaAbout = () => {
         </section>
 
         {/* ================================================================ */}
-        {/* 4. AS TRÊS DIMENSÕES DE ATUAÇÃO (OS PILARES ESTRUTURAIS)          */}
+        {/* 4. AS TRÊS DIMENSÕES DE ATUAÇÃO (STACK 3D & ROLETA INTERATIVA)    */}
         {/* ================================================================ */}
-        <section id="dimensoes" className="py-24 md:py-36 border-b border-white/10">
-          <div className="container-editorial">
-            {/* Cabeçalho da Seção */}
-            <div className="text-center max-w-6xl mx-auto mb-20">
-              <h2 className="font-lato uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.8rem] tracking-tight leading-[1.02] mb-6 text-center w-full">
-                <span className="block font-black text-[var(--off-white)] whitespace-normal lg:whitespace-nowrap">
-                  Três dimensões
-                </span>
-                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-3 whitespace-normal lg:whitespace-nowrap">
-                  Uma só voz
-                </span>
-              </h2>
-              <p className="font-lato text-fluid-18 text-[var(--off-white)]/70 font-light leading-relaxed">
-                Cada pilar representa uma esfera onde Daniel Silva aplica metodologia, liderança e
-                excelência prática.
-              </p>
-            </div>
-
-            {/* Grid dos 3 Cards Cinematográficos */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {DANIEL_DIMENSIONS.map((item, idx) => {
-                const IconComponent = item.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="flex flex-col bg-white/[0.02] border border-white/10 hover:border-[var(--bege)]/50 transition-all duration-500 overflow-hidden group"
-                  >
-                    {/* Imagem Autêntica de Vídeo */}
-                    <div className="relative aspect-[16/10] overflow-hidden bg-black">
-                      <img
-                        src={item.image}
-                        alt={item.role}
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--marinho)] via-transparent to-black/40 opacity-80" />
-                      <div className="absolute bottom-4 right-4">
-                        <span className="font-display font-black text-fluid-28 text-white/40">
-                          {item.number}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Conteúdo Editorial */}
-                    <div className="p-8 sm:p-10 flex-1 flex flex-col">
-                      <div className="flex items-center gap-3 mb-3 text-[var(--bege)]">
-                        <IconComponent className="w-5 h-5" />
-                        <span className="text-fluid-12 uppercase tracking-[0.2em] font-bold">
-                          {item.role}
-                        </span>
-                      </div>
-
-                      <h3 className="display--condensed text-fluid-28 text-[var(--off-white)] mb-2 tracking-tight uppercase leading-[0.92]">
-                        {item.title}
-                      </h3>
-
-                      <p className="font-lato text-fluid-14 text-[var(--bege)] font-medium leading-relaxed mb-4">
-                        {item.tagline}
-                      </p>
-
-                      <p className="font-lato text-fluid-15 text-[var(--off-white)]/75 leading-relaxed font-light mb-8">
-                        {item.description}
-                      </p>
-
-                      <div className="mt-auto pt-6 border-t border-white/10">
-                        <p className="text-[var(--bege)] text-fluid-11 uppercase tracking-widest font-bold mb-4">
-                          Campos de Atuação:
-                        </p>
-                        <ul className="space-y-2.5">
-                          {item.deliverables.map((del, dIdx) => (
-                            <li
-                              key={dIdx}
-                              className="flex items-start gap-2.5 text-fluid-13 text-[var(--off-white)]/80 font-light leading-snug"
-                            >
-                              <CheckCircle2 className="w-4 h-4 text-[var(--bege)] shrink-0 mt-0.5" />
-                              <span>{del}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <DanielDimensionsStack />
 
         {/* ================================================================ */}
         {/* 5. LINHA DO TEMPO DA TRAJETÓRIA (FORJADA NO CAMPO)                */}
