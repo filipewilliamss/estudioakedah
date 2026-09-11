@@ -72,6 +72,55 @@ const conteudosDigitais = [
   },
 ];
 
+interface MetricRouletteItem {
+  id: string;
+  target: number;
+  suffix: string;
+  label: string;
+  sequence: number[];
+  startTime: number;
+  endTime: number;
+}
+
+const METRICS_ROULETTE_DATA: MetricRouletteItem[] = [
+  {
+    id: "alcance",
+    target: 364,
+    suffix: "mil",
+    label: "Alcance Mensal",
+    sequence: [364, 362, 359, 374, 391, 418, 465, 530, 620, 750, 840, 930, 160, 290, 440, 610, 730, 860, 980],
+    startTime: 0.00,
+    endTime: 0.68,
+  },
+  {
+    id: "youtube",
+    target: 43,
+    suffix: "mil",
+    label: "Inscritos YouTube",
+    sequence: [43, 42, 41, 45, 50, 56, 64, 75, 87, 94, 16, 29, 38, 54, 69, 81, 92],
+    startTime: 0.04,
+    endTime: 0.80,
+  },
+  {
+    id: "instagram",
+    target: 48,
+    suffix: "mil",
+    label: "Seguidores Instagram",
+    sequence: [48, 47, 46, 51, 58, 66, 77, 89, 96, 19, 33, 47, 61, 75, 86],
+    startTime: 0.08,
+    endTime: 0.90,
+  },
+  {
+    id: "linkedin",
+    target: 20,
+    suffix: "mil",
+    label: "Conexões LinkedIn",
+    sequence: [20, 19, 18, 23, 28, 35, 44, 56, 69, 81, 89, 14, 27, 41, 53, 66, 78, 91, 98, 17, 33],
+    startTime: 0.02,
+    endTime: 1.00,
+  },
+];
+
 export const DanielPublicLifeSection: React.FC = () => {
   const agenda1Ref = useRef<HTMLElement>(null);
   const agenda1ContentRef = useRef<HTMLDivElement>(null);
@@ -90,6 +139,7 @@ export const DanielPublicLifeSection: React.FC = () => {
   const conteudoBgRef = useRef<HTMLDivElement>(null);
   const conteudoHeaderRef = useRef<HTMLDivElement>(null);
   const conteudoMetricsRef = useRef<HTMLDivElement>(null);
+  const metricReelsRef = useRef<(HTMLSpanElement | null)[]>([]);
   const conteudoLinesRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -242,6 +292,43 @@ export const DanielPublicLifeSection: React.FC = () => {
             );
           });
         }
+      }
+
+      // 4. Animação de roleta numérica nos 4 números do Ecossistema Online
+      // Cada número roda de cima para baixo acelerado, desacelerando até parar no valor exato ao centralizar na viewport
+      if (conteudoMetricsRef.current) {
+        const rouletteTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: conteudoMetricsRef.current,
+            start: "top 85%",
+            end: "center center",
+            scrub: 0.6,
+          },
+        });
+
+        METRICS_ROULETTE_DATA.forEach((item, idx) => {
+          const reelEl = metricReelsRef.current[idx];
+          if (!reelEl) return;
+
+          const totalItems = item.sequence.length;
+          const initialYPercent = -((totalItems - 1) / totalItems) * 100;
+          const duration = item.endTime - item.startTime;
+
+          rouletteTl.fromTo(
+            reelEl,
+            {
+              yPercent: initialYPercent,
+              filter: "blur(2.5px)",
+            },
+            {
+              yPercent: 0,
+              filter: "blur(0px)",
+              ease: "power3.out",
+              duration: duration,
+            },
+            item.startTime
+          );
+        });
       }
     });
 
@@ -523,36 +610,39 @@ export const DanielPublicLifeSection: React.FC = () => {
             </h3>
           </div>
 
-          {/* Linha 2: Barra Editorial de Métricas Auditadas */}
+          {/* Linha 2: Barra Editorial de Métricas Auditadas com Roleta Numérica */}
           <div
             ref={conteudoMetricsRef}
             className="grid grid-cols-2 md:grid-cols-4 gap-[2.4rem] border-y border-black/15 py-[2.4rem] mb-[3.4rem] text-left"
             style={{ willChange: "transform, opacity, filter" }}
           >
-            <div>
-              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">364 mil</span>
-              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
-                Alcance Mensal
-              </span>
-            </div>
-            <div>
-              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">43 mil</span>
-              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
-                Inscritos YouTube
-              </span>
-            </div>
-            <div>
-              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">48 mil</span>
-              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
-                Seguidores Instagram
-              </span>
-            </div>
-            <div>
-              <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] block">20 mil</span>
-              <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
-                Conexões LinkedIn
-              </span>
-            </div>
+            {METRICS_ROULETTE_DATA.map((item, idx) => (
+              <div key={item.id}>
+                <span className="cond text-fluid-110 text-[var(--marinho)] leading-[0.8] flex items-baseline select-none">
+                  <span className="inline-block overflow-hidden h-[0.82em] leading-[0.82em] align-baseline relative">
+                    <span
+                      ref={(el) => {
+                        metricReelsRef.current[idx] = el;
+                      }}
+                      className="flex flex-col will-change-transform"
+                      style={{
+                        transform: "translateY(0%)",
+                      }}
+                    >
+                      {item.sequence.map((num, i) => (
+                        <span key={i} className="h-[0.82em] leading-[0.82em] block">
+                          {num}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                  <span className="ml-[0.15em] leading-[0.82em]">{item.suffix}</span>
+                </span>
+                <span className="text-[rgba(25,25,25,0.7)] text-fluid-13 font-lato uppercase tracking-wider block mt-[0.6rem]">
+                  {item.label}
+                </span>
+              </div>
+            ))}
           </div>
 
           {/* Linhas 3 a 6: Linhas Editoriais dos Canais Digitais (Zero Cards) */}
