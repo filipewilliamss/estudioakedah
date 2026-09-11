@@ -241,28 +241,12 @@ const DanielSilvaAbout = () => {
                 </div>
 
                 {/* Tagline e Introdução */}
-                <p className="font-lato text-fluid-20 text-[var(--off-white)]/90 leading-relaxed max-w-2xl mb-8 font-normal">
+                <p className="font-lato text-fluid-20 text-[var(--off-white)]/90 leading-relaxed max-w-2xl mb-4 font-normal">
                   Mentor executivo, estrategista comercial e criador de conteúdo. Uma trajetória
                   construída no campo de batalha real de vendas, guiada pela convicção de que
                   negócios duradouros exigem método previsível, estética de elite e princípios
                   inabaláveis.
                 </p>
-
-                {/* Badges dos 3 Pilares */}
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/15 text-[var(--off-white)] font-bold text-fluid-12 uppercase tracking-widest">
-                    <TrendingUp className="w-3.5 h-3.5 text-[var(--bege)]" />
-                    <span>01. Estratégia B2B</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/15 text-[var(--off-white)] font-bold text-fluid-12 uppercase tracking-widest">
-                    <ShieldCheck className="w-3.5 h-3.5 text-[var(--bege)]" />
-                    <span>02. Mentor de Fé</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.04] border border-white/15 text-[var(--off-white)] font-bold text-fluid-12 uppercase tracking-widest">
-                    <Music className="w-3.5 h-3.5 text-[var(--bege)]" />
-                    <span>03. Criador Audiovisual</span>
-                  </div>
-                </div>
               </div>
 
               {/* Coluna Direita: Retrato Cinematográfico Nobre */}
@@ -302,12 +286,16 @@ const DanielSilvaAbout = () => {
         {/* ================================================================ */}
         <section className="py-24 md:py-36 border-b border-white/10 bg-[#001D4D]">
           <div className="container-editorial">
-            <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+            <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
               <span className="label mb-8">A Tese Central</span>
 
-              <h2 className="display text-fluid-80 text-[var(--off-white)] uppercase mb-10 leading-[0.92] max-w-3xl">
-                Não são três personas. <br />
-                <span className="text-[var(--bege)]">É um só propósito.</span>
+              <h2 className="font-lato uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] tracking-tight leading-[1.04] mb-10 text-center w-full">
+                <span className="block font-black text-[var(--off-white)] whitespace-normal md:whitespace-nowrap">
+                  Não são três personas
+                </span>
+                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-2 whitespace-normal md:whitespace-nowrap">
+                  É um só propósito
+                </span>
               </h2>
 
               <blockquote className="font-lato italic font-light text-fluid-26 text-[var(--off-white)]/90 leading-relaxed mb-12 border-y border-white/10 py-8 max-w-3xl">
@@ -342,10 +330,15 @@ const DanielSilvaAbout = () => {
         <section id="dimensoes" className="py-24 md:py-36 border-b border-white/10">
           <div className="container-editorial">
             {/* Cabeçalho da Seção */}
-            <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="text-center max-w-5xl mx-auto mb-20">
               <span className="label mb-4">Os Pilares de Atuação</span>
-              <h2 className="display text-fluid-80 text-[var(--off-white)] uppercase mb-6 leading-[0.92]">
-                Três Dimensões, <span className="text-[var(--bege)]">Uma Só Voz</span>
+              <h2 className="font-lato uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] tracking-tight leading-[1.04] mb-6 text-center w-full">
+                <span className="block font-black text-[var(--off-white)] whitespace-normal md:whitespace-nowrap">
+                  Três dimensões
+                </span>
+                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-2 whitespace-normal md:whitespace-nowrap">
+                  Uma só voz
+                </span>
               </h2>
               <p className="font-lato text-fluid-18 text-[var(--off-white)]/70 font-light leading-relaxed">
                 Cada pilar representa uma esfera onde Daniel Silva aplica metodologia, liderança e
@@ -442,10 +435,15 @@ const DanielSilvaAbout = () => {
 
           <div className="container-editorial relative z-10">
             {/* Cabeçalho */}
-            <div className="text-center max-w-3xl mx-auto mb-24">
+            <div className="text-center max-w-5xl mx-auto mb-24">
               <span className="label mb-4">Marcos Históricos</span>
-              <h2 className="display text-fluid-80 text-[var(--off-white)] uppercase mb-6 leading-[0.92]">
-                Do Campo de Batalha à <span className="text-[var(--bege)]">Liderança</span>
+              <h2 className="font-lato uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] tracking-tight leading-[1.04] mb-6 text-center w-full">
+                <span className="block font-black text-[var(--off-white)] whitespace-normal md:whitespace-nowrap">
+                  Do campo de batalha
+                </span>
+                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-2 whitespace-normal md:whitespace-nowrap">
+                  À liderança
+                </span>
               </h2>
               <p className="font-lato text-fluid-18 text-[var(--off-white)]/70 font-light leading-relaxed">
                 Nenhum título foi ganho no conforto da teoria. Cada marco reflete desafios reais de
