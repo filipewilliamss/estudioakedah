@@ -10,7 +10,7 @@ import {
   DANIEL_POSITIONING,
 } from "@/components/daniel/DanielBrandSignature";
 import DanielContactSection from "@/components/daniel/DanielContactSection";
-import founderPicture from "@/assets/akedah-founder.jpg";
+import danielPicture from "@/assets/imagem-daniel.png";
 import { ArrowUpRight, ShieldCheck, TrendingUp, Music, CheckCircle2, Award, Building2, Radio } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -230,8 +230,8 @@ const DanielSilvaAbout = () => {
                   <span className="label">Trajetória &amp; Propósito</span>
                 </div>
 
-                {/* Título Monumental */}
-                <h1 className="display--condensed text-fluid-100 text-[var(--off-white)] leading-[0.88] tracking-[-0.02em] uppercase mb-6">
+                {/* Título Monumental (+40% maior) */}
+                <h1 className="display--condensed text-fluid-130 sm:text-fluid-150 text-[var(--off-white)] leading-[0.86] tracking-[-0.03em] uppercase mb-6">
                   Daniel <span className="text-[var(--bege)]">Silva</span>
                 </h1>
 
@@ -251,15 +251,15 @@ const DanielSilvaAbout = () => {
 
               {/* Coluna Direita: Retrato Cinematográfico Nobre */}
               <div className="lg:col-span-5 relative">
-                <div className="relative aspect-[4/5] w-full border border-white/15 overflow-hidden bg-black/40">
+                <div className="relative aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] w-full border border-white/15 overflow-hidden bg-black/40">
                   <img
-                    src={founderPicture}
+                    src={danielPicture}
                     alt="Daniel Silva - Mentor, Empresário & Criador"
-                    className="w-full h-full object-cover object-center filter contrast-110"
+                    className="w-full h-full object-cover object-[center_12%]"
                     loading="eager"
                   />
                   {/* Gradiente de acabamento cinematográfico */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--marinho)] via-transparent to-transparent opacity-70" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--marinho)]/90 via-transparent to-transparent opacity-80" />
                   
                   {/* Plaqueta de Assinatura */}
                   <div className="absolute bottom-6 left-6 right-6 p-4 bg-[var(--marinho)]/90 backdrop-blur-md border border-white/15">
@@ -286,14 +286,14 @@ const DanielSilvaAbout = () => {
         {/* ================================================================ */}
         <section className="py-24 md:py-36 border-b border-white/10 bg-[#001D4D]">
           <div className="container-editorial">
-            <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
+            <div className="max-w-6xl mx-auto text-center flex flex-col items-center">
               <span className="label mb-8">A Tese Central</span>
 
-              <h2 className="font-lato uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] tracking-tight leading-[1.04] mb-10 text-center w-full">
-                <span className="block font-black text-[var(--off-white)] whitespace-normal md:whitespace-nowrap">
+              <h2 className="font-lato uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.8rem] tracking-tight leading-[1.02] mb-10 text-center w-full">
+                <span className="block font-black text-[var(--off-white)] whitespace-normal lg:whitespace-nowrap">
                   Não são três personas
                 </span>
-                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-2 whitespace-normal md:whitespace-nowrap">
+                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-3 whitespace-normal lg:whitespace-nowrap">
                   É um só propósito
                 </span>
               </h2>
@@ -330,13 +330,13 @@ const DanielSilvaAbout = () => {
         <section id="dimensoes" className="py-24 md:py-36 border-b border-white/10">
           <div className="container-editorial">
             {/* Cabeçalho da Seção */}
-            <div className="text-center max-w-5xl mx-auto mb-20">
+            <div className="text-center max-w-6xl mx-auto mb-20">
               <span className="label mb-4">Os Pilares de Atuação</span>
-              <h2 className="font-lato uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] tracking-tight leading-[1.04] mb-6 text-center w-full">
-                <span className="block font-black text-[var(--off-white)] whitespace-normal md:whitespace-nowrap">
+              <h2 className="font-lato uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.8rem] tracking-tight leading-[1.02] mb-6 text-center w-full">
+                <span className="block font-black text-[var(--off-white)] whitespace-normal lg:whitespace-nowrap">
                   Três dimensões
                 </span>
-                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-2 whitespace-normal md:whitespace-nowrap">
+                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-3 whitespace-normal lg:whitespace-nowrap">
                   Uma só voz
                 </span>
               </h2>
@@ -435,13 +435,13 @@ const DanielSilvaAbout = () => {
 
           <div className="container-editorial relative z-10">
             {/* Cabeçalho */}
-            <div className="text-center max-w-5xl mx-auto mb-24">
+            <div className="text-center max-w-6xl mx-auto mb-24">
               <span className="label mb-4">Marcos Históricos</span>
-              <h2 className="font-lato uppercase text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] xl:text-[4.2rem] tracking-tight leading-[1.04] mb-6 text-center w-full">
-                <span className="block font-black text-[var(--off-white)] whitespace-normal md:whitespace-nowrap">
+              <h2 className="font-lato uppercase text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.8rem] tracking-tight leading-[1.02] mb-6 text-center w-full">
+                <span className="block font-black text-[var(--off-white)] whitespace-normal lg:whitespace-nowrap">
                   Do campo de batalha
                 </span>
-                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-2 whitespace-normal md:whitespace-nowrap">
+                <span className="block font-light text-[var(--bege)] tracking-wide mt-1 sm:mt-3 whitespace-normal lg:whitespace-nowrap">
                   À liderança
                 </span>
               </h2>
@@ -474,11 +474,11 @@ const DanielSilvaAbout = () => {
         <section className="py-24 md:py-36 bg-[var(--off-white)] text-[var(--preto)] border-b border-black/10">
           <div className="container-editorial">
             {/* Header da Seção Claro */}
-            <div className="max-w-3xl mb-16 text-left">
+            <div className="max-w-4xl mb-16 text-left">
               <span className="label !bg-[var(--preto)] !text-[var(--off-white)] mb-4">
                 Ecossistema &amp; Impacto
               </span>
-              <h2 className="display text-fluid-80 text-[var(--preto)] uppercase mb-6 leading-[0.92]">
+              <h2 className="display text-fluid-100 sm:text-fluid-110 text-[var(--preto)] uppercase mb-6 leading-[0.88]">
                 Estrutura que Gera <span className="text-[var(--marinho)]">Resultado</span>
               </h2>
               <p className="font-lato text-fluid-18 text-[rgba(25,25,25,0.75)] font-normal leading-relaxed">
