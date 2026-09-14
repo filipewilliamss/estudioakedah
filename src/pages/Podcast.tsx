@@ -52,9 +52,9 @@ const Podcast = () => {
           {/* Conteúdo posicionado à esquerda */}
           <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-3xl text-left flex flex-col items-start"
             >
               <div className="flex items-center justify-start gap-4 mb-6">
@@ -339,9 +339,17 @@ const Podcast = () => {
                 isConfidential: true,
               },
             ].map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                className="podcast-card rounded-[24px] p-6 sm:p-7 flex flex-col justify-between group hover:border-[#C4550A]/40 transition-all duration-300 relative overflow-hidden"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="podcast-card rounded-[24px] p-6 sm:p-7 flex flex-col justify-between group hover:border-[#C4550A]/40 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
               >
                 {/* Glow de destaque no episódio 'Ao Vivo' */}
                 {item.statusType === "live" && (
@@ -428,7 +436,7 @@ const Podcast = () => {
                     "{item.topic}"
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -445,56 +453,157 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 5. REDES SOCIAIS SECTION */}
+        {/* 5. PLATAFORMAS DE DISTRIBUIÇÃO SECTION */}
         <section id="redes" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center md:text-left mb-16">
-            <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
-              Redes Sociais
-            </span>
-            <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Acompanhe o Podcast em <span className="text-[#C4550A]">todas as plataformas</span>.
-            </h2>
-            <p className="text-white/60 text-base md:text-lg leading-relaxed">
-              Cortes, bastidores e conteúdo exclusivo em cada rede. Clique no card e acompanhe.
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+          >
+            <div className="text-left max-w-2xl">
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
+                Canais de Distribuição
+              </span>
+              <h2 className="font-podcast-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                Acompanhe o Podcast em <span className="text-[#C4550A]">todas as plataformas</span>.
+              </h2>
+              <p className="text-white/60 text-base md:text-lg leading-relaxed mt-3">
+                Episódios completos em 4K HDR, áudio imersivo e pílulas diárias de inteligência comercial onde você estiver.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-mono text-white/50">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Multiplataforma • Novos cortes diariamente</span>
+            </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <a href="https://www.youtube.com/@EstudioAkedah" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
-              <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="YouTube" />
-              <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">YouTube</span>
-                <span className="font-podcast-display text-xl font-bold text-white">Canal de Episódios</span>
-              </div>
-            </a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                name: "YouTube",
+                url: "https://www.youtube.com/@EstudioAkedah",
+                formatTag: "Episódios na Íntegra em 4K",
+                description: "Transmissões ao vivo semanais e episódios gravados em 4K HDR no estúdio.",
+                actionLabel: "Acessar Canal Oficial",
+                tagColor: "text-red-400",
+                hoverBorder: "hover:border-red-500/40",
+                hoverShadow: "hover:shadow-[0_8px_32px_rgba(239,68,68,0.14)]",
+                ambientGlow: "bg-red-500/15",
+                iconBg: "bg-red-500/10 text-red-500 group-hover:bg-red-500/20",
+                icon: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                  </svg>
+                ),
+              },
+              {
+                name: "Spotify",
+                url: "https://open.spotify.com",
+                formatTag: "Áudio Imersivo no Carro",
+                description: "Distribuição contínua em alta fidelidade para ouvir em viagens, trânsito ou rotina.",
+                actionLabel: "Ouvir no Spotify",
+                tagColor: "text-emerald-400",
+                hoverBorder: "hover:border-emerald-500/40",
+                hoverShadow: "hover:shadow-[0_8px_32px_rgba(16,185,129,0.14)]",
+                ambientGlow: "bg-emerald-500/15",
+                iconBg: "bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20",
+                icon: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308a.747.747 0 0 1-1.028.248c-2.813-1.718-6.353-2.107-10.524-1.155a.75.75 0 0 1-.336-1.462c4.564-1.042 8.49-.602 11.64 1.341a.749.749 0 0 1 .248 1.028zm1.47-3.266a.936.936 0 0 1-1.287.308c-3.22-1.979-8.128-2.552-11.936-1.396a.937.937 0 0 1-.55-1.79c4.354-1.321 9.775-.683 13.465 1.591a.936.936 0 0 1 .308 1.287zm.126-3.41c-3.86-2.292-10.228-2.503-13.899-1.388a1.124 1.124 0 1 1-.652-2.152c4.225-1.282 11.26-1.033 15.717 1.613a1.124 1.124 0 1 1-1.166 1.927z" />
+                  </svg>
+                ),
+              },
+              {
+                name: "Instagram",
+                url: "https://www.instagram.com/estudioakedah",
+                formatTag: "Bastidores & Cortes Oficiais",
+                description: "Teasers cinematográficos, bastidores dos convidados e novidades da semana.",
+                actionLabel: "Seguir no Instagram",
+                tagColor: "text-pink-400",
+                hoverBorder: "hover:border-pink-500/40",
+                hoverShadow: "hover:shadow-[0_8px_32px_rgba(236,72,153,0.14)]",
+                ambientGlow: "bg-pink-500/15",
+                iconBg: "bg-pink-500/10 text-pink-400 group-hover:bg-pink-500/20",
+                icon: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                ),
+              },
+              {
+                name: "TikTok",
+                url: "https://www.tiktok.com/@estudioakedah",
+                formatTag: "Pílulas Diárias de Insights",
+                description: "Cortes verticais rápidos com as falas e insights mais contundentes de cada convidado.",
+                actionLabel: "Assistir Pílulas",
+                tagColor: "text-cyan-400",
+                hoverBorder: "hover:border-cyan-400/40",
+                hoverShadow: "hover:shadow-[0_8px_32px_rgba(6,182,212,0.14)]",
+                ambientGlow: "bg-cyan-500/15",
+                iconBg: "bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/20",
+                icon: (
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.96-4.48V8.82a8.28 8.28 0 0 0 4.84 1.57v-3.7z" />
+                  </svg>
+                ),
+              },
+            ].map((platform, idx) => (
+              <motion.a
+                key={platform.name}
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: idx * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className={`group relative backdrop-blur-md bg-white/[0.02] border border-white/10 rounded-[24px] p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 overflow-hidden ${platform.hoverBorder} ${platform.hoverShadow}`}
+              >
+                {/* Glow sutil ambiente colorido no hover */}
+                <div className={`absolute -top-16 -right-16 w-36 h-36 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${platform.ambientGlow}`} />
 
-            <a href="https://www.instagram.com/estudioakedah" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
-              <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Instagram" />
-              <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">Instagram</span>
-                <span className="font-podcast-display text-xl font-bold text-white">Bastidores e Cortes</span>
-              </div>
-            </a>
+                <div>
+                  {/* Top: Ícone Oficial + Link Arrow */}
+                  <div className="flex items-center justify-between mb-6 relative z-10">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 transition-colors duration-300 ${platform.iconBg}`}>
+                      {platform.icon}
+                    </div>
+                    <div className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-white/40 group-hover:text-white transition-colors duration-300">
+                      <svg className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                  </div>
 
-            <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
-              <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Spotify" />
-              <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">Spotify</span>
-                <span className="font-podcast-display text-xl font-bold text-white">Ouça Onde Estiver</span>
-              </div>
-            </a>
+                  {/* Formato / Métrica Tag */}
+                  <span className={`text-[11px] font-mono font-semibold uppercase tracking-wider block mb-2 relative z-10 ${platform.tagColor}`}>
+                    {platform.formatTag}
+                  </span>
 
-            <a href="https://www.tiktok.com/@estudioakedah" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
-              <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
-              <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="TikTok" />
-              <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">TikTok</span>
-                <span className="font-podcast-display text-xl font-bold text-white">Dicas Rápidas</span>
-              </div>
-            </a>
+                  {/* Nome da Plataforma */}
+                  <h3 className="font-podcast-display text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors relative z-10">
+                    {platform.name}
+                  </h3>
+
+                  {/* Descrição do formato */}
+                  <p className="text-white/50 text-sm leading-relaxed mb-6 relative z-10">
+                    {platform.description}
+                  </p>
+                </div>
+
+                {/* Rodapé do Card com CTA */}
+                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono font-medium text-white/50 group-hover:text-white transition-colors relative z-10">
+                  <span>{platform.actionLabel}</span>
+                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </motion.a>
+            ))}
           </div>
         </section>
 
