@@ -58,15 +58,7 @@ const Footer = ({ isPodcastPage }: FooterProps) => {
                       to="/podcast#destaque"
                       className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
                     >
-                      Em Destaque
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/podcast#player"
-                      className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
-                    >
-                      Transmissão Ao Vivo
+                      Último Episódio
                     </Link>
                   </li>
                   <li>

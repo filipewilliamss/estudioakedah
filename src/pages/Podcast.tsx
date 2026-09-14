@@ -9,24 +9,11 @@ import founderPicture from "@/assets/akedah-founder.jpg";
 import { WHATSAPP_URL } from "@/data/services";
 
 const Podcast = () => {
-  const [isPlayingFeatured, setIsPlayingFeatured] = useState(false);
-  const [isPlayerActive, setIsPlayerActive] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const handlePlayFeatured = () => {
-    setIsPlayingFeatured(true);
-  };
-
-  const handleGoToPlayer = () => {
-    setIsPlayerActive(true);
-    const playerEl = document.getElementById("player");
-    if (playerEl) {
-      playerEl.scrollIntoView({ behavior: "smooth" });
-    }
-  };
 
   const schema = {
     "@context": "https://schema.org",
@@ -92,6 +79,7 @@ const Podcast = () => {
                 {/* CTA Primário com micro-brilho no hover e ícone Play SVG */}
                 <a
                   href="#destaque"
+                  onClick={() => setIsPlaying(true)}
                   className="relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#C4550A]/25 hover:shadow-[#C4550A]/40 border-t border-t-white/30 overflow-hidden group transition-all duration-300"
                 >
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
@@ -137,14 +125,15 @@ const Podcast = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Lado Esquerdo: Thumbnail 16:9 realística ou Player Interativo com autoplay */}
               <div className="lg:col-span-7 relative group">
-                <div className="relative aspect-video rounded-[20px] overflow-hidden bg-black/60 border border-white/10 shadow-2xl">
-                  {isPlayingFeatured ? (
+                <div className="relative aspect-video rounded-[20px] overflow-hidden bg-black border border-white/10 shadow-2xl transition-all duration-500">
+                  {isPlaying ? (
                     <iframe
-                      className="w-full h-full"
-                      src="https://www.youtube.com/embed/videoseries?list=PL_J8x7L_Lp0C_U7A0YyYV0QGZ4I8iN7x5&autoplay=1"
-                      title="Episódio em Destaque - Akedah Podcast"
+                      className="w-full h-full rounded-[20px]"
+                      src="https://www.youtube.com/embed/nAcTWvqdc-E?autoplay=1&rel=0&modestbranding=1&si=x7bCNKiC59BwS5eL"
+                      title="YouTube video player"
                       frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
                       allowFullScreen
                     />
                   ) : (
@@ -160,7 +149,7 @@ const Podcast = () => {
                       {/* Botão de play pulsante com ação direta de reprodução */}
                       <button
                         type="button"
-                        onClick={handlePlayFeatured}
+                        onClick={() => setIsPlaying(true)}
                         className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
                         aria-label="Assistir episódio em destaque"
                       >
@@ -178,7 +167,7 @@ const Podcast = () => {
                       </button>
 
                       {/* Badges flutuantes na thumbnail */}
-                      <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+                      <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pointer-events-none">
                         <span className="bg-black/75 backdrop-blur-md text-white text-[11px] font-mono font-medium px-3 py-1.5 rounded-full border border-white/10">
                           4K HDR
                         </span>
@@ -187,7 +176,7 @@ const Podcast = () => {
                         </span>
                       </div>
 
-                      <div className="absolute bottom-4 right-4 z-20">
+                      <div className="absolute bottom-4 right-4 z-20 pointer-events-none">
                         <span className="bg-black/80 backdrop-blur-md text-white/90 text-xs font-mono px-3 py-1 rounded-md border border-white/10 flex items-center gap-1.5">
                           <svg className="w-3.5 h-3.5 text-[#C4550A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -236,29 +225,19 @@ const Podcast = () => {
                   </span>
                 </div>
 
-                {/* Ações: Assistir no Card, Ir para o Player, Spotify */}
-                <div className="flex flex-wrap items-center gap-3.5">
-                  <button
-                    type="button"
-                    onClick={handlePlayFeatured}
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#C4550A] hover:bg-[#a84508] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#C4550A]/20 transition-all border-t border-t-white/25 cursor-pointer"
+                {/* Botões de Ação */}
+                <div className="flex flex-wrap items-center gap-4">
+                  <a
+                    href="https://www.youtube.com/@EstudioAkedah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#C4550A] hover:bg-[#a84508] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#C4550A]/20 transition-all border-t border-t-white/25"
                   >
                     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                     </svg>
-                    <span>{isPlayingFeatured ? "Reproduzindo no Card" : "Assistir no Card"}</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={handleGoToPlayer}
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/15 hover:border-white/30 font-mono text-xs font-bold uppercase tracking-wider transition-all cursor-pointer group"
-                  >
-                    <svg className="w-4 h-4 fill-none stroke-current transform group-hover:translate-y-0.5 transition-transform" viewBox="0 0 24 24" strokeWidth="2">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
-                    <span>Ir para o Player</span>
-                  </button>
+                    <span>Inscrever-se no YouTube</span>
+                  </a>
 
                   <a
                     href="https://open.spotify.com"
@@ -269,7 +248,7 @@ const Podcast = () => {
                     <svg className="w-4 h-4 fill-current text-[#1DB954]" viewBox="0 0 24 24">
                       <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
                     </svg>
-                    <span>Spotify</span>
+                    <span>Ouvir no Spotify</span>
                   </a>
                 </div>
               </div>
@@ -277,42 +256,7 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 3. PLAYER YOUTUBE */}
-        <section id="player" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="flex flex-col lg:flex-row gap-16 items-start">
-            <div className="lg:w-1/3">
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
-                Ao Vivo & Gravado
-              </span>
-              <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
-                Assista ao <span className="text-[#C4550A]">Akedah Podcast</span> direto do estúdio.
-              </h2>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8">
-                Toda entrevista fica disponível aqui logo após a gravação, direto do nosso canal oficial no YouTube com qualidade 4K.
-              </p>
-              <a
-                href="https://www.youtube.com/@EstudioAkedah"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-premium px-8"
-              >
-                Inscrever-se no Canal
-              </a>
-            </div>
-            <div className="lg:w-2/3 w-full aspect-video rounded-[24px] overflow-hidden shadow-2xl bg-black border-t border-t-white/20 border-b border-b-white/5 border-x border-x-white/10">
-              <iframe 
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/videoseries?list=PL_J8x7L_Lp0C_U7A0YyYV0QGZ4I8iN7x5${isPlayerActive ? "&autoplay=1" : ""}`}
-                title="Akedah Podcast"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. PROGRAMAÇÃO & CONVIDADOS SECTION */}
+        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION */}
         <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="text-left max-w-2xl">
@@ -484,7 +428,7 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 5. PLATAFORMAS DE DISTRIBUIÇÃO SECTION */}
+        {/* 4. PLATAFORMAS DE DISTRIBUIÇÃO SECTION */}
         <section id="redes" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -630,7 +574,7 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 6. CTA PARTICIPAR / CONTATO */}
+        {/* 5. CTA PARTICIPAR / CONTATO */}
         <section id="contato" className="py-28 px-6 border-t border-white/[0.08]">
           <div className="max-w-7xl mx-auto podcast-card rounded-[32px] p-10 md:p-20 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
             <div>
@@ -649,7 +593,7 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 7. BANNER EDITORIAL DE MEDIA KIT (DISCRETO, ANTES DO RODAPÉ) */}
+        {/* 6. BANNER EDITORIAL DE MEDIA KIT (DISCRETO, ANTES DO RODAPÉ) */}
         <section id="mediakit" className="py-16 px-6 border-t border-white/[0.08]">
           <div className="max-w-7xl mx-auto podcast-card rounded-[28px] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 hover:border-[#C4550A]/30 transition-all relative overflow-hidden">
             {/* Glow sutil ambiente */}
