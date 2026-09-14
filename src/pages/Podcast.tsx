@@ -661,7 +661,7 @@ const Podcast = () => {
         </section>
       </main>
 
-      <Footer />
+      <Footer isPodcastPage={true} />
     </div>
   );
 };

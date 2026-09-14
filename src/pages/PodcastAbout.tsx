@@ -300,7 +300,7 @@ const PodcastAbout = () => {
         </main>
       </div>
 
-      <Footer />
+      <Footer isPodcastPage={true} />
     </div>
   );
 };
