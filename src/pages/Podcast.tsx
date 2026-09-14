@@ -58,81 +58,182 @@ const Podcast = () => {
             >
               <div className="flex items-center justify-start gap-4 mb-6">
                 <span className="text-[#C4550A] text-[11px] md:text-[12px] uppercase tracking-[0.18em] font-mono font-medium">
-                  Canal Audiovisual
+                  Canal Audiovisual • Estúdio Akedah
                 </span>
               </div>
 
-              <h1 className="font-podcast-display text-[54px] sm:text-[76px] md:text-[96px] font-extrabold leading-[0.9] tracking-tight mb-8">
+              <h1 className="font-podcast-display text-[52px] sm:text-[76px] md:text-[96px] font-extrabold leading-[0.9] tracking-tight mb-8">
                 <span className="block text-white">Akedah</span>
                 <span className="block text-[#C4550A]">Podcast</span>
               </h1>
 
-              <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10">
-                Assista ao vivo, acompanhe os bastidores e confira a agenda dos próximos episódios. O podcast oficial sobre estratégia, negócios e autoridade do Estúdio Akedah.
+              <p className="text-white/75 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10">
+                O palco de autoridade executiva onde empresários e líderes do mercado debatem estratégia comercial, expansão de negócios e governança em alto nível.
               </p>
 
+              {/* Hierarquia de Ação no Hero */}
               <div className="flex flex-wrap gap-4 items-center">
+                {/* CTA Primário com micro-brilho no hover e ícone Play SVG */}
                 <a
-                  href="https://www.youtube.com/@EstudioAkedah"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-premium px-10"
+                  href="#destaque"
+                  className="relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#C4550A]/25 hover:shadow-[#C4550A]/40 border-t border-t-white/30 overflow-hidden group transition-all duration-300"
                 >
-                  Assistir no YouTube
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
+                  <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <svg className="w-3 h-3 fill-current ml-0.5" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                  <span className="relative z-10">Assistir Episódio Mais Recente</span>
                 </a>
-                <a href="#calendario" className="btn-premium px-10">
-                  Ver Calendário
+
+                {/* CTA Secundário com outline sutil */}
+                <a
+                  href="#calendario"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/15 hover:border-white/40 bg-transparent hover:bg-white/[0.04] text-white/85 hover:text-white font-mono text-xs font-medium uppercase tracking-wider transition-all duration-300"
+                >
+                  <span>Ver Grade de Convidados</span>
+                  <span className="text-white/40 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </a>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* 2. BANNERS SECTION */}
-        <section className="py-20 px-6 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <a
-              href="#calendario"
-              className="group podcast-card rounded-[20px] p-8 md:p-10 flex flex-col items-start text-left"
-            >
-              <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] mb-4">Próximas entrevistas</span>
-              <h3 className="font-podcast-display text-2xl font-bold mb-6 text-white group-hover:text-[#C4550A] transition-colors">
-                Calendário oficial de gravações e transmissões.
-              </h3>
-              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto tracking-wider">
-                VER DATAS E HORÁRIOS →
+        {/* 2. SEÇÃO DE EPISÓDIO EM DESTAQUE (ÚLTIMO LANÇAMENTO) */}
+        <section id="destaque" className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+            <div>
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-2 block">
+                Em Destaque Nesta Semana
               </span>
-            </a>
+              <h2 className="font-podcast-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+                Último Lançamento
+              </h2>
+            </div>
+            <div className="flex items-center gap-2 text-white/50 text-xs font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>DISPONÍVEL AGORA EM 4K HDR</span>
+            </div>
+          </div>
 
-            <a
-              href="https://www.youtube.com/@EstudioAkedah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-[#C4550A] hover:bg-[#a84508] border-t border-t-white/30 border-x border-x-white/15 border-b border-b-black/30 rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left text-white shadow-xl shadow-[#C4550A]/20"
-            >
-              <span className="text-white/80 text-xs font-mono font-medium uppercase tracking-[0.18em] mb-4">Canal Oficial</span>
-              <h3 className="font-podcast-display text-2xl font-bold mb-6 text-white">
-                Assista aos episódios completos no YouTube.
-              </h3>
-              <span className="font-mono text-xs text-white/90 flex items-center gap-2 mt-auto tracking-wider">
-                ACESSAR CANAL →
-              </span>
-            </a>
+          <div className="podcast-card rounded-[28px] overflow-hidden p-6 sm:p-8 md:p-10 border-t border-t-white/20 border-b border-b-white/5 border-x border-x-white/10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Lado Esquerdo: Thumbnail 16:9 realística com botão de play pulsante */}
+              <div className="lg:col-span-7 relative group">
+                <div className="relative aspect-video rounded-[20px] overflow-hidden bg-black/60 border border-white/10 shadow-2xl">
+                  <img
+                    src={studioBannerImg}
+                    alt="Episódio em Destaque - Akedah Podcast"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  {/* Overlay gradiente suave */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
 
-            <a
-              href="https://www.instagram.com/estudioakedah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group podcast-card rounded-[20px] p-8 md:p-10 flex flex-col items-start text-left"
-            >
-              <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] mb-4">Cortes & Bastidores</span>
-              <h3 className="font-podcast-display text-2xl font-bold mb-6 text-white group-hover:text-[#C4550A] transition-colors">
-                Siga nosso Instagram para cortes e conteúdos rápidos.
-              </h3>
-              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto tracking-wider">
-                SEGUIR AGORA →
-              </span>
-            </a>
+                  {/* Botão de play pulsante */}
+                  <a
+                    href="#player"
+                    className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
+                    aria-label="Assistir episódio em destaque"
+                  >
+                    <div className="relative flex items-center justify-center">
+                      <span className="absolute w-20 h-20 rounded-full bg-[#C4550A]/40 animate-ping pointer-events-none" />
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#C4550A] text-white flex items-center justify-center shadow-xl shadow-[#C4550A]/40 group-hover/play:scale-110 group-hover/play:bg-[#d96112] transition-all duration-300 border-t border-t-white/30">
+                        <svg
+                          className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* Badges flutuantes na thumbnail */}
+                  <div className="absolute top-4 left-4 z-20 flex items-center gap-2">
+                    <span className="bg-black/75 backdrop-blur-md text-white text-[11px] font-mono font-medium px-3 py-1.5 rounded-full border border-white/10">
+                      4K HDR
+                    </span>
+                    <span className="bg-[#C4550A]/90 backdrop-blur-md text-white text-[11px] font-mono font-medium px-3 py-1.5 rounded-full border border-white/20">
+                      EP #14
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-4 right-4 z-20">
+                    <span className="bg-black/80 backdrop-blur-md text-white/90 text-xs font-mono px-3 py-1 rounded-md border border-white/10 flex items-center gap-1.5">
+                      <svg className="w-3.5 h-3.5 text-[#C4550A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      1h 24min
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Lado Direito: Informações do Episódio */}
+              <div className="lg:col-span-5 flex flex-col justify-center text-left">
+                {/* Metadados: EP + Duração */}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-[#C4550A] font-mono text-xs font-bold uppercase tracking-[0.18em] bg-[#C4550A]/10 px-3 py-1 rounded-md border border-[#C4550A]/30">
+                    EPISÓDIO #14
+                  </span>
+                  <span className="text-white/40 text-xs font-mono">•</span>
+                  <span className="text-white/60 font-mono text-xs tracking-wider">
+                    1h 24min de conversa
+                  </span>
+                </div>
+
+                {/* Título e Tema do Episódio */}
+                <h3 className="font-podcast-display text-2xl sm:text-3xl font-bold text-white mb-4 leading-tight">
+                  Como Construir Previsibilidade Comercial em Operações B2B de Alto Valor
+                </h3>
+
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6">
+                  Uma conversa aprofundada sobre estruturação de funis consultivos, retenção de clientes corporativos e o papel da autoridade executiva na conversão de grandes contratos.
+                </p>
+
+                {/* Tags do Convidado (Cargo / Empresa) */}
+                <div className="flex flex-wrap items-center gap-2.5 mb-8 pb-6 border-b border-white/[0.08]">
+                  <span className="text-white/50 text-xs font-mono uppercase tracking-wider">Convidado:</span>
+                  <span className="bg-white/[0.05] border border-white/10 text-white/90 text-xs font-mono px-3 py-1 rounded-full">
+                    Daniel Silva
+                  </span>
+                  <span className="bg-white/[0.05] border border-white/10 text-white/60 text-xs font-mono px-3 py-1 rounded-full">
+                    Fundador &amp; Estrategista
+                  </span>
+                  <span className="bg-white/[0.05] border border-white/10 text-[#C4550A] text-xs font-mono px-3 py-1 rounded-full">
+                    Estúdio Akedah
+                  </span>
+                </div>
+
+                {/* Links diretos para YouTube e Spotify */}
+                <div className="flex flex-wrap items-center gap-4">
+                  <a
+                    href="https://www.youtube.com/@EstudioAkedah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#C4550A] hover:bg-[#a84508] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#C4550A]/20 transition-all border-t border-t-white/25"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>
+                    <span>Ver no YouTube</span>
+                  </a>
+
+                  <a
+                    href="https://open.spotify.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/15 hover:border-white/30 font-mono text-xs font-bold uppercase tracking-wider transition-all"
+                  >
+                    <svg className="w-4 h-4 fill-current text-[#1DB954]" viewBox="0 0 24 24">
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                    </svg>
+                    <span>Ouvir no Spotify</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
