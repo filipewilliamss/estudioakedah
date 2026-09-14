@@ -108,6 +108,16 @@
     --neutra-2: #464E5B;
     --neutra-3: #343C47;
     --neutra-4: #242B33;
+    
+    /* ========================================================================
+       TOKENS OFICIAIS AKEDAH PODCAST
+       ======================================================================== */
+    --bg-primary: #1C0F0A;
+    --accent-terracotta: #C4550A;
+    --surface-card: rgba(255, 255, 255, 0.03);
+    --surface-card-hover: rgba(255, 255, 255, 0.06);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-accent: rgba(196, 85, 10, 0.4);
   }
 
   @media (max-width: 768px) {
@@ -174,6 +184,25 @@
   
   .tracking-widest-xl {
     letter-spacing: 0.3em;
+  }
+
+  /* ========================================================================
+     CARD COM ILUMINAÇÃO DIRECIONAL — AKEDAH PODCAST
+     ======================================================================== */
+  .podcast-card {
+    background-color: var(--surface-card);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .podcast-card:hover {
+    background-color: var(--surface-card-hover);
+    border-top-color: rgba(255, 255, 255, 0.25);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    border-left-color: rgba(196, 85, 10, 0.4);
+    border-right-color: rgba(196, 85, 10, 0.4);
   }
 
   /* ========================================================================

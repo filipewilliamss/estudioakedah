@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
 import { WHATSAPP_URL } from "@/data/services";
 
@@ -21,7 +22,7 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#2D1A11] text-white selection:bg-[#C4550A] selection:text-white relative">
+    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative">
       <SEO
         title="Akedah Podcast | Assista ao Vivo e Calendário"
         description="Akedah Podcast: assista ao vivo, veja o calendário de entrevistas, confira as fotos dos episódios e acompanhe nas redes sociais."
@@ -30,41 +31,21 @@ const Podcast = () => {
       />
       <Navbar isPodcastPage={true} />
 
-      {/* Camada de Textura de Couro em Alto Relevo e Alta Visibilidade */}
-      <div 
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 opacity-60 mix-blend-overlay"
-        style={{
-          backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "340px 340px",
-          filter: "contrast(320%) brightness(160%)",
-        }}
-      />
-      {/* Camada de relevo e poros do couro */}
-      <div 
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 opacity-35 mix-blend-color-dodge"
-        style={{
-          backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "340px 340px",
-          filter: "invert(1) contrast(350%) brightness(120%)",
-        }}
-      />
+      {/* Atmosfera Moderna: Fundo #1C0F0A, Gradiente Radial e Micro-ruído SVG Inline */}
+      <PodcastAtmosphere />
 
       <main className="relative z-10 overflow-hidden">
-        {/* 1. HERO SECTION (Mesmo sistema de card em tela inteira da página Nossa História) */}
+        {/* 1. HERO SECTION */}
         <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16">
-          {/* Background Image com Gradientes Marrons */}
+          {/* Background Image com Gradientes #1C0F0A */}
           <div className="absolute inset-0 z-0">
             <img 
               src={studioBannerImg} 
               alt="Akedah Podcast - Estúdio" 
               className="w-full h-full object-cover opacity-70"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#2D1A11] via-[#2D1A11]/85 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2D1A11] via-transparent to-[#2D1A11]/50" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1C0F0A] via-[#1C0F0A]/85 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent to-[#1C0F0A]/50" />
           </div>
 
           {/* Conteúdo posicionado à esquerda */}
@@ -76,14 +57,14 @@ const Podcast = () => {
               className="max-w-3xl text-left flex flex-col items-start"
             >
               <div className="flex items-center justify-start gap-4 mb-6">
-                <span className="text-[#C4550A] text-[11px] md:text-[12px] uppercase tracking-[0.5em] font-bold">
+                <span className="text-[#C4550A] text-[11px] md:text-[12px] uppercase tracking-[0.18em] font-mono font-medium">
                   Canal Audiovisual
                 </span>
               </div>
 
-              <h1 className="font-display text-[54px] sm:text-[76px] md:text-[96px] font-[900] leading-[0.88] tracking-[-0.05em] mb-8">
-                <span className="block">Akedah</span>
-                <span className="text-[#C4550A] italic font-normal block">podcast</span>
+              <h1 className="font-podcast-display text-[54px] sm:text-[76px] md:text-[96px] font-extrabold leading-[0.9] tracking-tight mb-8">
+                <span className="block text-white">Akedah</span>
+                <span className="block text-[#C4550A]">Podcast</span>
               </h1>
 
               <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10">
@@ -112,13 +93,13 @@ const Podcast = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <a
               href="#calendario"
-              className="group bg-black/25 hover:bg-black/40 border border-white/10 hover:border-[#C4550A]/60 rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left"
+              className="group podcast-card rounded-[20px] p-8 md:p-10 flex flex-col items-start text-left"
             >
-              <span className="text-[#C4550A] text-xs font-mono uppercase tracking-[0.25em] mb-4">Próximas entrevistas</span>
-              <h3 className="font-display text-2xl font-bold mb-6 text-white group-hover:text-[#C4550A] transition-colors">
+              <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] mb-4">Próximas entrevistas</span>
+              <h3 className="font-podcast-display text-2xl font-bold mb-6 text-white group-hover:text-[#C4550A] transition-colors">
                 Calendário oficial de gravações e transmissões.
               </h3>
-              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto">
+              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto tracking-wider">
                 VER DATAS E HORÁRIOS →
               </span>
             </a>
@@ -127,13 +108,13 @@ const Podcast = () => {
               href="https://www.youtube.com/@EstudioAkedah"
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-[#C4550A] hover:bg-[#a84508] border border-[#C4550A] rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left text-white shadow-xl shadow-[#C4550A]/20"
+              className="group bg-[#C4550A] hover:bg-[#a84508] border-t border-t-white/30 border-x border-x-white/15 border-b border-b-black/30 rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left text-white shadow-xl shadow-[#C4550A]/20"
             >
-              <span className="text-white/80 text-xs font-mono uppercase tracking-[0.25em] mb-4">Canal Oficial</span>
-              <h3 className="font-display text-2xl font-bold mb-6 text-white">
+              <span className="text-white/80 text-xs font-mono font-medium uppercase tracking-[0.18em] mb-4">Canal Oficial</span>
+              <h3 className="font-podcast-display text-2xl font-bold mb-6 text-white">
                 Assista aos episódios completos no YouTube.
               </h3>
-              <span className="font-mono text-xs text-white/90 flex items-center gap-2 mt-auto">
+              <span className="font-mono text-xs text-white/90 flex items-center gap-2 mt-auto tracking-wider">
                 ACESSAR CANAL →
               </span>
             </a>
@@ -142,13 +123,13 @@ const Podcast = () => {
               href="https://www.instagram.com/estudioakedah"
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-black/25 hover:bg-black/40 border border-white/10 hover:border-[#C4550A]/60 rounded-[20px] p-8 md:p-10 transition-all duration-300 flex flex-col items-start text-left"
+              className="group podcast-card rounded-[20px] p-8 md:p-10 flex flex-col items-start text-left"
             >
-              <span className="text-[#C4550A] text-xs font-mono uppercase tracking-[0.25em] mb-4">Cortes & Bastidores</span>
-              <h3 className="font-display text-2xl font-bold mb-6 text-white group-hover:text-[#C4550A] transition-colors">
+              <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] mb-4">Cortes & Bastidores</span>
+              <h3 className="font-podcast-display text-2xl font-bold mb-6 text-white group-hover:text-[#C4550A] transition-colors">
                 Siga nosso Instagram para cortes e conteúdos rápidos.
               </h3>
-              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto">
+              <span className="font-mono text-xs text-white/50 group-hover:text-white flex items-center gap-2 mt-auto tracking-wider">
                 SEGUIR AGORA →
               </span>
             </a>
@@ -159,11 +140,11 @@ const Podcast = () => {
         <section id="player" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="lg:w-1/3">
-              <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
                 Ao Vivo & Gravado
               </span>
-              <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
-                Assista ao <span className="text-[#C4550A] italic font-normal">Akedah Podcast</span> direto do estúdio.
+              <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white leading-tight">
+                Assista ao <span className="text-[#C4550A]">Akedah Podcast</span> direto do estúdio.
               </h2>
               <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8">
                 Toda entrevista fica disponível aqui logo após a gravação, direto do nosso canal oficial no YouTube com qualidade 4K.
@@ -177,7 +158,7 @@ const Podcast = () => {
                 Inscrever-se no Canal
               </a>
             </div>
-            <div className="lg:w-2/3 w-full aspect-video rounded-[24px] overflow-hidden shadow-2xl bg-black border border-white/10">
+            <div className="lg:w-2/3 w-full aspect-video rounded-[24px] overflow-hidden shadow-2xl bg-black border-t border-t-white/20 border-b border-b-white/5 border-x border-x-white/10">
               <iframe 
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/videoseries?list=PL_J8x7L_Lp0C_U7A0YyYV0QGZ4I8iN7x5" 
@@ -193,11 +174,11 @@ const Podcast = () => {
         {/* 4. CALENDÁRIO SECTION */}
         <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="text-center md:text-left mb-16">
-            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
+            <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
               Programação
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Próximas <span className="text-[#C4550A] italic font-normal">entrevistas</span> confirmadas.
+            <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white">
+              Próximas <span className="text-[#C4550A]">entrevistas</span> confirmadas.
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
               Datas e horários das próximas gravações. Acompanhe ao vivo ou agende a sua participação.
@@ -211,17 +192,17 @@ const Podcast = () => {
               { data: "29/08", hora: "19h", convidado: "EM BREVE", tema: "GESTÃO E ESCALA" },
               { data: "05/09", hora: "19h", convidado: "EM BREVE", tema: "VENDAS B2B" }
             ].map((item, idx) => (
-              <div key={idx} className="bg-black/30 border border-white/10 hover:border-[#C4550A]/50 rounded-[20px] p-8 transition-all duration-300">
+              <div key={idx} className="podcast-card rounded-[20px] p-8 flex flex-col justify-between hover:border-t-white/30 hover:border-b-white/10">
                 <div className="flex justify-between items-center mb-6">
-                  <span className="font-display text-[#C4550A] font-bold text-3xl">{item.data}</span>
-                  <span className="font-mono text-sm text-white/50 bg-white/5 px-3 py-1 rounded-full">{item.hora}</span>
+                  <span className="font-podcast-display text-[#C4550A] font-bold text-3xl">{item.data}</span>
+                  <span className="font-mono text-sm text-white/60 bg-white/5 px-3 py-1 rounded-full border border-white/5">{item.hora}</span>
                 </div>
-                <h3 className="font-display text-xl font-bold mb-2 text-white">{item.convidado}</h3>
-                <p className="font-mono text-xs text-white/40 uppercase tracking-wider">{item.tema}</p>
+                <h3 className="font-podcast-display text-xl font-bold mb-2 text-white">{item.convidado}</h3>
+                <p className="font-mono text-xs text-white/40 uppercase tracking-[0.18em]">{item.tema}</p>
               </div>
             ))}
           </div>
-          <p className="text-center mt-12 text-sm text-white/40 font-mono">
+          <p className="text-center mt-12 text-sm text-white/40 font-mono tracking-wide">
             Datas sujeitas a alteração. A confirmação de cada episódio é publicada com antecedência no Instagram.
           </p>
         </section>
@@ -229,11 +210,11 @@ const Podcast = () => {
         {/* 5. REDES SOCIAIS SECTION */}
         <section id="redes" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="text-center md:text-left mb-16">
-            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
+            <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
               Redes Sociais
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Acompanhe o Podcast <span className="text-[#C4550A] italic font-normal">em todas as plataformas.</span>
+            <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white">
+              Acompanhe o Podcast em <span className="text-[#C4550A]">todas as plataformas</span>.
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed">
               Cortes, bastidores e conteúdo exclusivo em cada rede. Clique no card e acompanhe.
@@ -241,39 +222,39 @@ const Podcast = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <a href="https://www.youtube.com/@EstudioAkedah" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
+            <a href="https://www.youtube.com/@EstudioAkedah" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
               <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="YouTube" />
               <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs uppercase tracking-widest mb-1 block">YouTube</span>
-                <span className="font-display text-xl font-bold text-white">Canal de Episódios</span>
+                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">YouTube</span>
+                <span className="font-podcast-display text-xl font-bold text-white">Canal de Episódios</span>
               </div>
             </a>
 
-            <a href="https://www.instagram.com/estudioakedah" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
+            <a href="https://www.instagram.com/estudioakedah" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
               <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Instagram" />
               <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs uppercase tracking-widest mb-1 block">Instagram</span>
-                <span className="font-display text-xl font-bold text-white">Bastidores e Cortes</span>
+                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">Instagram</span>
+                <span className="font-podcast-display text-xl font-bold text-white">Bastidores e Cortes</span>
               </div>
             </a>
 
-            <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
+            <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
               <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Spotify" />
               <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs uppercase tracking-widest mb-1 block">Spotify</span>
-                <span className="font-display text-xl font-bold text-white">Ouça Onde Estiver</span>
+                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">Spotify</span>
+                <span className="font-podcast-display text-xl font-bold text-white">Ouça Onde Estiver</span>
               </div>
             </a>
 
-            <a href="https://www.tiktok.com/@estudioakedah" target="_blank" rel="noopener noreferrer" className="rounded-[20px] border border-white/10 overflow-hidden relative group h-80 flex flex-col justify-end p-6">
+            <a href="https://www.tiktok.com/@estudioakedah" target="_blank" rel="noopener noreferrer" className="podcast-card rounded-[20px] overflow-hidden relative group h-80 flex flex-col justify-end p-6 hover:border-[#C4550A]/50">
               <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-all z-10" />
               <img src="https://images.unsplash.com/photo-1562577309-4932fdd64cd1?q=80&w=1000" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="TikTok" />
               <div className="relative z-20">
-                <span className="text-[#C4550A] font-mono text-xs uppercase tracking-widest mb-1 block">TikTok</span>
-                <span className="font-display text-xl font-bold text-white">Dicas Rápidas</span>
+                <span className="text-[#C4550A] font-mono text-xs font-medium uppercase tracking-[0.18em] mb-1 block">TikTok</span>
+                <span className="font-podcast-display text-xl font-bold text-white">Dicas Rápidas</span>
               </div>
             </a>
           </div>
@@ -282,11 +263,11 @@ const Podcast = () => {
         {/* 6. PATROCINADORES SECTION */}
         <section id="patrocinadores" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="text-center md:text-left mb-16">
-            <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">
+            <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
               Marcas & Parcerias
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Patrocinadores <span className="text-[#C4550A] italic font-normal">Oficiais</span>
+            <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white">
+              Patrocinadores <span className="text-[#C4550A]">Oficiais</span>
             </h2>
             <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
               Marcas e empresas visionárias que apoiam o ecossistema de conteúdo e estratégia do Akedah Podcast.
@@ -294,35 +275,35 @@ const Podcast = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-black/30 border border-white/10 hover:border-[#C4550A]/50 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
+            <div className="podcast-card rounded-[20px] p-8 flex flex-col justify-between min-h-[220px]">
               <div>
-                <span className="text-[#C4550A] text-xs font-mono uppercase tracking-widest block mb-3">Cota Master</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Exclusividade de Segmento</h3>
-                <p className="text-white/50 text-sm">Inserção de vinheta, menções no episódio e cortes verticais patrocinados.</p>
+                <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] block mb-3">Cota Master</span>
+                <h3 className="font-podcast-display text-2xl font-bold text-white mb-2">Exclusividade de Segmento</h3>
+                <p className="text-white/50 text-sm leading-relaxed">Inserção de vinheta, menções no episódio e cortes verticais patrocinados.</p>
               </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-wider hover:text-white flex items-center gap-2 mt-6">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.18em] hover:text-white flex items-center gap-2 mt-6">
                 SEJA UM PATROCINADOR →
               </a>
             </div>
 
-            <div className="bg-black/30 border border-white/10 hover:border-[#C4550A]/50 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
+            <div className="podcast-card rounded-[20px] p-8 flex flex-col justify-between min-h-[220px]">
               <div>
-                <span className="text-[#C4550A] text-xs font-mono uppercase tracking-widest block mb-3">Cota Naming Rights</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Presença em Cenário</h3>
-                <p className="text-white/50 text-sm">Exibição de marca na mesa de gravação, canecas e telão de LED do estúdio.</p>
+                <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] block mb-3">Cota Naming Rights</span>
+                <h3 className="font-podcast-display text-2xl font-bold text-white mb-2">Presença em Cenário</h3>
+                <p className="text-white/50 text-sm leading-relaxed">Exibição de marca na mesa de gravação, canecas e telão de LED do estúdio.</p>
               </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-wider hover:text-white flex items-center gap-2 mt-6">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.18em] hover:text-white flex items-center gap-2 mt-6">
                 SEJA UM PATROCINADOR →
               </a>
             </div>
 
-            <div className="bg-black/30 border border-white/10 hover:border-[#C4550A]/50 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[220px]">
+            <div className="podcast-card rounded-[20px] p-8 flex flex-col justify-between min-h-[220px]">
               <div>
-                <span className="text-[#C4550A] text-xs font-mono uppercase tracking-widest block mb-3">Cota Episódio</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Episódio Dedicado</h3>
-                <p className="text-white/50 text-sm">Gravação de episódio temático abordando os cases e soluções da sua marca.</p>
+                <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] block mb-3">Cota Episódio</span>
+                <h3 className="font-podcast-display text-2xl font-bold text-white mb-2">Episódio Dedicado</h3>
+                <p className="text-white/50 text-sm leading-relaxed">Gravação de episódio temático abordando os cases e soluções da sua marca.</p>
               </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-wider hover:text-white flex items-center gap-2 mt-6">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.18em] hover:text-white flex items-center gap-2 mt-6">
                 SEJA UM PATROCINADOR →
               </a>
             </div>
@@ -331,19 +312,19 @@ const Podcast = () => {
 
         {/* 7. CTA PARTICIPAR / CONTATO */}
         <section id="contato" className="py-28 px-6 border-t border-white/[0.08]">
-          <div className="max-w-7xl mx-auto bg-black/40 border border-white/10 rounded-[32px] p-10 md:p-20 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
+          <div className="max-w-7xl mx-auto podcast-card rounded-[32px] p-10 md:p-20 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
             <div>
-              <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em] mb-4 block">Seja um Convidado</span>
-              <h2 className="font-display text-3xl md:text-6xl font-bold text-white leading-tight">
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">Seja um Convidado</span>
+              <h2 className="font-podcast-display text-3xl md:text-6xl font-bold text-white leading-tight">
                 Grave seu episódio no <br />
-                <span className="text-[#C4550A] italic font-normal">Estúdio Akedah.</span>
+                <span className="text-[#C4550A]">Estúdio Akedah.</span>
               </h2>
             </div>
             <div className="flex flex-col items-center md:items-end gap-4">
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-premium px-12">
                 Agendar Gravação
               </a>
-              <p className="text-white/40 text-xs font-mono">Resposta rápida em horário comercial.</p>
+              <p className="text-white/40 text-xs font-mono tracking-wide">Resposta rápida em horário comercial.</p>
             </div>
           </div>
         </section>

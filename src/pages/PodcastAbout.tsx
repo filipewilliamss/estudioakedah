@@ -1,8 +1,9 @@
-﻿import { useRef } from "react";
+import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
 
@@ -67,7 +68,7 @@ const PodcastTimelineStep = ({ step, idx }: { step: typeof podcastTimelineSteps[
         {/* Número Gigante em Parallax */}
         <motion.span
           style={{ y: smoothNumberY }}
-          className={`absolute font-display text-[100px] sm:text-[150px] md:text-[280px] font-[800] text-[#C4550A]/[0.12] md:text-[#C4550A]/[0.15] leading-none pointer-events-none select-none z-0 ${
+          className={`absolute font-podcast-display text-[100px] sm:text-[150px] md:text-[280px] font-extrabold text-[#C4550A]/[0.12] md:text-[#C4550A]/[0.15] leading-none pointer-events-none select-none z-0 ${
             idx % 2 === 0 ? "left-6 md:left-auto md:right-[45%]" : "left-6 md:left-[45%]"
           }`}
         >
@@ -79,7 +80,7 @@ const PodcastTimelineStep = ({ step, idx }: { step: typeof podcastTimelineSteps[
             idx % 2 === 0 ? "md:text-left" : "md:text-right"
           }`}
         >
-          <h3 className="font-display text-[32px] md:text-[48px] font-[800] text-white mb-6 tracking-tighter leading-[0.9]">
+          <h3 className="font-podcast-display text-[32px] md:text-[48px] font-bold text-white mb-6 tracking-tight leading-[0.95]">
             {step.title}
           </h3>
           <p
@@ -97,34 +98,15 @@ const PodcastTimelineStep = ({ step, idx }: { step: typeof podcastTimelineSteps[
 
 const PodcastAbout = () => {
   return (
-    <div className="min-h-screen bg-[#2D1A11] text-white selection:bg-[#C4550A] selection:text-white relative">
+    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative">
       <SEO 
         title="Nossa História | Akedah Podcast"
         description="Conheça a história do Akedah Podcast, a infraestrutura do estúdio de gravação e a trajetória de construção de autoridade."
       />
       <Navbar isPodcastPage={true} />
 
-      {/* Camada de Textura de Couro em Alto Relevo */}
-      <div 
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 opacity-60 mix-blend-overlay"
-        style={{
-          backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "340px 340px",
-          filter: "contrast(320%) brightness(160%)",
-        }}
-      />
-      <div 
-        aria-hidden="true"
-        className="fixed inset-0 pointer-events-none z-0 opacity-35 mix-blend-color-dodge"
-        style={{
-          backgroundImage: `url("https://www.transparenttextures.com/patterns/leather.png")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "340px 340px",
-          filter: "invert(1) contrast(350%) brightness(120%)",
-        }}
-      />
+      {/* Atmosfera Moderna: Fundo #1C0F0A, Gradiente Radial e Micro-ruído SVG Inline */}
+      <PodcastAtmosphere />
 
       <div className="relative z-10">
         <main className="pb-24">
@@ -136,8 +118,8 @@ const PodcastAbout = () => {
                 alt="Akedah Podcast - Nossa História" 
                 className="w-full h-full object-cover opacity-70"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#2D1A11] via-[#2D1A11]/85 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2D1A11] via-transparent to-[#2D1A11]/50" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#1C0F0A] via-[#1C0F0A]/85 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent to-[#1C0F0A]/50" />
             </div>
 
             <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
@@ -148,14 +130,14 @@ const PodcastAbout = () => {
                 className="max-w-3xl text-left flex flex-col items-start"
               >
                 <div className="flex items-center justify-start gap-4 mb-6">
-                  <span className="text-[#C4550A] text-[11px] md:text-[12px] uppercase tracking-[0.5em] font-bold">
+                  <span className="text-[#C4550A] text-[11px] md:text-[12px] uppercase tracking-[0.18em] font-mono font-medium">
                     Akedah Podcast
                   </span>
                 </div>
 
-                <h1 className="font-display text-[54px] sm:text-[76px] md:text-[96px] font-[900] leading-[0.88] tracking-[-0.05em] mb-8">
-                  <span className="block">Nossa</span>
-                  <span className="text-[#C4550A] italic font-normal block">história</span>
+                <h1 className="font-podcast-display text-[54px] sm:text-[76px] md:text-[96px] font-extrabold leading-[0.9] tracking-tight mb-8">
+                  <span className="block text-white">Nossa</span>
+                  <span className="block text-[#C4550A]">História</span>
                 </h1>
 
                 <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left">
@@ -175,12 +157,12 @@ const PodcastAbout = () => {
               className="max-w-4xl space-y-8"
             >
               <div className="flex items-center gap-3">
-                <span className="text-[#C4550A] text-[11px] font-bold uppercase tracking-[0.4em]">
+                <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em]">
                   Infraestrutura de Gravação
                 </span>
               </div>
               
-              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight">
+              <h2 className="font-podcast-display text-3xl md:text-5xl font-bold tracking-tight text-white">
                 Estrutura do Podcast
               </h2>
 
@@ -195,21 +177,21 @@ const PodcastAbout = () => {
 
               {/* Destaques da Estrutura */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-                <div className="p-4 bg-white/[0.03] border border-white/5 rounded-[10px]">
-                  <p className="text-[#C4550A] font-bold text-lg mb-1">Shure SM7B</p>
-                  <p className="text-white/40 text-[11px] uppercase tracking-wider font-semibold">Áudio Broadcast</p>
+                <div className="podcast-card p-4 rounded-[12px]">
+                  <p className="text-[#C4550A] font-podcast-display font-bold text-lg mb-1">Shure SM7B</p>
+                  <p className="text-white/50 text-[11px] font-mono uppercase tracking-[0.18em] font-medium">Áudio Broadcast</p>
                 </div>
-                <div className="p-4 bg-white/[0.03] border border-white/5 rounded-[10px]">
-                  <p className="text-[#C4550A] font-bold text-lg mb-1">4K HDR</p>
-                  <p className="text-white/40 text-[11px] uppercase tracking-wider font-semibold">Multicâmera Cinema</p>
+                <div className="podcast-card p-4 rounded-[12px]">
+                  <p className="text-[#C4550A] font-podcast-display font-bold text-lg mb-1">4K HDR</p>
+                  <p className="text-white/50 text-[11px] font-mono uppercase tracking-[0.18em] font-medium">Multicâmera Cinema</p>
                 </div>
-                <div className="p-4 bg-white/[0.03] border border-white/5 rounded-[10px]">
-                  <p className="text-[#C4550A] font-bold text-lg mb-1">Cortes Ágeis</p>
-                  <p className="text-white/40 text-[11px] uppercase tracking-wider font-semibold">Reels & Shorts</p>
+                <div className="podcast-card p-4 rounded-[12px]">
+                  <p className="text-[#C4550A] font-podcast-display font-bold text-lg mb-1">Cortes Ágeis</p>
+                  <p className="text-white/50 text-[11px] font-mono uppercase tracking-[0.18em] font-medium">Reels & Shorts</p>
                 </div>
-                <div className="p-4 bg-white/[0.03] border border-white/5 rounded-[10px]">
-                  <p className="text-[#C4550A] font-bold text-lg mb-1">Ao Vivo</p>
-                  <p className="text-white/40 text-[11px] uppercase tracking-wider font-semibold">Transmissão 4K</p>
+                <div className="podcast-card p-4 rounded-[12px]">
+                  <p className="text-[#C4550A] font-podcast-display font-bold text-lg mb-1">Ao Vivo</p>
+                  <p className="text-white/50 text-[11px] font-mono uppercase tracking-[0.18em] font-medium">Transmissão 4K</p>
                 </div>
               </div>
             </motion.div>
@@ -219,7 +201,7 @@ const PodcastAbout = () => {
           <section className="py-24 mb-20 border-t border-white/[0.05]">
             <div className="container-editorial">
               <div className="max-w-3xl mx-auto text-center">
-                <h2 className="font-display text-4xl md:text-6xl font-bold mb-8">O que representa o <span className="text-[#C4550A]">Podcast</span>?</h2>
+                <h2 className="font-podcast-display text-4xl md:text-6xl font-bold mb-8 text-white">O que representa o <span className="text-[#C4550A]">Podcast</span>?</h2>
                 <p className="text-white/60 text-xl leading-relaxed italic">
                   "O Akedah Podcast é o ponto de encontro entre o campo de batalha empresarial e a autoridade em vídeo. Aqui não há teorias vazias: apenas quem vive o negócio e entrega valor real."
                 </p>
@@ -235,7 +217,7 @@ const PodcastAbout = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute -left-6 md:-left-10 top-[5%] md:top-[8%] font-display font-[900] text-white/[0.015] leading-none tracking-extratight pointer-events-none select-none"
+              className="absolute -left-6 md:-left-10 top-[5%] md:top-[8%] font-podcast-display font-extrabold text-white/[0.015] leading-none tracking-extratight pointer-events-none select-none"
               style={{ fontSize: "clamp(80px, 15vw, 250px)" }}
             >
               linha do tempo
@@ -249,11 +231,11 @@ const PodcastAbout = () => {
                   viewport={{ once: false, amount: 0.5 }}
                   transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="inline-block text-[#C4550A] text-[12px] font-bold uppercase tracking-[0.5em] mb-8">
+                  <span className="inline-block text-[#C4550A] text-[12px] font-mono font-medium uppercase tracking-[0.18em] mb-8">
                     Linha do Tempo do Podcast
                   </span>
-                  <h2 className="font-display text-[44px] md:text-[84px] font-[900] text-white leading-[0.85] tracking-extratighter mb-8">
-                    Da primeira bancada <br /> à <span className="text-[#C4550A] italic font-normal">grande audiência.</span>
+                  <h2 className="font-podcast-display text-[44px] md:text-[84px] font-extrabold text-white leading-[0.88] tracking-tight mb-8">
+                    Da primeira bancada <br /> à <span className="text-[#C4550A]">grande audiência</span>.
                   </h2>
                   <p className="text-white/50 text-[16px] md:text-[18px] max-w-2xl mx-auto leading-relaxed">
                     A trajetória do Akedah Podcast construída episódio a episódio com grandes convidados.
@@ -281,7 +263,7 @@ const PodcastAbout = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
-                className="relative aspect-[4/5] border border-white/10 overflow-hidden rounded-[12px]"
+                className="relative aspect-[4/5] podcast-card overflow-hidden rounded-[16px]"
               >
                 <img 
                   src={founderPicture} 
@@ -291,7 +273,7 @@ const PodcastAbout = () => {
               </motion.div>
             </div>
             <div className="lg:col-span-7 space-y-8">
-              <h2 className="font-display text-3xl md:text-4xl font-bold tracking-tight">
+              <h2 className="font-podcast-display text-3xl md:text-4xl font-bold tracking-tight text-white">
                 Apresentação por <span className="text-[#C4550A]">Daniel Silva</span>
               </h2>
               <div className="space-y-6 text-white/70 leading-relaxed text-lg">
@@ -305,12 +287,12 @@ const PodcastAbout = () => {
               
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
                 <div>
-                  <p className="text-[#C4550A] font-bold text-4xl mb-1">4K HDR</p>
-                  <p className="text-white/40 text-[11px] uppercase tracking-widest font-bold">Padrão Cinema</p>
+                  <p className="font-podcast-display text-[#C4550A] font-bold text-4xl mb-1">4K HDR</p>
+                  <p className="text-white/50 text-[11px] font-mono uppercase tracking-[0.18em] font-medium">Padrão Cinema</p>
                 </div>
                 <div>
-                  <p className="text-[#C4550A] font-bold text-4xl mb-1">100%</p>
-                  <p className="text-white/40 text-[11px] uppercase tracking-widest font-bold">Foco em Estratégia</p>
+                  <p className="font-podcast-display text-[#C4550A] font-bold text-4xl mb-1">100%</p>
+                  <p className="text-white/50 text-[11px] font-mono uppercase tracking-[0.18em] font-medium">Foco em Estratégia</p>
                 </div>
               </div>
             </div>

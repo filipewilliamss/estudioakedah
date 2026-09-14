@@ -15,6 +15,10 @@ export default {
     extend: {
       fontFamily: {
         display: ['Montserrat', 'sans-serif'],
+        'podcast-display': ['Syne', 'Montserrat', 'sans-serif'],
+        'podcast-cinzel': ['Cinzel', 'serif'],
+        syne: ['Syne', 'sans-serif'],
+        cinzel: ['Cinzel', 'serif'],
         body: ['Montserrat', 'sans-serif'],
         lato: ['Lato', 'sans-serif'],
         'barlow-condensed': ['"Barlow Condensed"', 'sans-serif'],
@@ -105,6 +109,11 @@ export default {
         'neutra-2': 'var(--neutra-2)',
         'neutra-3': 'var(--neutra-3)',
         'neutra-4': 'var(--neutra-4)',
+        // Tokens Akedah Podcast
+        'podcast-bg': 'var(--bg-primary, #1C0F0A)',
+        'podcast-terracotta': 'var(--accent-terracotta, #C4550A)',
+        'podcast-card': 'var(--surface-card, rgba(255, 255, 255, 0.03))',
+        'podcast-card-hover': 'var(--surface-card-hover, rgba(255, 255, 255, 0.06))',
       },
       borderRadius: {
         lg: "var(--radius)",
