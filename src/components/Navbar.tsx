@@ -114,18 +114,20 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const bgClass = scrolled
-    ? (isCurrentDanielSilva 
-        ? "bg-[#002867]/95 border-white/10 shadow-lg" 
-        : isCurrentPodcast 
-          ? "bg-[#2D1A11]/90 border-[#42362E]/20" 
-          : (forceBlack ? "bg-black/70 border-white/[0.08]" : "bg-white/75 border-black/[0.05]")
-      ) + " backdrop-blur-[20px] border-b py-3 md:py-4"
-    : (isCurrentDanielSilva 
-        ? "bg-[#002867]/90 backdrop-blur-[10px] border-b border-white/10 py-4 md:py-5" 
-        : isCurrentPodcast 
-          ? "bg-[#2D1A11] py-6 md:py-8" 
-          : "bg-transparent py-6 md:py-8"
+  const bgClass = isCurrentPodcast
+    ? (scrolled
+        ? "bg-[#1C0F0A]/90 backdrop-blur-md border-b border-white/[0.08] py-3 md:py-4 shadow-lg"
+        : "bg-[#1C0F0A]/85 backdrop-blur-md border-b border-white/[0.08] py-4 md:py-6"
+      )
+    : (scrolled
+        ? (isCurrentDanielSilva 
+            ? "bg-[#002867]/95 border-white/10 shadow-lg" 
+            : (forceBlack ? "bg-black/70 border-white/[0.08]" : "bg-white/75 border-black/[0.05]")
+          ) + " backdrop-blur-[20px] border-b py-3 md:py-4"
+        : (isCurrentDanielSilva 
+            ? "bg-[#002867]/90 backdrop-blur-[10px] border-b border-white/10 py-4 md:py-5" 
+            : "bg-transparent py-6 md:py-8"
+          )
       );
 
   const textClass = `link-magnetic ${forceBlack ? 'text-white/70' : 'text-black/70'} hover:text-white font-bold text-[11px] uppercase tracking-[0.28em] font-display transition-colors duration-300`;
