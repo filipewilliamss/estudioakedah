@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
+import founderPicture from "@/assets/akedah-founder.jpg";
 import { WHATSAPP_URL } from "@/data/services";
 
 const Podcast = () => {
@@ -272,40 +273,176 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 4. CALENDÁRIO SECTION */}
+        {/* 4. PROGRAMAÇÃO & CONVIDADOS SECTION */}
         <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center md:text-left mb-16">
-            <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
-              Programação
-            </span>
-            <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Próximas <span className="text-[#C4550A]">entrevistas</span> confirmadas.
-            </h2>
-            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
-              Datas e horários das próximas gravações. Acompanhe ao vivo ou agende a sua participação.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div className="text-left max-w-2xl">
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
+                Programação & Convidados
+              </span>
+              <h2 className="font-podcast-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                Próximas <span className="text-[#C4550A]">entrevistas</span> confirmadas.
+              </h2>
+              <p className="text-white/60 text-base md:text-lg leading-relaxed mt-3">
+                Líderes de mercado, tomadores de decisão e estrategistas no centro do debate executivo. Acompanhe as transmissões ao vivo.
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono text-white/80 bg-white/[0.04] border border-white/10">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Gravações semanais às quintas • 19h
+              </span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { data: "15/08", hora: "19h", convidado: "EM BREVE", tema: "ESTRATÉGIA DE CRESCIMENTO" },
-              { data: "22/08", hora: "19h", convidado: "EM BREVE", tema: "MARKETING DIGITAL" },
-              { data: "29/08", hora: "19h", convidado: "EM BREVE", tema: "GESTÃO E ESCALA" },
-              { data: "05/09", hora: "19h", convidado: "EM BREVE", tema: "VENDAS B2B" }
+              {
+                status: "Ao Vivo Esta Semana",
+                statusType: "live" as const,
+                data: "15/08",
+                hora: "19h",
+                guestName: "Daniel Silva",
+                guestRole: "Fundador & Estrategista B2B",
+                topic: "Engenharia de Vendas Previsíveis e Retenção Corporativa",
+                photo: founderPicture,
+                isConfidential: false,
+              },
+              {
+                status: "Confirmado",
+                statusType: "confirmed" as const,
+                data: "22/08",
+                hora: "19h",
+                guestName: "Convidado Confidencial",
+                guestRole: "VP de Operações • Tech Enterprise",
+                topic: "Infraestrutura Escalável e Governança em Startups Unicórnio",
+                isConfidential: true,
+              },
+              {
+                status: "Confirmado",
+                statusType: "confirmed" as const,
+                data: "29/08",
+                hora: "19h",
+                guestName: "Convidado Confidencial",
+                guestRole: "CEO & Conselheiro de Administração",
+                topic: "M&A, Fusões Estratégicas e Posicionamento de Marca no Brasil",
+                isConfidential: true,
+              },
+              {
+                status: "Gravado",
+                statusType: "recorded" as const,
+                data: "05/09",
+                hora: "19h",
+                guestName: "Convidado Confidencial",
+                guestRole: "Diretor Comercial • FinTech B2B",
+                topic: "Playbooks de Vendas Consultivas e Fechamentos de 7 Dígitos",
+                isConfidential: true,
+              },
             ].map((item, idx) => (
-              <div key={idx} className="podcast-card rounded-[20px] p-8 flex flex-col justify-between hover:border-t-white/30 hover:border-b-white/10">
-                <div className="flex justify-between items-center mb-6">
-                  <span className="font-podcast-display text-[#C4550A] font-bold text-3xl">{item.data}</span>
-                  <span className="font-mono text-sm text-white/60 bg-white/5 px-3 py-1 rounded-full border border-white/5">{item.hora}</span>
+              <div
+                key={idx}
+                className="podcast-card rounded-[24px] p-6 sm:p-7 flex flex-col justify-between group hover:border-[#C4550A]/40 transition-all duration-300 relative overflow-hidden"
+              >
+                {/* Glow de destaque no episódio 'Ao Vivo' */}
+                {item.statusType === "live" && (
+                  <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#C4550A]/15 rounded-full blur-2xl pointer-events-none" />
+                )}
+
+                {/* Top Header: Badge de Status + Chip de Data/Hora */}
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-6">
+                    {/* Status Badge */}
+                    {item.statusType === "live" ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        {item.status}
+                      </span>
+                    ) : item.statusType === "confirmed" ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-[#C4550A]/10 text-[#C4550A] border border-[#C4550A]/25">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A]" />
+                        {item.status}
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+                        {item.status}
+                      </span>
+                    )}
+
+                    {/* Chip Data / Horário */}
+                    <div className="flex items-center gap-1.5 text-xs font-mono text-white/70 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
+                      <span className="text-white font-bold">{item.data}</span>
+                      <span className="text-white/30">•</span>
+                      <span className="text-white/60">{item.hora}</span>
+                    </div>
+                  </div>
+
+                  {/* Guest Section (Avatar/Silhueta + Nome + Cargo) */}
+                  <div className="flex items-start gap-4 mb-6">
+                    {item.isConfidential ? (
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/[0.08] to-black/80 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden group-hover:border-[#C4550A]/40 transition-colors flex-shrink-0 shadow-inner">
+                        <div className="absolute inset-0 bg-radial-gradient from-white/[0.06] to-transparent pointer-events-none" />
+                        <svg
+                          className="w-7 h-7 text-white/25 group-hover:text-white/40 transition-colors mt-0.5"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span className="text-[8px] font-mono tracking-widest text-white/40 uppercase mt-0.5">
+                          SIGILO
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="relative flex-shrink-0">
+                        <img
+                          src={item.photo}
+                          alt={item.guestName}
+                          className="w-16 h-16 rounded-2xl object-cover border border-white/15 ring-2 ring-[#C4550A]/40 shadow-lg"
+                        />
+                        <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[#1C0F0A]" title="Confirmado" />
+                      </div>
+                    )}
+
+                    <div className="min-w-0 flex-1">
+                      <h3 className={`font-podcast-display text-lg font-bold leading-snug ${item.isConfidential ? "text-white/85 tracking-normal italic" : "text-white"}`}>
+                        {item.guestName}
+                      </h3>
+                      <p className="font-mono text-xs text-[#C4550A] tracking-wider mt-1.5 leading-tight">
+                        {item.guestRole}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-podcast-display text-xl font-bold mb-2 text-white">{item.convidado}</h3>
-                <p className="font-mono text-xs text-white/40 uppercase tracking-[0.18em]">{item.tema}</p>
+
+                {/* Topic / Pauta Section */}
+                <div className="pt-4 border-t border-white/[0.08] mt-auto">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-white/40 block mb-1.5">
+                    Pauta do Episódio
+                  </span>
+                  <p className="font-podcast-display text-sm font-semibold text-white/80 group-hover:text-white transition-colors leading-relaxed line-clamp-2">
+                    "{item.topic}"
+                  </p>
+                </div>
               </div>
             ))}
           </div>
-          <p className="text-center mt-12 text-sm text-white/40 font-mono tracking-wide">
-            Datas sujeitas a alteração. A confirmação de cada episódio é publicada com antecedência no Instagram.
-          </p>
+
+          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.06] text-xs font-mono text-white/40">
+            <span>Datas e participantes sujeitos a alterações com aviso prévio nas redes oficiais.</span>
+            <a
+              href="https://www.instagram.com/estudioakedah"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#C4550A] hover:text-white transition-colors underline decoration-[#C4550A]/40 underline-offset-4"
+            >
+              Acompanhar anúncios no Instagram →
+            </a>
+          </div>
         </section>
 
         {/* 5. REDES SOCIAIS SECTION */}
@@ -361,57 +498,7 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 6. PATROCINADORES SECTION */}
-        <section id="patrocinadores" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="text-center md:text-left mb-16">
-            <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">
-              Marcas & Parcerias
-            </span>
-            <h2 className="font-podcast-display text-3xl md:text-5xl font-bold mb-6 text-white">
-              Patrocinadores <span className="text-[#C4550A]">Oficiais</span>
-            </h2>
-            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
-              Marcas e empresas visionárias que apoiam o ecossistema de conteúdo e estratégia do Akedah Podcast.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="podcast-card rounded-[20px] p-8 flex flex-col justify-between min-h-[220px]">
-              <div>
-                <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] block mb-3">Cota Master</span>
-                <h3 className="font-podcast-display text-2xl font-bold text-white mb-2">Exclusividade de Segmento</h3>
-                <p className="text-white/50 text-sm leading-relaxed">Inserção de vinheta, menções no episódio e cortes verticais patrocinados.</p>
-              </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.18em] hover:text-white flex items-center gap-2 mt-6">
-                SEJA UM PATROCINADOR →
-              </a>
-            </div>
-
-            <div className="podcast-card rounded-[20px] p-8 flex flex-col justify-between min-h-[220px]">
-              <div>
-                <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] block mb-3">Cota Naming Rights</span>
-                <h3 className="font-podcast-display text-2xl font-bold text-white mb-2">Presença em Cenário</h3>
-                <p className="text-white/50 text-sm leading-relaxed">Exibição de marca na mesa de gravação, canecas e telão de LED do estúdio.</p>
-              </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.18em] hover:text-white flex items-center gap-2 mt-6">
-                SEJA UM PATROCINADOR →
-              </a>
-            </div>
-
-            <div className="podcast-card rounded-[20px] p-8 flex flex-col justify-between min-h-[220px]">
-              <div>
-                <span className="text-[#C4550A] text-xs font-mono font-medium uppercase tracking-[0.18em] block mb-3">Cota Episódio</span>
-                <h3 className="font-podcast-display text-2xl font-bold text-white mb-2">Episódio Dedicado</h3>
-                <p className="text-white/50 text-sm leading-relaxed">Gravação de episódio temático abordando os cases e soluções da sua marca.</p>
-              </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.18em] hover:text-white flex items-center gap-2 mt-6">
-                SEJA UM PATROCINADOR →
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* 7. CTA PARTICIPAR / CONTATO */}
+        {/* 6. CTA PARTICIPAR / CONTATO */}
         <section id="contato" className="py-28 px-6 border-t border-white/[0.08]">
           <div className="max-w-7xl mx-auto podcast-card rounded-[32px] p-10 md:p-20 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
             <div>
@@ -426,6 +513,40 @@ const Podcast = () => {
                 Agendar Gravação
               </a>
               <p className="text-white/40 text-xs font-mono tracking-wide">Resposta rápida em horário comercial.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* 7. BANNER EDITORIAL DE MEDIA KIT (DISCRETO, ANTES DO RODAPÉ) */}
+        <section id="mediakit" className="py-16 px-6 border-t border-white/[0.08]">
+          <div className="max-w-7xl mx-auto podcast-card rounded-[28px] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 hover:border-[#C4550A]/30 transition-all relative overflow-hidden">
+            {/* Glow sutil ambiente */}
+            <div className="absolute top-0 right-0 w-96 h-48 bg-[#C4550A]/5 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="max-w-2xl text-center md:text-left relative z-10">
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
+                Oportunidades de Parceria
+              </span>
+              <h3 className="font-podcast-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 tracking-tight">
+                Sua marca ao lado dos maiores nomes do mercado
+              </h3>
+              <p className="text-white/60 text-sm md:text-base leading-relaxed">
+                O Akedah Podcast conecta líderes e tomadores de decisão. Solicite nosso Media Kit para cotas de patrocínio.
+              </p>
+            </div>
+
+            <div className="flex-shrink-0 relative z-10">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs font-mono font-bold tracking-[0.16em] uppercase text-white bg-white/[0.06] hover:bg-[#C4550A] border border-white/15 hover:border-[#C4550A] transition-all duration-300 shadow-md group"
+              >
+                <span>Acessar Media Kit Comercial</span>
+                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
             </div>
           </div>
         </section>

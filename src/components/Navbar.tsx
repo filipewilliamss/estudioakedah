@@ -16,9 +16,9 @@ const defaultNavLinks: NavItem[] = [
 
 const podcastNavLinks: NavItem[] = [
   { label: "Nossa história", to: "/podcast/sobre" },
+  { label: "Destaque", hash: "destaque", to: "/podcast#destaque" },
   { label: "Ao vivo", hash: "player", to: "/podcast#player" },
-  { label: "Agenda", hash: "calendario", to: "/podcast#calendario" },
-  { label: "Patrocinadores", hash: "patrocinadores", to: "/podcast#patrocinadores" },
+  { label: "Programação", hash: "calendario", to: "/podcast#calendario" },
   { label: "Contato", hash: "contato", to: "/podcast#contato" },
 ];
 
