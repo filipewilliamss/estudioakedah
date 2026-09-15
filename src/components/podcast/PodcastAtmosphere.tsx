@@ -11,20 +11,20 @@ import React, { memo } from "react";
 export const PodcastAtmosphere: React.FC = memo(() => {
   return (
     <>
-      {/* 1. Gradiente Radial Sutil Fixo no Topo Direito */}
+      {/* 1. Iluminação Motivada: Spotlights Radiais em Terracota e Âmbar */}
       <div
         aria-hidden="true"
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(ellipse at 80% 0%, rgba(196, 85, 10, 0.15), transparent 70%)",
+            "radial-gradient(circle at 85% 15%, rgba(196, 85, 10, 0.18) 0%, rgba(217, 119, 6, 0.06) 45%, transparent 70%), radial-gradient(circle at 15% 65%, rgba(196, 85, 10, 0.12) 0%, rgba(217, 119, 6, 0.04) 40%, transparent 65%)",
         }}
       />
 
-      {/* 2. Micro-ruído texturizado via SVG Inline com feTurbulence (opacidade <= 0.03) */}
+      {/* 2. Micro-ruído texturizado via SVG Inline com feTurbulence (opacidade 0.025) */}
       <svg
         aria-hidden="true"
-        className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-[0.028]"
+        className="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-[0.025]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <filter id="podcast-micro-noise">

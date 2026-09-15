@@ -26,7 +26,7 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative">
+    <div className="min-h-screen bg-[#0E0704] text-white selection:bg-[#C4550A] selection:text-white relative">
       {/* Tela de Carregamento Inicial com Revelação de Íris Circular */}
       <IrisPreloader />
 
@@ -38,292 +38,229 @@ const Podcast = () => {
       />
       <Navbar isPodcastPage={true} />
 
-      {/* Atmosfera Moderna: Fundo #1C0F0A, Gradiente Radial e Micro-ruído SVG Inline */}
+      {/* Atmosfera Moderna: Fundo #0E0704, Spotlights Radiais e Micro-ruído SVG Inline */}
       <PodcastAtmosphere />
 
       <main className="relative z-10 overflow-hidden">
-        {/* 1. HERO SECTION */}
-        <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16">
-          {/* Background Image com Gradientes #1C0F0A */}
-          <div className="absolute inset-0 z-0">
-            <img 
-              src={studioBannerImg} 
-              alt="Akedah Podcast - Estúdio" 
-              className="w-full h-full object-cover opacity-70"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#1C0F0A] via-[#1C0F0A]/85 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent to-[#1C0F0A]/50" />
-          </div>
+        {/* 1. HERO SECTION CINEMATOGRÁFICO (ESTILO BRUTALISTA EDITORIAL) */}
+        <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-20">
+          {/* Iluminação Motivada: Spotlight Radial Quente atrás do Hero */}
+          <div className="absolute top-1/3 left-1/4 w-[650px] h-[650px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.06)_45%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
-          {/* Conteúdo posicionado à esquerda */}
-          <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-3xl text-left flex flex-col items-start"
-            >
-              <h1 className="font-podcast-display text-[52px] sm:text-[76px] md:text-[96px] font-extrabold leading-[0.9] tracking-tight mb-8">
-                <span className="block text-white">Akedah</span>
-                <span className="block text-[#C4550A]">Podcast</span>
-              </h1>
+          <div className="relative z-20 w-full px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+              {/* Lado Esquerdo: Título Editorial Massivo & Ação */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                className="lg:col-span-7 text-left flex flex-col items-start"
+              >
+                <h1 className="font-podcast-display text-[30px] sm:text-[46px] md:text-[56px] lg:text-[62px] xl:text-[72px] font-black leading-[0.88] tracking-[-0.035em] uppercase mb-6 sm:mb-8">
+                  <span className="block text-white">AUTORIDADE.</span>
+                  <span className="block text-[#C4550A]">SEM FILTRO.</span>
+                </h1>
 
-              <p className="text-white/75 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10">
-                Conversas sem filtro sobre estratégia comercial, liderança e negócios de alto valor.
-              </p>
+                {/* Única linha de apoio cortante (11 palavras) */}
+                <p className="text-white/80 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-lg mb-8 sm:mb-10">
+                  Onde líderes de alto calibre debatem o jogo real dos negócios.
+                </p>
 
-              {/* Hierarquia de Ação no Hero */}
-              <div className="flex flex-wrap gap-4 items-center">
-                {/* CTA Primário com micro-brilho no hover e ícone Play SVG */}
+                {/* Botão de Ação Único: Estilo carimbo de acesso minimalista com seta diagonal (↗) */}
                 <a
                   href="#destaque"
                   onClick={() => setIsPlaying(true)}
-                  className="relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#C4550A]/25 hover:shadow-[#C4550A]/40 border-t border-t-white/30 overflow-hidden group transition-all duration-300"
+                  className="group relative inline-flex items-center gap-4 px-7 sm:px-8 py-4 sm:py-4.5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-[0.2em] transition-all duration-300 shadow-2xl shadow-[#C4550A]/30 overflow-hidden"
                 >
-                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out pointer-events-none" />
-                  <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                    <svg className="w-3 h-3 fill-current ml-0.5" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
+                  <span className="relative z-10">ASSISTIR ÚLTIMO EPISÓDIO</span>
+                  <span className="relative z-10 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-black/25 flex items-center justify-center group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300">
+                    <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                      <path d="M5 19L19 5M19 5H9M19 5V15" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                     </svg>
                   </span>
-                  <span className="relative z-10">Assistir Episódio Mais Recente</span>
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
+              </motion.div>
 
-                {/* CTA Secundário com outline sutil */}
-                <a
-                  href="#calendario"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/15 hover:border-white/40 bg-transparent hover:bg-white/[0.04] text-white/85 hover:text-white font-mono text-xs font-medium uppercase tracking-wider transition-all duration-300"
-                >
-                  <span>Ver Grade de Convidados</span>
-                  <span className="text-white/40 transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
-              </div>
-            </motion.div>
+              {/* Lado Direito: Elemento Escultural com Anel Solar e Contraluz Dramática */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+                className="lg:col-span-5 relative flex items-center justify-center lg:justify-end"
+              >
+                {/* Halo / Anel Solar Terracota */}
+                <div className="relative w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] lg:w-[390px] lg:h-[390px] rounded-full flex items-center justify-center">
+                  {/* Anel Externo Fino */}
+                  <div className="absolute inset-0 rounded-full border border-[#C4550A]/35 pointer-events-none" />
+                  <div className="absolute -inset-3 sm:-inset-4 rounded-full border border-dashed border-[#C4550A]/15 pointer-events-none animate-[spin_60s_linear_infinite]" />
+
+                  {/* Spotlight Radial Interno */}
+                  <div className="absolute inset-4 rounded-full bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.35)_0%,_rgba(217,119,6,0.12)_45%,_transparent_75%)] blur-md pointer-events-none" />
+
+                  {/* Retrato do Host em Contraluz Dramática */}
+                  <div className="relative w-[85%] h-[85%] rounded-full overflow-hidden border border-white/15 shadow-2xl bg-black">
+                    <img
+                      src={founderPicture}
+                      alt="Daniel Silva - Host do Akedah Podcast"
+                      className="w-full h-full object-cover object-[center_18%] grayscale contrast-[1.28] brightness-95 scale-105"
+                    />
+                    {/* Gradiente Duotone de Fusão */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0E0704] via-[#0E0704]/20 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-[#C4550A]/20 mix-blend-color pointer-events-none" />
+                  </div>
+
+                  {/* Selo Monolítico Flutuante */}
+                  <div className="absolute -bottom-2 sm:-bottom-3 right-2 sm:right-4 bg-[#0E0704] border border-white/15 px-3.5 py-1.5 sm:px-4 sm:py-2 text-[9px] sm:text-[10px] font-mono tracking-[0.2em] uppercase text-white/85 shadow-2xl backdrop-blur-md">
+                    [ OFICIAL // 4K HDR ]
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
 
-        {/* 2. SEÇÃO DE EPISÓDIO EM DESTAQUE (ÚLTIMO LANÇAMENTO) */}
-        <section id="destaque" className="py-16 md:py-24 px-6 max-w-7xl mx-auto">
+        {/* 2. SEÇÃO DE EPISÓDIO EM DESTAQUE (PLAYER INTERATIVO FACADE) */}
+        <section id="destaque" className="py-20 px-6 max-w-7xl mx-auto relative">
+          {/* Spotlight motivado atrás do player */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.14)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
+
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
             <div>
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-2 block">
-                Em Destaque Nesta Semana
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.2em] mb-2 block">
+                ÚLTIMO LANÇAMENTO // DISPONÍVEL AGORA
               </span>
-              <h2 className="font-podcast-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Último Lançamento
+              <h2 className="font-podcast-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+                Em Destaque
               </h2>
             </div>
             <div className="flex items-center gap-2 text-white/50 text-xs font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>DISPONÍVEL AGORA EM 4K HDR</span>
+              <span>EPISÓDIO COMPLETO • 4K HDR</span>
             </div>
           </div>
 
-          <div className="podcast-card rounded-[28px] overflow-hidden p-6 sm:p-8 md:p-10 border-t border-t-white/20 border-b border-b-white/5 border-x border-x-white/10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Lado Esquerdo: Thumbnail 16:9 realística ou Player Interativo com autoplay */}
-              <div className="lg:col-span-7 relative group">
-                <div className="relative aspect-video rounded-[20px] overflow-hidden bg-black border border-white/10 shadow-2xl transition-all duration-500">
-                  {isPlaying ? (
-                    <iframe
-                      className="w-full h-full rounded-[20px]"
-                      src="https://www.youtube.com/embed/nAcTWvqdc-E?autoplay=1&rel=0&modestbranding=1&si=x7bCNKiC59BwS5eL"
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <>
-                      <img
-                        src={studioBannerImg}
-                        alt="Episódio em Destaque - Akedah Podcast"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                      />
-                      {/* Overlay gradiente suave */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
+          <div className="relative aspect-video w-full overflow-hidden bg-black shadow-2xl border border-white/10 group">
+            {isPlaying ? (
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/nAcTWvqdc-E?autoplay=1&rel=0&modestbranding=1&si=x7bCNKiC59BwS5eL"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            ) : (
+              <>
+                <img
+                  src={studioBannerImg}
+                  alt="Episódio em Destaque - Akedah Podcast"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out grayscale contrast-110 brightness-85"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
-                      {/* Botão de play pulsante com ação direta de reprodução */}
-                      <button
-                        type="button"
-                        onClick={() => setIsPlaying(true)}
-                        className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
-                        aria-label="Assistir episódio em destaque"
-                      >
-                        <div className="relative flex items-center justify-center">
-                          <span className="absolute w-20 h-20 rounded-full bg-[#C4550A]/40 animate-ping pointer-events-none" />
-                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#C4550A] text-white flex items-center justify-center shadow-xl shadow-[#C4550A]/40 group-hover/play:scale-110 group-hover/play:bg-[#d96112] transition-all duration-300 border-t border-t-white/30">
-                            <svg
-                              className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </div>
-                        </div>
-                      </button>
+                {/* Botão de play pulsante com ação direta de reprodução */}
+                <button
+                  type="button"
+                  onClick={() => setIsPlaying(true)}
+                  className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
+                  aria-label="Assistir episódio em destaque"
+                >
+                  <div className="relative flex items-center justify-center">
+                    <span className="absolute w-24 h-24 rounded-full bg-[#C4550A]/40 animate-ping pointer-events-none" />
+                    <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-full bg-[#C4550A] text-white flex items-center justify-center shadow-2xl shadow-[#C4550A]/50 group-hover/play:scale-110 group-hover/play:bg-[#d96112] transition-all duration-300 border border-white/30">
+                      <svg className="w-7 h-7 sm:w-9 sm:h-9 fill-current ml-1" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </button>
 
-                      {/* Badges flutuantes na thumbnail */}
-                      <div className="absolute top-4 left-4 z-20 flex items-center gap-2 pointer-events-none">
-                        <span className="bg-black/75 backdrop-blur-md text-white text-[11px] font-mono font-medium px-3 py-1.5 rounded-full border border-white/10">
-                          4K HDR
-                        </span>
-                        <span className="bg-[#C4550A]/90 backdrop-blur-md text-white text-[11px] font-mono font-medium px-3 py-1.5 rounded-full border border-white/20">
-                          EP #14
-                        </span>
-                      </div>
-
-                      <div className="absolute bottom-4 right-4 z-20 pointer-events-none">
-                        <span className="bg-black/80 backdrop-blur-md text-white/90 text-xs font-mono px-3 py-1 rounded-md border border-white/10 flex items-center gap-1.5">
-                          <svg className="w-3.5 h-3.5 text-[#C4550A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          1h 24min
-                        </span>
-                      </div>
-                    </>
-                  )}
+                {/* Metadados cinematográficos na base do player */}
+                <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-20 pointer-events-none text-left">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#C4550A] mb-1.5 block font-semibold">
+                    EP #14 • 1H 45M
+                  </span>
+                  <h3 className="font-podcast-display text-xl sm:text-3xl font-bold text-white tracking-tight">
+                    Engenharia de Vendas Previsíveis e Retenção Corporativa
+                  </h3>
                 </div>
-              </div>
-
-              {/* Lado Direito: Informações do Episódio */}
-              <div className="lg:col-span-5 flex flex-col justify-center text-left">
-                {/* Metadados: EP + Duração */}
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[#C4550A] font-mono text-xs font-bold uppercase tracking-[0.18em] bg-[#C4550A]/10 px-3 py-1 rounded-md border border-[#C4550A]/30">
-                    EPISÓDIO #14
-                  </span>
-                  <span className="text-white/40 text-xs font-mono">•</span>
-                  <span className="text-white/60 font-mono text-xs tracking-wider">
-                    1h 24min de conversa
-                  </span>
-                </div>
-
-                {/* Título e Tema do Episódio */}
-                <h3 className="font-podcast-display text-2xl sm:text-3xl font-bold text-white mb-4 leading-tight">
-                  Como Construir Previsibilidade Comercial em Operações B2B de Alto Valor
-                </h3>
-
-                <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6">
-                  Uma conversa aprofundada sobre estruturação de funis consultivos, retenção de clientes corporativos e o papel da autoridade executiva na conversão de grandes contratos.
-                </p>
-
-                {/* Tags do Convidado (Cargo / Empresa) */}
-                <div className="flex flex-wrap items-center gap-2.5 mb-8 pb-6 border-b border-white/[0.08]">
-                  <span className="text-white/50 text-xs font-mono uppercase tracking-wider">Convidado:</span>
-                  <span className="bg-white/[0.05] border border-white/10 text-white/90 text-xs font-mono px-3 py-1 rounded-full">
-                    Daniel Silva
-                  </span>
-                  <span className="bg-white/[0.05] border border-white/10 text-white/60 text-xs font-mono px-3 py-1 rounded-full">
-                    Fundador &amp; Estrategista
-                  </span>
-                  <span className="bg-white/[0.05] border border-white/10 text-[#C4550A] text-xs font-mono px-3 py-1 rounded-full">
-                    Estúdio Akedah
-                  </span>
-                </div>
-
-                {/* Botões de Ação */}
-                <div className="flex flex-wrap items-center gap-4">
-                  <a
-                    href="https://www.youtube.com/@EstudioAkedah"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-[#C4550A] hover:bg-[#a84508] text-white font-mono text-xs font-bold uppercase tracking-wider shadow-lg shadow-[#C4550A]/20 transition-all border-t border-t-white/25"
-                  >
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                    </svg>
-                    <span>Inscrever-se no YouTube</span>
-                  </a>
-
-                  <a
-                    href="https://open.spotify.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/15 hover:border-white/30 font-mono text-xs font-bold uppercase tracking-wider transition-all"
-                  >
-                    <svg className="w-4 h-4 fill-current text-[#1DB954]" viewBox="0 0 24 24">
-                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                    </svg>
-                    <span>Ouvir no Spotify</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </section>
 
-        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION */}
-        <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="mb-16">
-            <div className="text-left max-w-2xl">
-              <h2 className="font-podcast-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Próximas <span className="text-[#C4550A]">estreias</span> confirmadas.
-              </h2>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed mt-3">
-                Líderes de mercado, tomadores de decisão e estrategistas no centro do debate executivo. Acompanhe as estreias e transmissões oficiais.
-              </p>
-            </div>
+        {/* 3. PAINEL DE ESTREIAS — PÔSTERES DE FESTIVAL (#calendario) */}
+        <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.06] relative">
+          {/* Spotlight motivado atrás da grade */}
+          <div className="absolute top-1/3 right-10 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.12)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
+
+          <div className="mb-14 text-left max-w-2xl">
+            <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.25em] mb-3 block">
+              FESTIVAL DE ESTREIAS // PROGRAMAÇÃO
+            </span>
+            <h2 className="font-podcast-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+              Próximas <span className="text-[#C4550A]">estreias</span> confirmadas.
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
+                tag: "ESTREIA // 15.08 • 19H",
                 guestName: "Daniel Silva",
-                date: "15 AGO",
-                time: "19H",
+                episodeTitle: "Engenharia de Vendas & Retenção",
                 photo: founderPicture,
                 isConfidential: false,
               },
               {
+                tag: "ESTREIA // 22.08 • 19H",
                 guestName: "Convidado Confidencial",
-                date: "22 AGO",
-                time: "19H",
+                episodeTitle: "Infraestrutura & Governança Tech",
                 isConfidential: true,
               },
               {
+                tag: "ESTREIA // 29.08 • 19H",
                 guestName: "Convidado Confidencial",
-                date: "29 AGO",
-                time: "19H",
+                episodeTitle: "Fusões & M&A de Alto Valor",
                 isConfidential: true,
               },
               {
+                tag: "ESTREIA // 05.09 • 19H",
                 guestName: "Convidado Confidencial",
-                date: "05 SET",
-                time: "19H",
+                episodeTitle: "Playbooks Comerciais de 7 Dígitos",
                 isConfidential: true,
               },
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="relative aspect-[3/4] rounded-[16px] overflow-hidden group border border-white/[0.08] hover:border-[#C4550A]/60 transition-all duration-500 bg-[#120805] hover:shadow-[0_12px_40px_rgba(196,85,10,0.18)] flex flex-col justify-end"
+                className="relative aspect-[3/4] overflow-hidden group border border-white/[0.08] hover:border-[#C4550A]/70 transition-all duration-500 bg-[#0E0704] flex flex-col justify-between"
               >
                 {/* Linha superior de iluminação terracota no hover */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C4550A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 pointer-events-none" />
 
-                {/* Glow sutil de luz âmbar/terracota atrás do pôster no hover */}
+                {/* Glow sutil de luz quente atrás do pôster no hover */}
                 <div className="absolute -top-12 -inset-x-6 h-32 bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.25)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
 
-                {/* TRATAMENTO FOTOGRÁFICO COM ATMOSFERA REAL DO ESTÚDIO */}
+                {/* TRATAMENTO FOTOGRÁFICO DOMINANDO 100% DA ÁREA */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                   {item.isConfidential ? (
-                    <div className="relative w-full h-full bg-[#0E0604] overflow-hidden">
-                      {/* Foto real do estúdio em penumbra profunda com contraluz quente */}
+                    <div className="relative w-full h-full bg-[#0A0402] overflow-hidden">
+                      {/* Foto do estúdio em penumbra dramática com contraluz */}
                       <img
                         src={studioBannerImg}
                         alt="Estúdio Akedah em Penumbra"
-                        className="w-full h-full object-cover grayscale contrast-[1.3] brightness-[0.38] group-hover:scale-105 group-hover:brightness-[0.45] transition-all duration-700 ease-out"
+                        className="w-full h-full object-cover grayscale contrast-[1.35] brightness-[0.34] group-hover:scale-105 group-hover:brightness-[0.42] transition-all duration-700 ease-out"
                       />
-                      {/* Iluminação de contraluz terracota e vinheta */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-[#120805] via-[#C4550A]/20 to-transparent mix-blend-screen pointer-events-none" />
-                      <div className="absolute inset-0 bg-[#120805]/50 mix-blend-multiply pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#0E0704] via-[#C4550A]/20 to-transparent mix-blend-screen pointer-events-none" />
+                      <div className="absolute inset-0 bg-[#0E0704]/50 mix-blend-multiply pointer-events-none" />
 
                       {/* Tarja Tipográfica Centralizada: [ CONVIDADO SOB EMBARGO ] */}
                       <div className="absolute top-[38%] left-0 right-0 flex items-center justify-center pointer-events-none z-10 px-3">
-                        <div className="px-3.5 py-1.5 rounded-sm border border-[#C4550A]/50 bg-[#120805]/95 backdrop-blur-md shadow-2xl shadow-black flex items-center gap-2">
+                        <div className="px-3.5 py-1.5 border border-[#C4550A]/50 bg-[#0E0704]/95 backdrop-blur-md shadow-2xl flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
-                          <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.22em] font-bold text-[#C4550A] uppercase whitespace-nowrap">
+                          <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.22em] font-bold text-[#C4550A] uppercase whitespace-nowrap">
                             [ CONVIDADO SOB EMBARGO ]
                           </span>
                         </div>
@@ -336,29 +273,35 @@ const Podcast = () => {
                         alt={item.guestName}
                         className="w-full h-full object-cover object-top grayscale contrast-[1.3] brightness-90 group-hover:scale-105 group-hover:contrast-[1.35] transition-transform duration-700 ease-out"
                       />
-                      {/* Duotone quente direcional sutil */}
                       <div
                         className="absolute inset-0 mix-blend-color opacity-30 pointer-events-none"
                         style={{
                           background:
-                            "linear-gradient(135deg, rgba(196,85,10,0.6) 0%, rgba(28,15,10,0.8) 100%)",
+                            "linear-gradient(135deg, rgba(196,85,10,0.6) 0%, rgba(14,7,4,0.8) 100%)",
                         }}
                       />
                     </div>
                   )}
                 </div>
 
-                {/* VINHETAS DE CONTRASTE EM CAMADAS */}
-                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#120805]/85 to-transparent pointer-events-none z-10" />
-                <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#120805] via-[#120805]/95 via-50% to-transparent pointer-events-none z-10" />
+                {/* Vinhetas de Contraste e Fusão na Base com Degradê Escuro */}
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0E0704]/85 to-transparent pointer-events-none z-10" />
+                <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#0E0704] via-[#0E0704]/95 via-50% to-transparent pointer-events-none z-10" />
 
-                {/* BASE DO PÔSTER (CONVIDADO E DATA/HORÁRIO DESTACADOS) */}
+                {/* Topo: Tag Monolítica em font-mono e cantos secos */}
+                <div className="relative z-20 p-4 sm:p-5 flex items-center justify-between pointer-events-none">
+                  <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.25em] text-[#C4550A] uppercase bg-black/90 px-3 py-1.5 border border-white/10 shadow-xl">
+                    {item.tag}
+                  </span>
+                </div>
+
+                {/* Base: Nome do Convidado + Título do Episódio */}
                 <div className="relative z-20 p-5 sm:p-6 flex flex-col justify-end text-left">
-                  <h3 className="font-podcast-display text-xl sm:text-2xl font-bold text-white mb-2 leading-tight tracking-tight group-hover:text-[#FAF6EB] transition-colors">
+                  <h3 className="font-podcast-display text-xl sm:text-2xl font-bold text-white mb-1 leading-tight tracking-tight group-hover:text-[#FAF6EB] transition-colors">
                     {item.guestName}
                   </h3>
-                  <p className="font-podcast-display text-base sm:text-lg font-bold text-[#C4550A] tracking-wider uppercase">
-                    {item.date} • {item.time}
+                  <p className="font-podcast-display text-xs sm:text-[13px] font-semibold text-[#C4550A] tracking-tight uppercase line-clamp-2 leading-snug">
+                    {item.episodeTitle}
                   </p>
                 </div>
               </div>
@@ -366,55 +309,48 @@ const Podcast = () => {
           </div>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-white/[0.06] text-xs font-mono text-white/40">
-            <span>Datas e participantes sujeitos a alterações com aviso prévio nas redes oficiais.</span>
+            <span>Datas e participantes sujeitos a confirmação nas transmissões oficiais.</span>
             <a
               href="https://www.instagram.com/estudioakedah"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#C4550A] hover:text-white transition-colors underline decoration-[#C4550A]/40 underline-offset-4"
             >
-              Acompanhar anúncios no Instagram →
+              Acompanhar bastidores no Instagram →
             </a>
           </div>
         </section>
 
-        {/* 4. PLATAFORMAS DE DISTRIBUIÇÃO SECTION */}
-        <section id="redes" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
-          >
-            <div className="text-left max-w-2xl">
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
-                Canais de Distribuição
+        {/* 4. PLATAFORMAS E DISTRIBUIÇÃO — ESTILO PASSES DE ACESSO VIP (#redes) */}
+        <section id="redes" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.06] relative">
+          {/* Spotlight motivado sutil */}
+          <div className="absolute top-1/2 left-10 w-[500px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.1)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
+
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6 text-left">
+            <div className="max-w-2xl">
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.25em] mb-3 block">
+                DISTRIBUIÇÃO GLOBAL // PASSES OFICIAIS
               </span>
               <h2 className="font-podcast-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Acompanhe o Podcast em <span className="text-[#C4550A]">todas as plataformas</span>.
+                Acesse em <span className="text-[#C4550A]">todas as redes</span>.
               </h2>
-              <p className="text-white/60 text-base md:text-lg leading-relaxed mt-3">
-                Episódios completos em 4K HDR, áudio imersivo e pílulas diárias de inteligência comercial onde você estiver.
-              </p>
             </div>
-            <div className="flex items-center gap-2 text-xs font-mono text-white/50">
+            <div className="flex items-center gap-2 text-xs font-mono text-white/40">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Multiplataforma • Novos cortes diariamente</span>
+              <span>PASSES VIP ATIVOS • 4 CANAIS</span>
             </div>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
-                name: "YouTube",
+                passId: "PASS // 01",
+                name: "YOUTUBE",
                 url: "https://www.youtube.com/@EstudioAkedah",
-                formatTag: "Episódios em 4K",
+                formatTag: "EPISÓDIOS COMPLETOS",
+                hoverShadow: "group-hover:shadow-[0_0_36px_rgba(239,68,68,0.22)]",
+                hoverBg: "group-hover:bg-red-500/[0.06]",
                 tagColor: "text-red-400",
-                hoverBorder: "hover:border-red-500/40",
-                hoverShadow: "hover:shadow-[0_8px_32px_rgba(239,68,68,0.14)]",
-                ambientGlow: "bg-red-500/15",
-                iconBg: "bg-red-500/10 text-red-500 group-hover:bg-red-500/20",
                 icon: (
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -422,14 +358,13 @@ const Podcast = () => {
                 ),
               },
               {
-                name: "Spotify",
+                passId: "PASS // 02",
+                name: "SPOTIFY",
                 url: "https://open.spotify.com",
-                formatTag: "Áudio na Íntegra",
+                formatTag: "ÁUDIO NA ÍNTEGRA",
+                hoverShadow: "group-hover:shadow-[0_0_36px_rgba(16,185,129,0.22)]",
+                hoverBg: "group-hover:bg-emerald-500/[0.06]",
                 tagColor: "text-emerald-400",
-                hoverBorder: "hover:border-emerald-500/40",
-                hoverShadow: "hover:shadow-[0_8px_32px_rgba(16,185,129,0.14)]",
-                ambientGlow: "bg-emerald-500/15",
-                iconBg: "bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20",
                 icon: (
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308a.747.747 0 0 1-1.028.248c-2.813-1.718-6.353-2.107-10.524-1.155a.75.75 0 0 1-.336-1.462c4.564-1.042 8.49-.602 11.64 1.341a.749.749 0 0 1 .248 1.028zm1.47-3.266a.936.936 0 0 1-1.287.308c-3.22-1.979-8.128-2.552-11.936-1.396a.937.937 0 0 1-.55-1.79c4.354-1.321 9.775-.683 13.465 1.591a.936.936 0 0 1 .308 1.287zm.126-3.41c-3.86-2.292-10.228-2.503-13.899-1.388a1.124 1.124 0 1 1-.652-2.152c4.225-1.282 11.26-1.033 15.717 1.613a1.124 1.124 0 1 1-1.166 1.927z" />
@@ -437,14 +372,13 @@ const Podcast = () => {
                 ),
               },
               {
-                name: "Instagram",
+                passId: "PASS // 03",
+                name: "INSTAGRAM",
                 url: "https://www.instagram.com/estudioakedah",
-                formatTag: "Cortes Verticais",
+                formatTag: "CORTES VERTICAIS",
+                hoverShadow: "group-hover:shadow-[0_0_36px_rgba(236,72,153,0.22)]",
+                hoverBg: "group-hover:bg-pink-500/[0.06]",
                 tagColor: "text-pink-400",
-                hoverBorder: "hover:border-pink-500/40",
-                hoverShadow: "hover:shadow-[0_8px_32px_rgba(236,72,153,0.14)]",
-                ambientGlow: "bg-pink-500/15",
-                iconBg: "bg-pink-500/10 text-pink-400 group-hover:bg-pink-500/20",
                 icon: (
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -452,14 +386,13 @@ const Podcast = () => {
                 ),
               },
               {
-                name: "TikTok",
+                passId: "PASS // 04",
+                name: "TIKTOK",
                 url: "https://www.tiktok.com/@estudioakedah",
-                formatTag: "Pílulas Diárias",
+                formatTag: "PÍLULAS & BASTIDORES",
+                hoverShadow: "group-hover:shadow-[0_0_36px_rgba(6,182,212,0.22)]",
+                hoverBg: "group-hover:bg-cyan-500/[0.06]",
                 tagColor: "text-cyan-400",
-                hoverBorder: "hover:border-cyan-400/40",
-                hoverShadow: "hover:shadow-[0_8px_32px_rgba(6,182,212,0.14)]",
-                ambientGlow: "bg-cyan-500/15",
-                iconBg: "bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/20",
                 icon: (
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.96-4.48V8.82a8.28 8.28 0 0 0 4.84 1.57v-3.7z" />
@@ -472,29 +405,29 @@ const Podcast = () => {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative backdrop-blur-md bg-white/[0.02] border border-white/10 rounded-[18px] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 overflow-hidden ${platform.hoverBorder} ${platform.hoverShadow}`}
+                className={`group relative bg-white/[0.02] border border-white/10 p-6 flex flex-col justify-between transition-all duration-300 overflow-hidden ${platform.hoverBg} ${platform.hoverShadow}`}
               >
-                {/* Glow sutil ambiente colorido no hover */}
-                <div className={`absolute -top-12 -right-12 w-28 h-28 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${platform.ambientGlow}`} />
-
-                {/* Topo: Ícone Oficial + Link Arrow */}
-                <div className="flex items-center justify-between mb-5 relative z-10">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 transition-colors duration-300 ${platform.iconBg}`}>
-                    {platform.icon}
-                  </div>
-                  <span className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-white/30 group-hover:text-white transition-colors duration-300">
-                    <svg className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                {/* Topo do Passe VIP: ID Monolítico + Seta Diagonal */}
+                <div className="flex items-center justify-between mb-8 relative z-10">
+                  <span className="font-mono text-[9.5px] tracking-[0.2em] text-white/40 group-hover:text-white/80 transition-colors">
+                    {platform.passId}
+                  </span>
+                  <span className="w-7 h-7 rounded-full bg-white/[0.04] border border-white/10 flex items-center justify-center text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300">
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </span>
                 </div>
 
-                {/* Base: Tag de formato e Nome da Plataforma */}
-                <div className="relative z-10">
-                  <span className={`text-[10.5px] font-mono font-medium uppercase tracking-wider block mb-1.5 ${platform.tagColor}`}>
+                {/* Base do Passe VIP: Ícone Minimalista + Nome em Caixa Alta + Tag em 2 Palavras */}
+                <div className="relative z-10 text-left">
+                  <div className="w-10 h-10 mb-4 text-white/80 group-hover:text-white transition-colors">
+                    {platform.icon}
+                  </div>
+                  <span className={`text-[10px] font-mono font-medium uppercase tracking-[0.2em] block mb-1.5 ${platform.tagColor}`}>
                     {platform.formatTag}
                   </span>
-                  <h3 className="font-podcast-display text-xl font-bold text-white group-hover:text-[#FAF6EB] transition-colors">
+                  <h3 className="font-podcast-display text-2xl font-black text-white tracking-tight group-hover:text-[#FAF6EB] transition-colors">
                     {platform.name}
                   </h3>
                 </div>
@@ -503,44 +436,50 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 5. CTA PARTICIPAR / CONTATO & MEDIA KIT (UNIFICADO) */}
-        <section id="contato" className="py-24 px-6 border-t border-white/[0.08]">
-          <div className="max-w-7xl mx-auto podcast-card rounded-[28px] p-8 sm:p-12 md:p-16 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8 relative overflow-hidden">
-            {/* Glow sutil ambiente terracota */}
-            <div className="absolute top-0 right-0 w-96 h-64 bg-[#C4550A]/10 rounded-full blur-3xl pointer-events-none" />
+        {/* 5. FECHAMENTO E CONVERSÃO — ONE PUNCH CLOSING */}
+        <section id="contato" className="py-28 px-6 border-t border-white/[0.06] relative">
+          {/* Spotlight Quente Motivada Centralizada */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
 
-            <div className="relative z-10 max-w-xl">
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
-                Seja um Convidado
-              </span>
-              <h2 className="font-podcast-display text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-                Grave seu episódio no <br />
-                <span className="text-[#C4550A]">Estúdio Akedah.</span>
-              </h2>
-              <p className="text-white/60 text-sm sm:text-base mt-3 leading-relaxed">
-                Estrutura de ponta com 4 câmeras 4K, direção ao vivo e distribuição multiplataforma para elevar sua autoridade.
-              </p>
-            </div>
+          <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
+            {/* Tag Monolítica Superior */}
+            <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-[#C4550A] mb-4 block font-semibold">
+              // ACESSO EXCLUSIVO
+            </span>
 
-            <div className="relative z-10 flex flex-col items-center md:items-end gap-3.5">
+            {/* Título Monumental Gigante */}
+            <h2 className="font-podcast-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tight leading-[0.88] max-w-4xl">
+              QUER SENTAR <br />
+              <span className="text-[#C4550A]">NA MESA?</span>
+            </h2>
+
+            {/* Subtítulo simples */}
+            <p className="text-white/70 text-base sm:text-xl font-normal max-w-2xl mt-8 mb-12 leading-relaxed">
+              Grave seu episódio no Estúdio Akedah ou associe sua marca aos líderes de mercado.
+            </p>
+
+            {/* Dois CTAs Lado a Lado com Pesos Contrastantes */}
+            <div className="flex flex-wrap items-center justify-center gap-6">
+              {/* CTA Primário: Sólido Terracota */}
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-premium px-10 py-4 text-xs tracking-wider"
+                className="group relative inline-flex items-center justify-center px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
               >
-                Agendar Gravação
+                <span>Agendar Episódio</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
               </a>
 
-              {/* Link secundário elegante para Media Kit */}
+              {/* CTA Secundário: Linha / Link Editorial com Seta Diagonal */}
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-mono text-white/50 hover:text-[#C4550A] transition-colors py-1 group"
+                className="inline-flex items-center gap-2 px-8 py-5 border border-white/20 hover:border-white/50 bg-transparent text-white/80 hover:text-white font-mono text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300"
               >
-                <span>Interesse em patrocínio? Baixar Media Kit</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                <span>Media Kit</span>
+                <span className="text-white/50">↗</span>
               </a>
             </div>
           </div>
