@@ -168,11 +168,11 @@ const Podcast = () => {
             </div>
           </div>
 
-          {/* Bloco Editorial Dividido em 2 Colunas com Cantos Retos (rounded-none) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 border border-white/10 bg-[#080503] divide-y lg:divide-y-0 lg:divide-x divide-white/10 rounded-none overflow-hidden">
+          {/* Bloco Editorial com Vídeo em Destaque Ampliado e Informações Abaixo */}
+          <div className="border border-white/10 bg-[#080503] rounded-none overflow-hidden flex flex-col">
             
-            {/* Coluna 1 (Player / Imagem) - 16:9 */}
-            <div className="lg:col-span-7 relative aspect-video w-full overflow-hidden bg-black group rounded-none">
+            {/* Player / Imagem - Full Width 16:9 Monumental */}
+            <div className="relative aspect-video w-full overflow-hidden bg-black group rounded-none">
               {isPlaying ? (
                 <iframe
                   className="w-full h-full"
@@ -186,14 +186,14 @@ const Podcast = () => {
               ) : (
                 <div className="relative w-full h-full">
                   <img
-                    src={studioBannerImg}
+                    src="https://img.youtube.com/vi/nAcTWvqdc-E/maxresdefault.jpg"
                     alt="Episódio em Destaque - Akedah Podcast"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out grayscale contrast-[1.25] brightness-75"
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out brightness-90"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
                   {/* Badge de numeração com cantos retos */}
-                  <div className="absolute top-4 left-4 z-20 bg-black/90 border border-white/15 px-3 py-1.5 font-mono text-[10px] tracking-[0.2em] text-[#C4550A] uppercase font-bold">
+                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 bg-black/90 border border-white/15 px-3.5 py-1.5 font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-[#C4550A] uppercase font-bold">
                     EP.14 // 4K HDR
                   </div>
 
@@ -204,8 +204,8 @@ const Podcast = () => {
                     className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
                     aria-label="Assistir episódio em destaque"
                   >
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-[#C4550A] text-white flex items-center justify-center rounded-none shadow-2xl shadow-[#C4550A]/40 group-hover/play:scale-105 group-hover/play:bg-[#b04b08] transition-all duration-300 border border-white/20">
-                      <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-current ml-1" viewBox="0 0 24 24">
+                    <div className="w-16 h-16 sm:w-24 sm:h-24 bg-[#C4550A] text-white flex items-center justify-center rounded-none shadow-2xl shadow-[#C4550A]/40 group-hover/play:scale-105 group-hover/play:bg-[#b04b08] transition-all duration-300 border border-white/20">
+                      <svg className="w-7 h-7 sm:w-9 sm:h-9 fill-current ml-1" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
@@ -214,41 +214,41 @@ const Podcast = () => {
               )}
             </div>
 
-            {/* Coluna 2 (Dados e Impacto) */}
-            <div className="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between text-left bg-[#090503]">
-              <div>
+            {/* Dados e Impacto Abaixo do Vídeo */}
+            <div className="p-6 sm:p-10 border-t border-white/10 bg-[#090503] flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-left">
+              <div className="max-w-3xl">
                 <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-[#C4550A] uppercase font-bold block mb-3">
                   [ PAUTA PRINCIPAL ]
                 </span>
-                <h3 className="font-barlow-condensed text-3xl sm:text-4xl md:text-[44px] font-black uppercase text-white leading-[0.92] tracking-tight mb-4">
+                <h3 className="font-barlow-condensed text-3xl sm:text-4xl md:text-[44px] font-black uppercase text-white leading-[0.92] tracking-tight mb-3">
                   ENGENHARIA DE VENDAS PREVISÍVEIS
                 </h3>
-                <p className="font-mono text-xs sm:text-[13px] font-bold text-white/90 uppercase tracking-wider mb-4 pb-4 border-b border-white/10">
+                <p className="font-mono text-xs sm:text-[13px] font-bold text-white/90 uppercase tracking-wider mb-4 pb-3 border-b border-white/10">
                   CONVIDADO: <span className="text-[#C4550A]">DANIEL SILVA — FUNDADOR &amp; ESTRATEGISTA</span>
                 </p>
-                <p className="text-[#8A827D] text-xs sm:text-sm leading-relaxed mb-6 font-normal">
+                <p className="text-[#8A827D] text-xs sm:text-sm md:text-base leading-relaxed font-normal">
                   Uma análise profunda sobre como estruturar máquinas de vendas previsíveis, eliminar achismos e blindar a margem comercial em operações de alto valor.
                 </p>
               </div>
 
               {/* Botões Retangulares Diretos para YouTube e Spotify com Cantos Secos */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-white/10">
+              <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
                 <a
                   href="https://www.youtube.com/@EstudioAkedah"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-2 px-5 py-3.5 bg-black/80 hover:bg-[#C4550A] border border-white/20 hover:border-[#C4550A] text-white font-mono text-[11px] font-bold uppercase tracking-wider rounded-none transition-colors"
+                  className="group flex items-center justify-center gap-3 px-6 py-4 bg-black/90 hover:bg-[#C4550A] border border-white/20 hover:border-[#C4550A] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors"
                 >
-                  <span>YOUTUBE</span>
+                  <span>ASSISTIR NO YOUTUBE</span>
                   <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                 </a>
                 <a
                   href="https://open.spotify.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-2 px-5 py-3.5 bg-black/80 hover:bg-emerald-600 border border-white/20 hover:border-emerald-500 text-white font-mono text-[11px] font-bold uppercase tracking-wider rounded-none transition-colors"
+                  className="group flex items-center justify-center gap-3 px-6 py-4 bg-black/90 hover:bg-emerald-600 border border-white/20 hover:border-emerald-500 text-white font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors"
                 >
-                  <span>SPOTIFY</span>
+                  <span>OUVIR NO SPOTIFY</span>
                   <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                 </a>
               </div>
