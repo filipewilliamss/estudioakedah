@@ -17,7 +17,7 @@ export const PodcastAtmosphere: React.FC = memo(() => {
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           background:
-            "radial-gradient(circle at 85% 15%, rgba(196, 85, 10, 0.18) 0%, rgba(217, 119, 6, 0.06) 45%, transparent 70%), radial-gradient(circle at 15% 65%, rgba(196, 85, 10, 0.12) 0%, rgba(217, 119, 6, 0.04) 40%, transparent 65%)",
+            "radial-gradient(circle at 85% 15%, rgba(196, 85, 10, 0.18) 0%, rgba(217, 119, 6, 0.08) 45%, transparent 70%), radial-gradient(circle at 15% 65%, rgba(196, 85, 10, 0.18) 0%, rgba(217, 119, 6, 0.08) 40%, transparent 65%)",
         }}
       />
 

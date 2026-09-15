@@ -45,7 +45,7 @@ const Podcast = () => {
         {/* 1. HERO SECTION CINEMATOGRÁFICO (ESTILO BRUTALISTA EDITORIAL) */}
         <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-20">
           {/* Iluminação Motivada: Spotlight Radial Quente atrás do Hero */}
-          <div className="absolute top-1/3 left-1/4 w-[650px] h-[650px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.06)_45%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/3 left-1/4 w-[650px] h-[650px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_45%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
           <div className="relative z-20 w-full px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
@@ -56,7 +56,7 @@ const Podcast = () => {
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="lg:col-span-7 text-left flex flex-col items-start"
               >
-                <h1 className="font-podcast-display text-[30px] sm:text-[46px] md:text-[56px] lg:text-[62px] xl:text-[72px] font-black leading-[0.88] tracking-[-0.035em] uppercase mb-6 sm:mb-8">
+                <h1 className="font-podcast-display text-[30px] sm:text-[46px] md:text-[56px] lg:text-[62px] xl:text-[72px] font-black leading-[0.85] tracking-[-0.035em] uppercase mb-6 sm:mb-8">
                   <span className="block text-white">AUTORIDADE.</span>
                   <span className="block text-[#C4550A]">SEM FILTRO.</span>
                 </h1>
