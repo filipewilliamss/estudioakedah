@@ -260,33 +260,32 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION (GRADE EDITORIAL CINEMATOGRÁFICA) */}
+        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION (PAINEL DE LANÇAMENTOS CINEMATOGRÁFICOS) */}
         <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="text-left max-w-2xl">
               <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
-                Programação &amp; Convidados
+                Grade de Lançamentos • Movie Premiere
               </span>
               <h2 className="font-podcast-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Grade <span className="text-[#C4550A]">Editorial</span> do Podcast.
+                Próximas <span className="text-[#C4550A]">estreias</span> confirmadas.
               </h2>
               <p className="text-white/60 text-base md:text-lg leading-relaxed mt-3">
-                Líderes de mercado, tomadores de decisão e estrategistas no centro do debate executivo. Acompanhe as transmissões ao vivo.
+                Líderes de mercado, tomadores de decisão e estrategistas no centro do debate executivo. Acompanhe as estreias e transmissões oficiais.
               </p>
             </div>
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono text-white/80 bg-white/[0.04] border border-white/10">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
-                Gravações semanais às quintas • 19h
+                Estreias semanais às quintas • 19h
               </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                dateDisplay: "15 AGO",
-                timeLabel: "AO VIVO • 19H",
+                headerBadge: "AO VIVO • 15 AGO • 19H",
                 isLive: true,
                 guestName: "Daniel Silva",
                 guestRole: "Fundador & Estrategista B2B",
@@ -295,8 +294,7 @@ const Podcast = () => {
                 isConfidential: false,
               },
               {
-                dateDisplay: "22 AGO",
-                timeLabel: "CONFIRMADO • 19H",
+                headerBadge: "CONFIRMADO • 22 AGO • 19H",
                 isLive: false,
                 guestName: "Convidado Confidencial",
                 guestRole: "VP de Operações • Tech Enterprise",
@@ -304,8 +302,7 @@ const Podcast = () => {
                 isConfidential: true,
               },
               {
-                dateDisplay: "29 AGO",
-                timeLabel: "CONFIRMADO • 19H",
+                headerBadge: "CONFIRMADO • 29 AGO • 19H",
                 isLive: false,
                 guestName: "Convidado Confidencial",
                 guestRole: "CEO & Conselheiro de Administração",
@@ -313,8 +310,7 @@ const Podcast = () => {
                 isConfidential: true,
               },
               {
-                dateDisplay: "05 SET",
-                timeLabel: "GRAVADO • 19H",
+                headerBadge: "GRAVADO • 05 SET • 19H",
                 isLive: false,
                 guestName: "Convidado Confidencial",
                 guestRole: "Diretor Comercial • FinTech B2B",
@@ -324,175 +320,140 @@ const Podcast = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="relative rounded-[16px] bg-[#140B07] border border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between group hover:border-white/[0.18] transition-all duration-500 overflow-hidden hover:shadow-[0_16px_40px_-12px_rgba(196,85,10,0.18)]"
+                className="relative aspect-[3/4] rounded-[16px] overflow-hidden group border border-white/[0.08] hover:border-[#C4550A]/60 transition-all duration-500 bg-[#120805] hover:shadow-[0_12px_40px_rgba(196,85,10,0.15)] flex flex-col justify-between"
               >
-                {/* Linha sutil terracota no topo no hover */}
+                {/* Linha superior de iluminação terracota no hover */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C4550A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 pointer-events-none" />
 
-                {/* Glow de luz quente projetado suavemente atrás do card no hover */}
-                <div className="absolute -top-16 -inset-x-8 h-36 bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+                {/* Glow sutil de luz âmbar/terracota atrás do pôster no hover */}
+                <div className="absolute -top-12 -inset-x-6 h-32 bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.22)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
 
-                {/* 1. Cabeçalho do Card: Data Grande Editorial + Indicador Textual Discreto */}
-                <div className="flex items-baseline justify-between gap-3 mb-5 z-10 relative">
-                  <div>
-                    <span className="font-['Cinzel',serif] text-2xl sm:text-3xl font-bold tracking-tight text-[#FAF6EB]">
-                      {item.dateDisplay}
-                    </span>
-                  </div>
-                  <div>
-                    {item.isLive ? (
-                      <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold tracking-widest text-[#C4550A] uppercase">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
-                        {item.timeLabel}
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium tracking-widest text-[#FAF6EB]/70 uppercase">
-                        {item.timeLabel}
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* 2. Bloco Visual do Convidado: Retrato Proporção 4:5 Editorial */}
-                <div className="z-10 relative mb-5">
+                {/* TRATAMENTO FOTOGRÁFICO / ILUMINAÇÃO PREENCHENDO TODO O CONTAINER */}
+                <div className="absolute inset-0 z-0 overflow-hidden">
                   {item.isConfidential ? (
-                    <div className="relative aspect-[4/5] w-full rounded-[12px] overflow-hidden bg-[#0A0503] border border-white/[0.06] flex flex-col items-center justify-center group-hover:border-white/15 transition-all duration-500">
-                      {/* Marcador técnico discreto no canto */}
-                      <div className="absolute top-2.5 right-2.5 z-20 font-mono text-[8px] tracking-widest text-white/30 uppercase pointer-events-none">
-                        SIGILO // B2B
-                      </div>
-
-                      {/* Textura de interferência de sinal / scanlines de alta classe */}
+                    <div className="relative w-full h-full bg-[#0E0604] flex items-center justify-center">
+                      {/* Textura cinematográfica escura com scanlines sutis */}
                       <div
-                        className="absolute inset-0 opacity-[0.28] pointer-events-none"
+                        className="absolute inset-0 opacity-[0.24] pointer-events-none"
                         style={{
                           backgroundImage:
-                            "repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 3px)",
+                            "repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 3px)",
                         }}
                       />
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,_rgba(196,85,10,0.18)_0%,_transparent_70%)] pointer-events-none" />
 
-                      {/* Silhueta executiva estelar com iluminação rim-light */}
-                      <div className="relative flex items-center justify-center w-full h-full">
+                      {/* Luz direcional cinematográfica contra a luz (contre-jour) */}
+                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,_rgba(196,85,10,0.3)_0%,_rgba(28,15,10,0.6)_45%,_#120805_85%)] pointer-events-none" />
+
+                      {/* Silhueta misteriosa em contraluz com micro-zoom no hover */}
+                      <div className="relative w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-700 ease-out">
                         <svg
-                          viewBox="0 0 160 200"
-                          className="w-36 h-44 text-white/[0.12] group-hover:text-white/[0.2] transition-colors duration-500"
+                          viewBox="0 0 200 240"
+                          className="w-48 h-56 text-black/90 filter drop-shadow-[0_0_18px_rgba(196,85,10,0.35)]"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <defs>
                             <linearGradient
-                              id={`silhouette-grad-${idx}`}
-                              x1="80"
+                              id={`film-silhouette-${idx}`}
+                              x1="100"
                               y1="20"
-                              x2="80"
-                              y2="180"
+                              x2="100"
+                              y2="220"
                               gradientUnits="userSpaceOnUse"
                             >
-                              <stop stopColor="#FAF6EB" stopOpacity="0.25" />
-                              <stop offset="0.45" stopColor="#C4550A" stopOpacity="0.18" />
-                              <stop offset="1" stopColor="#140B07" stopOpacity="0.9" />
+                              <stop stopColor="#221008" />
+                              <stop offset="0.5" stopColor="#140804" />
+                              <stop offset="1" stopColor="#0B0402" />
                             </linearGradient>
                           </defs>
-                          {/* Cabeça / Perfil executivo sóbrio */}
                           <path
-                            d="M80 30C92 30 101 39.5 101 52C101 64.5 92 74 80 74C68 74 59 64.5 59 52C59 39.5 68 30 80 30Z"
-                            fill={`url(#silhouette-grad-${idx})`}
-                            stroke="rgba(255,255,255,0.16)"
-                            strokeWidth="1.2"
-                          />
-                          {/* Ombros e corte de terno executivo lapela */}
-                          <path
-                            d="M38 122C38 96 56 86 80 86C104 86 122 96 122 122L138 185H22L38 122Z"
-                            fill={`url(#silhouette-grad-${idx})`}
-                            stroke="rgba(255,255,255,0.14)"
-                            strokeWidth="1.2"
-                          />
-                          {/* Linhas angulares de lapela / gravata */}
-                          <path
-                            d="M68 87L80 114L92 87"
-                            stroke="rgba(255,255,255,0.22)"
-                            strokeWidth="1"
+                            d="M100 34 C116 34 127 45 127 62 C127 79 116 90 100 90 C84 90 73 79 73 62 C73 45 84 34 100 34 Z"
+                            fill={`url(#film-silhouette-${idx})`}
+                            stroke="rgba(196,85,10,0.35)"
+                            strokeWidth="1.5"
                           />
                           <path
-                            d="M80 114V146"
+                            d="M44 145 C44 110 68 98 100 98 C132 98 156 110 156 145 L176 240 L24 240 Z"
+                            fill={`url(#film-silhouette-${idx})`}
+                            stroke="rgba(196,85,10,0.25)"
+                            strokeWidth="1.5"
+                          />
+                          <path
+                            d="M85 100 L100 134 L115 100"
                             stroke="rgba(255,255,255,0.18)"
                             strokeWidth="1"
                           />
                         </svg>
                       </div>
 
-                      {/* Carimbo tipográfico de alta classe */}
-                      <div className="absolute inset-x-3 bottom-3.5 z-20 flex flex-col items-center text-center pointer-events-none">
-                        <div className="px-2.5 py-1.5 rounded-[4px] border border-[#C4550A]/40 bg-[#140B07]/90 backdrop-blur-md shadow-lg shadow-black/80 flex items-center gap-1.5">
+                      {/* Tarja Tipográfica Centralizada: [ CONVIDADO SOB EMBARGO ] */}
+                      <div className="absolute top-[34%] left-0 right-0 flex items-center justify-center pointer-events-none z-10 px-3">
+                        <div className="px-3.5 py-1.5 rounded-sm border border-[#C4550A]/50 bg-[#120805]/95 backdrop-blur-md shadow-2xl shadow-black flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
-                          <span className="font-mono text-[9.5px] tracking-[0.18em] font-semibold text-[#C4550A] uppercase whitespace-nowrap">
-                            CONFIDENCIAL // EM PRODUÇÃO
+                          <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.22em] font-bold text-[#C4550A] uppercase whitespace-nowrap">
+                            [ CONVIDADO SOB EMBARGO ]
                           </span>
                         </div>
-                        <span className="font-mono text-[8.5px] tracking-widest text-[#FAF6EB]/60 uppercase mt-1">
-                          DIVULGAÇÃO 48H ANTES
-                        </span>
                       </div>
-
-                      {/* Gradiente sutil de fusão na base */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#140B07] via-[#140B07]/30 to-transparent pointer-events-none" />
                     </div>
                   ) : (
-                    <div className="relative aspect-[4/5] w-full rounded-[12px] overflow-hidden bg-[#0A0503] border border-white/[0.06] group-hover:border-white/20 transition-all duration-500">
+                    <div className="relative w-full h-full">
                       <img
                         src={item.photo}
                         alt={item.guestName}
-                        className="w-full h-full object-cover object-top grayscale contrast-[1.3] brightness-95 group-hover:scale-105 group-hover:contrast-[1.35] transition-transform duration-700 ease-out"
+                        className="w-full h-full object-cover object-top grayscale contrast-[1.3] brightness-90 group-hover:scale-105 group-hover:contrast-[1.35] transition-transform duration-700 ease-out"
                       />
-                      {/* Gradiente sutil na base que se funde perfeitamente ao card */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#140B07] via-[#140B07]/50 to-transparent pointer-events-none" />
-                      <div className="absolute inset-0 bg-gradient-to-b from-[#140B07]/30 via-transparent to-transparent pointer-events-none" />
-
-                      {/* Selo editorial sutil */}
-                      <div className="absolute top-3 left-3 z-10 pointer-events-none">
-                        <span className="bg-[#140B07]/85 backdrop-blur-md px-2.5 py-1 rounded-[4px] text-[9px] font-mono tracking-[0.16em] text-[#FAF6EB] border border-white/10 uppercase font-semibold">
-                          CONVIDADO CONFIRMADO
-                        </span>
-                      </div>
+                      {/* Duotone quente direcional sutil */}
+                      <div
+                        className="absolute inset-0 mix-blend-color opacity-30 pointer-events-none"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, rgba(196,85,10,0.6) 0%, rgba(28,15,10,0.8) 100%)",
+                        }}
+                      />
                     </div>
                   )}
                 </div>
 
-                {/* 3. Bloco de Conteúdo / Pauta Editorial */}
-                <div className="flex-1 flex flex-col justify-between z-10 relative">
-                  <div>
-                    {/* Nome do Convidado em Destaque & Cargo com altura mínima equilibrada */}
-                    <div className="min-h-[58px] flex flex-col justify-start">
-                      <h3 className="font-bold text-lg text-white tracking-tight leading-snug group-hover:text-[#FAF6EB] transition-colors">
-                        {item.guestName}
-                      </h3>
-                      <p className="font-mono text-xs text-[#C4550A] uppercase tracking-wider mt-1 font-medium leading-tight">
-                        {item.guestRole}
-                      </p>
-                    </div>
+                {/* VINHETA ESCURA PROGRESSIVA EM CAMADAS */}
+                {/* Vinheta superior sutil para garantir contraste do header */}
+                <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#120805]/80 via-[#120805]/30 to-transparent pointer-events-none z-10" />
 
-                    {/* Divisor editorial sutil */}
-                    <div className="w-full h-px bg-white/[0.06] my-3.5 group-hover:bg-white/[0.12] transition-colors" />
+                {/* Vinheta inferior profunda para garantir leitura impecável dos textos */}
+                <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-[#120805] via-[#120805]/95 via-50% to-transparent pointer-events-none z-10" />
 
-                    {/* Pauta como Manchete Jornalística com altura mínima consistente */}
-                    <div className="min-h-[64px]">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FAF6EB]/40 block mb-1">
-                        Pauta Editorial
-                      </span>
-                      <h4 className="font-podcast-display text-[15px] font-semibold text-white/90 leading-snug tracking-tight group-hover:text-white transition-colors">
-                        {item.topic}
-                      </h4>
-                    </div>
+                {/* 3. TOPO DO PÔSTER (HEADER DE ESTREIA) */}
+                <div className="relative z-20 p-4 sm:p-5 flex items-center justify-between pointer-events-none">
+                  <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-[#C4550A] uppercase bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10 rounded-sm shadow-lg">
+                    {item.isLive && <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />}
+                    <span>[ {item.headerBadge} ]</span>
                   </div>
+                </div>
 
-                  {/* Rodapé do Card */}
-                  <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
-                    <span className="text-white/40 tracking-wider text-[11px]">
-                      {item.isConfidential ? "Sigilo Contratual" : "Transmissão 4K HDR"}
+                {/* 4. BASE DO PÔSTER (CONTEÚDO EDITORIAL) */}
+                <div className="relative z-20 p-5 sm:p-6 flex flex-col justify-end text-left">
+                  {/* Cargo / Especialidade */}
+                  <span className="font-mono text-[11px] text-white/50 tracking-wider uppercase mb-1 block font-medium">
+                    {item.guestRole}
+                  </span>
+
+                  {/* Nome do Convidado */}
+                  <h3 className="font-podcast-display text-xl font-bold text-white mb-2 leading-tight tracking-tight group-hover:text-[#FAF6EB] transition-colors">
+                    {item.guestName}
+                  </h3>
+
+                  {/* Pauta tratada como título de documentário/obra */}
+                  <h4 className="font-podcast-display text-[14.5px] sm:text-[15.5px] font-bold text-white/95 leading-[1.2] tracking-tight group-hover:text-white transition-colors line-clamp-3">
+                    {item.topic}
+                  </h4>
+
+                  {/* Rodapé / Micro-interação de Premiere */}
+                  <div className="mt-3.5 pt-3 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-white/40">
+                    <span className="tracking-wider">
+                      {item.isConfidential ? "ESTREIA SOB EMBARGO" : "TRANSMISSÃO EXCLUSIVA"}
                     </span>
-                    <span className="text-[#C4550A] group-hover:translate-x-1 transition-transform duration-300 font-mono text-xs font-bold flex items-center gap-1">
-                      Acompanhar →
+                    <span className="text-[#C4550A] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-300">
+                      VER DETALHES →
                     </span>
                   </div>
                 </div>
