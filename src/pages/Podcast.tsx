@@ -254,25 +254,16 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION (PAINEL DE LANÇAMENTOS CINEMATOGRÁFICOS) */}
+        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION */}
         <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="mb-16">
             <div className="text-left max-w-2xl">
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
-                Grade de Lançamentos • Movie Premiere
-              </span>
               <h2 className="font-podcast-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
                 Próximas <span className="text-[#C4550A]">estreias</span> confirmadas.
               </h2>
               <p className="text-white/60 text-base md:text-lg leading-relaxed mt-3">
                 Líderes de mercado, tomadores de decisão e estrategistas no centro do debate executivo. Acompanhe as estreias e transmissões oficiais.
               </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono text-white/80 bg-white/[0.04] border border-white/10">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
-                Estreias semanais às quintas • 19h
-              </span>
             </div>
           </div>
 
