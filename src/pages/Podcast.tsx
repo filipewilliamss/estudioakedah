@@ -4,6 +4,7 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
+import IrisPreloader from "@/components/podcast/IrisPreloader";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import { WHATSAPP_URL } from "@/data/services";
@@ -26,6 +27,9 @@ const Podcast = () => {
 
   return (
     <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative">
+      {/* Tela de Carregamento Inicial com Revelação de Íris Circular */}
+      <IrisPreloader />
+
       <SEO
         title="Akedah Podcast | Assista ao Vivo e Calendário"
         description="Akedah Podcast: assista ao vivo, veja o calendário de entrevistas, confira as fotos dos episódios e acompanhe nas redes sociais."
