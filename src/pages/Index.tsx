@@ -4,21 +4,24 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-
-import ServicesSection from "@/components/ServicesSection";
-import ProcessSection from "@/components/ProcessSection";
-import PortfolioSection from "@/components/PortfolioSection";
-import ContactSection from "@/components/ContactSection";
+import { BrutalHeroSection } from "@/components/brutal/BrutalHeroSection";
+import { BrutalServicesBar } from "@/components/brutal/BrutalServicesBar";
+import { BrutalManifestoBanner } from "@/components/brutal/BrutalManifestoBanner";
+import { BrutalPortfolioBento } from "@/components/brutal/BrutalPortfolioBento";
+import { BrutalProcessSection } from "@/components/brutal/BrutalProcessSection";
+import { BrutalClosingCTA } from "@/components/brutal/BrutalClosingCTA";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
-import EditorialMarquee from "@/components/EditorialMarquee";
-import EditorialQuote from "@/components/EditorialQuote";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import ParticleBackground from "@/components/ParticleBackground";
 
 const Index = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('akedah_home_loader_seen');
+    } catch {
+      return true;
+    }
+  });
   const location = useLocation();
 
   useEffect(() => {
@@ -58,50 +61,33 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#101010] relative">
-      <ParticleBackground />
+    <div className="min-h-screen bg-[#0A0604] relative text-white selection:bg-[#C4550A] selection:text-white">
       <SEO schema={studioSchema} />
 
       <AnimatePresence>
-        {loading && <Preloader onComplete={() => setLoading(false)} />}
+        {loading && (
+          <Preloader
+            onComplete={() => {
+              try {
+                sessionStorage.setItem('akedah_home_loader_seen', 'true');
+              } catch {}
+              setLoading(false);
+            }}
+          />
+        )}
       </AnimatePresence>
 
       <div className={`relative z-10 transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         {!loading && (
-          <main className="flex flex-col snap-y snap-proximity">
+          <main className="flex flex-col">
             <Navbar />
-
-            <section className="snap-start">
-              <HeroSection />
-            </section>
-
-            <section className="snap-start">
-              <EditorialQuote
-                eyebrow="Posicionamento Akedah"
-                quote={<>Marketing é ferramenta, não <span className="italic text-[#C4550A]">ponto de partida</span>.</>}
-                attribution="Daniel Silva · Fundador da Akedah"
-              />
-            </section>
-
-            <section className="snap-start">
-              <ServicesSection />
-            </section>
-
-            <section className="snap-start">
-              <ProcessSection />
-            </section>
-
-            {/* Cada serviço em tela cheia, com link para a página detalhada */}
-            <PortfolioSection />
-
-            <section className="snap-start">
-              <TestimonialsSection />
-            </section>
-
-            <section className="snap-start">
-              <ContactSection />
-            </section>
-
+            <BrutalHeroSection />
+            <BrutalServicesBar />
+            <BrutalManifestoBanner />
+            <BrutalPortfolioBento />
+            <BrutalProcessSection />
+            <TestimonialsSection />
+            <BrutalClosingCTA />
             <Footer />
           </main>
         )}
