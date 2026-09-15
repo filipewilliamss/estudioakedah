@@ -147,13 +147,13 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 2. DESTAQUE DO EPISÓDIO — BLOCO EDITORIAL DIVIDIDO EM GRADE ORTOGONAL (#destaque) */}
-        <section id="destaque" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
+        {/* 2. DESTAQUE DO EPISÓDIO — PLAYER EXPANDIDO (#destaque) */}
+        <section id="destaque" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 w-full max-w-[1600px] mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
           {/* Spotlight motivado atrás do player */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.14)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
           {/* Header da Seção */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-white/10 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b border-white/10 gap-4 max-w-[min(100%,calc(80vh*16/9))] mx-auto">
             <div>
               <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.25em] mb-2 block">
                 [ ÚLTIMO LANÇAMENTO • 1H 24MIN ]
@@ -168,11 +168,9 @@ const Podcast = () => {
             </div>
           </div>
 
-          {/* Bloco Editorial com Vídeo em Destaque Ampliado e Informações Abaixo */}
-          <div className="border border-white/10 bg-[#080503] rounded-none overflow-hidden flex flex-col">
-            
-            {/* Player / Imagem - Full Width 16:9 Monumental */}
-            <div className="relative aspect-video w-full overflow-hidden bg-black group rounded-none">
+          {/* Player / Imagem - Captura Máxima da Viewport sem Cortar Topo ou Base */}
+          <div className="w-full max-w-[min(100%,calc(80vh*16/9))] mx-auto border border-white/15 bg-black shadow-2xl overflow-hidden rounded-none">
+            <div className="relative aspect-video w-full max-h-[80vh] overflow-hidden bg-black group rounded-none">
               {isPlaying ? (
                 <iframe
                   className="w-full h-full"
@@ -188,7 +186,7 @@ const Podcast = () => {
                   <img
                     src="https://img.youtube.com/vi/nAcTWvqdc-E/maxresdefault.jpg"
                     alt="Episódio em Destaque - Akedah Podcast"
-                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out brightness-90"
+                    className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-700 ease-out brightness-95"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
@@ -213,47 +211,21 @@ const Podcast = () => {
                 </div>
               )}
             </div>
+          </div>
 
-            {/* Dados e Impacto Abaixo do Vídeo */}
-            <div className="p-6 sm:p-10 border-t border-white/10 bg-[#090503] flex flex-col lg:flex-row lg:items-end justify-between gap-8 text-left">
-              <div className="max-w-3xl">
-                <span className="font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-[#C4550A] uppercase font-bold block mb-3">
-                  [ PAUTA PRINCIPAL ]
-                </span>
-                <h3 className="font-barlow-condensed text-3xl sm:text-4xl md:text-[44px] font-black uppercase text-white leading-[0.92] tracking-tight mb-3">
-                  ENGENHARIA DE VENDAS PREVISÍVEIS
-                </h3>
-                <p className="font-mono text-xs sm:text-[13px] font-bold text-white/90 uppercase tracking-wider mb-4 pb-3 border-b border-white/10">
-                  CONVIDADO: <span className="text-[#C4550A]">DANIEL SILVA — FUNDADOR &amp; ESTRATEGISTA</span>
-                </p>
-                <p className="text-[#8A827D] text-xs sm:text-sm md:text-base leading-relaxed font-normal">
-                  Uma análise profunda sobre como estruturar máquinas de vendas previsíveis, eliminar achismos e blindar a margem comercial em operações de alto valor.
-                </p>
-              </div>
-
-              {/* Botões Retangulares Diretos para YouTube e Spotify com Cantos Secos */}
-              <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto shrink-0">
-                <a
-                  href="https://www.youtube.com/@EstudioAkedah"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-3 px-6 py-4 bg-black/90 hover:bg-[#C4550A] border border-white/20 hover:border-[#C4550A] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors"
-                >
-                  <span>ASSISTIR NO YOUTUBE</span>
-                  <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-                </a>
-                <a
-                  href="https://open.spotify.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-center gap-3 px-6 py-4 bg-black/90 hover:bg-emerald-600 border border-white/20 hover:border-emerald-500 text-white font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors"
-                >
-                  <span>OUVIR NO SPOTIFY</span>
-                  <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-                </a>
-              </div>
-            </div>
-
+          {/* Botão de Inscreva-se Direto Abaixo do Player */}
+          <div className="mt-8 flex justify-center">
+            <a
+              href="https://www.youtube.com/@EstudioAkedah?sub_confirmation=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 bg-[#FF0000] hover:bg-[#D90000] text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 shadow-xl shadow-red-950/40 hover:scale-[1.02] rounded-none"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              <span>INSCREVER-SE NO CANAL</span>
+            </a>
           </div>
         </section>
 
