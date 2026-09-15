@@ -260,15 +260,15 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION */}
+        {/* 3. PROGRAMAÇÃO & CONVIDADOS SECTION (GRADE EDITORIAL CINEMATOGRÁFICA) */}
         <section id="calendario" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/[0.08]">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div className="text-left max-w-2xl">
               <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
-                Programação & Convidados
+                Programação &amp; Convidados
               </span>
               <h2 className="font-podcast-display text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-                Próximas <span className="text-[#C4550A]">entrevistas</span> confirmadas.
+                Grade <span className="text-[#C4550A]">Editorial</span> do Podcast.
               </h2>
               <p className="text-white/60 text-base md:text-lg leading-relaxed mt-3">
                 Líderes de mercado, tomadores de decisão e estrategistas no centro do debate executivo. Acompanhe as transmissões ao vivo.
@@ -276,7 +276,7 @@ const Podcast = () => {
             </div>
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono text-white/80 bg-white/[0.04] border border-white/10">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
                 Gravações semanais às quintas • 19h
               </span>
             </div>
@@ -285,10 +285,9 @@ const Podcast = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                status: "Ao Vivo Esta Semana",
-                statusType: "live" as const,
-                data: "15/08",
-                hora: "19h",
+                dateDisplay: "15 AGO",
+                timeLabel: "AO VIVO • 19H",
+                isLive: true,
                 guestName: "Daniel Silva",
                 guestRole: "Fundador & Estrategista B2B",
                 topic: "Engenharia de Vendas Previsíveis e Retenção Corporativa",
@@ -296,30 +295,27 @@ const Podcast = () => {
                 isConfidential: false,
               },
               {
-                status: "Confirmado",
-                statusType: "confirmed" as const,
-                data: "22/08",
-                hora: "19h",
+                dateDisplay: "22 AGO",
+                timeLabel: "CONFIRMADO • 19H",
+                isLive: false,
                 guestName: "Convidado Confidencial",
                 guestRole: "VP de Operações • Tech Enterprise",
                 topic: "Infraestrutura Escalável e Governança em Startups Unicórnio",
                 isConfidential: true,
               },
               {
-                status: "Confirmado",
-                statusType: "confirmed" as const,
-                data: "29/08",
-                hora: "19h",
+                dateDisplay: "29 AGO",
+                timeLabel: "CONFIRMADO • 19H",
+                isLive: false,
                 guestName: "Convidado Confidencial",
                 guestRole: "CEO & Conselheiro de Administração",
                 topic: "M&A, Fusões Estratégicas e Posicionamento de Marca no Brasil",
                 isConfidential: true,
               },
               {
-                status: "Gravado",
-                statusType: "recorded" as const,
-                data: "05/09",
-                hora: "19h",
+                dateDisplay: "05 SET",
+                timeLabel: "GRAVADO • 19H",
+                isLive: false,
                 guestName: "Convidado Confidencial",
                 guestRole: "Diretor Comercial • FinTech B2B",
                 topic: "Playbooks de Vendas Consultivas e Fechamentos de 7 Dígitos",
@@ -328,92 +324,177 @@ const Podcast = () => {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="podcast-card rounded-[24px] p-6 sm:p-7 flex flex-col justify-between group hover:border-[#C4550A]/40 transition-all duration-300 hover:-translate-y-1 relative overflow-hidden"
+                className="relative rounded-[16px] bg-[#140B07] border border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between group hover:border-white/[0.18] transition-all duration-500 overflow-hidden hover:shadow-[0_16px_40px_-12px_rgba(196,85,10,0.18)]"
               >
-                {/* Glow de destaque no episódio 'Ao Vivo' */}
-                {item.statusType === "live" && (
-                  <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#C4550A]/15 rounded-full blur-2xl pointer-events-none" />
-                )}
+                {/* Linha sutil terracota no topo no hover */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C4550A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 pointer-events-none" />
 
-                {/* Top Header: Badge de Status + Chip de Data/Hora */}
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-6">
-                    {/* Status Badge */}
-                    {item.statusType === "live" ? (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                        {item.status}
-                      </span>
-                    ) : item.statusType === "confirmed" ? (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-[#C4550A]/10 text-[#C4550A] border border-[#C4550A]/25">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A]" />
-                        {item.status}
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold bg-purple-500/10 text-purple-300 border border-purple-500/20">
-                        <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                        {item.status}
-                      </span>
-                    )}
+                {/* Glow de luz quente projetado suavemente atrás do card no hover */}
+                <div className="absolute -top-16 -inset-x-8 h-36 bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
 
-                    {/* Chip Data / Horário */}
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-white/70 bg-white/[0.04] border border-white/[0.08] px-2.5 py-1 rounded-full">
-                      <span className="text-white font-bold">{item.data}</span>
-                      <span className="text-white/30">•</span>
-                      <span className="text-white/60">{item.hora}</span>
-                    </div>
+                {/* 1. Cabeçalho do Card: Data Grande Editorial + Indicador Textual Discreto */}
+                <div className="flex items-baseline justify-between gap-3 mb-5 z-10 relative">
+                  <div>
+                    <span className="font-['Cinzel',serif] text-2xl sm:text-3xl font-bold tracking-tight text-[#FAF6EB]">
+                      {item.dateDisplay}
+                    </span>
                   </div>
-
-                  {/* Guest Section (Avatar/Silhueta + Nome + Cargo) */}
-                  <div className="flex items-start gap-4 mb-6">
-                    {item.isConfidential ? (
-                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-white/[0.08] to-black/80 border border-white/10 flex flex-col items-center justify-center relative overflow-hidden group-hover:border-[#C4550A]/40 transition-colors flex-shrink-0 shadow-inner">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08)_0%,_transparent_70%)] pointer-events-none" />
-                        <svg
-                          className="w-7 h-7 text-white/25 group-hover:text-white/40 transition-colors mt-0.5"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        <span className="text-[8px] font-mono tracking-widest text-white/40 uppercase mt-0.5">
-                          SIGILO
-                        </span>
-                      </div>
+                  <div>
+                    {item.isLive ? (
+                      <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold tracking-widest text-[#C4550A] uppercase">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
+                        {item.timeLabel}
+                      </span>
                     ) : (
-                      <div className="relative flex-shrink-0">
-                        <img
-                          src={item.photo}
-                          alt={item.guestName}
-                          className="w-16 h-16 rounded-2xl object-cover border border-white/15 ring-2 ring-[#C4550A]/40 shadow-lg"
-                        />
-                        <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[#1C0F0A]" title="Confirmado" />
-                      </div>
+                      <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-medium tracking-widest text-[#FAF6EB]/70 uppercase">
+                        {item.timeLabel}
+                      </span>
                     )}
-
-                    <div className="min-w-0 flex-1">
-                      <h3 className={`font-podcast-display text-lg font-bold leading-snug ${item.isConfidential ? "text-white/85 tracking-normal italic" : "text-white"}`}>
-                        {item.guestName}
-                      </h3>
-                      <p className="font-mono text-xs text-[#C4550A] tracking-wider mt-1.5 leading-tight">
-                        {item.guestRole}
-                      </p>
-                    </div>
                   </div>
                 </div>
 
-                {/* Topic / Pauta Section */}
-                <div className="pt-4 border-t border-white/[0.08] mt-auto">
-                  <span className="text-[10px] font-mono uppercase tracking-[0.18em] text-white/40 block mb-1.5">
-                    Pauta do Episódio
-                  </span>
-                  <p className="font-podcast-display text-sm font-semibold text-white/80 group-hover:text-white transition-colors leading-relaxed line-clamp-2">
-                    "{item.topic}"
-                  </p>
+                {/* 2. Bloco Visual do Convidado: Retrato Proporção 4:5 Editorial */}
+                <div className="z-10 relative mb-5">
+                  {item.isConfidential ? (
+                    <div className="relative aspect-[4/5] w-full rounded-[12px] overflow-hidden bg-[#0A0503] border border-white/[0.06] flex flex-col items-center justify-center group-hover:border-white/15 transition-all duration-500">
+                      {/* Marcador técnico discreto no canto */}
+                      <div className="absolute top-2.5 right-2.5 z-20 font-mono text-[8px] tracking-widest text-white/30 uppercase pointer-events-none">
+                        SIGILO // B2B
+                      </div>
+
+                      {/* Textura de interferência de sinal / scanlines de alta classe */}
+                      <div
+                        className="absolute inset-0 opacity-[0.28] pointer-events-none"
+                        style={{
+                          backgroundImage:
+                            "repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 3px)",
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,_rgba(196,85,10,0.18)_0%,_transparent_70%)] pointer-events-none" />
+
+                      {/* Silhueta executiva estelar com iluminação rim-light */}
+                      <div className="relative flex items-center justify-center w-full h-full">
+                        <svg
+                          viewBox="0 0 160 200"
+                          className="w-36 h-44 text-white/[0.12] group-hover:text-white/[0.2] transition-colors duration-500"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <defs>
+                            <linearGradient
+                              id={`silhouette-grad-${idx}`}
+                              x1="80"
+                              y1="20"
+                              x2="80"
+                              y2="180"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop stopColor="#FAF6EB" stopOpacity="0.25" />
+                              <stop offset="0.45" stopColor="#C4550A" stopOpacity="0.18" />
+                              <stop offset="1" stopColor="#140B07" stopOpacity="0.9" />
+                            </linearGradient>
+                          </defs>
+                          {/* Cabeça / Perfil executivo sóbrio */}
+                          <path
+                            d="M80 30C92 30 101 39.5 101 52C101 64.5 92 74 80 74C68 74 59 64.5 59 52C59 39.5 68 30 80 30Z"
+                            fill={`url(#silhouette-grad-${idx})`}
+                            stroke="rgba(255,255,255,0.16)"
+                            strokeWidth="1.2"
+                          />
+                          {/* Ombros e corte de terno executivo lapela */}
+                          <path
+                            d="M38 122C38 96 56 86 80 86C104 86 122 96 122 122L138 185H22L38 122Z"
+                            fill={`url(#silhouette-grad-${idx})`}
+                            stroke="rgba(255,255,255,0.14)"
+                            strokeWidth="1.2"
+                          />
+                          {/* Linhas angulares de lapela / gravata */}
+                          <path
+                            d="M68 87L80 114L92 87"
+                            stroke="rgba(255,255,255,0.22)"
+                            strokeWidth="1"
+                          />
+                          <path
+                            d="M80 114V146"
+                            stroke="rgba(255,255,255,0.18)"
+                            strokeWidth="1"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* Carimbo tipográfico de alta classe */}
+                      <div className="absolute inset-x-3 bottom-3.5 z-20 flex flex-col items-center text-center pointer-events-none">
+                        <div className="px-2.5 py-1.5 rounded-[4px] border border-[#C4550A]/40 bg-[#140B07]/90 backdrop-blur-md shadow-lg shadow-black/80 flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
+                          <span className="font-mono text-[9.5px] tracking-[0.18em] font-semibold text-[#C4550A] uppercase whitespace-nowrap">
+                            CONFIDENCIAL // EM PRODUÇÃO
+                          </span>
+                        </div>
+                        <span className="font-mono text-[8.5px] tracking-widest text-[#FAF6EB]/60 uppercase mt-1">
+                          DIVULGAÇÃO 48H ANTES
+                        </span>
+                      </div>
+
+                      {/* Gradiente sutil de fusão na base */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#140B07] via-[#140B07]/30 to-transparent pointer-events-none" />
+                    </div>
+                  ) : (
+                    <div className="relative aspect-[4/5] w-full rounded-[12px] overflow-hidden bg-[#0A0503] border border-white/[0.06] group-hover:border-white/20 transition-all duration-500">
+                      <img
+                        src={item.photo}
+                        alt={item.guestName}
+                        className="w-full h-full object-cover object-top grayscale contrast-[1.3] brightness-95 group-hover:scale-105 group-hover:contrast-[1.35] transition-transform duration-700 ease-out"
+                      />
+                      {/* Gradiente sutil na base que se funde perfeitamente ao card */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#140B07] via-[#140B07]/50 to-transparent pointer-events-none" />
+                      <div className="absolute inset-0 bg-gradient-to-b from-[#140B07]/30 via-transparent to-transparent pointer-events-none" />
+
+                      {/* Selo editorial sutil */}
+                      <div className="absolute top-3 left-3 z-10 pointer-events-none">
+                        <span className="bg-[#140B07]/85 backdrop-blur-md px-2.5 py-1 rounded-[4px] text-[9px] font-mono tracking-[0.16em] text-[#FAF6EB] border border-white/10 uppercase font-semibold">
+                          CONVIDADO CONFIRMADO
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* 3. Bloco de Conteúdo / Pauta Editorial */}
+                <div className="flex-1 flex flex-col justify-between z-10 relative">
+                  <div>
+                    {/* Nome do Convidado em Destaque & Cargo com altura mínima equilibrada */}
+                    <div className="min-h-[58px] flex flex-col justify-start">
+                      <h3 className="font-bold text-lg text-white tracking-tight leading-snug group-hover:text-[#FAF6EB] transition-colors">
+                        {item.guestName}
+                      </h3>
+                      <p className="font-mono text-xs text-[#C4550A] uppercase tracking-wider mt-1 font-medium leading-tight">
+                        {item.guestRole}
+                      </p>
+                    </div>
+
+                    {/* Divisor editorial sutil */}
+                    <div className="w-full h-px bg-white/[0.06] my-3.5 group-hover:bg-white/[0.12] transition-colors" />
+
+                    {/* Pauta como Manchete Jornalística com altura mínima consistente */}
+                    <div className="min-h-[64px]">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#FAF6EB]/40 block mb-1">
+                        Pauta Editorial
+                      </span>
+                      <h4 className="font-podcast-display text-[15px] font-semibold text-white/90 leading-snug tracking-tight group-hover:text-white transition-colors">
+                        {item.topic}
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Rodapé do Card */}
+                  <div className="pt-4 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono">
+                    <span className="text-white/40 tracking-wider text-[11px]">
+                      {item.isConfidential ? "Sigilo Contratual" : "Transmissão 4K HDR"}
+                    </span>
+                    <span className="text-[#C4550A] group-hover:translate-x-1 transition-transform duration-300 font-mono text-xs font-bold flex items-center gap-1">
+                      Acompanhar →
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
