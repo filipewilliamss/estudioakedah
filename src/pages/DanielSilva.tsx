@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import founderPicture from "@/assets/akedah-founder.jpg";
+import imagemDaniel from "@/assets/imagem-daniel.png";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
 // Agenda Pública - Seção 1 (Fundo Azul Marinho - 2 primeiras datas)
@@ -114,15 +114,24 @@ const DanielSilva = () => {
         {/* 1. HERO SECTION (MODELO IMAGEM 1)                                        */}
         {/* ========================================================================= */}
         <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16">
-          {/* Fundo com Fotografia em Chiaroscuro e Degradês */}
-          <div className="absolute inset-0 z-0">
-            <img 
-              src={founderPicture} 
-              alt="Daniel Silva" 
-              className="w-full h-full object-cover object-top opacity-45 filter grayscale contrast-125 brightness-90"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/85 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-[#07132B]/50" />
+          {/* Fundo com Imagem do Daniel Silva à direita e Degradê Azul Marinho vindo da esquerda */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {/* Imagem do Daniel posicionada à direita */}
+            <div className="absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full flex items-center justify-end">
+              <img 
+                src={imagemDaniel} 
+                alt="Daniel Silva" 
+                className="w-full h-full object-cover object-[center_20%] md:object-cover md:object-[center_15%] opacity-85 md:opacity-95 filter contrast-105"
+              />
+            </div>
+
+            {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-45% via-[#07132B]/90 md:via-[#07132B]/70 via-65% to-transparent" />
+
+            {/* Degradês verticais para mesclagem superior e inferior */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60" />
+
+            {/* Glow azul sutil */}
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none" />
           </div>
 
