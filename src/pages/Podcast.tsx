@@ -14,6 +14,16 @@ const Podcast = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
+    if (window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        setTimeout(() => {
+          targetEl.scrollIntoView({ behavior: "smooth" });
+        }, 150);
+        return;
+      }
+    }
     window.scrollTo(0, 0);
   }, []);
 
@@ -138,7 +148,7 @@ const Podcast = () => {
         </section>
 
         {/* 2. DESTAQUE DO EPISÓDIO — BLOCO EDITORIAL DIVIDIDO EM GRADE ORTOGONAL (#destaque) */}
-        <section id="destaque" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative">
+        <section id="destaque" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
           {/* Spotlight motivado atrás do player */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.14)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
@@ -248,7 +258,7 @@ const Podcast = () => {
         </section>
 
         {/* 3. SEÇÃO DE ESTREIAS — VITRINE DE CARTAZES EDITORIAIS (#calendario) */}
-        <section id="calendario" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative">
+        <section id="calendario" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
           {/* Header da Seção */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10 gap-4 text-left">
             <div>
@@ -367,7 +377,7 @@ const Podcast = () => {
         </section>
 
         {/* 4. PLATAFORMAS — RÉGUA MINIMALISTA 4 COLUNAS (#redes) */}
-        <section id="redes" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative">
+        <section id="redes" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10 gap-4 text-left">
             <div>
               <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.25em] mb-2 block">
@@ -453,7 +463,7 @@ const Podcast = () => {
         </section>
 
         {/* 5. FECHAMENTO MONUMENTAL EM BLOCO ÚNICO (#contato) */}
-        <section id="contato" className="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto relative">
+        <section id="contato" className="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto relative scroll-mt-20 md:scroll-mt-24">
           {/* Spotlight Quente Motivada Centralizada */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
 
