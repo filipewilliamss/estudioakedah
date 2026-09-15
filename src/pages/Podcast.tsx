@@ -270,38 +270,34 @@ const Podcast = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                headerBadge: "AO VIVO • 15 AGO • 19H",
-                isLive: true,
                 guestName: "Daniel Silva",
-                topic: "Engenharia de Vendas Previsíveis e Retenção Corporativa",
+                date: "15 AGO",
+                time: "19H",
                 photo: founderPicture,
                 isConfidential: false,
               },
               {
-                headerBadge: "CONFIRMADO • 22 AGO • 19H",
-                isLive: false,
                 guestName: "Convidado Confidencial",
-                topic: "Infraestrutura Escalável e Governança em Startups Unicórnio",
+                date: "22 AGO",
+                time: "19H",
                 isConfidential: true,
               },
               {
-                headerBadge: "CONFIRMADO • 29 AGO • 19H",
-                isLive: false,
                 guestName: "Convidado Confidencial",
-                topic: "M&A, Fusões Estratégicas e Posicionamento de Marca no Brasil",
+                date: "29 AGO",
+                time: "19H",
                 isConfidential: true,
               },
               {
-                headerBadge: "GRAVADO • 05 SET • 19H",
-                isLive: false,
                 guestName: "Convidado Confidencial",
-                topic: "Playbooks de Vendas Consultivas e Fechamentos de 7 Dígitos",
+                date: "05 SET",
+                time: "19H",
                 isConfidential: true,
               },
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="relative aspect-[3/4] rounded-[16px] overflow-hidden group border border-white/[0.08] hover:border-[#C4550A]/60 transition-all duration-500 bg-[#120805] hover:shadow-[0_12px_40px_rgba(196,85,10,0.18)] flex flex-col justify-between"
+                className="relative aspect-[3/4] rounded-[16px] overflow-hidden group border border-white/[0.08] hover:border-[#C4550A]/60 transition-all duration-500 bg-[#120805] hover:shadow-[0_12px_40px_rgba(196,85,10,0.18)] flex flex-col justify-end"
               >
                 {/* Linha superior de iluminação terracota no hover */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C4550A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 pointer-events-none" />
@@ -356,22 +352,14 @@ const Podcast = () => {
                 <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#120805]/85 to-transparent pointer-events-none z-10" />
                 <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#120805] via-[#120805]/95 via-50% to-transparent pointer-events-none z-10" />
 
-                {/* TOPO DO PÔSTER (HEADER COMPACTO DE DATA) */}
-                <div className="relative z-20 p-4 sm:p-5 flex items-center justify-between pointer-events-none">
-                  <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-[#C4550A] uppercase bg-black/75 backdrop-blur-md px-3 py-1 border border-white/10 rounded-sm shadow-lg">
-                    {item.isLive && <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />}
-                    <span>[ {item.headerBadge} ]</span>
-                  </div>
-                </div>
-
-                {/* BASE DO PÔSTER (CONVIDADO E TÍTULO EM ALTO CONTRASTE) */}
+                {/* BASE DO PÔSTER (CONVIDADO E DATA/HORÁRIO DESTACADOS) */}
                 <div className="relative z-20 p-5 sm:p-6 flex flex-col justify-end text-left">
                   <h3 className="font-podcast-display text-xl sm:text-2xl font-bold text-white mb-2 leading-tight tracking-tight group-hover:text-[#FAF6EB] transition-colors">
                     {item.guestName}
                   </h3>
-                  <h4 className="font-podcast-display text-base sm:text-lg font-semibold text-white/90 leading-snug tracking-tight group-hover:text-white transition-colors line-clamp-3">
-                    {item.topic}
-                  </h4>
+                  <p className="font-podcast-display text-base sm:text-lg font-bold text-[#C4550A] tracking-wider uppercase">
+                    {item.date} • {item.time}
+                  </p>
                 </div>
               </div>
             ))}
