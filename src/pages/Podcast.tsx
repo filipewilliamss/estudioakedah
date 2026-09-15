@@ -343,20 +343,13 @@ const Podcast = () => {
                 <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0C0704]/90 to-transparent pointer-events-none z-10" />
                 <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#0C0704] via-[#0C0704]/95 via-50% to-transparent pointer-events-none z-10" />
 
-                {/* Topo: Header de Data em Fonte Mono com Traço Seco */}
-                <div className="relative z-20 p-5 flex items-center justify-between pointer-events-none">
-                  <span className="font-mono text-[10px] tracking-[0.25em] text-[#C4550A] uppercase bg-black/90 px-3 py-1.5 border border-white/10 rounded-none shadow-xl font-bold">
-                    {item.date}
-                  </span>
-                </div>
-
-                {/* Base: Nome do Convidado em Caixa Alta + Título da Pauta em Letras Garrafais */}
+                {/* Base: Nome do Convidado em Caixa Alta + Data e Horário em Destaque */}
                 <div className="relative z-20 p-6 flex flex-col justify-end text-left">
                   <h3 className="font-barlow-condensed text-2xl sm:text-3xl font-black text-white mb-1 uppercase tracking-tight group-hover:text-[#FAF6EB] transition-colors leading-none">
                     {item.guestName}
                   </h3>
-                  <p className="font-barlow-condensed text-xs sm:text-sm font-bold text-[#C4550A] tracking-wide uppercase line-clamp-2 leading-tight mt-1">
-                    {item.episodeTitle}
+                  <p className="font-mono text-xs sm:text-sm font-bold text-[#C4550A] tracking-[0.2em] uppercase mt-1">
+                    {item.date}
                   </p>
                 </div>
               </div>
