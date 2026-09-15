@@ -6,7 +6,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { AnimatePresence } from "framer-motion";
 import Lenis from "lenis";
 import Index from "./pages/Index.tsx";
 import About from "./pages/About.tsx";
@@ -35,26 +34,24 @@ const AnimatedRoutes = () => {
   const location = useLocation();
   
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Index />} />
-        <Route path="/sobre" element={<About />} />
-        <Route path="/contato" element={<Contact />} />
-        <Route path="/obrigado" element={<Obrigado />} />
-        
-        <Route path="/servicos/:slug" element={<ServiceDetail />} />
-        <Route path="/podcast" element={<Podcast />} />
-        <Route path="/podcast/sobre" element={<PodcastAbout />} />
-        <Route path="/podcast/historia" element={<PodcastAbout />} />
-        <Route path="/daniel-silva" element={<DanielSilva />} />
-        <Route path="/daniel-silva/sobre" element={<DanielSilvaAbout />} />
-        <Route path="/daniel-silva/historia" element={<DanielSilvaAbout />} />
-        <Route path="/projeto/:slug" element={<ProjectDetail />} />
-        <Route path="/project/:slug" element={<ProjectDetail />} />
+    <Routes location={location} key={location.pathname}>
+      <Route path="/" element={<Index />} />
+      <Route path="/sobre" element={<About />} />
+      <Route path="/contato" element={<Contact />} />
+      <Route path="/obrigado" element={<Obrigado />} />
+      
+      <Route path="/servicos/:slug" element={<ServiceDetail />} />
+      <Route path="/podcast" element={<Podcast />} />
+      <Route path="/podcast/sobre" element={<PodcastAbout />} />
+      <Route path="/podcast/historia" element={<PodcastAbout />} />
+      <Route path="/daniel-silva" element={<DanielSilva />} />
+      <Route path="/daniel-silva/sobre" element={<DanielSilvaAbout />} />
+      <Route path="/daniel-silva/historia" element={<DanielSilvaAbout />} />
+      <Route path="/projeto/:slug" element={<ProjectDetail />} />
+      <Route path="/project/:slug" element={<ProjectDetail />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </AnimatePresence>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

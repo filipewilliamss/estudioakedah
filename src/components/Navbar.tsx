@@ -314,7 +314,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
             opacity: visible || menuOpen ? 1 : 0 
           }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className={`fixed top-0 left-0 right-0 z-[80] transition-colors duration-500 ${
+          className={`fixed top-0 left-0 right-0 z-[80] ${
             scrolled
               ? (isCurrentDanielSilva 
                   ? "bg-[#002867]/95 border-white/10 shadow-lg" 
@@ -449,106 +449,96 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
       )}
 
       {/* ========================================================================= */}
-      {/* 3. MODAL DE SELEÇÃO TÉCNICA DE PROJETOS (DESIGN BRUTALISTA / ORTOGONAL)    */}
+      {/* 3. MODAL DE SELEÇÃO TÉCNICA DE PROJETOS (CORTE SECO INSTANTÂNEO)         */}
       {/* ========================================================================= */}
-      <AnimatePresence>
-        {switcherOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={() => setSwitcherOpen(false)}
-              className="absolute inset-0 bg-black/85 backdrop-blur-md"
-            />
+      {switcherOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 duration-0">
+          {/* Backdrop Instantâneo */}
+          <div
+            onClick={() => setSwitcherOpen(false)}
+            className="absolute inset-0 bg-black/85 backdrop-blur-md cursor-pointer duration-0"
+          />
 
-            {/* Modal Box com cantos secos e bordas de 1px */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 15 }}
-              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 w-full max-w-2xl bg-[#0C0704] border border-white/20 rounded-none p-6 sm:p-10 shadow-2xl overflow-hidden"
-            >
-              {/* Header do Modal */}
-              <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8">
-                <div>
-                  <span className="text-[#C4550A] text-[10px] font-mono uppercase tracking-[0.3em] font-bold block mb-1">
-                    // ECOSSISTEMA AKEDAH
-                  </span>
-                  <h2 className="font-barlow-condensed text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">
-                    SELECIONE O SISTEMA
-                  </h2>
-                </div>
-                <button
-                  onClick={() => setSwitcherOpen(false)}
-                  className="w-10 h-10 rounded-none border border-white/15 hover:border-[#C4550A] bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer font-mono"
-                  aria-label="Fechar seletor"
-                >
-                  ✕
-                </button>
+          {/* Modal Box com cantos secos e bordas de 1px */}
+          <div className="relative z-10 w-full max-w-2xl bg-[#0C0704] border border-white/20 rounded-none p-6 sm:p-10 shadow-2xl overflow-hidden duration-0">
+            {/* Header do Modal */}
+            <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-8">
+              <div>
+                <span className="text-[#C4550A] text-[10px] font-mono uppercase tracking-[0.3em] font-bold block mb-1">
+                  // ECOSSISTEMA AKEDAH
+                </span>
+                <h2 className="font-barlow-condensed text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">
+                  SELECIONE O SISTEMA
+                </h2>
               </div>
+              <button
+                onClick={() => setSwitcherOpen(false)}
+                className="w-10 h-10 rounded-none border border-white/15 hover:border-[#C4550A] bg-white/5 hover:bg-white/10 flex items-center justify-center text-white/70 hover:text-white transition-none duration-0 cursor-pointer font-mono"
+                aria-label="Fechar seletor"
+              >
+                ✕
+              </button>
+            </div>
 
-              {/* Lista dos 3 Projetos */}
-              <div className="space-y-4">
-                {ecosystemProjects.map((project) => {
-                  const isActive = project.id === currentProjectId;
-                  return (
-                    <button
-                      key={project.id}
-                      onClick={() => {
-                        setSwitcherOpen(false);
-                        navigate(project.to);
-                      }}
-                      className={`w-full text-left p-5 sm:p-6 rounded-none border transition-all duration-200 flex items-center justify-between group cursor-pointer ${
-                        isActive
-                          ? "bg-white/[0.06] border-[#C4550A] shadow-lg shadow-[#C4550A]/10"
-                          : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/30"
-                      }`}
-                    >
-                      <div className="space-y-1.5 max-w-[80%]">
-                        <div className="flex items-center gap-3">
-                          <h3 className="font-barlow-condensed text-2xl font-black text-white group-hover:text-[#C4550A] uppercase tracking-tight transition-colors">
-                            {project.name}
-                          </h3>
-                          <span className={`text-[9px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-none font-bold ${
-                            isActive ? "bg-[#C4550A] text-white" : "bg-white/10 text-white/60"
-                          }`}>
-                            {project.badge}
-                          </span>
-                        </div>
-                        <p className="text-[#8A827D] text-xs sm:text-sm line-clamp-1 font-sans">
-                          {project.description}
-                        </p>
+            {/* Lista dos 3 Projetos com Corte Seco e Estado Ativo Instantâneo */}
+            <div className="space-y-4">
+              {ecosystemProjects.map((project) => {
+                const isActive = project.id === currentProjectId;
+                return (
+                  <button
+                    key={project.id}
+                    onClick={() => {
+                      setSwitcherOpen(false);
+                      navigate(project.to);
+                    }}
+                    className={`w-full text-left p-5 sm:p-6 rounded-none border transition-none duration-0 flex items-center justify-between group cursor-pointer ${
+                      isActive
+                        ? "bg-white/[0.06] border-[#C4550A] shadow-lg shadow-[#C4550A]/10"
+                        : "bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/30"
+                    }`}
+                  >
+                    <div className="space-y-1.5 max-w-[80%]">
+                      <div className="flex items-center gap-3">
+                        <h3 className={`font-barlow-condensed text-2xl font-black uppercase tracking-tight transition-none duration-0 ${
+                          isActive ? "text-[#C4550A]" : "text-white group-hover:text-[#C4550A]"
+                        }`}>
+                          {project.name}
+                        </h3>
+                        <span className={`text-[9px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-none font-bold transition-none duration-0 ${
+                          isActive ? "bg-[#C4550A] text-white" : "bg-white/10 text-white/60"
+                        }`}>
+                          {project.badge}
+                        </span>
                       </div>
+                      <p className="text-[#8A827D] text-xs sm:text-sm line-clamp-1 font-sans">
+                        {project.description}
+                      </p>
+                    </div>
 
-                      <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider">
-                        {isActive ? (
-                          <span className="text-[#C4550A] font-bold">
-                            ATIVO ✓
-                          </span>
-                        ) : (
-                          <span className="text-white/40 group-hover:text-white transition-colors">
-                            ACESSAR ↗
-                          </span>
-                        )}
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
+                    <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider transition-none duration-0">
+                      {isActive ? (
+                        <span className="text-[#C4550A] font-bold duration-0">
+                          ATIVO ✓
+                        </span>
+                      ) : (
+                        <span className="text-white/40 group-hover:text-white transition-none duration-0">
+                          ACESSAR ↗
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
 
-              <div className="mt-8 pt-6 border-t border-white/10 text-center">
-                <p className="text-[#8A827D] text-xs font-mono tracking-wider uppercase">
-                  [ TRANSITAR ENTRE ESTRUTURAS DO ECOSSISTEMA ]
-                </p>
-              </div>
-            </motion.div>
+            <div className="mt-8 pt-6 border-t border-white/10 text-center">
+              <p className="text-[#8A827D] text-xs font-mono tracking-wider uppercase">
+                [ TRANSITAR ENTRE ESTRUTURAS DO ECOSSISTEMA ]
+              </p>
+            </div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </>
   );
 };

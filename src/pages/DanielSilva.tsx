@@ -12,7 +12,13 @@ import DanielContactSection from "@/components/daniel/DanielContactSection";
 import { DanielBrandMarquee, DANIEL_TAGLINE, DANIEL_POSITIONING } from "@/components/daniel/DanielBrandSignature";
 
 const DanielSilva = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    try {
+      return !sessionStorage.getItem('akedah_daniel_loader_seen');
+    } catch {
+      return false;
+    }
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,6 +37,9 @@ const DanielSilva = () => {
   }, [loading]);
 
   const handlePreloaderComplete = useCallback(() => {
+    try {
+      sessionStorage.setItem('akedah_daniel_loader_seen', 'true');
+    } catch {}
     setLoading(false);
     document.body.style.overflow = "";
     setTimeout(() => {

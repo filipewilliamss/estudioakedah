@@ -77,7 +77,7 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      <div className={`relative z-10 transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+      <div className={`relative z-10 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         {!loading && (
           <main className="flex flex-col">
             <Navbar />
