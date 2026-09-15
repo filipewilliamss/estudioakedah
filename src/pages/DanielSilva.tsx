@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
-// Agenda Pública (estilo Imagens 2 e 4 - Linhas horizontais monumentais com datas em dourado)
-const agendaEventos = [
+// Agenda Pública - Seção 1 (Fundo Azul Marinho - 2 primeiras datas)
+const agendaSecao1 = [
   {
     data: "18/09",
     titulo: "CONVENÇÃO NACIONAL DE VENDAS B2B",
@@ -22,6 +22,10 @@ const agendaEventos = [
     formato: "Imersão",
     link: WHATSAPP_URL,
   },
+];
+
+// Agenda Pública - Seção 2 (Fundo Branco - 3 datas restantes)
+const agendaSecao2 = [
   {
     data: "03/10",
     titulo: "FÓRUM DE LIDERANÇA, NEGÓCIOS & PRINCÍPIOS",
@@ -44,6 +48,42 @@ const agendaEventos = [
     link: WHATSAPP_URL,
   },
 ];
+
+// Componente que aplica animação de surgimento com desfoque alto associada ao scroll
+const ScrollBlurItem = ({
+  children,
+  className = "",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 95%", "center 50%"],
+  });
+
+  // Começa com desfoque alto (24px) e opacidade reduzida; ao atingir o centro da viewport fica totalmente nítido (0px e opacidade 1)
+  const blurVal = useTransform(scrollYProgress, [0, 0.7, 1], [24, 4, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.4, 1], [0.15, 0.65, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [32, 0]);
+  const filter = useTransform(blurVal, (v) => (v <= 0.2 ? "none" : `blur(${v.toFixed(1)}px)`));
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{
+        filter,
+        opacity,
+        y,
+        willChange: "filter, opacity, transform",
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const DanielSilva = () => {
   useEffect(() => {
@@ -133,64 +173,111 @@ const DanielSilva = () => {
         </section>
 
         {/* ========================================================================= */}
-        {/* 2. AGENDA PÚBLICA (ESTILO DAS IMAGENS DE REFERÊNCIA 2 E 4)                */}
+        {/* 2. AGENDA PÚBLICA - PARTE 1 (FUNDO AZUL MARINHO - 2 PRIMEIRAS DATAS)       */}
         {/* ========================================================================= */}
         <section id="agenda" className="py-24 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto border-t border-white/[0.08] relative scroll-mt-20">
-          <div className="mb-12 text-left">
+          <ScrollBlurItem className="mb-12 text-left">
             <span className="text-[#E2BA7A] text-xs font-mono font-bold uppercase tracking-[0.35em] mb-3 block">
               AGENDA PÚBLICA — 2026
             </span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
               Cronograma Oficial de Apresentações
             </h2>
-          </div>
+          </ScrollBlurItem>
 
-          {/* Linhas Horizontais Monumentais (Design Imagem 2 & 4) */}
+          {/* Linhas Horizontais (2 Primeiras Datas no Fundo Azul Marinho) */}
           <div className="divide-y divide-white/15 border-t border-b border-white/15">
-            {agendaEventos.map((evento, idx) => (
-              <a
-                key={idx}
-                href={evento.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group py-8 sm:py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white/[0.03] transition-colors px-4 -mx-4 rounded-none"
-              >
-                {/* Lado Esquerdo: Data em Fonte Gigante Dourada */}
-                <div className="flex items-center gap-6 sm:gap-10 shrink-0">
-                  <span className="font-barlow-condensed font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#E2BA7A] tracking-tighter leading-none group-hover:scale-105 transition-transform duration-300">
-                    {evento.data}
-                  </span>
-                </div>
+            {agendaSecao1.map((evento, idx) => (
+              <ScrollBlurItem key={idx}>
+                <a
+                  href={evento.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group py-8 sm:py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white/[0.03] transition-colors px-4 -mx-4 rounded-none block"
+                >
+                  {/* Lado Esquerdo: Data em Fonte Gigante Dourada */}
+                  <div className="flex items-center gap-6 sm:gap-10 shrink-0">
+                    <span className="font-barlow-condensed font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#E2BA7A] tracking-tighter leading-none group-hover:scale-105 transition-transform duration-300">
+                      {evento.data}
+                    </span>
+                  </div>
 
-                {/* Centro: Título do Evento e Detalhes de Local/Hora */}
-                <div className="flex-1 text-left">
-                  <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white uppercase tracking-tight leading-tight group-hover:text-[#F4E4C1] transition-colors">
-                    {evento.titulo}
-                  </h3>
-                  <p className="text-white/60 text-sm sm:text-base font-sans mt-2">
-                    {evento.subtitulo}
-                  </p>
-                </div>
+                  {/* Centro: Título do Evento e Detalhes de Local/Hora */}
+                  <div className="flex-1 text-left">
+                    <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white uppercase tracking-tight leading-tight group-hover:text-[#F4E4C1] transition-colors">
+                      {evento.titulo}
+                    </h3>
+                    <p className="text-white/60 text-sm sm:text-base font-sans mt-2">
+                      {evento.subtitulo}
+                    </p>
+                  </div>
 
-                {/* Lado Direito: Botão / Link Cortante */}
-                <div className="shrink-0 flex items-center md:justify-end">
-                  <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white group-hover:text-[#E2BA7A] flex items-center gap-2 border border-white/20 group-hover:border-[#E2BA7A] px-5 py-3 rounded-none transition-colors">
-                    <span>GARANTIR VAGA</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </span>
-                </div>
-              </a>
+                  {/* Lado Direito: Botão / Link Cortante */}
+                  <div className="shrink-0 flex items-center md:justify-end">
+                    <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white group-hover:text-[#E2BA7A] flex items-center gap-2 border border-white/20 group-hover:border-[#E2BA7A] px-5 py-3 rounded-none transition-colors">
+                      <span>GARANTIR VAGA</span>
+                      <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </span>
+                  </div>
+                </a>
+              </ScrollBlurItem>
             ))}
           </div>
+        </section>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/50">
-            <span>Datas e locais sujeitos a confirmação junto à assessoria executiva.</span>
-            <a
-              href="#contato"
-              className="text-[#E2BA7A] hover:text-white transition-colors underline decoration-[#E2BA7A]/40 underline-offset-4"
-            >
-              Solicitar data na sua cidade ou convenção →
-            </a>
+        {/* ========================================================================= */}
+        {/* 2.1 AGENDA PÚBLICA - PARTE 2 (FUNDO BRANCO - 3 DATAS RESTANTES)           */}
+        {/* ========================================================================= */}
+        <section className="w-full bg-white text-[#07132B] py-24 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+            {/* Linhas Horizontais com Fundo Branco (3 Datas Restantes) */}
+            <div className="divide-y divide-black/10 border-t border-b border-black/10">
+              {agendaSecao2.map((evento, idx) => (
+                <ScrollBlurItem key={idx}>
+                  <a
+                    href={evento.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group py-8 sm:py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-[#07132B]/[0.03] transition-colors px-4 -mx-4 rounded-none block"
+                  >
+                    {/* Lado Esquerdo: Data em Fonte Gigante Dourada/Bronze Nobre */}
+                    <div className="flex items-center gap-6 sm:gap-10 shrink-0">
+                      <span className="font-barlow-condensed font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#B58738] tracking-tighter leading-none group-hover:scale-105 transition-transform duration-300">
+                        {evento.data}
+                      </span>
+                    </div>
+
+                    {/* Centro: Título do Evento e Detalhes de Local/Hora */}
+                    <div className="flex-1 text-left">
+                      <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#07132B] uppercase tracking-tight leading-tight group-hover:text-[#B58738] transition-colors">
+                        {evento.titulo}
+                      </h3>
+                      <p className="text-[#07132B]/70 text-sm sm:text-base font-sans mt-2">
+                        {evento.subtitulo}
+                      </p>
+                    </div>
+
+                    {/* Lado Direito: Botão Escuro com Efeito Hover */}
+                    <div className="shrink-0 flex items-center md:justify-end">
+                      <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-[#07132B] group-hover:text-white flex items-center gap-2 border border-[#07132B]/25 group-hover:border-[#07132B] group-hover:bg-[#07132B] px-5 py-3 rounded-none transition-all duration-300">
+                        <span>GARANTIR VAGA</span>
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      </span>
+                    </div>
+                  </a>
+                </ScrollBlurItem>
+              ))}
+            </div>
+
+            <ScrollBlurItem className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#07132B]/60">
+              <span>Datas e locais sujeitos a confirmação junto à assessoria executiva.</span>
+              <a
+                href="#contato"
+                className="text-[#07132B] hover:text-[#B58738] transition-colors underline decoration-[#07132B]/30 underline-offset-4 font-bold"
+              >
+                Solicitar data na sua cidade ou convenção →
+              </a>
+            </ScrollBlurItem>
           </div>
         </section>
 
