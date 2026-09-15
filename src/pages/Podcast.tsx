@@ -468,48 +468,38 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 5. FECHAMENTO MONUMENTAL EM BLOCO ÚNICO (#contato) */}
-        <section id="contato" className="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto relative scroll-mt-20 md:scroll-mt-24">
+        {/* 5. FECHAMENTO EDITORIAL DIRETAMENTE NO FUNDO (#contato) */}
+        <section id="contato" className="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 max-w-5xl mx-auto relative scroll-mt-20 md:scroll-mt-24 text-center">
           {/* Spotlight Quente Motivada Centralizada */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
 
-          <div className="border border-white/10 bg-[#080503] p-10 sm:p-16 lg:p-20 text-center flex flex-col items-center rounded-none shadow-2xl relative overflow-hidden">
+          <div className="flex flex-col items-center">
             {/* Tag Monolítica Superior */}
             <span className="font-mono text-[11px] tracking-[0.3em] uppercase text-[#C4550A] mb-4 block font-semibold">
-              // ACESSO EXCLUSIVO
+              // CONVITE EXCLUSIVO
             </span>
 
             {/* Título Monumental Gigante */}
-            <h2 className="font-barlow-condensed text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tight leading-[0.85] max-w-4xl mb-6">
-              QUER SENTAR <br />
-              <span className="text-[#C4550A]">NA MESA?</span>
+            <h2 className="font-barlow-condensed text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tight leading-[0.88] max-w-4xl mb-4">
+              QUER SER NOSSO <br />
+              <span className="text-[#C4550A]">CONVIDADO?</span>
             </h2>
 
-            {/* Subtítulo simples e direto */}
-            <p className="text-[#8A827D] text-base sm:text-lg md:text-xl font-normal max-w-2xl mb-12 leading-relaxed">
-              Grave seu episódio no Estúdio Akedah ou associe sua marca aos líderes de mercado.
+            {/* Linha de baixo em texto menor */}
+            <p className="text-[#8A827D] text-base sm:text-lg md:text-xl font-normal max-w-xl mb-10 leading-relaxed">
+              Entre em contato conosco
             </p>
 
-            {/* Ações com Cantos Retos e Contraste Extremo */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-5 w-full sm:w-auto">
+            {/* Botão Único */}
+            <div>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-[0.2em] rounded-none shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
               >
-                <span>AGENDAR GRAVAÇÃO</span>
-                <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
-              </a>
-
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 px-8 py-5 border border-white/20 hover:border-white/50 bg-transparent text-white/80 hover:text-white font-mono text-xs font-semibold uppercase tracking-[0.2em] rounded-none transition-all duration-300"
-              >
-                <span>MEDIA KIT</span>
-                <span className="text-white/50">↗</span>
+                <span>FALE COM UM ESPECIALISTA</span>
+                <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>
               </a>
             </div>
           </div>
