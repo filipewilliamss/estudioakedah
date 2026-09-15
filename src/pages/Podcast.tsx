@@ -31,7 +31,7 @@ const Podcast = () => {
     "@context": "https://schema.org",
     "@type": "PodcastSeries",
     name: "Akedah Podcast",
-    description: "O jogo real dos negócios. Estratégia comercial, expansão e autoridade sem filtros corporativos.",
+    description: "A mesa de quem decide o mercado. Conversas sem roteiro com grandes realizadores sobre estratégia, escala e bastidores.",
     url: "https://estudioakedah.com/podcast",
     publisher: { "@type": "Organization", name: "Akedah" },
   };
@@ -42,8 +42,8 @@ const Podcast = () => {
       <IrisPreloader />
 
       <SEO
-        title="Akedah Podcast | O Jogo Real dos Negócios"
-        description="Akedah Podcast: estratégia comercial, expansão e autoridade sem filtros corporativos. Assista ao vivo e confira a programação."
+        title="Akedah Podcast | A Mesa de Quem Decide o Mercado"
+        description="Akedah Podcast: conversas sem roteiro com grandes realizadores sobre estratégia, escala e bastidores. Assista ao vivo e confira a programação."
         url="https://estudioakedah.com/podcast"
         schema={schema}
       />
@@ -78,14 +78,14 @@ const Podcast = () => {
                 </div>
 
                 {/* Título Massivo em Caixa Alta com Entrelinha Ultra-Fechada */}
-                <h1 className="font-barlow-condensed text-[54px] sm:text-[76px] md:text-[92px] lg:text-[104px] xl:text-[116px] font-black leading-[0.85] tracking-[-0.03em] uppercase mb-6 text-left">
-                  <span className="block text-white">O JOGO REAL</span>
-                  <span className="block text-[#C4550A]">DOS NEGÓCIOS.</span>
+                <h1 className="font-barlow-condensed text-[42px] sm:text-[64px] md:text-[80px] lg:text-[90px] xl:text-[100px] font-black leading-[0.88] tracking-[-0.03em] uppercase mb-6 text-left">
+                  <span className="block text-white">A MESA DE QUEM</span>
+                  <span className="block text-[#C4550A]">DECIDE O MERCADO.</span>
                 </h1>
 
-                {/* Linha de Apoio Editorial Direta (8 palavras) */}
+                {/* Linha de Apoio Editorial Direta */}
                 <p className="text-[#8A827D] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-lg mb-10 text-left">
-                  Estratégia comercial, expansão e autoridade sem filtros corporativos.
+                  Conversas sem roteiro com grandes realizadores sobre estratégia, escala e bastidores.
                 </p>
 
                 {/* CTA Primário: Bloco Sólido Retangular com Cantos Retos (rounded-none) e Seta Cortante */}
