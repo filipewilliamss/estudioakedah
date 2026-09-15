@@ -63,19 +63,13 @@ const Podcast = () => {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-3xl text-left flex flex-col items-start"
             >
-              <div className="flex items-center justify-start gap-4 mb-6">
-                <span className="text-[#C4550A] text-[11px] md:text-[12px] uppercase tracking-[0.18em] font-mono font-medium">
-                  Canal Audiovisual • Estúdio Akedah
-                </span>
-              </div>
-
               <h1 className="font-podcast-display text-[52px] sm:text-[76px] md:text-[96px] font-extrabold leading-[0.9] tracking-tight mb-8">
                 <span className="block text-white">Akedah</span>
                 <span className="block text-[#C4550A]">Podcast</span>
               </h1>
 
               <p className="text-white/75 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10">
-                O palco de autoridade executiva onde empresários e líderes do mercado debatem estratégia comercial, expansão de negócios e governança em alto nível.
+                Conversas sem filtro sobre estratégia comercial, liderança e negócios de alto valor.
               </p>
 
               {/* Hierarquia de Ação no Hero */}
@@ -288,7 +282,6 @@ const Podcast = () => {
                 headerBadge: "AO VIVO • 15 AGO • 19H",
                 isLive: true,
                 guestName: "Daniel Silva",
-                guestRole: "Fundador & Estrategista B2B",
                 topic: "Engenharia de Vendas Previsíveis e Retenção Corporativa",
                 photo: founderPicture,
                 isConfidential: false,
@@ -297,7 +290,6 @@ const Podcast = () => {
                 headerBadge: "CONFIRMADO • 22 AGO • 19H",
                 isLive: false,
                 guestName: "Convidado Confidencial",
-                guestRole: "VP de Operações • Tech Enterprise",
                 topic: "Infraestrutura Escalável e Governança em Startups Unicórnio",
                 isConfidential: true,
               },
@@ -305,7 +297,6 @@ const Podcast = () => {
                 headerBadge: "CONFIRMADO • 29 AGO • 19H",
                 isLive: false,
                 guestName: "Convidado Confidencial",
-                guestRole: "CEO & Conselheiro de Administração",
                 topic: "M&A, Fusões Estratégicas e Posicionamento de Marca no Brasil",
                 isConfidential: true,
               },
@@ -313,81 +304,36 @@ const Podcast = () => {
                 headerBadge: "GRAVADO • 05 SET • 19H",
                 isLive: false,
                 guestName: "Convidado Confidencial",
-                guestRole: "Diretor Comercial • FinTech B2B",
                 topic: "Playbooks de Vendas Consultivas e Fechamentos de 7 Dígitos",
                 isConfidential: true,
               },
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="relative aspect-[3/4] rounded-[16px] overflow-hidden group border border-white/[0.08] hover:border-[#C4550A]/60 transition-all duration-500 bg-[#120805] hover:shadow-[0_12px_40px_rgba(196,85,10,0.15)] flex flex-col justify-between"
+                className="relative aspect-[3/4] rounded-[16px] overflow-hidden group border border-white/[0.08] hover:border-[#C4550A]/60 transition-all duration-500 bg-[#120805] hover:shadow-[0_12px_40px_rgba(196,85,10,0.18)] flex flex-col justify-between"
               >
                 {/* Linha superior de iluminação terracota no hover */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C4550A] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 pointer-events-none" />
 
                 {/* Glow sutil de luz âmbar/terracota atrás do pôster no hover */}
-                <div className="absolute -top-12 -inset-x-6 h-32 bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.22)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
+                <div className="absolute -top-12 -inset-x-6 h-32 bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.25)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0" />
 
-                {/* TRATAMENTO FOTOGRÁFICO / ILUMINAÇÃO PREENCHENDO TODO O CONTAINER */}
+                {/* TRATAMENTO FOTOGRÁFICO COM ATMOSFERA REAL DO ESTÚDIO */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                   {item.isConfidential ? (
-                    <div className="relative w-full h-full bg-[#0E0604] flex items-center justify-center">
-                      {/* Textura cinematográfica escura com scanlines sutis */}
-                      <div
-                        className="absolute inset-0 opacity-[0.24] pointer-events-none"
-                        style={{
-                          backgroundImage:
-                            "repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 3px)",
-                        }}
+                    <div className="relative w-full h-full bg-[#0E0604] overflow-hidden">
+                      {/* Foto real do estúdio em penumbra profunda com contraluz quente */}
+                      <img
+                        src={studioBannerImg}
+                        alt="Estúdio Akedah em Penumbra"
+                        className="w-full h-full object-cover grayscale contrast-[1.3] brightness-[0.38] group-hover:scale-105 group-hover:brightness-[0.45] transition-all duration-700 ease-out"
                       />
-
-                      {/* Luz direcional cinematográfica contra a luz (contre-jour) */}
-                      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_35%,_rgba(196,85,10,0.3)_0%,_rgba(28,15,10,0.6)_45%,_#120805_85%)] pointer-events-none" />
-
-                      {/* Silhueta misteriosa em contraluz com micro-zoom no hover */}
-                      <div className="relative w-full h-full flex items-center justify-center group-hover:scale-105 transition-transform duration-700 ease-out">
-                        <svg
-                          viewBox="0 0 200 240"
-                          className="w-48 h-56 text-black/90 filter drop-shadow-[0_0_18px_rgba(196,85,10,0.35)]"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <defs>
-                            <linearGradient
-                              id={`film-silhouette-${idx}`}
-                              x1="100"
-                              y1="20"
-                              x2="100"
-                              y2="220"
-                              gradientUnits="userSpaceOnUse"
-                            >
-                              <stop stopColor="#221008" />
-                              <stop offset="0.5" stopColor="#140804" />
-                              <stop offset="1" stopColor="#0B0402" />
-                            </linearGradient>
-                          </defs>
-                          <path
-                            d="M100 34 C116 34 127 45 127 62 C127 79 116 90 100 90 C84 90 73 79 73 62 C73 45 84 34 100 34 Z"
-                            fill={`url(#film-silhouette-${idx})`}
-                            stroke="rgba(196,85,10,0.35)"
-                            strokeWidth="1.5"
-                          />
-                          <path
-                            d="M44 145 C44 110 68 98 100 98 C132 98 156 110 156 145 L176 240 L24 240 Z"
-                            fill={`url(#film-silhouette-${idx})`}
-                            stroke="rgba(196,85,10,0.25)"
-                            strokeWidth="1.5"
-                          />
-                          <path
-                            d="M85 100 L100 134 L115 100"
-                            stroke="rgba(255,255,255,0.18)"
-                            strokeWidth="1"
-                          />
-                        </svg>
-                      </div>
+                      {/* Iluminação de contraluz terracota e vinheta */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-[#120805] via-[#C4550A]/20 to-transparent mix-blend-screen pointer-events-none" />
+                      <div className="absolute inset-0 bg-[#120805]/50 mix-blend-multiply pointer-events-none" />
 
                       {/* Tarja Tipográfica Centralizada: [ CONVIDADO SOB EMBARGO ] */}
-                      <div className="absolute top-[34%] left-0 right-0 flex items-center justify-center pointer-events-none z-10 px-3">
+                      <div className="absolute top-[38%] left-0 right-0 flex items-center justify-center pointer-events-none z-10 px-3">
                         <div className="px-3.5 py-1.5 rounded-sm border border-[#C4550A]/50 bg-[#120805]/95 backdrop-blur-md shadow-2xl shadow-black flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />
                           <span className="font-mono text-[9.5px] sm:text-[10px] tracking-[0.22em] font-bold text-[#C4550A] uppercase whitespace-nowrap">
@@ -397,7 +343,7 @@ const Podcast = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="relative w-full h-full">
+                    <div className="relative w-full h-full overflow-hidden">
                       <img
                         src={item.photo}
                         alt={item.guestName}
@@ -415,47 +361,26 @@ const Podcast = () => {
                   )}
                 </div>
 
-                {/* VINHETA ESCURA PROGRESSIVA EM CAMADAS */}
-                {/* Vinheta superior sutil para garantir contraste do header */}
-                <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#120805]/80 via-[#120805]/30 to-transparent pointer-events-none z-10" />
+                {/* VINHETAS DE CONTRASTE EM CAMADAS */}
+                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#120805]/85 to-transparent pointer-events-none z-10" />
+                <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#120805] via-[#120805]/95 via-50% to-transparent pointer-events-none z-10" />
 
-                {/* Vinheta inferior profunda para garantir leitura impecável dos textos */}
-                <div className="absolute inset-x-0 bottom-0 h-[68%] bg-gradient-to-t from-[#120805] via-[#120805]/95 via-50% to-transparent pointer-events-none z-10" />
-
-                {/* 3. TOPO DO PÔSTER (HEADER DE ESTREIA) */}
+                {/* TOPO DO PÔSTER (HEADER COMPACTO DE DATA) */}
                 <div className="relative z-20 p-4 sm:p-5 flex items-center justify-between pointer-events-none">
-                  <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-[#C4550A] uppercase bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10 rounded-sm shadow-lg">
+                  <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.2em] text-[#C4550A] uppercase bg-black/75 backdrop-blur-md px-3 py-1 border border-white/10 rounded-sm shadow-lg">
                     {item.isLive && <span className="w-1.5 h-1.5 rounded-full bg-[#C4550A] animate-pulse" />}
                     <span>[ {item.headerBadge} ]</span>
                   </div>
                 </div>
 
-                {/* 4. BASE DO PÔSTER (CONTEÚDO EDITORIAL) */}
+                {/* BASE DO PÔSTER (CONVIDADO E TÍTULO EM ALTO CONTRASTE) */}
                 <div className="relative z-20 p-5 sm:p-6 flex flex-col justify-end text-left">
-                  {/* Cargo / Especialidade */}
-                  <span className="font-mono text-[11px] text-white/50 tracking-wider uppercase mb-1 block font-medium">
-                    {item.guestRole}
-                  </span>
-
-                  {/* Nome do Convidado */}
-                  <h3 className="font-podcast-display text-xl font-bold text-white mb-2 leading-tight tracking-tight group-hover:text-[#FAF6EB] transition-colors">
+                  <h3 className="font-podcast-display text-xl sm:text-2xl font-bold text-white mb-2 leading-tight tracking-tight group-hover:text-[#FAF6EB] transition-colors">
                     {item.guestName}
                   </h3>
-
-                  {/* Pauta tratada como título de documentário/obra */}
-                  <h4 className="font-podcast-display text-[14.5px] sm:text-[15.5px] font-bold text-white/95 leading-[1.2] tracking-tight group-hover:text-white transition-colors line-clamp-3">
+                  <h4 className="font-podcast-display text-base sm:text-lg font-semibold text-white/90 leading-snug tracking-tight group-hover:text-white transition-colors line-clamp-3">
                     {item.topic}
                   </h4>
-
-                  {/* Rodapé / Micro-interação de Premiere */}
-                  <div className="mt-3.5 pt-3 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-white/40">
-                    <span className="tracking-wider">
-                      {item.isConfidential ? "ESTREIA SOB EMBARGO" : "TRANSMISSÃO EXCLUSIVA"}
-                    </span>
-                    <span className="text-[#C4550A] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform duration-300">
-                      VER DETALHES →
-                    </span>
-                  </div>
                 </div>
               </div>
             ))}
@@ -500,21 +425,19 @@ const Podcast = () => {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 name: "YouTube",
                 url: "https://www.youtube.com/@EstudioAkedah",
-                formatTag: "Episódios na Íntegra em 4K",
-                description: "Transmissões ao vivo semanais e episódios gravados em 4K HDR no estúdio.",
-                actionLabel: "Acessar Canal Oficial",
+                formatTag: "Episódios em 4K",
                 tagColor: "text-red-400",
                 hoverBorder: "hover:border-red-500/40",
                 hoverShadow: "hover:shadow-[0_8px_32px_rgba(239,68,68,0.14)]",
                 ambientGlow: "bg-red-500/15",
                 iconBg: "bg-red-500/10 text-red-500 group-hover:bg-red-500/20",
                 icon: (
-                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                   </svg>
                 ),
@@ -522,16 +445,14 @@ const Podcast = () => {
               {
                 name: "Spotify",
                 url: "https://open.spotify.com",
-                formatTag: "Áudio Imersivo no Carro",
-                description: "Distribuição contínua em alta fidelidade para ouvir em viagens, trânsito ou rotina.",
-                actionLabel: "Ouvir no Spotify",
+                formatTag: "Áudio na Íntegra",
                 tagColor: "text-emerald-400",
                 hoverBorder: "hover:border-emerald-500/40",
                 hoverShadow: "hover:shadow-[0_8px_32px_rgba(16,185,129,0.14)]",
                 ambientGlow: "bg-emerald-500/15",
                 iconBg: "bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20",
                 icon: (
-                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308a.747.747 0 0 1-1.028.248c-2.813-1.718-6.353-2.107-10.524-1.155a.75.75 0 0 1-.336-1.462c4.564-1.042 8.49-.602 11.64 1.341a.749.749 0 0 1 .248 1.028zm1.47-3.266a.936.936 0 0 1-1.287.308c-3.22-1.979-8.128-2.552-11.936-1.396a.937.937 0 0 1-.55-1.79c4.354-1.321 9.775-.683 13.465 1.591a.936.936 0 0 1 .308 1.287zm.126-3.41c-3.86-2.292-10.228-2.503-13.899-1.388a1.124 1.124 0 1 1-.652-2.152c4.225-1.282 11.26-1.033 15.717 1.613a1.124 1.124 0 1 1-1.166 1.927z" />
                   </svg>
                 ),
@@ -539,16 +460,14 @@ const Podcast = () => {
               {
                 name: "Instagram",
                 url: "https://www.instagram.com/estudioakedah",
-                formatTag: "Bastidores & Cortes Oficiais",
-                description: "Teasers cinematográficos, bastidores dos convidados e novidades da semana.",
-                actionLabel: "Seguir no Instagram",
+                formatTag: "Cortes Verticais",
                 tagColor: "text-pink-400",
                 hoverBorder: "hover:border-pink-500/40",
                 hoverShadow: "hover:shadow-[0_8px_32px_rgba(236,72,153,0.14)]",
                 ambientGlow: "bg-pink-500/15",
                 iconBg: "bg-pink-500/10 text-pink-400 group-hover:bg-pink-500/20",
                 icon: (
-                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                   </svg>
                 ),
@@ -556,16 +475,14 @@ const Podcast = () => {
               {
                 name: "TikTok",
                 url: "https://www.tiktok.com/@estudioakedah",
-                formatTag: "Pílulas Diárias de Insights",
-                description: "Cortes verticais rápidos com as falas e insights mais contundentes de cada convidado.",
-                actionLabel: "Assistir Pílulas",
+                formatTag: "Pílulas Diárias",
                 tagColor: "text-cyan-400",
                 hoverBorder: "hover:border-cyan-400/40",
                 hoverShadow: "hover:shadow-[0_8px_32px_rgba(6,182,212,0.14)]",
                 ambientGlow: "bg-cyan-500/15",
                 iconBg: "bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/20",
                 icon: (
-                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.96-4.48V8.82a8.28 8.28 0 0 0 4.84 1.57v-3.7z" />
                   </svg>
                 ),
@@ -576,98 +493,75 @@ const Podcast = () => {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group relative backdrop-blur-md bg-white/[0.02] border border-white/10 rounded-[24px] p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 overflow-hidden ${platform.hoverBorder} ${platform.hoverShadow}`}
+                className={`group relative backdrop-blur-md bg-white/[0.02] border border-white/10 rounded-[18px] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 overflow-hidden ${platform.hoverBorder} ${platform.hoverShadow}`}
               >
                 {/* Glow sutil ambiente colorido no hover */}
-                <div className={`absolute -top-16 -right-16 w-36 h-36 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${platform.ambientGlow}`} />
+                <div className={`absolute -top-12 -right-12 w-28 h-28 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${platform.ambientGlow}`} />
 
-                <div>
-                  {/* Top: Ícone Oficial + Link Arrow */}
-                  <div className="flex items-center justify-between mb-6 relative z-10">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border border-white/10 transition-colors duration-300 ${platform.iconBg}`}>
-                      {platform.icon}
-                    </div>
-                    <div className="w-9 h-9 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-white/40 group-hover:text-white transition-colors duration-300">
-                      <svg className="w-4 h-4 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </div>
+                {/* Topo: Ícone Oficial + Link Arrow */}
+                <div className="flex items-center justify-between mb-5 relative z-10">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center border border-white/10 transition-colors duration-300 ${platform.iconBg}`}>
+                    {platform.icon}
                   </div>
-
-                  {/* Formato / Métrica Tag */}
-                  <span className={`text-[11px] font-mono font-semibold uppercase tracking-wider block mb-2 relative z-10 ${platform.tagColor}`}>
-                    {platform.formatTag}
+                  <span className="w-8 h-8 rounded-full bg-white/[0.03] border border-white/10 flex items-center justify-center text-white/30 group-hover:text-white transition-colors duration-300">
+                    <svg className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
                   </span>
-
-                  {/* Nome da Plataforma */}
-                  <h3 className="font-podcast-display text-2xl font-bold text-white mb-2 group-hover:text-white transition-colors relative z-10">
-                    {platform.name}
-                  </h3>
-
-                  {/* Descrição do formato */}
-                  <p className="text-white/50 text-sm leading-relaxed mb-6 relative z-10">
-                    {platform.description}
-                  </p>
                 </div>
 
-                {/* Rodapé do Card com CTA */}
-                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono font-medium text-white/50 group-hover:text-white transition-colors relative z-10">
-                  <span>{platform.actionLabel}</span>
-                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
+                {/* Base: Tag de formato e Nome da Plataforma */}
+                <div className="relative z-10">
+                  <span className={`text-[10.5px] font-mono font-medium uppercase tracking-wider block mb-1.5 ${platform.tagColor}`}>
+                    {platform.formatTag}
+                  </span>
+                  <h3 className="font-podcast-display text-xl font-bold text-white group-hover:text-[#FAF6EB] transition-colors">
+                    {platform.name}
+                  </h3>
                 </div>
               </a>
             ))}
           </div>
         </section>
 
-        {/* 5. CTA PARTICIPAR / CONTATO */}
-        <section id="contato" className="py-28 px-6 border-t border-white/[0.08]">
-          <div className="max-w-7xl mx-auto podcast-card rounded-[32px] p-10 md:p-20 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-10">
-            <div>
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-4 block">Seja um Convidado</span>
-              <h2 className="font-podcast-display text-3xl md:text-6xl font-bold text-white leading-tight">
+        {/* 5. CTA PARTICIPAR / CONTATO & MEDIA KIT (UNIFICADO) */}
+        <section id="contato" className="py-24 px-6 border-t border-white/[0.08]">
+          <div className="max-w-7xl mx-auto podcast-card rounded-[28px] p-8 sm:p-12 md:p-16 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8 relative overflow-hidden">
+            {/* Glow sutil ambiente terracota */}
+            <div className="absolute top-0 right-0 w-96 h-64 bg-[#C4550A]/10 rounded-full blur-3xl pointer-events-none" />
+
+            <div className="relative z-10 max-w-xl">
+              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
+                Seja um Convidado
+              </span>
+              <h2 className="font-podcast-display text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
                 Grave seu episódio no <br />
                 <span className="text-[#C4550A]">Estúdio Akedah.</span>
               </h2>
-            </div>
-            <div className="flex flex-col items-center md:items-end gap-4">
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn-premium px-12">
-                Agendar Gravação
-              </a>
-              <p className="text-white/40 text-xs font-mono tracking-wide">Resposta rápida em horário comercial.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* 6. BANNER EDITORIAL DE MEDIA KIT (DISCRETO, ANTES DO RODAPÉ) */}
-        <section id="mediakit" className="py-16 px-6 border-t border-white/[0.08]">
-          <div className="max-w-7xl mx-auto podcast-card rounded-[28px] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 hover:border-[#C4550A]/30 transition-all relative overflow-hidden">
-            {/* Glow sutil ambiente */}
-            <div className="absolute top-0 right-0 w-96 h-48 bg-[#C4550A]/5 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="max-w-2xl text-center md:text-left relative z-10">
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.18em] mb-3 block">
-                Oportunidades de Parceria
-              </span>
-              <h3 className="font-podcast-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 tracking-tight">
-                Sua marca ao lado dos maiores nomes do mercado
-              </h3>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed">
-                O Akedah Podcast conecta líderes e tomadores de decisão. Solicite nosso Media Kit para cotas de patrocínio.
+              <p className="text-white/60 text-sm sm:text-base mt-3 leading-relaxed">
+                Estrutura de ponta com 4 câmeras 4K, direção ao vivo e distribuição multiplataforma para elevar sua autoridade.
               </p>
             </div>
 
-            <div className="flex-shrink-0 relative z-10">
+            <div className="relative z-10 flex flex-col items-center md:items-end gap-3.5">
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs font-mono font-bold tracking-[0.16em] uppercase text-white bg-white/[0.06] hover:bg-[#C4550A] border border-white/15 hover:border-[#C4550A] transition-all duration-300 shadow-md group"
+                className="btn-premium px-10 py-4 text-xs tracking-wider"
               >
-                <span>Acessar Media Kit Comercial</span>
-                <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+                Agendar Gravação
+              </a>
+
+              {/* Link secundário elegante para Media Kit */}
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-mono text-white/50 hover:text-[#C4550A] transition-colors py-1 group"
+              >
+                <span>Interesse em patrocínio? Baixar Media Kit</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </a>
             </div>
           </div>
