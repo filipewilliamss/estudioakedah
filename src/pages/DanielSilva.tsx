@@ -1,51 +1,175 @@
-import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import imagemDaniel from "@/assets/imagem-daniel.png";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
-// Agenda Pública - Seção 1 (Fundo Azul Marinho - 2 primeiras datas)
-const agendaSecao1 = [
-  {
-    data: "18/09",
-    titulo: "CONVENÇÃO NACIONAL DE VENDAS B2B",
-    subtitulo: "São Paulo, SP • 19h30 • Palestra Magna",
-    formato: "Palestra",
-    link: WHATSAPP_URL,
-  },
-  {
-    data: "25/09",
-    titulo: "IMERSÃO EXECUTIVA: ESCALA & GOVERNANÇA",
-    subtitulo: "Barueri, SP • 14h00 • Imersão Executiva",
-    formato: "Imersão",
-    link: WHATSAPP_URL,
-  },
+// Agenda Pública - 12 Cards divididos em 3 blocos de 4 (design idêntico à referência, fundo branco)
+const agenda12Cards = [
+  // Bloco 1 (Cards 1 a 4)
+  [
+    {
+      data: "18/09",
+      horario: "19h30",
+      titulo: "CONVENÇÃO B2B",
+      categoria: "ESTRATÉGIA COMERCIAL",
+      local: "São Paulo, SP • Palestra Magna",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "25/09",
+      horario: "14h00",
+      titulo: "IMERSÃO EXECUTIVA",
+      categoria: "ESCALA & GOVERNANÇA",
+      local: "Barueri, SP • Imersão C-Level",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "03/10",
+      horario: "20h00",
+      titulo: "FÓRUM LIDERANÇA",
+      categoria: "NEGÓCIOS & PRINCÍPIOS",
+      local: "Belo Horizonte, MG • Palestra",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "12/10",
+      horario: "19h00",
+      titulo: "NOITE DE LOUVOR",
+      categoria: "PALAVRA & PROPÓSITO",
+      local: "Curitiba, PR • Ministração",
+      link: WHATSAPP_URL,
+    },
+  ],
+  // Bloco 2 (Cards 5 a 8)
+  [
+    {
+      data: "22/10",
+      horario: "20h30",
+      titulo: "PAINEL FÉ & IMPACTO",
+      categoria: "ENCONTRO DE LÍDERES",
+      local: "Rio de Janeiro, RJ • Painel Executivo",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "05/11",
+      horario: "19h00",
+      titulo: "SUMMIT C-LEVEL",
+      categoria: "PLAYBOOKS & TRAÇÃO",
+      local: "Florianópolis, SC • Keynote",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "14/11",
+      horario: "15h00",
+      titulo: "MASTERCLASS B2B",
+      categoria: "VENDAS COMPLEXAS",
+      local: "Brasília, DF • Masterclass",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "28/11",
+      horario: "19h30",
+      titulo: "CONGRESSO GESTÃO",
+      categoria: "MARGEM & EXPANSÃO",
+      local: "Campinas, SP • Congresso",
+      link: WHATSAPP_URL,
+    },
+  ],
+  // Bloco 3 (Cards 9 a 12)
+  [
+    {
+      data: "08/12",
+      horario: "20h00",
+      titulo: "ADVISORY SUMMIT",
+      categoria: "CONSELHO CONSULTIVO",
+      local: "Porto Alegre, RS • Encontro Restrito",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "15/12",
+      horario: "19h00",
+      titulo: "CONFERÊNCIA ANUAL",
+      categoria: "VISÃO DE FUTURO",
+      local: "Goiânia, GO • Encerramento",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "18/01",
+      horario: "14h30",
+      titulo: "MENTORIA IMERSIVA",
+      categoria: "TRAÇÃO COMERCIAL 2027",
+      local: "São Paulo, SP • Workshop",
+      link: WHATSAPP_URL,
+    },
+    {
+      data: "26/01",
+      horario: "20h00",
+      titulo: "ARENA BUSINESS",
+      categoria: "LIDERANÇA & MERCADO",
+      local: "Recife, PE • Arena Executiva",
+      link: WHATSAPP_URL,
+    },
+  ],
 ];
 
-// Agenda Pública - Seção 2 (Fundo Branco - 3 datas restantes)
-const agendaSecao2 = [
+// Redes Sociais do Daniel Silva (estilo distribuição editorial)
+const danielSocials = [
   {
-    data: "03/10",
-    titulo: "FÓRUM DE LIDERANÇA, NEGÓCIOS & PRINCÍPIOS",
-    subtitulo: "Belo Horizonte, MG • 20h00 • Palestra",
-    formato: "Palestra",
-    link: WHATSAPP_URL,
+    name: "YOUTUBE",
+    format: "PALESTRAS & CONTEÚDO",
+    url: "https://www.youtube.com/@EstudioAkedah",
+    icon: (
+      <svg className="w-5 h-5 fill-current text-white/70 group-hover:text-[#FF0000] transition-colors duration-300" viewBox="0 0 24 24">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+      </svg>
+    ),
   },
   {
-    data: "12/10",
-    titulo: "NOITE DE LOUVOR, PALAVRA & PROPÓSITO",
-    subtitulo: "Curitiba, PR • 19h00 • Ministração & Adoração",
-    formato: "Ministração",
-    link: WHATSAPP_URL,
+    name: "SPOTIFY",
+    format: "PODCAST & MINISTRAÇÕES",
+    url: "https://open.spotify.com",
+    icon: (
+      <svg className="w-5 h-5 fill-current text-white/70 group-hover:text-[#1ED760] transition-colors duration-300" viewBox="0 0 24 24">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.503 17.308a.747.747 0 0 1-1.028.248c-2.813-1.718-6.353-2.107-10.524-1.155a.75.75 0 0 1-.336-1.462c4.564-1.042 8.49-.602 11.64 1.341a.749.749 0 0 1 .248 1.028zm1.47-3.266a.936.936 0 0 1-1.287.308c-3.22-1.979-8.128-2.552-11.936-1.396a.937.937 0 0 1-.55-1.79c4.354-1.321 9.775-.683 13.465 1.591a.936.936 0 0 1 .308 1.287zm.126-3.41c-3.86-2.292-10.228-2.503-13.899-1.388a1.124 1.124 0 1 1-.652-2.152c4.225-1.282 11.26-1.033 15.717 1.613a1.124 1.124 0 1 1-1.166 1.927z" />
+      </svg>
+    ),
   },
   {
-    data: "22/10",
-    titulo: "PAINEL FÉ & NEGÓCIOS DE IMPACTO",
-    subtitulo: "Rio de Janeiro, RJ • 20h30 • Encontro com Líderes",
-    formato: "Encontro Executivo",
-    link: WHATSAPP_URL,
+    name: "INSTAGRAM",
+    format: "BASTIDORES & DIRETORIA",
+    url: "https://www.instagram.com/estudioakedah",
+    icon: (
+      <div className="relative w-5 h-5">
+        <svg className="w-5 h-5 fill-current text-white/70 group-hover:opacity-0 transition-opacity duration-300" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+        <svg className="w-5 h-5 absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" viewBox="0 0 24 24">
+          <defs>
+            <linearGradient id="instaColorGradDaniel" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#f09433" />
+              <stop offset="25%" stopColor="#e6683c" />
+              <stop offset="50%" stopColor="#dc2743" />
+              <stop offset="75%" stopColor="#cc2366" />
+              <stop offset="100%" stopColor="#bc1888" />
+            </linearGradient>
+          </defs>
+          <path fill="url(#instaColorGradDaniel)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg>
+      </div>
+    ),
+  },
+  {
+    name: "TIKTOK",
+    format: "CORTES & INSIGHTS",
+    url: "https://www.tiktok.com/@estudioakedah",
+    icon: (
+      <svg className="w-5 h-5 fill-current text-white/70 group-hover:text-white transition-colors duration-300" viewBox="0 0 24 24">
+        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.96-4.48V8.82a8.28 8.28 0 0 0 4.84 1.57v-3.7z" />
+      </svg>
+    ),
   },
 ];
 
@@ -86,9 +210,20 @@ const ScrollBlurItem = ({
 };
 
 const DanielSilva = () => {
+  const [activeBlock, setActiveBlock] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setActiveBlock((prev) => (prev + 1) % agenda12Cards.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
 
   const schema = {
     "@context": "https://schema.org",
@@ -182,111 +317,112 @@ const DanielSilva = () => {
         </section>
 
         {/* ========================================================================= */}
-        {/* 2. AGENDA PÚBLICA - PARTE 1 (FUNDO AZUL MARINHO - 2 PRIMEIRAS DATAS)       */}
+        {/* 2. AGENDA PÚBLICA — CARDS COM SLIDE & BLUR AUTOMÁTICO (FUNDO BRANCO)      */}
         {/* ========================================================================= */}
-        <section id="agenda" className="py-24 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto border-t border-white/[0.08] relative scroll-mt-20">
-          <ScrollBlurItem className="mb-12 text-left">
-            <span className="text-[#E2BA7A] text-xs font-mono font-bold uppercase tracking-[0.35em] mb-3 block">
-              AGENDA PÚBLICA — 2026
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase tracking-tight">
-              Cronograma Oficial de Apresentações
-            </h2>
-          </ScrollBlurItem>
-
-          {/* Linhas Horizontais (2 Primeiras Datas no Fundo Azul Marinho) */}
-          <div className="divide-y divide-white/15 border-t border-b border-white/15">
-            {agendaSecao1.map((evento, idx) => (
-              <ScrollBlurItem key={idx}>
-                <a
-                  href={evento.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group py-8 sm:py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-white/[0.03] transition-colors px-4 -mx-4 rounded-none block"
-                >
-                  {/* Lado Esquerdo: Data em Fonte Gigante Dourada */}
-                  <div className="flex items-center gap-6 sm:gap-10 shrink-0">
-                    <span className="font-barlow-condensed font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#E2BA7A] tracking-tighter leading-none group-hover:scale-105 transition-transform duration-300">
-                      {evento.data}
-                    </span>
-                  </div>
-
-                  {/* Centro: Título do Evento e Detalhes de Local/Hora */}
-                  <div className="flex-1 text-left">
-                    <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white uppercase tracking-tight leading-tight group-hover:text-[#F4E4C1] transition-colors">
-                      {evento.titulo}
-                    </h3>
-                    <p className="text-white/60 text-sm sm:text-base font-sans mt-2">
-                      {evento.subtitulo}
-                    </p>
-                  </div>
-
-                  {/* Lado Direito: Botão / Link Cortante */}
-                  <div className="shrink-0 flex items-center md:justify-end">
-                    <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-white group-hover:text-[#E2BA7A] flex items-center gap-2 border border-white/20 group-hover:border-[#E2BA7A] px-5 py-3 rounded-none transition-colors">
-                      <span>GARANTIR VAGA</span>
-                      <span className="group-hover:translate-x-1 transition-transform">→</span>
-                    </span>
-                  </div>
-                </a>
-              </ScrollBlurItem>
-            ))}
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* 2.1 AGENDA PÚBLICA - PARTE 2 (FUNDO BRANCO - 3 DATAS RESTANTES)           */}
-        {/* ========================================================================= */}
-        <section className="w-full bg-white text-[#07132B] py-24 relative overflow-hidden">
+        <section
+          id="agenda"
+          className="w-full bg-white text-[#07132B] py-24 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-b border-black/10"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-            {/* Linhas Horizontais com Fundo Branco (3 Datas Restantes) */}
-            <div className="divide-y divide-black/10 border-t border-b border-black/10">
-              {agendaSecao2.map((evento, idx) => (
-                <ScrollBlurItem key={idx}>
-                  <a
-                    href={evento.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group py-8 sm:py-10 flex flex-col md:flex-row md:items-center justify-between gap-6 hover:bg-[#07132B]/[0.03] transition-colors px-4 -mx-4 rounded-none block"
-                  >
-                    {/* Lado Esquerdo: Data em Fonte Gigante Dourada/Bronze Nobre */}
-                    <div className="flex items-center gap-6 sm:gap-10 shrink-0">
-                      <span className="font-barlow-condensed font-black text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-[#B58738] tracking-tighter leading-none group-hover:scale-105 transition-transform duration-300">
-                        {evento.data}
-                      </span>
-                    </div>
+            
+            {/* Header da Seção (Design Editorial com Estilo da Imagem de Referência) */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-black/10 gap-6 text-left">
+              <div>
+                <span className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.35em] mb-3 block">
+                  PROGRAMAÇÃO // 2026
+                </span>
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-[#07132B] tracking-tight uppercase leading-tight">
+                  Próximas <span className="font-serif italic font-normal text-[#C4550A]">apresentações</span> confirmadas.
+                </h2>
+                <p className="text-[#07132B]/60 text-sm sm:text-base font-sans mt-3 max-w-2xl">
+                  Datas e horários das próximas palestras, imersões executivas e convenções. Acompanhe a agenda oficial ou agende sua data.
+                </p>
+              </div>
 
-                    {/* Centro: Título do Evento e Detalhes de Local/Hora */}
-                    <div className="flex-1 text-left">
-                      <h3 className="font-display font-black text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#07132B] uppercase tracking-tight leading-tight group-hover:text-[#B58738] transition-colors">
-                        {evento.titulo}
-                      </h3>
-                      <p className="text-[#07132B]/70 text-sm sm:text-base font-sans mt-2">
-                        {evento.subtitulo}
-                      </p>
-                    </div>
-
-                    {/* Lado Direito: Botão Escuro com Efeito Hover */}
-                    <div className="shrink-0 flex items-center md:justify-end">
-                      <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-[#07132B] group-hover:text-white flex items-center gap-2 border border-[#07132B]/25 group-hover:border-[#07132B] group-hover:bg-[#07132B] px-5 py-3 rounded-none transition-all duration-300">
-                        <span>GARANTIR VAGA</span>
-                        <span className="group-hover:translate-x-1 transition-transform">→</span>
-                      </span>
-                    </div>
-                  </a>
-                </ScrollBlurItem>
-              ))}
+              {/* Indicadores de Paginação Interativos (Bloco 1, 2, 3) */}
+              <div className="flex items-center gap-3 shrink-0">
+                {agenda12Cards.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setActiveBlock(idx)}
+                    className={`h-2.5 rounded-full transition-all duration-300 ${
+                      activeBlock === idx
+                        ? "w-8 bg-[#C4550A]"
+                        : "w-2.5 bg-[#07132B]/20 hover:bg-[#07132B]/40"
+                    }`}
+                    aria-label={`Ir para bloco ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
 
-            <ScrollBlurItem className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[#07132B]/60">
-              <span>Datas e locais sujeitos a confirmação junto à assessoria executiva.</span>
+            {/* Container dos 4 Cards com Animação de Slide e Desfoque (AnimatePresence) */}
+            <div className="relative min-h-[320px] sm:min-h-[290px] overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeBlock}
+                  initial={{ x: 100, opacity: 0, filter: "blur(16px)" }}
+                  animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+                  exit={{ x: -100, opacity: 0, filter: "blur(16px)" }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                >
+                  {agenda12Cards[activeBlock].map((card, cardIdx) => (
+                    <a
+                      key={cardIdx}
+                      href={card.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group bg-[#F7F6F2] hover:bg-white border border-[#07132B]/10 hover:border-[#C4550A]/40 rounded-[22px] p-6 sm:p-7 flex flex-col justify-between text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative"
+                    >
+                      {/* Topo do Card: Data Destaque + Badge de Horário (Como na Referência) */}
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-barlow-condensed font-black text-4xl sm:text-5xl text-[#C4550A] tracking-tight leading-none group-hover:scale-105 transition-transform duration-300">
+                          {card.data}
+                        </span>
+                        <span className="font-mono text-xs font-bold text-[#07132B]/75 bg-[#07132B]/5 px-3 py-1 rounded-full border border-[#07132B]/10">
+                          {card.horario}
+                        </span>
+                      </div>
+
+                      {/* Corpo do Card: Título em Caixa Alta + Categoria */}
+                      <div className="my-6">
+                        <h3 className="font-display font-black text-xl sm:text-2xl text-[#07132B] uppercase tracking-tight leading-tight group-hover:text-[#C4550A] transition-colors mb-2">
+                          {card.titulo}
+                        </h3>
+                        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#07132B]/60 block">
+                          {card.categoria}
+                        </span>
+                        <p className="text-[#07132B]/50 text-xs font-sans mt-2">
+                          {card.local}
+                        </p>
+                      </div>
+
+                      {/* Rodapé do Card: Chamada Direta */}
+                      <div className="pt-3 border-t border-[#07132B]/10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-[#07132B]/80 group-hover:text-[#C4550A]">
+                        <span>GARANTIR VAGA</span>
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                      </div>
+                    </a>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Rodapé da Seção com Observação e Link */}
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-black/10 text-xs font-mono text-[#07132B]/60">
+              <span>Datas sujeitas a alteração. A confirmação de cada apresentação é realizada junto à assessoria executiva.</span>
               <a
                 href="#contato"
-                className="text-[#07132B] hover:text-[#B58738] transition-colors underline decoration-[#07132B]/30 underline-offset-4 font-bold"
+                className="text-[#C4550A] hover:text-[#07132B] transition-colors underline decoration-[#C4550A]/30 underline-offset-4 font-bold"
               >
                 Solicitar data na sua cidade ou convenção →
               </a>
-            </ScrollBlurItem>
+            </div>
+
           </div>
         </section>
 
@@ -488,6 +624,52 @@ const DanielSilva = () => {
                 FALAR COM ASSESSORIA →
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* 6. REDES SOCIAIS — RÉGUA DE DISTRIBUIÇÃO OFICIAL (#redes)                 */}
+        {/* ========================================================================= */}
+        <section id="redes" className="py-20 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto border-t border-white/10 relative scroll-mt-20">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10 gap-4 text-left">
+            <div>
+              <span className="text-[#E2BA7A] text-[11px] font-mono font-medium uppercase tracking-[0.25em] mb-2 block">
+                [ DISTRIBUIÇÃO // CANAIS OFICIAIS ]
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
+                Acompanhe Daniel Silva em todos os lugares.
+              </h2>
+            </div>
+          </div>
+
+          {/* Grid Minimalista 4 Colunas com Cantos Retos e Cores Oficiais no Hover */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/10 bg-[#0B1B3D]/70 divide-y sm:divide-y-0 sm:divide-x divide-white/10 rounded-none">
+            {danielSocials.map((p) => (
+              <a
+                key={p.name}
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-8 flex flex-col justify-between hover:bg-white/[0.04] transition-colors group rounded-none"
+              >
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    {p.icon}
+                  </div>
+                  <span className="text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-xs font-mono">
+                    ↗
+                  </span>
+                </div>
+                <div className="text-left">
+                  <h3 className="font-display text-2xl font-black text-white uppercase tracking-tight group-hover:text-[#FAF6EB] transition-colors">
+                    {p.name}
+                  </h3>
+                  <span className="font-mono text-[10px] tracking-wider text-white/50 uppercase block mt-1">
+                    {p.format}
+                  </span>
+                </div>
+              </a>
+            ))}
           </div>
         </section>
 
