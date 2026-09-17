@@ -173,6 +173,59 @@ const danielSocials = [
   },
 ];
 
+// 5 Logotipos fictícios de alta autoridade para a linha animada de Patrocinadores
+const patrocinadoresLogos = [
+  {
+    nome: "NEXUS CAPITAL",
+    segmento: "Investment & M&A",
+    simbolo: (
+      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+    ),
+  },
+  {
+    nome: "VORTEX VENTURES",
+    segmento: "Enterprise Growth",
+    simbolo: (
+      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+      </svg>
+    ),
+  },
+  {
+    nome: "AURA HOLDINGS",
+    segmento: "Private Equity",
+    simbolo: (
+      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polygon points="12 2 2 22 22 22" />
+        <line x1="7" y1="14" x2="17" y2="14" />
+      </svg>
+    ),
+  },
+  {
+    nome: "LUMEN B2B",
+    segmento: "Technology & Cloud",
+    simbolo: (
+      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
+  },
+  {
+    nome: "STRATA GROUP",
+    segmento: "Corporate Advisory",
+    simbolo: (
+      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <line x1="3" y1="9" x2="21" y2="9" />
+        <line x1="9" y1="21" x2="9" y2="9" />
+      </svg>
+    ),
+  },
+];
+
 // Componente que aplica animação de surgimento com desfoque alto associada ao scroll
 const ScrollBlurItem = ({
   children,
@@ -591,39 +644,40 @@ const DanielSilva = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-[#0B1B3D]/70 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[240px] text-left">
-              <div>
-                <span className="text-white/60 text-xs font-mono uppercase tracking-widest block mb-3">Keynote / Palestras</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Convenções Empresariais</h3>
-                <p className="text-white/50 text-sm leading-relaxed">Palestra magna para convenções de vendas, liderança e eventos corporativos.</p>
-              </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-white font-mono text-xs font-bold uppercase tracking-wider hover:text-[#E2BA7A] flex items-center gap-2 mt-6 transition-colors">
-                CONSULTAR DISPONIBILIDADE →
-              </a>
-            </div>
+          {/* Linha Animada Contínua de Logotipos (Marquee Infinito) */}
+          <div className="relative w-full overflow-hidden py-4">
+            {/* Gradientes de fade nas bordas para transição suave */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#07132B] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#07132B] to-transparent z-10 pointer-events-none" />
 
-            <div className="bg-[#0B1B3D]/70 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[240px] text-left">
-              <div>
-                <span className="text-white/60 text-xs font-mono uppercase tracking-widest block mb-3">Embaixador de Marca</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Posicionamento Estratégico</h3>
-                <p className="text-white/50 text-sm leading-relaxed">Associação de autoridade e conteúdo especializado para marcas e soluções B2B.</p>
-              </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-white font-mono text-xs font-bold uppercase tracking-wider hover:text-[#E2BA7A] flex items-center gap-2 mt-6 transition-colors">
-                PROPOR PARCERIA →
-              </a>
-            </div>
-
-            <div className="bg-[#0B1B3D]/70 border border-white/10 hover:border-white/40 rounded-[20px] p-8 transition-all flex flex-col justify-between min-h-[240px] text-left">
-              <div>
-                <span className="text-white/60 text-xs font-mono uppercase tracking-widest block mb-3">Conselho Consultivo</span>
-                <h3 className="font-display text-2xl font-bold text-white mb-2">Advisory Executivo</h3>
-                <p className="text-white/50 text-sm leading-relaxed">Acompanhamento contínuo no direcionamento comercial e expansão corporativa.</p>
-              </div>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-white font-mono text-xs font-bold uppercase tracking-wider hover:text-[#E2BA7A] flex items-center gap-2 mt-6 transition-colors">
-                FALAR COM ASSESSORIA →
-              </a>
-            </div>
+            <motion.div
+              animate={{ x: ["0%", "-50%"] }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="flex items-center gap-6 sm:gap-8 w-max"
+            >
+              {[...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos].map((logo, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-center gap-4 px-8 py-5 rounded-[20px] bg-[#0B1B3D]/70 border border-white/10 hover:border-[#E2BA7A]/50 transition-all shrink-0 group cursor-default shadow-lg backdrop-blur-sm"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#E2BA7A]/10 transition-all">
+                    {logo.simbolo}
+                  </div>
+                  <div className="text-left">
+                    <span className="font-display font-black text-base sm:text-lg text-white tracking-wider block group-hover:text-[#E2BA7A] transition-colors leading-tight">
+                      {logo.nome}
+                    </span>
+                    <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 block mt-0.5">
+                      {logo.segmento}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </section>
 
