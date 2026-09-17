@@ -359,16 +359,16 @@ const DanielSilva = () => {
               </div>
             </div>
 
-            {/* Container dos 4 Cards com Animação de Slide e Desfoque (AnimatePresence) */}
-            <div className="relative min-h-[320px] sm:min-h-[290px] overflow-hidden">
-              <AnimatePresence mode="wait">
+            {/* Container dos 4 Cards com Animação de Slide e Desfoque Simultâneo (mode="popLayout") */}
+            <div className="relative min-h-[330px] sm:min-h-[300px] overflow-hidden">
+              <AnimatePresence mode="popLayout" initial={false}>
                 <motion.div
                   key={activeBlock}
-                  initial={{ x: 100, opacity: 0, filter: "blur(16px)" }}
+                  initial={{ x: 120, opacity: 0, filter: "blur(20px)" }}
                   animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
-                  exit={{ x: -100, opacity: 0, filter: "blur(16px)" }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+                  exit={{ x: -120, opacity: 0, filter: "blur(20px)" }}
+                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full"
                 >
                   {agenda12Cards[activeBlock].map((card, cardIdx) => (
                     <a
@@ -376,35 +376,35 @@ const DanielSilva = () => {
                       href={card.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group bg-[#F7F6F2] hover:bg-white border border-[#07132B]/10 hover:border-[#C4550A]/40 rounded-[22px] p-6 sm:p-7 flex flex-col justify-between text-left transition-all duration-300 hover:shadow-xl hover:-translate-y-1 relative"
+                      className="group bg-[#07132B] hover:bg-[#0B1B3D] border border-[#07132B]/30 hover:border-[#C4550A]/70 rounded-[22px] p-6 sm:p-7 flex flex-col justify-between text-left transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 relative"
                     >
-                      {/* Topo do Card: Data Destaque + Badge de Horário (Como na Referência) */}
+                      {/* Topo do Card: Data Destaque em Laranja + Badge de Horário (Fiel à Referência) */}
                       <div className="flex items-center justify-between gap-2">
                         <span className="font-barlow-condensed font-black text-4xl sm:text-5xl text-[#C4550A] tracking-tight leading-none group-hover:scale-105 transition-transform duration-300">
                           {card.data}
                         </span>
-                        <span className="font-mono text-xs font-bold text-[#07132B]/75 bg-[#07132B]/5 px-3 py-1 rounded-full border border-[#07132B]/10">
+                        <span className="font-mono text-xs font-bold text-white/80 bg-white/10 px-3 py-1 rounded-full border border-white/15">
                           {card.horario}
                         </span>
                       </div>
 
                       {/* Corpo do Card: Título em Caixa Alta + Categoria */}
                       <div className="my-6">
-                        <h3 className="font-display font-black text-xl sm:text-2xl text-[#07132B] uppercase tracking-tight leading-tight group-hover:text-[#C4550A] transition-colors mb-2">
+                        <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight leading-tight group-hover:text-[#FAF6EB] transition-colors mb-2">
                           {card.titulo}
                         </h3>
-                        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#07132B]/60 block">
+                        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#C4550A] block">
                           {card.categoria}
                         </span>
-                        <p className="text-[#07132B]/50 text-xs font-sans mt-2">
+                        <p className="text-white/60 text-xs font-sans mt-2">
                           {card.local}
                         </p>
                       </div>
 
                       {/* Rodapé do Card: Chamada Direta */}
-                      <div className="pt-3 border-t border-[#07132B]/10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-[#07132B]/80 group-hover:text-[#C4550A]">
+                      <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-white/70 group-hover:text-white transition-colors">
                         <span>GARANTIR VAGA</span>
-                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        <span className="group-hover:translate-x-1 transition-transform text-[#C4550A]">→</span>
                       </div>
                     </a>
                   ))}
