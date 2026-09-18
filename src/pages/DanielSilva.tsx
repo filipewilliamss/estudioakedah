@@ -248,21 +248,83 @@ const ScrollBlurItem = ({
   );
 };
 
+// Variantes para animação de slide direcional e desfoque nos cards da Agenda
+const agendaVariants = {
+  enter: (dir: number) => ({
+    x: dir >= 0 ? 80 : -80,
+    opacity: 0,
+    filter: "blur(14px)",
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: (dir: number) => ({
+    x: dir >= 0 ? -80 : 80,
+    opacity: 0,
+    filter: "blur(14px)",
+    transition: {
+      duration: 0.38,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
 const DanielSilva = () => {
-  const [activeBlock, setActiveBlock] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const [[activeBlock, direction], setPage] = useState([0, 1]);
+  const [showArrows, setShowArrows] = useState(false);
+  const hideArrowsTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isHoveredCardRef = useRef(false);
+
+  const paginate = (newDirection: number) => {
+    setPage(([prev]) => {
+      const next = (prev + newDirection + agenda12Cards.length) % agenda12Cards.length;
+      return [next, newDirection];
+    });
+  };
+
+  const goToBlock = (idx: number) => {
+    setPage(([prev]) => [idx, idx >= prev ? 1 : -1]);
+  };
+
+  const handleSectionMouseMove = () => {
+    setShowArrows(true);
+    if (hideArrowsTimerRef.current) {
+      clearTimeout(hideArrowsTimerRef.current);
+    }
+    hideArrowsTimerRef.current = setTimeout(() => {
+      setShowArrows(false);
+    }, 2000);
+  };
+
+  const handleSectionMouseLeave = () => {
+    if (hideArrowsTimerRef.current) {
+      clearTimeout(hideArrowsTimerRef.current);
+    }
+    setShowArrows(false);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Timer de rotação automática consistente (a cada 5 segundos) sem resetar por movimento do mouse
   useEffect(() => {
-    if (isPaused) return;
     const timer = setInterval(() => {
-      setActiveBlock((prev) => (prev + 1) % agenda12Cards.length);
+      if (!isHoveredCardRef.current) {
+        setPage(([prev]) => [(prev + 1) % agenda12Cards.length, 1]);
+      }
     }, 5000);
-    return () => clearInterval(timer);
-  }, [isPaused]);
+    return () => {
+      clearInterval(timer);
+      if (hideArrowsTimerRef.current) clearTimeout(hideArrowsTimerRef.current);
+    };
+  }, []);
 
   const schema = {
     "@context": "https://schema.org",
@@ -360,10 +422,38 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section
           id="agenda"
-          className="w-full bg-white text-[#07132B] py-24 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-b border-[#07132B]/10"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          className="w-full bg-white text-[#07132B] py-24 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-b border-[#07132B]/10 select-none"
+          onMouseMove={handleSectionMouseMove}
+          onMouseLeave={handleSectionMouseLeave}
         >
+          {/* Seta Lateral Esquerda da Viewport (discreta, visível ao mover o mouse) */}
+          <button
+            type="button"
+            onClick={() => paginate(-1)}
+            aria-label="Ver agendas anteriores"
+            className={`absolute left-3 sm:left-6 lg:left-8 top-[53%] -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#07132B]/85 hover:bg-[#07132B] text-white hover:text-[#E2BA7A] border border-[#07132B]/20 hover:border-[#E2BA7A]/60 flex items-center justify-center shadow-md backdrop-blur-md transition-all duration-300 ${
+              showArrows ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"
+            }`}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          {/* Seta Lateral Direita da Viewport (discreta, visível ao mover o mouse) */}
+          <button
+            type="button"
+            onClick={() => paginate(1)}
+            aria-label="Ver próximas agendas"
+            className={`absolute right-3 sm:right-6 lg:right-8 top-[53%] -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#07132B]/85 hover:bg-[#07132B] text-white hover:text-[#E2BA7A] border border-[#07132B]/20 hover:border-[#E2BA7A]/60 flex items-center justify-center shadow-md backdrop-blur-md transition-all duration-300 ${
+              showArrows ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"
+            }`}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
             
             {/* Header da Seção (Design Editorial com Fontes e Cores Oficiais: Branco, Azul Marinho e Dourado) */}
@@ -387,7 +477,7 @@ const DanielSilva = () => {
                   <button
                     key={idx}
                     type="button"
-                    onClick={() => setActiveBlock(idx)}
+                    onClick={() => goToBlock(idx)}
                     className={`h-2.5 rounded-full transition-all duration-300 ${
                       activeBlock === idx
                         ? "w-8 bg-[#07132B] ring-2 ring-[#E2BA7A]/40"
@@ -399,15 +489,16 @@ const DanielSilva = () => {
               </div>
             </div>
 
-            {/* Container dos 4 Cards com Animação de Slide e Desfoque Simultâneo (mode="popLayout") */}
+            {/* Container dos 4 Cards com Animação de Slide e Desfoque Simultâneo (mode="wait") */}
             <div className="relative min-h-[330px] sm:min-h-[300px] overflow-hidden">
-              <AnimatePresence mode="popLayout" initial={false}>
+              <AnimatePresence mode="wait" custom={direction} initial={false}>
                 <motion.div
                   key={activeBlock}
-                  initial={{ x: 120, opacity: 0, filter: "blur(20px)" }}
-                  animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
-                  exit={{ x: -120, opacity: 0, filter: "blur(20px)" }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  custom={direction}
+                  variants={agendaVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full"
                 >
                   {agenda12Cards[activeBlock].map((card, cardIdx) => (
@@ -416,7 +507,9 @@ const DanielSilva = () => {
                       href={card.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group bg-[#07132B] hover:bg-[#0B1B3D] border border-white/10 hover:border-[#E2BA7A]/60 rounded-[22px] p-6 sm:p-7 flex flex-col justify-between text-left transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 relative"
+                      onMouseEnter={() => { isHoveredCardRef.current = true; }}
+                      onMouseLeave={() => { isHoveredCardRef.current = false; }}
+                      className="group bg-[#07132B] hover:bg-[#0B1B3D] border border-white/10 hover:border-[#E2BA7A]/60 rounded-[22px] p-6 sm:p-7 flex flex-col justify-between text-left transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-0.5 relative"
                     >
                       {/* Topo do Card: Data Destaque em Dourado + Badge de Horário */}
                       <div className="flex items-center justify-between gap-2">
