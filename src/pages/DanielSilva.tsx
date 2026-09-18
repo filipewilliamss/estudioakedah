@@ -4,6 +4,11 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import imagemDaniel from "@/assets/imagem-daniel.png";
+import logoExsoil from "@/assets/patrocinadores/exsoil-white.png";
+import logoGoose from "@/assets/patrocinadores/goose-white.png";
+import logoQueenCrest from "@/assets/patrocinadores/queen_crest-white.png";
+import logoTriuno from "@/assets/patrocinadores/triuno-white.png";
+import logoKamchatka from "@/assets/patrocinadores/kamchatka-white.png";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
 // Agenda Pública - 12 Cards divididos em 3 blocos de 4 (design idêntico à referência, fundo branco)
@@ -173,56 +178,37 @@ const danielSocials = [
   },
 ];
 
-// 5 Logotipos fictícios de alta autoridade para a linha animada de Patrocinadores
+// 5 Logotipos em branco no fundo azul marinho para a linha animada de Patrocinadores
 const patrocinadoresLogos = [
   {
-    nome: "NEXUS CAPITAL",
-    segmento: "Investment & M&A",
-    simbolo: (
-      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-      </svg>
-    ),
+    nome: "EXSOIL",
+    image: logoExsoil,
+    alt: "Logotipo Exsoil",
+    imgClass: "h-10 sm:h-11 w-auto max-w-[150px]",
   },
   {
-    nome: "VORTEX VENTURES",
-    segmento: "Enterprise Growth",
-    simbolo: (
-      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-      </svg>
-    ),
+    nome: "GOOSE",
+    image: logoGoose,
+    alt: "Logotipo Goose",
+    imgClass: "h-8 sm:h-9 w-auto max-w-[145px]",
   },
   {
-    nome: "AURA HOLDINGS",
-    segmento: "Private Equity",
-    simbolo: (
-      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polygon points="12 2 2 22 22 22" />
-        <line x1="7" y1="14" x2="17" y2="14" />
-      </svg>
-    ),
+    nome: "CROWN & LAUREL",
+    image: logoQueenCrest,
+    alt: "Logotipo Crown & Laurel",
+    imgClass: "h-12 sm:h-14 w-auto max-w-[130px]",
   },
   {
-    nome: "LUMEN B2B",
-    segmento: "Technology & Cloud",
-    simbolo: (
-      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-      </svg>
-    ),
+    nome: "TRIUNO TECH STUDIO",
+    image: logoTriuno,
+    alt: "Logotipo Triuno Tech Studio",
+    imgClass: "h-9 sm:h-10 w-auto max-w-[155px]",
   },
   {
-    nome: "STRATA GROUP",
-    segmento: "Corporate Advisory",
-    simbolo: (
-      <svg className="w-5 h-5 text-[#E2BA7A]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <line x1="3" y1="9" x2="21" y2="9" />
-        <line x1="9" y1="21" x2="9" y2="9" />
-      </svg>
-    ),
+    nome: "KAMCHATKA TRAVEL",
+    image: logoKamchatka,
+    alt: "Logotipo Kamchatka International Travel",
+    imgClass: "h-10 sm:h-11 w-auto max-w-[165px]",
   },
 ];
 
@@ -664,19 +650,13 @@ const DanielSilva = () => {
               {[...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos].map((logo, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-4 px-8 py-5 rounded-[20px] bg-[#0B1B3D]/70 border border-white/10 hover:border-[#E2BA7A]/50 transition-all shrink-0 group cursor-default shadow-lg backdrop-blur-sm"
+                  className="flex items-center justify-center px-8 sm:px-10 py-5 rounded-[20px] bg-[#0B1B3D]/70 border border-white/10 hover:border-white/30 transition-all shrink-0 group cursor-default shadow-lg backdrop-blur-sm min-w-[190px] sm:min-w-[210px] h-[92px]"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#E2BA7A]/10 transition-all">
-                    {logo.simbolo}
-                  </div>
-                  <div className="text-left">
-                    <span className="font-display font-black text-base sm:text-lg text-white tracking-wider block group-hover:text-[#E2BA7A] transition-colors leading-tight">
-                      {logo.nome}
-                    </span>
-                    <span className="font-mono text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 block mt-0.5">
-                      {logo.segmento}
-                    </span>
-                  </div>
+                  <img
+                    src={logo.image}
+                    alt={logo.alt}
+                    className={`${logo.imgClass} object-contain opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none`}
+                  />
                 </div>
               ))}
             </motion.div>
