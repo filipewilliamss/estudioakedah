@@ -374,22 +374,23 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section
           id="agenda"
-          className="w-full bg-white text-[#07132B] py-24 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-b border-black/10"
+          className="w-full bg-white text-[#07132B] py-24 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-b border-[#07132B]/10"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
             
-            {/* Header da Seção (Design Editorial com Estilo da Imagem de Referência) */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-black/10 gap-6 text-left">
+            {/* Header da Seção (Design Editorial com Fontes e Cores Oficiais: Branco, Azul Marinho e Dourado) */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-6 border-b border-[#07132B]/10 gap-6 text-left">
               <div>
-                <span className="text-[#C4550A] text-xs font-mono font-bold uppercase tracking-[0.35em] mb-3 block">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#07132B] text-[#E2BA7A] text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-4 border border-[#E2BA7A]/20 shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#E2BA7A] animate-pulse" />
                   PROGRAMAÇÃO // 2026
-                </span>
+                </div>
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-[#07132B] tracking-tight uppercase leading-tight">
-                  Próximas <span className="font-serif italic font-normal text-[#C4550A]">apresentações</span> confirmadas.
+                  Próximas <span className="font-display italic font-normal text-[#07132B]/75">apresentações</span> confirmadas.
                 </h2>
-                <p className="text-[#07132B]/60 text-sm sm:text-base font-sans mt-3 max-w-2xl">
+                <p className="text-[#07132B]/65 text-sm sm:text-base font-sans mt-3 max-w-2xl leading-relaxed">
                   Datas e horários das próximas palestras, imersões executivas e convenções. Acompanhe a agenda oficial ou agende sua data.
                 </p>
               </div>
@@ -403,7 +404,7 @@ const DanielSilva = () => {
                     onClick={() => setActiveBlock(idx)}
                     className={`h-2.5 rounded-full transition-all duration-300 ${
                       activeBlock === idx
-                        ? "w-8 bg-[#C4550A]"
+                        ? "w-8 bg-[#07132B] ring-2 ring-[#E2BA7A]/40"
                         : "w-2.5 bg-[#07132B]/20 hover:bg-[#07132B]/40"
                     }`}
                     aria-label={`Ir para bloco ${idx + 1}`}
@@ -429,24 +430,24 @@ const DanielSilva = () => {
                       href={card.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group bg-[#07132B] hover:bg-[#0B1B3D] border border-[#07132B]/30 hover:border-[#C4550A]/70 rounded-[22px] p-6 sm:p-7 flex flex-col justify-between text-left transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 relative"
+                      className="group bg-[#07132B] hover:bg-[#0B1B3D] border border-white/10 hover:border-[#E2BA7A]/60 rounded-[22px] p-6 sm:p-7 flex flex-col justify-between text-left transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-1 relative"
                     >
-                      {/* Topo do Card: Data Destaque em Laranja + Badge de Horário (Fiel à Referência) */}
+                      {/* Topo do Card: Data Destaque em Dourado + Badge de Horário */}
                       <div className="flex items-center justify-between gap-2">
-                        <span className="font-barlow-condensed font-black text-4xl sm:text-5xl text-[#C4550A] tracking-tight leading-none group-hover:scale-105 transition-transform duration-300">
+                        <span className="font-display font-black text-4xl sm:text-5xl text-[#E2BA7A] tracking-tight leading-none group-hover:scale-105 transition-transform duration-300">
                           {card.data}
                         </span>
-                        <span className="font-mono text-xs font-bold text-white/80 bg-white/10 px-3 py-1 rounded-full border border-white/15">
+                        <span className="font-mono text-xs font-bold text-white/90 bg-white/10 px-3 py-1 rounded-full border border-white/15 group-hover:border-[#E2BA7A]/40 transition-colors">
                           {card.horario}
                         </span>
                       </div>
 
-                      {/* Corpo do Card: Título em Caixa Alta + Categoria */}
+                      {/* Corpo do Card: Título em Caixa Alta + Categoria Dourada */}
                       <div className="my-6">
-                        <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight leading-tight group-hover:text-[#FAF6EB] transition-colors mb-2">
+                        <h3 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight leading-tight group-hover:text-[#E2BA7A] transition-colors mb-2">
                           {card.titulo}
                         </h3>
-                        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#C4550A] block">
+                        <span className="font-mono text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#E2BA7A] block">
                           {card.categoria}
                         </span>
                         <p className="text-white/60 text-xs font-sans mt-2">
@@ -454,10 +455,10 @@ const DanielSilva = () => {
                         </p>
                       </div>
 
-                      {/* Rodapé do Card: Chamada Direta */}
-                      <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-white/70 group-hover:text-white transition-colors">
+                      {/* Rodapé do Card: Chamada Direta com Dourado no Hover */}
+                      <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono font-bold uppercase tracking-wider text-white/70 group-hover:text-[#E2BA7A] transition-colors">
                         <span>GARANTIR VAGA</span>
-                        <span className="group-hover:translate-x-1 transition-transform text-[#C4550A]">→</span>
+                        <span className="group-hover:translate-x-1 transition-transform text-[#E2BA7A]">→</span>
                       </div>
                     </a>
                   ))}
@@ -466,13 +467,14 @@ const DanielSilva = () => {
             </div>
 
             {/* Rodapé da Seção com Observação e Link */}
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-black/10 text-xs font-mono text-[#07132B]/60">
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#07132B]/10 text-xs font-mono text-[#07132B]/60">
               <span>Datas sujeitas a alteração. A confirmação de cada apresentação é realizada junto à assessoria executiva.</span>
               <a
                 href="#contato"
-                className="text-[#C4550A] hover:text-[#07132B] transition-colors underline decoration-[#C4550A]/30 underline-offset-4 font-bold"
+                className="text-[#07132B] hover:text-[#0B1B3D] transition-colors font-bold flex items-center gap-1.5 group underline decoration-[#07132B]/30 hover:decoration-[#07132B] underline-offset-4"
               >
-                Solicitar data na sua cidade ou convenção →
+                <span>Solicitar data na sua cidade ou convenção</span>
+                <span className="text-[#E2BA7A] group-hover:translate-x-1 transition-transform font-bold">→</span>
               </a>
             </div>
 
