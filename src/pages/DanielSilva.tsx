@@ -178,37 +178,37 @@ const danielSocials = [
   },
 ];
 
-// 5 Logotipos em branco no fundo azul marinho para a linha animada de Patrocinadores
+// 5 Logotipos em branco no fundo azul marinho para a linha animada de Patrocinadores (sem cards)
 const patrocinadoresLogos = [
   {
     nome: "EXSOIL",
     image: logoExsoil,
     alt: "Logotipo Exsoil",
-    imgClass: "h-10 sm:h-11 w-auto max-w-[150px]",
+    imgClass: "h-[44px] sm:h-[48px] w-auto max-w-[160px]",
   },
   {
     nome: "GOOSE",
     image: logoGoose,
     alt: "Logotipo Goose",
-    imgClass: "h-8 sm:h-9 w-auto max-w-[145px]",
+    imgClass: "h-[34px] sm:h-[38px] w-auto max-w-[155px]",
   },
   {
     nome: "CROWN & LAUREL",
     image: logoQueenCrest,
     alt: "Logotipo Crown & Laurel",
-    imgClass: "h-12 sm:h-14 w-auto max-w-[130px]",
+    imgClass: "h-[50px] sm:h-[56px] w-auto max-w-[130px]",
   },
   {
     nome: "TRIUNO TECH STUDIO",
     image: logoTriuno,
     alt: "Logotipo Triuno Tech Studio",
-    imgClass: "h-9 sm:h-10 w-auto max-w-[155px]",
+    imgClass: "h-[38px] sm:h-[42px] w-auto max-w-[165px]",
   },
   {
     nome: "KAMCHATKA TRAVEL",
     image: logoKamchatka,
     alt: "Logotipo Kamchatka International Travel",
-    imgClass: "h-10 sm:h-11 w-auto max-w-[165px]",
+    imgClass: "h-[42px] sm:h-[46px] w-auto max-w-[170px]",
   },
 ];
 
@@ -632,30 +632,30 @@ const DanielSilva = () => {
             </p>
           </div>
 
-          {/* Linha Animada Contínua de Logotipos (Marquee Infinito) */}
-          <div className="relative w-full overflow-hidden py-4">
+          {/* Linha Animada Contínua de Logotipos (Marquee Infinito sem cards) */}
+          <div className="relative w-full overflow-hidden py-8">
             {/* Gradientes de fade nas bordas para transição suave */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-[#07132B] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-[#07132B] to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-r from-[#07132B] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-40 bg-gradient-to-l from-[#07132B] to-transparent z-10 pointer-events-none" />
 
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
               transition={{
-                duration: 25,
+                duration: 26,
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="flex items-center gap-6 sm:gap-8 w-max"
+              className="flex items-center gap-14 sm:gap-20 lg:gap-24 w-max"
             >
               {[...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos].map((logo, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center justify-center px-8 sm:px-10 py-5 rounded-[20px] bg-[#0B1B3D]/70 border border-white/10 hover:border-white/30 transition-all shrink-0 group cursor-default shadow-lg backdrop-blur-sm min-w-[190px] sm:min-w-[210px] h-[92px]"
+                  className="flex items-center justify-center shrink-0 cursor-default group"
                 >
                   <img
                     src={logo.image}
                     alt={logo.alt}
-                    className={`${logo.imgClass} object-contain opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none`}
+                    className={`${logo.imgClass} object-contain opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none`}
                   />
                 </div>
               ))}
