@@ -4,6 +4,9 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import imagemDaniel from "@/assets/imagem-daniel.png";
+import heroMan1 from "@/assets/hero-man-1.jpg";
+import heroMan2 from "@/assets/hero-man-2.jpg";
+import heroMan3 from "@/assets/hero-man-3.jpg";
 import logoExsoil from "@/assets/patrocinadores/exsoil-white.png";
 import logoGoose from "@/assets/patrocinadores/goose-white.png";
 import logoQueenCrest from "@/assets/patrocinadores/queen_crest-white.png";
@@ -275,7 +278,88 @@ const agendaVariants = {
   }),
 };
 
+// 4 Cards da Hero Section com rotação automática a cada 5s (estilo editorial de alto impacto)
+const heroSlides = [
+  {
+    id: 1,
+    badge: "ESTRATÉGIA DE NEGÓCIOS • POSICIONAMENTO",
+    titleMain: "Daniel",
+    titleSub: "Silva",
+    descricao: "Construção de tração em marcas de alto valor e liderança executiva. Conectando princípios sólidos de fé, visão empreendedora e sensibilidade artística para transformar vidas e empresas.",
+    btnPrimary: { text: "Conferir Agendas", href: "#agenda" },
+    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: imagemDaniel,
+    alt: "Daniel Silva",
+    imgPos: "object-[center_20%] md:object-[center_15%]",
+  },
+  {
+    id: 2,
+    badge: "GOVERNANÇA • ADVISORY C-LEVEL",
+    titleMain: "Gestão",
+    titleSub: "Executiva",
+    descricao: "Mentoria intensiva para consolidação de conselhos consultivos, estruturação de canais comerciais previsíveis e liderança estratégica de alta performance.",
+    btnPrimary: { text: "Conhecer Métodos", href: "#empreendedorismo" },
+    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: heroMan1,
+    alt: "Gestão Executiva & Advisory",
+    imgPos: "object-[center_20%]",
+  },
+  {
+    id: 3,
+    badge: "KEYNOTES • CONVENÇÕES CORPORATIVAS",
+    titleMain: "Impacto &",
+    titleSub: "Propósito",
+    descricao: "Palestras transformadoras que unem visão de negócios, inteligência executiva e princípios práticos para inspirar convenções corporativas e acelerar equipes.",
+    btnPrimary: { text: "Ver Programação", href: "#agenda" },
+    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: heroMan2,
+    alt: "Impacto & Propósito",
+    imgPos: "object-[center_15%]",
+  },
+  {
+    id: 4,
+    badge: "ESCALA B2B • TRAÇÃO DE RECEITA",
+    titleMain: "Expansão de",
+    titleSub: "Mercado",
+    descricao: "Desenvolvimento de cultura comercial orientada a margem, playbooks de vendas complexas e posicionamento de marcas de alto valor no mercado nacional.",
+    btnPrimary: { text: "Agendar Reunião", href: "#contato" },
+    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: heroMan3,
+    alt: "Expansão de Mercado",
+    imgPos: "object-[center_20%]",
+  },
+];
+
+// Animação de slide saindo para esquerda e novo entrando pela direita
+const heroSlideVariants = {
+  enter: {
+    x: 100,
+    opacity: 0,
+    filter: "blur(14px)",
+  },
+  center: {
+    x: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: {
+    x: -100,
+    opacity: 0,
+    filter: "blur(14px)",
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
 const DanielSilva = () => {
+  const [heroSlide, setHeroSlide] = useState(0);
+  const isHoveredHeroRef = useRef(false);
   const [[activeBlock, direction], setPage] = useState([0, 1]);
   const [showArrows, setShowArrows] = useState(false);
   const hideArrowsTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -326,6 +410,16 @@ const DanielSilva = () => {
     };
   }, []);
 
+  // Timer de rotação automática dos cards da Hero (a cada 5 segundos)
+  useEffect(() => {
+    const heroTimer = setInterval(() => {
+      if (!isHoveredHeroRef.current) {
+        setHeroSlide((prev) => (prev + 1) % heroSlides.length);
+      }
+    }, 5000);
+    return () => clearInterval(heroTimer);
+  }, []);
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -347,74 +441,102 @@ const DanielSilva = () => {
 
       <main className="relative z-10 overflow-hidden">
         {/* ========================================================================= */}
-        {/* 1. HERO SECTION (MODELO IMAGEM 1)                                        */}
+        {/* 1. HERO SECTION (CAROUSEL COM 4 CARDS E SLIDE AUTOMÁTICO A CADA 5S)       */}
         {/* ========================================================================= */}
-        <section className="relative min-h-screen min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#07132B] pt-24 pb-12 sm:pt-28 sm:pb-16">
-          {/* Fundo com Imagem do Daniel Silva à direita e Degradê Azul Marinho vindo da esquerda */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            {/* Imagem do Daniel posicionada à direita */}
-            <div className="absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full flex items-center justify-end">
-              <img 
-                src={imagemDaniel} 
-                alt="Daniel Silva" 
-                className="w-full h-full object-cover object-[center_20%] md:object-cover md:object-[center_15%] opacity-85 md:opacity-95 filter contrast-105"
-              />
-            </div>
-
-            {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-45% via-[#07132B]/90 md:via-[#07132B]/70 via-65% to-transparent" />
-
-            {/* Degradês verticais para mesclagem superior e inferior */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60" />
-
-            {/* Glow azul sutil */}
-            <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none" />
-          </div>
-
-          <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
+        <section 
+          className="relative min-h-screen min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#07132B]"
+          onMouseEnter={() => { isHoveredHeroRef.current = true; }}
+          onMouseLeave={() => { isHoveredHeroRef.current = false; }}
+        >
+          <AnimatePresence mode="wait">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-3xl text-left flex flex-col items-start"
+              key={heroSlide}
+              variants={heroSlideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="relative min-h-screen min-h-[100dvh] w-full flex items-center overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16"
             >
-              {/* Badge Superior */}
-              <div className="flex items-center justify-start gap-4 mb-6">
-                <span className="text-white/80 border border-white/20 px-4 py-1.5 rounded-full text-[11px] md:text-[12px] uppercase tracking-[0.35em] font-mono font-bold bg-[#0B1B3D]/50 backdrop-blur-sm">
-                  ESTRATÉGIA DE NEGÓCIOS • POSICIONAMENTO
-                </span>
+              {/* Fundo com Imagem à direita e Degradê Azul Marinho vindo da esquerda */}
+              <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                {/* Imagem posicionada à direita */}
+                <div className="absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full flex items-center justify-end">
+                  <img 
+                    src={heroSlides[heroSlide].image} 
+                    alt={heroSlides[heroSlide].alt} 
+                    className={`w-full h-full object-cover ${heroSlides[heroSlide].imgPos} opacity-85 md:opacity-95 filter contrast-105`}
+                  />
+                </div>
+
+                {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-45% via-[#07132B]/90 md:via-[#07132B]/70 via-65% to-transparent" />
+
+                {/* Degradês verticais para mesclagem superior e inferior */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60" />
+
+                {/* Glow azul sutil */}
+                <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none" />
               </div>
 
-              {/* Título Principal */}
-              <h1 className="font-display text-[58px] sm:text-[80px] md:text-[104px] font-[900] leading-[0.88] tracking-[-0.04em] mb-8">
-                <span className="block text-white">Daniel</span>
-                <span className="text-white/80 italic font-normal block">Silva</span>
-              </h1>
+              {/* Conteúdo do Card (Texto à esquerda) */}
+              <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
+                <div className="max-w-3xl text-left flex flex-col items-start">
+                  {/* Badge Superior */}
+                  <div className="flex items-center justify-start gap-4 mb-6">
+                    <span className="text-white/80 border border-white/20 px-4 py-1.5 rounded-full text-[11px] md:text-[12px] uppercase tracking-[0.35em] font-mono font-bold bg-[#0B1B3D]/50 backdrop-blur-sm">
+                      {heroSlides[heroSlide].badge}
+                    </span>
+                  </div>
 
-              {/* Descrição Editorial */}
-              <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10 font-normal">
-                Construção de tração em marcas de alto valor e liderança executiva. Conectando princípios sólidos de fé, visão empreendedora e sensibilidade artística para transformar vidas e empresas.
-              </p>
+                  {/* Título Principal */}
+                  <h1 className="font-display text-[58px] sm:text-[80px] md:text-[104px] font-[900] leading-[0.88] tracking-[-0.04em] mb-8">
+                    <span className="block text-white">{heroSlides[heroSlide].titleMain}</span>
+                    <span className="text-white/80 italic font-normal block">{heroSlides[heroSlide].titleSub}</span>
+                  </h1>
 
-              {/* Botões de Ação do Hero */}
-              <div className="flex flex-wrap gap-4 items-center">
-                <a
-                  href="#agenda"
-                  className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[14px] transition-all duration-300 shadow-xl"
-                >
-                  Conferir Agendas
-                </a>
-                <a 
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[14px] transition-all duration-300"
-                >
-                  Falar no WhatsApp
-                </a>
+                  {/* Descrição Editorial */}
+                  <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left mb-10 font-normal">
+                    {heroSlides[heroSlide].descricao}
+                  </p>
+
+                  {/* Botões de Ação do Hero */}
+                  <div className="flex flex-wrap gap-4 items-center mb-8">
+                    <a
+                      href={heroSlides[heroSlide].btnPrimary.href}
+                      className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[14px] transition-all duration-300 shadow-xl"
+                    >
+                      {heroSlides[heroSlide].btnPrimary.text}
+                    </a>
+                    <a 
+                      href={heroSlides[heroSlide].btnSecondary.href}
+                      target={heroSlides[heroSlide].btnSecondary.external ? "_blank" : undefined}
+                      rel={heroSlides[heroSlide].btnSecondary.external ? "noopener noreferrer" : undefined}
+                      className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-xs uppercase tracking-[0.2em] px-10 py-4 rounded-[14px] transition-all duration-300"
+                    >
+                      {heroSlides[heroSlide].btnSecondary.text}
+                    </a>
+                  </div>
+
+                  {/* Indicadores de Paginação do Carousel (4 Cards) */}
+                  <div className="flex items-center gap-2.5">
+                    {heroSlides.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setHeroSlide(idx)}
+                        className={`h-1.5 rounded-full transition-all duration-300 ${
+                          heroSlide === idx
+                            ? "w-8 bg-white ring-1 ring-white/40"
+                            : "w-2.5 bg-white/30 hover:bg-white/60"
+                        }`}
+                        aria-label={`Ver card ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </motion.div>
-          </div>
+          </AnimatePresence>
         </section>
 
         {/* ========================================================================= */}
