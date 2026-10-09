@@ -349,7 +349,7 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         {/* 1. HERO SECTION (MODELO IMAGEM 1)                                        */}
         {/* ========================================================================= */}
-        <section className="relative min-h-[92vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16">
+        <section className="relative min-h-screen min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#07132B] pt-24 pb-12 sm:pt-28 sm:pb-16">
           {/* Fundo com Imagem do Daniel Silva à direita e Degradê Azul Marinho vindo da esquerda */}
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             {/* Imagem do Daniel posicionada à direita */}
@@ -422,7 +422,7 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section
           id="agenda"
-          className="w-full bg-white text-[#07132B] py-24 sm:py-28 relative overflow-hidden scroll-mt-20 border-t border-b border-[#07132B]/10 select-none"
+          className="w-full bg-white text-[#07132B] py-24 sm:py-28 relative overflow-hidden scroll-mt-20 border-b border-[#07132B]/10 select-none"
           onMouseMove={handleSectionMouseMove}
           onMouseLeave={handleSectionMouseLeave}
         >
