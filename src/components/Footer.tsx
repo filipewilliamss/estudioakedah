@@ -62,11 +62,6 @@ const Footer = ({ isPodcastPage, isDanielSilvaPage }: FooterProps) => {
               {isDanielSilva ? (
                 <>
                   <li>
-                    <Link to="/daniel-silva/sobre" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Sobre mim
-                    </Link>
-                  </li>
-                  <li>
                     <a href="/daniel-silva#agenda" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
                       Agenda
                     </a>

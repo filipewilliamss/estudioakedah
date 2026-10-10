@@ -22,7 +22,6 @@ const podcastNavLinks: NavItem[] = [
 ];
 
 const danielSilvaNavLinks: NavItem[] = [
-  { label: "Sobre mim", to: "/daniel-silva/sobre" },
   { label: "Agenda", hash: "agenda", to: "/daniel-silva#agenda" },
   { label: "Empreendedorismo", hash: "empreendedorismo", to: "/daniel-silva#empreendedorismo" },
   { label: "Fé", hash: "fe", to: "/daniel-silva#fe" },
