@@ -28,7 +28,7 @@ const danielSilvaNavLinks: NavItem[] = [
   { label: "Fé", hash: "fe", to: "/daniel-silva#fe" },
   { label: "Música", hash: "musica", to: "/daniel-silva#musica" },
   { label: "Patrocinadores", hash: "patrocinadores", to: "/daniel-silva#patrocinadores" },
-  { label: "Contato", hash: "contato", to: "/daniel-silva#contato" },
+  { label: "Contato", to: "/contato" },
 ];
 
 const ecosystemProjects = [

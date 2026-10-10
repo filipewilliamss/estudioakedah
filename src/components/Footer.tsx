@@ -92,8 +92,8 @@ const Footer = ({ isPodcastPage, isDanielSilvaPage }: FooterProps) => {
                     </a>
                   </li>
                   <li>
-                    <a href="/daniel-silva#contato" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Contato & Convite
+                    <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Contato &amp; WhatsApp
                     </a>
                   </li>
                 </>

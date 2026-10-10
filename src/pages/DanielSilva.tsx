@@ -322,7 +322,7 @@ const heroSlides = [
     titleMain: "Expansão de",
     titleSub: "Mercado",
     descricao: "Desenvolvimento de cultura comercial orientada a margem, playbooks de vendas complexas e posicionamento de marcas de alto valor no mercado nacional.",
-    btnPrimary: { text: "Agendar Reunião", href: "#contato" },
+    btnPrimary: { text: "Agendar Reunião", href: WHATSAPP_URL, external: true },
     btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
     image: heroMan3,
     alt: "Expansão de Mercado",
@@ -921,47 +921,6 @@ const DanielSilva = () => {
                 </div>
               </a>
             ))}
-          </div>
-        </section>
-
-        {/* ========================================================================= */}
-        {/* 7. CTA DE FECHAMENTO — "CONVIDE DANIEL" (EXATAMENTE COMO NA IMAGEM 3)      */}
-        {/* ========================================================================= */}
-        <section id="contato" className="py-24 sm:py-32 px-6 sm:px-12 bg-[#F4F2EB] text-[#111111] relative scroll-mt-20">
-          <div className="max-w-6xl mx-auto text-left">
-            {/* Tag / Eyebrow */}
-            <span className="font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.3em] text-[#555555] mb-6 block">
-              CONEXÃO OFICIAL &amp; ASSESSORIA
-            </span>
-
-            {/* Título Monumental Gigante */}
-            <h2 className="font-black text-6xl sm:text-8xl md:text-9xl uppercase tracking-tight leading-[0.88] text-[#111111] mb-8 font-display">
-              CONVIDE <br />
-              DANIEL
-            </h2>
-
-            {/* Subtítulo explicativo */}
-            <p className="text-[#333333] text-base sm:text-lg md:text-xl max-w-3xl leading-relaxed mb-10 font-normal">
-              Palestras, convenções corporativas, mentorias executivas de negócios ou ministrações musicais. Fale diretamente com a equipe executiva.
-            </p>
-
-            {/* Botões da Imagem 3 */}
-            <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-4 bg-[#111111] hover:bg-[#222222] text-white font-mono text-xs font-bold uppercase tracking-[0.2em] rounded-none border border-[#111111] transition-colors text-center shadow-lg"
-              >
-                WHATSAPP OFICIAL
-              </a>
-              <a
-                href={`mailto:${AKEDAH_EMAIL}`}
-                className="px-8 py-4 bg-transparent hover:bg-[#111111] hover:text-white text-[#111111] font-mono text-xs font-bold uppercase tracking-[0.2em] rounded-none border border-[#111111] transition-colors text-center"
-              >
-                ENVIAR E-MAIL
-              </a>
-            </div>
           </div>
         </section>
       </main>
