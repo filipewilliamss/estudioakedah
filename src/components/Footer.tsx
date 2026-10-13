@@ -63,27 +63,27 @@ const Footer = ({ isPodcastPage, isDanielSilvaPage }: FooterProps) => {
                 <>
                   <li>
                     <a href="/daniel-silva#agenda" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Agenda
+                      Agenda &amp; Patrocinadores
                     </a>
                   </li>
                   <li>
-                    <a href="/daniel-silva#empreendedorismo" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Empreendedorismo
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/daniel-silva#fe" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Fé & Propósito
+                    <a href="/daniel-silva#fundamentos" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Fundamentos de Vida &amp; Liderança
                     </a>
                   </li>
                   <li>
                     <a href="/daniel-silva#musica" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Música
+                      Sensibilidade &amp; Música
                     </a>
                   </li>
                   <li>
-                    <a href="/daniel-silva#patrocinadores" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Patrocinadores
+                    <a href="/daniel-silva#negocios" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Atuação &amp; Negócios
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/daniel-silva#redes" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Canais Oficiais
                     </a>
                   </li>
                   <li>

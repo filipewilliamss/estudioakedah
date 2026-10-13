@@ -3,6 +3,7 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import akedahLogo from "@/assets/akedah-logo.png";
 import { DanielSignature } from "./daniel/DanielBrandSignature";
+import { DanielAnimatedSignature } from "./daniel/DanielAnimatedSignature";
 
 type NavItem = { label: string; hash?: string; to?: string };
 
@@ -23,10 +24,11 @@ const podcastNavLinks: NavItem[] = [
 
 const danielSilvaNavLinks: NavItem[] = [
   { label: "Agenda", hash: "agenda", to: "/daniel-silva#agenda" },
-  { label: "Empreendedorismo", hash: "empreendedorismo", to: "/daniel-silva#empreendedorismo" },
-  { label: "Fé", hash: "fe", to: "/daniel-silva#fe" },
+  { label: "Fundamentos", hash: "fundamentos", to: "/daniel-silva#fundamentos" },
   { label: "Música", hash: "musica", to: "/daniel-silva#musica" },
+  { label: "Negócios", hash: "negocios", to: "/daniel-silva#negocios" },
   { label: "Patrocinadores", hash: "patrocinadores", to: "/daniel-silva#patrocinadores" },
+  { label: "Canais Oficiais", hash: "redes", to: "/daniel-silva#redes" },
   { label: "Contato", to: "/contato" },
 ];
 
@@ -179,11 +181,9 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
           >
             {isCurrentDanielSilva ? (
               <div className="flex items-center">
-                <img
-                  src="/daniel-silva-assinatura-white.svg"
-                  alt="Daniel Silva"
-                  className="h-[28px] md:h-[36px] w-auto object-contain select-none"
-                  loading="eager"
+                <DanielAnimatedSignature
+                  className="h-[28px] md:h-[36px] w-auto max-w-[130px] md:max-w-[165px]"
+                  replayOnClick={true}
                 />
               </div>
             ) : (
