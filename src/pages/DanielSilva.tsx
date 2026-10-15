@@ -12,9 +12,9 @@ import imgAdvisorySummit from "@/assets/agenda/advisory-summit.jpg";
 import imgConferenciaAnual from "@/assets/agenda/conferencia-anual.jpg";
 import imgMentoriaImersiva from "@/assets/agenda/mentoria-imersiva.jpg";
 import imgArenaBusiness from "@/assets/agenda/arena-business.jpg";
-import imgFundamentos from "@/assets/daniel/fundamentos-palestra.jpg";
-import imgMusica from "@/assets/daniel/musica-violao.jpg";
-import imgNegocios from "@/assets/daniel/negocios-atuacao.jpg";
+import imgFundamentos from "@/assets/daniel/daniel-hero-fe.png";
+import imgMusica from "@/assets/daniel/daniel-hero-musica.png";
+import imgNegocios from "@/assets/daniel/daniel-hero-empreendedor.png";
 import logoEstudioAkedah from "@/assets/patrocinadores/logo-estudio-akedah.png";
 import logoAkedahPodcast from "@/assets/patrocinadores/logo-akedah-podcast.png";
 import logoFecar from "@/assets/patrocinadores/logo-fecar.png";
@@ -768,8 +768,8 @@ const DanielSilva = () => {
           <div className="absolute left-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
             <img
               src={imgFundamentos}
-              alt="Daniel Silva - Fundamentos de Vida e Liderança"
-              className="w-full h-full object-cover object-top"
+              alt="Daniel Silva - Fé, Propósito e Liderança"
+              className="w-full h-full object-cover object-[center_20%] md:object-[center_15%]"
             />
           </div>
 
@@ -812,7 +812,7 @@ const DanielSilva = () => {
             <img
               src={imgMusica}
               alt="Daniel Silva - Expressão Musical e Adoração"
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-[center_15%]"
             />
           </div>
 
@@ -857,7 +857,7 @@ const DanielSilva = () => {
             <img
               src={imgNegocios}
               alt="Daniel Silva - Empreendedorismo & Estratégia Comercial"
-              className="w-full h-full object-cover object-top"
+              className="w-full h-full object-cover object-[center_20%]"
             />
           </div>
 
