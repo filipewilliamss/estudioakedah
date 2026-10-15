@@ -7,7 +7,7 @@ import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import IrisPreloader from "@/components/podcast/IrisPreloader";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
 import founderPicture from "@/assets/akedah-founder.jpg";
-import danielPicture from "@/assets/imagem-daniel.png";
+import danielPicture from "@/assets/imagem-daniel.webp";
 import { WHATSAPP_URL } from "@/data/services";
 
 const Podcast = () => {

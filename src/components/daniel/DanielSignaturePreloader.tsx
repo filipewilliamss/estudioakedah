@@ -12,12 +12,12 @@ export const DanielSignaturePreloader: React.FC<DanielSignaturePreloaderProps> =
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // A animação da caligrafia leva 2.4s.
-    // Damos mais 0.3s para visualização da assinatura completa e iniciamos o fade-out suave.
+    // A animação da caligrafia leva ~2.52s (terminando com o ponto do 'i' de Silva).
+    // Damos mais ~0.33s para visualização da assinatura completa e iniciamos o fade-out suave.
     const timer = setTimeout(() => {
       setIsVisible(false);
       onFinish?.();
-    }, 2650);
+    }, 2850);
 
     return () => clearTimeout(timer);
   }, [onFinish]);

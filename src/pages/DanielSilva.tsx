@@ -4,10 +4,10 @@ import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import DanielSignaturePreloader from "@/components/daniel/DanielSignaturePreloader";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import imagemDaniel from "@/assets/imagem-daniel.png";
-import heroMan1 from "@/assets/hero-man-1.jpg";
-import heroMan2 from "@/assets/hero-man-2.jpg";
-import heroMan3 from "@/assets/hero-man-3.jpg";
+import heroDanielFe from "@/assets/daniel/daniel-hero-fe.png";
+import heroDanielMusica from "@/assets/daniel/daniel-hero-musica.png";
+import heroDanielEmpreendedor from "@/assets/daniel/daniel-hero-empreendedor.png";
+import heroDanielYoutube from "@/assets/daniel/daniel-hero-youtube.jpg";
 import imgAdvisorySummit from "@/assets/agenda/advisory-summit.jpg";
 import imgConferenciaAnual from "@/assets/agenda/conferencia-anual.jpg";
 import imgMentoriaImersiva from "@/assets/agenda/mentoria-imersiva.jpg";
@@ -15,11 +15,11 @@ import imgArenaBusiness from "@/assets/agenda/arena-business.jpg";
 import imgFundamentos from "@/assets/daniel/fundamentos-palestra.jpg";
 import imgMusica from "@/assets/daniel/musica-violao.jpg";
 import imgNegocios from "@/assets/daniel/negocios-atuacao.jpg";
-import logoExsoil from "@/assets/patrocinadores/exsoil-white.png";
-import logoGoose from "@/assets/patrocinadores/goose-white.png";
-import logoQueenCrest from "@/assets/patrocinadores/queen_crest-white.png";
-import logoTriuno from "@/assets/patrocinadores/triuno-white.png";
-import logoKamchatka from "@/assets/patrocinadores/kamchatka-white.png";
+import logoEstudioAkedah from "@/assets/patrocinadores/logo-estudio-akedah.png";
+import logoAkedahPodcast from "@/assets/patrocinadores/logo-akedah-podcast.png";
+import logoFecar from "@/assets/patrocinadores/logo-fecar.png";
+import logoTabernaculo from "@/assets/patrocinadores/logo-tabernaculo.png";
+import logoHorizontalSimbolo from "@/assets/patrocinadores/logo-horizontal-simbolo.png";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
 // Agenda Pública - 12 Cards divididos em 3 blocos de 4 (layout de cards com thumbnail e identidade visual unificada)
@@ -211,37 +211,37 @@ const danielSocials = [
   },
 ];
 
-// 5 Logotipos em branco no fundo azul marinho para a linha animada de Patrocinadores (sem cards)
+// 5 Logotipos coloridos oficiais para a linha animada de Patrocinadores (sem cards)
 const patrocinadoresLogos = [
   {
-    nome: "EXSOIL",
-    image: logoExsoil,
-    alt: "Logotipo Exsoil",
-    imgClass: "h-[44px] sm:h-[48px] w-auto max-w-[160px]",
+    nome: "ESTÚDIO AKEDAH",
+    image: logoEstudioAkedah,
+    alt: "Estúdio Akedah",
+    imgClass: "h-[30px] sm:h-[36px] w-auto max-w-[210px]",
   },
   {
-    nome: "GOOSE",
-    image: logoGoose,
-    alt: "Logotipo Goose",
-    imgClass: "h-[34px] sm:h-[38px] w-auto max-w-[155px]",
+    nome: "AKEDAH PODCAST",
+    image: logoAkedahPodcast,
+    alt: "Akedah Podcast",
+    imgClass: "h-[44px] sm:h-[50px] w-auto max-w-[190px]",
   },
   {
-    nome: "CROWN & LAUREL",
-    image: logoQueenCrest,
-    alt: "Logotipo Crown & Laurel",
-    imgClass: "h-[50px] sm:h-[56px] w-auto max-w-[130px]",
+    nome: "FE-CAR",
+    image: logoFecar,
+    alt: "FE-CAR",
+    imgClass: "h-[36px] sm:h-[42px] w-auto max-w-[190px]",
   },
   {
-    nome: "TRIUNO TECH STUDIO",
-    image: logoTriuno,
-    alt: "Logotipo Triuno Tech Studio",
-    imgClass: "h-[38px] sm:h-[42px] w-auto max-w-[165px]",
+    nome: "TABERNÁCULO DA TRINDADE",
+    image: logoTabernaculo,
+    alt: "Tabernáculo da Trindade",
+    imgClass: "h-[38px] sm:h-[44px] w-auto max-w-[210px]",
   },
   {
-    nome: "KAMCHATKA TRAVEL",
-    image: logoKamchatka,
-    alt: "Logotipo Kamchatka International Travel",
-    imgClass: "h-[42px] sm:h-[46px] w-auto max-w-[170px]",
+    nome: "STUDIO",
+    image: logoHorizontalSimbolo,
+    alt: "Studio",
+    imgClass: "h-[38px] sm:h-[44px] w-auto max-w-[190px]",
   },
 ];
 
@@ -312,76 +312,73 @@ const agendaVariants = {
 const heroSlides = [
   {
     id: 1,
-    badge: "ESTRATÉGIA DE NEGÓCIOS • POSICIONAMENTO",
+    badge: "FÉ • PROPÓSITO • LIDERANÇA",
     titleMain: "Daniel",
     titleSub: "Silva",
-    descricao: "Construção de tração em marcas de alto valor e liderança executiva. Conectando princípios sólidos de fé, visão empreendedora e sensibilidade artística para transformar vidas e empresas.",
+    descricao: "Liderança com visão de longo prazo, integridade e princípios sólidos de fé. Transformando vidas, famílias e trajetórias empresariais através de valores inegociáveis.",
     btnPrimary: { text: "Conferir Agendas", href: "#agenda" },
     btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
-    image: imagemDaniel,
-    alt: "Daniel Silva",
+    image: heroDanielFe,
+    alt: "Daniel Silva - Fé e Liderança",
     imgPos: "object-[center_20%] md:object-[center_15%]",
   },
   {
     id: 2,
-    badge: "GOVERNANÇA • ADVISORY C-LEVEL",
-    titleMain: "Gestão",
-    titleSub: "Executiva",
-    descricao: "Mentoria intensiva para consolidação de conselhos consultivos, estruturação de canais comerciais previsíveis e liderança estratégica de alta performance.",
-    btnPrimary: { text: "Conhecer Métodos", href: "#empreendedorismo" },
+    badge: "ARTE • SENSIBILIDADE • ADORAÇÃO",
+    titleMain: "Sensibilidade &",
+    titleSub: "Música",
+    descricao: "A música como instrumento de adoração, conexão autêntica e inspiração. Sensibilidade artística e excelência poética para elevar e transformar corações.",
+    btnPrimary: { text: "Conhecer Música", href: "#musica" },
     btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
-    image: heroMan1,
-    alt: "Gestão Executiva & Advisory",
-    imgPos: "object-[center_20%]",
-  },
-  {
-    id: 3,
-    badge: "KEYNOTES • CONVENÇÕES CORPORATIVAS",
-    titleMain: "Impacto &",
-    titleSub: "Propósito",
-    descricao: "Palestras transformadoras que unem visão de negócios, inteligência executiva e princípios práticos para inspirar convenções corporativas e acelerar equipes.",
-    btnPrimary: { text: "Ver Programação", href: "#agenda" },
-    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
-    image: heroMan2,
-    alt: "Impacto & Propósito",
+    image: heroDanielMusica,
+    alt: "Daniel Silva - Sensibilidade Artística e Música",
     imgPos: "object-[center_15%]",
   },
   {
-    id: 4,
-    badge: "ESCALA B2B • TRAÇÃO DE RECEITA",
-    titleMain: "Expansão de",
-    titleSub: "Mercado",
-    descricao: "Desenvolvimento de cultura comercial orientada a margem, playbooks de vendas complexas e posicionamento de marcas de alto valor no mercado nacional.",
-    btnPrimary: { text: "Agendar Reunião", href: WHATSAPP_URL, external: true },
+    id: 3,
+    badge: "ESTRATÉGIA • MERCADO • NEGÓCIOS",
+    titleMain: "Empreendedor &",
+    titleSub: "Estrategista",
+    descricao: "Estruturação de operações comerciais de alta margem, governança corporativa para conselhos consultivos e processos de vendas previsíveis para empresas em tração.",
+    btnPrimary: { text: "Conhecer Métodos", href: "#negocios" },
     btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
-    image: heroMan3,
-    alt: "Expansão de Mercado",
+    image: heroDanielEmpreendedor,
+    alt: "Daniel Silva - Empreendedorismo & Negócios",
+    imgPos: "object-[center_20%]",
+  },
+  {
+    id: 4,
+    badge: "CANAL OFICIAL • CONTEÚDO EXCLUSIVO",
+    titleMain: "Canal no",
+    titleSub: "YouTube",
+    descricao: "Palestras completas, podcasts, reflexões práticas sobre fé, negócios e bastidores exclusivos em estúdio. Inscreva-se e acompanhe conteúdos que aceleram sua trajetória.",
+    btnPrimary: { text: "Assistir no YouTube", href: "https://www.youtube.com/@EstudioAkedah", external: true },
+    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: heroDanielYoutube,
+    alt: "Daniel Silva no YouTube - Estúdio Akedah",
     imgPos: "object-[center_20%]",
   },
 ];
 
-// Animação de slide saindo para esquerda e novo entrando pela direita
-const heroSlideVariants = {
+// Transição suave para o bloco de texto editorial da Hero (sem congelamento de GPU)
+const heroContentVariants = {
   enter: {
-    x: 100,
     opacity: 0,
-    filter: "blur(14px)",
+    y: 20,
   },
   center: {
-    x: 0,
     opacity: 1,
-    filter: "blur(0px)",
+    y: 0,
     transition: {
-      duration: 0.7,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
     },
   },
   exit: {
-    x: -100,
     opacity: 0,
-    filter: "blur(14px)",
+    y: -16,
     transition: {
-      duration: 0.5,
+      duration: 0.35,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -392,6 +389,15 @@ const DanielSilva = () => {
   const isHoveredHeroRef = useRef(false);
   const [[activeBlock, direction], setPage] = useState([0, 1]);
   const isHoveredCardRef = useRef(false);
+
+  // Pré-carregamento imediato das 4 imagens da Hero para evitar atrasos ou pop-in
+  useEffect(() => {
+    const heroImgs = [heroDanielFe, heroDanielMusica, heroDanielEmpreendedor, heroDanielYoutube];
+    heroImgs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
 
   const paginate = (newDirection: number) => {
     setPage(([prev]) => {
@@ -418,7 +424,7 @@ const DanielSilva = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Timer de rotação automática dos cards da Hero (a cada 5 segundos)
+  // Timer de rotação automática dos cards da Hero (a cada 5 segundos) com reset inteligente
   useEffect(() => {
     const heroTimer = setInterval(() => {
       if (!isHoveredHeroRef.current) {
@@ -426,7 +432,7 @@ const DanielSilva = () => {
       }
     }, 5000);
     return () => clearInterval(heroTimer);
-  }, []);
+  }, [heroSlide]);
 
   // Habilitar visualização de prancheta com scroll-snap suave em tela cheia na página Daniel Silva
   useEffect(() => {
@@ -468,62 +474,82 @@ const DanielSilva = () => {
           onMouseEnter={() => { isHoveredHeroRef.current = true; }}
           onMouseLeave={() => { isHoveredHeroRef.current = false; }}
         >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={heroSlide}
-              variants={heroSlideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden pt-20 pb-8 sm:pt-24 sm:pb-12"
-            >
-              {/* Fundo com Imagem à direita e Degradê Azul Marinho vindo da esquerda */}
-              <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                {/* Imagem posicionada à direita */}
-                <div className="absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full flex items-center justify-end">
+          {/* Layer 1: Background Images Stack persistente com Cross-fade suave entre os slides */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {heroSlides.map((slide, idx) => {
+              const isActive = heroSlide === idx;
+              return (
+                <div
+                  key={slide.id}
+                  className={`absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full flex items-center justify-end transition-opacity duration-1000 ease-in-out ${
+                    isActive ? "opacity-85 md:opacity-95" : "opacity-0 pointer-events-none"
+                  }`}
+                  aria-hidden={!isActive}
+                >
                   <img 
-                    src={heroSlides[heroSlide].image} 
-                    alt={heroSlides[heroSlide].alt} 
-                    className={`w-full h-full object-cover ${heroSlides[heroSlide].imgPos} opacity-85 md:opacity-95 filter contrast-105`}
+                    src={slide.image} 
+                    alt={slide.alt} 
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority={idx === 0 ? "high" : "auto"}
+                    className={`w-full h-full object-cover ${slide.imgPos} filter contrast-105 transition-transform duration-1000 ease-out ${
+                      isActive ? "scale-100" : "scale-105"
+                    }`}
                   />
                 </div>
+              );
+            })}
 
-                {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-45% via-[#07132B]/90 md:via-[#07132B]/70 via-65% to-transparent" />
+            {/* Overlay sutil em mobile/tablet para garantir 100% de contraste do texto */}
+            <div className="absolute inset-0 bg-[#07132B]/75 md:bg-[#07132B]/40 lg:bg-transparent z-10 pointer-events-none" />
 
-                {/* Degradês verticais para mesclagem superior e inferior */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60" />
+            {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-45% via-[#07132B]/90 md:via-[#07132B]/70 via-65% to-transparent z-10" />
 
-                {/* Glow azul sutil */}
-                <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none" />
-              </div>
+            {/* Degradês verticais para mesclagem superior e inferior */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10" />
 
-              {/* Conteúdo do Card (Texto à esquerda) */}
-              <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 flex justify-start">
-                <div className="max-w-3xl text-left flex flex-col items-start">
+            {/* Glow azul sutil */}
+            <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
+          </div>
+
+          {/* Layer 2: Conteúdo Editorial à esquerda com AnimatePresence focado exclusivamente no texto */}
+          <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-24 sm:pt-28 md:pt-20 pb-8 flex justify-start">
+            <div className="max-w-3xl text-left flex flex-col items-start w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={heroSlide}
+                  variants={heroContentVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="w-full flex flex-col items-start"
+                >
                   {/* Badge Superior */}
-                  <div className="flex items-center justify-start gap-4 mb-4 sm:mb-6">
-                    <span className="text-white/80 border border-white/20 px-4 py-1.5 rounded-full text-[11px] md:text-[12px] uppercase tracking-[0.35em] font-mono font-bold bg-[#0B1B3D]/50 backdrop-blur-sm">
+                  <div className="flex items-center justify-start gap-4 mb-3 sm:mb-5">
+                    <span className="text-white/80 border border-white/20 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.22em] sm:tracking-[0.35em] font-mono font-bold bg-[#0B1B3D]/50 backdrop-blur-sm">
                       {heroSlides[heroSlide].badge}
                     </span>
                   </div>
 
                   {/* Título Principal */}
-                  <h1 className="font-display text-[52px] sm:text-[76px] md:text-[96px] font-[900] leading-[0.88] tracking-[-0.04em] mb-6 sm:mb-8">
+                  <h1 className="font-display text-[34px] xs:text-[42px] sm:text-[62px] md:text-[80px] lg:text-[96px] font-[900] leading-[0.94] sm:leading-[0.88] tracking-[-0.04em] mb-4 sm:mb-6 md:mb-8">
                     <span className="block text-white">{heroSlides[heroSlide].titleMain}</span>
                     <span className="text-white/80 italic font-normal block">{heroSlides[heroSlide].titleSub}</span>
                   </h1>
 
                   {/* Descrição Editorial */}
-                  <p className="text-white/70 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl text-left mb-8 sm:mb-10 font-normal">
+                  <p className="text-white/70 text-xs sm:text-base md:text-lg leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10 font-normal">
                     {heroSlides[heroSlide].descricao}
                   </p>
 
                   {/* Botões de Ação do Hero */}
-                  <div className="flex flex-wrap gap-4 items-center mb-6 sm:mb-8">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
                     <a
                       href={heroSlides[heroSlide].btnPrimary.href}
-                      className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-[14px] transition-all duration-300 shadow-xl"
+                      target={heroSlides[heroSlide].btnPrimary.external ? "_blank" : undefined}
+                      rel={heroSlides[heroSlide].btnPrimary.external ? "noopener noreferrer" : undefined}
+                      className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-7 sm:px-10 py-3.5 sm:py-4 rounded-[14px] transition-all duration-300 shadow-xl text-center justify-center inline-flex items-center"
                     >
                       {heroSlides[heroSlide].btnPrimary.text}
                     </a>
@@ -531,32 +557,32 @@ const DanielSilva = () => {
                       href={heroSlides[heroSlide].btnSecondary.href}
                       target={heroSlides[heroSlide].btnSecondary.external ? "_blank" : undefined}
                       rel={heroSlides[heroSlide].btnSecondary.external ? "noopener noreferrer" : undefined}
-                      className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-xs uppercase tracking-[0.2em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-[14px] transition-all duration-300"
+                      className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-xs uppercase tracking-[0.2em] px-7 sm:px-10 py-3.5 sm:py-4 rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center"
                     >
                       {heroSlides[heroSlide].btnSecondary.text}
                     </a>
                   </div>
+                </motion.div>
+              </AnimatePresence>
 
-                  {/* Indicadores de Paginação do Carousel (4 Cards) */}
-                  <div className="flex items-center gap-2.5">
-                    {heroSlides.map((_, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setHeroSlide(idx)}
-                        className={`h-1.5 rounded-full transition-all duration-300 ${
-                          heroSlide === idx
-                            ? "w-8 bg-white ring-1 ring-white/40"
-                            : "w-2.5 bg-white/30 hover:bg-white/60"
-                        }`}
-                        aria-label={`Ver card ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-                </div>
+              {/* Indicadores de Paginação do Carousel (4 Cards) fixos fora da troca de texto */}
+              <div className="flex items-center gap-2.5">
+                {heroSlides.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => setHeroSlide(idx)}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      heroSlide === idx
+                        ? "w-8 bg-white ring-1 ring-white/40"
+                        : "w-2.5 bg-white/30 hover:bg-white/60"
+                    }`}
+                    aria-label={`Ver card ${idx + 1}`}
+                  />
+                ))}
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </div>
         </section>
 
         {/* ========================================================================= */}
@@ -567,24 +593,24 @@ const DanielSilva = () => {
           className="w-full min-h-screen min-h-[100dvh] md:h-screen flex flex-col justify-center bg-white text-[#07132B] relative overflow-hidden select-none snap-start snap-always border-b border-[#07132B]/10"
         >
           {/* Área Principal da Agenda */}
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 w-full flex flex-col justify-center pt-24 pb-8 sm:py-10 lg:py-12">
+          <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 w-full flex flex-col justify-center pt-24 sm:pt-28 md:pt-28 lg:pt-16 pb-6 sm:py-10 lg:py-12">
             
-            {/* Header da Seção: Alinhado à esquerda com Controles à direita (idêntico à referência) */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10 w-full">
+            {/* Header da Seção: Alinhado à esquerda com Controles à direita */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-5 sm:mb-8 md:mb-10 w-full">
               <div className="flex flex-col items-start text-left max-w-2xl">
-                <span className="inline-block px-3.5 py-1 rounded-full bg-[#07132B] text-white text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-3 shadow-sm">
+                <span className="inline-block px-3.5 py-1 rounded-full bg-[#07132B] text-white text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-2.5 sm:mb-3 shadow-sm">
                   AGENDA
                 </span>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-[#07132B] tracking-tight uppercase leading-[1.04]">
+                <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-[#07132B] tracking-tight uppercase leading-[1.04]">
                   PRÓXIMAS APRESENTAÇÕES.
                 </h2>
-                <p className="text-[#07132B]/75 text-xs sm:text-sm md:text-base font-sans mt-2.5 max-w-xl leading-relaxed">
+                <p className="text-[#07132B]/75 text-xs sm:text-sm md:text-base font-sans mt-2 max-w-xl leading-relaxed">
                   Palestras, conferências, mentorias e experiências que unem conhecimento, prática e inspiração.
                 </p>
               </div>
 
               {/* Controles do Topo Direito: Link Ver Toda a Agenda + Indicadores + Setas < > */}
-              <div className="flex items-center gap-4 sm:gap-6 self-start md:self-end">
+              <div className="flex items-center justify-between sm:justify-start gap-3 sm:gap-6 w-full sm:w-auto self-start md:self-end">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -595,52 +621,54 @@ const DanielSilva = () => {
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
 
-                {/* Indicadores de Paginação do Bloco */}
-                <div className="flex items-center gap-1.5 mr-1">
-                  {agenda12Cards.map((_, idx) => (
+                <div className="flex items-center gap-3">
+                  {/* Indicadores de Paginação do Bloco */}
+                  <div className="flex items-center gap-1.5 mr-1">
+                    {agenda12Cards.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => goToBlock(idx)}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          activeBlock === idx
+                            ? "w-6 bg-[#07132B]"
+                            : "w-2 bg-[#07132B]/20 hover:bg-[#07132B]/40"
+                        }`}
+                        aria-label={`Ir para bloco ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Botões Circulares < e > */}
+                  <div className="flex items-center gap-2">
                     <button
-                      key={idx}
                       type="button"
-                      onClick={() => goToBlock(idx)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        activeBlock === idx
-                          ? "w-6 bg-[#07132B]"
-                          : "w-2 bg-[#07132B]/20 hover:bg-[#07132B]/40"
-                      }`}
-                      aria-label={`Ir para bloco ${idx + 1}`}
-                    />
-                  ))}
-                </div>
+                      onClick={() => paginate(-1)}
+                      aria-label="Ver agendas anteriores"
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#07132B]/20 bg-white hover:bg-[#07132B] hover:text-white text-[#07132B] flex items-center justify-center transition-all shadow-sm active:scale-95 group"
+                    >
+                      <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
 
-                {/* Botões Circulares < e > */}
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={() => paginate(-1)}
-                    aria-label="Ver agendas anteriores"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#07132B]/20 bg-white hover:bg-[#07132B] hover:text-white text-[#07132B] flex items-center justify-center transition-all shadow-sm active:scale-95 group"
-                  >
-                    <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => paginate(1)}
-                    aria-label="Ver próximas agendas"
-                    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#07132B]/20 bg-white hover:bg-[#07132B] hover:text-white text-[#07132B] flex items-center justify-center transition-all shadow-sm active:scale-95 group"
-                  >
-                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() => paginate(1)}
+                      aria-label="Ver próximas agendas"
+                      className="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#07132B]/20 bg-white hover:bg-[#07132B] hover:text-white text-[#07132B] flex items-center justify-center transition-all shadow-sm active:scale-95 group"
+                    >
+                      <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Container dos 4 Cards com Animação (Layout fiel à proposta) */}
-            <div className="relative min-h-[380px] sm:min-h-[410px] overflow-hidden">
+            {/* Container dos 4 Cards com Animação (No mobile/tablet: scroll horizontal elegante; no desktop: grid) */}
+            <div className="relative min-h-[380px] sm:min-h-[420px] pt-2 sm:pt-3 pb-2 sm:pb-4 -mt-2 -mb-3 px-1 -mx-1 overflow-visible sm:overflow-hidden">
               <AnimatePresence mode="wait" custom={direction} initial={false}>
                 <motion.div
                   key={activeBlock}
@@ -649,7 +677,7 @@ const DanielSilva = () => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full"
+                  className="flex lg:grid lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 w-full pt-1 pb-4 sm:pb-2 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none"
                 >
                   {agenda12Cards[activeBlock].map((card, cardIdx) => (
                     <a
@@ -659,9 +687,9 @@ const DanielSilva = () => {
                       rel="noopener noreferrer"
                       onMouseEnter={() => { isHoveredCardRef.current = true; }}
                       onMouseLeave={() => { isHoveredCardRef.current = false; }}
-                      className="group bg-[#07132B] hover:bg-[#0B1B3D] border border-white/10 hover:border-[#E2BA7A]/50 rounded-[22px] overflow-hidden min-h-[370px] sm:min-h-[400px] flex flex-col justify-between text-left transition-all duration-300 shadow-xl hover:-translate-y-1.5 hover:shadow-2xl relative"
+                      className="group bg-[#07132B] border border-white/10 hover:border-[#E2BA7A]/60 rounded-[22px] overflow-hidden min-h-[350px] sm:min-h-[380px] lg:min-h-[400px] w-[82vw] sm:w-[44vw] lg:w-auto shrink-0 lg:shrink snap-center flex flex-col justify-between text-left transition-all duration-300 shadow-xl hover:-translate-y-1.5 hover:shadow-2xl relative"
                     >
-                      {/* Topo do Card: Data à Esquerda + Imagem com blend à Direita */}
+                      {/* Topo do Card: Data à Esquerda + Imagem com blend suave à Direita */}
                       <div className="relative h-32 sm:h-36 overflow-hidden flex items-start justify-between p-5 sm:p-6 pb-0">
                         {/* Data e Local */}
                         <div className="relative z-10 flex flex-col justify-start pr-2">
@@ -676,16 +704,22 @@ const DanielSilva = () => {
                           </span>
                         </div>
 
-                        {/* Imagem do Evento no Topo-Direito com efeito de transição/blend */}
-                        <div className="absolute top-0 right-0 w-[58%] h-full overflow-hidden pointer-events-none">
+                        {/* Imagem do Evento no Topo-Direito com máscara radial suave e sem recorte quadrado */}
+                        <div 
+                          className="absolute top-0 right-0 w-[60%] sm:w-[58%] h-full overflow-hidden pointer-events-none"
+                          style={{
+                            WebkitMaskImage: "radial-gradient(ellipse 110% 105% at 100% 0%, black 25%, rgba(0,0,0,0.65) 55%, transparent 92%)",
+                            maskImage: "radial-gradient(ellipse 110% 105% at 100% 0%, black 25%, rgba(0,0,0,0.65) 55%, transparent 92%)",
+                          }}
+                        >
                           <img
                             src={card.imagem}
                             alt={card.titulo}
                             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                           />
-                          {/* Gradientes para fusão impecável no fundo escuro */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/40 to-transparent" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent to-transparent" />
+                          {/* Gradientes de mesclagem tonal perfeitamente casados com o fundo */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] via-[#07132B]/50 to-transparent" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-[#07132B]/30 to-transparent" />
                         </div>
                       </div>
 
@@ -712,220 +746,144 @@ const DanielSilva = () => {
               </AnimatePresence>
             </div>
 
+            {/* Dica de arraste no mobile e tablet */}
+            <div className="flex lg:hidden items-center justify-between pt-1 px-1 text-[11px] font-mono text-[#07132B]/50 uppercase tracking-wider">
+              <span>Deslize para ver os cards</span>
+              <span>← →</span>
+            </div>
+
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 3. FUNDAMENTOS DE VIDA E LIDERANÇA (PRANCHETA TELA CHEIA)                 */}
+        {/* 3. FUNDAMENTOS DE VIDA E LIDERANÇA (HERO-STYLE FULL-BLEED - IMAGEM ESQUERDA)*/}
         {/* ========================================================================= */}
-        <section 
-          id="fundamentos" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center py-12 sm:py-16 px-6 sm:px-10 lg:px-16 border-t border-white/[0.08] relative overflow-hidden bg-[#07132B] snap-start snap-always"
+        <section
+          id="fundamentos"
+          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
         >
           <span id="fe" className="sr-only" />
-          {/* Glow sutil */}
-          <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-blue-600/10 blur-[130px] pointer-events-none" />
 
-          <div className="max-w-7xl w-full mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Bloco de Texto e Informações à Esquerda */}
-            <div className="lg:col-span-7 flex flex-col items-start text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[#E2BA7A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-4 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E2BA7A]" />
-                FUNDAMENTOS DA VIDA E LIDERANÇA
-              </div>
+          {/* Imagem de fundo cobrindo o lado ESQUERDO */}
+          <div className="absolute left-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
+            <img
+              src={imgFundamentos}
+              alt="Daniel Silva - Fundamentos de Vida e Liderança"
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight uppercase leading-[1.05] mb-5">
-                Fé, Propósito &amp; <span className="font-display italic font-normal text-white/80 lowercase">Valores Inegociáveis.</span>
+          {/* Overlay sutil em mobile/tablet para garantir 100% de contraste */}
+          <div className="absolute inset-0 bg-[#07132B]/80 md:bg-[#07132B]/50 lg:bg-transparent z-10 pointer-events-none" />
+
+          {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente sobre a imagem à esquerda */}
+          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-45% lg:from-50% via-[#07132B]/90 via-65% to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10 pointer-events-none" />
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
+
+          {/* Conteúdo Textual à Direita (100% sobre o fundo azul marinho) */}
+          <div className="relative z-20 w-full min-h-screen min-h-[100dvh] md:h-screen flex items-center justify-end px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28">
+            <div className="w-full lg:w-1/2 xl:w-[48%] flex flex-col items-start text-left py-20 sm:py-16">
+              <h2 className="font-display text-[32px] xs:text-[38px] sm:text-[48px] md:text-[58px] lg:text-[68px] xl:text-[76px] font-[900] leading-[0.92] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
+                <span className="block text-white">Fé, Propósito &amp;</span>
+                <span className="text-white/80 italic font-normal block lowercase">Valores Inegociáveis.</span>
               </h2>
 
-              <p className="text-white/85 text-sm sm:text-base lg:text-lg leading-relaxed mb-4 font-sans">
+              <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
                 Acredito que resultados sustentáveis nascem de princípios sólidos. Minha atuação é guiada por fé, disciplina, integridade e um olhar genuíno para o desenvolvimento de pessoas.
               </p>
 
-              <p className="text-white/65 text-xs sm:text-sm lg:text-base leading-relaxed mb-8 font-sans">
+              <p className="text-white/55 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
                 A integridade e o temor a Deus são os pilares que sustentam toda trajetória de liderança autêntica. O verdadeiro sucesso só se sustenta quando alinhado a princípios inegociáveis e compromisso moral irrestrito.
               </p>
-
-              {/* Linha de Tags / Princípios (conforme proposta da referência) */}
-              <div className="flex flex-wrap gap-2.5 sm:gap-3 pt-6 border-t border-white/10 w-full">
-                {["FÉ", "FAMÍLIA", "DISCIPLINA", "VISÃO DE FUTURO", "IMPACTO SOCIAL"].map((item) => (
-                  <span
-                    key={item}
-                    className="px-4 sm:px-5 py-2 rounded-full bg-white/5 border border-white/15 text-white/90 hover:border-[#E2BA7A]/60 hover:text-[#E2BA7A] text-xs font-mono font-bold uppercase tracking-wider transition-all duration-300 select-none shadow-sm"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Imagem Temática à Direita */}
-            <div className="lg:col-span-5 w-full flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] sm:aspect-[3/4] rounded-[28px] overflow-hidden border border-white/15 shadow-2xl group">
-                <img
-                  src={imgFundamentos}
-                  alt="Daniel Silva - Fundamentos de Vida e Liderança"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07132B]/85 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#07132B]/80 backdrop-blur-md border border-white/10 text-left">
-                  <span className="font-mono text-[10px] text-[#E2BA7A] uppercase tracking-widest block font-bold">PROPÓSITO &amp; PRINCÍPIOS</span>
-                  <span className="font-display text-white text-base font-black uppercase tracking-tight block">Liderança com Fundamentos</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 4. SENSIBILIDADE ARTÍSTICA & ADORAÇÃO / A MÚSICA COMO (PRANCHETA TELA CHEIA) */}
+        {/* 4. SENSIBILIDADE ARTÍSTICA & ADORAÇÃO (HERO-STYLE FULL-BLEED - IMAGEM DIREITA) */}
         {/* ========================================================================= */}
-        <section 
-          id="musica" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center py-12 sm:py-16 px-6 sm:px-10 lg:px-16 border-t border-white/[0.08] relative overflow-hidden bg-[#07132B] snap-start snap-always"
+        <section
+          id="musica"
+          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
         >
-          {/* Glow sutil */}
-          <div className="absolute top-1/2 right-1/3 -translate-y-1/2 w-[650px] h-[500px] bg-blue-600/10 blur-[130px] pointer-events-none" />
+          {/* Imagem de fundo cobrindo o lado DIREITO */}
+          <div className="absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
+            <img
+              src={imgMusica}
+              alt="Daniel Silva - Expressão Musical e Adoração"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
 
-          <div className="max-w-7xl w-full mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Imagem Temática à Esquerda (conforme layout da referência) */}
-            <div className="lg:col-span-5 w-full flex justify-center lg:justify-start order-2 lg:order-1">
-              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] sm:aspect-[3/4] rounded-[28px] overflow-hidden border border-white/15 shadow-2xl group">
-                <img
-                  src={imgMusica}
-                  alt="Daniel Silva - Expressão Musical e Adoração"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07132B]/85 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#07132B]/80 backdrop-blur-md border border-white/10 text-left">
-                  <span className="font-mono text-[10px] text-[#E2BA7A] uppercase tracking-widest block font-bold">SENSIBILIDADE &amp; ARTE</span>
-                  <span className="font-display text-white text-base font-black uppercase tracking-tight block">Música como Expressão e Louvor</span>
-                </div>
-              </div>
-            </div>
+          {/* Overlay sutil em mobile/tablet para garantir 100% de contraste */}
+          <div className="absolute inset-0 bg-[#07132B]/80 md:bg-[#07132B]/50 lg:bg-transparent z-10 pointer-events-none" />
 
-            {/* Bloco de Texto e Informações à Direita */}
-            <div className="lg:col-span-7 flex flex-col items-start text-left order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[#E2BA7A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-4 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E2BA7A]" />
-                SENSIBILIDADE ARTÍSTICA E ADORAÇÃO
-              </div>
+          {/* Degradê: lado esquerdo 100% azul marinho sólido onde fica o texto, esvanecendo suavemente sobre a imagem à direita */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-45% lg:from-50% via-[#07132B]/90 via-65% to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10 pointer-events-none" />
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight uppercase leading-[1.05] mb-5">
-                A Música como <span className="font-display italic font-normal text-white/80 lowercase">Expressão e Adoração.</span>
+          {/* Conteúdo Textual à Esquerda (100% sobre o fundo azul marinho) */}
+          <div className="relative z-20 w-full min-h-screen min-h-[100dvh] md:h-screen flex items-center justify-start px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28">
+            <div className="w-full lg:w-1/2 xl:w-[48%] flex flex-col items-start text-left py-20 sm:py-16">
+              <h2 className="font-display text-[32px] xs:text-[38px] sm:text-[48px] md:text-[58px] lg:text-[68px] xl:text-[76px] font-[900] leading-[0.92] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
+                <span className="block text-white">A Música como</span>
+                <span className="text-white/80 italic font-normal block lowercase">Expressão e Adoração.</span>
               </h2>
 
-              <p className="text-white/85 text-sm sm:text-base lg:text-lg leading-relaxed mb-4 font-sans">
+              <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
                 A música sempre fez parte da minha história. É uma forma de expressar minha fé, de me conectar com pessoas e de levar mensagens que inspiram e transformam.
               </p>
 
-              <p className="text-white/65 text-xs sm:text-sm lg:text-base leading-relaxed mb-7 font-sans">
+              <p className="text-white/55 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
                 A harmonia musical traz precisão estética, sensibilidade poética e conexão espiritual autêntica em tudo o que realizo. A arte como instrumento vivo de elevação e edificação.
               </p>
-
-              {/* Botão de Ação Estilo Dourado (conforme referência) + Pilares */}
-              <div className="pt-6 border-t border-white/10 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-                <a
-                  href="https://open.spotify.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-[#F5D08A] to-[#D4A359] hover:from-[#F8D99D] hover:to-[#DEAF6A] text-[#07132B] font-mono font-bold text-xs sm:text-[13px] uppercase tracking-wider px-7 py-3.5 rounded-full shadow-lg hover:shadow-[0_10px_25px_rgba(226,186,122,0.35)] hover:scale-105 active:scale-95 transition-all duration-300 group"
-                >
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.498 17.306c-.216.353-.674.468-1.027.252-2.812-1.718-6.352-2.108-10.523-1.155-.403.092-.809-.16-.901-.564-.092-.403.16-.809.564-.901 4.568-1.044 8.487-.6 11.635 1.341.353.216.468.674.252 1.027zm1.468-3.264c-.272.443-.852.585-1.295.313-3.219-1.978-8.127-2.55-11.936-1.393-.499.151-1.026-.135-1.177-.633-.151-.498.135-1.026.633-1.177 4.356-1.321 9.771-.684 13.462 1.595.443.272.585.852.313 1.295zm.126-3.407C15.239 8.358 8.88 8.148 5.169 9.275c-.59.18-1.218-.153-1.397-.743-.18-.59.153-1.218.743-1.397 4.267-1.295 11.3-1.053 15.74 1.583.53.315.706 1.004.391 1.534-.315.53-1.004.706-1.534.391z" />
-                  </svg>
-                  <span>OUÇA NO SPOTIFY</span>
-                  <span className="group-hover:translate-x-1 transition-transform font-bold">→</span>
-                </a>
-
-                {/* Pilares Musicais em Linha */}
-                <div className="flex flex-wrap gap-2 text-white/50 font-mono text-[11px] uppercase tracking-wider">
-                  <span>Harmonia</span> • 
-                  <span>Gravação</span> • 
-                  <span>Louvor</span> • 
-                  <span>Composição</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 5. ATUAÇÃO & NEGÓCIOS (PRANCHETA TELA CHEIA)                               */}
+        {/* 5. ATUAÇÃO & NEGÓCIOS (HERO-STYLE FULL-BLEED - IMAGEM ESQUERDA)           */}
         {/* ========================================================================= */}
-        <section 
-          id="negocios" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center py-12 sm:py-16 px-6 sm:px-10 lg:px-16 border-t border-white/[0.08] relative overflow-hidden bg-[#07132B] snap-start snap-always"
+        <section
+          id="negocios"
+          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
         >
           <span id="empreendedorismo" className="sr-only" />
-          {/* Glow sutil */}
-          <div className="absolute top-1/2 left-1/3 -translate-y-1/2 w-[650px] h-[500px] bg-blue-600/10 blur-[130px] pointer-events-none" />
 
-          <div className="max-w-7xl w-full mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
-            {/* Bloco de Texto e Informações à Esquerda */}
-            <div className="lg:col-span-7 flex flex-col items-start text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/15 text-[#E2BA7A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-4 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#E2BA7A]" />
-                ÁREAS DE ATUAÇÃO
-              </div>
+          {/* Imagem de fundo cobrindo o lado ESQUERDO */}
+          <div className="absolute left-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
+            <img
+              src={imgNegocios}
+              alt="Daniel Silva - Empreendedorismo & Estratégia Comercial"
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
 
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight uppercase leading-[1.05] mb-5">
-                Empreendedorismo &amp; <span className="font-display italic font-normal text-white/80 lowercase">Estratégia Comercial.</span>
+          {/* Overlay sutil em mobile/tablet para garantir 100% de contraste */}
+          <div className="absolute inset-0 bg-[#07132B]/80 md:bg-[#07132B]/50 lg:bg-transparent z-10 pointer-events-none" />
+
+          {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente sobre a imagem à esquerda */}
+          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-45% lg:from-50% via-[#07132B]/90 via-65% to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10 pointer-events-none" />
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
+
+          {/* Conteúdo Textual à Direita (100% sobre o fundo azul marinho) */}
+          <div className="relative z-20 w-full min-h-screen min-h-[100dvh] md:h-screen flex items-center justify-end px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28">
+            <div className="w-full lg:w-1/2 xl:w-[48%] flex flex-col items-start text-left py-20 sm:py-16">
+              <h2 className="font-display text-[26px] xs:text-[30px] sm:text-[38px] md:text-[46px] lg:text-[50px] xl:text-[54px] font-[900] leading-[0.96] tracking-[-0.03em] uppercase mb-5 sm:mb-8 break-words">
+                <span className="block text-white">Empreendedorismo &amp;</span>
+                <span className="text-white/80 italic font-normal block lowercase">Estratégia Comercial.</span>
               </h2>
 
-              <p className="text-white/85 text-sm sm:text-base lg:text-lg leading-relaxed mb-4 font-sans">
+              <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
                 Liderança e execução na prática. Contribuo para o desenvolvimento de negócios e pessoas por meio de palestras, consultorias e experiências que conectam estratégia, execução e propósito.
               </p>
 
-              <p className="text-white/65 text-xs sm:text-sm lg:text-base leading-relaxed mb-6 font-sans">
+              <p className="text-white/55 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
                 Estruturação de operações comerciais de alta margem, governança corporativa para conselhos consultivos e processos de vendas previsíveis para empresas em tração.
               </p>
-
-              {/* Pilares Estratégicos (da referência sem os cards quadrados) */}
-              <div className="flex flex-wrap gap-2.5 sm:gap-3 mb-8 w-full">
-                {[
-                  "Vendas Complexas",
-                  "Autoridade em Vídeo",
-                  "Processos Comerciais",
-                  "Conselho Estratégico",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="px-4 py-2 rounded-full bg-white/5 border border-white/15 text-white/90 text-xs font-mono font-bold uppercase tracking-wider hover:border-[#E2BA7A]/50 hover:text-[#E2BA7A] transition-all select-none shadow-sm"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-
-              {/* Botão de Ação Estilo Dourado (conforme referência) */}
-              <div className="pt-6 border-t border-white/10 w-full">
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-[#F5D08A] to-[#D4A359] hover:from-[#F8D99D] hover:to-[#DEAF6A] text-[#07132B] font-mono font-bold text-xs sm:text-[13px] uppercase tracking-wider px-7 py-3.5 rounded-full shadow-lg hover:shadow-[0_10px_25px_rgba(226,186,122,0.35)] hover:scale-105 active:scale-95 transition-all duration-300 group"
-                >
-                  <span>CONHEÇA MINHA METODOLOGIA</span>
-                  <span className="group-hover:translate-x-1 transition-transform font-bold">→</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Imagem Temática à Direita */}
-            <div className="lg:col-span-5 w-full flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] sm:aspect-[3/4] rounded-[28px] overflow-hidden border border-white/15 shadow-2xl group">
-                <img
-                  src={imgNegocios}
-                  alt="Daniel Silva - Empreendedorismo & Estratégia Comercial"
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07132B]/85 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#07132B]/80 backdrop-blur-md border border-white/10 text-left">
-                  <span className="font-mono text-[10px] text-[#E2BA7A] uppercase tracking-widest block font-bold">GOVERNANÇA &amp; MERCADO</span>
-                  <span className="font-display text-white text-base font-black uppercase tracking-tight block">Estratégia Comercial B2B</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -935,30 +893,30 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section 
           id="patrocinadores" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center py-10 sm:py-14 px-6 sm:px-10 lg:px-16 border-t border-white/10 relative overflow-hidden bg-[#07132B] snap-start snap-always"
+          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center py-8 sm:py-14 px-5 sm:px-10 lg:px-16 border-t border-white/10 relative overflow-hidden bg-[#07132B] snap-start snap-always"
         >
           {/* Glow sutil */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-blue-600/10 blur-[140px] pointer-events-none" />
 
           <div className="max-w-7xl w-full mx-auto relative z-10 flex flex-col items-center text-center">
             {/* Header da Seção Centralizado e Destacado */}
-            <div className="mb-6 sm:mb-8 max-w-3xl mx-auto">
-              <span className="text-[#E2BA7A] text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.35em] mb-3 inline-block">
+            <div className="mb-4 sm:mb-8 max-w-3xl mx-auto">
+              <span className="text-[#E2BA7A] text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.35em] mb-2 sm:mb-3 inline-block">
                 MARCAS &amp; PARCERIAS // ECOSSISTEMA
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-[1.08]">
+              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-[1.08]">
                 Patrocinadores <span className="font-display italic font-normal text-white/80 lowercase">Oficiais</span>
               </h2>
-              <p className="text-white/70 text-sm sm:text-base md:text-lg font-sans mt-2.5 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-white/70 text-xs sm:text-base md:text-lg font-sans mt-2 max-w-2xl mx-auto leading-relaxed">
                 Empresas e marcas visionárias que caminham junto ao ecossistema de alto valor, eventos corporativos e negócios de Daniel Silva.
               </p>
             </div>
 
             {/* Linha Animada Contínua de Logotipos (Marquee Infinito em Loop) */}
-            <div className="relative w-full overflow-hidden py-8 sm:py-10 my-2">
+            <div className="relative w-full overflow-hidden py-4 sm:py-8 my-1 sm:my-2">
               {/* Gradientes de fade nas bordas para transição suave */}
-              <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-44 bg-gradient-to-r from-[#07132B] to-transparent z-10 pointer-events-none" />
-              <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-44 bg-gradient-to-l from-[#07132B] to-transparent z-10 pointer-events-none" />
+              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-44 bg-gradient-to-r from-[#07132B] to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-44 bg-gradient-to-l from-[#07132B] to-transparent z-10 pointer-events-none" />
 
               <motion.div
                 animate={{ x: ["0%", "-50%"] }}
@@ -967,7 +925,7 @@ const DanielSilva = () => {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="flex items-center gap-16 sm:gap-24 lg:gap-28 w-max"
+                className="flex items-center gap-10 sm:gap-20 lg:gap-28 w-max"
               >
                 {[...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos, ...patrocinadoresLogos].map((logo, idx) => (
                   <div
@@ -977,41 +935,41 @@ const DanielSilva = () => {
                     <img
                       src={logo.image}
                       alt={logo.alt}
-                      className={`${logo.imgClass} object-contain opacity-75 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 pointer-events-none select-none`}
+                      className={`${logo.imgClass} object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none`}
                     />
                   </div>
                 ))}
               </motion.div>
             </div>
 
-            {/* CTA DA SEÇÃO PATROCINADORES (+15% Tamanho para preencher a viewport) */}
-            <div className="mt-6 sm:mt-8 p-7 sm:p-10 lg:p-12 bg-[#0B1B3D]/85 border border-white/10 rounded-[26px] max-w-5xl w-full flex flex-col md:flex-row items-center justify-between gap-8 backdrop-blur-md shadow-2xl text-left">
+            {/* CTA DA SEÇÃO PATROCINADORES */}
+            <div className="mt-4 sm:mt-8 p-6 sm:p-10 lg:p-12 bg-[#0B1B3D]/85 border border-white/10 rounded-[20px] sm:rounded-[26px] max-w-5xl w-full flex flex-col lg:flex-row items-center lg:items-center justify-between gap-6 sm:gap-8 backdrop-blur-md shadow-2xl text-left">
               <div className="flex-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#E2BA7A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-2.5 border border-white/15">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#E2BA7A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-2 sm:mb-2.5 border border-white/15">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#E2BA7A] animate-pulse" />
                   OPORTUNIDADE COMERCIAL // BRAND EQUITY
                 </div>
-                <h3 className="font-display text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                <h3 className="font-display text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
                   Sua marca associada a projetos de alto impacto.
                 </h3>
-                <p className="text-white/65 text-xs sm:text-sm md:text-base mt-2 leading-relaxed max-w-xl">
+                <p className="text-white/65 text-xs sm:text-sm md:text-base mt-1.5 sm:mt-2 leading-relaxed max-w-xl">
                   Conecte sua empresa a palestras magnas, convenções corporativas, turnês e produções audiovisuais voltadas a tomadores de decisão e público executivo qualificado.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3.5 shrink-0 w-full md:w-auto">
+              <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full lg:w-auto">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white text-[#07132B] hover:bg-[#FAF6EB] hover:scale-105 active:scale-95 font-bold text-xs uppercase tracking-[0.22em] rounded-[14px] transition-all duration-300 shadow-xl text-center group"
+                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 bg-white text-[#07132B] hover:bg-[#FAF6EB] hover:scale-105 active:scale-95 font-bold text-xs uppercase tracking-[0.2em] rounded-[14px] transition-all duration-300 shadow-xl text-center w-full sm:w-auto group"
                 >
                   <span>Seja um Patrocinador</span>
                   <span className="text-[#07132B] group-hover:translate-x-1 transition-transform">→</span>
                 </a>
                 <a
                   href={`mailto:${AKEDAH_EMAIL}?subject=Proposta%20de%20Patroc%C3%ADnio%20-%20Daniel%20Silva`}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-4 bg-white/[0.06] hover:bg-white/[0.12] border border-white/20 hover:border-white/40 text-white font-bold text-xs uppercase tracking-[0.22em] rounded-[14px] transition-all duration-300 text-center"
+                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 bg-white/[0.06] hover:bg-white/[0.12] border border-white/20 hover:border-white/40 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-[14px] transition-all duration-300 text-center w-full sm:w-auto"
                 >
                   <span>Proposta Comercial</span>
                 </a>
@@ -1025,7 +983,7 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section 
           id="redes" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-between items-center pt-14 sm:pt-16 pb-8 px-6 sm:px-10 lg:px-16 border-t border-white/10 relative overflow-hidden bg-[#07132B] snap-start snap-always"
+          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-between items-center pt-20 sm:pt-16 pb-6 sm:pb-8 px-5 sm:px-10 lg:px-16 border-t border-white/10 relative overflow-hidden bg-[#07132B] snap-start snap-always"
         >
           <span id="distribuicao" className="sr-only" />
           {/* Glow sutil */}
@@ -1034,48 +992,53 @@ const DanielSilva = () => {
           {/* Conteúdo Central */}
           <div className="max-w-7xl w-full mx-auto relative z-10 flex-1 flex flex-col justify-center my-auto">
             {/* Header da Seção Centralizado e Destacado */}
-            <div className="text-center mb-8 sm:mb-10 max-w-3xl mx-auto">
-              <span className="text-[#E2BA7A] text-xs sm:text-sm font-mono font-medium uppercase tracking-[0.35em] mb-3 block text-center">
+            <div className="text-center mb-5 sm:mb-8 md:mb-10 max-w-3xl mx-auto">
+              <span className="text-[#E2BA7A] text-xs sm:text-sm font-mono font-medium uppercase tracking-[0.35em] mb-2 sm:mb-3 block text-center">
                 [ DISTRIBUIÇÃO // CANAIS OFICIAIS ]
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase text-center leading-[1.08]">
+              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase text-center leading-[1.08]">
                 Acompanhe Daniel Silva em todos os lugares.
               </h2>
             </div>
 
-            {/* Grid Minimalista 5 Colunas (+15% Tamanho para preencher a viewport) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border border-white/10 bg-[#0B1B3D]/70 divide-y sm:divide-y-0 sm:divide-x divide-white/10 rounded-none shadow-2xl backdrop-blur-sm">
-              {danielSocials.map((p) => (
-                <a
-                  key={p.name}
-                  href={p.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-6 sm:p-7 lg:p-7 xl:p-8 min-h-[210px] sm:min-h-[230px] flex flex-col justify-between hover:bg-white/[0.04] transition-colors group rounded-none"
-                >
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="scale-110 origin-left">
-                      {p.icon}
+            {/* Grid Minimalista: 2 colunas no Mobile (com o 5º ocupando largura total) e 5 colunas no Desktop */}
+            <div className="grid grid-cols-2 lg:grid-cols-5 border border-white/10 bg-[#0B1B3D]/70 divide-x divide-y lg:divide-y-0 divide-white/10 rounded-[18px] lg:rounded-none shadow-2xl backdrop-blur-sm overflow-hidden">
+              {danielSocials.map((p, idx) => {
+                const isFifthOnMobile = idx === 4;
+                return (
+                  <a
+                    key={p.name}
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`p-4 sm:p-6 lg:p-7 xl:p-8 min-h-[120px] sm:min-h-[180px] lg:min-h-[230px] flex flex-col justify-between hover:bg-white/[0.04] transition-colors group ${
+                      isFifthOnMobile ? "col-span-2 lg:col-span-1" : ""
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-3 sm:mb-6">
+                      <div className="scale-95 sm:scale-110 origin-left">
+                        {p.icon}
+                      </div>
+                      <span className="text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-xs sm:text-sm font-mono">
+                        ↗
+                      </span>
                     </div>
-                    <span className="text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all text-sm font-mono">
-                      ↗
-                    </span>
-                  </div>
-                  <div className="text-left">
-                    <h3 className="font-display text-2xl sm:text-2xl lg:text-[25px] xl:text-3xl font-black text-white uppercase tracking-tight group-hover:text-[#FAF6EB] transition-colors">
-                      {p.name}
-                    </h3>
-                    <span className="font-mono text-xs sm:text-[11px] xl:text-[13px] tracking-wider text-white/50 uppercase block mt-1.5 leading-snug">
-                      {p.format}
-                    </span>
-                  </div>
-                </a>
-              ))}
+                    <div className="text-left">
+                      <h3 className="font-display text-lg sm:text-2xl lg:text-[25px] xl:text-3xl font-black text-white uppercase tracking-tight group-hover:text-[#FAF6EB] transition-colors leading-tight">
+                        {p.name}
+                      </h3>
+                      <span className="font-mono text-[9px] sm:text-[11px] xl:text-[13px] tracking-wider text-white/50 uppercase block mt-1 leading-snug">
+                        {p.format}
+                      </span>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
           </div>
 
           {/* Base Inferior da Página (Exclusiva no rodapé da seção Redes) */}
-          <div className="w-full max-w-7xl mx-auto pt-6 sm:pt-8 pr-0 sm:pr-20 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono uppercase tracking-[0.2em] text-white/40 relative z-10 text-center sm:text-left select-none">
+          <div className="w-full max-w-7xl mx-auto pt-4 sm:pt-6 pr-0 sm:pr-20 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.2em] text-white/40 relative z-10 text-center sm:text-left select-none">
             <span>© 2026 DANIEL SILVA — TODOS OS DIREITOS RESERVADOS.</span>
             <span>ESTRATEGISTA DE NEGÓCIOS &amp; MENTOR EXECUTIVO</span>
           </div>
