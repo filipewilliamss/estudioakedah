@@ -804,27 +804,26 @@ const DanielSilva = () => {
           id="musica"
           className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-white snap-start snap-always border-t border-[#07132B]/10"
         >
-          {/* Imagem de fundo cobrindo o lado DIREITO com máscara feathered e opacidade total */}
+          {/* Imagem de fundo cobrindo o lado DIREITO com máscara feathered nítida e opacidade total */}
           <div 
             className="absolute right-0 top-0 bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none"
             style={{
-              WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
-              maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 5%, rgba(0,0,0,0.95) 18%, black 25%)",
+              maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 5%, rgba(0,0,0,0.95) 18%, black 25%)",
             }}
           >
             <img
               src={imgMusica}
               alt="Daniel Silva - Expressão Musical e Adoração"
-              className="w-full h-full object-cover object-[center_15%] filter contrast-[1.08] brightness-[1.03]"
+              className="w-full h-full object-cover object-[center_15%] filter contrast-[1.06] brightness-[1.02]"
             />
           </div>
 
           {/* Overlay sutil apenas em mobile pequeno */}
-          <div className="absolute inset-0 bg-white/60 sm:bg-white/20 md:bg-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-white/40 sm:bg-transparent z-10 pointer-events-none" />
 
-          {/* Degradê: lado esquerdo 100% branco sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white from-20% sm:from-28% md:from-35% via-white/70 via-45% to-transparent to-58% z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent via-65% to-white/30 z-10 pointer-events-none" />
+          {/* Degradê: lado esquerdo branco sólido onde fica o texto, esvanecendo bem antes de tocar no Daniel */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white from-15% sm:from-25% md:from-32% via-white/40 via-38% to-transparent to-46% z-10 pointer-events-none" />
 
           {/* Conteúdo Textual à Esquerda (100% sobre o fundo branco) */}
           <div className="relative z-20 w-full min-h-screen min-h-[100dvh] md:h-screen flex items-center justify-start px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28">
