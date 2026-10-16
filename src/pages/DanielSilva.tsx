@@ -427,11 +427,21 @@ const DanielSilva = () => {
     return () => clearInterval(heroTimer);
   }, [heroSlide]);
 
-  // Habilitar visualização de prancheta com scroll-snap suave em tela cheia na página Daniel Silva
+  // Habilitar visualização de prancheta com scroll-snap apenas em telas desktop (>= 768px)
   useEffect(() => {
-    document.documentElement.classList.add("snap-y", "snap-proximity", "scroll-smooth");
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        document.documentElement.classList.add("snap-y", "snap-proximity", "scroll-smooth");
+      } else {
+        document.documentElement.classList.remove("snap-y", "snap-proximity");
+        document.documentElement.classList.add("scroll-smooth");
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => {
       document.documentElement.classList.remove("snap-y", "snap-proximity", "scroll-smooth");
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -463,7 +473,7 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section 
           id="hero"
-          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#07132B] snap-start snap-always"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#07132B] md:snap-start md:snap-always"
           onMouseEnter={() => { isHoveredHeroRef.current = true; }}
           onMouseLeave={() => { isHoveredHeroRef.current = false; }}
         >
@@ -485,7 +495,7 @@ const DanielSilva = () => {
                     loading="eager"
                     decoding="async"
                     fetchPriority={idx === 0 ? "high" : "auto"}
-                    className={`w-full h-full object-cover object-[center_12%] md:object-cover ${slide.imgPos} filter contrast-[1.08] brightness-[1.03] transition-transform duration-1000 ease-out ${
+                    className={`w-full h-full object-cover object-[center_10%] md:object-cover ${slide.imgPos} filter contrast-[1.08] brightness-[1.03] transition-transform duration-1000 ease-out ${
                       isActive ? "scale-100" : "scale-105"
                     }`}
                   />
@@ -496,8 +506,8 @@ const DanielSilva = () => {
             {/* Overlay sutil em desktop */}
             <div className="hidden md:block absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
-            {/* Degradê Azul Marinho: no mobile vem de BAIXO para CIMA cobrindo o texto; no desktop vem da ESQUERDA para DIREITA */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] from-42% via-[#07132B]/85 via-68% to-transparent md:bg-gradient-to-r md:from-[#07132B] md:from-20% md:sm:from-28% md:from-35% md:via-[#07132B]/60 md:via-45% md:to-transparent md:to-58% z-10 pointer-events-none" />
+            {/* Degradê Azul Marinho: no mobile sobe suavemente; no desktop vem da esquerda */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] from-45% via-[#07132B]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#07132B] md:from-20% md:sm:from-28% md:from-35% md:via-[#07132B]/60 md:via-45% md:to-transparent md:to-58% z-10 pointer-events-none" />
 
             {/* Degradês verticais suaves exclusivos para desktop */}
             <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
@@ -506,8 +516,8 @@ const DanielSilva = () => {
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
           </div>
 
-          {/* Layer 2: Conteúdo Editorial à esquerda com AnimatePresence focado exclusivamente no texto */}
-          <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-28 sm:pt-28 md:pt-20 pb-8 sm:pb-10 md:pb-8 flex justify-start">
+          {/* Layer 2: Conteúdo Editorial à esquerda com AnimatePresence */}
+          <div className="relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-28 sm:pt-28 md:pt-20 pb-16 sm:pb-12 md:pb-8 flex justify-start">
             <div className="max-w-3xl text-left flex flex-col items-start w-full">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -518,25 +528,24 @@ const DanielSilva = () => {
                   exit="exit"
                   className="w-full flex flex-col items-start"
                 >
-
                   {/* Título Principal */}
-                  <h1 className="font-display text-[34px] xs:text-[42px] sm:text-[62px] md:text-[80px] lg:text-[96px] font-[900] leading-[0.94] sm:leading-[0.88] tracking-[-0.04em] mb-4 sm:mb-6 md:mb-8">
+                  <h1 className="font-display text-[30px] xs:text-[36px] sm:text-[54px] md:text-[76px] lg:text-[92px] font-[900] leading-[0.98] sm:leading-[0.88] tracking-[-0.04em] mb-3 sm:mb-6 md:mb-8">
                     <span className="block text-white">{heroSlides[heroSlide].titleMain}</span>
                     <span className="text-white/80 italic font-normal block">{heroSlides[heroSlide].titleSub}</span>
                   </h1>
 
                   {/* Descrição Editorial */}
-                  <p className="text-white/70 text-xs sm:text-base md:text-lg leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10 font-normal">
+                  <p className="text-white/75 text-xs sm:text-base md:text-lg leading-relaxed max-w-xl text-left mb-5 sm:mb-8 md:mb-10 font-normal">
                     {heroSlides[heroSlide].descricao}
                   </p>
 
                   {/* Botões de Ação do Hero */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
+                  <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-5 sm:mb-8">
                     <a
                       href={heroSlides[heroSlide].btnPrimary.href}
                       target={heroSlides[heroSlide].btnPrimary.external ? "_blank" : undefined}
                       rel={heroSlides[heroSlide].btnPrimary.external ? "noopener noreferrer" : undefined}
-                      className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-xs uppercase tracking-[0.2em] px-7 sm:px-10 py-3.5 sm:py-4 rounded-[14px] transition-all duration-300 shadow-xl text-center justify-center inline-flex items-center"
+                      className="bg-white text-[#07132B] hover:bg-transparent hover:text-white border border-white font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-6 sm:px-10 py-3 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl text-center justify-center inline-flex items-center"
                     >
                       {heroSlides[heroSlide].btnPrimary.text}
                     </a>
@@ -544,7 +553,7 @@ const DanielSilva = () => {
                       href={heroSlides[heroSlide].btnSecondary.href}
                       target={heroSlides[heroSlide].btnSecondary.external ? "_blank" : undefined}
                       rel={heroSlides[heroSlide].btnSecondary.external ? "noopener noreferrer" : undefined}
-                      className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-xs uppercase tracking-[0.2em] px-7 sm:px-10 py-3.5 sm:py-4 rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center"
+                      className="bg-transparent text-white hover:bg-white hover:text-[#07132B] border border-white/30 font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-6 sm:px-10 py-3 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center"
                     >
                       {heroSlides[heroSlide].btnSecondary.text}
                     </a>
@@ -577,7 +586,7 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section
           id="agenda"
-          className="w-full min-h-screen min-h-[100dvh] md:h-screen flex flex-col justify-center bg-white text-[#07132B] relative overflow-hidden select-none snap-start snap-always border-b border-[#07132B]/10"
+          className="w-full min-h-[100dvh] md:h-screen flex flex-col justify-center bg-white text-[#07132B] relative overflow-hidden select-none md:snap-start md:snap-always border-b border-[#07132B]/10"
         >
           {/* Área Principal da Agenda */}
           <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 w-full flex flex-col justify-center pt-24 sm:pt-28 md:pt-28 lg:pt-16 pb-6 sm:py-10 lg:py-12">
@@ -743,164 +752,254 @@ const DanielSilva = () => {
         </section>
 
         {/* ========================================================================= */}
-        {/* 3. FUNDAMENTOS DE VIDA E LIDERANÇA (HERO-STYLE FULL-BLEED - IMAGEM ESQUERDA)*/}
+        {/* 3. FUNDAMENTOS DE VIDA E LIDERANÇA (EDITORIAL ART DIRECTION)              */}
         {/* ========================================================================= */}
         <section
           id="fe"
-          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-between md:justify-center md:items-center overflow-hidden bg-[#07132B] md:snap-start md:snap-always border-t border-white/[0.08]"
         >
           <span id="fundamentos" className="sr-only" />
 
-          {/* Imagem de fundo cobrindo o topo no mobile e o lado ESQUERDO no desktop */}
+          {/* Versão Desktop: Imagem cobrindo o lado ESQUERDO com máscara feathered */}
           <div 
-            className="absolute inset-0 md:inset-auto md:left-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none mask-feather-mobile-bottom mask-feather-left"
+            className="hidden md:block absolute md:left-0 md:top-0 md:bottom-0 w-[55%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none mask-feather-left"
           >
             <img
               src={imgFundamentos}
               alt="Daniel Silva - Fé, Propósito e Liderança"
-              className="w-full h-full object-cover object-[center_12%] md:object-[center_15%] filter contrast-[1.08] brightness-[1.03]"
+              className="w-full h-full object-cover object-[center_15%] filter contrast-[1.08] brightness-[1.03]"
             />
           </div>
 
-          {/* Overlay sutil em desktop */}
-          <div className="hidden md:block absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
+          {/* Versão Mobile: Vitrine Fotográfica Dedicada no Topo (100% nítida, sem texto sobre Daniel) */}
+          <div className="md:hidden relative w-full h-[44vh] sm:h-[48vh] overflow-hidden pointer-events-none">
+            <img
+              src={imgFundamentos}
+              alt="Daniel Silva - Fé, Propósito e Liderança"
+              className="w-full h-full object-cover object-[center_15%] filter contrast-[1.08] brightness-[1.03]"
+            />
+            {/* Fade suave na base integrando diretamente com o fundo azul marinho */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#07132B] via-[#07132B]/80 to-transparent" />
+          </div>
 
-          {/* Degradê: no mobile vem de BAIXO para CIMA cobrindo o texto; no desktop vem da DIREITA para ESQUERDA */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] from-42% via-[#07132B]/85 via-68% to-transparent md:bg-gradient-to-l md:from-[#07132B] md:from-20% md:sm:from-28% md:from-35% md:via-[#07132B]/60 md:via-45% md:to-transparent md:to-58% z-10 pointer-events-none" />
+          {/* Overlays exclusivos para Desktop */}
+          <div className="hidden md:block absolute inset-0 bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-l from-[#07132B] from-20% sm:from-28% md:from-35% via-[#07132B]/60 via-45% to-transparent to-58% z-10 pointer-events-none" />
           <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
-          {/* Conteúdo Textual (na base no mobile, à direita no desktop) */}
-          <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28 pb-8 sm:pb-12 md:py-20 flex justify-start md:justify-end">
+          {/* Canvas Editorial de Conteúdo: Na base com respiro no mobile, à direita no desktop */}
+          <div className="relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 pt-2 md:pt-20 pb-24 sm:pb-28 md:pb-20 flex justify-start md:justify-end -mt-8 md:mt-0">
             <div className="w-full lg:w-[54%] xl:w-[50%] flex flex-col items-start text-left">
-              <h2 className="font-display text-[26px] xs:text-[30px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[58px] font-[900] leading-[0.94] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
-                <span className="block text-white">Fé, Propósito &amp;</span>
-                <span className="text-white/80 italic font-normal block lowercase sm:whitespace-nowrap">Valores Inegociáveis.</span>
+              
+              {/* Eyebrow de Categoria Editorial */}
+              <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+                <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-[#E2BA7A] uppercase">
+                  01 // PROPÓSITO &amp; PRINCÍPIOS
+                </span>
+              </div>
+
+              {/* Título com proporção editorial e respiro */}
+              <h2 className="font-display text-2xl xs:text-[28px] sm:text-4xl md:text-[46px] lg:text-[52px] font-black leading-[1.05] tracking-tight uppercase mb-4 text-white">
+                <span className="block">Fé, Propósito &amp;</span>
+                <span className="font-display italic font-light text-white/80 lowercase block">valores inegociáveis.</span>
               </h2>
 
-              <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
-                Acredito que resultados sustentáveis nascem de princípios sólidos. Minha atuação é guiada por fé, disciplina, integridade e um olhar genuíno para o desenvolvimento de pessoas.
+              {/* Parágrafo Mestre: Conciso, inspirador e sem repetições */}
+              <p className="text-white/85 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mb-5 sm:mb-6 font-light">
+                Acredito que resultados sustentáveis nascem de princípios inegociáveis. Minha atuação e liderança são guiadas por fé genuína, disciplina, integridade e um compromisso real com a elevação de pessoas.
               </p>
 
-              <p className="text-white/55 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
-                A integridade e o temor a Deus são os pilares que sustentam toda trajetória de liderança autêntica. O verdadeiro sucesso só se sustenta quando alinhado a princípios inegociáveis e compromisso moral irrestrito.
-              </p>
+              {/* Pilares Estruturados */}
+              <div className="flex flex-wrap gap-2 sm:gap-2.5 max-w-xl">
+                <span className="px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-white/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Integridade Inegociável
+                </span>
+                <span className="px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-white/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Liderança com Temor a Deus
+                </span>
+                <span className="px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-white/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Desenvolvimento Humano
+                </span>
+              </div>
+
             </div>
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 4. SENSIBILIDADE ARTÍSTICA & ADORAÇÃO (HERO-STYLE FULL-BLEED - IMAGEM DIREITA) */}
+        {/* 4. SENSIBILIDADE ARTÍSTICA & ADORAÇÃO (EDITORIAL ART DIRECTION)           */}
         {/* ========================================================================= */}
         <section
           id="musica"
-          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-white snap-start snap-always border-t border-[#07132B]/10"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-between md:justify-center md:items-center overflow-hidden bg-white text-[#07132B] md:snap-start md:snap-always border-t border-[#07132B]/10"
         >
-          {/* Imagem de fundo cobrindo o topo no mobile e o lado DIREITO no desktop */}
+          {/* Versão Desktop: Imagem cobrindo o lado DIREITO com máscara feathered */}
           <div 
-            className="absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none mask-feather-mobile-bottom mask-feather-musica"
+            className="hidden md:block absolute md:right-0 md:top-0 md:bottom-0 w-[55%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none mask-feather-musica"
           >
             <img
               src={imgMusica}
               alt="Daniel Silva - Expressão Musical e Adoração"
-              className="w-full h-full object-cover object-[center_10%] md:object-[center_15%] filter contrast-[1.06] brightness-[1.02]"
+              className="w-full h-full object-cover object-[center_15%] filter contrast-[1.06] brightness-[1.02]"
             />
           </div>
 
-          {/* Degradê Branco: no mobile vem de BAIXO para CIMA cobrindo o texto; no desktop vem da ESQUERDA para DIREITA */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white from-42% via-white/90 via-68% to-transparent md:bg-gradient-to-r md:from-white md:from-15% md:sm:from-25% md:from-32% md:via-white/40 md:via-38% md:to-transparent md:to-46% z-10 pointer-events-none" />
+          {/* Versão Mobile: Vitrine Fotográfica Dedicada no Topo (100% nítida e iluminada) */}
+          <div className="md:hidden relative w-full h-[44vh] sm:h-[48vh] overflow-hidden pointer-events-none">
+            <img
+              src={imgMusica}
+              alt="Daniel Silva - Expressão Musical e Adoração"
+              className="w-full h-full object-cover object-[center_12%] filter contrast-[1.06] brightness-[1.02]"
+            />
+            {/* Fade suave na base integrando diretamente com o fundo branco */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-white via-white/80 to-transparent" />
+          </div>
 
-          {/* Conteúdo Textual (na base no mobile, à esquerda no desktop) */}
-          <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28 pb-8 sm:pb-12 md:py-20 flex justify-start">
+          {/* Overlays exclusivos para Desktop */}
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-white from-15% sm:from-25% md:from-32% via-white/40 via-38% to-transparent to-46% z-10 pointer-events-none" />
+
+          {/* Canvas Editorial de Conteúdo: Na base com respiro no mobile, à esquerda no desktop */}
+          <div className="relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 pt-2 md:pt-20 pb-24 sm:pb-28 md:pb-20 flex justify-start -mt-8 md:mt-0">
             <div className="w-full lg:w-[54%] xl:w-[50%] flex flex-col items-start text-left">
-              <h2 className="font-display text-[26px] xs:text-[30px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[58px] font-[900] leading-[0.94] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
-                <span className="block text-[#07132B]">A Música como</span>
-                <span className="text-[#07132B]/75 italic font-normal block lowercase sm:whitespace-nowrap">Expressão e Adoração.</span>
+              
+              {/* Eyebrow de Categoria Editorial */}
+              <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+                <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-[#07132B]/60 uppercase">
+                  02 // ARTE &amp; SENSIBILIDADE
+                </span>
+              </div>
+
+              {/* Título com proporção editorial e respiro */}
+              <h2 className="font-display text-2xl xs:text-[28px] sm:text-4xl md:text-[46px] lg:text-[52px] font-black leading-[1.05] tracking-tight uppercase mb-4 text-[#07132B]">
+                <span className="block">A Música como</span>
+                <span className="font-display italic font-light text-[#07132B]/75 lowercase block">expressão e adoração.</span>
               </h2>
 
-              <p className="text-[#07132B]/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
-                A música sempre fez parte da minha história. É uma forma de expressar minha fé, de me conectar com pessoas e de levar mensagens que inspiram e transformam.
+              {/* Parágrafo Mestre: Conciso, poético e sem repetições */}
+              <p className="text-[#07132B]/85 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mb-5 sm:mb-6 font-light">
+                A música é a linguagem mais profunda da alma e da fé. Ela une sensibilidade estética, poesia harmônica e conexão espiritual autêntica para inspirar, elevar e transformar ambientes através da arte.
               </p>
 
-              <p className="text-[#07132B]/60 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
-                A harmonia musical traz precisão estética, sensibilidade poética e conexão espiritual autêntica em tudo o que realizo. A arte como instrumento vivo de elevação e edificação.
-              </p>
+              {/* Pilares Estruturados */}
+              <div className="flex flex-wrap gap-2 sm:gap-2.5 max-w-xl">
+                <span className="px-3.5 py-1.5 rounded-full border border-[#07132B]/15 bg-[#07132B]/[0.03] text-[#07132B]/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Adoração Contemporânea
+                </span>
+                <span className="px-3.5 py-1.5 rounded-full border border-[#07132B]/15 bg-[#07132B]/[0.03] text-[#07132B]/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Sensibilidade Poética
+                </span>
+                <span className="px-3.5 py-1.5 rounded-full border border-[#07132B]/15 bg-[#07132B]/[0.03] text-[#07132B]/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Conexão Espiritual
+                </span>
+              </div>
+
             </div>
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 5. ATUAÇÃO & NEGÓCIOS (HERO-STYLE FULL-BLEED - IMAGEM ESQUERDA)           */}
+        {/* 5. ATUAÇÃO & NEGÓCIOS (EDITORIAL ART DIRECTION)                           */}
         {/* ========================================================================= */}
         <section
           id="empreendedorismo"
-          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-between md:justify-center md:items-center overflow-hidden bg-[#07132B] md:snap-start md:snap-always border-t border-white/[0.08]"
         >
           <span id="negocios" className="sr-only" />
 
-          {/* Imagem de fundo cobrindo o topo no mobile e o lado ESQUERDO no desktop */}
+          {/* Versão Desktop: Imagem cobrindo o lado ESQUERDO com máscara feathered */}
           <div 
-            className="absolute inset-0 md:inset-auto md:left-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none mask-feather-mobile-bottom mask-feather-left"
+            className="hidden md:block absolute md:left-0 md:top-0 md:bottom-0 w-[55%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none mask-feather-left"
           >
             <img
               src={imgNegocios}
               alt="Daniel Silva - Empreendedorismo & Estratégia Comercial"
-              className="w-full h-full object-cover object-[center_12%] md:object-[center_20%] filter contrast-[1.08] brightness-[1.03]"
+              className="w-full h-full object-cover object-[center_20%] filter contrast-[1.08] brightness-[1.03]"
             />
           </div>
 
-          {/* Overlay sutil em desktop */}
-          <div className="hidden md:block absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
+          {/* Versão Mobile: Vitrine Fotográfica Dedicada no Topo (100% nítida e com livros de fundo nítidos) */}
+          <div className="md:hidden relative w-full h-[44vh] sm:h-[48vh] overflow-hidden pointer-events-none">
+            <img
+              src={imgNegocios}
+              alt="Daniel Silva - Empreendedorismo & Estratégia Comercial"
+              className="w-full h-full object-cover object-[center_12%] filter contrast-[1.08] brightness-[1.03]"
+            />
+            {/* Fade suave na base integrando diretamente com o fundo azul marinho */}
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#07132B] via-[#07132B]/80 to-transparent" />
+          </div>
 
-          {/* Degradê: no mobile vem de BAIXO para CIMA cobrindo o texto; no desktop vem da DIREITA para ESQUERDA */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] from-42% via-[#07132B]/85 via-68% to-transparent md:bg-gradient-to-l md:from-[#07132B] md:from-20% md:sm:from-28% md:from-35% md:via-[#07132B]/60 md:via-45% md:to-transparent md:to-58% z-10 pointer-events-none" />
+          {/* Overlays exclusivos para Desktop */}
+          <div className="hidden md:block absolute inset-0 bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
+          <div className="hidden md:block absolute inset-0 bg-gradient-to-l from-[#07132B] from-20% sm:from-28% md:from-35% via-[#07132B]/60 via-45% to-transparent to-58% z-10 pointer-events-none" />
           <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
-          {/* Conteúdo Textual (na base no mobile, à direita no desktop) */}
-          <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28 pb-8 sm:pb-12 md:py-20 flex justify-start md:justify-end">
+          {/* Canvas Editorial de Conteúdo: Na base com respiro no mobile, à direita no desktop */}
+          <div className="relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 pt-2 md:pt-20 pb-24 sm:pb-28 md:pb-20 flex justify-start md:justify-end -mt-8 md:mt-0">
             <div className="w-full lg:w-[54%] xl:w-[50%] flex flex-col items-start text-left">
-              <h2 className="font-display text-[26px] xs:text-[30px] sm:text-[38px] md:text-[46px] lg:text-[50px] xl:text-[54px] font-[900] leading-[0.96] tracking-[-0.03em] uppercase mb-5 sm:mb-8 break-words">
-                <span className="block text-white">Empreendedorismo &amp;</span>
-                <span className="text-white/80 italic font-normal block lowercase">Estratégia Comercial.</span>
+              
+              {/* Eyebrow de Categoria Editorial */}
+              <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+                <span className="font-mono text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-[#E2BA7A] uppercase">
+                  03 // NEGÓCIOS &amp; GOVERNANÇA
+                </span>
+              </div>
+
+              {/* Título com proporção editorial e respiro */}
+              <h2 className="font-display text-2xl xs:text-[28px] sm:text-4xl md:text-[46px] lg:text-[52px] font-black leading-[1.05] tracking-tight uppercase mb-4 text-white">
+                <span className="block">Empreendedorismo &amp;</span>
+                <span className="font-display italic font-light text-white/80 lowercase block">estratégia comercial.</span>
               </h2>
 
-              <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
-                Liderança e execução na prática. Contribuo para o desenvolvimento de negócios e pessoas por meio de palestras, consultorias e experiências que conectam estratégia, execução e propósito.
+              {/* Parágrafo Mestre: Conciso, executivo e com peso */}
+              <p className="text-white/85 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl mb-5 sm:mb-6 font-light">
+                Liderança estratégica e execução prática. Contribuo para a aceleração de negócios por meio de estruturação comercial de alta margem, governança corporativa para conselhos consultivos e processos de vendas previsíveis.
               </p>
 
-              <p className="text-white/55 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
-                Estruturação de operações comerciais de alta margem, governança corporativa para conselhos consultivos e processos de vendas previsíveis para empresas em tração.
-              </p>
+              {/* Pilares Estruturados */}
+              <div className="flex flex-wrap gap-2 sm:gap-2.5 max-w-xl">
+                <span className="px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-white/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Conselhos Consultivos
+                </span>
+                <span className="px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-white/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Operações de Alta Margem
+                </span>
+                <span className="px-3.5 py-1.5 rounded-full border border-white/15 bg-white/[0.04] text-white/85 text-[11px] sm:text-xs font-mono tracking-wide">
+                  Vendas Previsíveis
+                </span>
+              </div>
+
             </div>
           </div>
         </section>
 
         {/* ========================================================================= */}
-        {/* 6. PATROCINADORES OFICIAIS (PRANCHETA TELA CHEIA COM LOOP & CTA)          */}
+        {/* 6. PATROCINADORES OFICIAIS (EDITORIAL ART DIRECTION)                      */}
         {/* ========================================================================= */}
         <section 
           id="patrocinadores" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center py-8 sm:py-14 px-5 sm:px-10 lg:px-16 border-t border-white/10 relative overflow-hidden bg-[#07132B] snap-start snap-always"
+          className="min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center py-12 sm:py-16 md:py-14 px-6 sm:px-10 lg:px-16 border-t border-white/10 relative overflow-hidden bg-[#07132B] md:snap-start md:snap-always"
         >
           {/* Glow sutil */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-blue-600/10 blur-[140px] pointer-events-none" />
 
           <div className="max-w-7xl w-full mx-auto relative z-10 flex flex-col items-center text-center">
-            {/* Header da Seção Centralizado e Destacado */}
-            <div className="mb-4 sm:mb-8 max-w-3xl mx-auto">
-
-              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-[1.08]">
-                Patrocinadores <span className="font-display italic font-normal text-white/80 lowercase">Oficiais</span>
+            {/* Header da Seção Centralizado com Respiro */}
+            <div className="mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-white/[0.06] border border-white/15 text-white/80 text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-3 shadow-sm">
+                PARCERIAS DE VALOR
+              </span>
+              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase leading-[1.08]">
+                Patrocinadores <span className="font-display italic font-light text-white/80 lowercase">Oficiais</span>
               </h2>
-              <p className="text-white/70 text-xs sm:text-base md:text-lg font-sans mt-2 max-w-2xl mx-auto leading-relaxed">
-                Empresas e marcas visionárias que caminham junto ao ecossistema de alto valor, eventos corporativos e negócios de Daniel Silva.
+              <p className="text-white/70 text-xs sm:text-sm md:text-base font-sans mt-2.5 max-w-xl mx-auto leading-relaxed">
+                Empresas e marcas visionárias que caminham junto ao ecossistema executivo, conferências e projetos de Daniel Silva.
               </p>
             </div>
 
             {/* Linha Animada Contínua de Logotipos (Marquee Infinito em Loop) */}
-            <div className="relative w-full overflow-hidden py-4 sm:py-8 my-1 sm:my-2">
-              {/* Gradientes de fade nas bordas para transição suave */}
+            <div className="relative w-full overflow-hidden py-4 sm:py-6 my-2">
               <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-44 bg-gradient-to-r from-[#07132B] to-transparent z-10 pointer-events-none" />
               <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-44 bg-gradient-to-l from-[#07132B] to-transparent z-10 pointer-events-none" />
 
@@ -929,30 +1028,29 @@ const DanielSilva = () => {
             </div>
 
             {/* CTA DA SEÇÃO PATROCINADORES */}
-            <div className="mt-4 sm:mt-8 p-6 sm:p-10 lg:p-12 bg-[#0B1B3D]/85 border border-white/10 rounded-[20px] sm:rounded-[26px] max-w-5xl w-full flex flex-col lg:flex-row items-center lg:items-center justify-between gap-6 sm:gap-8 backdrop-blur-md shadow-2xl text-left">
+            <div className="mt-6 sm:mt-8 p-6 sm:p-8 lg:p-10 bg-[#0B1B3D]/80 border border-white/10 rounded-[20px] sm:rounded-[26px] max-w-4xl w-full flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8 backdrop-blur-md shadow-2xl text-left">
               <div className="flex-1">
-
-                <h3 className="font-display text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
+                <h3 className="font-display text-lg sm:text-2xl font-bold text-white tracking-tight leading-snug">
                   Sua marca associada a projetos de alto impacto.
                 </h3>
-                <p className="text-white/65 text-xs sm:text-sm md:text-base mt-1.5 sm:mt-2 leading-relaxed max-w-xl">
-                  Conecte sua empresa a palestras magnas, convenções corporativas, turnês e produções audiovisuais voltadas a tomadores de decisão e público executivo qualificado.
+                <p className="text-white/70 text-xs sm:text-sm mt-1.5 leading-relaxed max-w-lg">
+                  Conecte sua empresa a convenções executivas, mentorias e eventos exclusivos voltados a tomadores de decisão qualificados.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full lg:w-auto">
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 shrink-0 w-full md:w-auto">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 bg-white text-[#07132B] hover:bg-[#FAF6EB] hover:scale-105 active:scale-95 font-bold text-xs uppercase tracking-[0.2em] rounded-[14px] transition-all duration-300 shadow-xl text-center w-full sm:w-auto group"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-[#07132B] hover:bg-[#FAF6EB] hover:scale-[1.02] active:scale-95 font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] rounded-[12px] transition-all duration-300 shadow-xl text-center w-full sm:w-auto group"
                 >
-                  <span>Seja um Patrocinador</span>
+                  <span>Seja Patrocinador</span>
                   <span className="text-[#07132B] group-hover:translate-x-1 transition-transform">→</span>
                 </a>
                 <a
                   href={`mailto:${AKEDAH_EMAIL}?subject=Proposta%20de%20Patroc%C3%ADnio%20-%20Daniel%20Silva`}
-                  className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 bg-white/[0.06] hover:bg-white/[0.12] border border-white/20 hover:border-white/40 text-white font-bold text-xs uppercase tracking-[0.2em] rounded-[14px] transition-all duration-300 text-center w-full sm:w-auto"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/20 text-white font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] rounded-[12px] transition-all duration-300 text-center w-full sm:w-auto"
                 >
                   <span>Proposta Comercial</span>
                 </a>
@@ -962,42 +1060,44 @@ const DanielSilva = () => {
         </section>
 
         {/* ========================================================================= */}
-        {/* 7. REDES SOCIAIS — [ DISTRIBUIÇÃO // CANAIS OFICIAIS ] (PRANCHETA TELA CHEIA) */}
+        {/* 7. REDES SOCIAIS — [ DISTRIBUIÇÃO // CANAIS OFICIAIS ] (EDITORIAL DESIGN) */}
         {/* ========================================================================= */}
         <section 
           id="redes" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-between items-center pt-20 sm:pt-16 pb-6 sm:pb-8 px-5 sm:px-10 lg:px-16 border-t border-[#07132B]/10 relative overflow-hidden bg-white snap-start snap-always"
+          className="min-h-[100dvh] md:h-screen w-full flex flex-col justify-between items-center pt-20 sm:pt-20 pb-8 sm:pb-8 px-6 sm:px-10 lg:px-16 border-t border-[#07132B]/10 relative overflow-hidden bg-white text-[#07132B] md:snap-start md:snap-always"
         >
           <span id="distribuicao" className="sr-only" />
-          {/* Glow sutil */}
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/[0.04] blur-[140px] pointer-events-none" />
 
           {/* Conteúdo Central */}
-          <div className="max-w-7xl w-full mx-auto relative z-10 flex-1 flex flex-col justify-center my-auto">
-            {/* Header da Seção Centralizado e Destacado */}
-            <div className="text-center mb-5 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
-              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] font-black text-[#07132B] tracking-tight uppercase text-center leading-[1.08]">
+          <div className="max-w-6xl w-full mx-auto relative z-10 flex-1 flex flex-col justify-center my-auto">
+            {/* Header da Seção Centralizado */}
+            <div className="text-center mb-6 sm:mb-8 md:mb-10 max-w-2xl mx-auto">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-[#07132B] text-white text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-3 shadow-sm">
+                CONEXÕES
+              </span>
+              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl font-black text-[#07132B] tracking-tight uppercase text-center leading-[1.08]">
                 <span className="block">Acompanhe Daniel Silva</span>
-                <span className="block">em todos os lugares.</span>
+                <span className="font-display italic font-light text-[#07132B]/75 lowercase block">em todos os canais.</span>
               </h2>
             </div>
 
-            {/* Grid dos Cards Individuais de Redes Sociais no estilo da referência */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5 w-full max-w-6xl mx-auto">
+            {/* Grid dos Cards de Redes Sociais (2x2 no mobile para respiro e elegância, 4 cols no desktop) */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 w-full max-w-5xl mx-auto">
               {danielSocials.map((p) => (
                 <a
                   key={p.name}
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#07132B] hover:bg-[#0B1E45] border border-[#07132B] hover:border-[#2563EB] rounded-[14px] p-4 sm:p-5 flex items-center gap-3.5 sm:gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-950/25 group text-left shadow-lg"
+                  className="bg-[#07132B] hover:bg-[#0B1E45] border border-[#07132B] hover:border-[#2563EB] rounded-[16px] p-3.5 sm:p-5 flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-2.5 sm:gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group shadow-md"
                 >
                   {p.icon}
                   <div className="flex flex-col justify-center min-w-0">
-                    <h3 className="font-display font-black text-sm sm:text-[15px] text-white tracking-wide uppercase leading-tight group-hover:text-white transition-colors">
+                    <h3 className="font-display font-black text-xs sm:text-[15px] text-white tracking-wide uppercase leading-tight">
                       {p.name}
                     </h3>
-                    <p className="font-sans text-xs sm:text-[13px] text-white/70 font-normal leading-tight mt-1 truncate group-hover:text-white/90 transition-colors">
+                    <p className="font-sans text-[11px] sm:text-[13px] text-white/70 font-normal leading-tight mt-0.5 truncate">
                       {p.subtitle}
                     </p>
                   </div>
@@ -1006,8 +1106,8 @@ const DanielSilva = () => {
             </div>
           </div>
 
-          {/* Base Inferior da Página (Exclusiva no rodapé da seção Redes) */}
-          <div className="w-full max-w-7xl mx-auto pt-4 sm:pt-6 pr-0 sm:pr-20 border-t border-[#07132B]/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#07132B]/50 relative z-10 text-center sm:text-left select-none">
+          {/* Base Inferior da Página (Exclusiva no rodapé da seção Redes) com afastamento do WhatsApp */}
+          <div className="w-full max-w-6xl mx-auto pt-6 pb-2 pr-0 sm:pr-20 border-t border-[#07132B]/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#07132B]/50 relative z-10 text-center sm:text-left select-none">
             <span>© 2026 DANIEL SILVA — TODOS OS DIREITOS RESERVADOS.</span>
             <span>ESTRATEGISTA DE NEGÓCIOS &amp; MENTOR EXECUTIVO</span>
           </div>
