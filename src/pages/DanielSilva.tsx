@@ -757,10 +757,10 @@ const DanielSilva = () => {
         {/* 3. FUNDAMENTOS DE VIDA E LIDERANÇA (HERO-STYLE FULL-BLEED - IMAGEM ESQUERDA)*/}
         {/* ========================================================================= */}
         <section
-          id="fundamentos"
+          id="fe"
           className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
         >
-          <span id="fe" className="sr-only" />
+          <span id="fundamentos" className="sr-only" />
 
           {/* Imagem de fundo cobrindo o lado ESQUERDO com máscara feathered e opacidade total */}
           <div 
@@ -857,10 +857,10 @@ const DanielSilva = () => {
         {/* 5. ATUAÇÃO & NEGÓCIOS (HERO-STYLE FULL-BLEED - IMAGEM ESQUERDA)           */}
         {/* ========================================================================= */}
         <section
-          id="negocios"
+          id="empreendedorismo"
           className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
         >
-          <span id="empreendedorismo" className="sr-only" />
+          <span id="negocios" className="sr-only" />
 
           {/* Imagem de fundo cobrindo o lado ESQUERDO com máscara feathered e opacidade total */}
           <div 

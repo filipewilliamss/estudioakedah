@@ -24,11 +24,10 @@ const podcastNavLinks: NavItem[] = [
 
 const danielSilvaNavLinks: NavItem[] = [
   { label: "Agenda", hash: "agenda", to: "/daniel-silva#agenda" },
-  { label: "Fundamentos", hash: "fundamentos", to: "/daniel-silva#fundamentos" },
+  { label: "Fé", hash: "fe", to: "/daniel-silva#fe" },
   { label: "Música", hash: "musica", to: "/daniel-silva#musica" },
-  { label: "Negócios", hash: "negocios", to: "/daniel-silva#negocios" },
+  { label: "Empreendedorismo", hash: "empreendedorismo", to: "/daniel-silva#empreendedorismo" },
   { label: "Patrocinadores", hash: "patrocinadores", to: "/daniel-silva#patrocinadores" },
-  { label: "Canais Oficiais", hash: "redes", to: "/daniel-silva#redes" },
   { label: "Contato", to: "/contato" },
 ];
 

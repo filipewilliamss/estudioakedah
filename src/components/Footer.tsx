@@ -63,32 +63,37 @@ const Footer = ({ isPodcastPage, isDanielSilvaPage }: FooterProps) => {
                 <>
                   <li>
                     <a href="/daniel-silva#agenda" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Agenda &amp; Patrocinadores
+                      Agenda
                     </a>
                   </li>
                   <li>
-                    <a href="/daniel-silva#fundamentos" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Fundamentos de Vida &amp; Liderança
+                    <a href="/daniel-silva#fe" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Fé
                     </a>
                   </li>
                   <li>
                     <a href="/daniel-silva#musica" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Sensibilidade &amp; Música
+                      Música
                     </a>
                   </li>
                   <li>
-                    <a href="/daniel-silva#negocios" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Atuação &amp; Negócios
+                    <a href="/daniel-silva#empreendedorismo" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Empreendedorismo
                     </a>
                   </li>
                   <li>
-                    <a href="/daniel-silva#redes" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Canais Oficiais
+                    <a href="/daniel-silva#patrocinadores" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Patrocinadores
                     </a>
+                  </li>
+                  <li>
+                    <Link to="/contato" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
+                      Contato
+                    </Link>
                   </li>
                   <li>
                     <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-[13px] text-white/50 hover:text-white transition-colors duration-300">
-                      Contato &amp; WhatsApp
+                      WhatsApp
                     </a>
                   </li>
                 </>
