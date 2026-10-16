@@ -481,9 +481,13 @@ const DanielSilva = () => {
               return (
                 <div
                   key={slide.id}
-                  className={`absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full flex items-center justify-end transition-opacity duration-1000 ease-in-out ${
-                    isActive ? "opacity-85 md:opacity-95" : "opacity-0 pointer-events-none"
+                  className={`absolute right-0 top-0 bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full flex items-center justify-end transition-opacity duration-1000 ease-in-out ${
+                    isActive ? "opacity-100" : "opacity-0 pointer-events-none"
                   }`}
+                  style={{
+                    WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+                    maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+                  }}
                   aria-hidden={!isActive}
                 >
                   <img 
@@ -492,7 +496,7 @@ const DanielSilva = () => {
                     loading="eager"
                     decoding="async"
                     fetchPriority={idx === 0 ? "high" : "auto"}
-                    className={`w-full h-full object-cover ${slide.imgPos} filter contrast-105 transition-transform duration-1000 ease-out ${
+                    className={`w-full h-full object-cover ${slide.imgPos} filter contrast-[1.08] brightness-[1.03] transition-transform duration-1000 ease-out ${
                       isActive ? "scale-100" : "scale-105"
                     }`}
                   />
@@ -500,14 +504,14 @@ const DanielSilva = () => {
               );
             })}
 
-            {/* Overlay sutil em mobile/tablet para garantir 100% de contraste do texto */}
-            <div className="absolute inset-0 bg-[#07132B]/75 md:bg-[#07132B]/40 lg:bg-transparent z-10 pointer-events-none" />
+            {/* Overlay sutil apenas em mobile pequeno para contraste do texto */}
+            <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
-            {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-45% via-[#07132B]/90 md:via-[#07132B]/70 via-65% to-transparent z-10" />
+            {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto sem cobrir a foto */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
 
-            {/* Degradês verticais para mesclagem superior e inferior */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10" />
+            {/* Degradês verticais suaves para mesclagem superior e inferior */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
 
             {/* Glow azul sutil */}
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
@@ -764,21 +768,27 @@ const DanielSilva = () => {
         >
           <span id="fe" className="sr-only" />
 
-          {/* Imagem de fundo cobrindo o lado ESQUERDO */}
-          <div className="absolute left-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
+          {/* Imagem de fundo cobrindo o lado ESQUERDO com máscara feathered e opacidade total */}
+          <div 
+            className="absolute left-0 top-0 bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none"
+            style={{
+              WebkitMaskImage: "linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+              maskImage: "linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+            }}
+          >
             <img
               src={imgFundamentos}
               alt="Daniel Silva - Fé, Propósito e Liderança"
-              className="w-full h-full object-cover object-[center_20%] md:object-[center_15%]"
+              className="w-full h-full object-cover object-[center_20%] md:object-[center_15%] filter contrast-[1.08] brightness-[1.03]"
             />
           </div>
 
-          {/* Overlay sutil em mobile/tablet para garantir 100% de contraste */}
-          <div className="absolute inset-0 bg-[#07132B]/80 md:bg-[#07132B]/50 lg:bg-transparent z-10 pointer-events-none" />
+          {/* Overlay sutil apenas em mobile pequeno */}
+          <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
-          {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente sobre a imagem à esquerda */}
-          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-45% lg:from-50% via-[#07132B]/90 via-65% to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10 pointer-events-none" />
+          {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
+          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
           {/* Conteúdo Textual à Direita (100% sobre o fundo azul marinho) */}
@@ -807,21 +817,27 @@ const DanielSilva = () => {
           id="musica"
           className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
         >
-          {/* Imagem de fundo cobrindo o lado DIREITO */}
-          <div className="absolute right-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
+          {/* Imagem de fundo cobrindo o lado DIREITO com máscara feathered e opacidade total */}
+          <div 
+            className="absolute right-0 top-0 bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none"
+            style={{
+              WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+              maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+            }}
+          >
             <img
               src={imgMusica}
               alt="Daniel Silva - Expressão Musical e Adoração"
-              className="w-full h-full object-cover object-[center_15%]"
+              className="w-full h-full object-cover object-[center_15%] filter contrast-[1.08] brightness-[1.03]"
             />
           </div>
 
-          {/* Overlay sutil em mobile/tablet para garantir 100% de contraste */}
-          <div className="absolute inset-0 bg-[#07132B]/80 md:bg-[#07132B]/50 lg:bg-transparent z-10 pointer-events-none" />
+          {/* Overlay sutil apenas em mobile pequeno */}
+          <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
-          {/* Degradê: lado esquerdo 100% azul marinho sólido onde fica o texto, esvanecendo suavemente sobre a imagem à direita */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-45% lg:from-50% via-[#07132B]/90 via-65% to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10 pointer-events-none" />
+          {/* Degradê: lado esquerdo 100% azul marinho sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
           <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
           {/* Conteúdo Textual à Esquerda (100% sobre o fundo azul marinho) */}
@@ -852,21 +868,27 @@ const DanielSilva = () => {
         >
           <span id="empreendedorismo" className="sr-only" />
 
-          {/* Imagem de fundo cobrindo o lado ESQUERDO */}
-          <div className="absolute left-0 top-0 bottom-0 w-full sm:w-4/5 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
+          {/* Imagem de fundo cobrindo o lado ESQUERDO com máscara feathered e opacidade total */}
+          <div 
+            className="absolute left-0 top-0 bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[58%] xl:w-[55%] h-full pointer-events-none"
+            style={{
+              WebkitMaskImage: "linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+              maskImage: "linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%)",
+            }}
+          >
             <img
               src={imgNegocios}
               alt="Daniel Silva - Empreendedorismo & Estratégia Comercial"
-              className="w-full h-full object-cover object-[center_20%]"
+              className="w-full h-full object-cover object-[center_20%] filter contrast-[1.08] brightness-[1.03]"
             />
           </div>
 
-          {/* Overlay sutil em mobile/tablet para garantir 100% de contraste */}
-          <div className="absolute inset-0 bg-[#07132B]/80 md:bg-[#07132B]/50 lg:bg-transparent z-10 pointer-events-none" />
+          {/* Overlay sutil apenas em mobile pequeno */}
+          <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
-          {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente sobre a imagem à esquerda */}
-          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-45% lg:from-50% via-[#07132B]/90 via-65% to-transparent z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/60 z-10 pointer-events-none" />
+          {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
+          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
           {/* Conteúdo Textual à Direita (100% sobre o fundo azul marinho) */}
