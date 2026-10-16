@@ -529,12 +529,6 @@ const DanielSilva = () => {
                   exit="exit"
                   className="w-full flex flex-col items-start"
                 >
-                  {/* Badge Superior */}
-                  <div className="flex items-center justify-start gap-4 mb-3 sm:mb-5">
-                    <span className="text-white/80 border border-white/20 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full text-[9px] sm:text-[11px] md:text-[12px] uppercase tracking-[0.22em] sm:tracking-[0.35em] font-mono font-bold bg-[#0B1B3D]/50 backdrop-blur-sm">
-                      {heroSlides[heroSlide].badge}
-                    </span>
-                  </div>
 
                   {/* Título Principal */}
                   <h1 className="font-display text-[34px] xs:text-[42px] sm:text-[62px] md:text-[80px] lg:text-[96px] font-[900] leading-[0.94] sm:leading-[0.88] tracking-[-0.04em] mb-4 sm:mb-6 md:mb-8">
