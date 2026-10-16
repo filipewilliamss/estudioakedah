@@ -337,8 +337,8 @@ const heroSlides = [
   {
     id: 3,
     badge: "ESTRATÉGIA • MERCADO • NEGÓCIOS",
-    titleMain: "Empreendedor &",
-    titleSub: "Estrategista",
+    titleMain: "Empreendedor",
+    titleSub: "& Estrategista",
     descricao: "Estruturação de operações comerciais de alta margem, governança corporativa para conselhos consultivos e processos de vendas previsíveis para empresas em tração.",
     btnPrimary: { text: "Conhecer Métodos", href: "#negocios" },
     btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
@@ -508,10 +508,10 @@ const DanielSilva = () => {
             <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
             {/* Degradê Azul Marinho vindo do lado esquerdo para destacar o texto sem cobrir a foto */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-20% sm:from-28% md:from-35% via-[#07132B]/60 via-45% to-transparent to-58% z-10 pointer-events-none" />
 
             {/* Degradês verticais suaves para mesclagem superior e inferior */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
 
             {/* Glow azul sutil */}
             <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
@@ -781,16 +781,16 @@ const DanielSilva = () => {
           <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
           {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
-          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-20% sm:from-28% md:from-35% via-[#07132B]/60 via-45% to-transparent to-58% z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
           {/* Conteúdo Textual à Direita (100% sobre o fundo azul marinho) */}
           <div className="relative z-20 w-full min-h-screen min-h-[100dvh] md:h-screen flex items-center justify-end px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28">
-            <div className="w-full lg:w-1/2 xl:w-[48%] flex flex-col items-start text-left py-20 sm:py-16">
-              <h2 className="font-display text-[32px] xs:text-[38px] sm:text-[48px] md:text-[58px] lg:text-[68px] xl:text-[76px] font-[900] leading-[0.92] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
+            <div className="w-full lg:w-[54%] xl:w-[50%] flex flex-col items-start text-left py-20 sm:py-16">
+              <h2 className="font-display text-[26px] xs:text-[30px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[58px] font-[900] leading-[0.94] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
                 <span className="block text-white">Fé, Propósito &amp;</span>
-                <span className="text-white/80 italic font-normal block lowercase">Valores Inegociáveis.</span>
+                <span className="text-white/80 italic font-normal block lowercase sm:whitespace-nowrap">Valores Inegociáveis.</span>
               </h2>
 
               <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
@@ -830,16 +830,16 @@ const DanielSilva = () => {
           <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
           {/* Degradê: lado esquerdo 100% azul marinho sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-20% sm:from-28% md:from-35% via-[#07132B]/60 via-45% to-transparent to-58% z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
           <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
           {/* Conteúdo Textual à Esquerda (100% sobre o fundo azul marinho) */}
           <div className="relative z-20 w-full min-h-screen min-h-[100dvh] md:h-screen flex items-center justify-start px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28">
-            <div className="w-full lg:w-1/2 xl:w-[48%] flex flex-col items-start text-left py-20 sm:py-16">
-              <h2 className="font-display text-[32px] xs:text-[38px] sm:text-[48px] md:text-[58px] lg:text-[68px] xl:text-[76px] font-[900] leading-[0.92] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
+            <div className="w-full lg:w-[54%] xl:w-[50%] flex flex-col items-start text-left py-20 sm:py-16">
+              <h2 className="font-display text-[26px] xs:text-[30px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[58px] font-[900] leading-[0.94] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
                 <span className="block text-white">A Música como</span>
-                <span className="text-white/80 italic font-normal block lowercase">Expressão e Adoração.</span>
+                <span className="text-white/80 italic font-normal block lowercase sm:whitespace-nowrap">Expressão e Adoração.</span>
               </h2>
 
               <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
@@ -881,8 +881,8 @@ const DanielSilva = () => {
           <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
 
           {/* Degradê: lado direito 100% azul marinho sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
-          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-25% sm:from-35% md:from-42% via-[#07132B]/85 via-52% to-transparent to-72% z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/40 z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-l from-[#07132B] from-20% sm:from-28% md:from-35% via-[#07132B]/60 via-45% to-transparent to-58% z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
           <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
 
           {/* Conteúdo Textual à Direita (100% sobre o fundo azul marinho) */}
@@ -917,9 +917,7 @@ const DanielSilva = () => {
           <div className="max-w-7xl w-full mx-auto relative z-10 flex flex-col items-center text-center">
             {/* Header da Seção Centralizado e Destacado */}
             <div className="mb-4 sm:mb-8 max-w-3xl mx-auto">
-              <span className="text-[#E2BA7A] text-xs sm:text-sm font-mono font-bold uppercase tracking-[0.35em] mb-2 sm:mb-3 inline-block">
-                MARCAS &amp; PARCERIAS // ECOSSISTEMA
-              </span>
+
               <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-[1.08]">
                 Patrocinadores <span className="font-display italic font-normal text-white/80 lowercase">Oficiais</span>
               </h2>
@@ -961,10 +959,7 @@ const DanielSilva = () => {
             {/* CTA DA SEÇÃO PATROCINADORES */}
             <div className="mt-4 sm:mt-8 p-6 sm:p-10 lg:p-12 bg-[#0B1B3D]/85 border border-white/10 rounded-[20px] sm:rounded-[26px] max-w-5xl w-full flex flex-col lg:flex-row items-center lg:items-center justify-between gap-6 sm:gap-8 backdrop-blur-md shadow-2xl text-left">
               <div className="flex-1">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#E2BA7A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-2 sm:mb-2.5 border border-white/15">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#E2BA7A] animate-pulse" />
-                  OPORTUNIDADE COMERCIAL // BRAND EQUITY
-                </div>
+
                 <h3 className="font-display text-lg sm:text-2xl md:text-3xl font-bold text-white tracking-tight leading-snug">
                   Sua marca associada a projetos de alto impacto.
                 </h3>
@@ -1008,12 +1003,10 @@ const DanielSilva = () => {
           {/* Conteúdo Central */}
           <div className="max-w-7xl w-full mx-auto relative z-10 flex-1 flex flex-col justify-center my-auto">
             {/* Header da Seção Centralizado e Destacado */}
-            <div className="text-center mb-5 sm:mb-8 md:mb-10 max-w-3xl mx-auto">
-              <span className="text-[#E2BA7A] text-xs sm:text-sm font-mono font-medium uppercase tracking-[0.35em] mb-2 sm:mb-3 block text-center">
-                [ DISTRIBUIÇÃO // CANAIS OFICIAIS ]
-              </span>
-              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase text-center leading-[1.08]">
-                Acompanhe Daniel Silva em todos os lugares.
+            <div className="text-center mb-5 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
+              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] font-black text-white tracking-tight uppercase text-center leading-[1.08]">
+                <span className="block">Acompanhe Daniel Silva</span>
+                <span className="block">em todos os lugares.</span>
               </h2>
             </div>
 
