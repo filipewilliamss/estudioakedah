@@ -802,7 +802,7 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section
           id="musica"
-          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-[#07132B] snap-start snap-always border-t border-white/[0.08]"
+          className="relative min-h-screen min-h-[100dvh] md:h-screen w-full flex items-center overflow-hidden bg-white snap-start snap-always border-t border-[#07132B]/10"
         >
           {/* Imagem de fundo cobrindo o lado DIREITO com máscara feathered e opacidade total */}
           <div 
@@ -820,26 +820,25 @@ const DanielSilva = () => {
           </div>
 
           {/* Overlay sutil apenas em mobile pequeno */}
-          <div className="absolute inset-0 bg-[#07132B]/50 sm:bg-[#07132B]/20 md:bg-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-white/60 sm:bg-white/20 md:bg-transparent z-10 pointer-events-none" />
 
-          {/* Degradê: lado esquerdo 100% azul marinho sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#07132B] from-20% sm:from-28% md:from-35% via-[#07132B]/60 via-45% to-transparent to-58% z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#07132B] via-transparent via-65% to-[#07132B]/30 z-10 pointer-events-none" />
-          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-3xl pointer-events-none z-10" />
+          {/* Degradê: lado esquerdo 100% branco sólido onde fica o texto, esvanecendo suavemente antes de chegar ao Daniel */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white from-20% sm:from-28% md:from-35% via-white/70 via-45% to-transparent to-58% z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent via-65% to-white/30 z-10 pointer-events-none" />
 
-          {/* Conteúdo Textual à Esquerda (100% sobre o fundo azul marinho) */}
+          {/* Conteúdo Textual à Esquerda (100% sobre o fundo branco) */}
           <div className="relative z-20 w-full min-h-screen min-h-[100dvh] md:h-screen flex items-center justify-start px-5 sm:px-10 md:px-16 lg:px-20 xl:px-28">
             <div className="w-full lg:w-[54%] xl:w-[50%] flex flex-col items-start text-left py-20 sm:py-16">
               <h2 className="font-display text-[26px] xs:text-[30px] sm:text-[40px] md:text-[48px] lg:text-[52px] xl:text-[58px] font-[900] leading-[0.94] tracking-[-0.03em] uppercase mb-5 sm:mb-8">
-                <span className="block text-white">A Música como</span>
-                <span className="text-white/80 italic font-normal block lowercase sm:whitespace-nowrap">Expressão e Adoração.</span>
+                <span className="block text-[#07132B]">A Música como</span>
+                <span className="text-[#07132B]/75 italic font-normal block lowercase sm:whitespace-nowrap">Expressão e Adoração.</span>
               </h2>
 
-              <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
+              <p className="text-[#07132B]/80 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mb-5 font-light">
                 A música sempre fez parte da minha história. É uma forma de expressar minha fé, de me conectar com pessoas e de levar mensagens que inspiram e transformam.
               </p>
 
-              <p className="text-white/55 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
+              <p className="text-[#07132B]/60 text-xs sm:text-sm md:text-base leading-relaxed max-w-lg font-normal">
                 A harmonia musical traz precisão estética, sensibilidade poética e conexão espiritual autêntica em tudo o que realizo. A arte como instrumento vivo de elevação e edificação.
               </p>
             </div>
@@ -987,17 +986,17 @@ const DanielSilva = () => {
         {/* ========================================================================= */}
         <section 
           id="redes" 
-          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-between items-center pt-20 sm:pt-16 pb-6 sm:pb-8 px-5 sm:px-10 lg:px-16 border-t border-white/10 relative overflow-hidden bg-[#07132B] snap-start snap-always"
+          className="min-h-screen min-h-[100dvh] md:h-screen w-full flex flex-col justify-between items-center pt-20 sm:pt-16 pb-6 sm:pb-8 px-5 sm:px-10 lg:px-16 border-t border-[#07132B]/10 relative overflow-hidden bg-white snap-start snap-always"
         >
           <span id="distribuicao" className="sr-only" />
           {/* Glow sutil */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/10 blur-[140px] pointer-events-none" />
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/[0.04] blur-[140px] pointer-events-none" />
 
           {/* Conteúdo Central */}
           <div className="max-w-7xl w-full mx-auto relative z-10 flex-1 flex flex-col justify-center my-auto">
             {/* Header da Seção Centralizado e Destacado */}
             <div className="text-center mb-5 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
-              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] font-black text-white tracking-tight uppercase text-center leading-[1.08]">
+              <h2 className="font-display text-2xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] font-black text-[#07132B] tracking-tight uppercase text-center leading-[1.08]">
                 <span className="block">Acompanhe Daniel Silva</span>
                 <span className="block">em todos os lugares.</span>
               </h2>
@@ -1011,14 +1010,14 @@ const DanielSilva = () => {
                   href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#07132B]/85 hover:bg-[#0B1E45] border border-[#142B54] hover:border-[#2563EB]/60 rounded-[14px] p-4 sm:p-5 flex items-center gap-3.5 sm:gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-950/50 group backdrop-blur-md text-left"
+                  className="bg-[#07132B] hover:bg-[#0B1E45] border border-[#07132B] hover:border-[#2563EB] rounded-[14px] p-4 sm:p-5 flex items-center gap-3.5 sm:gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-blue-950/25 group text-left shadow-lg"
                 >
                   {p.icon}
                   <div className="flex flex-col justify-center min-w-0">
                     <h3 className="font-display font-black text-sm sm:text-[15px] text-white tracking-wide uppercase leading-tight group-hover:text-white transition-colors">
                       {p.name}
                     </h3>
-                    <p className="font-sans text-xs sm:text-[13px] text-white/60 font-normal leading-tight mt-1 truncate group-hover:text-white/80 transition-colors">
+                    <p className="font-sans text-xs sm:text-[13px] text-white/70 font-normal leading-tight mt-1 truncate group-hover:text-white/90 transition-colors">
                       {p.subtitle}
                     </p>
                   </div>
@@ -1028,7 +1027,7 @@ const DanielSilva = () => {
           </div>
 
           {/* Base Inferior da Página (Exclusiva no rodapé da seção Redes) */}
-          <div className="w-full max-w-7xl mx-auto pt-4 sm:pt-6 pr-0 sm:pr-20 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.2em] text-white/40 relative z-10 text-center sm:text-left select-none">
+          <div className="w-full max-w-7xl mx-auto pt-4 sm:pt-6 pr-0 sm:pr-20 border-t border-[#07132B]/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] sm:text-xs font-mono uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#07132B]/50 relative z-10 text-center sm:text-left select-none">
             <span>© 2026 DANIEL SILVA — TODOS OS DIREITOS RESERVADOS.</span>
             <span>ESTRATEGISTA DE NEGÓCIOS &amp; MENTOR EXECUTIVO</span>
           </div>
