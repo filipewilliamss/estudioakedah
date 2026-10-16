@@ -894,3 +894,26 @@ p {
     animation-duration: 48s;
   }
 }
+
+/* 5.5 Máscaras responsivas para as seções full-bleed do Daniel Silva */
+@media (max-width: 767px) {
+  .mask-feather-mobile-bottom {
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, rgba(0,0,0,0.3) 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 50%, rgba(0,0,0,0.3) 78%, transparent 100%);
+  }
+}
+
+@media (min-width: 768px) {
+  .mask-feather-right {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%);
+  }
+  .mask-feather-left {
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%);
+    mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.85) 30%, black 50%);
+  }
+  .mask-feather-musica {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 5%, rgba(0,0,0,0.95) 18%, black 25%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.2) 5%, rgba(0,0,0,0.95) 18%, black 25%);
+  }
+}
