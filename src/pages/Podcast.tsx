@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -8,10 +8,115 @@ import IrisPreloader from "@/components/podcast/IrisPreloader";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import danielPicture from "@/assets/imagem-daniel.webp";
+import heroPodcastWelcome from "@/assets/podcast/hero-podcast-welcome.jpg";
+import heroPodcastPatrocinador from "@/assets/podcast/hero-podcast-patrocinador.jpg";
+import heroPodcastAoVivo from "@/assets/podcast/hero-podcast-aovivo.jpg";
+import heroPodcastDaniel from "@/assets/podcast/hero-podcast-daniel.jpg";
 import { WHATSAPP_URL } from "@/data/services";
+
+// 4 Cards da Hero Section com rotação automática a cada 5s (estilo editorial de alto impacto com paleta Akedah)
+const heroSlides = [
+  {
+    id: 1,
+    badge: "BEM-VINDO • AKEDAH PODCAST // EDIÇÃO 2026",
+    titleMain: "A MESA DE QUEM",
+    titleSub: "DECIDE O MERCADO",
+    descricao:
+      "Seja bem-vindo ao Akedah Podcast. O espaço definitivo onde grandes realizadores, líderes e estrategistas debatem os bastidores do mercado sem filtro.",
+    btnPrimary: { text: "Explorar Episódios", href: "#destaque" },
+    btnSecondary: { text: "Conhecer o Podcast", href: "/podcast/sobre" },
+    image: heroPodcastWelcome,
+    alt: "Akedah Podcast - Boas-vindas ao Estúdio",
+    imgPos: "object-center md:object-[center_35%]",
+  },
+  {
+    id: 2,
+    badge: "PARCERIA • EXPOSIÇÃO // CONECTE SUA MARCA",
+    titleMain: "SEJA NOSSO",
+    titleSub: "PATROCINADOR",
+    descricao:
+      "Posicione sua empresa diante de líderes, empresários e tomadores de decisão qualificados. Conecte sua marca à maior audiência estratégica de negócios e visão executiva.",
+    btnPrimary: { text: "Seja um Patrocinador", href: WHATSAPP_URL, external: true },
+    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: heroPodcastPatrocinador,
+    alt: "Akedah Podcast - Parcerias e Patrocínio Estratégico",
+    imgPos: "object-[center_30%] md:object-[center_25%]",
+  },
+  {
+    id: 3,
+    badge: "AO VIVO & GRAVADO // TRANSMISSÃO 4K HDR",
+    titleMain: "PODCAST AO VIVO",
+    titleSub: "& ÚLTIMO EPISÓDIO",
+    descricao:
+      "Acompanhe nossas transmissões ao vivo ou assista na íntegra ao episódio mais recente com análises aprofundadas, debates francos e insights práticos de alto impacto.",
+    btnPrimary: { text: "Assistir Último Episódio", href: "#destaque" },
+    btnSecondary: { text: "Canal no YouTube", href: "https://www.youtube.com/@EstudioAkedah", external: true },
+    image: heroPodcastAoVivo,
+    alt: "Akedah Podcast - Transmissão Ao Vivo e Último Episódio",
+    imgPos: "object-center md:object-[center_40%]",
+  },
+  {
+    id: 4,
+    badge: "APRESENTADOR • HOST // VISÃO EXECUTIVA",
+    titleMain: "DANIEL SILVA",
+    titleSub: "APRESENTADOR & HOST",
+    descricao:
+      "Conduzido por Daniel Silva — estrategista de negócios, mentor executivo e palestrante, trazendo perguntas cirúrgicas, profundidade analítica e bagagem de mercado a cada encontro.",
+    btnPrimary: { text: "Conhecer Daniel Silva", href: "/daniel-silva" },
+    btnSecondary: { text: "Falar com Assessoria", href: WHATSAPP_URL, external: true },
+    image: heroPodcastDaniel,
+    alt: "Daniel Silva - Host e Apresentador do Akedah Podcast",
+    imgPos: "object-[center_20%] md:object-[center_15%]",
+  },
+];
+
+// Transição suave para o bloco de texto editorial da Hero (sem congelamento de GPU)
+const heroContentVariants = {
+  enter: {
+    opacity: 0,
+    y: 20,
+  },
+  center: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -16,
+    transition: {
+      duration: 0.35,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 const Podcast = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
+  const isHoveredHeroRef = useRef(false);
+
+  // Pré-carregamento imediato das 4 imagens da Hero para evitar atrasos ou pop-in
+  useEffect(() => {
+    const heroImgs = [heroPodcastWelcome, heroPodcastPatrocinador, heroPodcastAoVivo, heroPodcastDaniel];
+    heroImgs.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  // Timer de rotação automática dos cards da Hero (a cada 5 segundos) com pausa no hover
+  useEffect(() => {
+    const heroTimer = setInterval(() => {
+      if (!isHoveredHeroRef.current) {
+        setHeroSlide((prev) => (prev + 1) % heroSlides.length);
+      }
+    }, 5000);
+    return () => clearInterval(heroTimer);
+  }, [heroSlide]);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -54,95 +159,123 @@ const Podcast = () => {
 
       <main className="relative z-10 overflow-hidden">
         
-        {/* 1. HERO SECTION CINEMATOGRÁFICO & BRUTALISTA (ESTILO WE DON'T DO AVERAGE) */}
-        <section className="relative min-h-[90vh] md:min-h-[calc(100vh-80px)] w-full flex items-center overflow-hidden bg-transparent pt-28 pb-16 border-b border-white/10">
-          {/* Iluminação Motivada: Spotlight Radial Quente atrás do Hero */}
-          <div className="absolute top-1/3 left-1/4 w-[650px] h-[650px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_45%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
-
-          <div className="relative z-20 w-full px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-              
-              {/* Lado Esquerdo: Título Editorial Massivo & Ação Ortogonal */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="lg:col-span-7 text-left flex flex-col items-start"
-              >
-                {/* Tag Técnica Superior */}
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="w-2 h-2 bg-[#C4550A] rounded-none" />
-                  <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-[#8A827D] font-bold">
-                    [ AKEDAH PODCAST // EDIÇÃO 2026 ]
-                  </span>
-                </div>
-
-                {/* Título Massivo em Caixa Alta com Entrelinha Ultra-Fechada */}
-                <h1 className="font-barlow-condensed text-[42px] sm:text-[64px] md:text-[80px] lg:text-[90px] xl:text-[100px] font-black leading-[0.88] tracking-[-0.03em] uppercase mb-6 text-left">
-                  <span className="block text-white">A MESA DE QUEM</span>
-                  <span className="block text-[#C4550A]">DECIDE O MERCADO.</span>
-                </h1>
-
-                {/* Linha de Apoio Editorial Direta */}
-                <p className="text-[#8A827D] text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-lg mb-10 text-left">
-                  Conversas sem roteiro com grandes realizadores sobre estratégia, escala e bastidores.
-                </p>
-
-                {/* CTA Primário: Bloco Sólido Retangular com Cantos Retos (rounded-none) e Seta Cortante */}
-                <a
-                  href="#destaque"
-                  onClick={() => setIsPlaying(true)}
-                  className="group inline-flex items-center justify-between gap-6 px-8 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-[0.2em] rounded-none transition-all duration-300 shadow-2xl shadow-[#C4550A]/25"
+        {/* ========================================================================= */}
+        {/* 1. HERO SECTION (CAROUSEL COM 4 CARDS E SLIDE AUTOMÁTICO A CADA 5S)       */}
+        {/* ========================================================================= */}
+        <section 
+          id="hero"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#0C0704] border-b border-white/10"
+          onMouseEnter={() => { isHoveredHeroRef.current = true; }}
+          onMouseLeave={() => { isHoveredHeroRef.current = false; }}
+        >
+          {/* Layer 1: Background Images Stack persistente com Cross-fade suave entre os slides */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {heroSlides.map((slide, idx) => {
+              const isActive = heroSlide === idx;
+              return (
+                <div
+                  key={slide.id}
+                  className={`absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[58%] h-full flex items-start md:items-center justify-center md:justify-end transition-opacity duration-1000 ease-in-out ${
+                    isActive ? "opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
+                  aria-hidden={!isActive}
                 >
-                  <span>ASSISTIR EPISÓDIO MAIS RECENTE</span>
-                  <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">
-                    ↗
-                  </span>
-                </a>
-              </motion.div>
-
-              {/* Lado Direito: Retrato Editorial Encaixado na Grade Ortogonal */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-                className="lg:col-span-5 relative flex items-center justify-center lg:justify-end"
-              >
-                <div className="relative w-[300px] sm:w-[380px] lg:w-[410px] aspect-[4/5] rounded-none">
-                  {/* Bloco Geométrico Terracota Ortogonal de Fundo */}
-                  <div className="absolute top-0 right-0 w-[85%] h-[92%] bg-[#C4550A] rounded-none z-0 overflow-hidden shadow-2xl">
-                    <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.3)_100%)]" />
-                    {/* Linhas ortogonais sutis */}
-                    <div className="absolute inset-0 opacity-15 pointer-events-none">
-                      <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <line x1="0" y1="0" x2="100" y2="100" stroke="#000" strokeWidth="0.8" />
-                        <line x1="30" y1="0" x2="100" y2="70" stroke="#000" strokeWidth="0.8" />
-                      </svg>
-                    </div>
-                    {/* Marca d'água monumental */}
-                    <span className="absolute -bottom-8 -right-4 font-barlow-condensed font-black text-[200px] leading-none text-black/10 select-none pointer-events-none">
-                      P
-                    </span>
-                  </div>
-
-                  {/* Fotografia em Preto e Branco de Alto Contraste */}
-                  <div className="relative z-10 w-full h-full flex items-end justify-center pointer-events-none">
-                    <img
-                      src={danielPicture}
-                      alt="Daniel Silva - Host do Akedah Podcast"
-                      className="w-full h-[96%] object-cover object-top grayscale contrast-[1.3] brightness-95 filter drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
-                    />
-                    {/* Degradê escuro de fusão ortogonal na base */}
-                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0C0704] via-[#0C0704]/80 to-transparent z-20" />
-                  </div>
-
-                  {/* Selo Editorial com Cantos Retos */}
-                  <div className="absolute -bottom-4 left-0 sm:-left-4 z-30 bg-[#0C0704] border border-white/20 px-4 py-2.5 font-mono text-[9.5px] sm:text-[10px] tracking-[0.2em] uppercase text-white/90 shadow-2xl rounded-none">
-                    [ TRANSMISSÃO 4K HDR // EPISÓDIOS COMPLETOS ]
-                  </div>
+                  <img 
+                    src={slide.image} 
+                    alt={slide.alt} 
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority={idx === 0 ? "high" : "auto"}
+                    className={`w-full h-full object-cover ${slide.imgPos} filter contrast-[1.08] brightness-[0.98] transition-transform duration-1000 ease-out ${
+                      isActive ? "scale-100" : "scale-105"
+                    }`}
+                  />
                 </div>
-              </motion.div>
+              );
+            })}
 
+            {/* Overlay sutil em desktop */}
+            <div className="hidden md:block absolute inset-0 bg-[#0C0704]/40 md:bg-transparent z-10 pointer-events-none" />
+
+            {/* Degradê Dark Terracota: no mobile sobe suavemente; no desktop vem da esquerda */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0704] from-45% via-[#0C0704]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#0C0704] md:from-20% md:sm:from-28% md:from-35% md:via-[#0C0704]/75 md:via-48% md:to-transparent md:to-70% z-10 pointer-events-none" />
+
+            {/* Degradês verticais suaves exclusivos para desktop */}
+            <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#0C0704] via-transparent via-65% to-[#0C0704]/40 z-10 pointer-events-none" />
+
+            {/* Glow Terracota Quente sutil motivado */}
+            <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
+          </div>
+
+          {/* Layer 2: Conteúdo Editorial à esquerda com AnimatePresence */}
+          <div className="relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-28 sm:pt-28 md:pt-20 pb-16 sm:pb-12 md:pb-8 flex justify-start">
+            <div className="max-w-3xl text-left flex flex-col items-start w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={heroSlide}
+                  variants={heroContentVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="w-full flex flex-col items-start"
+                >
+                  {/* Título Principal com Fontes do Akedah Podcast (Barlow Condensed) */}
+                  <h1 className="font-barlow-condensed text-[38px] xs:text-[46px] sm:text-[64px] md:text-[80px] lg:text-[94px] font-black leading-[0.92] sm:leading-[0.88] tracking-[-0.03em] uppercase mb-4 sm:mb-6 text-left">
+                    <span className="block text-white">{heroSlides[heroSlide].titleMain}</span>
+                    <span className="text-[#C4550A] block">{heroSlides[heroSlide].titleSub}</span>
+                  </h1>
+
+                  {/* Descrição Editorial */}
+                  <p className="text-white/75 text-sm sm:text-base md:text-lg leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10 font-normal">
+                    {heroSlides[heroSlide].descricao}
+                  </p>
+
+                  {/* Botões de Ação do Hero com Cantos Secos e Estilo do Podcast */}
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
+                    <a
+                      href={heroSlides[heroSlide].btnPrimary.href}
+                      target={heroSlides[heroSlide].btnPrimary.external ? "_blank" : undefined}
+                      rel={heroSlides[heroSlide].btnPrimary.external ? "noopener noreferrer" : undefined}
+                      onClick={() => {
+                        if (heroSlides[heroSlide].btnPrimary.href === "#destaque") {
+                          setIsPlaying(true);
+                        }
+                      }}
+                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-none transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
+                    >
+                      <span>{heroSlides[heroSlide].btnPrimary.text}</span>
+                      <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">
+                        ↗
+                      </span>
+                    </a>
+                    <a 
+                      href={heroSlides[heroSlide].btnSecondary.href}
+                      target={heroSlides[heroSlide].btnSecondary.external ? "_blank" : undefined}
+                      rel={heroSlides[heroSlide].btnSecondary.external ? "noopener noreferrer" : undefined}
+                      className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-none transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
+                    >
+                      <span>{heroSlides[heroSlide].btnSecondary.text}</span>
+                    </a>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Indicadores de Paginação do Carousel (4 Cards) fixos fora da troca de texto */}
+              <div className="flex items-center gap-2.5">
+                {heroSlides.map((slide, idx) => (
+                  <button
+                    key={slide.id}
+                    type="button"
+                    onClick={() => setHeroSlide(idx)}
+                    className={`h-1.5 transition-all duration-300 ${
+                      heroSlide === idx
+                        ? "w-8 bg-[#C4550A] ring-1 ring-[#C4550A]/50"
+                        : "w-2.5 bg-white/25 hover:bg-white/60"
+                    }`}
+                    aria-label={`Ver card ${idx + 1}: ${slide.titleMain}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
