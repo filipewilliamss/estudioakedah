@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
-// Ícones vetoriais extraídos diretamente de simbolos.svg
+// Ícones vetoriais extraídos diretamente da identidade de símbolos do Estúdio Akedah
 const TrophyIcon = ({ className = "w-6 h-6", color = "currentColor" }: { className?: string; color?: string }) => (
   <svg viewBox="50 400 225 275" fill={color} className={className} xmlns="http://www.w3.org/2000/svg">
     <path d="M268.29,435.66c0-4.3-3.49-7.79-7.79-7.79h-33.16v-12.58c0-5.2-4.21-9.41-9.41-9.41h-110.73c-5.2,0-9.41,4.21-9.41,9.41v12.58h-33.16c-4.3,0-7.79,3.49-7.79,7.79v47.28l.02.48c0,.11.03.32.07.63.21,5.41,1.64,10.7,3.96,15.58,4.91,10.45,14.55,17.84,25.48,21.24,5.03,1.64,10.26,2.57,15.5,3.02,1.72,3.76,4.12,8.08,7.41,12.4,5.36,7.02,13.8,14.92,26.55,19.6-5.78,2.49-9.91,8.1-10.27,14.69h0c-.01.26-.02.5-.02.75,0,.09,0,.18,0,.27,0,0,0,0,0,0-.01,1.06.05,2.06.16,3.14.57,6.71,3.95,13.9,10.65,16.32,2.09.76,4.27,1.1,6.43,1.14-4.91,10.31-13.74,17.94-19.99,22.35h79.56c-6.25-4.41-15.06-12.01-19.95-22.34,11.02-.12,16.58-8.51,17.12-18.72.05-.4.08-.79.1-1.2.35-8.07-4.94-14.98-12.26-17.12,12.02-4.69,20.52-12.03,26.18-18.61,3.8-4.4,6.65-8.81,8.73-12.6,5.57-.41,11.14-1.35,16.49-3.1,5.4-1.72,10.62-4.4,15.03-7.96,8.55-6.96,13.82-17.56,14.39-28.52.07-.49.1-.82.11-.97l.02-47.75ZM69.16,440.19h28.62v64.6c-10.6-1-18.53-4.68-23.58-10.99-4.04-5.04-4.91-10.26-5.04-11.2v-42.4ZM85.24,517.53c-4.47-1.45-8.82-3.53-12.6-6.32-6.06-4.47-10.63-10.91-13.11-18.06,1.05,2.4,2.5,5.03,4.52,7.68,5.35,7.02,15.73,15.28,35.2,16.44.29.88.64,1.86,1.05,2.92-5.11-.31-10.17-1.17-15.05-2.66ZM194.1,583.95c-1.29,2.48-3.2,4.57-5.89,5.86-1.91.91-4.03,1.44-6.2,1.66h-38.9c-2.19-.22-4.32-.75-6.25-1.66-2.79-1.33-4.74-3.53-6.03-6.13,3.17,3.02,7.47,4.89,12.1,4.89h39.27c4.55,0,8.76-1.75,11.9-4.62ZM227.34,440.19h28.62v42.39c-.14,1.04-1.04,6.21-5.04,11.21-5.05,6.31-12.97,9.99-23.58,10.99v-64.6ZM237.91,518.08c-4.47,1.24-9.09,1.9-13.74,2.14.51-1.07.95-2.06,1.32-2.93,19.72-1.07,30.2-9.4,35.58-16.47,1.93-2.53,3.34-5.06,4.38-7.37-4.42,12.57-14.62,21.24-27.55,24.63Z" />
@@ -21,13 +21,98 @@ const KeyIcon = ({ className = "w-6 h-6", color = "currentColor" }: { className?
   </svg>
 );
 
-const ORBIT_ICONS = [
-  { id: 0, angle: 0, Component: StarIcon, color: "#FAF6EB" },
-  { id: 1, angle: 60, Component: KeyIcon, color: "#C4550A" },
-  { id: 2, angle: 120, Component: TrophyIcon, color: "#FAF6EB" },
-  { id: 3, angle: 180, Component: StarIcon, color: "#C4550A" },
-  { id: 4, angle: 240, Component: KeyIcon, color: "#FAF6EB" },
-  { id: 5, angle: 300, Component: TrophyIcon, color: "#C4550A" },
+// 9 Partículas Icônicas com ângulos, raios de explosão e tempos de retorno escalonados (dinamismo orgânico)
+const PARTICLES = [
+  {
+    id: 0,
+    Component: KeyIcon,
+    color: "#C4550A",
+    size: 34,
+    angle: 20,
+    burstDistance: 195,
+    spiralTurns: 1.25,
+    returnEndTime: 2.05, // Retorna primeiro
+  },
+  {
+    id: 1,
+    Component: StarIcon,
+    color: "#FAF6EB",
+    size: 46,
+    angle: 65,
+    burstDistance: 240,
+    spiralTurns: 1.45,
+    returnEndTime: 2.75, // Retorna mais tarde
+  },
+  {
+    id: 2,
+    Component: TrophyIcon,
+    color: "#E2BA7A",
+    size: 38,
+    angle: 110,
+    burstDistance: 165,
+    spiralTurns: 1.15,
+    returnEndTime: 2.20, // Retorna cedo
+  },
+  {
+    id: 3,
+    Component: StarIcon,
+    color: "#C4550A",
+    size: 38,
+    angle: 155,
+    burstDistance: 225,
+    spiralTurns: 1.35,
+    returnEndTime: 2.50, // Ritmo intermediário
+  },
+  {
+    id: 4,
+    Component: KeyIcon,
+    color: "#FAF6EB",
+    size: 42,
+    angle: 200,
+    burstDistance: 180,
+    spiralTurns: 1.5,
+    returnEndTime: 2.85, // Retorna perto do fim
+  },
+  {
+    id: 5,
+    Component: TrophyIcon,
+    color: "#C4550A",
+    size: 48,
+    angle: 245,
+    burstDistance: 245,
+    spiralTurns: 1.2,
+    returnEndTime: 2.35, // Retorna cedo/médio
+  },
+  {
+    id: 6,
+    Component: StarIcon,
+    color: "#E2BA7A",
+    size: 34,
+    angle: 290,
+    burstDistance: 185,
+    spiralTurns: 1.6,
+    returnEndTime: 3.02, // O último a retornar
+  },
+  {
+    id: 7,
+    Component: KeyIcon,
+    color: "#C4550A",
+    size: 38,
+    angle: 330,
+    burstDistance: 215,
+    spiralTurns: 1.3,
+    returnEndTime: 2.15, // Retorna cedo
+  },
+  {
+    id: 8,
+    Component: TrophyIcon,
+    color: "#FAF6EB",
+    size: 42,
+    angle: 375,
+    burstDistance: 200,
+    spiralTurns: 1.4,
+    returnEndTime: 2.65, // Ritmo intermediário/tardio
+  },
 ];
 
 export const IrisPreloader: React.FC = () => {
@@ -45,6 +130,14 @@ export const IrisPreloader: React.FC = () => {
     }
   });
 
+  const particleRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const flashRef = useRef<HTMLDivElement | null>(null);
+  const endFlashRef = useRef<HTMLDivElement | null>(null);
+  const coreGlowRef = useRef<HTMLDivElement | null>(null);
+  const iris1Ref = useRef<HTMLDivElement | null>(null);
+  const iris2Ref = useRef<HTMLDivElement | null>(null);
+  const iris3Ref = useRef<HTMLDivElement | null>(null);
+
   const handleSkip = useCallback(() => {
     try {
       sessionStorage.setItem("akedah_loader_seen", "true");
@@ -60,23 +153,158 @@ export const IrisPreloader: React.FC = () => {
   useEffect(() => {
     if (!isActive) return;
 
-    // Bloqueia scroll do body durante o preloader
+    // Bloqueia scroll do body durante a animação
     document.body.style.overflow = "hidden";
 
-    // Auto-desmontagem em 3.0s (tempo cinematográfico refinado para visualização clara dos ícones)
-    const timer = setTimeout(() => {
-      handleSkip();
-    }, 3000);
+    let animId: number;
+    const startTime = performance.now();
+    const totalDuration = 3500; // 3.5 segundos no total
 
-    // Permite pular ao pressionar qualquer tecla
+    // Fator de escala responsivo para telas móveis
+    const scaleFactor = typeof window !== "undefined"
+      ? Math.min(1, Math.max(0.52, window.innerWidth / 720))
+      : 1;
+
+    const tick = (now: number) => {
+      const elapsed = (now - startTime) / 1000; // segundos decorridos
+
+      // 1. ANIMAÇÃO DE EXPLOSÃO + ESPIRAL + RETORNO ESCALONADO DAS PARTÍCULAS
+      PARTICLES.forEach((p, idx) => {
+        const el = particleRefs.current[idx];
+        if (!el) return;
+
+        let r = 0;
+        let angle = p.angle;
+        let scale = 0;
+        let opacity = 0;
+        let selfRot = 0;
+
+        const maxR = p.burstDistance * scaleFactor;
+
+        if (elapsed <= 0.68) {
+          // FASE 1: EXPLOSÃO INICIAL A PARTIR DO CENTRO (0s a ~0.68s)
+          // Curva cúbica com desaceleração exponencial para impacto balístico
+          const prog = Math.min(1, elapsed / 0.68);
+          const ease = 1 - Math.pow(1 - prog, 3.2);
+
+          r = maxR * ease;
+          angle = p.angle + ease * 28;
+          scale = Math.min(1, prog * 1.8);
+          opacity = Math.min(1, prog * 2.6);
+          selfRot = ease * 50;
+        } else if (elapsed <= p.returnEndTime) {
+          // FASE 2: ROTAÇÃO EM ESPIRAL LENTA & RETORNO ESCALONADO AO CENTRO
+          // Progresso normalizado de 0 a 1 específico para esta partícula
+          const spiralProg = (elapsed - 0.68) / (p.returnEndTime - 0.68);
+
+          // O raio decai de volta ao centro via curva cosseno suave (derivada 0 no topo da explosão)
+          r = maxR * Math.cos(spiralProg * (Math.PI / 2));
+
+          // Giro em espiral lento que acelera suavemente conforme se aproxima do centro
+          const spin = p.spiralTurns * 360 * (0.65 * spiralProg + 0.35 * Math.pow(spiralProg, 2.2));
+          angle = p.angle + 28 + spin;
+          selfRot = 50 + spin * 0.45;
+
+          // REDUÇÃO DE ESCALA DINÂMICA:
+          // Mantém tamanho visível e imponente na primeira metade da espiral;
+          // Em seguida, encolhe de forma suave e contínua até sumir no centro
+          if (spiralProg < 0.42) {
+            scale = 1;
+            opacity = 1;
+          } else {
+            const shrinkProg = (spiralProg - 0.42) / 0.58;
+            scale = Math.max(0, Math.cos(shrinkProg * (Math.PI / 2)));
+            opacity = Math.max(0, 1 - Math.pow(shrinkProg, 1.4));
+          }
+        } else {
+          // Partícula já chegou ao centro e desapareceu
+          scale = 0;
+          opacity = 0;
+          r = 0;
+        }
+
+        const rad = (angle * Math.PI) / 180;
+        const x = r * Math.cos(rad);
+        const y = r * Math.sin(rad);
+
+        el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${selfRot.toFixed(1)}deg) scale(${scale.toFixed(3)})`;
+        el.style.opacity = opacity.toFixed(3);
+      });
+
+      // 2. FLASH CENTRAL DE EXPLOSÃO INICIAL (0s a 0.38s)
+      if (flashRef.current) {
+        if (elapsed < 0.38) {
+          const fp = elapsed / 0.38;
+          const flashScale = Math.sin(fp * Math.PI) * 4.2;
+          const flashOp = Math.sin(fp * Math.PI);
+          flashRef.current.style.transform = `translate(-50%, -50%) scale(${flashScale.toFixed(2)})`;
+          flashRef.current.style.opacity = flashOp.toFixed(2);
+        } else {
+          flashRef.current.style.opacity = "0";
+        }
+      }
+
+      // 3. GLOW DA SINGULARIDADE CENTRAL ENQUANTO OS ÍCONES ESPIRALAM (0.4s a 2.95s)
+      if (coreGlowRef.current) {
+        if (elapsed >= 0.4 && elapsed <= 2.95) {
+          const cp = (elapsed - 0.4) / 2.55;
+          // Pulsação suave no centro
+          const pulse = 1 + 0.25 * Math.sin(cp * Math.PI * 4);
+          const coreOp = 0.35 + 0.25 * Math.sin(cp * Math.PI * 4);
+          coreGlowRef.current.style.transform = `translate(-50%, -50%) scale(${pulse.toFixed(2)})`;
+          coreGlowRef.current.style.opacity = coreOp.toFixed(2);
+        } else {
+          coreGlowRef.current.style.opacity = "0";
+        }
+      }
+
+      // 4. FLASH FINAL NO CENTRO QUANDO O ÚLTIMO ÍCONE ENTRA (2.98s a 3.30s)
+      if (endFlashRef.current) {
+        if (elapsed >= 2.98 && elapsed <= 3.30) {
+          const efp = (elapsed - 2.98) / 0.32;
+          const endScale = Math.sin(efp * Math.PI) * 4.8;
+          const endOp = Math.sin(efp * Math.PI);
+          endFlashRef.current.style.transform = `translate(-50%, -50%) scale(${endScale.toFixed(2)})`;
+          endFlashRef.current.style.opacity = endOp.toFixed(2);
+        } else {
+          endFlashRef.current.style.opacity = "0";
+        }
+      }
+
+      // 5. TRANSIÇÃO DE REVELAÇÃO IRIS WIPE (3.02s a 3.48s)
+      const irisStart = 3.02;
+      if (iris1Ref.current && elapsed >= irisStart) {
+        const p1 = Math.min(1, Math.max(0, (elapsed - irisStart) / 0.44));
+        const ease1 = Math.pow(p1, 2.6);
+        iris1Ref.current.style.clipPath = `circle(${(ease1 * 155).toFixed(1)}% at 50% 50%)`;
+      }
+      if (iris2Ref.current && elapsed >= irisStart + 0.08) {
+        const p2 = Math.min(1, Math.max(0, (elapsed - (irisStart + 0.08)) / 0.44));
+        const ease2 = Math.pow(p2, 2.6);
+        iris2Ref.current.style.clipPath = `circle(${(ease2 * 155).toFixed(1)}% at 50% 50%)`;
+      }
+      if (iris3Ref.current && elapsed >= irisStart + 0.16) {
+        const p3 = Math.min(1, Math.max(0, (elapsed - (irisStart + 0.16)) / 0.44));
+        const ease3 = Math.pow(p3, 2.6);
+        iris3Ref.current.style.clipPath = `circle(${(ease3 * 155).toFixed(1)}% at 50% 50%)`;
+      }
+
+      if (elapsed < totalDuration / 1000) {
+        animId = requestAnimationFrame(tick);
+      } else {
+        handleSkip();
+      }
+    };
+
+    animId = requestAnimationFrame(tick);
+
     const handleKeyDown = () => {
       handleSkip();
     };
-
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      clearTimeout(timer);
+      cancelAnimationFrame(animId);
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "auto";
     };
@@ -92,82 +320,15 @@ export const IrisPreloader: React.FC = () => {
       aria-label="Carregando Akedah Podcast. Clique para pular."
       className="fixed inset-0 z-[99999] select-none cursor-pointer overflow-hidden bg-[#1C0F0A]"
     >
-      {/* Estilos CSS das Animações com acelerações cinematográficas e tempo de apreciação */}
-      <style>{`
-        @keyframes irisOrbitCollapse {
-          0% {
-            transform: rotate(0deg) scale(0.8);
-            opacity: 0;
-          }
-          15% {
-            transform: rotate(60deg) scale(1);
-            opacity: 1;
-          }
-          65% {
-            transform: rotate(360deg) scale(1);
-            opacity: 1;
-          }
-          85% {
-            transform: rotate(560deg) scale(0.6);
-            opacity: 0.95;
-          }
-          95% {
-            transform: rotate(700deg) scale(0.12);
-            opacity: 0.9;
-          }
-          100% {
-            transform: rotate(720deg) scale(0);
-            opacity: 0;
-          }
-        }
-
-        @keyframes irisCenterFlash {
-          0% {
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-          }
-          45% {
-            transform: translate(-50%, -50%) scale(3.5);
-            opacity: 1;
-            filter: blur(2px);
-          }
-          100% {
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-          }
-        }
-
-        @keyframes irisExpand {
-          0% {
-            clip-path: circle(0% at 50% 50%);
-          }
-          100% {
-            clip-path: circle(150% at 50% 50%);
-          }
-        }
-        .orbit-track {
-          --orbit-r: -100px;
-          width: 200px;
-          height: 200px;
-        }
-        @media (min-width: 640px) {
-          .orbit-track {
-            --orbit-r: -125px;
-            width: 250px;
-            height: 250px;
-          }
-        }
-      `}</style>
-
-      {/* 1. Fundo Base com Textura de Couro & Micro-ruído Procedural */}
+      {/* 1. Fundo com atmosfera de couro, vinheta e micro-ruído procedural */}
       <div className="absolute inset-0 bg-[#1C0F0A] pointer-events-none" />
       <div
         className="absolute inset-0 pointer-events-none opacity-60"
         style={{
-          background: "radial-gradient(circle at 50% 50%, rgba(196, 85, 10, 0.15) 0%, rgba(28, 15, 10, 0.85) 65%, #1C0F0A 100%)",
+          background: "radial-gradient(circle at 50% 50%, rgba(196, 85, 10, 0.18) 0%, rgba(28, 15, 10, 0.88) 65%, #1C0F0A 100%)",
         }}
       />
-      {/* Micro-ruído procedural SVG inline */}
+      {/* Micro-ruído procedural inline */}
       <svg
         aria-hidden="true"
         className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.035]"
@@ -180,75 +341,83 @@ export const IrisPreloader: React.FC = () => {
         <rect width="100%" height="100%" filter="url(#iris-noise)" />
       </svg>
 
-      {/* 2. FASE 1: Órbita e Colapso dos 6 Ícones (0.0s a 2.2s com exibição nítida) */}
+      {/* 2. ESPAÇO CINÉTICO CENTRAL: EXPLOSÃO E ESPIRAL DOS ÍCONES */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Círculo guia sutil com diâmetro generoso */}
+        {/* Glow da singularidade central enquanto os ícones espiralam */}
         <div
-          className="absolute orbit-track rounded-full border border-white/[0.12] pointer-events-none"
-          style={{
-            animation: "irisOrbitCollapse 2.2s cubic-bezier(0.25, 1, 0.3, 1) forwards",
-          }}
+          ref={coreGlowRef}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#C4550A]/40 blur-md pointer-events-none"
+          style={{ opacity: 0 }}
         />
 
-        {/* Container da Órbita girando com ícones ampliados */}
+        {/* Flash de luz da explosão inicial */}
         <div
-          className="relative orbit-track flex items-center justify-center"
-          style={{
-            animation: "irisOrbitCollapse 2.2s cubic-bezier(0.25, 1, 0.3, 1) forwards",
-          }}
-        >
-          {ORBIT_ICONS.map((icon) => (
+          ref={flashRef}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FAF6EB] pointer-events-none w-7 h-7 shadow-[0_0_35px_rgba(250,246,235,0.9)]"
+          style={{ opacity: 0 }}
+        />
+
+        {/* Renderização das 9 Partículas de Ícones em Espiral */}
+        <div className="relative w-0 h-0 flex items-center justify-center pointer-events-none">
+          {PARTICLES.map((p, idx) => (
             <div
-              key={icon.id}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
+              key={p.id}
+              ref={(el) => {
+                particleRefs.current[idx] = el;
+              }}
+              className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 will-change-transform pointer-events-none flex items-center justify-center"
               style={{
-                transform: `rotate(${icon.angle}deg) translateY(var(--orbit-r)) rotate(-${icon.angle}deg)`,
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                opacity: 0,
+                transform: "translate3d(0, 0, 0) scale(0)",
               }}
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center filter drop-shadow-[0_0_14px_rgba(196,85,10,0.55)]">
-                <icon.Component className="w-9 h-9 sm:w-11 sm:h-11" color={icon.color} />
+              <div
+                className="w-full h-full flex items-center justify-center filter"
+                style={{
+                  filter:
+                    p.color === "#C4550A"
+                      ? "drop-shadow(0 0 14px rgba(196,85,10,0.65))"
+                      : p.color === "#E2BA7A"
+                      ? "drop-shadow(0 0 14px rgba(226,186,122,0.65))"
+                      : "drop-shadow(0 0 14px rgba(250,246,235,0.65))",
+                }}
+              >
+                <p.Component className="w-full h-full" color={p.color} />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Flash de Luz no instante do Colapso Central (2.15s - 2.37s) */}
+        {/* Flash de luz final quando os últimos ícones colapsam no centro */}
         <div
-          className="absolute top-1/2 left-1/2 rounded-full bg-[#FAF6EB] pointer-events-none w-6 h-6"
-          style={{
-            animation: "irisCenterFlash 0.22s ease-out 2.15s forwards",
-            opacity: 0,
-            transform: "translate(-50%, -50%) scale(0)",
-          }}
+          ref={endFlashRef}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FAF6EB] pointer-events-none w-8 h-8 shadow-[0_0_45px_rgba(250,246,235,1)]"
+          style={{ opacity: 0 }}
         />
       </div>
 
-      {/* 3. FASE 2: Transição de Círculos em Expansão / Iris Wipe (2.22s a 2.95s) */}
+      {/* 3. REVELAÇÃO DO SITE: TRANSIÇÃO IRIS WIPE MULTI-CAMADA */}
       {/* Camada 1: Círculo Bege/Creme (#FAF6EB) */}
       <div
-        className="absolute inset-0 bg-[#FAF6EB] pointer-events-none"
-        style={{
-          clipPath: "circle(0% at 50% 50%)",
-          animation: "irisExpand 0.55s cubic-bezier(0.85, 0, 0.15, 1) 2.22s forwards",
-        }}
+        ref={iris1Ref}
+        className="absolute inset-0 bg-[#FAF6EB] pointer-events-none will-change-[clip-path]"
+        style={{ clipPath: "circle(0% at 50% 50%)" }}
       />
 
-      {/* Camada 2: Círculo Terracota (#C4550A) - Stagger de +90ms */}
+      {/* Camada 2: Círculo Terracota (#C4550A) */}
       <div
-        className="absolute inset-0 bg-[#C4550A] pointer-events-none"
-        style={{
-          clipPath: "circle(0% at 50% 50%)",
-          animation: "irisExpand 0.55s cubic-bezier(0.85, 0, 0.15, 1) 2.31s forwards",
-        }}
+        ref={iris2Ref}
+        className="absolute inset-0 bg-[#C4550A] pointer-events-none will-change-[clip-path]"
+        style={{ clipPath: "circle(0% at 50% 50%)" }}
       />
 
-      {/* Camada 3: Círculo Marrom-Café (#1C0F0A) - Stagger de +90ms, revelando o site */}
+      {/* Camada 3: Círculo Marrom-Café (#1C0F0A), revelando o site com acabamento escuro */}
       <div
-        className="absolute inset-0 bg-[#1C0F0A] pointer-events-none"
-        style={{
-          clipPath: "circle(0% at 50% 50%)",
-          animation: "irisExpand 0.55s cubic-bezier(0.85, 0, 0.15, 1) 2.40s forwards",
-        }}
+        ref={iris3Ref}
+        className="absolute inset-0 bg-[#1C0F0A] pointer-events-none will-change-[clip-path]"
+        style={{ clipPath: "circle(0% at 50% 50%)" }}
       />
 
       {/* 4. Dica de Pular Sutil e Elegante (ESC / Clique) */}
