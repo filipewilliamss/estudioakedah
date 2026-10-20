@@ -286,27 +286,18 @@ const Podcast = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
           {/* Header da Seção */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-4 border-b border-white/10 gap-4 max-w-[min(100%,calc(80vh*16/9))] mx-auto">
-            <div>
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.25em] mb-2 block">
-                [ ÚLTIMO LANÇAMENTO • 1H 24MIN ]
-              </span>
-              <h2 className="font-barlow-condensed text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
-                EM DESTAQUE // EP.14
-              </h2>
-            </div>
-            <div className="flex items-center gap-2 text-[#8A827D] text-xs font-mono">
-              <span className="w-2 h-2 bg-emerald-500 rounded-none animate-pulse" />
-              <span>DISPONÍVEL EM ÁUDIO E VÍDEO</span>
-            </div>
+          <div className="mb-6 pb-4 border-b border-white/10 max-w-[min(100%,calc(80vh*16/9))] mx-auto">
+            <h2 className="font-barlow-condensed text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
+              EM DESTAQUE // EP.14
+            </h2>
           </div>
 
-          {/* Player / Imagem - Captura Máxima da Viewport sem Cortar Topo ou Base */}
-          <div className="w-full max-w-[min(100%,calc(80vh*16/9))] mx-auto border border-white/15 bg-black shadow-2xl overflow-hidden rounded-none">
-            <div className="relative aspect-video w-full max-h-[80vh] overflow-hidden bg-black group rounded-none">
+          {/* Player / Imagem - Estilo YouTube Moderno com Cantos Arredondados */}
+          <div className="w-full max-w-[min(100%,calc(80vh*16/9))] mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[28px] overflow-hidden border border-white/15 bg-black shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_40px_rgba(196,85,10,0.1)] ring-1 ring-white/10">
+            <div className="relative aspect-video w-full max-h-[80vh] overflow-hidden bg-black group rounded-2xl sm:rounded-3xl lg:rounded-[28px]">
               {isPlaying ? (
                 <iframe
-                  className="w-full h-full"
+                  className="w-full h-full rounded-2xl sm:rounded-3xl lg:rounded-[28px]"
                   src="https://www.youtube.com/embed/nAcTWvqdc-E?autoplay=1&rel=0&modestbranding=1&si=x7bCNKiC59BwS5eL"
                   title="Akedah Podcast Player"
                   frameBorder="0"
@@ -323,20 +314,20 @@ const Podcast = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
-                  {/* Badge de numeração com cantos retos */}
-                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 bg-black/90 border border-white/15 px-3.5 py-1.5 font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-[#C4550A] uppercase font-bold">
+                  {/* Badge de numeração em pill glassmorphism */}
+                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 bg-black/80 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-[#C4550A] uppercase font-bold shadow-lg">
                     EP.14 // 4K HDR
                   </div>
 
-                  {/* Botão de Play Geométrico Minimalista */}
+                  {/* Botão de Play Estilo YouTube */}
                   <button
                     type="button"
                     onClick={() => setIsPlaying(true)}
                     className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
                     aria-label="Assistir episódio em destaque"
                   >
-                    <div className="w-16 h-16 sm:w-24 sm:h-24 bg-[#C4550A] text-white flex items-center justify-center rounded-none shadow-2xl shadow-[#C4550A]/40 group-hover/play:scale-105 group-hover/play:bg-[#b04b08] transition-all duration-300 border border-white/20">
-                      <svg className="w-7 h-7 sm:w-9 sm:h-9 fill-current ml-1" viewBox="0 0 24 24">
+                    <div className="w-18 h-12 sm:w-24 sm:h-16 bg-[#FF0000] text-white flex items-center justify-center rounded-[18px] sm:rounded-[24px] shadow-[0_10px_35px_rgba(255,0,0,0.45)] group-hover/play:scale-110 group-hover/play:bg-[#E60000] group-hover/play:shadow-[0_15px_45px_rgba(255,0,0,0.65)] transition-all duration-300">
+                      <svg className="w-7 h-7 sm:w-9 sm:h-9 fill-white ml-1" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
@@ -346,13 +337,13 @@ const Podcast = () => {
             </div>
           </div>
 
-          {/* Botão de Inscreva-se Direto Abaixo do Player */}
+          {/* Botão de Inscreva-se Estilo YouTube Pill */}
           <div className="mt-8 flex justify-center">
             <a
               href="https://www.youtube.com/@EstudioAkedah?sub_confirmation=1"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-4 bg-[#FF0000] hover:bg-[#D90000] text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 shadow-xl shadow-red-950/40 hover:scale-[1.02] rounded-none"
+              className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 bg-[#FF0000] hover:bg-[#D90000] text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 shadow-xl shadow-red-950/40 hover:scale-[1.03] active:scale-95 rounded-full"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
