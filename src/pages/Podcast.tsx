@@ -175,7 +175,7 @@ const Podcast = () => {
               return (
                 <div
                   key={slide.id}
-                  className={`absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[70%] lg:w-[60%] xl:w-[58%] h-full flex items-start md:items-center justify-center md:justify-end transition-opacity duration-1000 ease-in-out ${
+                  className={`absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-end mask-feather-mobile-bottom mask-feather-podcast transition-opacity duration-1000 ease-in-out ${
                     isActive ? "opacity-100" : "opacity-0 pointer-events-none"
                   }`}
                   aria-hidden={!isActive}
@@ -197,8 +197,8 @@ const Podcast = () => {
             {/* Overlay sutil em desktop */}
             <div className="hidden md:block absolute inset-0 bg-[#0C0704]/40 md:bg-transparent z-10 pointer-events-none" />
 
-            {/* Degradê Dark Terracota: no mobile sobe suavemente; no desktop vem da esquerda */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0704] from-45% via-[#0C0704]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#0C0704] md:from-20% md:sm:from-28% md:from-35% md:via-[#0C0704]/75 md:via-48% md:to-transparent md:to-70% z-10 pointer-events-none" />
+            {/* Degradê Dark Terracota: contínuo, ultra suave e sem linhas demarcadas */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0704] from-45% via-[#0C0704]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#0C0704] md:from-25% md:via-[#0C0704]/85 md:via-42% md:via-[#0C0704]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
 
             {/* Degradês verticais suaves exclusivos para desktop */}
             <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#0C0704] via-transparent via-65% to-[#0C0704]/40 z-10 pointer-events-none" />
