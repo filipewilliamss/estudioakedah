@@ -34,9 +34,14 @@ export const IrisPreloader: React.FC = () => {
   const [isActive, setIsActive] = useState<boolean>(() => {
     if (typeof window === "undefined") return false;
     try {
+      // Se for recarregamento direto (F5 / reload), exibe o preloader para validação visual
+      const navEntries = performance.getEntriesByType("navigation");
+      if (navEntries.length > 0 && (navEntries[0] as PerformanceNavigationTiming).type === "reload") {
+        return true;
+      }
       return !sessionStorage.getItem("akedah_loader_seen");
     } catch {
-      return false;
+      return true;
     }
   });
 
@@ -58,10 +63,10 @@ export const IrisPreloader: React.FC = () => {
     // Bloqueia scroll do body durante o preloader
     document.body.style.overflow = "hidden";
 
-    // Auto-desmontagem em 1.4s (tempo limite da animação)
+    // Auto-desmontagem em 3.0s (tempo cinematográfico refinado para visualização clara dos ícones)
     const timer = setTimeout(() => {
       handleSkip();
-    }, 1400);
+    }, 3000);
 
     // Permite pular ao pressionar qualquer tecla
     const handleKeyDown = () => {
@@ -87,23 +92,31 @@ export const IrisPreloader: React.FC = () => {
       aria-label="Carregando Akedah Podcast. Clique para pular."
       className="fixed inset-0 z-[99999] select-none cursor-pointer overflow-hidden bg-[#1C0F0A]"
     >
-      {/* Estilos CSS das Animações com acelerações cinematográficas */}
+      {/* Estilos CSS das Animações com acelerações cinematográficas e tempo de apreciação */}
       <style>{`
         @keyframes irisOrbitCollapse {
           0% {
-            transform: rotate(0deg) scale(1);
+            transform: rotate(0deg) scale(0.8);
+            opacity: 0;
+          }
+          15% {
+            transform: rotate(60deg) scale(1);
             opacity: 1;
           }
           65% {
-            transform: rotate(450deg) scale(0.65);
+            transform: rotate(360deg) scale(1);
             opacity: 1;
           }
+          85% {
+            transform: rotate(560deg) scale(0.6);
+            opacity: 0.95;
+          }
           95% {
-            transform: rotate(720deg) scale(0.08);
+            transform: rotate(700deg) scale(0.12);
             opacity: 0.9;
           }
           100% {
-            transform: rotate(750deg) scale(0);
+            transform: rotate(720deg) scale(0);
             opacity: 0;
           }
         }
@@ -113,8 +126,8 @@ export const IrisPreloader: React.FC = () => {
             transform: translate(-50%, -50%) scale(0);
             opacity: 0;
           }
-          50% {
-            transform: translate(-50%, -50%) scale(2.8);
+          45% {
+            transform: translate(-50%, -50%) scale(3.5);
             opacity: 1;
             filter: blur(2px);
           }
@@ -132,6 +145,18 @@ export const IrisPreloader: React.FC = () => {
             clip-path: circle(150% at 50% 50%);
           }
         }
+        .orbit-track {
+          --orbit-r: -100px;
+          width: 200px;
+          height: 200px;
+        }
+        @media (min-width: 640px) {
+          .orbit-track {
+            --orbit-r: -125px;
+            width: 250px;
+            height: 250px;
+          }
+        }
       `}</style>
 
       {/* 1. Fundo Base com Textura de Couro & Micro-ruído Procedural */}
@@ -139,7 +164,7 @@ export const IrisPreloader: React.FC = () => {
       <div
         className="absolute inset-0 pointer-events-none opacity-60"
         style={{
-          background: "radial-gradient(circle at 50% 50%, rgba(196, 85, 10, 0.12) 0%, rgba(28, 15, 10, 0.85) 65%, #1C0F0A 100%)",
+          background: "radial-gradient(circle at 50% 50%, rgba(196, 85, 10, 0.15) 0%, rgba(28, 15, 10, 0.85) 65%, #1C0F0A 100%)",
         }}
       />
       {/* Micro-ruído procedural SVG inline */}
@@ -155,21 +180,21 @@ export const IrisPreloader: React.FC = () => {
         <rect width="100%" height="100%" filter="url(#iris-noise)" />
       </svg>
 
-      {/* 2. FASE 1: Órbita e Colapso dos 6 Ícones (0.0s a 0.7s) */}
+      {/* 2. FASE 1: Órbita e Colapso dos 6 Ícones (0.0s a 2.2s com exibição nítida) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        {/* Círculo guia sutil com diâmetro de 120px */}
+        {/* Círculo guia sutil com diâmetro generoso */}
         <div
-          className="absolute w-[120px] h-[120px] rounded-full border border-white/[0.08] pointer-events-none"
+          className="absolute orbit-track rounded-full border border-white/[0.12] pointer-events-none"
           style={{
-            animation: "irisOrbitCollapse 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+            animation: "irisOrbitCollapse 2.2s cubic-bezier(0.25, 1, 0.3, 1) forwards",
           }}
         />
 
-        {/* Container da Órbita girando e colapsando para o ponto central */}
+        {/* Container da Órbita girando com ícones ampliados */}
         <div
-          className="relative w-[120px] h-[120px] flex items-center justify-center"
+          className="relative orbit-track flex items-center justify-center"
           style={{
-            animation: "irisOrbitCollapse 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards",
+            animation: "irisOrbitCollapse 2.2s cubic-bezier(0.25, 1, 0.3, 1) forwards",
           }}
         >
           {ORBIT_ICONS.map((icon) => (
@@ -177,52 +202,52 @@ export const IrisPreloader: React.FC = () => {
               key={icon.id}
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"
               style={{
-                transform: `rotate(${icon.angle}deg) translateY(-60px) rotate(-${icon.angle}deg)`,
+                transform: `rotate(${icon.angle}deg) translateY(var(--orbit-r)) rotate(-${icon.angle}deg)`,
               }}
             >
-              <div className="w-7 h-7 flex items-center justify-center filter drop-shadow-[0_0_8px_rgba(196,85,10,0.35)]">
-                <icon.Component className="w-6 h-6" color={icon.color} />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center filter drop-shadow-[0_0_14px_rgba(196,85,10,0.55)]">
+                <icon.Component className="w-9 h-9 sm:w-11 sm:h-11" color={icon.color} />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Flash de Luz no instante do Colapso Central (0.68s - 0.73s) */}
+        {/* Flash de Luz no instante do Colapso Central (2.15s - 2.37s) */}
         <div
-          className="absolute top-1/2 left-1/2 rounded-full bg-[#FAF6EB] pointer-events-none w-5 h-5"
+          className="absolute top-1/2 left-1/2 rounded-full bg-[#FAF6EB] pointer-events-none w-6 h-6"
           style={{
-            animation: "irisCenterFlash 0.16s ease-out 0.68s forwards",
+            animation: "irisCenterFlash 0.22s ease-out 2.15s forwards",
             opacity: 0,
             transform: "translate(-50%, -50%) scale(0)",
           }}
         />
       </div>
 
-      {/* 3. FASE 2: Transição de Círculos em Expansão / Iris Wipe (0.7s a 1.34s) */}
+      {/* 3. FASE 2: Transição de Círculos em Expansão / Iris Wipe (2.22s a 2.95s) */}
       {/* Camada 1: Círculo Bege/Creme (#FAF6EB) */}
       <div
         className="absolute inset-0 bg-[#FAF6EB] pointer-events-none"
         style={{
           clipPath: "circle(0% at 50% 50%)",
-          animation: "irisExpand 0.48s cubic-bezier(0.85, 0, 0.15, 1) 0.70s forwards",
+          animation: "irisExpand 0.55s cubic-bezier(0.85, 0, 0.15, 1) 2.22s forwards",
         }}
       />
 
-      {/* Camada 2: Círculo Terracota (#C4550A) - Stagger de +80ms */}
+      {/* Camada 2: Círculo Terracota (#C4550A) - Stagger de +90ms */}
       <div
         className="absolute inset-0 bg-[#C4550A] pointer-events-none"
         style={{
           clipPath: "circle(0% at 50% 50%)",
-          animation: "irisExpand 0.48s cubic-bezier(0.85, 0, 0.15, 1) 0.78s forwards",
+          animation: "irisExpand 0.55s cubic-bezier(0.85, 0, 0.15, 1) 2.31s forwards",
         }}
       />
 
-      {/* Camada 3: Círculo Marrom-Café (#1C0F0A) - Stagger de +80ms, revelando o site */}
+      {/* Camada 3: Círculo Marrom-Café (#1C0F0A) - Stagger de +90ms, revelando o site */}
       <div
         className="absolute inset-0 bg-[#1C0F0A] pointer-events-none"
         style={{
           clipPath: "circle(0% at 50% 50%)",
-          animation: "irisExpand 0.48s cubic-bezier(0.85, 0, 0.15, 1) 0.86s forwards",
+          animation: "irisExpand 0.55s cubic-bezier(0.85, 0, 0.15, 1) 2.40s forwards",
         }}
       />
 
