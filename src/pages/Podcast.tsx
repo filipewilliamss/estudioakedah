@@ -94,10 +94,193 @@ const heroContentVariants = {
   },
 };
 
+// Variantes para animação de slide direcional e desfoque nos cards da Agenda do Podcast
+const agendaVariants = {
+  enter: (dir: number) => ({
+    x: dir >= 0 ? 80 : -80,
+    opacity: 0,
+    filter: "blur(12px)",
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: (dir: number) => ({
+    x: dir >= 0 ? -80 : 80,
+    opacity: 0,
+    filter: "blur(12px)",
+    transition: {
+      duration: 0.38,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
+// 3 Conjuntos de 4 Cards (total 12 cards) com dados genéricos e fotos de alta relevância para a Agenda
+const agendaPodcastCards = [
+  // Conjunto 1 (Cards 1 a 4)
+  [
+    {
+      date: "15.AGO",
+      time: "19:00",
+      episode: "EP. 15",
+      guestName: "DANIEL SILVA",
+      role: "HOST & ESTRATEGISTA EXECUTIVO",
+      topic: "Engenharia de Vendas, Governança & Retenção de Alto Ticket",
+      image: founderPicture,
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "22.AGO",
+      time: "19:00",
+      episode: "EP. 16",
+      guestName: "CAMILA VASCONCELOS",
+      role: "FUNDADORA & C-LEVEL TECH",
+      topic: "Inteligência Artificial & Automação Operacional de Escala",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "29.AGO",
+      time: "19:00",
+      episode: "EP. 17",
+      guestName: "RODRIGO ALBUQUERQUE",
+      role: "GESTOR DE FUNDOS & M&A",
+      topic: "Fusões, Aquisições & Métricas Reais de Valuation Corporativo",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "05.SET",
+      time: "19:00",
+      episode: "EP. 18",
+      guestName: "MARIANA BITTENCOURT",
+      role: "DIRETORA DE BRANDING & GROWTH",
+      topic: "Posicionamento de Autoridade & Estratégia de Marca Premium",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+  ],
+  // Conjunto 2 (Cards 5 a 8)
+  [
+    {
+      date: "12.SET",
+      time: "19:00",
+      episode: "EP. 19",
+      guestName: "EDUARDO GUIMARÃES",
+      role: "CEO & EMPREENDEDOR SERIAL",
+      topic: "Playbooks Comerciais de 8 Dígitos e Construção de Máquina B2B",
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "19.SET",
+      time: "19:00",
+      episode: "EP. 20",
+      guestName: "BEATRIZ FONTANA",
+      role: "ESPECIALISTA EM LIDERANÇA",
+      topic: "Retenção de Talentos & Cultura de Alta Performance Executiva",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "26.SET",
+      time: "19:00",
+      episode: "EP. 21",
+      guestName: "LUCAS MENDONÇA",
+      role: "CONSELHEIRO & ESTRATEGISTA",
+      topic: "Governança Familiar, Proteção Patrimonial & Sucessão",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "03.OUT",
+      time: "19:00",
+      episode: "EP. 22",
+      guestName: "JULIANA MEIRELLES",
+      role: "HEAD DE FINANÇAS CORPORATIVAS",
+      topic: "Fluxo de Caixa Blindado, Margem Líquida & Expansão Segura",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+  ],
+  // Conjunto 3 (Cards 9 a 12)
+  [
+    {
+      date: "10.OUT",
+      time: "19:00",
+      episode: "EP. 23",
+      guestName: "MARCELO FAGUNDES",
+      role: "ESTRATEGISTA DE EXPANSÃO",
+      topic: "Modelagem de Franquias, Canais de Distribuição & Escala Nacional",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "17.OUT",
+      time: "19:00",
+      episode: "EP. 24",
+      guestName: "FERNANDA PRADO",
+      role: "NEUROCIÊNCIA APLICADA A NEGÓCIOS",
+      topic: "Tomada de Decisão Sob Pressão, Clareza Mental & Negociação",
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "24.OUT",
+      time: "19:00",
+      episode: "EP. 25",
+      guestName: "GUSTAVO ZANETTI",
+      role: "DIRETOR DE OPERAÇÕES LOGÍSTICAS",
+      topic: "Infraestrutura Crítica, Suprimentos & Redução de Desperdícios",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+    {
+      date: "31.OUT",
+      time: "19:00",
+      episode: "EP. 26",
+      guestName: "SOFIA BRANDÃO",
+      role: "COMPLIANCE & DIREITO EMPRESARIAL",
+      topic: "Segurança Contratual, Mitigação de Riscos & Acordos de Sócios",
+      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+      link: WHATSAPP_URL,
+    },
+  ],
+];
+
 const Podcast = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
   const isHoveredHeroRef = useRef(false);
+  const [[activeBlock, direction], setPage] = useState([0, 1]);
+  const isHoveredCardRef = useRef(false);
+
+  const paginate = (newDirection: number) => {
+    setPage(([prev]) => {
+      const next = (prev + newDirection + agendaPodcastCards.length) % agendaPodcastCards.length;
+      return [next, newDirection];
+    });
+  };
+
+  const goToBlock = (idx: number) => {
+    setPage(([prev]) => [idx, idx >= prev ? 1 : -1]);
+  };
+
+  // Timer de rotação automática dos cards da Agenda (a cada 5 segundos) com pausa no hover
+  useEffect(() => {
+    const agendaTimer = setInterval(() => {
+      if (!isHoveredCardRef.current) {
+        setPage(([prev]) => [(prev + 1) % agendaPodcastCards.length, 1]);
+      }
+    }, 5000);
+    return () => clearInterval(agendaTimer);
+  }, []);
 
   // Pré-carregamento imediato das 4 imagens da Hero para evitar atrasos ou pop-in
   useEffect(() => {
@@ -353,115 +536,157 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 3. SEÇÃO DE ESTREIAS — VITRINE DE CARTAZES EDITORIAIS (#calendario) */}
-        <section id="calendario" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
-          {/* Header da Seção */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10 gap-4 text-left">
-            <div>
-              <span className="text-[#C4550A] text-[11px] font-mono font-medium uppercase tracking-[0.25em] mb-2 block">
-                [ PROGRAMAÇÃO DE GRAVAÇÕES // EPISÓDIOS ]
+        {/* 3. SEÇÃO DE ESTREIAS // AGENDA (#calendario e #agenda) */}
+        <section id="calendario" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24 select-none">
+          <div id="agenda" className="absolute -top-20 md:-top-24" />
+
+          {/* Header da Seção: Alinhado à esquerda com Controles à direita (sem linhas divisórias arbitrárias) */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
+            <div className="flex flex-col items-start max-w-2xl">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/40 text-[#C4550A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-3 shadow-sm">
+                PROGRAMAÇÃO // AGENDA
               </span>
-              <h2 className="font-barlow-condensed text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
+              <h2 className="font-barlow-condensed text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black text-white tracking-tight uppercase leading-[1.04]">
                 PRÓXIMAS ESTREIAS CONFIRMADAS.
               </h2>
             </div>
-            <div className="text-xs font-mono text-[#8A827D]">
-              LANÇAMENTOS SEMANAIS // QUINTAS • 19:00
+
+            {/* Controles do Topo Direito: Indicadores de Conjuntos + Botões Circulares < e > */}
+            <div className="flex items-center justify-between sm:justify-start gap-4 sm:gap-5 w-full sm:w-auto self-start md:self-end">
+              {/* Indicadores de Paginação dos 3 Conjuntos */}
+              <div className="flex items-center gap-1.5">
+                {agendaPodcastCards.map((_, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => goToBlock(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      activeBlock === idx
+                        ? "w-7 bg-[#C4550A]"
+                        : "w-2 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Ir para conjunto de convidados ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Botões Circulares < e > */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => paginate(-1)}
+                  aria-label="Ver convidados anteriores"
+                  className="w-10 h-10 rounded-full border border-white/20 bg-black/40 hover:bg-[#C4550A] hover:border-[#C4550A] text-white flex items-center justify-center transition-all shadow-sm active:scale-95 group"
+                >
+                  <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => paginate(1)}
+                  aria-label="Ver próximos convidados"
+                  className="w-10 h-10 rounded-full border border-white/20 bg-black/40 hover:bg-[#C4550A] hover:border-[#C4550A] text-white flex items-center justify-center transition-all shadow-sm active:scale-95 group"
+                >
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Grade Ortogonal Conectada de 4 Colunas com Bordas de 1px e Cantos Retos */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/10 bg-[#080503] divide-y sm:divide-y-0 sm:divide-x divide-white/10 rounded-none">
-            {[
-              {
-                date: "15.AGO // 19:00",
-                guestName: "DANIEL SILVA",
-                episodeTitle: "ENGENHARIA DE VENDAS & RETENÇÃO",
-                photo: founderPicture,
-                isConfidential: false,
-              },
-              {
-                date: "22.AGO // 19:00",
-                guestName: "CONVIDADO CONFIDENCIAL",
-                episodeTitle: "INFRAESTRUTURA & GOVERNANÇA TECH",
-                isConfidential: true,
-              },
-              {
-                date: "29.AGO // 19:00",
-                guestName: "CONVIDADO CONFIDENCIAL",
-                episodeTitle: "FUSÕES & M&A DE ALTO VALOR",
-                isConfidential: true,
-              },
-              {
-                date: "05.SET // 19:00",
-                guestName: "CONVIDADO CONFIDENCIAL",
-                episodeTitle: "PLAYBOOKS COMERCIAIS DE 7 DÍGITOS",
-                isConfidential: true,
-              },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="relative aspect-[3/4] overflow-hidden group bg-[#0C0704] flex flex-col justify-between rounded-none hover:bg-white/[0.02] transition-colors"
+          {/* Container dos 4 Cards com Transição Animada e Pausa no Hover */}
+          <div
+            className="relative min-h-[490px] sm:min-h-[520px] overflow-visible sm:overflow-hidden"
+            onMouseEnter={() => { isHoveredCardRef.current = true; }}
+            onMouseLeave={() => { isHoveredCardRef.current = false; }}
+          >
+            <AnimatePresence mode="wait" custom={direction} initial={false}>
+              <motion.div
+                key={activeBlock}
+                custom={direction}
+                variants={agendaVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="flex lg:grid lg:grid-cols-4 gap-5 sm:gap-6 w-full pt-1 pb-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none"
               >
-                {/* TRATAMENTO FOTOGRÁFICO DOMINANDO O POSTER */}
-                <div className="absolute inset-0 z-0 overflow-hidden">
-                  {item.isConfidential ? (
-                    <div className="relative w-full h-full bg-[#080503] overflow-hidden">
+                {agendaPodcastCards[activeBlock].map((card, cardIdx) => (
+                  <a
+                    key={cardIdx}
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-[#130B07] border border-white/10 hover:border-[#C4550A]/70 rounded-[24px] sm:rounded-[26px] overflow-hidden min-h-[480px] sm:min-h-[510px] w-[82vw] sm:w-[44vw] lg:w-auto shrink-0 lg:shrink snap-center flex flex-col justify-between text-left transition-all duration-500 shadow-2xl hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(196,85,10,0.22)] relative"
+                  >
+                    {/* Topo do Card: Imagem de Destaque Ampla do Convidado */}
+                    <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#0A0503]">
                       <img
-                        src={studioBannerImg}
-                        alt="Estúdio Akedah em Penumbra"
-                        className="w-full h-full object-cover grayscale contrast-[1.35] brightness-[0.3] group-hover:scale-105 group-hover:brightness-[0.38] transition-all duration-700 ease-out"
+                        src={card.image}
+                        alt={`Foto de ${card.guestName} - Convidado do Akedah Podcast`}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-95 contrast-[1.05]"
                       />
-                      <div className="absolute inset-0 bg-[#0C0704]/60 mix-blend-multiply pointer-events-none" />
 
-                      {/* Tarja Tipográfica Centralizada: CONFIDENCIAL // SOB EMBARGO */}
-                      <div className="absolute top-[40%] left-0 right-0 flex items-center justify-center pointer-events-none z-10 px-3">
-                        <div className="px-3.5 py-1.5 border border-[#C4550A]/50 bg-[#0C0704]/95 shadow-2xl flex items-center gap-2 rounded-none">
-                          <span className="w-1.5 h-1.5 bg-[#C4550A] rounded-none animate-pulse" />
-                          <span className="font-mono text-[9px] sm:text-[9.5px] tracking-[0.22em] font-bold text-[#C4550A] uppercase whitespace-nowrap">
-                            CONFIDENCIAL // SOB EMBARGO
-                          </span>
+                      {/* Degradê sutil de transição para a base do card */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#130B07] via-[#130B07]/30 via-45% to-transparent pointer-events-none" />
+
+                      {/* Badge Flutuante: Data & Horário */}
+                      <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 shadow-lg">
+                        <span className="font-barlow-condensed font-black text-xs sm:text-sm text-[#C4550A] tracking-wider uppercase">
+                          {card.date}
+                        </span>
+                        <span className="text-white/40 text-[10px]">•</span>
+                        <span className="font-mono text-[10px] sm:text-[11px] font-bold text-white/90">
+                          {card.time}
+                        </span>
+                      </div>
+
+                      {/* Badge Flutuante: Episódio */}
+                      <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[10px] font-mono font-bold tracking-wider text-white/90">
+                        {card.episode}
+                      </div>
+                    </div>
+
+                    {/* Corpo do Card: Informações Editoriais */}
+                    <div className="p-5 sm:p-6 pt-3 flex-1 flex flex-col justify-between">
+                      <div>
+                        {/* Papel / Especialidade */}
+                        <span className="font-mono text-[10px] sm:text-[11px] font-bold text-[#C4550A] tracking-[0.2em] uppercase block mb-1.5">
+                          {card.role}
+                        </span>
+
+                        {/* Nome do Convidado em Destaque */}
+                        <h3 className="font-barlow-condensed font-black text-2xl sm:text-[26px] text-white uppercase tracking-tight leading-tight group-hover:text-[#FAF6EB] transition-colors mb-2">
+                          {card.guestName}
+                        </h3>
+
+                        {/* Tema do Episódio */}
+                        <p className="font-sans text-xs sm:text-[13px] text-white/70 leading-relaxed line-clamp-2">
+                          {card.topic}
+                        </p>
+                      </div>
+
+                      {/* Botão de Ação Estilo Pílula */}
+                      <div className="pt-5">
+                        <div className="w-full py-2.5 sm:py-3 px-4 rounded-full border border-white/15 bg-white/[0.04] group-hover:bg-[#C4550A] group-hover:border-[#C4550A] group-hover:text-white text-white text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm">
+                          <span>SAIBA MAIS</span>
+                          <span className="group-hover:translate-x-1 transition-transform font-bold text-sm">→</span>
                         </div>
                       </div>
                     </div>
-                  ) : (
-                    <div className="relative w-full h-full overflow-hidden">
-                      <img
-                        src={item.photo}
-                        alt={item.guestName}
-                        className="w-full h-full object-cover object-top grayscale contrast-[1.3] brightness-85 group-hover:scale-105 group-hover:contrast-[1.35] transition-transform duration-700 ease-out"
-                      />
-                    </div>
-                  )}
-                </div>
-
-                {/* Vinheta ortogonal profunda na base */}
-                <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0C0704]/90 to-transparent pointer-events-none z-10" />
-                <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#0C0704] via-[#0C0704]/95 via-50% to-transparent pointer-events-none z-10" />
-
-                {/* Base: Nome do Convidado em Caixa Alta + Data e Horário em Destaque */}
-                <div className="relative z-20 p-6 flex flex-col justify-end text-left">
-                  <h3 className="font-barlow-condensed text-2xl sm:text-3xl font-black text-white mb-1 uppercase tracking-tight group-hover:text-[#FAF6EB] transition-colors leading-none">
-                    {item.guestName}
-                  </h3>
-                  <p className="font-mono text-xs sm:text-sm font-bold text-[#C4550A] tracking-[0.2em] uppercase mt-1">
-                    {item.date}
-                  </p>
-                </div>
-              </div>
-            ))}
+                  </a>
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10 text-xs font-mono text-[#8A827D]">
-            <span>Datas e participantes sujeitos a confirmação nas transmissões oficiais.</span>
-            <a
-              href="https://www.instagram.com/estudioakedah"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#C4550A] hover:text-white transition-colors underline decoration-[#C4550A]/40 underline-offset-4"
-            >
-              Acompanhar bastidores no Instagram →
-            </a>
+          {/* Dica de arraste no mobile */}
+          <div className="flex lg:hidden items-center justify-between pt-2 px-1 text-[11px] font-mono text-white/40 uppercase tracking-wider">
+            <span>Deslize para ver os convidados</span>
+            <span>← →</span>
           </div>
         </section>
 
