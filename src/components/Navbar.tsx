@@ -115,15 +115,15 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
 
   let bgClass = "bg-transparent py-6 md:py-8";
   if (isCurrentPodcast) {
-    bgClass = scrolled
-      ? "bg-[#1C0F0A]/90 backdrop-blur-md border-b border-white/[0.08] py-3 md:py-4 shadow-lg"
-      : "bg-[#1C0F0A]/85 backdrop-blur-md border-b border-white/[0.08] py-4 md:py-6";
+    bgClass = (scrolled || menuOpen)
+      ? "bg-[#0C0704]/95 backdrop-blur-[20px] border-b border-white/10 shadow-lg py-3 md:py-4"
+      : "bg-transparent py-5 md:py-6";
   } else if (isCurrentDanielSilva) {
     bgClass = (scrolled || menuOpen)
       ? "bg-[#07132B]/95 backdrop-blur-[20px] border-b border-white/10 shadow-lg py-3 md:py-4"
       : "bg-transparent py-5 md:py-6";
   } else {
-    bgClass = scrolled
+    bgClass = (scrolled || menuOpen)
       ? (forceBlack ? "bg-black/70 border-white/[0.08]" : "bg-white/75 border-black/[0.05]") + " backdrop-blur-[20px] border-b py-3 md:py-4"
       : "bg-transparent py-6 md:py-8";
   }
@@ -268,7 +268,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
               isCurrentDanielSilva
                 ? "bg-[#07132B]/98 backdrop-blur-md border-white/10"
                 : isCurrentPodcast 
-                  ? "bg-[#2D1A11]/95 backdrop-blur-md border-white/10" 
+                  ? "bg-[#0C0704]/98 backdrop-blur-md border-white/10" 
                   : (forceBlack ? "bg-black/95 backdrop-blur-md border-white/10" : "bg-background/95 backdrop-blur-md border-border")
             }`}
           >
