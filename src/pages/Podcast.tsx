@@ -270,7 +270,6 @@ const Podcast = () => {
   const [[activeBlock, direction], setPage] = useState([0, 1]);
   const isHoveredCardRef = useRef(false);
   const [activeSection, setActiveSection] = useState(0);
-  const isScrollingRef = useRef(false);
 
   const paginate = (newDirection: number) => {
     setPage(([prev]) => {
@@ -283,25 +282,25 @@ const Podcast = () => {
     setPage(([prev]) => [idx, idx >= prev ? 1 : -1]);
   };
 
-  // Habilitar visualização de prancheta com scroll-snap apenas em telas desktop (>= 768px)
+  // Habilitar visualização de prancheta com scroll-snap apenas em telas desktop (>= 768px) igual ao site Daniel Silva
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-        document.documentElement.classList.add("snap-y", "snap-mandatory", "scroll-smooth");
+        document.documentElement.classList.add("snap-y", "snap-proximity", "scroll-smooth");
       } else {
-        document.documentElement.classList.remove("snap-y", "snap-mandatory");
+        document.documentElement.classList.remove("snap-y", "snap-proximity");
         document.documentElement.classList.add("scroll-smooth");
       }
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
-      document.documentElement.classList.remove("snap-y", "snap-mandatory", "scroll-smooth");
+      document.documentElement.classList.remove("snap-y", "snap-proximity", "scroll-smooth");
       window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Monitorar seção ativa no scroll para sincronizar indicadores
+  // Monitorar seção ativa no scroll para sincronizar indicadores laterais
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight / 2;
@@ -321,52 +320,8 @@ const Podcast = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Trava magnética na roda do mouse: cada rolada no scroll avança e trava exatamente na próxima seção
+  // Navegação suave por teclado (Setas Cima/Baixo e PageUp/PageDown)
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (window.innerWidth < 768) return;
-      if (Math.abs(e.deltaY) < 18) return;
-
-      if (isScrollingRef.current) {
-        e.preventDefault();
-        return;
-      }
-
-      const scrollMiddle = window.scrollY + window.innerHeight / 2;
-      let currentIndex = 0;
-      podcastSections.forEach((sec, idx) => {
-        const el = document.getElementById(sec.id);
-        if (el && scrollMiddle >= el.offsetTop) {
-          currentIndex = idx;
-        }
-      });
-
-      let targetIndex = currentIndex;
-      if (e.deltaY > 0) {
-        if (currentIndex < podcastSections.length - 1) {
-          targetIndex = currentIndex + 1;
-        } else {
-          return;
-        }
-      } else {
-        if (currentIndex > 0) {
-          targetIndex = currentIndex - 1;
-        } else {
-          return;
-        }
-      }
-
-      const targetEl = document.getElementById(podcastSections[targetIndex].id);
-      if (targetEl) {
-        e.preventDefault();
-        isScrollingRef.current = true;
-        targetEl.scrollIntoView({ behavior: "smooth" });
-        setTimeout(() => {
-          isScrollingRef.current = false;
-        }, 750);
-      }
-    };
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (window.innerWidth < 768) return;
       if (e.key === "ArrowDown" || e.key === "PageDown") {
@@ -380,7 +335,15 @@ const Podcast = () => {
         });
         if (currentIndex < podcastSections.length - 1) {
           e.preventDefault();
-          document.getElementById(podcastSections[currentIndex + 1].id)?.scrollIntoView({ behavior: "smooth" });
+          const targetEl = document.getElementById(podcastSections[currentIndex + 1].id);
+          if (targetEl) {
+            const lenis = (window as any).lenis;
+            if (lenis) {
+              lenis.scrollTo(targetEl, { duration: 1 });
+            } else {
+              targetEl.scrollIntoView({ behavior: "smooth" });
+            }
+          }
         }
       } else if (e.key === "ArrowUp" || e.key === "PageUp") {
         const scrollMiddle = window.scrollY + window.innerHeight / 2;
@@ -393,17 +356,21 @@ const Podcast = () => {
         });
         if (currentIndex > 0) {
           e.preventDefault();
-          document.getElementById(podcastSections[currentIndex - 1].id)?.scrollIntoView({ behavior: "smooth" });
+          const targetEl = document.getElementById(podcastSections[currentIndex - 1].id);
+          if (targetEl) {
+            const lenis = (window as any).lenis;
+            if (lenis) {
+              lenis.scrollTo(targetEl, { duration: 1 });
+            } else {
+              targetEl.scrollIntoView({ behavior: "smooth" });
+            }
+          }
         }
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Timer de rotação automática dos cards da Agenda (a cada 5 segundos) com pausa no hover
@@ -441,7 +408,12 @@ const Podcast = () => {
       const targetEl = document.getElementById(targetId);
       if (targetEl) {
         setTimeout(() => {
-          targetEl.scrollIntoView({ behavior: "smooth" });
+          const lenis = (window as any).lenis;
+          if (lenis) {
+            lenis.scrollTo(targetEl, { duration: 1 });
+          } else {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }
         }, 150);
         return;
       }
@@ -459,7 +431,7 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0C0704] text-white selection:bg-[#C4550A] selection:text-white relative font-sans">
+    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative font-sans">
       {/* Tela de Carregamento Inicial com Revelação de Íris Circular */}
       <IrisPreloader />
 
@@ -471,7 +443,7 @@ const Podcast = () => {
       />
       <Navbar isPodcastPage={true} />
 
-      {/* Atmosfera Moderna: Fundo #0C0704, Spotlights Radiais e Micro-ruído SVG Inline */}
+      {/* Atmosfera Moderna: Fundo #1C0F0A, Spotlights Radiais e Micro-ruído SVG Inline */}
       <PodcastAtmosphere />
 
       {/* Indicador Flutuante Lateral no Desktop (Navegação Rápida entre as 5 Pranchetas) */}
@@ -489,7 +461,15 @@ const Podcast = () => {
               aria-label={`Ir para ${sec.label}`}
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById(sec.id)?.scrollIntoView({ behavior: "smooth" });
+                const targetEl = document.getElementById(sec.id);
+                if (targetEl) {
+                  const lenis = (window as any).lenis;
+                  if (lenis) {
+                    lenis.scrollTo(targetEl, { duration: 1 });
+                  } else {
+                    targetEl.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
               }}
             >
               <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-bebas-neue tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
@@ -507,14 +487,14 @@ const Podcast = () => {
         })}
       </aside>
 
-      <main className="relative z-10 overflow-hidden">
+      <main className="relative z-10">
         
         {/* ========================================================================= */}
         {/* 1. HERO SECTION (CAROUSEL COM 4 CARDS E SLIDE AUTOMÁTICO A CADA 5S)       */}
         {/* ========================================================================= */}
         <section 
           id="hero"
-          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#0C0704] border-b border-white/10 md:snap-start md:snap-always"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 md:snap-start md:snap-always"
           onMouseEnter={() => { isHoveredHeroRef.current = true; }}
           onMouseLeave={() => { isHoveredHeroRef.current = false; }}
         >
@@ -545,13 +525,13 @@ const Podcast = () => {
             })}
 
             {/* Overlay sutil em desktop */}
-            <div className="hidden md:block absolute inset-0 bg-[#0C0704]/40 md:bg-transparent z-10 pointer-events-none" />
+            <div className="hidden md:block absolute inset-0 bg-[#1C0F0A]/40 md:bg-transparent z-10 pointer-events-none" />
 
             {/* Degradê Dark Terracota: contínuo, ultra suave e sem linhas demarcadas */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0704] from-45% via-[#0C0704]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#0C0704] md:from-25% md:via-[#0C0704]/85 md:via-42% md:via-[#0C0704]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
 
             {/* Degradês verticais suaves exclusivos para desktop */}
-            <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#0C0704] via-transparent via-65% to-[#0C0704]/40 z-10 pointer-events-none" />
+            <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent via-65% to-[#1C0F0A]/40 z-10 pointer-events-none" />
 
             {/* Glow Terracota Quente sutil motivado */}
             <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
@@ -633,7 +613,7 @@ const Podcast = () => {
         {/* 2. DESTAQUE DO EPISÓDIO // CONVIDADO DA SEMANA (#destaque) */}
         <section 
           id="destaque" 
-          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-4 sm:px-6 lg:px-10 py-24 md:py-0 md:snap-start md:snap-always"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-4 sm:px-6 lg:px-10 py-24 md:py-0 md:snap-start md:snap-always"
         >
           {/* Spotlight Quente Suave */}
           <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.15)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
@@ -753,7 +733,7 @@ const Podcast = () => {
       {/* 3. SEÇÃO DE ESTREIAS // AGENDA (#calendario e #agenda) */}
       <section 
         id="calendario" 
-        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-4 sm:px-6 lg:px-8 py-24 md:py-0 md:snap-start md:snap-always select-none"
+        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-4 sm:px-6 lg:px-8 py-24 md:py-0 md:snap-start md:snap-always select-none"
       >
         <div id="agenda" className="absolute top-0 pointer-events-none" />
 
@@ -909,7 +889,7 @@ const Podcast = () => {
       {/* 4. PLATAFORMAS — RÉGUA MINIMALISTA 4 COLUNAS (#redes) */}
       <section 
         id="redes" 
-        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always"
+        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always"
       >
         <div className="max-w-7xl w-full mx-auto relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10 gap-4 text-left">
@@ -924,7 +904,7 @@ const Podcast = () => {
           </div>
 
           {/* Grid Minimalista Ortogonal com Cantos Secos */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/10 bg-[#080503] divide-y sm:divide-y-0 sm:divide-x divide-white/10 rounded-none">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-white/10 bg-[#140C07] divide-y sm:divide-y-0 sm:divide-x divide-white/10 rounded-none">
             {[
               {
                 name: "YOUTUBE",
@@ -1013,7 +993,7 @@ const Podcast = () => {
       {/* 5. FECHAMENTO EDITORIAL DIRETAMENTE NO FUNDO (#contato) */}
       <section 
         id="contato" 
-        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always text-center"
+        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always text-center"
       >
         {/* Spotlight Quente Motivada Centralizada */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />

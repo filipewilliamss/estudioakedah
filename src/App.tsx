@@ -69,6 +69,8 @@ const App = () => {
       infinite: false,
     });
 
+    (window as any).lenis = lenis;
+
     lenis.on('scroll', ScrollTrigger.update);
 
     function raf(time: number) {
@@ -79,6 +81,7 @@ const App = () => {
     requestAnimationFrame(raf);
 
     return () => {
+      (window as any).lenis = null;
       lenis.destroy();
     };
   }, []);

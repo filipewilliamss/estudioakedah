@@ -103,7 +103,7 @@ const PodcastContact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0C0704] text-white relative flex flex-col selection:bg-[#C4550A] selection:text-white">
+    <div className="min-h-screen bg-[#1C0F0A] text-white relative flex flex-col selection:bg-[#C4550A] selection:text-white">
       <PodcastAtmosphere />
 
       <SEO 

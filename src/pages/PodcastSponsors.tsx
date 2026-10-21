@@ -175,7 +175,7 @@ const PodcastSponsors = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0C0704] text-white selection:bg-[#C4550A] selection:text-white relative font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative font-sans">
       <SEO
         title="Patrocinadores Oficiais | Akedah Podcast"
         description="Conheça as marcas e empresas líderes que apoiam o Akedah Podcast. Parcerias estratégicas, autoridade corporativa e cotas de patrocínio."
@@ -243,7 +243,7 @@ const PodcastSponsors = () => {
             <section
               key={sponsor.id}
               id={sponsor.id}
-              className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 py-28 md:py-0 md:snap-start md:snap-always"
+              className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 py-28 md:py-0 md:snap-start md:snap-always"
             >
               {/* Layer 1: Ambient Backdrop & Dynamic Warm Spotlight */}
               <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -270,7 +270,7 @@ const PodcastSponsors = () => {
                 </div>
 
                 {/* Grade de iluminação sutil estilo Hero */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0C0704] via-transparent to-[#0C0704]/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent to-[#1C0F0A]/40" />
               </div>
 
               {/* Layer 2: Conteúdo da Prancheta Intercalada (Grid de 2 Colunas) */}
@@ -433,7 +433,7 @@ const PodcastSponsors = () => {
         {/* ========================================================================= */}
         <section
           id="cta-final"
-          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 lg:px-16 text-center md:snap-start md:snap-always"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-6 sm:px-10 lg:px-16 text-center md:snap-start md:snap-always"
         >
           {/* Spotlight Quente Motivada */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
