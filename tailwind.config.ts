@@ -15,7 +15,13 @@ export default {
     extend: {
       fontFamily: {
         display: ['Montserrat', 'sans-serif'],
-        'podcast-display': ['Syne', 'Montserrat', 'sans-serif'],
+        'podcast-display': ['"Darken Jellybean"', '"DarkenJellybean"', 'sans-serif'],
+        'podcast-title': ['"Darken Jellybean"', '"DarkenJellybean"', 'sans-serif'],
+        'podcast-alt': ['"Podcast"', 'cursive', 'sans-serif'],
+        'podcast-body': ['"Bebas Neue"', '"BebasNeue"', 'sans-serif'],
+        'bebas-neue': ['"Bebas Neue"', '"BebasNeue"', 'sans-serif'],
+        'darken-jellybean': ['"Darken Jellybean"', '"DarkenJellybean"', 'sans-serif'],
+        podcast: ['"Podcast"', 'cursive', 'sans-serif'],
         'podcast-cinzel': ['Cinzel', 'serif'],
         syne: ['Syne', 'sans-serif'],
         cinzel: ['Cinzel', 'serif'],

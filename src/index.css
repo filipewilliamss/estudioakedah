@@ -13,17 +13,43 @@
 }
 
 @font-face {
+  font-family: 'Darken Jellybean';
+  src: url('/font/Darken-Jellybean.ttf') format('truetype'),
+       url('/font/Darken%20Jellybean.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'DarkenJellybean';
-  src: url('https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/62ccc3fd-341d-45f4-a48e-384958b06929-Darken_Jellybean.ttf') format('truetype');
-  font-weight: normal;
+  src: url('/font/Darken-Jellybean.ttf') format('truetype'),
+       url('/font/Darken%20Jellybean.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/font/BebasNeue-Regular.otf') format('opentype');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'BebasNeue';
-  src: url('https://wqxuprmlsapiucjxleih.supabase.co/storage/v1/object/public/files/5cb6af52-14f1-4e99-a4ed-cbd88f1e600c-BebasNeue-Regular.otf') format('opentype');
-  font-weight: normal;
+  src: url('/font/BebasNeue-Regular.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Podcast';
+  src: url('/font/Podcast.otf') format('opentype');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }

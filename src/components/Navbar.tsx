@@ -129,7 +129,9 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
       : "bg-transparent py-6 md:py-8";
   }
 
-  const textClass = `link-magnetic ${forceBlack ? 'text-white/70' : 'text-black/70'} hover:text-white font-bold text-[11px] uppercase tracking-[0.28em] font-display transition-colors duration-300`;
+  const textClass = isCurrentPodcast
+    ? "link-magnetic text-white/80 hover:text-[#C4550A] font-bebas-neue text-lg tracking-[0.14em] uppercase transition-colors duration-300"
+    : `link-magnetic ${forceBlack ? 'text-white/70' : 'text-black/70'} hover:text-white font-bold text-[11px] uppercase tracking-[0.28em] font-display transition-colors duration-300`;
 
   const navLinks = isCurrentDanielSilva 
     ? danielSilvaNavLinks 

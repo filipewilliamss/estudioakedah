@@ -294,9 +294,9 @@ export const IrisPreloader: React.FC = () => {
       )}
 
       {/* 3. Botão Elegante de Pular (ESC / Clique) */}
-      <div className="absolute bottom-6 right-6 z-50 pointer-events-none flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#150B07]/80 backdrop-blur-md border border-[#FAF6EB]/15 text-[#FAF6EB]/70 text-[11px] font-mono tracking-wider shadow-lg">
-        <span className="font-sans font-medium">Pular vinheta</span>
-        <span className="px-1.5 py-0.5 rounded text-[10px] bg-[#FAF6EB]/10 border border-[#FAF6EB]/20 text-[#FAF6EB] font-semibold">
+      <div className="absolute bottom-6 right-6 z-50 pointer-events-none flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#150B07]/80 backdrop-blur-md border border-[#FAF6EB]/15 text-[#FAF6EB]/70 text-xs font-bebas-neue tracking-wider shadow-lg">
+        <span className="font-bebas-neue tracking-wider">Pular vinheta</span>
+        <span className="px-1.5 py-0.5 rounded text-[11px] bg-[#FAF6EB]/10 border border-[#FAF6EB]/20 text-[#FAF6EB] font-bebas-neue tracking-widest font-semibold">
           ESC
         </span>
       </div>
