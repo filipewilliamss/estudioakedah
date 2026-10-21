@@ -117,10 +117,10 @@ export const IrisPreloader: React.FC = () => {
     // Bloqueia rolagem do body durante a vinheta
     document.body.style.overflow = "hidden";
 
-    // Timeout de segurança: nunca bloqueia o usuário mais de 8.2 segundos
+    // Timeout de segurança: nunca bloqueia o usuário mais de 5.5 segundos
     safetyTimerRef.current = window.setTimeout(() => {
       handleComplete();
-    }, 8200);
+    }, 5500);
 
     // Atalhos de teclado para pular
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -158,13 +158,13 @@ export const IrisPreloader: React.FC = () => {
     };
   }, [isActive, handleComplete, handleSkip]);
 
-  // Monitora o tempo do vídeo: logo assenta entre 5.8s e 6.6s;
-  // Às 6.7s, antes do dissolve indesejado do final do vídeo, disparamos a transição circular
+  // Monitora o tempo do vídeo: escrita ocorre de 0s a ~2.4s, logo assenta e fica visível até 3.45s;
+  // Disparamos a transição circular concêntrica para fechar e abrir o site
   const handleTimeUpdate = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (video.currentTime >= 6.7 && !isClosing) {
+    if (video.currentTime >= 3.45 && !isClosing) {
       startCircularClosing();
     }
   };
