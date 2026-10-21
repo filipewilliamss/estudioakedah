@@ -133,6 +133,22 @@ const Footer = ({ isPodcastPage, isDanielSilvaPage }: FooterProps) => {
                   </li>
                   <li>
                     <Link
+                      to="/podcast#patrocinadores"
+                      className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
+                    >
+                      Patrocinadores
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/podcast/contato"
+                      className="text-[13px] text-white/50 hover:text-[#C4550A] transition-colors duration-300"
+                    >
+                      Contato
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       to="/"
                       className="text-[13px] text-[#C4550A] hover:text-white transition-colors duration-300 font-medium"
                     >

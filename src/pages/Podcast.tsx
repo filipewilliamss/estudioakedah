@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
@@ -12,7 +13,61 @@ import heroPodcastWelcome from "@/assets/podcast/hero-podcast-welcome.jpg";
 import heroPodcastPatrocinador from "@/assets/podcast/hero-podcast-patrocinador.jpg";
 import heroPodcastAoVivo from "@/assets/podcast/hero-podcast-aovivo.jpg";
 import heroPodcastDaniel from "@/assets/podcast/hero-podcast-daniel.jpg";
-import { WHATSAPP_URL } from "@/data/services";
+import logoEstudioAkedah from "@/assets/patrocinadores/logo-estudio-akedah.png";
+import logoFecar from "@/assets/patrocinadores/logo-fecar.png";
+import logoTabernaculo from "@/assets/patrocinadores/logo-tabernaculo.png";
+import logoHorizontalSimbolo from "@/assets/patrocinadores/logo-horizontal-simbolo.png";
+import logoConstrumar from "@/assets/construmar-logo.png";
+import logoTeamluisa from "@/assets/teamluisa-logo.png";
+import logoTemplo from "@/assets/templo-logo.png";
+import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
+
+// Logotipos oficiais dos patrocinadores para a linha animada de Patrocinadores
+const podcastSponsorLogos = [
+  {
+    nome: "ESTÚDIO AKEDAH",
+    image: logoEstudioAkedah,
+    alt: "Estúdio Akedah",
+    imgClass: "h-[30px] sm:h-[36px] w-auto max-w-[210px]",
+  },
+  {
+    nome: "FE-CAR",
+    image: logoFecar,
+    alt: "FE-CAR",
+    imgClass: "h-[34px] sm:h-[40px] w-auto max-w-[190px]",
+  },
+  {
+    nome: "CONSTRUMAR",
+    image: logoConstrumar,
+    alt: "Construmar",
+    imgClass: "h-[30px] sm:h-[36px] w-auto max-w-[190px]",
+  },
+  {
+    nome: "TABERNÁCULO DA TRINDADE",
+    image: logoTabernaculo,
+    alt: "Tabernáculo da Trindade",
+    imgClass: "h-[36px] sm:h-[42px] w-auto max-w-[210px]",
+  },
+  {
+    nome: "TEAM LUÍSA",
+    image: logoTeamluisa,
+    alt: "Team Luísa",
+    imgClass: "h-[32px] sm:h-[38px] w-auto max-w-[190px]",
+  },
+  {
+    nome: "TEMPLO",
+    image: logoTemplo,
+    alt: "Templo",
+    imgClass: "h-[32px] sm:h-[38px] w-auto max-w-[190px]",
+  },
+  {
+    nome: "STUDIO",
+    image: logoHorizontalSimbolo,
+    alt: "Studio",
+    imgClass: "h-[34px] sm:h-[40px] w-auto max-w-[190px]",
+  },
+];
+
 
 // 4 Cards da Hero Section com rotação automática a cada 5s (estilo editorial de alto impacto com paleta Akedah)
 const heroSlides = [
@@ -690,7 +745,107 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 4. PLATAFORMAS — RÉGUA MINIMALISTA 4 COLUNAS (#redes) */}
+        {/* 4. SEÇÃO DE PATROCINADORES OFICIAIS (#patrocinadores) */}
+        <section 
+          id="patrocinadores" 
+          className="py-24 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24 select-none overflow-hidden"
+        >
+          {/* Spotlight Quente Motivada de Fundo */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.12)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
+
+          <div className="w-full relative z-10 flex flex-col items-center text-center">
+            {/* Header da Seção Centralizado */}
+            <div className="mb-10 sm:mb-12 max-w-2xl mx-auto">
+              <span className="inline-block px-3.5 py-1 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/40 text-[#C4550A] text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-[0.25em] mb-3 shadow-sm">
+                PARCERIAS DE VALOR // MARCAS PARCEIRAS
+              </span>
+              <h2 className="font-barlow-condensed text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-white tracking-tight uppercase leading-[1.04]">
+                PATROCINADORES <span className="font-serif italic font-light text-[#C4550A] lowercase">oficiais</span>
+              </h2>
+              <p className="text-white/70 text-xs sm:text-sm md:text-base font-sans mt-3 max-w-xl mx-auto leading-relaxed">
+                Empresas e marcas visionárias que caminham junto ao Akedah Podcast, conectando suas soluções a uma audiência qualificada e tomadores de decisão.
+              </p>
+            </div>
+
+            {/* Linha Animada Contínua de Logotipos (Marquee Infinito em Loop com Degradês Laterais) */}
+            <div className="relative w-full overflow-hidden py-6 sm:py-8 my-2">
+              <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-44 bg-gradient-to-r from-[#0C0704] to-transparent z-10 pointer-events-none" />
+              <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-44 bg-gradient-to-l from-[#0C0704] to-transparent z-10 pointer-events-none" />
+
+              <motion.div
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{
+                  duration: 28,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="flex items-center gap-10 sm:gap-20 lg:gap-28 w-max"
+              >
+                {[...podcastSponsorLogos, ...podcastSponsorLogos, ...podcastSponsorLogos, ...podcastSponsorLogos].map((logo, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center justify-center shrink-0 cursor-default group"
+                  >
+                    <img
+                      src={logo.image}
+                      alt={logo.alt}
+                      className={`${logo.imgClass} object-contain opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none select-none`}
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Modalidades de Patrocínio / Categorias (Semelhante ao Daniel Silva) */}
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 md:gap-8 text-xs sm:text-sm md:text-base font-mono uppercase text-white/50 border-y border-white/10 py-5 sm:py-6 my-6 sm:my-8 w-full max-w-4xl">
+              <span className="hover:text-white transition-colors">Cota Master</span>
+              <span className="text-[#C4550A] select-none">•</span>
+              <span className="hover:text-white transition-colors">Naming Rights</span>
+              <span className="text-[#C4550A] select-none">•</span>
+              <span className="hover:text-white transition-colors">Inserção em Vídeo</span>
+              <span className="text-[#C4550A] select-none">•</span>
+              <span className="hover:text-white transition-colors">Brand Experience</span>
+              <span className="text-[#C4550A] select-none">•</span>
+              <span className="hover:text-white transition-colors">Cortes Patrocinados</span>
+            </div>
+
+            {/* CTA Box da Seção Patrocinadores (Estilo Daniel Silva adaptado à paleta Akedah) */}
+            <div className="mt-4 sm:mt-6 p-6 sm:p-8 lg:p-10 bg-[#160D08]/90 border border-[#C4550A]/30 hover:border-[#C4550A]/60 rounded-[20px] sm:rounded-[26px] max-w-4xl w-full flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-8 backdrop-blur-md shadow-2xl text-left transition-all duration-300">
+              <div className="flex-1">
+                <span className="text-[#C4550A] font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold block mb-1.5">
+                  VISIBILIDADE E AUTORIDADE
+                </span>
+                <h3 className="font-barlow-condensed text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug uppercase">
+                  Sua marca no canal de quem decide o mercado.
+                </h3>
+                <p className="text-white/70 text-xs sm:text-sm mt-1.5 leading-relaxed max-w-lg">
+                  Posicione seus produtos e serviços diante de diretores, empresários e líderes do setor corporativo em produções 4K de alta retenção.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 shrink-0 w-full md:w-auto">
+                <a
+                  href={`${WHATSAPP_URL}&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20patrocinar%20o%20Akedah%20Podcast`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#C4550A] text-white hover:bg-[#b04b08] hover:scale-[1.02] active:scale-95 font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] rounded-[12px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center w-full sm:w-auto group"
+                >
+                  <span>Seja Patrocinador</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+                <Link
+                  to="/podcast/contato"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white/[0.06] hover:bg-white/[0.12] border border-white/20 text-white font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] rounded-[12px] transition-all duration-300 text-center w-full sm:w-auto"
+                >
+                  <span>Mídia Kit & Canais</span>
+                </Link>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 5. PLATAFORMAS — RÉGUA MINIMALISTA 4 COLUNAS (#redes) */}
         <section id="redes" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10 gap-4 text-left">
             <div>
