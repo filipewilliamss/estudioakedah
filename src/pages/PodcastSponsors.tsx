@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Instagram } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
@@ -15,15 +15,13 @@ import logoHorizontalSimbolo from "@/assets/patrocinadores/logo-horizontal-simbo
 interface SponsorBoard {
   id: string;
   number: string;
-  badge: string;
   titleMain: string;
   titleSub: string;
   description: string;
   logo: string;
   logoAlt: string;
   logoSizeClass: string;
-  websiteUrl: string;
-  actionText: string;
+  instagramUrl: string;
   orientation: "logo-right" | "logo-left"; // Intercalado
 }
 
@@ -31,7 +29,6 @@ const sponsorsData: SponsorBoard[] = [
   {
     id: "estudio-akedah",
     number: "01",
-    badge: "COTA MASTER • INFRAESTRUTURA BROADCAST // EDIÇÃO 2026",
     titleMain: "ESTÚDIO AKEDAH",
     titleSub: "PRODUÇÃO & INFRAESTRUTURA",
     description:
@@ -39,14 +36,12 @@ const sponsorsData: SponsorBoard[] = [
     logo: logoEstudioAkedah,
     logoAlt: "Estúdio Akedah",
     logoSizeClass: "max-w-[280px] sm:max-w-[380px] md:max-w-[440px] lg:max-w-[500px] xl:max-w-[540px]",
-    websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Est%C3%BAdio%20Akedah%20atrav%C3%A9s%20do%20Podcast`,
-    actionText: "Conhecer o Estúdio",
+    instagramUrl: "https://www.instagram.com/estudioakedah",
     orientation: "logo-right", // 1: Texto à Esquerda, Logotipo à Direita
   },
   {
     id: "akedah-podcast",
     number: "02",
-    badge: "COTA MASTER • MÍDIA & DISTRIBUIÇÃO // EDIÇÃO 2026",
     titleMain: "AKEDAH PODCAST",
     titleSub: "A MESA DE QUEM DECIDE",
     description:
@@ -54,14 +49,12 @@ const sponsorsData: SponsorBoard[] = [
     logo: logoAkedahPodcast,
     logoAlt: "Akedah Podcast",
     logoSizeClass: "max-w-[240px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px]",
-    websiteUrl: "https://www.youtube.com/@EstudioAkedah",
-    actionText: "Assistir ao Podcast",
+    instagramUrl: "https://www.instagram.com/podcastakedah",
     orientation: "logo-left", // 2: Logotipo à Esquerda, Texto à Direita
   },
   {
     id: "fecar",
     number: "03",
-    badge: "COTA OFICIAL • MOBILIDADE PREMIUM // EDIÇÃO 2026",
     titleMain: "FE-CAR",
     titleSub: "MULTIMARCAS",
     description:
@@ -69,14 +62,12 @@ const sponsorsData: SponsorBoard[] = [
     logo: logoFecar,
     logoAlt: "FE-CAR Multimarcas",
     logoSizeClass: "max-w-[260px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px]",
-    websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20a%20FE-CAR%20Multimarcas%20atrav%C3%A9s%20do%20Akedah%20Podcast`,
-    actionText: "Conhecer a FE-CAR",
+    instagramUrl: "https://www.instagram.com/fecarmultimarcas",
     orientation: "logo-right", // 3: Texto à Esquerda, Logotipo à Direita
   },
   {
     id: "tabernaculo",
     number: "04",
-    badge: "COTA INSTITUCIONAL • FÉ & PROPÓSITO // EDIÇÃO 2026",
     titleMain: "TABERNÁCULO",
     titleSub: "DA TRINDADE",
     description:
@@ -84,14 +75,12 @@ const sponsorsData: SponsorBoard[] = [
     logo: logoTabernaculo,
     logoAlt: "Tabernáculo da Trindade",
     logoSizeClass: "max-w-[260px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px]",
-    websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Tabern%C3%A1culo%20da%20Trindade`,
-    actionText: "Conhecer a Instituição",
+    instagramUrl: "https://www.instagram.com/tabernaculodatrindade",
     orientation: "logo-left", // 4: Logotipo à Esquerda, Texto à Direita
   },
   {
     id: "studio",
     number: "05",
-    badge: "COTA ESTRATÉGICA • DESIGN SONORO & TRILHAS // EDIÇÃO 2026",
     titleMain: "STUDIO",
     titleSub: "ENGENHARIA DE SOM & MASTER",
     description:
@@ -99,8 +88,7 @@ const sponsorsData: SponsorBoard[] = [
     logo: logoHorizontalSimbolo,
     logoAlt: "Studio",
     logoSizeClass: "max-w-[240px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px] xl:max-w-[460px]",
-    websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Studio%20atrav%C3%A9s%20do%20Akedah%20Podcast`,
-    actionText: "Conhecer o Studio",
+    instagramUrl: "https://www.instagram.com/estudioakedah",
     orientation: "logo-right", // 5: Texto à Esquerda, Logotipo à Direita
   },
 ];
@@ -294,7 +282,7 @@ const PodcastSponsors = () => {
               <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-10 sm:gap-12 md:gap-12 lg:gap-16 relative z-10">
                 
                 {/* ========================================================================= */}
-                {/* PALCO VISUAL: O LOGOTIPO OFICIAL NO LUGAR DA IMAGEM (SEM CARDZINHO)       */}
+                {/* PALCO VISUAL: O LOGOTIPO OFICIAL NO LUGAR DA IMAGEM                       */}
                 {/* ========================================================================= */}
                 <div
                   className={`w-full md:w-1/2 flex items-center justify-center relative py-8 sm:py-10 md:py-14 ${
@@ -315,19 +303,14 @@ const PodcastSponsors = () => {
                 </div>
 
                 {/* ========================================================================= */}
-                {/* CONTEÚDO EDITORIAL: TÍTULO, DESCRIÇÃO, BOTÕES E INDICADORES               */}
+                {/* CONTEÚDO EDITORIAL: TÍTULO, DESCRIÇÃO, BOTÃO DO INSTAGRAM E INDICADORES   */}
                 {/* ========================================================================= */}
                 <div
                   className={`w-full md:w-1/2 flex flex-col items-start text-left ${
                     isLogoRight ? "order-2 md:order-1" : "order-2 md:order-2"
                   }`}
                 >
-                  {/* Badge de Cota de Patrocínio */}
-                  <span className="px-3.5 py-1.5 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/35 text-[#C4550A] font-bebas-neue text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-5 inline-block">
-                    {sponsor.badge}
-                  </span>
-
-                  {/* Título Principal com Darken Jellybean */}
+                  {/* Título Principal com Darken Jellybean (Sem caixa/badge por cima) */}
                   <h1 className="font-darken-jellybean text-[36px] xs:text-[44px] sm:text-[56px] md:text-[68px] lg:text-[78px] xl:text-[84px] font-normal leading-[1.0] sm:leading-[0.95] tracking-tight uppercase mb-4 sm:mb-5 text-left">
                     <span className="block text-white">{sponsor.titleMain}</span>
                     <span className="text-[#C4550A] block">{sponsor.titleSub}</span>
@@ -338,26 +321,19 @@ const PodcastSponsors = () => {
                     {sponsor.description}
                   </p>
 
-                  {/* Botões de Ação com Quatro Cantos Arredondados e Bebas Neue */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
+                  {/* Botão Único de Ação: Redirecionamento Direto para o Instagram do Patrocinador */}
+                  <div className="flex items-center w-full sm:w-auto mb-6 sm:mb-8">
                     <a
-                      href={sponsor.websiteUrl}
+                      href={sponsor.instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
+                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group cursor-pointer"
                     >
-                      <span>{sponsor.actionText}</span>
+                      <Instagram className="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform duration-300" />
+                      <span>Instagram Oficial</span>
                       <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">
                         ↗
                       </span>
-                    </a>
-                    <a
-                      href={`${WHATSAPP_URL}&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20patrocinar%20o%20Akedah%20Podcast`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
-                    >
-                      <span>Seja um Patrocinador</span>
                     </a>
                   </div>
 
@@ -425,10 +401,6 @@ const PodcastSponsors = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            <span className="px-4 py-1.5 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/35 text-[#C4550A] font-bebas-neue text-xs sm:text-sm uppercase tracking-[0.22em] mb-6">
-              CONEXÃO COM QUEM DECIDE
-            </span>
-
             <h2 className="font-darken-jellybean text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-white uppercase tracking-tight leading-[0.95] mb-5">
               SUA MARCA NA MAIOR <br />
               <span className="font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal">
