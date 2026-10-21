@@ -254,12 +254,23 @@ const agendaPodcastCards = [
   ],
 ];
 
+// 5 Pranchetas em tela cheia do Akedah Podcast
+const podcastSections = [
+  { id: "hero", number: "01", label: "Início" },
+  { id: "destaque", number: "02", label: "Último Episódio" },
+  { id: "calendario", number: "03", label: "Programação" },
+  { id: "redes", number: "04", label: "Canais Oficiais" },
+  { id: "contato", number: "05", label: "Seja Nosso Convidado" },
+];
+
 const Podcast = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
   const isHoveredHeroRef = useRef(false);
   const [[activeBlock, direction], setPage] = useState([0, 1]);
   const isHoveredCardRef = useRef(false);
+  const [activeSection, setActiveSection] = useState(0);
+  const isScrollingRef = useRef(false);
 
   const paginate = (newDirection: number) => {
     setPage(([prev]) => {
@@ -271,6 +282,129 @@ const Podcast = () => {
   const goToBlock = (idx: number) => {
     setPage(([prev]) => [idx, idx >= prev ? 1 : -1]);
   };
+
+  // Habilitar visualização de prancheta com scroll-snap apenas em telas desktop (>= 768px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        document.documentElement.classList.add("snap-y", "snap-mandatory", "scroll-smooth");
+      } else {
+        document.documentElement.classList.remove("snap-y", "snap-mandatory");
+        document.documentElement.classList.add("scroll-smooth");
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      document.documentElement.classList.remove("snap-y", "snap-mandatory", "scroll-smooth");
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Monitorar seção ativa no scroll para sincronizar indicadores
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight / 2;
+      podcastSections.forEach((sec, idx) => {
+        const el = document.getElementById(sec.id);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(idx);
+          }
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Trava magnética na roda do mouse: cada rolada no scroll avança e trava exatamente na próxima seção
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (window.innerWidth < 768) return;
+      if (Math.abs(e.deltaY) < 18) return;
+
+      if (isScrollingRef.current) {
+        e.preventDefault();
+        return;
+      }
+
+      const scrollMiddle = window.scrollY + window.innerHeight / 2;
+      let currentIndex = 0;
+      podcastSections.forEach((sec, idx) => {
+        const el = document.getElementById(sec.id);
+        if (el && scrollMiddle >= el.offsetTop) {
+          currentIndex = idx;
+        }
+      });
+
+      let targetIndex = currentIndex;
+      if (e.deltaY > 0) {
+        if (currentIndex < podcastSections.length - 1) {
+          targetIndex = currentIndex + 1;
+        } else {
+          return;
+        }
+      } else {
+        if (currentIndex > 0) {
+          targetIndex = currentIndex - 1;
+        } else {
+          return;
+        }
+      }
+
+      const targetEl = document.getElementById(podcastSections[targetIndex].id);
+      if (targetEl) {
+        e.preventDefault();
+        isScrollingRef.current = true;
+        targetEl.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          isScrollingRef.current = false;
+        }, 750);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (window.innerWidth < 768) return;
+      if (e.key === "ArrowDown" || e.key === "PageDown") {
+        const scrollMiddle = window.scrollY + window.innerHeight / 2;
+        let currentIndex = 0;
+        podcastSections.forEach((sec, idx) => {
+          const el = document.getElementById(sec.id);
+          if (el && scrollMiddle >= el.offsetTop) {
+            currentIndex = idx;
+          }
+        });
+        if (currentIndex < podcastSections.length - 1) {
+          e.preventDefault();
+          document.getElementById(podcastSections[currentIndex + 1].id)?.scrollIntoView({ behavior: "smooth" });
+        }
+      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+        const scrollMiddle = window.scrollY + window.innerHeight / 2;
+        let currentIndex = 0;
+        podcastSections.forEach((sec, idx) => {
+          const el = document.getElementById(sec.id);
+          if (el && scrollMiddle >= el.offsetTop) {
+            currentIndex = idx;
+          }
+        });
+        if (currentIndex > 0) {
+          e.preventDefault();
+          document.getElementById(podcastSections[currentIndex - 1].id)?.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   // Timer de rotação automática dos cards da Agenda (a cada 5 segundos) com pausa no hover
   useEffect(() => {
@@ -340,6 +474,39 @@ const Podcast = () => {
       {/* Atmosfera Moderna: Fundo #0C0704, Spotlights Radiais e Micro-ruído SVG Inline */}
       <PodcastAtmosphere />
 
+      {/* Indicador Flutuante Lateral no Desktop (Navegação Rápida entre as 5 Pranchetas) */}
+      <aside 
+        aria-label="Navegador de Pranchetas do Podcast"
+        className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-3.5 bg-black/50 backdrop-blur-md p-3 rounded-full border border-white/10 shadow-2xl"
+      >
+        {podcastSections.map((sec, idx) => {
+          const isActive = activeSection === idx;
+          return (
+            <a
+              key={sec.id}
+              href={`#${sec.id}`}
+              className="group relative flex items-center justify-end"
+              aria-label={`Ir para ${sec.label}`}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(sec.id)?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-bebas-neue tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
+                {sec.number} — {sec.label}
+              </span>
+              <span
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "bg-[#C4550A] scale-125 shadow-[0_0_12px_rgba(196,85,10,0.8)]"
+                    : "bg-white/20 group-hover:bg-white/60"
+                }`}
+              />
+            </a>
+          );
+        })}
+      </aside>
+
       <main className="relative z-10 overflow-hidden">
         
         {/* ========================================================================= */}
@@ -347,7 +514,7 @@ const Podcast = () => {
         {/* ========================================================================= */}
         <section 
           id="hero"
-          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#0C0704] border-b border-white/10"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#0C0704] border-b border-white/10 md:snap-start md:snap-always"
           onMouseEnter={() => { isHoveredHeroRef.current = true; }}
           onMouseLeave={() => { isHoveredHeroRef.current = false; }}
         >
@@ -464,12 +631,16 @@ const Podcast = () => {
         </section>
 
         {/* 2. DESTAQUE DO EPISÓDIO // CONVIDADO DA SEMANA (#destaque) */}
-        <section id="destaque" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
+        <section 
+          id="destaque" 
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-4 sm:px-6 lg:px-10 py-24 md:py-0 md:snap-start md:snap-always"
+        >
           {/* Spotlight Quente Suave */}
           <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.15)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
-          {/* Grid de 2 Colunas: Player no Lado Esquerdo + Convidado & Redes no Lado Direito */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="max-w-7xl w-full mx-auto relative z-10">
+            {/* Grid de 2 Colunas: Player no Lado Esquerdo + Convidado & Redes no Lado Direito */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* LADO ESQUERDO: Player do YouTube Redimensionado */}
             <div className="lg:col-span-7 w-full flex flex-col gap-3">
@@ -576,12 +747,17 @@ const Podcast = () => {
             </div>
 
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 3. SEÇÃO DE ESTREIAS // AGENDA (#calendario e #agenda) */}
-        <section id="calendario" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24 select-none">
-          <div id="agenda" className="absolute -top-20 md:-top-24" />
+      {/* 3. SEÇÃO DE ESTREIAS // AGENDA (#calendario e #agenda) */}
+      <section 
+        id="calendario" 
+        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-4 sm:px-6 lg:px-8 py-24 md:py-0 md:snap-start md:snap-always select-none"
+      >
+        <div id="agenda" className="absolute top-0 pointer-events-none" />
 
+        <div className="max-w-7xl w-full mx-auto relative z-10">
           {/* Header da Seção: Alinhado à esquerda com Controles à direita (sem linhas divisórias arbitrárias) */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
             <div className="flex flex-col items-start max-w-2xl">
@@ -638,7 +814,7 @@ const Podcast = () => {
 
           {/* Container dos 4 Cards com Transição Animada e Pausa no Hover */}
           <div
-            className="relative min-h-[490px] sm:min-h-[520px] overflow-visible sm:overflow-hidden"
+            className="relative min-h-[450px] sm:min-h-[480px] lg:min-h-[450px] xl:min-h-[500px] overflow-visible sm:overflow-hidden"
             onMouseEnter={() => { isHoveredCardRef.current = true; }}
             onMouseLeave={() => { isHoveredCardRef.current = false; }}
           >
@@ -658,10 +834,10 @@ const Podcast = () => {
                     href={card.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group bg-[#130B07] border border-white/10 hover:border-[#C4550A]/70 rounded-[24px] sm:rounded-[26px] overflow-hidden min-h-[480px] sm:min-h-[510px] w-[82vw] sm:w-[44vw] lg:w-auto shrink-0 lg:shrink snap-center flex flex-col justify-between text-left transition-all duration-500 shadow-2xl hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(196,85,10,0.22)] relative"
+                    className="group bg-[#130B07] border border-white/10 hover:border-[#C4550A]/70 rounded-[22px] sm:rounded-[26px] overflow-hidden min-h-[440px] sm:min-h-[480px] lg:min-h-[440px] xl:min-h-[490px] w-[82vw] sm:w-[44vw] lg:w-auto shrink-0 lg:shrink snap-center flex flex-col justify-between text-left transition-all duration-500 shadow-2xl hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(196,85,10,0.22)] relative"
                   >
                     {/* Topo do Card: Imagem de Destaque Ampla do Convidado */}
-                    <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#0A0503]">
+                    <div className="relative h-52 sm:h-64 lg:h-52 xl:h-64 w-full overflow-hidden bg-[#0A0503]">
                       <img
                         src={card.image}
                         alt={`Foto de ${card.guestName} - Convidado do Akedah Podcast`}
@@ -727,10 +903,15 @@ const Podcast = () => {
             <span>Deslize para ver os convidados</span>
             <span>← →</span>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 4. PLATAFORMAS — RÉGUA MINIMALISTA 4 COLUNAS (#redes) */}
-        <section id="redes" className="py-20 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
+      {/* 4. PLATAFORMAS — RÉGUA MINIMALISTA 4 COLUNAS (#redes) */}
+      <section 
+        id="redes" 
+        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always"
+      >
+        <div className="max-w-7xl w-full mx-auto relative z-10">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 pb-4 border-b border-white/10 gap-4 text-left">
             <div>
               <span className="text-[#C4550A] text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.2em] mb-2 block">
@@ -826,39 +1007,43 @@ const Podcast = () => {
               </a>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 5. FECHAMENTO EDITORIAL DIRETAMENTE NO FUNDO (#contato) */}
-        <section id="contato" className="py-24 sm:py-32 px-6 sm:px-10 lg:px-12 max-w-5xl mx-auto relative scroll-mt-20 md:scroll-mt-24 text-center">
-          {/* Spotlight Quente Motivada Centralizada */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
+      {/* 5. FECHAMENTO EDITORIAL DIRETAMENTE NO FUNDO (#contato) */}
+      <section 
+        id="contato" 
+        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always text-center"
+      >
+        {/* Spotlight Quente Motivada Centralizada */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
 
-          <div className="flex flex-col items-center">
-            {/* Título Monumental com Darken Jellybean e variação em Podcast */}
-            <h2 className="font-darken-jellybean text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-white uppercase tracking-tight leading-[0.92] max-w-4xl mb-4">
-              QUER SER NOSSO <br />
-              <span className="font-podcast text-[#C4550A] capitalize text-[1.1em] font-normal">Convidado?</span>
-            </h2>
+        <div className="max-w-5xl w-full mx-auto relative z-10 flex flex-col items-center">
+          {/* Título Monumental com Darken Jellybean e variação em Podcast */}
+          <h2 className="font-darken-jellybean text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-white uppercase tracking-tight leading-[0.92] max-w-4xl mb-4">
+            QUER SER NOSSO <br />
+            <span className="font-podcast text-[#C4550A] capitalize text-[1.1em] font-normal">Convidado?</span>
+          </h2>
 
-            {/* Linha de baixo em texto menor com Bebas Neue */}
-            <p className="text-[#8A827D] text-base sm:text-lg md:text-xl font-bebas-neue font-normal tracking-wide max-w-xl mb-10 leading-relaxed">
-              Entre em contato conosco
-            </p>
+          {/* Linha de baixo em texto menor com Bebas Neue */}
+          <p className="text-[#8A827D] text-base sm:text-lg md:text-xl font-bebas-neue font-normal tracking-wide max-w-xl mb-10 leading-relaxed">
+            Entre em contato conosco
+          </p>
 
-            {/* Botão Único com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
-            <div>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-bebas-neue text-base sm:text-lg uppercase tracking-[0.18em] rounded-[12px] sm:rounded-[14px] shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
-              >
-                <span>FALE COM UM ESPECIALISTA</span>
-                <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>
-              </a>
-            </div>
+          {/* Botão Único com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
+          <div>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-bebas-neue text-base sm:text-lg uppercase tracking-[0.18em] rounded-[12px] sm:rounded-[14px] shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
+            >
+              <span>FALE COM UM ESPECIALISTA</span>
+              <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>
+            </a>
           </div>
-        </section>
+        </div>
+      </section>
 
       </main>
     </div>
