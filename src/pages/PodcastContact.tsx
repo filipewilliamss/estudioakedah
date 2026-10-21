@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
@@ -248,8 +247,6 @@ const PodcastContact = () => {
 
           </div>
         </main>
-
-        <Footer isPodcastPage={true} />
       </div>
     </div>
   );

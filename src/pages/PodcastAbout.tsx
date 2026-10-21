@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import founderPicture from "@/assets/akedah-founder.jpg";
@@ -299,8 +298,6 @@ const PodcastAbout = () => {
           </section>
         </main>
       </div>
-
-      <Footer isPodcastPage={true} />
     </div>
   );
 };

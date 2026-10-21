@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import IrisPreloader from "@/components/podcast/IrisPreloader";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
@@ -982,8 +981,6 @@ const Podcast = () => {
         </section>
 
       </main>
-
-      <Footer isPodcastPage={true} />
     </div>
   );
 };
