@@ -467,7 +467,7 @@ const Podcast = () => {
                     {heroSlides[heroSlide].descricao}
                   </p>
 
-                  {/* Botões de Ação do Hero com Cantos Secos e Estilo do Podcast */}
+                  {/* Botões de Ação do Hero com Quatro Cantos Arredondados do Daniel Silva */}
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
                     <a
                       href={heroSlides[heroSlide].btnPrimary.href}
@@ -478,7 +478,7 @@ const Podcast = () => {
                           setIsPlaying(true);
                         }
                       }}
-                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-none transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
+                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
                     >
                       <span>{heroSlides[heroSlide].btnPrimary.text}</span>
                       <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">
@@ -489,7 +489,7 @@ const Podcast = () => {
                       href={heroSlides[heroSlide].btnSecondary.href}
                       target={heroSlides[heroSlide].btnSecondary.external ? "_blank" : undefined}
                       rel={heroSlides[heroSlide].btnSecondary.external ? "noopener noreferrer" : undefined}
-                      className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-none transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
+                      className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
                     >
                       <span>{heroSlides[heroSlide].btnSecondary.text}</span>
                     </a>
@@ -517,76 +517,137 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 2. DESTAQUE DO EPISÓDIO — PLAYER EXPANDIDO (#destaque) */}
-        <section id="destaque" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 w-full max-w-[1600px] mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
-          {/* Spotlight motivado atrás do player */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
+        {/* 2. DESTAQUE DO EPISÓDIO // CONVIDADO DA SEMANA (#destaque) */}
+        <section id="destaque" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-10 max-w-7xl mx-auto border-b border-white/10 relative scroll-mt-20 md:scroll-mt-24">
+          {/* Spotlight Quente Suave */}
+          <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.15)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
-          {/* Header da Seção */}
-          <div className="mb-6 pb-4 border-b border-white/10 max-w-[min(100%,calc(80vh*16/9))] mx-auto">
-            <h2 className="font-barlow-condensed text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight uppercase">
-              EM DESTAQUE // EP.14
-            </h2>
-          </div>
+          {/* Grid de 2 Colunas: Player no Lado Esquerdo + Convidado & Redes no Lado Direito */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* LADO ESQUERDO: Player do YouTube Redimensionado */}
+            <div className="lg:col-span-7 w-full flex flex-col gap-3">
+              <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(196,85,10,0.12)] ring-1 ring-white/10 relative">
+                <div className="relative aspect-video w-full overflow-hidden bg-black group rounded-2xl sm:rounded-3xl">
+                  {isPlaying ? (
+                    <iframe
+                      className="w-full h-full rounded-2xl sm:rounded-3xl"
+                      src="https://www.youtube.com/embed/nAcTWvqdc-E?autoplay=1&rel=0&modestbranding=1&si=x7bCNKiC59BwS5eL"
+                      title="Akedah Podcast Player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <div className="relative w-full h-full">
+                      <img
+                        src="https://img.youtube.com/vi/nAcTWvqdc-E/maxresdefault.jpg"
+                        alt="Episódio em Destaque - Akedah Podcast"
+                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out brightness-95"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
-          {/* Player / Imagem - Estilo YouTube Moderno com Cantos Arredondados */}
-          <div className="w-full max-w-[min(100%,calc(80vh*16/9))] mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[28px] overflow-hidden border border-white/15 bg-black shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_40px_rgba(196,85,10,0.1)] ring-1 ring-white/10">
-            <div className="relative aspect-video w-full max-h-[80vh] overflow-hidden bg-black group rounded-2xl sm:rounded-3xl lg:rounded-[28px]">
-              {isPlaying ? (
-                <iframe
-                  className="w-full h-full rounded-2xl sm:rounded-3xl lg:rounded-[28px]"
-                  src="https://www.youtube.com/embed/nAcTWvqdc-E?autoplay=1&rel=0&modestbranding=1&si=x7bCNKiC59BwS5eL"
-                  title="Akedah Podcast Player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-              ) : (
-                <div className="relative w-full h-full">
-                  <img
-                    src="https://img.youtube.com/vi/nAcTWvqdc-E/maxresdefault.jpg"
-                    alt="Episódio em Destaque - Akedah Podcast"
-                    className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-700 ease-out brightness-95"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
+                      {/* Badge de numeração em pill glassmorphism */}
+                      <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 bg-black/80 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-[#C4550A] uppercase font-bold shadow-lg">
+                        EP.14 // 4K HDR
+                      </div>
 
-                  {/* Badge de numeração em pill glassmorphism */}
-                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 bg-black/80 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full font-mono text-[10px] sm:text-[11px] tracking-[0.2em] text-[#C4550A] uppercase font-bold shadow-lg">
-                    EP.14 // 4K HDR
-                  </div>
-
-                  {/* Botão de Play Estilo YouTube */}
-                  <button
-                    type="button"
-                    onClick={() => setIsPlaying(true)}
-                    className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
-                    aria-label="Assistir episódio em destaque"
-                  >
-                    <div className="w-18 h-12 sm:w-24 sm:h-16 bg-[#FF0000] text-white flex items-center justify-center rounded-[18px] sm:rounded-[24px] shadow-[0_10px_35px_rgba(255,0,0,0.45)] group-hover/play:scale-110 group-hover/play:bg-[#E60000] group-hover/play:shadow-[0_15px_45px_rgba(255,0,0,0.65)] transition-all duration-300">
-                      <svg className="w-7 h-7 sm:w-9 sm:h-9 fill-white ml-1" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
+                      {/* Botão de Play Estilo YouTube */}
+                      <button
+                        type="button"
+                        onClick={() => setIsPlaying(true)}
+                        className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
+                        aria-label="Assistir episódio em destaque"
+                      >
+                        <div className="w-16 h-11 sm:w-20 sm:h-14 bg-[#FF0000] text-white flex items-center justify-center rounded-[14px] sm:rounded-[18px] shadow-[0_10px_35px_rgba(255,0,0,0.5)] group-hover/play:scale-110 group-hover/play:bg-[#E60000] group-hover/play:shadow-[0_15px_45px_rgba(255,0,0,0.7)] transition-all duration-300">
+                          <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-white ml-0.5" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                          </svg>
+                        </div>
+                      </button>
                     </div>
-                  </button>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
+              </div>
 
-          {/* Botão de Inscreva-se Estilo YouTube Pill */}
-          <div className="mt-8 flex justify-center">
-            <a
-              href="https://www.youtube.com/@EstudioAkedah?sub_confirmation=1"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 px-8 sm:px-10 py-3.5 sm:py-4 bg-[#FF0000] hover:bg-[#D90000] text-white font-mono text-xs sm:text-sm font-bold uppercase tracking-[0.2em] transition-all duration-300 shadow-xl shadow-red-950/40 hover:scale-[1.03] active:scale-95 rounded-full"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-              <span>INSCREVER-SE NO CANAL</span>
-            </a>
+              {/* Linha discreta de canal abaixo do player */}
+              <div className="flex items-center justify-between px-1 text-xs text-white/50 font-mono">
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                  ÚLTIMO LANÇAMENTO OFICIAL
+                </span>
+                <span className="uppercase text-[11px] tracking-wider text-[#C4550A]">4K ULTRA HD</span>
+              </div>
+            </div>
+
+            {/* LADO DIREITO: Informações e Breve Descrição do Convidado + Botão para Redes Sociais */}
+            <div className="lg:col-span-5 w-full flex flex-col justify-center text-left">
+              {/* Badge de Convidado */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/35 text-[#C4550A] font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.25em] font-bold w-fit mb-4">
+                <span>CONVIDADO EM DESTAQUE</span>
+                <span className="text-white/40">•</span>
+                <span>EP.14</span>
+              </div>
+
+              {/* Título / Nome do Convidado */}
+              <h2 className="font-barlow-condensed text-3xl sm:text-4xl lg:text-[46px] font-black text-white tracking-tight uppercase leading-[1.04] mb-2">
+                DANIEL SILVA
+              </h2>
+
+              {/* Cargo / Especialidade */}
+              <p className="font-mono text-xs sm:text-[13px] text-[#C4550A] font-bold tracking-[0.2em] uppercase mb-4">
+                ESTRATEGISTA DE NEGÓCIOS &amp; MENTOR EXECUTIVO
+              </p>
+
+              {/* Breve Descrição Editorial do Convidado */}
+              <p className="text-white/70 text-sm sm:text-[15px] font-sans leading-relaxed mb-6">
+                Estrategista de mercado, compositor e mentor de líderes executivos. Neste episódio, Daniel analisa os bastidores do posicionamento comercial, governança para empresas em tração e a construção de autoridade de longo prazo no cenário corporativo brasileiro.
+              </p>
+
+              {/* Tópicos Abordados em Tags Sutis */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {["Posicionamento B2B", "Governança & Escala", "Autoridade Executiva"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-3 py-1 rounded-[8px] bg-white/[0.04] border border-white/10 text-white/60 font-mono text-[11px] uppercase tracking-wider"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Botões de Ação com os Quatro Cantos Arredondados do Daniel Silva */}
+              <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+                {/* Botão Conhecer Redes Sociais do Convidado */}
+                <a
+                  href="https://www.instagram.com/estudioakedah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group"
+                >
+                  <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                  <span>Redes do Convidado</span>
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+
+                {/* Botão Assistir no YouTube */}
+                <a
+                  href="https://www.youtube.com/@EstudioAkedah?sub_confirmation=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-transparent hover:bg-white/10 text-white border border-white/25 hover:border-white/50 font-mono font-bold text-[11px] sm:text-xs uppercase tracking-[0.18em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2 group"
+                >
+                  <svg className="w-4 h-4 fill-current text-red-500 shrink-0" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  <span>Assistir no YouTube</span>
+                </a>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -723,9 +784,9 @@ const Podcast = () => {
                         </p>
                       </div>
 
-                      {/* Botão de Ação Estilo Pílula */}
+                      {/* Botão de Ação com Quatro Cantos Arredondados do Daniel Silva */}
                       <div className="pt-5">
-                        <div className="w-full py-2.5 sm:py-3 px-4 rounded-full border border-white/15 bg-white/[0.04] group-hover:bg-[#C4550A] group-hover:border-[#C4550A] group-hover:text-white text-white text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm">
+                        <div className="w-full py-2.5 sm:py-3 px-4 rounded-[12px] sm:rounded-[14px] border border-white/15 bg-white/[0.04] group-hover:bg-[#C4550A] group-hover:border-[#C4550A] group-hover:text-white text-white text-xs font-mono font-bold tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm">
                           <span>SAIBA MAIS</span>
                           <span className="group-hover:translate-x-1 transition-transform font-bold text-sm">→</span>
                         </div>
@@ -965,13 +1026,13 @@ const Podcast = () => {
               Entre em contato conosco
             </p>
 
-            {/* Botão Único */}
+            {/* Botão Único com Quatro Cantos Arredondados do Daniel Silva */}
             <div>
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-[0.2em] rounded-none shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-mono text-xs font-bold uppercase tracking-[0.2em] rounded-[12px] sm:rounded-[14px] shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
               >
                 <span>FALE COM UM ESPECIALISTA</span>
                 <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>
