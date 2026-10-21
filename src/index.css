@@ -991,4 +991,8 @@ p {
     -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.02) 8%, rgba(0,0,0,0.2) 25%, rgba(0,0,0,0.7) 48%, black 72%);
     mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.02) 8%, rgba(0,0,0,0.2) 25%, rgba(0,0,0,0.7) 48%, black 72%);
   }
+  .mask-feather-podcast-left {
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.02) 8%, rgba(0,0,0,0.2) 25%, rgba(0,0,0,0.7) 48%, black 72%);
+    mask-image: linear-gradient(to left, transparent 0%, rgba(0,0,0,0.02) 8%, rgba(0,0,0,0.2) 25%, rgba(0,0,0,0.7) 48%, black 72%);
+  }
 }
