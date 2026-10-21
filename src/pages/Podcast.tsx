@@ -462,8 +462,8 @@ const Podcast = () => {
                     <span className="text-[#C4550A] block">{heroSlides[heroSlide].titleSub}</span>
                   </h1>
 
-                  {/* Descrição Editorial com Bebas Neue */}
-                  <p className="font-bebas-neue text-white/80 text-lg sm:text-xl md:text-2xl leading-relaxed tracking-wide max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
+                  {/* Descrição Editorial com Bebas Neue em versão Regular */}
+                  <p className="font-bebas-neue font-normal text-white/80 text-base sm:text-lg md:text-xl leading-relaxed tracking-wide max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
                     {heroSlides[heroSlide].descricao}
                   </p>
 
@@ -588,13 +588,13 @@ const Podcast = () => {
                 DANIEL SILVA
               </h2>
 
-              {/* Cargo / Especialidade com Bebas Neue */}
-              <p className="font-bebas-neue text-base sm:text-lg text-[#C4550A] tracking-[0.12em] uppercase mb-4">
+              {/* Cargo / Especialidade com Bebas Neue Regular */}
+              <p className="font-bebas-neue font-normal text-base sm:text-lg text-[#C4550A] tracking-[0.12em] uppercase mb-4">
                 ESTRATEGISTA DE NEGÓCIOS &amp; MENTOR EXECUTIVO
               </p>
 
-              {/* Breve Descrição Editorial do Convidado com Bebas Neue */}
-              <p className="font-bebas-neue text-white/75 text-base sm:text-lg leading-relaxed tracking-wide mb-8">
+              {/* Breve Descrição Editorial do Convidado com Bebas Neue Regular */}
+              <p className="font-bebas-neue font-normal text-white/75 text-base sm:text-lg leading-relaxed tracking-wide mb-8">
                 Estrategista de mercado, compositor e mentor de líderes executivos. Neste episódio, Daniel analisa os bastidores do posicionamento comercial, governança para empresas em tração e a construção de autoridade de longo prazo no cenário corporativo brasileiro.
               </p>
 
@@ -756,8 +756,8 @@ const Podcast = () => {
                           {card.guestName}
                         </h3>
 
-                        {/* Tema do Episódio com Bebas Neue */}
-                        <p className="font-bebas-neue text-sm sm:text-base text-white/70 leading-snug line-clamp-2 tracking-wide">
+                        {/* Tema do Episódio com Bebas Neue Regular */}
+                        <p className="font-bebas-neue font-normal text-sm sm:text-base text-white/70 leading-snug line-clamp-2 tracking-wide">
                           {card.topic}
                         </p>
                       </div>
@@ -797,7 +797,7 @@ const Podcast = () => {
               <h2 className="font-darken-jellybean text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-normal text-white tracking-tight uppercase leading-[1.04]">
                 PATROCINADORES <span className="font-podcast text-[#C4550A] lowercase text-[1.15em] ml-2 font-normal">oficiais</span>
               </h2>
-              <p className="text-white/75 text-base sm:text-lg md:text-xl font-bebas-neue mt-3 max-w-xl mx-auto leading-relaxed tracking-wide">
+              <p className="text-white/75 text-base sm:text-lg font-bebas-neue font-normal mt-3 max-w-xl mx-auto leading-relaxed tracking-wide">
                 Empresas e marcas visionárias que caminham junto ao Akedah Podcast, conectando suas soluções a uma audiência qualificada e tomadores de decisão.
               </p>
             </div>
@@ -853,7 +853,7 @@ const Podcast = () => {
                 <h3 className="font-darken-jellybean text-2xl sm:text-3xl font-normal text-white tracking-tight leading-snug uppercase">
                   Sua marca no canal de quem decide o mercado.
                 </h3>
-                <p className="text-white/70 text-sm sm:text-base font-bebas-neue mt-1.5 leading-relaxed max-w-lg tracking-wide">
+                <p className="text-white/70 text-sm sm:text-base font-bebas-neue font-normal mt-1.5 leading-relaxed max-w-lg tracking-wide">
                   Posicione seus produtos e serviços diante de diretores, empresários e líderes do setor corporativo em produções 4K de alta retenção.
                 </p>
               </div>
@@ -992,7 +992,7 @@ const Podcast = () => {
             </h2>
 
             {/* Linha de baixo em texto menor com Bebas Neue */}
-            <p className="text-[#8A827D] text-lg sm:text-xl md:text-2xl font-bebas-neue tracking-wide max-w-xl mb-10 leading-relaxed">
+            <p className="text-[#8A827D] text-base sm:text-lg md:text-xl font-bebas-neue font-normal tracking-wide max-w-xl mb-10 leading-relaxed">
               Entre em contato conosco
             </p>
 

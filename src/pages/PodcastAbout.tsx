@@ -85,7 +85,7 @@ const PodcastTimelineStep = ({ step, idx }: { step: typeof podcastTimelineSteps[
           <p
             className={`text-white/70 text-[16px] md:text-[18px] leading-relaxed max-w-md ${
               idx % 2 === 0 ? "" : "md:ml-auto"
-            } font-bebas-neue tracking-wide`}
+            } font-bebas-neue font-normal tracking-wide`}
           >
             {step.description}
           </p>
@@ -139,7 +139,7 @@ const PodcastAbout = () => {
                   <span className="block font-podcast text-[#C4550A] capitalize text-[1.1em]">História</span>
                 </h1>
 
-                <p className="font-bebas-neue text-white/70 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-xl text-left tracking-wide">
+                <p className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left tracking-wide">
                   O Akedah Podcast nasceu para ser a principal mesa de debates de negócios, estratégia e crescimento real, unindo conversas profundas com grandes líderes e produção cinematográfica.
                 </p>
               </motion.div>
@@ -165,7 +165,7 @@ const PodcastAbout = () => {
                 Estrutura do Podcast
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white/70 text-base md:text-lg leading-relaxed font-bebas-neue tracking-wide">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white/70 text-base md:text-lg leading-relaxed font-bebas-neue font-normal tracking-wide">
                 <p>
                   Nossa mesa de gravação conta com microfones Shure SM7B broadcast com processamento dinâmico em tempo real, garantindo voz limpa, encorpada e presença imersiva para o ouvinte.
                 </p>
@@ -203,7 +203,7 @@ const PodcastAbout = () => {
                 <h2 className="font-darken-jellybean text-4xl md:text-6xl font-normal mb-8 text-white">
                   O que representa o <span className="font-podcast text-[#C4550A] capitalize">Podcast</span>?
                 </h2>
-                <p className="text-white/70 text-xl md:text-2xl leading-relaxed font-bebas-neue tracking-wide">
+                <p className="text-white/70 text-lg md:text-xl leading-relaxed font-bebas-neue font-normal tracking-wide">
                   "O Akedah Podcast é o ponto de encontro entre o campo de batalha empresarial e a autoridade em vídeo. Aqui não há teorias vazias: apenas quem vive o negócio e entrega valor real."
                 </p>
               </div>
@@ -238,7 +238,7 @@ const PodcastAbout = () => {
                   <h2 className="font-darken-jellybean text-[40px] md:text-[76px] font-normal text-white leading-[0.92] tracking-tight mb-8">
                     Da primeira bancada <br /> à <span className="font-podcast text-[#C4550A] capitalize text-[1.1em]">grande audiência</span>.
                   </h2>
-                  <p className="text-white/60 text-base md:text-lg font-bebas-neue max-w-2xl mx-auto leading-relaxed tracking-wide">
+                  <p className="text-white/60 text-base md:text-lg font-bebas-neue font-normal max-w-2xl mx-auto leading-relaxed tracking-wide">
                     A trajetória do Akedah Podcast construída episódio a episódio com grandes convidados.
                   </p>
                 </motion.div>
@@ -277,7 +277,7 @@ const PodcastAbout = () => {
               <h2 className="font-darken-jellybean text-3xl md:text-4xl font-normal tracking-tight text-white">
                 Apresentação por <span className="font-podcast text-[#C4550A] capitalize">Daniel Silva</span>
               </h2>
-              <div className="space-y-6 text-white/70 leading-relaxed text-base md:text-lg font-bebas-neue tracking-wide">
+              <div className="space-y-6 text-white/70 leading-relaxed text-base md:text-lg font-bebas-neue font-normal tracking-wide">
                 <p>
                   Com anos de vivência no centro das decisões comerciais e estratégicas de negócios, Daniel Silva conduz cada episódio extraindo insights práticos, desafios superados e metodologias que funcionam.
                 </p>

@@ -134,7 +134,7 @@ const PodcastContact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-bebas-neue text-white/70 text-lg sm:text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto tracking-wide"
+                className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto tracking-wide"
               >
                 Conecte sua marca à nossa audiência qualificada, solicite o mídia kit de patrocínios ou envie sugestões de pautas e convidados.
               </motion.p>
@@ -191,7 +191,7 @@ const PodcastContact = () => {
                       <p className="font-bebas-neue text-lg sm:text-xl text-[#C4550A] mb-2 group-hover:text-[#F07A28] tracking-wider transition-colors">
                         {channel.handle}
                       </p>
-                      <p className="font-bebas-neue text-white/70 text-base sm:text-lg leading-relaxed tracking-wide">
+                      <p className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg leading-relaxed tracking-wide">
                         {channel.description}
                       </p>
                     </div>
@@ -221,7 +221,7 @@ const PodcastContact = () => {
                   <h3 className="font-darken-jellybean text-[22px] sm:text-[24px] font-normal text-white uppercase tracking-tight mb-2">
                     ESTÚDIO DE GRAVAÇÃO & SEDE
                   </h3>
-                  <p className="font-bebas-neue text-white/70 text-base sm:text-lg leading-relaxed max-w-xl tracking-wide">
+                  <p className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg leading-relaxed max-w-xl tracking-wide">
                     São Paulo, SP — Infraestrutura com setup multicâmera 4K HDR, iluminação cinematográfica, microfones broadcast e curadoria executiva para produções de alto valor.
                   </p>
                 </div>

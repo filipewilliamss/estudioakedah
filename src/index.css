@@ -33,7 +33,7 @@
 @font-face {
   font-family: 'Bebas Neue';
   src: url('/font/BebasNeue-Regular.otf') format('opentype');
-  font-weight: 100 900;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -41,7 +41,7 @@
 @font-face {
   font-family: 'BebasNeue';
   src: url('/font/BebasNeue-Regular.otf') format('opentype');
-  font-weight: 100 900;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -52,6 +52,24 @@
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
+}
+
+/* Bebas Neue - Versão Regular autêntica nos corpos de texto (sem faux-bolding / stroke sintético) */
+.font-bebas-neue,
+[class*="font-bebas"] {
+  font-family: 'Bebas Neue', 'BebasNeue', sans-serif;
+  font-synthesis: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Corpos de texto: renderizar estritamente em versão regular (weight 400) */
+p.font-bebas-neue,
+p[class*="font-bebas"],
+.font-bebas-neue p,
+.font-bebas-regular {
+  font-weight: 400 !important;
+  font-synthesis: none !important;
 }
 
 @tailwind base;
