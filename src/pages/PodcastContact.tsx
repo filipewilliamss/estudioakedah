@@ -5,7 +5,6 @@ import {
   MapPin, 
   ArrowUpRight, 
   Clock,
-  Sparkles,
   Radio
 } from "lucide-react";
 import SEO from "@/components/SEO";
@@ -120,17 +119,6 @@ const PodcastContact = () => {
 
             {/* Header / Hero */}
             <div className="text-center max-w-4xl mx-auto mb-20 md:mb-28">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#C4550A]/30 bg-[#C4550A]/10 backdrop-blur-md mb-8"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-[#C4550A] animate-pulse" />
-                <span className="text-[#C4550A] font-mono text-[11px] md:text-[12px] uppercase tracking-[0.3em] font-bold">
-                  COMERCIAL & CURADORIA
-                </span>
-              </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 25 }}
