@@ -583,13 +583,6 @@ const Podcast = () => {
 
             {/* LADO DIREITO: Informações e Breve Descrição do Convidado + Botão para Redes Sociais */}
             <div className="lg:col-span-5 w-full flex flex-col justify-center text-left">
-              {/* Badge de Convidado */}
-              <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/35 text-[#C4550A] font-bebas-neue text-xs sm:text-sm uppercase tracking-[0.18em] w-fit mb-4">
-                <span>CONVIDADO EM DESTAQUE</span>
-                <span className="text-white/40">•</span>
-                <span>EP.14</span>
-              </div>
-
               {/* Título / Nome do Convidado com Darken Jellybean */}
               <h2 className="font-darken-jellybean text-3xl sm:text-4xl lg:text-[44px] font-normal text-white tracking-tight uppercase leading-[1.04] mb-2">
                 DANIEL SILVA
@@ -601,21 +594,9 @@ const Podcast = () => {
               </p>
 
               {/* Breve Descrição Editorial do Convidado com Bebas Neue */}
-              <p className="font-bebas-neue text-white/75 text-base sm:text-lg leading-relaxed tracking-wide mb-6">
+              <p className="font-bebas-neue text-white/75 text-base sm:text-lg leading-relaxed tracking-wide mb-8">
                 Estrategista de mercado, compositor e mentor de líderes executivos. Neste episódio, Daniel analisa os bastidores do posicionamento comercial, governança para empresas em tração e a construção de autoridade de longo prazo no cenário corporativo brasileiro.
               </p>
-
-              {/* Tópicos Abordados em Tags Sutis com Bebas Neue */}
-              <div className="flex flex-wrap gap-2 mb-8">
-                {["Posicionamento B2B", "Governança & Escala", "Autoridade Executiva"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-[8px] bg-white/[0.04] border border-white/10 text-white/70 font-bebas-neue text-sm sm:text-base uppercase tracking-wider"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
 
               {/* Botões de Ação com os Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
               <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
@@ -658,9 +639,6 @@ const Podcast = () => {
           {/* Header da Seção: Alinhado à esquerda com Controles à direita (sem linhas divisórias arbitrárias) */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
             <div className="flex flex-col items-start max-w-2xl">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/40 text-[#C4550A] text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.2em] mb-3 shadow-sm">
-                PROGRAMAÇÃO // AGENDA
-              </span>
               <h2 className="font-darken-jellybean text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-normal text-white tracking-tight uppercase leading-[1.04]">
                 PRÓXIMAS ESTREIAS CONFIRMADAS.
               </h2>
@@ -816,9 +794,6 @@ const Podcast = () => {
           <div className="w-full relative z-10 flex flex-col items-center text-center">
             {/* Header da Seção Centralizado */}
             <div className="mb-10 sm:mb-12 max-w-2xl mx-auto">
-              <span className="inline-block px-3.5 py-1 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/40 text-[#C4550A] text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.2em] mb-3 shadow-sm">
-                PARCERIAS DE VALOR // MARCAS PARCEIRAS
-              </span>
               <h2 className="font-darken-jellybean text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-normal text-white tracking-tight uppercase leading-[1.04]">
                 PATROCINADORES <span className="font-podcast text-[#C4550A] lowercase text-[1.15em] ml-2 font-normal">oficiais</span>
               </h2>
@@ -1010,11 +985,6 @@ const Podcast = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
 
           <div className="flex flex-col items-center">
-            {/* Tag Monolítica Superior com Bebas Neue */}
-            <span className="font-bebas-neue text-xs sm:text-sm tracking-[0.25em] uppercase text-[#C4550A] mb-4 block">
-              // CONVITE EXCLUSIVO
-            </span>
-
             {/* Título Monumental com Darken Jellybean e variação em Podcast */}
             <h2 className="font-darken-jellybean text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-white uppercase tracking-tight leading-[0.92] max-w-4xl mb-4">
               QUER SER NOSSO <br />
