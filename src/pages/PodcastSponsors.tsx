@@ -5,13 +5,6 @@ import Navbar from "@/components/Navbar";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import { WHATSAPP_URL } from "@/data/services";
 
-// Imagens de fundo temáticas com estética cinematográfica igual à Hero da Home
-import imgStudioAkedah from "@/assets/akedah-podcast-studio.jpg";
-import imgPodcastAoVivo from "@/assets/podcast/hero-podcast-aovivo.jpg";
-import imgFecar from "@/assets/podcast/hero-podcast-patrocinador.jpg";
-import imgTabernaculo from "@/assets/tabernaculo-pagina-2.webp";
-import imgStudioMusica from "@/assets/daniel/daniel-hero-musica.png";
-
 // Os 5 Logotipos Oficiais de Patrocinadores (os mesmos do site Daniel Silva)
 import logoEstudioAkedah from "@/assets/patrocinadores/logo-estudio-akedah.png";
 import logoAkedahPodcast from "@/assets/patrocinadores/logo-akedah-podcast.png";
@@ -26,11 +19,9 @@ interface SponsorBoard {
   titleMain: string;
   titleSub: string;
   description: string;
-  bgImage: string;
-  imgPos: string;
   logo: string;
   logoAlt: string;
-  logoClass: string;
+  logoSizeClass: string;
   websiteUrl: string;
   actionText: string;
   orientation: "logo-right" | "logo-left"; // Intercalado
@@ -45,14 +36,12 @@ const sponsorsData: SponsorBoard[] = [
     titleSub: "PRODUÇÃO & INFRAESTRUTURA",
     description:
       "Estúdio de alta performance para gravações corporativas, podcasts em 4K HDR e produções audiovisuais cinematográficas. Infraestrutura técnica de ponta e curadoria estratégica para grandes marcas e líderes.",
-    bgImage: imgStudioAkedah,
-    imgPos: "object-center md:object-[center_35%]",
     logo: logoEstudioAkedah,
     logoAlt: "Estúdio Akedah",
-    logoClass: "h-[36px] sm:h-[44px] md:h-[50px]",
+    logoSizeClass: "max-w-[280px] sm:max-w-[380px] md:max-w-[440px] lg:max-w-[500px] xl:max-w-[540px]",
     websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Est%C3%BAdio%20Akedah%20atrav%C3%A9s%20do%20Podcast`,
     actionText: "Conhecer o Estúdio",
-    orientation: "logo-right", // 1: Imagem de fundo à Direita, Texto/Logo à Esquerda
+    orientation: "logo-right", // 1: Texto à Esquerda, Logotipo à Direita
   },
   {
     id: "akedah-podcast",
@@ -62,14 +51,12 @@ const sponsorsData: SponsorBoard[] = [
     titleSub: "A MESA DE QUEM DECIDE",
     description:
       "O canal definitivo onde empresários, diretores e grandes realizadores debatem estratégia, negócios e governança sem filtro. Autoridade e alcance qualificado diante dos tomadores de decisão do mercado corporativo.",
-    bgImage: imgPodcastAoVivo,
-    imgPos: "object-center md:object-[center_30%]",
     logo: logoAkedahPodcast,
     logoAlt: "Akedah Podcast",
-    logoClass: "h-[46px] sm:h-[54px] md:h-[62px]",
-    websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20Akedah%20Podcast`,
+    logoSizeClass: "max-w-[240px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px]",
+    websiteUrl: "https://www.youtube.com/@EstudioAkedah",
     actionText: "Assistir ao Podcast",
-    orientation: "logo-left", // 2: Imagem de fundo à Esquerda, Texto/Logo à Direita
+    orientation: "logo-left", // 2: Logotipo à Esquerda, Texto à Direita
   },
   {
     id: "fecar",
@@ -79,14 +66,12 @@ const sponsorsData: SponsorBoard[] = [
     titleSub: "MULTIMARCAS",
     description:
       "Com sólida credibilidade no segmento automotivo de luxo e utilitários, a FE-CAR Multimarcas entrega curadoria rigorosa de procedência, pós-venda exemplar e assessoria completa em compras corporativas e veículos de alto padrão.",
-    bgImage: imgFecar,
-    imgPos: "object-center md:object-[center_40%]",
     logo: logoFecar,
     logoAlt: "FE-CAR Multimarcas",
-    logoClass: "h-[38px] sm:h-[46px] md:h-[54px]",
+    logoSizeClass: "max-w-[260px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px]",
     websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20a%20FE-CAR%20Multimarcas%20atrav%C3%A9s%20do%20Akedah%20Podcast`,
     actionText: "Conhecer a FE-CAR",
-    orientation: "logo-right", // 3: Imagem de fundo à Direita, Texto/Logo à Esquerda
+    orientation: "logo-right", // 3: Texto à Esquerda, Logotipo à Direita
   },
   {
     id: "tabernaculo",
@@ -96,14 +81,12 @@ const sponsorsData: SponsorBoard[] = [
     titleSub: "DA TRINDADE",
     description:
       "Fundamentada em princípios inegociáveis de fé, integridade e acolhimento familiar, a instituição lidera projetos humanitários de grande alcance, formação de valores éticos e iniciativas contínuas de transformação social.",
-    bgImage: imgTabernaculo,
-    imgPos: "object-center md:object-[center_25%]",
     logo: logoTabernaculo,
     logoAlt: "Tabernáculo da Trindade",
-    logoClass: "h-[40px] sm:h-[48px] md:h-[56px]",
+    logoSizeClass: "max-w-[260px] sm:max-w-[360px] md:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px]",
     websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Tabern%C3%A1culo%20da%20Trindade`,
     actionText: "Conhecer a Instituição",
-    orientation: "logo-left", // 4: Imagem de fundo à Esquerda, Texto/Logo à Direita
+    orientation: "logo-left", // 4: Logotipo à Esquerda, Texto à Direita
   },
   {
     id: "studio",
@@ -113,14 +96,12 @@ const sponsorsData: SponsorBoard[] = [
     titleSub: "ENGENHARIA DE SOM & MASTER",
     description:
       "Engenharia sonora avançada, produção musical, pós-produção acústica e identidade auditiva corporativa. Criação de trilhas originais, mixagem e masterização para produções de altíssimo padrão e impacto emocional.",
-    bgImage: imgStudioMusica,
-    imgPos: "object-center md:object-[center_35%]",
     logo: logoHorizontalSimbolo,
     logoAlt: "Studio",
-    logoClass: "h-[40px] sm:h-[48px] md:h-[56px]",
+    logoSizeClass: "max-w-[240px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px] xl:max-w-[460px]",
     websiteUrl: `${WHATSAPP_URL}&text=Ol%C3%A1%2C%20gostaria%20de%20conhecer%20o%20Studio%20atrav%C3%A9s%20do%20Akedah%20Podcast`,
     actionText: "Conhecer o Studio",
-    orientation: "logo-right", // 5: Imagem de fundo à Direita, Texto/Logo à Esquerda
+    orientation: "logo-right", // 5: Texto à Esquerda, Logotipo à Direita
   },
 ];
 
@@ -237,7 +218,7 @@ const PodcastSponsors = () => {
 
       <Navbar isPodcastPage={true} />
 
-      {/* Atmosfera Moderna de Fundo: Granulação sutil, gradientes quentes */}
+      {/* Atmosfera Moderna de Fundo: Granulação sutil e gradientes quentes (#1C0F0A) */}
       <PodcastAtmosphere />
 
       {/* Indicador Flutuante Lateral no Desktop (Navegação Rápida entre as 5 Pranchetas + CTA) */}
@@ -304,92 +285,60 @@ const PodcastSponsors = () => {
             <section
               key={sponsor.id}
               id={sponsor.id}
-              className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 md:snap-start md:snap-always"
+              className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 md:snap-start md:snap-always px-6 sm:px-10 md:px-16 lg:px-24 xl:px-28 py-20 md:py-0"
             >
-              {/* ========================================================================= */}
-              {/* LAYER 1: PALCO VISUAL CINEMATOGRÁFICO COM IMAGEM DE FUNDO PURA (SEM CARD)  */}
-              {/* ========================================================================= */}
-              <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                {isLogoRight ? (
-                  // Posicionamento da Imagem de Fundo à DIREITA
-                  <>
-                    <div className="absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-end mask-feather-mobile-bottom mask-feather-podcast">
-                      <img
-                        src={sponsor.bgImage}
-                        alt={sponsor.titleMain}
-                        className={`w-full h-full object-cover ${sponsor.imgPos} filter contrast-[1.08] brightness-[0.92]`}
-                        loading="lazy"
-                      />
-                    </div>
+              {/* Glow quente atmosférico motivado */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.12)_0%,_rgba(217,119,6,0.03)_50%,_transparent_72%)] blur-3xl pointer-events-none z-0" />
 
-                    {/* Degradê Dark Terracota: contínuo, ultra suave e sem linhas demarcadas */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
+              {/* Grid de 2 Colunas: Palco do Logotipo Intercalado com o Bloco Editorial */}
+              <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-10 sm:gap-12 md:gap-12 lg:gap-16 relative z-10">
+                
+                {/* ========================================================================= */}
+                {/* PALCO VISUAL: O LOGOTIPO OFICIAL NO LUGAR DA IMAGEM (SEM CARDZINHO)       */}
+                {/* ========================================================================= */}
+                <div
+                  className={`w-full md:w-1/2 flex items-center justify-center relative py-8 sm:py-10 md:py-14 ${
+                    isLogoRight ? "order-1 md:order-2" : "order-1 md:order-1"
+                  }`}
+                >
+                  {/* Spotlight radial concentrada exclusivamente no logotipo */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[420px] md:w-[480px] lg:w-[540px] h-[220px] sm:h-[300px] md:h-[340px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.24)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-2xl pointer-events-none" />
 
-                    {/* Glow Terracota Quente motivado */}
-                    <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
-                  </>
-                ) : (
-                  // Posicionamento da Imagem de Fundo à ESQUERDA (Intercalado)
-                  <>
-                    <div className="absolute inset-0 md:inset-auto md:left-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-start mask-feather-mobile-bottom mask-feather-podcast-left">
-                      <img
-                        src={sponsor.bgImage}
-                        alt={sponsor.titleMain}
-                        className={`w-full h-full object-cover ${sponsor.imgPos} filter contrast-[1.08] brightness-[0.92]`}
-                        loading="lazy"
-                      />
-                    </div>
-
-                    {/* Degradê Dark Terracota: contínuo vindo da direita */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-l md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
-
-                    {/* Glow Terracota Quente motivado */}
-                    <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
-                  </>
-                )}
-
-                {/* Overlay sutil em desktop */}
-                <div className="hidden md:block absolute inset-0 bg-[#1C0F0A]/40 md:bg-transparent z-10 pointer-events-none" />
-
-                {/* Degradês verticais suaves exclusivos para desktop */}
-                <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent via-65% to-[#1C0F0A]/40 z-10 pointer-events-none" />
-              </div>
-
-              {/* ========================================================================= */}
-              {/* LAYER 2: CONTEÚDO EDITORIAL COM O LOGOTIPO OFICIAL DO DANIEL SILVA        */}
-              {/* ========================================================================= */}
-              <div
-                className={`relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-28 sm:pt-28 md:pt-20 pb-16 sm:pb-12 md:pb-8 flex ${
-                  isLogoRight ? "justify-start" : "justify-start md:justify-end"
-                }`}
-              >
-                <div className="max-w-3xl text-left flex flex-col items-start w-full">
-                  {/* Logotipo Oficial do Patrocinador (sem cardzinho em volta) */}
-                  <div className="mb-6 flex items-center justify-start">
+                  {/* O Logotipo Oficial em alta escala e nitidez total */}
+                  <div className="relative z-10 flex items-center justify-center w-full px-4 sm:px-8 py-6 sm:py-8 group">
                     <img
                       src={sponsor.logo}
                       alt={sponsor.logoAlt}
-                      className={`${sponsor.logoClass} w-auto object-contain filter brightness-[1.08] contrast-[1.05] drop-shadow-[0_8px_20px_rgba(0,0,0,0.5)]`}
+                      className={`${sponsor.logoSizeClass} w-auto h-auto object-contain filter brightness-[1.08] contrast-[1.05] drop-shadow-[0_16px_36px_rgba(0,0,0,0.7)] group-hover:scale-105 group-hover:brightness-115 transition-all duration-500 pointer-events-none select-none`}
                     />
                   </div>
+                </div>
 
-                  {/* Badge do Card */}
+                {/* ========================================================================= */}
+                {/* CONTEÚDO EDITORIAL: TÍTULO, DESCRIÇÃO, BOTÕES E INDICADORES               */}
+                {/* ========================================================================= */}
+                <div
+                  className={`w-full md:w-1/2 flex flex-col items-start text-left ${
+                    isLogoRight ? "order-2 md:order-1" : "order-2 md:order-2"
+                  }`}
+                >
+                  {/* Badge de Cota de Patrocínio */}
                   <span className="px-3.5 py-1.5 rounded-full bg-[#C4550A]/15 border border-[#C4550A]/35 text-[#C4550A] font-bebas-neue text-xs sm:text-sm uppercase tracking-[0.2em] mb-4 sm:mb-5 inline-block">
                     {sponsor.badge}
                   </span>
 
                   {/* Título Principal com Darken Jellybean */}
-                  <h1 className="font-darken-jellybean text-[36px] xs:text-[44px] sm:text-[60px] md:text-[76px] lg:text-[88px] font-normal leading-[1.0] sm:leading-[0.95] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                  <h1 className="font-darken-jellybean text-[36px] xs:text-[44px] sm:text-[56px] md:text-[68px] lg:text-[78px] xl:text-[84px] font-normal leading-[1.0] sm:leading-[0.95] tracking-tight uppercase mb-4 sm:mb-5 text-left">
                     <span className="block text-white">{sponsor.titleMain}</span>
                     <span className="text-[#C4550A] block">{sponsor.titleSub}</span>
                   </h1>
 
-                  {/* Descrição Editorial com Bebas Neue em versão Regular */}
+                  {/* Descrição Editorial com Bebas Neue em versão Book */}
                   <p className="font-bebas-neue font-normal text-white/80 text-base sm:text-lg md:text-xl leading-relaxed tracking-wide max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
                     {sponsor.description}
                   </p>
 
-                  {/* Botões de Ação com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
+                  {/* Botões de Ação com Quatro Cantos Arredondados e Bebas Neue */}
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
                     <a
                       href={sponsor.websiteUrl}
@@ -419,7 +368,7 @@ const PodcastSponsors = () => {
                         key={s.id}
                         type="button"
                         onClick={() => scrollToSection(s.id)}
-                        className={`h-1.5 transition-all duration-300 ${
+                        className={`h-1.5 transition-all duration-300 cursor-pointer ${
                           idx === sIdx
                             ? "w-8 bg-[#C4550A] ring-1 ring-[#C4550A]/50"
                             : "w-2.5 bg-white/25 hover:bg-white/60"
@@ -429,11 +378,12 @@ const PodcastSponsors = () => {
                     ))}
                   </div>
                 </div>
+
               </div>
 
               {/* Indicador de Próximo Patrocinador / Scroll no Rodapé da Prancheta */}
               {nextSponsor ? (
-                <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-auto">
+                <div className="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-auto">
                   <button
                     type="button"
                     onClick={() => scrollToSection(nextSponsor.id)}
@@ -447,7 +397,7 @@ const PodcastSponsors = () => {
                   </button>
                 </div>
               ) : (
-                <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-auto">
+                <div className="absolute bottom-3 sm:bottom-5 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-auto">
                   <button
                     type="button"
                     onClick={() => scrollToSection("cta-final")}
