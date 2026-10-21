@@ -19,7 +19,7 @@ const podcastNavLinks: NavItem[] = [
   { label: "Nossa história", to: "/podcast/sobre" },
   { label: "Último Episódio", hash: "destaque", to: "/podcast#destaque" },
   { label: "Programação", hash: "calendario", to: "/podcast#calendario" },
-  { label: "Patrocinadores", hash: "patrocinadores", to: "/podcast#patrocinadores" },
+  { label: "Patrocinadores", to: "/podcast/patrocinadores" },
   { label: "Contato", to: "/podcast/contato" },
 ];
 
