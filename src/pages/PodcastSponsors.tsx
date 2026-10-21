@@ -127,6 +127,24 @@ const sponsorsData: SponsorBoard[] = [
 const PodcastSponsors = () => {
   const [activeBoard, setActiveBoard] = useState(0);
 
+  // Habilitar visualização de prancheta com scroll-snap apenas em telas desktop (>= 768px) igual ao site Daniel Silva
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        document.documentElement.classList.add("snap-y", "snap-proximity", "scroll-smooth");
+      } else {
+        document.documentElement.classList.remove("snap-y", "snap-proximity");
+        document.documentElement.classList.add("scroll-smooth");
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      document.documentElement.classList.remove("snap-y", "snap-proximity", "scroll-smooth");
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
 
@@ -142,6 +160,14 @@ const PodcastSponsors = () => {
           }
         }
       });
+      const ctaEl = document.getElementById("cta-final");
+      if (ctaEl) {
+        const top = ctaEl.offsetTop;
+        const height = ctaEl.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          setActiveBoard(sponsorsData.length);
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -161,7 +187,7 @@ const PodcastSponsors = () => {
       {/* Atmosfera Moderna de Fundo: Granulação sutil, gradientes quentes */}
       <PodcastAtmosphere />
 
-      {/* Indicador Flutuante Lateral no Desktop (Navegação Rápida entre as 5 Pranchetas) */}
+      {/* Indicador Flutuante Lateral no Desktop (Navegação Rápida entre as 5 Pranchetas + CTA) */}
       <aside 
         aria-label="Navegador de Patrocinadores"
         className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-3.5 bg-black/50 backdrop-blur-md p-3 rounded-full border border-white/10 shadow-2xl"
@@ -188,6 +214,24 @@ const PodcastSponsors = () => {
             </a>
           );
         })}
+
+        {/* Marcador da Seção Final */}
+        <a
+          href="#cta-final"
+          className="group relative flex items-center justify-end"
+          aria-label="Ir para Seja Patrocinador"
+        >
+          <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-bebas-neue tracking-widest uppercase text-[#C4550A] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
+            ★ SEJA PATROCINADOR
+          </span>
+          <span
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              activeBoard === sponsorsData.length
+                ? "bg-[#C4550A] scale-125 shadow-[0_0_12px_rgba(196,85,10,0.8)]"
+                : "bg-white/20 group-hover:bg-[#C4550A]"
+            }`}
+          />
+        </a>
       </aside>
 
       <main className="relative z-10">
@@ -199,7 +243,7 @@ const PodcastSponsors = () => {
             <section
               key={sponsor.id}
               id={sponsor.id}
-              className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 py-28 md:py-0 snap-start"
+              className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 md:px-16 lg:px-20 xl:px-28 py-28 md:py-0 md:snap-start md:snap-always"
             >
               {/* Layer 1: Ambient Backdrop & Dynamic Warm Spotlight */}
               <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -389,7 +433,7 @@ const PodcastSponsors = () => {
         {/* ========================================================================= */}
         <section
           id="cta-final"
-          className="relative py-28 sm:py-36 px-6 sm:px-10 lg:px-16 max-w-7xl mx-auto text-center overflow-hidden"
+          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#0C0704] border-b border-white/10 px-6 sm:px-10 lg:px-16 text-center md:snap-start md:snap-always"
         >
           {/* Spotlight Quente Motivada */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
