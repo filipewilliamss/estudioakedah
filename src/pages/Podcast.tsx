@@ -8,10 +8,12 @@ import IrisPreloader from "@/components/podcast/IrisPreloader";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
 import founderPicture from "@/assets/akedah-founder.jpg";
 import danielPicture from "@/assets/imagem-daniel.webp";
+import { ChevronDown } from "lucide-react";
 import heroPodcastWelcome from "@/assets/podcast/hero-podcast-welcome.jpg";
 import heroPodcastPatrocinador from "@/assets/podcast/hero-podcast-patrocinador.jpg";
 import heroPodcastAoVivo from "@/assets/podcast/hero-podcast-aovivo.jpg";
 import heroPodcastDaniel from "@/assets/podcast/hero-podcast-daniel.jpg";
+import heroDanielYoutube from "@/assets/daniel/daniel-hero-youtube.jpg";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
 // 4 Cards da Hero Section com rotação automática a cada 5s (estilo editorial de alto impacto com paleta Akedah)
@@ -254,12 +256,100 @@ const agendaPodcastCards = [
   ],
 ];
 
-// 4 Pranchetas em tela cheia do Akedah Podcast
+// 4 Seções Adicionais estilo Hero com imagens cinematográficas intercaladas
+interface PodcastEditorialCard {
+  id: string;
+  number: string;
+  navLabel: string;
+  badge: string;
+  titleMain: string;
+  titleSub: string;
+  description: string;
+  btnPrimary: { text: string; href: string; external?: boolean };
+  btnSecondary: { text: string; href: string; external?: boolean };
+  image: string;
+  imgPos?: string;
+  alt: string;
+  orientation: "image-right" | "image-left";
+}
+
+const podcastEditorialCards: PodcastEditorialCard[] = [
+  {
+    id: "infraestrutura",
+    number: "04",
+    navLabel: "Infraestrutura",
+    badge: "TECNOLOGIA & BROADCAST // CAPTAÇÃO 4K HDR",
+    titleMain: "ESTÚDIO ACÚSTICO &",
+    titleSub: "TECNOLOGIA BROADCAST",
+    description:
+      "Infraestrutura técnica de ponta com captação multicâmera 4K HDR, iluminação cênica cinematográfica e microfonação de alta fidelidade. O cenário perfeito para diálogos de alta relevância com estética de cinema.",
+    btnPrimary: { text: "Conhecer o Estúdio", href: "/podcast/sobre" },
+    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: studioBannerImg,
+    imgPos: "object-center md:object-[center_35%]",
+    alt: "Infraestrutura do Estúdio Akedah Podcast",
+    orientation: "image-right",
+  },
+  {
+    id: "host",
+    number: "05",
+    navLabel: "O Apresentador",
+    badge: "CONDUÇÃO ESTRATÉGICA // VISÃO EXECUTIVA",
+    titleMain: "DANIEL SILVA",
+    titleSub: "APRESENTADOR & HOST",
+    description:
+      "Conduzido por Daniel Silva — estrategista de negócios, mentor corporativo e conselheiro consultivo. Entrevistas profundas com perguntas cirúrgicas, explorando a mente e as práticas dos maiores líderes do mercado.",
+    btnPrimary: { text: "Conhecer Daniel Silva", href: "/daniel-silva" },
+    btnSecondary: { text: "Falar com Assessoria", href: WHATSAPP_URL, external: true },
+    image: heroPodcastDaniel,
+    imgPos: "object-[center_20%] md:object-[center_15%]",
+    alt: "Daniel Silva - Host e Apresentador do Akedah Podcast",
+    orientation: "image-left",
+  },
+  {
+    id: "patrocinio",
+    number: "06",
+    navLabel: "Patrocínios",
+    badge: "CONEXÃO COM QUEM DECIDE // AUTORIDADE CORPORATIVA",
+    titleMain: "SEJA UM",
+    titleSub: "PATROCINADOR OFICIAL",
+    description:
+      "Associe sua marca à maior mesa de negócios e estratégia executiva. Alcance direto e qualificado diante de diretores, investidores e tomadores de decisão com cotas de alta visibilidade e autoridade.",
+    btnPrimary: { text: "Ver Patrocinadores", href: "/podcast/patrocinadores" },
+    btnSecondary: { text: "Mídia Kit no WhatsApp", href: WHATSAPP_URL, external: true },
+    image: heroPodcastPatrocinador,
+    imgPos: "object-[center_30%] md:object-[center_25%]",
+    alt: "Patrocínios e Parcerias no Akedah Podcast",
+    orientation: "image-right",
+  },
+  {
+    id: "distribuicao",
+    number: "07",
+    navLabel: "Distribuição",
+    badge: "MÁQUINA DE AUDIÊNCIA // CORTES VIRALIZÁVEIS",
+    titleMain: "DISTRIBUIÇÃO &",
+    titleSub: "CORTES ESTRATÉGICOS",
+    description:
+      "Cada episódio gravado se transforma em dezenas de pílulas cinematográficas distribuídas estrategicamente no YouTube, Reels e TikTok, construindo autoridade contínua e alcance viral qualificado.",
+    btnPrimary: { text: "Canal no YouTube", href: "https://www.youtube.com/@EstudioAkedah", external: true },
+    btnSecondary: { text: "Seguir no Instagram", href: "https://www.instagram.com/estudioakedah", external: true },
+    image: heroDanielYoutube,
+    imgPos: "object-center md:object-[center_30%]",
+    alt: "Distribuição Multiplataforma e Cortes Estratégicos",
+    orientation: "image-left",
+  },
+];
+
+// 8 Pranchetas em tela cheia do Akedah Podcast
 const podcastSections = [
   { id: "hero", number: "01", label: "Início" },
   { id: "destaque", number: "02", label: "Último Episódio" },
   { id: "calendario", number: "03", label: "Programação" },
-  { id: "contato", number: "04", label: "Seja Nosso Convidado" },
+  { id: "infraestrutura", number: "04", label: "Infraestrutura" },
+  { id: "host", number: "05", label: "O Apresentador" },
+  { id: "patrocinio", number: "06", label: "Patrocínio" },
+  { id: "distribuicao", number: "07", label: "Distribuição" },
+  { id: "contato", number: "08", label: "Seja Nosso Convidado" },
 ];
 
 const Podcast = () => {
@@ -882,10 +972,155 @@ const Podcast = () => {
             <span>Deslize para ver os convidados</span>
             <span>← →</span>
           </div>
+          {/* Indicador de Próxima Seção */}
+          <div className="hidden md:flex absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-auto">
+            <a
+              href="#infraestrutura"
+              onClick={(e) => {
+                e.preventDefault();
+                const targetEl = document.getElementById("infraestrutura");
+                if (targetEl) {
+                  const lenis = (window as any).lenis;
+                  if (lenis) {
+                    lenis.scrollTo(targetEl, { duration: 1 });
+                  } else {
+                    targetEl.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+              className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
+            >
+              <span className="text-[11px] sm:text-xs font-bebas-neue uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+                INFRAESTRUTURA (04)
+              </span>
+              <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* 4. FECHAMENTO EDITORIAL DIRETAMENTE NO FUNDO (#contato) */}
+      {/* ========================================================================= */}
+      {/* 4 A 7. SEÇÕES EDITORIAIS ESTILO HERO EM TELA CHEIA COM IMAGEM             */}
+      {/* ========================================================================= */}
+      {podcastEditorialCards.map((card, idx) => {
+        const isImageRight = card.orientation === "image-right";
+        const nextSectionId = idx < podcastEditorialCards.length - 1 ? podcastEditorialCards[idx + 1].id : "contato";
+        const nextSectionLabel = idx < podcastEditorialCards.length - 1 ? podcastEditorialCards[idx + 1].navLabel.toUpperCase() : "SEJA NOSSO CONVIDADO";
+
+        return (
+          <section
+            key={card.id}
+            id={card.id}
+            className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 md:snap-start md:snap-always"
+          >
+            {/* Layer 1: Palco Visual com Imagem Cinematográfica em Tela Cheia */}
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+              {isImageRight ? (
+                <>
+                  <div className="absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-end mask-feather-mobile-bottom mask-feather-podcast">
+                    <img
+                      src={card.image}
+                      alt={card.alt}
+                      loading="lazy"
+                      className={`w-full h-full object-cover ${card.imgPos || "object-center"} filter contrast-[1.08] brightness-[0.98]`}
+                    />
+                  </div>
+                  <div className="hidden md:block absolute inset-0 bg-[#1C0F0A]/40 md:bg-transparent z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
+                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent via-65% to-[#1C0F0A]/40 z-10 pointer-events-none" />
+                  <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
+                </>
+              ) : (
+                <>
+                  <div className="absolute inset-0 md:inset-auto md:left-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-start mask-feather-mobile-bottom mask-feather-podcast-left">
+                    <img
+                      src={card.image}
+                      alt={card.alt}
+                      loading="lazy"
+                      className={`w-full h-full object-cover ${card.imgPos || "object-center"} filter contrast-[1.08] brightness-[0.98]`}
+                    />
+                  </div>
+                  <div className="hidden md:block absolute inset-0 bg-[#1C0F0A]/40 md:bg-transparent z-10 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-l md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
+                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent via-65% to-[#1C0F0A]/40 z-10 pointer-events-none" />
+                  <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
+                </>
+              )}
+            </div>
+
+            {/* Layer 2: Conteúdo Editorial com Tipografia e Botões idênticos à Hero */}
+            <div
+              className={`relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-28 sm:pt-28 md:pt-20 pb-16 sm:pb-12 md:pb-8 flex ${
+                isImageRight ? "justify-start" : "justify-start md:justify-end"
+              }`}
+            >
+              <div className="max-w-3xl text-left flex flex-col items-start w-full">
+                <span className="text-[#C4550A] text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.2em] mb-3 block">
+                  {card.badge}
+                </span>
+
+                <h2 className="font-darken-jellybean text-[36px] xs:text-[44px] sm:text-[60px] md:text-[76px] lg:text-[88px] font-normal leading-[1.0] sm:leading-[0.95] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                  <span className="block text-white">{card.titleMain}</span>
+                  <span className="text-[#C4550A] block">{card.titleSub}</span>
+                </h2>
+
+                <p className="font-bebas-neue font-normal text-white/80 text-base sm:text-lg md:text-xl leading-relaxed tracking-wide max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
+                  {card.description}
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
+                  <a
+                    href={card.btnPrimary.href}
+                    target={card.btnPrimary.external ? "_blank" : undefined}
+                    rel={card.btnPrimary.external ? "noopener noreferrer" : undefined}
+                    className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
+                  >
+                    <span>{card.btnPrimary.text}</span>
+                    <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">↗</span>
+                  </a>
+                  <a
+                    href={card.btnSecondary.href}
+                    target={card.btnSecondary.external ? "_blank" : undefined}
+                    rel={card.btnSecondary.external ? "noopener noreferrer" : undefined}
+                    className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
+                  >
+                    <span>{card.btnSecondary.text}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Indicador de Próxima Prancheta no Rodapé */}
+            <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-auto">
+              <a
+                href={`#${nextSectionId}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const targetEl = document.getElementById(nextSectionId);
+                  if (targetEl) {
+                    const lenis = (window as any).lenis;
+                    if (lenis) {
+                      lenis.scrollTo(targetEl, { duration: 1 });
+                    } else {
+                      targetEl.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }
+                }}
+                className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
+              >
+                <span className="text-[11px] sm:text-xs font-bebas-neue uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+                  PRÓXIMA SEÇÃO ({nextSectionLabel})
+                </span>
+                <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
+              </a>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* ========================================================================= */}
+      {/* 8. FECHAMENTO EDITORIAL DIRETAMENTE NO FUNDO (#contato)                   */}
+      {/* ========================================================================= */}
       <section 
         id="contato" 
         className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always text-center"
