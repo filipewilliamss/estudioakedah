@@ -5,9 +5,9 @@ import Navbar from "@/components/Navbar";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import { WHATSAPP_URL } from "@/data/services";
 
-// Os 5 Logotipos Oficiais de Patrocinadores (os mesmos do site Daniel Silva)
+// Os 5 Logotipos Oficiais de Patrocinadores
 import logoEstudioAkedah from "@/assets/patrocinadores/logo-estudio-akedah.png";
-import logoAkedahPodcast from "@/assets/patrocinadores/logo-akedah-podcast.png";
+import logoDunamis from "@/assets/patrocinadores/dunamis.svg";
 import logoFecar from "@/assets/patrocinadores/logo-fecar.png";
 import logoTabernaculo from "@/assets/patrocinadores/logo-tabernaculo.png";
 import logoHorizontalSimbolo from "@/assets/patrocinadores/logo-horizontal-simbolo.png";
@@ -40,16 +40,16 @@ const sponsorsData: SponsorBoard[] = [
     orientation: "logo-right", // 1: Texto à Esquerda, Logotipo à Direita
   },
   {
-    id: "akedah-podcast",
+    id: "dunamis",
     number: "02",
-    titleMain: "AKEDAH PODCAST",
-    titleSub: "A MESA DE QUEM DECIDE",
+    titleMain: "DUNAMIS",
+    titleSub: "MOVIMENTO & TRANSFORMAÇÃO",
     description:
-      "O canal definitivo onde empresários, diretores e grandes realizadores debatem estratégia, negócios e governança sem filtro. Autoridade e alcance qualificado diante dos tomadores de decisão do mercado corporativo.",
-    logo: logoAkedahPodcast,
-    logoAlt: "Akedah Podcast",
-    logoSizeClass: "max-w-[240px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] xl:max-w-[440px]",
-    instagramUrl: "https://www.instagram.com/podcastakedah",
+      "Movimento global focado em despertar uma geração para estabelecer princípios de liderança, relevância cultural e transformação social de alto impacto contínuo.",
+    logo: logoDunamis,
+    logoAlt: "Dunamis",
+    logoSizeClass: "max-w-[200px] sm:max-w-[260px] md:max-w-[300px] lg:max-w-[340px] xl:max-w-[380px]",
+    instagramUrl: "https://www.instagram.com/dunamismovement",
     orientation: "logo-left", // 2: Logotipo à Esquerda, Texto à Direita
   },
   {
