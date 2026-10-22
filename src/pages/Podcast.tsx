@@ -14,6 +14,10 @@ import heroPodcastPatrocinador from "@/assets/podcast/hero-podcast-patrocinador.
 import heroPodcastAoVivo from "@/assets/podcast/hero-podcast-aovivo.jpg";
 import heroPodcastDaniel from "@/assets/podcast/hero-podcast-daniel.jpg";
 import heroDanielYoutube from "@/assets/daniel/daniel-hero-youtube.jpg";
+import imgPodcastCortes from "@/assets/podcast/podcast-cortes.jpg";
+import imgPodcastEmPoucasPalavras from "@/assets/podcast/podcast-em-poucas-palavras.jpg";
+import imgPodcastBastidores from "@/assets/podcast/podcast-bastidores.jpg";
+import imgPodcastPatrocinadores from "@/assets/podcast/podcast-patrocinadores-hero.jpg";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
 
 // 4 Cards da Hero Section com rotação automática a cada 5s (estilo editorial de alto impacto com paleta Akedah)
@@ -256,7 +260,7 @@ const agendaPodcastCards = [
   ],
 ];
 
-// 4 Seções Adicionais estilo Hero com imagens cinematográficas intercaladas
+// 4 Seções Adicionais estilo Hero solicitadas pelo usuário (Cortes, Em Poucas Palavras, Bastidores, Patrocinadores)
 interface PodcastEditorialCard {
   id: string;
   number: string;
@@ -265,8 +269,9 @@ interface PodcastEditorialCard {
   titleMain: string;
   titleSub: string;
   description: string;
-  btnPrimary: { text: string; href: string; external?: boolean };
-  btnSecondary: { text: string; href: string; external?: boolean };
+  btnText: string;
+  btnUrl: string;
+  btnExternal?: boolean;
   image: string;
   imgPos?: string;
   alt: string;
@@ -275,67 +280,71 @@ interface PodcastEditorialCard {
 
 const podcastEditorialCards: PodcastEditorialCard[] = [
   {
-    id: "infraestrutura",
+    id: "cortes",
     number: "04",
-    navLabel: "Infraestrutura",
-    badge: "TECNOLOGIA & BROADCAST // CAPTAÇÃO 4K HDR",
-    titleMain: "ESTÚDIO ACÚSTICO &",
-    titleSub: "TECNOLOGIA BROADCAST",
+    navLabel: "Cortes",
+    badge: "CONHEÇA, SIGA & ASSISTA // DESTAQUES RÁPIDOS",
+    titleMain: "CORTES DAS",
+    titleSub: "ENTREVISTAS",
     description:
-      "Infraestrutura técnica de ponta com captação multicâmera 4K HDR, iluminação cênica cinematográfica e microfonação de alta fidelidade. O cenário perfeito para diálogos de alta relevância com estética de cinema.",
-    btnPrimary: { text: "Conhecer o Estúdio", href: "/podcast/sobre" },
-    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
-    image: studioBannerImg,
+      "Acompanhe os melhores momentos, insights estratégicos e declarações marcantes dos maiores líderes e empresários do país condensados em pílulas dinâmicas e de alto impacto. Inscreva-se no canal para não perder nenhum destaque.",
+    btnText: "Assistir aos Cortes no YouTube",
+    btnUrl: "https://www.youtube.com/@EstudioAkedah",
+    btnExternal: true,
+    image: imgPodcastCortes,
     imgPos: "object-center md:object-[center_35%]",
-    alt: "Infraestrutura do Estúdio Akedah Podcast",
+    alt: "Cortes das Entrevistas - Akedah Podcast",
     orientation: "image-right",
   },
   {
-    id: "host",
+    id: "em-poucas-palavras",
     number: "05",
-    navLabel: "O Apresentador",
-    badge: "CONDUÇÃO ESTRATÉGICA // VISÃO EXECUTIVA",
-    titleMain: "DANIEL SILVA",
-    titleSub: "APRESENTADOR & HOST",
+    navLabel: "Em Poucas Palavras",
+    badge: "QUADRO EXCLUSIVO // DINÂMICA DIRETA",
+    titleMain: "QUADRO ESPECIAL",
+    titleSub: "EM POUCAS PALAVRAS",
     description:
-      "Conduzido por Daniel Silva — estrategista de negócios, mentor corporativo e conselheiro consultivo. Entrevistas profundas com perguntas cirúrgicas, explorando a mente e as práticas dos maiores líderes do mercado.",
-    btnPrimary: { text: "Conhecer Daniel Silva", href: "/daniel-silva" },
-    btnSecondary: { text: "Falar com Assessoria", href: WHATSAPP_URL, external: true },
-    image: heroPodcastDaniel,
-    imgPos: "object-[center_20%] md:object-[center_15%]",
-    alt: "Daniel Silva - Host e Apresentador do Akedah Podcast",
+      "Perguntas cirúrgicas, respostas instantâneas e revelações autênticas sem filtro. Um formato dinâmico onde nossos convidados resumem princípios inegociáveis, visões de mundo e definições de sucesso de forma rápida e memorável.",
+    btnText: "Assistir ao Quadro no YouTube",
+    btnUrl: "https://www.youtube.com/@EstudioAkedah",
+    btnExternal: true,
+    image: imgPodcastEmPoucasPalavras,
+    imgPos: "object-center md:object-[center_25%]",
+    alt: "Quadro Em Poucas Palavras - Akedah Podcast",
     orientation: "image-left",
   },
   {
-    id: "patrocinio",
+    id: "bastidores",
     number: "06",
-    navLabel: "Patrocínios",
-    badge: "CONEXÃO COM QUEM DECIDE // AUTORIDADE CORPORATIVA",
-    titleMain: "SEJA UM",
-    titleSub: "PATROCINADOR OFICIAL",
+    navLabel: "Bastidores",
+    badge: "MAKING OF // POR TRÁS DAS CÂMERAS",
+    titleMain: "FOTOS DE BASTIDORES",
+    titleSub: "& GRAVAÇÕES DO ESTÚDIO",
     description:
-      "Associe sua marca à maior mesa de negócios e estratégia executiva. Alcance direto e qualificado diante de diretores, investidores e tomadores de decisão com cotas de alta visibilidade e autoridade.",
-    btnPrimary: { text: "Ver Patrocinadores", href: "/podcast/patrocinadores" },
-    btnSecondary: { text: "Mídia Kit no WhatsApp", href: WHATSAPP_URL, external: true },
-    image: heroPodcastPatrocinador,
-    imgPos: "object-[center_30%] md:object-[center_25%]",
-    alt: "Patrocínios e Parcerias no Akedah Podcast",
+      "Uma imersão na atmosfera que antecede o 'rec'. Confira a preparação dos convidados, o trabalho minucioso da equipe técnica e os registros fotográficos exclusivos das nossas gravações.",
+    btnText: "Ver Fotos dos Bastidores no Instagram",
+    btnUrl: "https://www.instagram.com/estudioakedah",
+    btnExternal: true,
+    image: imgPodcastBastidores,
+    imgPos: "object-center md:object-[center_35%]",
+    alt: "Bastidores e Gravações - Akedah Podcast",
     orientation: "image-right",
   },
   {
-    id: "distribuicao",
+    id: "patrocinadores",
     number: "07",
-    navLabel: "Distribuição",
-    badge: "MÁQUINA DE AUDIÊNCIA // CORTES VIRALIZÁVEIS",
-    titleMain: "DISTRIBUIÇÃO &",
-    titleSub: "CORTES ESTRATÉGICOS",
+    navLabel: "Patrocinadores",
+    badge: "MARCAS VISIONÁRIAS // PARCERIAS ESTRATÉGICAS",
+    titleMain: "PARCERIAS DE VALOR &",
+    titleSub: "NOSSOS PATROCINADORES",
     description:
-      "Cada episódio gravado se transforma em dezenas de pílulas cinematográficas distribuídas estrategicamente no YouTube, Reels e TikTok, construindo autoridade contínua e alcance viral qualificado.",
-    btnPrimary: { text: "Canal no YouTube", href: "https://www.youtube.com/@EstudioAkedah", external: true },
-    btnSecondary: { text: "Seguir no Instagram", href: "https://www.instagram.com/estudioakedah", external: true },
-    image: heroDanielYoutube,
+      "O Akedah Podcast caminha lado a lado com empresas e líderes que moldam o mercado. Conheça as marcas oficiais que tornam possível a nossa infraestrutura de transmissão e produção cinematográfica.",
+    btnText: "Conheça Nossos Patrocinadores",
+    btnUrl: "/podcast/patrocinadores",
+    btnExternal: false,
+    image: imgPodcastPatrocinadores,
     imgPos: "object-center md:object-[center_30%]",
-    alt: "Distribuição Multiplataforma e Cortes Estratégicos",
+    alt: "Patrocinadores Oficiais - Akedah Podcast",
     orientation: "image-left",
   },
 ];
@@ -345,10 +354,10 @@ const podcastSections = [
   { id: "hero", number: "01", label: "Início" },
   { id: "destaque", number: "02", label: "Último Episódio" },
   { id: "calendario", number: "03", label: "Programação" },
-  { id: "infraestrutura", number: "04", label: "Infraestrutura" },
-  { id: "host", number: "05", label: "O Apresentador" },
-  { id: "patrocinio", number: "06", label: "Patrocínio" },
-  { id: "distribuicao", number: "07", label: "Distribuição" },
+  { id: "cortes", number: "04", label: "Cortes" },
+  { id: "em-poucas-palavras", number: "05", label: "Em Poucas Palavras" },
+  { id: "bastidores", number: "06", label: "Bastidores" },
+  { id: "patrocinadores", number: "07", label: "Patrocinadores" },
   { id: "contato", number: "08", label: "Seja Nosso Convidado" },
 ];
 
@@ -975,10 +984,10 @@ const Podcast = () => {
           {/* Indicador de Próxima Seção */}
           <div className="hidden md:flex absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-auto">
             <a
-              href="#infraestrutura"
+              href="#cortes"
               onClick={(e) => {
                 e.preventDefault();
-                const targetEl = document.getElementById("infraestrutura");
+                const targetEl = document.getElementById("cortes");
                 if (targetEl) {
                   const lenis = (window as any).lenis;
                   if (lenis) {
@@ -991,7 +1000,7 @@ const Podcast = () => {
               className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
             >
               <span className="text-[11px] sm:text-xs font-bebas-neue uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
-                INFRAESTRUTURA (04)
+                CORTES DAS ENTREVISTAS (04)
               </span>
               <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
             </a>
@@ -1068,23 +1077,16 @@ const Podcast = () => {
                   {card.description}
                 </p>
 
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
+                {/* Botão Único com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
+                <div className="flex items-center w-full sm:w-auto mb-6 sm:mb-8">
                   <a
-                    href={card.btnPrimary.href}
-                    target={card.btnPrimary.external ? "_blank" : undefined}
-                    rel={card.btnPrimary.external ? "noopener noreferrer" : undefined}
-                    className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
+                    href={card.btnUrl}
+                    target={card.btnExternal ? "_blank" : undefined}
+                    rel={card.btnExternal ? "noopener noreferrer" : undefined}
+                    className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group cursor-pointer"
                   >
-                    <span>{card.btnPrimary.text}</span>
+                    <span>{card.btnText}</span>
                     <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">↗</span>
-                  </a>
-                  <a
-                    href={card.btnSecondary.href}
-                    target={card.btnSecondary.external ? "_blank" : undefined}
-                    rel={card.btnSecondary.external ? "noopener noreferrer" : undefined}
-                    className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
-                  >
-                    <span>{card.btnSecondary.text}</span>
                   </a>
                 </div>
               </div>
