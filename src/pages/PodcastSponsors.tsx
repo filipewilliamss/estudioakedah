@@ -15,9 +15,8 @@ import logoHorizontalSimbolo from "@/assets/patrocinadores/logo-horizontal-simbo
 interface SponsorBoard {
   id: string;
   number: string;
-  titleMain: string;
-  titleSub: string;
-  titleHighlight?: string;
+  titleLine1: string; // Linha 1: Montserrat Bold
+  titleLine2: string; // Linha 2: Fonte Podcast
   description: string;
   logo: string;
   logoAlt: string;
@@ -30,9 +29,8 @@ const sponsorsData: SponsorBoard[] = [
   {
     id: "estudio-akedah",
     number: "01",
-    titleMain: "ESTÚDIO AKEDAH",
-    titleSub: "PRODUÇÃO &",
-    titleHighlight: "Infraestrutura",
+    titleLine1: "ESTÚDIO AKEDAH",
+    titleLine2: "Produção & Infraestrutura",
     description:
       "Estúdio de alta performance para gravações corporativas, podcasts em 4K HDR e produções audiovisuais cinematográficas. Infraestrutura técnica de ponta e curadoria estratégica para grandes marcas e líderes.",
     logo: logoEstudioAkedah,
@@ -44,9 +42,8 @@ const sponsorsData: SponsorBoard[] = [
   {
     id: "dunamis",
     number: "02",
-    titleMain: "DUNAMIS",
-    titleSub: "MOVIMENTO &",
-    titleHighlight: "Transformação",
+    titleLine1: "DUNAMIS",
+    titleLine2: "Movimento & Transformação",
     description:
       "Movimento global focado em despertar uma geração para estabelecer princípios de liderança, relevância cultural e transformação social de alto impacto contínuo.",
     logo: logoDunamis,
@@ -58,9 +55,8 @@ const sponsorsData: SponsorBoard[] = [
   {
     id: "fecar",
     number: "03",
-    titleMain: "FE-CAR",
-    titleSub: "VEÍCULOS &",
-    titleHighlight: "Multimarcas",
+    titleLine1: "FE-CAR MULTIMARCAS",
+    titleLine2: "Veículos & Procedência",
     description:
       "Com sólida credibilidade no segmento automotivo de luxo e utilitários, a FE-CAR Multimarcas entrega curadoria rigorosa de procedência, pós-venda exemplar e assessoria completa em compras corporativas e veículos de alto padrão.",
     logo: logoFecar,
@@ -72,9 +68,8 @@ const sponsorsData: SponsorBoard[] = [
   {
     id: "tabernaculo",
     number: "04",
-    titleMain: "TABERNÁCULO",
-    titleSub: "DA",
-    titleHighlight: "Trindade",
+    titleLine1: "TABERNÁCULO",
+    titleLine2: "Da Trindade",
     description:
       "Fundamentada em princípios inegociáveis de fé, integridade e acolhimento familiar, a instituição lidera projetos humanitários de grande alcance, formação de valores éticos e iniciativas contínuas de transformação social.",
     logo: logoTabernaculo,
@@ -86,9 +81,8 @@ const sponsorsData: SponsorBoard[] = [
   {
     id: "studio",
     number: "05",
-    titleMain: "STUDIO",
-    titleSub: "ENGENHARIA &",
-    titleHighlight: "Master",
+    titleLine1: "STUDIO AKEDAH",
+    titleLine2: "Engenharia de Som & Master",
     description:
       "Engenharia sonora avançada, produção musical, pós-produção acústica e identidade auditiva corporativa. Criação de trilhas originais, mixagem e masterização para produções de altíssimo padrão e impacto emocional.",
     logo: logoHorizontalSimbolo,
@@ -227,14 +221,14 @@ const PodcastSponsors = () => {
               key={sponsor.id}
               href={`#${sponsor.id}`}
               className="group relative flex items-center justify-end"
-              aria-label={`Ir para ${sponsor.titleMain}`}
+              aria-label={`Ir para ${sponsor.titleLine1}`}
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection(sponsor.id);
               }}
             >
               <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-montserrat font-medium tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
-                {sponsor.number} — {sponsor.titleMain}
+                {sponsor.number} — {sponsor.titleLine1}
               </span>
               <span
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
@@ -316,16 +310,13 @@ const PodcastSponsors = () => {
                     isLogoRight ? "order-2 md:order-1" : "order-2 md:order-2"
                   }`}
                 >
-                  {/* Título Principal com Montserrat Bold + Podcast */}
-                  <h1 className="font-montserrat font-bold text-[36px] xs:text-[44px] sm:text-[54px] md:text-[66px] lg:text-[76px] leading-[1.02] sm:leading-[0.96] tracking-tight uppercase mb-4 sm:mb-5 text-left">
-                    <span className="block text-white">{sponsor.titleMain}</span>
-                    <span className="text-[#C4550A] flex items-baseline gap-2.5 flex-wrap">
-                      <span>{sponsor.titleSub}</span>
-                      {sponsor.titleHighlight && (
-                        <span className="font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none">
-                          {sponsor.titleHighlight}
-                        </span>
-                      )}
+                  {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
+                  <h1 className="text-[30px] xs:text-[38px] sm:text-[48px] md:text-[56px] lg:text-[66px] xl:text-[72px] leading-[1.0] sm:leading-[0.94] tracking-tight uppercase mb-4 sm:mb-5 text-left">
+                    <span className="block font-montserrat font-bold text-white">
+                      {sponsor.titleLine1}
+                    </span>
+                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.14em] font-normal tracking-normal select-none -mt-1 sm:-mt-2">
+                      {sponsor.titleLine2}
                     </span>
                   </h1>
 
@@ -414,11 +405,9 @@ const PodcastSponsors = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            <h2 className="font-montserrat font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white uppercase tracking-tight leading-[0.95] mb-5">
-              SUA MARCA NA MAIOR <br />
-              <span className="font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal">
-                Mesa de Negócios
-              </span>
+            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-5 text-center">
+              <span className="block font-montserrat font-bold text-white uppercase">SUA MARCA NA MAIOR</span>
+              <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 sm:-mt-2">Mesa de Negócios</span>
             </h2>
 
             <p className="font-lora font-normal text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">

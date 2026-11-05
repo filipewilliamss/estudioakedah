@@ -25,9 +25,8 @@ const heroSlides = [
   {
     id: 1,
     badge: "BEM-VINDO • AKEDAH PODCAST // EDIÇÃO 2026",
-    titleMain: "A MESA DE QUEM",
-    titleSub: "DECIDE O",
-    titleHighlight: "Mercado",
+    titleLine1: "A MESA DE QUEM",
+    titleLine2: "Decide o Mercado",
     descricao:
       "Seja bem-vindo ao Akedah Podcast. O espaço definitivo onde grandes realizadores, líderes e estrategistas debatem os bastidores do mercado sem filtro.",
     btnPrimary: { text: "Explorar Episódios", href: "#destaque" },
@@ -39,9 +38,8 @@ const heroSlides = [
   {
     id: 2,
     badge: "PARCERIA • EXPOSIÇÃO // CONECTE SUA MARCA",
-    titleMain: "SEJA UM",
-    titleSub: "PATROCINADOR",
-    titleHighlight: "Oficial",
+    titleLine1: "SEJA UM",
+    titleLine2: "Patrocinador Oficial",
     descricao:
       "Posicione sua empresa diante de líderes, empresários e tomadores de decisão qualificados. Conecte sua marca à maior audiência estratégica de negócios e visão executiva.",
     btnPrimary: { text: "Ver Patrocinadores", href: "/podcast/patrocinadores" },
@@ -53,9 +51,8 @@ const heroSlides = [
   {
     id: 3,
     badge: "AO VIVO & GRAVADO // TRANSMISSÃO 4K HDR",
-    titleMain: "PODCAST AO VIVO",
-    titleSub: "& ÚLTIMO",
-    titleHighlight: "Episódio",
+    titleLine1: "PODCAST AO VIVO",
+    titleLine2: "Último Lançamento",
     descricao:
       "Acompanhe nossas transmissões ao vivo ou assista na íntegra ao episódio mais recente com análises aprofundadas, debates francos e insights práticos de alto impacto.",
     btnPrimary: { text: "Assistir Último Episódio", href: "#destaque" },
@@ -67,9 +64,8 @@ const heroSlides = [
   {
     id: 4,
     badge: "APRESENTADOR • HOST // VISÃO EXECUTIVA",
-    titleMain: "DANIEL SILVA",
-    titleSub: "APRESENTADOR &",
-    titleHighlight: "Host",
+    titleLine1: "DANIEL SILVA",
+    titleLine2: "Apresentador & Host",
     descricao:
       "Conduzido por Daniel Silva — estrategista de negócios, mentor executivo e palestrante, trazendo perguntas cirúrgicas, profundidade analítica e bagagem de mercado a cada encontro.",
     btnPrimary: { text: "Conhecer Daniel Silva", href: "/daniel-silva" },
@@ -270,9 +266,8 @@ interface PodcastEditorialCard {
   number: string;
   navLabel: string;
   badge: string;
-  titleMain: string;
-  titleSub: string;
-  titleHighlight?: string;
+  titleLine1: string; // Linha 1: Montserrat Bold
+  titleLine2: string; // Linha 2: Fonte Podcast
   description: string;
   btnText: string;
   btnUrl: string;
@@ -289,9 +284,8 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "04",
     navLabel: "Cortes",
     badge: "CONHEÇA, SIGA & ASSISTA // DESTAQUES RÁPIDOS",
-    titleMain: "CORTES DAS",
-    titleSub: "NOSSAS",
-    titleHighlight: "Entrevistas",
+    titleLine1: "CORTES EXCLUSIVOS",
+    titleLine2: "Das Nossas Entrevistas",
     description:
       "Acompanhe os melhores momentos, insights estratégicos e declarações marcantes dos maiores líderes e empresários do país condensados em pílulas dinâmicas e de alto impacto. Inscreva-se no canal para não perder nenhum destaque.",
     btnText: "Assistir aos Cortes no YouTube",
@@ -307,9 +301,8 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "05",
     navLabel: "Em Poucas Palavras",
     badge: "QUADRO EXCLUSIVO // DINÂMICA DIRETA",
-    titleMain: "QUADRO ESPECIAL",
-    titleSub: "EM POUCAS",
-    titleHighlight: "Palavras",
+    titleLine1: "QUADRO ESPECIAL",
+    titleLine2: "Em Poucas Palavras",
     description:
       "Perguntas cirúrgicas, respostas instantâneas e revelações autênticas sem filtro. Um formato dinâmico onde nossos convidados resumem princípios inegociáveis, visões de mundo e definições de sucesso de forma rápida e memorável.",
     btnText: "Assistir ao Quadro no YouTube",
@@ -325,9 +318,8 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "06",
     navLabel: "Bastidores",
     badge: "MAKING OF // POR TRÁS DAS CÂMERAS",
-    titleMain: "FOTOS DE BASTIDORES",
-    titleSub: "& GRAVAÇÕES DO",
-    titleHighlight: "Estúdio",
+    titleLine1: "FOTOS DE BASTIDORES",
+    titleLine2: "& Gravações do Estúdio",
     description:
       "Uma imersão na atmosfera que antecede o 'rec'. Confira a preparação dos convidados, o trabalho minucioso da equipe técnica e os registros fotográficos exclusivos das nossas gravações.",
     btnText: "Ver Fotos dos Bastidores no Instagram",
@@ -343,9 +335,8 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "07",
     navLabel: "Patrocinadores",
     badge: "MARCAS VISIONÁRIAS // PARCERIAS ESTRATÉGICAS",
-    titleMain: "PARCERIAS DE VALOR &",
-    titleSub: "NOSSOS",
-    titleHighlight: "Patrocinadores",
+    titleLine1: "PARCERIAS DE VALOR",
+    titleLine2: "Nossos Patrocinadores",
     description:
       "O Akedah Podcast caminha lado a lado com empresas e líderes que moldam o mercado. Conheça as marcas oficiais que tornam possível a nossa infraestrutura de transmissão e produção cinematográfica.",
     btnText: "Conheça Nossos Patrocinadores",
@@ -656,16 +647,13 @@ const Podcast = () => {
                   exit="exit"
                   className="w-full flex flex-col items-start"
                 >
-                  {/* Título Principal com Montserrat Bold + Podcast */}
-                  <h1 className="font-montserrat font-bold text-[36px] xs:text-[44px] sm:text-[56px] md:text-[72px] lg:text-[84px] leading-[1.02] sm:leading-[0.96] tracking-tight uppercase mb-4 sm:mb-6 text-left">
-                    <span className="block text-white">{heroSlides[heroSlide].titleMain}</span>
-                    <span className="text-[#C4550A] flex items-baseline gap-2.5 sm:gap-3 flex-wrap">
-                      <span>{heroSlides[heroSlide].titleSub}</span>
-                      {heroSlides[heroSlide].titleHighlight && (
-                        <span className="font-podcast text-[#C4550A] capitalize text-[1.15em] font-normal tracking-normal select-none">
-                          {heroSlides[heroSlide].titleHighlight}
-                        </span>
-                      )}
+                  {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
+                  <h1 className="text-[34px] xs:text-[42px] sm:text-[54px] md:text-[68px] lg:text-[78px] xl:text-[84px] leading-[1.0] sm:leading-[0.94] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                    <span className="block font-montserrat font-bold text-white">
+                      {heroSlides[heroSlide].titleLine1}
+                    </span>
+                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.14em] font-normal tracking-normal select-none -mt-1 sm:-mt-2">
+                      {heroSlides[heroSlide].titleLine2}
                     </span>
                   </h1>
 
@@ -716,7 +704,7 @@ const Podcast = () => {
                         ? "w-8 bg-[#C4550A] ring-1 ring-[#C4550A]/50"
                         : "w-2.5 bg-white/25 hover:bg-white/60"
                     }`}
-                    aria-label={`Ver card ${idx + 1}: ${slide.titleMain}`}
+                    aria-label={`Ver card ${idx + 1}: ${slide.titleLine1}`}
                   />
                 ))}
               </div>
@@ -794,10 +782,12 @@ const Podcast = () => {
 
             {/* LADO DIREITO: Informações e Breve Descrição do Convidado + Botão para Redes Sociais */}
             <div className="lg:col-span-5 w-full flex flex-col justify-center text-left">
-              {/* Título / Nome do Convidado com Montserrat Bold + Podcast */}
-              <h2 className="font-montserrat font-bold text-3xl sm:text-4xl lg:text-[44px] text-white tracking-tight uppercase leading-[1.04] mb-2 flex items-baseline gap-2.5 flex-wrap">
-                <span>DANIEL</span>
-                <span className="font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal">Silva</span>
+              {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
+              <h2 className="text-3xl sm:text-4xl lg:text-[46px] tracking-tight leading-[1.02] mb-3 text-left">
+                <span className="block font-montserrat font-bold text-white uppercase">DANIEL SILVA</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 sm:-mt-1">
+                  Estrategista de Negócios
+                </span>
               </h2>
 
               {/* Cargo / Especialidade com Montserrat */}
@@ -856,8 +846,11 @@ const Podcast = () => {
           {/* Header da Seção: Alinhado à esquerda com Controles à direita (sem linhas divisórias arbitrárias) */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
             <div className="flex flex-col items-start max-w-2xl">
-              <h2 className="font-montserrat font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[48px] text-white tracking-tight uppercase leading-[1.04]">
-                PRÓXIMAS ESTREIAS <span className="font-podcast text-[#C4550A] capitalize text-[1.15em] font-normal tracking-normal">Confirmadas</span>.
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] tracking-tight leading-[1.02] text-left">
+                <span className="block font-montserrat font-bold text-white uppercase">PRÓXIMAS ESTREIAS</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 sm:-mt-1">
+                  Confirmadas no Estúdio
+                </span>
               </h2>
             </div>
 
@@ -1085,15 +1078,12 @@ const Podcast = () => {
                   {card.badge}
                 </span>
 
-                <h2 className="font-montserrat font-bold text-[36px] xs:text-[44px] sm:text-[56px] md:text-[72px] lg:text-[84px] leading-[1.02] sm:leading-[0.96] tracking-tight uppercase mb-4 sm:mb-6 text-left">
-                  <span className="block text-white">{card.titleMain}</span>
-                  <span className="text-[#C4550A] flex items-baseline gap-2.5 sm:gap-3 flex-wrap">
-                    <span>{card.titleSub}</span>
-                    {card.titleHighlight && (
-                      <span className="font-podcast text-[#C4550A] capitalize text-[1.15em] font-normal tracking-normal select-none">
-                        {card.titleHighlight}
-                      </span>
-                    )}
+                <h2 className="text-[34px] xs:text-[42px] sm:text-[54px] md:text-[68px] lg:text-[78px] xl:text-[84px] leading-[1.0] sm:leading-[0.94] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                  <span className="block font-montserrat font-bold text-white">
+                    {card.titleLine1}
+                  </span>
+                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.14em] font-normal tracking-normal select-none -mt-1 sm:-mt-2">
+                    {card.titleLine2}
                   </span>
                 </h2>
 

@@ -124,10 +124,10 @@ const PodcastContact = () => {
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="font-montserrat font-bold text-[40px] sm:text-[56px] md:text-[76px] lg:text-[92px] leading-[1.0] tracking-tight uppercase text-white mb-8"
+                className="text-[38px] sm:text-[54px] md:text-[70px] lg:text-[84px] leading-[1.0] tracking-tight uppercase text-center mb-8"
               >
-                FALE COM O <br className="hidden sm:inline" />
-                <span className="font-podcast text-[#C4550A] capitalize text-[1.15em] font-normal">Akedah Podcast.</span>
+                <span className="block font-montserrat font-bold text-white">FALE COM O</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.14em] font-normal -mt-1 sm:-mt-2">Akedah Podcast</span>
               </motion.h1>
 
               <motion.p
