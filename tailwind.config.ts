@@ -14,11 +14,14 @@ export default {
     },
     extend: {
       fontFamily: {
+        corporate: ['"PerfectCorporate"', 'sans-serif'],
+        'perfect-corporate': ['"PerfectCorporate"', 'sans-serif'],
+        'corporate-black': ['"PerfectCorporate"', 'sans-serif'],
         display: ['Montserrat', 'sans-serif'],
-        'podcast-display': ['Montserrat', 'sans-serif'],
-        'podcast-title': ['Montserrat', 'sans-serif'],
+        'podcast-display': ['"PerfectCorporate"', 'sans-serif'],
+        'podcast-title': ['"PerfectCorporate"', 'sans-serif'],
         'podcast-alt': ['"Podcast"', 'cursive', 'sans-serif'],
-        'podcast-body': ['Lora', 'serif'],
+        'podcast-body': ['"PerfectCorporate"', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
         lora: ['Lora', 'serif'],
         'bebas-neue': ['"Bebas Neue Book"', '"BebasNeueBook"', '"Bebas Neue"', '"BebasNeue"', 'sans-serif'],

@@ -529,7 +529,7 @@ const Podcast = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative font-sans">
+    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative font-corporate">
       {/* Tela de Carregamento Inicial com Revelação de Íris Circular */}
       <IrisPreloader />
 
@@ -570,7 +570,7 @@ const Podcast = () => {
                 }
               }}
             >
-              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-montserrat font-medium tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
+              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-corporate font-medium tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
                 {sec.number} — {sec.label}
               </span>
               <span
@@ -649,7 +649,7 @@ const Podcast = () => {
                 >
                   {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
                   <h1 className="text-[22px] xs:text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.05] sm:leading-[1.0] tracking-tight uppercase mb-4 sm:mb-6 text-left">
-                    <span className="block font-montserrat font-bold text-white whitespace-nowrap">
+                    <span className="block font-corporate font-black text-white whitespace-nowrap">
                       {heroSlides[heroSlide].titleLine1}
                     </span>
                     <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
@@ -658,7 +658,7 @@ const Podcast = () => {
                   </h1>
 
                   {/* Descrição Editorial com Lora Regular */}
-                  <p className="font-lora font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
+                  <p className="font-corporate font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
                     {heroSlides[heroSlide].descricao}
                   </p>
 
@@ -673,7 +673,7 @@ const Podcast = () => {
                           setIsPlaying(true);
                         }
                       }}
-                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
+                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
                     >
                       <span>{heroSlides[heroSlide].btnPrimary.text}</span>
                       <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">
@@ -684,7 +684,7 @@ const Podcast = () => {
                       href={heroSlides[heroSlide].btnSecondary.href}
                       target={heroSlides[heroSlide].btnSecondary.external ? "_blank" : undefined}
                       rel={heroSlides[heroSlide].btnSecondary.external ? "noopener noreferrer" : undefined}
-                      className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
+                      className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
                     >
                       <span>{heroSlides[heroSlide].btnSecondary.text}</span>
                     </a>
@@ -748,7 +748,7 @@ const Podcast = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
                       {/* Badge de numeração em pill glassmorphism */}
-                      <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 bg-black/80 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full font-montserrat font-semibold text-xs tracking-[0.16em] text-[#C4550A] uppercase shadow-lg">
+                      <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 bg-black/80 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full font-corporate font-semibold text-xs tracking-[0.16em] text-[#C4550A] uppercase shadow-lg">
                         EP.14 // 4K HDR
                       </div>
 
@@ -771,7 +771,7 @@ const Podcast = () => {
               </div>
 
               {/* Linha discreta de canal abaixo do player */}
-              <div className="flex items-center justify-between px-1 text-xs text-white/50 font-montserrat font-medium tracking-wider">
+              <div className="flex items-center justify-between px-1 text-xs text-white/50 font-corporate font-medium tracking-wider">
                 <span className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
                   ÚLTIMO LANÇAMENTO OFICIAL
@@ -784,19 +784,19 @@ const Podcast = () => {
             <div className="lg:col-span-5 w-full flex flex-col justify-center text-left">
               {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
               <h2 className="text-[24px] sm:text-[32px] md:text-[38px] lg:text-[42px] tracking-tight leading-[1.05] mb-3 text-left">
-                <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">DANIEL SILVA</span>
+                <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">DANIEL SILVA</span>
                 <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
                   Estrategista de Negócios
                 </span>
               </h2>
 
               {/* Cargo / Especialidade com Montserrat */}
-              <p className="font-montserrat font-semibold text-xs sm:text-sm text-[#C4550A] tracking-[0.14em] uppercase mb-4">
+              <p className="font-corporate font-semibold text-xs sm:text-sm text-[#C4550A] tracking-[0.14em] uppercase mb-4">
                 ESTRATEGISTA DE NEGÓCIOS &amp; MENTOR EXECUTIVO
               </p>
 
               {/* Breve Descrição Editorial com Lora Regular */}
-              <p className="font-lora font-normal text-white/80 text-base sm:text-lg leading-relaxed mb-8">
+              <p className="font-corporate font-normal text-white/80 text-base sm:text-lg leading-relaxed mb-8">
                 Estrategista de mercado, compositor e mentor de líderes executivos. Neste episódio, Daniel analisa os bastidores do posicionamento comercial, governança para empresas em tração e a construção de autoridade de longo prazo no cenário corporativo brasileiro.
               </p>
 
@@ -807,7 +807,7 @@ const Podcast = () => {
                   href="https://www.instagram.com/estudioakedah"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.14em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group"
+                  className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.14em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group"
                 >
                   <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
@@ -821,7 +821,7 @@ const Podcast = () => {
                   href="https://www.youtube.com/@EstudioAkedah?sub_confirmation=1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-transparent hover:bg-white/10 text-white border border-white/25 hover:border-white/50 font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.14em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2 group"
+                  className="bg-transparent hover:bg-white/10 text-white border border-white/25 hover:border-white/50 font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.14em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2 group"
                 >
                   <svg className="w-4 h-4 fill-current text-red-500 shrink-0" viewBox="0 0 24 24">
                     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
@@ -847,7 +847,7 @@ const Podcast = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
             <div className="flex flex-col items-start max-w-2xl">
               <h2 className="text-[24px] sm:text-[32px] md:text-[40px] lg:text-[44px] tracking-tight leading-[1.05] text-left">
-                <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">PRÓXIMAS ESTREIAS</span>
+                <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">PRÓXIMAS ESTREIAS</span>
                 <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
                   Confirmadas no Estúdio
                 </span>
@@ -938,17 +938,17 @@ const Podcast = () => {
 
                       {/* Badge Flutuante: Data & Horário com Bebas Neue */}
                       <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 shadow-lg">
-                        <span className="font-montserrat font-semibold text-xs text-[#C4550A] tracking-wider uppercase">
+                        <span className="font-corporate font-semibold text-xs text-[#C4550A] tracking-wider uppercase">
                           {card.date}
                         </span>
                         <span className="text-white/40 text-[10px]">•</span>
-                        <span className="font-montserrat font-medium text-xs text-white/90 tracking-wider">
+                        <span className="font-corporate font-medium text-xs text-white/90 tracking-wider">
                           {card.time}
                         </span>
                       </div>
 
                       {/* Badge Flutuante: Episódio com Bebas Neue */}
-                      <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-xs font-montserrat font-semibold tracking-wider text-white/90">
+                      <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-xs font-corporate font-semibold tracking-wider text-white/90">
                         {card.episode}
                       </div>
                     </div>
@@ -957,24 +957,24 @@ const Podcast = () => {
                     <div className="p-5 sm:p-6 pt-3 flex-1 flex flex-col justify-between">
                       <div>
                         {/* Papel / Especialidade com Bebas Neue */}
-                        <span className="font-montserrat font-semibold text-[11px] sm:text-xs text-[#C4550A] tracking-[0.15em] uppercase block mb-1">
+                        <span className="font-corporate font-semibold text-[11px] sm:text-xs text-[#C4550A] tracking-[0.15em] uppercase block mb-1">
                           {card.role}
                         </span>
 
                         {/* Nome do Convidado com Darken Jellybean */}
-                        <h3 className="font-montserrat font-bold text-lg sm:text-xl text-white uppercase tracking-tight leading-snug group-hover:text-[#FAF6EB] transition-colors mb-2">
+                        <h3 className="font-corporate font-black text-lg sm:text-xl text-white uppercase tracking-tight leading-snug group-hover:text-[#FAF6EB] transition-colors mb-2">
                           {card.guestName}
                         </h3>
 
                         {/* Tema do Episódio com Bebas Neue Regular */}
-                        <p className="font-lora font-normal text-sm sm:text-[15px] text-white/75 leading-relaxed line-clamp-2">
+                        <p className="font-corporate font-normal text-sm sm:text-[15px] text-white/75 leading-relaxed line-clamp-2">
                           {card.topic}
                         </p>
                       </div>
 
                       {/* Botão de Ação com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
                       <div className="pt-5">
-                        <div className="w-full py-2.5 sm:py-3 px-4 rounded-[12px] sm:rounded-[14px] border border-white/15 bg-white/[0.04] group-hover:bg-[#C4550A] group-hover:border-[#C4550A] group-hover:text-white text-white text-xs font-montserrat font-bold tracking-[0.16em] uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm">
+                        <div className="w-full py-2.5 sm:py-3 px-4 rounded-[12px] sm:rounded-[14px] border border-white/15 bg-white/[0.04] group-hover:bg-[#C4550A] group-hover:border-[#C4550A] group-hover:text-white text-white text-xs font-corporate font-black tracking-[0.16em] uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm">
                           <span>SAIBA MAIS</span>
                           <span className="group-hover:translate-x-1 transition-transform font-bold text-sm">→</span>
                         </div>
@@ -987,7 +987,7 @@ const Podcast = () => {
           </div>
 
           {/* Dica de arraste no mobile com Bebas Neue */}
-          <div className="flex lg:hidden items-center justify-between pt-2 px-1 text-xs font-montserrat font-medium text-white/40 uppercase tracking-wider">
+          <div className="flex lg:hidden items-center justify-between pt-2 px-1 text-xs font-corporate font-medium text-white/40 uppercase tracking-wider">
             <span>Deslize para ver os convidados</span>
             <span>← →</span>
           </div>
@@ -1009,7 +1009,7 @@ const Podcast = () => {
               }}
               className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
             >
-              <span className="text-[10px] sm:text-[11px] font-montserrat font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+              <span className="text-[10px] sm:text-[11px] font-corporate font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
                 CORTES DAS ENTREVISTAS (04)
               </span>
               <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
@@ -1074,12 +1074,12 @@ const Podcast = () => {
               }`}
             >
               <div className="max-w-3xl text-left flex flex-col items-start w-full">
-                <span className="text-[#C4550A] text-xs font-montserrat font-semibold uppercase tracking-[0.2em] mb-3 block">
+                <span className="text-[#C4550A] text-xs font-corporate font-semibold uppercase tracking-[0.2em] mb-3 block">
                   {card.badge}
                 </span>
 
                 <h2 className="text-[22px] xs:text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.05] sm:leading-[1.0] tracking-tight uppercase mb-4 sm:mb-6 text-left">
-                  <span className="block font-montserrat font-bold text-white whitespace-nowrap">
+                  <span className="block font-corporate font-black text-white whitespace-nowrap">
                     {card.titleLine1}
                   </span>
                   <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
@@ -1087,7 +1087,7 @@ const Podcast = () => {
                   </span>
                 </h2>
 
-                <p className="font-lora font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
+                <p className="font-corporate font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
                   {card.description}
                 </p>
 
@@ -1097,7 +1097,7 @@ const Podcast = () => {
                     href={card.btnUrl}
                     target={card.btnExternal ? "_blank" : undefined}
                     rel={card.btnExternal ? "noopener noreferrer" : undefined}
-                    className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group cursor-pointer"
+                    className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group cursor-pointer"
                   >
                     <span>{card.btnText}</span>
                     <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">↗</span>
@@ -1124,7 +1124,7 @@ const Podcast = () => {
                 }}
                 className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
               >
-                <span className="text-[10px] sm:text-[11px] font-montserrat font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+                <span className="text-[10px] sm:text-[11px] font-corporate font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
                   PRÓXIMA SEÇÃO ({nextSectionLabel})
                 </span>
                 <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
@@ -1147,12 +1147,12 @@ const Podcast = () => {
         <div className="max-w-5xl w-full mx-auto relative z-10 flex flex-col items-center">
           {/* Título Monumental com Darken Jellybean e variação em Podcast */}
           <h2 className="text-[26px] sm:text-[38px] md:text-[48px] lg:text-[58px] tracking-tight leading-[1.05] max-w-4xl mb-4 text-center">
-            <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">QUER SER NOSSO</span>
+            <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">QUER SER NOSSO</span>
             <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">Convidado?</span>
           </h2>
 
           {/* Linha de baixo em texto menor com Bebas Neue */}
-          <p className="text-white/70 text-base sm:text-lg md:text-xl font-lora font-normal max-w-xl mb-10 leading-relaxed">
+          <p className="text-white/70 text-base sm:text-lg md:text-xl font-corporate font-normal max-w-xl mb-10 leading-relaxed">
             Entre em contato conosco
           </p>
 
@@ -1162,7 +1162,7 @@ const Podcast = () => {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.18em] rounded-[12px] sm:rounded-[14px] shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
+              className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.18em] rounded-[12px] sm:rounded-[14px] shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
             >
               <span>FALE COM UM ESPECIALISTA</span>
               <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>

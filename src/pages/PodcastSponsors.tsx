@@ -197,7 +197,7 @@ const PodcastSponsors = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative font-sans">
+    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative font-corporate">
       <SEO
         title="Patrocinadores Oficiais | Akedah Podcast"
         description="Conheça as marcas e empresas líderes que apoiam o Akedah Podcast. Parcerias estratégicas, autoridade corporativa e cotas de patrocínio."
@@ -227,7 +227,7 @@ const PodcastSponsors = () => {
                 scrollToSection(sponsor.id);
               }}
             >
-              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-montserrat font-medium tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
+              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-corporate font-medium tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
                 {sponsor.number} — {sponsor.titleLine1}
               </span>
               <span
@@ -251,7 +251,7 @@ const PodcastSponsors = () => {
             scrollToSection("cta-final");
           }}
         >
-          <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-montserrat font-semibold tracking-widest uppercase text-[#C4550A] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
+          <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-corporate font-semibold tracking-widest uppercase text-[#C4550A] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
             ★ SEJA PATROCINADOR
           </span>
           <span
@@ -312,7 +312,7 @@ const PodcastSponsors = () => {
                 >
                   {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
                   <h1 className="text-[20px] xs:text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] xl:text-[46px] leading-[1.05] tracking-tight uppercase mb-4 sm:mb-5 text-left">
-                    <span className="block font-montserrat font-bold text-white whitespace-nowrap">
+                    <span className="block font-corporate font-black text-white whitespace-nowrap">
                       {sponsor.titleLine1}
                     </span>
                     <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-0.5 sm:-mt-1 whitespace-nowrap">
@@ -321,7 +321,7 @@ const PodcastSponsors = () => {
                   </h1>
 
                   {/* Descrição Editorial com Lora Regular */}
-                  <p className="font-lora font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
+                  <p className="font-corporate font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
                     {sponsor.description}
                   </p>
 
@@ -331,7 +331,7 @@ const PodcastSponsors = () => {
                       href={sponsor.instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group cursor-pointer"
+                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group cursor-pointer"
                     >
                       <Instagram className="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform duration-300" />
                       <span>Instagram Oficial</span>
@@ -370,7 +370,7 @@ const PodcastSponsors = () => {
                     className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
                     aria-label={`Rolar para próxima prancheta: ${nextSponsor.titleMain}`}
                   >
-                    <span className="text-[10px] sm:text-[11px] font-montserrat font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+                    <span className="text-[10px] sm:text-[11px] font-corporate font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
                       PRÓXIMO PATROCINADOR ({nextSponsor.number})
                     </span>
                     <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
@@ -383,7 +383,7 @@ const PodcastSponsors = () => {
                     onClick={() => scrollToSection("cta-final")}
                     className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
                   >
-                    <span className="text-[10px] sm:text-[11px] font-montserrat font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+                    <span className="text-[10px] sm:text-[11px] font-corporate font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
                       SEJA UM PATROCINADOR OFICIAL
                     </span>
                     <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
@@ -406,11 +406,11 @@ const PodcastSponsors = () => {
 
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
             <h2 className="text-[26px] sm:text-[38px] md:text-[48px] lg:text-[56px] tracking-tight leading-[1.05] mb-5 text-center">
-              <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">SUA MARCA NA MAIOR</span>
+              <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">SUA MARCA NA MAIOR</span>
               <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">Mesa de Negócios</span>
             </h2>
 
-            <p className="font-lora font-normal text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+            <p className="font-corporate font-normal text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
               Associe o nome da sua empresa a um conteúdo de altíssimo valor percebido, com transmissão 4K, cortes virais em redes sociais e distribuição direta para diretores, investidores e tomadores de decisão.
             </p>
 
@@ -419,14 +419,14 @@ const PodcastSponsors = () => {
                 href={`${WHATSAPP_URL}&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20ser%20um%20patrocinador%20do%20Akedah%20Podcast`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/30 flex items-center gap-2 group"
+                className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/30 flex items-center gap-2 group"
               >
                 <span>Falar com Assessoria de Patrocínios</span>
                 <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>
               </a>
               <a
                 href="/podcast"
-                className="bg-transparent hover:bg-white/10 text-white/90 hover:text-white border border-white/20 font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300"
+                className="bg-transparent hover:bg-white/10 text-white/90 hover:text-white border border-white/20 font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300"
               >
                 <span>Voltar ao Podcast</span>
               </a>

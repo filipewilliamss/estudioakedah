@@ -130,7 +130,7 @@ const Navbar = ({ forceBlack = true, isPodcastPage = false, isDanielSilvaPage = 
   }
 
   const textClass = isCurrentPodcast
-    ? "link-magnetic text-white/80 hover:text-[#C4550A] font-montserrat font-bold text-[12px] tracking-[0.2em] uppercase transition-colors duration-300"
+    ? "link-magnetic text-white/80 hover:text-[#C4550A] font-corporate font-bold text-[12px] tracking-[0.2em] uppercase transition-colors duration-300"
     : `link-magnetic ${forceBlack ? 'text-white/70' : 'text-black/70'} hover:text-white font-bold text-[11px] uppercase tracking-[0.28em] font-display transition-colors duration-300`;
 
   const navLinks = isCurrentDanielSilva 
