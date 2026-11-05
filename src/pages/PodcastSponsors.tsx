@@ -33,7 +33,7 @@ const sponsorsData: SponsorDetail[] = [
     id: "estudio-akedah",
     number: "01",
     category: "INFRAESTRUTURA & PRODUÇÃO 4K HDR",
-    titleLine1: "ESTÚDIO AKEDAH",
+    titleLine1: "Estúdio Akedah",
     titleLine2: "Produção & Infraestrutura",
     description:
       "Estúdio de alta performance para gravações corporativas, podcasts em 4K HDR e produções audiovisuais cinematográficas. Infraestrutura técnica de ponta, isolamento acústico broadcast, ilhas dedicadas de edição rápida e curadoria estratégica para grandes marcas e líderes do mercado.",
@@ -51,7 +51,7 @@ const sponsorsData: SponsorDetail[] = [
     id: "dunamis",
     number: "02",
     category: "LIDERANÇA GLOBAL & TRANSFORMAÇÃO",
-    titleLine1: "DUNAMIS",
+    titleLine1: "Dunamis",
     titleLine2: "Movimento & Transformação",
     description:
       "Movimento global de impacto cultural e liderança, focado em capacitar e despertar uma geração para estabelecer princípios inegociáveis, transformação social contínua e relevância no ecossistema de trabalho, negócios e sociedade.",
@@ -69,7 +69,7 @@ const sponsorsData: SponsorDetail[] = [
     id: "fecar",
     number: "03",
     category: "VEÍCULOS DE LUXO & CORPORATIVOS",
-    titleLine1: "FE-CAR MULTIMARCAS",
+    titleLine1: "FE-CAR Multimarcas",
     titleLine2: "Veículos & Procedência",
     description:
       "Com sólida credibilidade no segmento automotivo premium e corporativo, a FE-CAR Multimarcas entrega curadoria rigorosa de procedência, pós-venda exemplar e assessoria completa em frotas executivas e veículos de altíssimo padrão com garantia total.",
@@ -87,7 +87,7 @@ const sponsorsData: SponsorDetail[] = [
     id: "tabernaculo",
     number: "04",
     category: "AÇÃO SOCIAL, FÉ & DESENVOLVIMENTO",
-    titleLine1: "TABERNÁCULO",
+    titleLine1: "Tabernáculo",
     titleLine2: "Da Trindade",
     description:
       "Fundamentada em princípios inegociáveis de fé, integridade e acolhimento familiar, a instituição lidera projetos humanitários de grande alcance, formação de valores éticos e iniciativas comunitárias contínuas de transformação e suporte familiar.",
@@ -105,7 +105,7 @@ const sponsorsData: SponsorDetail[] = [
     id: "studio",
     number: "05",
     category: "ENGENHARIA DE ÁUDIO & SOUND DESIGN",
-    titleLine1: "STUDIO AKEDAH",
+    titleLine1: "Studio Akedah",
     titleLine2: "Engenharia de Som",
     description:
       "Engenharia sonora avançada, produção musical, pós-produção acústica e identidade auditiva corporativa. Criação de trilhas originais, mixagem e masterização para produções de altíssimo padrão com equipamentos analógicos e digitais de padrão internacional.",
@@ -366,11 +366,11 @@ const PodcastSponsors = () => {
                 MARCAS VISIONÁRIAS // PARCERIAS ESTRATÉGICAS
               </span>
 
-              <h1 className="text-[26px] xs:text-[34px] sm:text-[44px] md:text-[54px] lg:text-[62px] leading-[1.05] tracking-tight uppercase mb-4 text-center">
+              <h1 className="text-[28px] xs:text-[36px] sm:text-[46px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-tight mb-4 text-center">
                 <span className="block font-corporate font-black text-white whitespace-nowrap">
-                  PARCERIAS DE VALOR
+                  Parcerias de Valor
                 </span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
+                <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">
                   Nossos Patrocinadores
                 </span>
               </h1>
@@ -563,11 +563,11 @@ const PodcastSponsors = () => {
                     </span>
 
                     {/* Título Estrito em 2 Linhas: PerfectCorporate Black + Fonte Podcast */}
-                    <h2 className="text-[24px] xs:text-[30px] sm:text-[36px] md:text-[42px] lg:text-[46px] xl:text-[52px] leading-[1.05] tracking-tight uppercase mb-4 text-left">
+                    <h2 className="text-[26px] xs:text-[32px] sm:text-[38px] md:text-[44px] lg:text-[48px] xl:text-[54px] leading-[1.05] tracking-tight mb-4 text-left">
                       <span className="block font-corporate font-black text-white whitespace-nowrap">
                         {sponsor.titleLine1}
                       </span>
-                      <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
+                      <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">
                         {sponsor.titleLine2}
                       </span>
                     </h2>
@@ -651,11 +651,11 @@ const PodcastSponsors = () => {
             </span>
 
             {/* Título Estrito em 2 Linhas: PerfectCorporate Black + Fonte Podcast */}
-            <h2 className="text-[26px] xs:text-[34px] sm:text-[46px] md:text-[56px] lg:text-[66px] tracking-tight leading-[1.05] mb-5 text-center">
-              <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">
-                SUA MARCA NA MAIOR
+            <h2 className="text-[28px] xs:text-[36px] sm:text-[48px] md:text-[58px] lg:text-[68px] tracking-tight leading-[1.05] mb-5 text-center">
+              <span className="block font-corporate font-black text-white whitespace-nowrap">
+                Sua Marca na Maior
               </span>
-              <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 sm:-mt-1.5 whitespace-nowrap">
+              <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">
                 Mesa de Negócios
               </span>
             </h2>

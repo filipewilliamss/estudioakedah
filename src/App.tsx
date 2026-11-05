@@ -21,6 +21,7 @@ import PodcastSponsors from "./pages/PodcastSponsors.tsx";
 import DanielSilva from "./pages/DanielSilva.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CookieConsent from "./components/CookieConsent.tsx";
+import FloatingWhatsApp from "./components/FloatingWhatsApp.tsx";
 
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import gsap from "gsap";
@@ -98,6 +99,7 @@ const App = () => {
               <ScrollToTop />
               <AnimatedRoutes />
               <CookieConsent />
+              <FloatingWhatsApp />
             </AuthProvider>
           </BrowserRouter>
         </TooltipProvider>

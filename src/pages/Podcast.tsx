@@ -25,7 +25,7 @@ const heroSlides = [
   {
     id: 1,
     badge: "BEM-VINDO • AKEDAH PODCAST // EDIÇÃO 2026",
-    titleLine1: "A MESA DE QUEM",
+    titleLine1: "A Mesa de Quem",
     titleLine2: "Decide o Mercado",
     descricao:
       "Seja bem-vindo ao Akedah Podcast. O espaço definitivo onde grandes realizadores, líderes e estrategistas debatem os bastidores do mercado sem filtro.",
@@ -38,7 +38,7 @@ const heroSlides = [
   {
     id: 2,
     badge: "PARCERIA • EXPOSIÇÃO // CONECTE SUA MARCA",
-    titleLine1: "SEJA UM",
+    titleLine1: "Seja um",
     titleLine2: "Patrocinador Oficial",
     descricao:
       "Posicione sua empresa diante de líderes, empresários e tomadores de decisão qualificados. Conecte sua marca à maior audiência estratégica de negócios e visão executiva.",
@@ -51,7 +51,7 @@ const heroSlides = [
   {
     id: 3,
     badge: "AO VIVO & GRAVADO // TRANSMISSÃO 4K HDR",
-    titleLine1: "PODCAST AO VIVO",
+    titleLine1: "Podcast ao Vivo",
     titleLine2: "Último Lançamento",
     descricao:
       "Acompanhe nossas transmissões ao vivo ou assista na íntegra ao episódio mais recente com análises aprofundadas, debates francos e insights práticos de alto impacto.",
@@ -64,7 +64,7 @@ const heroSlides = [
   {
     id: 4,
     badge: "APRESENTADOR • HOST // VISÃO EXECUTIVA",
-    titleLine1: "DANIEL SILVA",
+    titleLine1: "Daniel Silva",
     titleLine2: "Apresentador & Host",
     descricao:
       "Conduzido por Daniel Silva — estrategista de negócios, mentor executivo e palestrante, trazendo perguntas cirúrgicas, profundidade analítica e bagagem de mercado a cada encontro.",
@@ -284,7 +284,7 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "04",
     navLabel: "Cortes",
     badge: "CONHEÇA, SIGA & ASSISTA // DESTAQUES RÁPIDOS",
-    titleLine1: "CORTES EXCLUSIVOS",
+    titleLine1: "Cortes Exclusivos",
     titleLine2: "Das Entrevistas",
     description:
       "Acompanhe os melhores momentos, insights estratégicos e declarações marcantes dos maiores líderes e empresários do país condensados em pílulas dinâmicas e de alto impacto. Inscreva-se no canal para não perder nenhum destaque.",
@@ -301,7 +301,7 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "05",
     navLabel: "Em Poucas Palavras",
     badge: "QUADRO EXCLUSIVO // DINÂMICA DIRETA",
-    titleLine1: "QUADRO ESPECIAL",
+    titleLine1: "Quadro Especial",
     titleLine2: "Em Poucas Palavras",
     description:
       "Perguntas cirúrgicas, respostas instantâneas e revelações autênticas sem filtro. Um formato dinâmico onde nossos convidados resumem princípios inegociáveis, visões de mundo e definições de sucesso de forma rápida e memorável.",
@@ -318,7 +318,7 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "06",
     navLabel: "Bastidores",
     badge: "MAKING OF // POR TRÁS DAS CÂMERAS",
-    titleLine1: "FOTOS DE BASTIDORES",
+    titleLine1: "Fotos de Bastidores",
     titleLine2: "Gravações do Estúdio",
     description:
       "Uma imersão na atmosfera que antecede o 'rec'. Confira a preparação dos convidados, o trabalho minucioso da equipe técnica e os registros fotográficos exclusivos das nossas gravações.",
@@ -335,7 +335,7 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     number: "07",
     navLabel: "Patrocinadores",
     badge: "MARCAS VISIONÁRIAS // PARCERIAS ESTRATÉGICAS",
-    titleLine1: "PARCERIAS DE VALOR",
+    titleLine1: "Parcerias de Valor",
     titleLine2: "Nossos Patrocinadores",
     description:
       "O Akedah Podcast caminha lado a lado com empresas e líderes que moldam o mercado. Conheça as marcas oficiais que tornam possível a nossa infraestrutura de transmissão e produção cinematográfica.",
@@ -648,11 +648,11 @@ const Podcast = () => {
                   className="w-full flex flex-col items-start"
                 >
                   {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
-                  <h1 className="text-[22px] xs:text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.05] sm:leading-[1.0] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                  <h1 className="text-[28px] xs:text-[34px] sm:text-[44px] md:text-[52px] lg:text-[62px] xl:text-[70px] leading-[1.05] sm:leading-[1.0] tracking-tight mb-4 sm:mb-6 text-left">
                     <span className="block font-corporate font-black text-white whitespace-nowrap">
                       {heroSlides[heroSlide].titleLine1}
                     </span>
-                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
+                    <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">
                       {heroSlides[heroSlide].titleLine2}
                     </span>
                   </h1>
@@ -785,10 +785,8 @@ const Podcast = () => {
             <div className="lg:col-span-4 w-full flex flex-col justify-center text-left">
               {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
               <h2 className="text-[24px] sm:text-[32px] md:text-[38px] lg:text-[42px] tracking-tight leading-[1.05] mb-3 text-left">
-                <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">DANIEL SILVA</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
-                  Estrategista de Negócios
-                </span>
+                <span className="block font-corporate font-black text-white whitespace-nowrap">Daniel Silva</span>
+                <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">Estrategista de Negócios</span>
               </h2>
 
               {/* Cargo / Especialidade com Montserrat */}
@@ -848,10 +846,8 @@ const Podcast = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
             <div className="flex flex-col items-start max-w-2xl">
               <h2 className="text-[24px] sm:text-[32px] md:text-[40px] lg:text-[44px] tracking-tight leading-[1.05] text-left">
-                <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">PRÓXIMAS ESTREIAS</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
-                  Confirmadas no Estúdio
-                </span>
+                <span className="block font-corporate font-black text-white whitespace-nowrap">Próximas Estreias</span>
+                <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">Confirmadas no Estúdio</span>
               </h2>
             </div>
 
@@ -1079,11 +1075,11 @@ const Podcast = () => {
                   {card.badge}
                 </span>
 
-                <h2 className="text-[22px] xs:text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.05] sm:leading-[1.0] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                <h2 className="text-[28px] xs:text-[34px] sm:text-[44px] md:text-[52px] lg:text-[62px] xl:text-[70px] leading-[1.05] sm:leading-[1.0] tracking-tight mb-4 sm:mb-6 text-left">
                   <span className="block font-corporate font-black text-white whitespace-nowrap">
                     {card.titleLine1}
                   </span>
-                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
+                  <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">
                     {card.titleLine2}
                   </span>
                 </h2>
@@ -1147,9 +1143,9 @@ const Podcast = () => {
 
         <div className="max-w-5xl w-full mx-auto relative z-10 flex flex-col items-center">
           {/* Título Monumental com Darken Jellybean e variação em Podcast */}
-          <h2 className="text-[26px] sm:text-[38px] md:text-[48px] lg:text-[58px] tracking-tight leading-[1.05] max-w-4xl mb-4 text-center">
-            <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">QUER SER NOSSO</span>
-            <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">Convidado?</span>
+          <h2 className="text-[28px] sm:text-[42px] md:text-[54px] lg:text-[64px] tracking-tight leading-[1.05] max-w-4xl mb-4 text-center">
+            <span className="block font-corporate font-black text-white whitespace-nowrap">Quer Ser Nosso</span>
+            <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">Convidado?</span>
           </h2>
 
           {/* Linha de baixo em texto menor com Bebas Neue */}
