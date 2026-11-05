@@ -15,10 +15,12 @@ export default {
     extend: {
       fontFamily: {
         display: ['Montserrat', 'sans-serif'],
-        'podcast-display': ['"Darken Jellybean"', '"DarkenJellybean"', 'sans-serif'],
-        'podcast-title': ['"Darken Jellybean"', '"DarkenJellybean"', 'sans-serif'],
+        'podcast-display': ['Montserrat', 'sans-serif'],
+        'podcast-title': ['Montserrat', 'sans-serif'],
         'podcast-alt': ['"Podcast"', 'cursive', 'sans-serif'],
-        'podcast-body': ['"Bebas Neue Book"', '"BebasNeueBook"', '"Bebas Neue"', '"BebasNeue"', 'sans-serif'],
+        'podcast-body': ['Lora', 'serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        lora: ['Lora', 'serif'],
         'bebas-neue': ['"Bebas Neue Book"', '"BebasNeueBook"', '"Bebas Neue"', '"BebasNeue"', 'sans-serif'],
         'bebas-book': ['"Bebas Neue Book"', '"BebasNeueBook"', '"Bebas Neue"', '"BebasNeue"', 'sans-serif'],
         'darken-jellybean': ['"Darken Jellybean"', '"DarkenJellybean"', 'sans-serif'],

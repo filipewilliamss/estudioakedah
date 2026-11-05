@@ -124,7 +124,7 @@ const PodcastContact = () => {
                 initial={{ opacity: 0, y: 25 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
-                className="font-darken-jellybean text-[40px] sm:text-[56px] md:text-[76px] lg:text-[92px] font-normal leading-[1.0] tracking-tight uppercase text-white mb-8"
+                className="font-montserrat font-bold text-[40px] sm:text-[56px] md:text-[76px] lg:text-[92px] leading-[1.0] tracking-tight uppercase text-white mb-8"
               >
                 FALE COM O <br className="hidden sm:inline" />
                 <span className="font-podcast text-[#C4550A] capitalize text-[1.15em] font-normal">Akedah Podcast.</span>
@@ -134,7 +134,7 @@ const PodcastContact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto tracking-wide"
+                className="font-lora font-normal text-white/80 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto"
               >
                 Conecte sua marca à nossa audiência qualificada, solicite o mídia kit de patrocínios ou envie sugestões de pautas e convidados.
               </motion.p>
@@ -172,10 +172,10 @@ const PodcastContact = () => {
                           <channel.icon className="w-6 h-6" />
                         </div>
                         <div>
-                          <span className="text-xs sm:text-sm uppercase font-bebas-neue tracking-[0.2em] text-[#C4550A] block mb-1">
+                          <span className="text-xs font-montserrat font-semibold uppercase tracking-[0.2em] text-[#C4550A] block mb-1">
                             {channel.category}
                           </span>
-                          <h2 className="font-darken-jellybean text-[22px] sm:text-[24px] font-normal text-white tracking-tight uppercase">
+                          <h2 className="font-montserrat font-bold text-lg sm:text-xl text-white tracking-tight uppercase">
                             {channel.name}
                           </h2>
                         </div>
@@ -188,17 +188,17 @@ const PodcastContact = () => {
 
                     {/* Handle & Description */}
                     <div className="mb-8">
-                      <p className="font-bebas-neue text-lg sm:text-xl text-[#C4550A] mb-2 group-hover:text-[#F07A28] tracking-wider transition-colors">
+                      <p className="font-montserrat font-semibold text-base sm:text-lg text-[#C4550A] mb-2 group-hover:text-[#F07A28] tracking-wider transition-colors">
                         {channel.handle}
                       </p>
-                      <p className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg leading-relaxed tracking-wide">
+                      <p className="font-lora font-normal text-white/75 text-sm sm:text-base leading-relaxed">
                         {channel.description}
                       </p>
                     </div>
                   </div>
 
                   {/* Action Link */}
-                  <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-sm sm:text-base font-bebas-neue tracking-[0.18em] uppercase text-white/70 group-hover:text-white transition-colors">
+                  <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs sm:text-sm font-montserrat font-bold tracking-[0.16em] uppercase text-white/70 group-hover:text-white transition-colors">
                     <span>{channel.actionText}</span>
                     <span className="text-[#C4550A] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   </div>
@@ -218,16 +218,16 @@ const PodcastContact = () => {
                   <MapPin className="w-7 h-7" />
                 </div>
                 <div>
-                  <h3 className="font-darken-jellybean text-[22px] sm:text-[24px] font-normal text-white uppercase tracking-tight mb-2">
+                  <h3 className="font-montserrat font-bold text-lg sm:text-xl text-white uppercase tracking-tight mb-2">
                     ESTÚDIO DE GRAVAÇÃO & SEDE
                   </h3>
-                  <p className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg leading-relaxed max-w-xl tracking-wide">
+                  <p className="font-lora font-normal text-white/75 text-sm sm:text-base leading-relaxed max-w-xl">
                     São Paulo, SP — Infraestrutura com setup multicâmera 4K HDR, iluminação cinematográfica, microfones broadcast e curadoria executiva para produções de alto valor.
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 text-white/50 font-bebas-neue text-sm sm:text-base uppercase tracking-[0.16em]">
+              <div className="flex items-center gap-4 text-white/60 font-montserrat font-medium text-xs sm:text-sm uppercase tracking-[0.16em]">
                 <Clock className="w-4 h-4 text-[#C4550A]" />
                 <span>Gravações com Agendamento Prévio</span>
               </div>

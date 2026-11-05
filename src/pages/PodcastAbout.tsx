@@ -67,7 +67,7 @@ const PodcastTimelineStep = ({ step, idx }: { step: typeof podcastTimelineSteps[
         {/* Número Gigante em Parallax */}
         <motion.span
           style={{ y: smoothNumberY }}
-          className={`absolute font-darken-jellybean text-[100px] sm:text-[150px] md:text-[280px] font-normal text-[#C4550A]/[0.12] md:text-[#C4550A]/[0.15] leading-none pointer-events-none select-none z-0 ${
+          className={`absolute font-montserrat font-black text-[100px] sm:text-[150px] md:text-[280px] text-[#C4550A]/[0.12] md:text-[#C4550A]/[0.15] leading-none pointer-events-none select-none z-0 ${
             idx % 2 === 0 ? "left-6 md:left-auto md:right-[45%]" : "left-6 md:left-[45%]"
           }`}
         >
@@ -79,13 +79,13 @@ const PodcastTimelineStep = ({ step, idx }: { step: typeof podcastTimelineSteps[
             idx % 2 === 0 ? "md:text-left" : "md:text-right"
           }`}
         >
-          <h3 className="font-darken-jellybean text-[28px] md:text-[42px] font-normal text-white mb-4 tracking-tight leading-[1.0]">
+          <h3 className="font-montserrat font-bold text-[24px] md:text-[36px] text-white mb-4 tracking-tight leading-[1.1]">
             {step.title}
           </h3>
           <p
             className={`text-white/70 text-[16px] md:text-[18px] leading-relaxed max-w-md ${
               idx % 2 === 0 ? "" : "md:ml-auto"
-            } font-bebas-neue font-normal tracking-wide`}
+            } font-lora font-normal text-white/80 leading-relaxed`}
           >
             {step.description}
           </p>
@@ -129,17 +129,17 @@ const PodcastAbout = () => {
                 className="max-w-3xl text-left flex flex-col items-start"
               >
                 <div className="flex items-center justify-start gap-4 mb-6">
-                  <span className="text-[#C4550A] text-xs sm:text-sm uppercase tracking-[0.2em] font-bebas-neue">
+                  <span className="text-[#C4550A] text-xs font-montserrat font-semibold uppercase tracking-[0.2em]">
                     Akedah Podcast
                   </span>
                 </div>
 
-                <h1 className="font-darken-jellybean text-[48px] sm:text-[70px] md:text-[90px] font-normal leading-[0.95] tracking-tight mb-8">
+                <h1 className="font-montserrat font-bold text-[48px] sm:text-[70px] md:text-[90px] leading-[0.95] tracking-tight mb-8 uppercase">
                   <span className="block text-white">Nossa</span>
                   <span className="block font-podcast text-[#C4550A] capitalize text-[1.1em]">História</span>
                 </h1>
 
-                <p className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left tracking-wide">
+                <p className="font-lora font-normal text-white/85 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left">
                   O Akedah Podcast nasceu para ser a principal mesa de debates de negócios, estratégia e crescimento real, unindo conversas profundas com grandes líderes e produção cinematográfica.
                 </p>
               </motion.div>
@@ -156,16 +156,16 @@ const PodcastAbout = () => {
               className="max-w-4xl space-y-8"
             >
               <div className="flex items-center gap-3">
-                <span className="text-[#C4550A] text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.2em]">
+                <span className="text-[#C4550A] text-xs font-montserrat font-semibold uppercase tracking-[0.2em]">
                   Infraestrutura de Gravação
                 </span>
               </div>
               
-              <h2 className="font-darken-jellybean text-3xl md:text-5xl font-normal tracking-tight text-white">
-                Estrutura do Podcast
+              <h2 className="font-montserrat font-bold text-3xl md:text-5xl tracking-tight text-white uppercase">
+                ESTRUTURA DO <span className="font-podcast text-[#C4550A] capitalize text-[1.15em] font-normal tracking-normal">Podcast</span>
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white/70 text-base md:text-lg leading-relaxed font-bebas-neue font-normal tracking-wide">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white/80 text-base md:text-lg leading-relaxed font-lora font-normal">
                 <p>
                   Nossa mesa de gravação conta com microfones Shure SM7B broadcast com processamento dinâmico em tempo real, garantindo voz limpa, encorpada e presença imersiva para o ouvinte.
                 </p>
@@ -177,20 +177,20 @@ const PodcastAbout = () => {
               {/* Destaques da Estrutura */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
                 <div className="podcast-card p-4 rounded-[12px]">
-                  <p className="text-[#C4550A] font-darken-jellybean font-normal text-lg mb-1">Shure SM7B</p>
-                  <p className="text-white/50 text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.16em]">Áudio Broadcast</p>
+                  <p className="text-[#C4550A] font-montserrat font-bold text-base mb-1">Shure SM7B</p>
+                  <p className="text-white/50 text-[11px] font-montserrat font-semibold uppercase tracking-[0.16em]">Áudio Broadcast</p>
                 </div>
                 <div className="podcast-card p-4 rounded-[12px]">
-                  <p className="text-[#C4550A] font-darken-jellybean font-normal text-lg mb-1">4K HDR</p>
-                  <p className="text-white/50 text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.16em]">Multicâmera Cinema</p>
+                  <p className="text-[#C4550A] font-montserrat font-bold text-base mb-1">4K HDR</p>
+                  <p className="text-white/50 text-[11px] font-montserrat font-semibold uppercase tracking-[0.16em]">Multicâmera Cinema</p>
                 </div>
                 <div className="podcast-card p-4 rounded-[12px]">
-                  <p className="text-[#C4550A] font-darken-jellybean font-normal text-lg mb-1">Cortes Ágeis</p>
-                  <p className="text-white/50 text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.16em]">Reels & Shorts</p>
+                  <p className="text-[#C4550A] font-montserrat font-bold text-base mb-1">Cortes Ágeis</p>
+                  <p className="text-white/50 text-[11px] font-montserrat font-semibold uppercase tracking-[0.16em]">Reels & Shorts</p>
                 </div>
                 <div className="podcast-card p-4 rounded-[12px]">
-                  <p className="text-[#C4550A] font-darken-jellybean font-normal text-lg mb-1">Ao Vivo</p>
-                  <p className="text-white/50 text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.16em]">Transmissão 4K</p>
+                  <p className="text-[#C4550A] font-montserrat font-bold text-base mb-1">Ao Vivo</p>
+                  <p className="text-white/50 text-[11px] font-montserrat font-semibold uppercase tracking-[0.16em]">Transmissão 4K</p>
                 </div>
               </div>
             </motion.div>
@@ -200,10 +200,10 @@ const PodcastAbout = () => {
           <section className="py-24 mb-20 border-t border-white/[0.05]">
             <div className="container-editorial">
               <div className="max-w-3xl mx-auto text-center">
-                <h2 className="font-darken-jellybean text-4xl md:text-6xl font-normal mb-8 text-white">
+                <h2 className="font-montserrat font-bold text-4xl md:text-6xl mb-8 text-white tracking-tight uppercase">
                   O que representa o <span className="font-podcast text-[#C4550A] capitalize">Podcast</span>?
                 </h2>
-                <p className="text-white/70 text-lg md:text-xl leading-relaxed font-bebas-neue font-normal tracking-wide">
+                <p className="text-white/85 text-lg md:text-xl leading-relaxed font-lora italic">
                   "O Akedah Podcast é o ponto de encontro entre o campo de batalha empresarial e a autoridade em vídeo. Aqui não há teorias vazias: apenas quem vive o negócio e entrega valor real."
                 </p>
               </div>
@@ -218,7 +218,7 @@ const PodcastAbout = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false, amount: 0.1 }}
               transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute -left-6 md:-left-10 top-[5%] md:top-[8%] font-darken-jellybean font-normal text-white/[0.015] leading-none tracking-extratight pointer-events-none select-none uppercase"
+              className="absolute -left-6 md:-left-10 top-[5%] md:top-[8%] font-montserrat font-black text-white/[0.015] leading-none tracking-extratight pointer-events-none select-none uppercase"
               style={{ fontSize: "clamp(80px, 15vw, 250px)" }}
             >
               linha do tempo
@@ -232,13 +232,13 @@ const PodcastAbout = () => {
                   viewport={{ once: false, amount: 0.5 }}
                   transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <span className="inline-block text-[#C4550A] text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.2em] mb-6">
+                  <span className="inline-block text-[#C4550A] text-xs font-montserrat font-semibold uppercase tracking-[0.2em] mb-6">
                     Linha do Tempo do Podcast
                   </span>
-                  <h2 className="font-darken-jellybean text-[40px] md:text-[76px] font-normal text-white leading-[0.92] tracking-tight mb-8">
+                  <h2 className="font-montserrat font-bold text-[40px] md:text-[76px] text-white leading-[0.92] tracking-tight mb-8 uppercase">
                     Da primeira bancada <br /> à <span className="font-podcast text-[#C4550A] capitalize text-[1.1em]">grande audiência</span>.
                   </h2>
-                  <p className="text-white/60 text-base md:text-lg font-bebas-neue font-normal max-w-2xl mx-auto leading-relaxed tracking-wide">
+                  <p className="text-white/75 text-base md:text-lg font-lora font-normal max-w-2xl mx-auto leading-relaxed">
                     A trajetória do Akedah Podcast construída episódio a episódio com grandes convidados.
                   </p>
                 </motion.div>
@@ -274,10 +274,10 @@ const PodcastAbout = () => {
               </motion.div>
             </div>
             <div className="lg:col-span-7 space-y-8">
-              <h2 className="font-darken-jellybean text-3xl md:text-4xl font-normal tracking-tight text-white">
+              <h2 className="font-montserrat font-bold text-3xl md:text-4xl tracking-tight text-white uppercase">
                 Apresentação por <span className="font-podcast text-[#C4550A] capitalize">Daniel Silva</span>
               </h2>
-              <div className="space-y-6 text-white/70 leading-relaxed text-base md:text-lg font-bebas-neue font-normal tracking-wide">
+              <div className="space-y-6 text-white/80 leading-relaxed text-base md:text-lg font-lora font-normal">
                 <p>
                   Com anos de vivência no centro das decisões comerciais e estratégicas de negócios, Daniel Silva conduz cada episódio extraindo insights práticos, desafios superados e metodologias que funcionam.
                 </p>
@@ -288,12 +288,12 @@ const PodcastAbout = () => {
               
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
                 <div>
-                  <p className="font-darken-jellybean text-[#C4550A] font-normal text-4xl mb-1">4K HDR</p>
-                  <p className="text-white/50 text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.16em]">Padrão Cinema</p>
+                  <p className="font-montserrat font-bold text-[#C4550A] text-4xl mb-1">4K HDR</p>
+                  <p className="text-white/50 text-[11px] font-montserrat font-semibold uppercase tracking-[0.16em]">Padrão Cinema</p>
                 </div>
                 <div>
-                  <p className="font-darken-jellybean text-[#C4550A] font-normal text-4xl mb-1">100%</p>
-                  <p className="text-white/50 text-xs sm:text-sm font-bebas-neue uppercase tracking-[0.16em]">Foco em Estratégia</p>
+                  <p className="font-montserrat font-bold text-[#C4550A] text-4xl mb-1">100%</p>
+                  <p className="text-white/50 text-[11px] font-montserrat font-semibold uppercase tracking-[0.16em]">Foco em Estratégia</p>
                 </div>
               </div>
             </div>

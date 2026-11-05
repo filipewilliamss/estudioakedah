@@ -17,6 +17,7 @@ interface SponsorBoard {
   number: string;
   titleMain: string;
   titleSub: string;
+  titleHighlight?: string;
   description: string;
   logo: string;
   logoAlt: string;
@@ -30,7 +31,8 @@ const sponsorsData: SponsorBoard[] = [
     id: "estudio-akedah",
     number: "01",
     titleMain: "ESTÚDIO AKEDAH",
-    titleSub: "PRODUÇÃO & INFRAESTRUTURA",
+    titleSub: "PRODUÇÃO &",
+    titleHighlight: "Infraestrutura",
     description:
       "Estúdio de alta performance para gravações corporativas, podcasts em 4K HDR e produções audiovisuais cinematográficas. Infraestrutura técnica de ponta e curadoria estratégica para grandes marcas e líderes.",
     logo: logoEstudioAkedah,
@@ -43,7 +45,8 @@ const sponsorsData: SponsorBoard[] = [
     id: "dunamis",
     number: "02",
     titleMain: "DUNAMIS",
-    titleSub: "MOVIMENTO & TRANSFORMAÇÃO",
+    titleSub: "MOVIMENTO &",
+    titleHighlight: "Transformação",
     description:
       "Movimento global focado em despertar uma geração para estabelecer princípios de liderança, relevância cultural e transformação social de alto impacto contínuo.",
     logo: logoDunamis,
@@ -56,7 +59,8 @@ const sponsorsData: SponsorBoard[] = [
     id: "fecar",
     number: "03",
     titleMain: "FE-CAR",
-    titleSub: "MULTIMARCAS",
+    titleSub: "VEÍCULOS &",
+    titleHighlight: "Multimarcas",
     description:
       "Com sólida credibilidade no segmento automotivo de luxo e utilitários, a FE-CAR Multimarcas entrega curadoria rigorosa de procedência, pós-venda exemplar e assessoria completa em compras corporativas e veículos de alto padrão.",
     logo: logoFecar,
@@ -69,7 +73,8 @@ const sponsorsData: SponsorBoard[] = [
     id: "tabernaculo",
     number: "04",
     titleMain: "TABERNÁCULO",
-    titleSub: "DA TRINDADE",
+    titleSub: "DA",
+    titleHighlight: "Trindade",
     description:
       "Fundamentada em princípios inegociáveis de fé, integridade e acolhimento familiar, a instituição lidera projetos humanitários de grande alcance, formação de valores éticos e iniciativas contínuas de transformação social.",
     logo: logoTabernaculo,
@@ -82,7 +87,8 @@ const sponsorsData: SponsorBoard[] = [
     id: "studio",
     number: "05",
     titleMain: "STUDIO",
-    titleSub: "ENGENHARIA DE SOM & MASTER",
+    titleSub: "ENGENHARIA &",
+    titleHighlight: "Master",
     description:
       "Engenharia sonora avançada, produção musical, pós-produção acústica e identidade auditiva corporativa. Criação de trilhas originais, mixagem e masterização para produções de altíssimo padrão e impacto emocional.",
     logo: logoHorizontalSimbolo,
@@ -227,7 +233,7 @@ const PodcastSponsors = () => {
                 scrollToSection(sponsor.id);
               }}
             >
-              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-bebas-neue tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
+              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-montserrat font-medium tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
                 {sponsor.number} — {sponsor.titleMain}
               </span>
               <span
@@ -251,7 +257,7 @@ const PodcastSponsors = () => {
             scrollToSection("cta-final");
           }}
         >
-          <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-bebas-neue tracking-widest uppercase text-[#C4550A] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
+          <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-montserrat font-semibold tracking-widest uppercase text-[#C4550A] whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
             ★ SEJA PATROCINADOR
           </span>
           <span
@@ -310,14 +316,21 @@ const PodcastSponsors = () => {
                     isLogoRight ? "order-2 md:order-1" : "order-2 md:order-2"
                   }`}
                 >
-                  {/* Título Principal com Darken Jellybean (Sem caixa/badge por cima) */}
-                  <h1 className="font-darken-jellybean text-[36px] xs:text-[44px] sm:text-[56px] md:text-[68px] lg:text-[78px] xl:text-[84px] font-normal leading-[1.0] sm:leading-[0.95] tracking-tight uppercase mb-4 sm:mb-5 text-left">
+                  {/* Título Principal com Montserrat Bold + Podcast */}
+                  <h1 className="font-montserrat font-bold text-[36px] xs:text-[44px] sm:text-[54px] md:text-[66px] lg:text-[76px] leading-[1.02] sm:leading-[0.96] tracking-tight uppercase mb-4 sm:mb-5 text-left">
                     <span className="block text-white">{sponsor.titleMain}</span>
-                    <span className="text-[#C4550A] block">{sponsor.titleSub}</span>
+                    <span className="text-[#C4550A] flex items-baseline gap-2.5 flex-wrap">
+                      <span>{sponsor.titleSub}</span>
+                      {sponsor.titleHighlight && (
+                        <span className="font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none">
+                          {sponsor.titleHighlight}
+                        </span>
+                      )}
+                    </span>
                   </h1>
 
-                  {/* Descrição Editorial com Bebas Neue em versão Book */}
-                  <p className="font-bebas-neue font-normal text-white/80 text-base sm:text-lg md:text-xl leading-relaxed tracking-wide max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
+                  {/* Descrição Editorial com Lora Regular */}
+                  <p className="font-lora font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
                     {sponsor.description}
                   </p>
 
@@ -327,7 +340,7 @@ const PodcastSponsors = () => {
                       href={sponsor.instagramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-bebas-neue text-base sm:text-lg uppercase tracking-[0.14em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group cursor-pointer"
+                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group cursor-pointer"
                     >
                       <Instagram className="w-5 h-5 text-white/90 group-hover:scale-110 transition-transform duration-300" />
                       <span>Instagram Oficial</span>
@@ -366,7 +379,7 @@ const PodcastSponsors = () => {
                     className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
                     aria-label={`Rolar para próxima prancheta: ${nextSponsor.titleMain}`}
                   >
-                    <span className="text-[11px] sm:text-xs font-bebas-neue uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+                    <span className="text-[10px] sm:text-[11px] font-montserrat font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
                       PRÓXIMO PATROCINADOR ({nextSponsor.number})
                     </span>
                     <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
@@ -379,7 +392,7 @@ const PodcastSponsors = () => {
                     onClick={() => scrollToSection("cta-final")}
                     className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
                   >
-                    <span className="text-[11px] sm:text-xs font-bebas-neue uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
+                    <span className="text-[10px] sm:text-[11px] font-montserrat font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
                       SEJA UM PATROCINADOR OFICIAL
                     </span>
                     <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
@@ -401,14 +414,14 @@ const PodcastSponsors = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            <h2 className="font-darken-jellybean text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-white uppercase tracking-tight leading-[0.95] mb-5">
+            <h2 className="font-montserrat font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white uppercase tracking-tight leading-[0.95] mb-5">
               SUA MARCA NA MAIOR <br />
               <span className="font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal">
                 Mesa de Negócios
               </span>
             </h2>
 
-            <p className="font-bebas-neue font-normal text-white/70 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10 tracking-wide">
+            <p className="font-lora font-normal text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
               Associe o nome da sua empresa a um conteúdo de altíssimo valor percebido, com transmissão 4K, cortes virais em redes sociais e distribuição direta para diretores, investidores e tomadores de decisão.
             </p>
 
@@ -417,14 +430,14 @@ const PodcastSponsors = () => {
                 href={`${WHATSAPP_URL}&text=Ol%C3%A1%2C%20tenho%20interesse%20em%20ser%20um%20patrocinador%20do%20Akedah%20Podcast`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-bebas-neue text-base sm:text-lg uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/30 flex items-center gap-2 group"
+                className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/30 flex items-center gap-2 group"
               >
                 <span>Falar com Assessoria de Patrocínios</span>
                 <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>
               </a>
               <a
                 href="/podcast"
-                className="bg-transparent hover:bg-white/10 text-white/90 hover:text-white border border-white/20 font-bebas-neue text-base sm:text-lg uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300"
+                className="bg-transparent hover:bg-white/10 text-white/90 hover:text-white border border-white/20 font-montserrat font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300"
               >
                 <span>Voltar ao Podcast</span>
               </a>
