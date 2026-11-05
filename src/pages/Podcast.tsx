@@ -712,21 +712,22 @@ const Podcast = () => {
           </div>
         </section>
 
-        {/* 2. DESTAQUE DO EPISÓDIO // CONVIDADO DA SEMANA (#destaque) */}
+        {/* 2. DESTAQUE DO EPISÓDIO // CONVIDADO DA SEMANA (#destaque) - PLAYER EXPANDIDO EM ~70% */}
         <section 
           id="destaque" 
-          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-4 sm:px-6 lg:px-10 py-24 md:py-0 md:snap-start md:snap-always"
+          className="relative min-h-[100dvh] md:min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-4 sm:px-6 lg:px-8 xl:px-12 py-20 md:py-16 lg:py-0 md:snap-start md:snap-always"
         >
-          {/* Spotlight Quente Suave */}
-          <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.15)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
+          {/* Spotlight Quente Suave Ampliada */}
+          <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
 
-          <div className="max-w-7xl w-full mx-auto relative z-10">
-            {/* Grid de 2 Colunas: Player no Lado Esquerdo + Convidado & Redes no Lado Direito */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Container Expandido (max-w-[1720px]) para acomodar o Player ~70% maior lado a lado com as informações */}
+          <div className="max-w-[1720px] w-full mx-auto relative z-10">
+            {/* Grid de 2 Colunas: Player no Lado Esquerdo (8 colunas) + Convidado & Redes no Lado Direito (4 colunas) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
             
-            {/* LADO ESQUERDO: Player do YouTube Redimensionado */}
-            <div className="lg:col-span-7 w-full flex flex-col gap-3">
-              <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_20px_50px_rgba(0,0,0,0.85),0_0_35px_rgba(196,85,10,0.12)] ring-1 ring-white/10 relative">
+            {/* LADO ESQUERDO: Player do YouTube Expandido em ~70% */}
+            <div className="lg:col-span-8 w-full flex flex-col gap-3.5">
+              <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_45px_rgba(196,85,10,0.18)] ring-1 ring-white/10 relative">
                 <div className="relative aspect-video w-full overflow-hidden bg-black group rounded-2xl sm:rounded-3xl">
                   {isPlaying ? (
                     <iframe
@@ -748,19 +749,19 @@ const Podcast = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
                       {/* Badge de numeração em pill glassmorphism */}
-                      <div className="absolute top-4 left-4 sm:top-5 sm:left-5 z-20 bg-black/80 backdrop-blur-md border border-white/20 px-3.5 py-1.5 rounded-full font-corporate font-semibold text-xs tracking-[0.16em] text-[#C4550A] uppercase shadow-lg">
+                      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 bg-black/85 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full font-corporate font-semibold text-xs sm:text-sm tracking-[0.16em] text-[#C4550A] uppercase shadow-lg">
                         EP.14 // 4K HDR
                       </div>
 
-                      {/* Botão de Play Estilo YouTube */}
+                      {/* Botão de Play Estilo YouTube Redimensionado para o Player Maior */}
                       <button
                         type="button"
                         onClick={() => setIsPlaying(true)}
                         className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
                         aria-label="Assistir episódio em destaque"
                       >
-                        <div className="w-16 h-11 sm:w-20 sm:h-14 bg-[#FF0000] text-white flex items-center justify-center rounded-[14px] sm:rounded-[18px] shadow-[0_10px_35px_rgba(255,0,0,0.5)] group-hover/play:scale-110 group-hover/play:bg-[#E60000] group-hover/play:shadow-[0_15px_45px_rgba(255,0,0,0.7)] transition-all duration-300">
-                          <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-white ml-0.5" viewBox="0 0 24 24">
+                        <div className="w-20 h-14 sm:w-24 sm:h-16 lg:w-28 lg:h-18 bg-[#FF0000] text-white flex items-center justify-center rounded-[16px] sm:rounded-[22px] shadow-[0_12px_45px_rgba(255,0,0,0.6)] group-hover/play:scale-110 group-hover/play:bg-[#E60000] group-hover/play:shadow-[0_18px_55px_rgba(255,0,0,0.8)] transition-all duration-300">
+                          <svg className="w-8 h-8 sm:w-10 sm:h-10 fill-white ml-0.5" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z" />
                           </svg>
                         </div>
@@ -773,15 +774,15 @@ const Podcast = () => {
               {/* Linha discreta de canal abaixo do player */}
               <div className="flex items-center justify-between px-1 text-xs text-white/50 font-corporate font-medium tracking-wider">
                 <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
                   ÚLTIMO LANÇAMENTO OFICIAL
                 </span>
-                <span className="uppercase text-xs sm:text-sm tracking-wider text-[#C4550A]">4K ULTRA HD</span>
+                <span className="uppercase text-xs sm:text-sm tracking-wider text-[#C4550A] font-corporate font-semibold">4K ULTRA HD • HDR</span>
               </div>
             </div>
 
             {/* LADO DIREITO: Informações e Breve Descrição do Convidado + Botão para Redes Sociais */}
-            <div className="lg:col-span-5 w-full flex flex-col justify-center text-left">
+            <div className="lg:col-span-4 w-full flex flex-col justify-center text-left">
               {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
               <h2 className="text-[24px] sm:text-[32px] md:text-[38px] lg:text-[42px] tracking-tight leading-[1.05] mb-3 text-left">
                 <span className="block font-corporate font-black text-white uppercase whitespace-nowrap">DANIEL SILVA</span>
