@@ -285,7 +285,7 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     navLabel: "Cortes",
     badge: "CONHEÇA, SIGA & ASSISTA // DESTAQUES RÁPIDOS",
     titleLine1: "CORTES EXCLUSIVOS",
-    titleLine2: "Das Nossas Entrevistas",
+    titleLine2: "Das Entrevistas",
     description:
       "Acompanhe os melhores momentos, insights estratégicos e declarações marcantes dos maiores líderes e empresários do país condensados em pílulas dinâmicas e de alto impacto. Inscreva-se no canal para não perder nenhum destaque.",
     btnText: "Assistir aos Cortes no YouTube",
@@ -319,7 +319,7 @@ const podcastEditorialCards: PodcastEditorialCard[] = [
     navLabel: "Bastidores",
     badge: "MAKING OF // POR TRÁS DAS CÂMERAS",
     titleLine1: "FOTOS DE BASTIDORES",
-    titleLine2: "& Gravações do Estúdio",
+    titleLine2: "Gravações do Estúdio",
     description:
       "Uma imersão na atmosfera que antecede o 'rec'. Confira a preparação dos convidados, o trabalho minucioso da equipe técnica e os registros fotográficos exclusivos das nossas gravações.",
     btnText: "Ver Fotos dos Bastidores no Instagram",
@@ -648,11 +648,11 @@ const Podcast = () => {
                   className="w-full flex flex-col items-start"
                 >
                   {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
-                  <h1 className="text-[34px] xs:text-[42px] sm:text-[54px] md:text-[68px] lg:text-[78px] xl:text-[84px] leading-[1.0] sm:leading-[0.94] tracking-tight uppercase mb-4 sm:mb-6 text-left">
-                    <span className="block font-montserrat font-bold text-white">
+                  <h1 className="text-[22px] xs:text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.05] sm:leading-[1.0] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                    <span className="block font-montserrat font-bold text-white whitespace-nowrap">
                       {heroSlides[heroSlide].titleLine1}
                     </span>
-                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.14em] font-normal tracking-normal select-none -mt-1 sm:-mt-2">
+                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
                       {heroSlides[heroSlide].titleLine2}
                     </span>
                   </h1>
@@ -783,9 +783,9 @@ const Podcast = () => {
             {/* LADO DIREITO: Informações e Breve Descrição do Convidado + Botão para Redes Sociais */}
             <div className="lg:col-span-5 w-full flex flex-col justify-center text-left">
               {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
-              <h2 className="text-3xl sm:text-4xl lg:text-[46px] tracking-tight leading-[1.02] mb-3 text-left">
-                <span className="block font-montserrat font-bold text-white uppercase">DANIEL SILVA</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 sm:-mt-1">
+              <h2 className="text-[24px] sm:text-[32px] md:text-[38px] lg:text-[42px] tracking-tight leading-[1.05] mb-3 text-left">
+                <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">DANIEL SILVA</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
                   Estrategista de Negócios
                 </span>
               </h2>
@@ -846,9 +846,9 @@ const Podcast = () => {
           {/* Header da Seção: Alinhado à esquerda com Controles à direita (sem linhas divisórias arbitrárias) */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
             <div className="flex flex-col items-start max-w-2xl">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] tracking-tight leading-[1.02] text-left">
-                <span className="block font-montserrat font-bold text-white uppercase">PRÓXIMAS ESTREIAS</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 sm:-mt-1">
+              <h2 className="text-[24px] sm:text-[32px] md:text-[40px] lg:text-[44px] tracking-tight leading-[1.05] text-left">
+                <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">PRÓXIMAS ESTREIAS</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
                   Confirmadas no Estúdio
                 </span>
               </h2>
@@ -1078,11 +1078,11 @@ const Podcast = () => {
                   {card.badge}
                 </span>
 
-                <h2 className="text-[34px] xs:text-[42px] sm:text-[54px] md:text-[68px] lg:text-[78px] xl:text-[84px] leading-[1.0] sm:leading-[0.94] tracking-tight uppercase mb-4 sm:mb-6 text-left">
-                  <span className="block font-montserrat font-bold text-white">
+                <h2 className="text-[22px] xs:text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] xl:text-[58px] leading-[1.05] sm:leading-[1.0] tracking-tight uppercase mb-4 sm:mb-6 text-left">
+                  <span className="block font-montserrat font-bold text-white whitespace-nowrap">
                     {card.titleLine1}
                   </span>
-                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.14em] font-normal tracking-normal select-none -mt-1 sm:-mt-2">
+                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
                     {card.titleLine2}
                   </span>
                 </h2>
@@ -1146,9 +1146,9 @@ const Podcast = () => {
 
         <div className="max-w-5xl w-full mx-auto relative z-10 flex flex-col items-center">
           {/* Título Monumental com Darken Jellybean e variação em Podcast */}
-          <h2 className="font-montserrat font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white uppercase tracking-tight leading-[0.94] max-w-4xl mb-4">
-            QUER SER NOSSO <br />
-            <span className="font-podcast text-[#C4550A] capitalize text-[1.1em] font-normal">Convidado?</span>
+          <h2 className="text-[26px] sm:text-[38px] md:text-[48px] lg:text-[58px] tracking-tight leading-[1.05] max-w-4xl mb-4 text-center">
+            <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">QUER SER NOSSO</span>
+            <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">Convidado?</span>
           </h2>
 
           {/* Linha de baixo em texto menor com Bebas Neue */}

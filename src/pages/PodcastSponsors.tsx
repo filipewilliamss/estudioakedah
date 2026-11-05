@@ -82,7 +82,7 @@ const sponsorsData: SponsorBoard[] = [
     id: "studio",
     number: "05",
     titleLine1: "STUDIO AKEDAH",
-    titleLine2: "Engenharia de Som & Master",
+    titleLine2: "Engenharia de Som",
     description:
       "Engenharia sonora avançada, produção musical, pós-produção acústica e identidade auditiva corporativa. Criação de trilhas originais, mixagem e masterização para produções de altíssimo padrão e impacto emocional.",
     logo: logoHorizontalSimbolo,
@@ -311,11 +311,11 @@ const PodcastSponsors = () => {
                   }`}
                 >
                   {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
-                  <h1 className="text-[30px] xs:text-[38px] sm:text-[48px] md:text-[56px] lg:text-[66px] xl:text-[72px] leading-[1.0] sm:leading-[0.94] tracking-tight uppercase mb-4 sm:mb-5 text-left">
-                    <span className="block font-montserrat font-bold text-white">
+                  <h1 className="text-[20px] xs:text-[24px] sm:text-[30px] md:text-[36px] lg:text-[42px] xl:text-[46px] leading-[1.05] tracking-tight uppercase mb-4 sm:mb-5 text-left">
+                    <span className="block font-montserrat font-bold text-white whitespace-nowrap">
                       {sponsor.titleLine1}
                     </span>
-                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.14em] font-normal tracking-normal select-none -mt-1 sm:-mt-2">
+                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none -mt-0.5 sm:-mt-1 whitespace-nowrap">
                       {sponsor.titleLine2}
                     </span>
                   </h1>
@@ -405,9 +405,9 @@ const PodcastSponsors = () => {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-5 text-center">
-              <span className="block font-montserrat font-bold text-white uppercase">SUA MARCA NA MAIOR</span>
-              <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 sm:-mt-2">Mesa de Negócios</span>
+            <h2 className="text-[26px] sm:text-[38px] md:text-[48px] lg:text-[56px] tracking-tight leading-[1.05] mb-5 text-center">
+              <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">SUA MARCA NA MAIOR</span>
+              <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">Mesa de Negócios</span>
             </h2>
 
             <p className="font-lora font-normal text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
