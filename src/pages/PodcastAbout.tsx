@@ -136,7 +136,7 @@ const PodcastAbout = () => {
 
                 <h1 className="text-[28px] sm:text-[42px] md:text-[54px] lg:text-[64px] leading-[1.02] tracking-tight mb-8 uppercase text-left">
                   <span className="block font-montserrat font-bold text-white whitespace-nowrap">NOSSA</span>
-                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">História</span>
+                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">História</span>
                 </h1>
 
                 <p className="font-lora font-normal text-white/85 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl text-left">
@@ -163,7 +163,7 @@ const PodcastAbout = () => {
               
               <h2 className="text-[24px] sm:text-[32px] md:text-[40px] tracking-tight uppercase text-left leading-[1.05]">
                 <span className="block font-montserrat font-bold text-white whitespace-nowrap">ESTRUTURA DO</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-0.5 whitespace-nowrap">Podcast</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-0.5 whitespace-nowrap">Podcast</span>
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-white/80 text-base md:text-lg leading-relaxed font-lora font-normal">
@@ -203,7 +203,7 @@ const PodcastAbout = () => {
               <div className="max-w-3xl mx-auto text-center">
                 <h2 className="text-[26px] sm:text-[36px] md:text-[46px] mb-8 tracking-tight uppercase text-center leading-[1.05]">
                   <span className="block font-montserrat font-bold text-white whitespace-nowrap">O QUE REPRESENTA O</span>
-                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">Podcast?</span>
+                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">Podcast?</span>
                 </h2>
                 <p className="text-white/85 text-lg md:text-xl leading-relaxed font-lora italic">
                   "O Akedah Podcast é o ponto de encontro entre o campo de batalha empresarial e a autoridade em vídeo. Aqui não há teorias vazias: apenas quem vive o negócio e entrega valor real."
@@ -239,7 +239,7 @@ const PodcastAbout = () => {
                   </span>
                   <h2 className="text-[26px] sm:text-[38px] md:text-[48px] leading-[1.02] tracking-tight mb-8 uppercase text-center">
                     <span className="block font-montserrat font-bold text-white whitespace-nowrap">DA PRIMEIRA BANCADA</span>
-                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">À Grande Audiência</span>
+                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">À Grande Audiência</span>
                   </h2>
                   <p className="text-white/75 text-base md:text-lg font-lora font-normal max-w-2xl mx-auto leading-relaxed">
                     A trajetória do Akedah Podcast construída episódio a episódio com grandes convidados.
@@ -279,7 +279,7 @@ const PodcastAbout = () => {
             <div className="lg:col-span-7 space-y-8">
               <h2 className="text-[24px] sm:text-[30px] md:text-[38px] tracking-tight uppercase text-left leading-[1.05]">
                 <span className="block font-montserrat font-bold text-white whitespace-nowrap">APRESENTAÇÃO POR</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-0.5 whitespace-nowrap">Daniel Silva</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-0.5 whitespace-nowrap">Daniel Silva</span>
               </h2>
               <div className="space-y-6 text-white/80 leading-relaxed text-base md:text-lg font-lora font-normal">
                 <p>

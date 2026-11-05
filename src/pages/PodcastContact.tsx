@@ -127,7 +127,7 @@ const PodcastContact = () => {
                 className="text-[26px] sm:text-[38px] md:text-[50px] lg:text-[58px] leading-[1.05] tracking-tight uppercase text-center mb-8"
               >
                 <span className="block font-montserrat font-bold text-white whitespace-nowrap">FALE COM O</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">Akedah Podcast</span>
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">Akedah Podcast</span>
               </motion.h1>
 
               <motion.p

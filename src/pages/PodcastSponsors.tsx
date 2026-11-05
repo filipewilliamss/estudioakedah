@@ -315,7 +315,7 @@ const PodcastSponsors = () => {
                     <span className="block font-montserrat font-bold text-white whitespace-nowrap">
                       {sponsor.titleLine1}
                     </span>
-                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none -mt-0.5 sm:-mt-1 whitespace-nowrap">
+                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-0.5 sm:-mt-1 whitespace-nowrap">
                       {sponsor.titleLine2}
                     </span>
                   </h1>
@@ -407,7 +407,7 @@ const PodcastSponsors = () => {
           <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
             <h2 className="text-[26px] sm:text-[38px] md:text-[48px] lg:text-[56px] tracking-tight leading-[1.05] mb-5 text-center">
               <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">SUA MARCA NA MAIOR</span>
-              <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">Mesa de Negócios</span>
+              <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">Mesa de Negócios</span>
             </h2>
 
             <p className="font-lora font-normal text-white/75 text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">

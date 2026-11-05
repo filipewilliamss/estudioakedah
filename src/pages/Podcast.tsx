@@ -652,7 +652,7 @@ const Podcast = () => {
                     <span className="block font-montserrat font-bold text-white whitespace-nowrap">
                       {heroSlides[heroSlide].titleLine1}
                     </span>
-                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
+                    <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
                       {heroSlides[heroSlide].titleLine2}
                     </span>
                   </h1>
@@ -785,7 +785,7 @@ const Podcast = () => {
               {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
               <h2 className="text-[24px] sm:text-[32px] md:text-[38px] lg:text-[42px] tracking-tight leading-[1.05] mb-3 text-left">
                 <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">DANIEL SILVA</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
                   Estrategista de Negócios
                 </span>
               </h2>
@@ -848,7 +848,7 @@ const Podcast = () => {
             <div className="flex flex-col items-start max-w-2xl">
               <h2 className="text-[24px] sm:text-[32px] md:text-[40px] lg:text-[44px] tracking-tight leading-[1.05] text-left">
                 <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">PRÓXIMAS ESTREIAS</span>
-                <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
+                <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal -mt-0.5 whitespace-nowrap">
                   Confirmadas no Estúdio
                 </span>
               </h2>
@@ -1082,7 +1082,7 @@ const Podcast = () => {
                   <span className="block font-montserrat font-bold text-white whitespace-nowrap">
                     {card.titleLine1}
                   </span>
-                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
+                  <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal tracking-normal select-none -mt-1 sm:-mt-1.5 whitespace-nowrap">
                     {card.titleLine2}
                   </span>
                 </h2>
@@ -1148,7 +1148,7 @@ const Podcast = () => {
           {/* Título Monumental com Darken Jellybean e variação em Podcast */}
           <h2 className="text-[26px] sm:text-[38px] md:text-[48px] lg:text-[58px] tracking-tight leading-[1.05] max-w-4xl mb-4 text-center">
             <span className="block font-montserrat font-bold text-white uppercase whitespace-nowrap">QUER SER NOSSO</span>
-            <span className="block font-podcast text-[#C4550A] capitalize text-[1.12em] font-normal -mt-1 whitespace-nowrap">Convidado?</span>
+            <span className="block font-podcast text-[#C4550A] capitalize text-[1.32em] font-normal -mt-1 whitespace-nowrap">Convidado?</span>
           </h2>
 
           {/* Linha de baixo em texto menor com Bebas Neue */}
