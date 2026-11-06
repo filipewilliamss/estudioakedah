@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
 import DanielSignaturePreloader from "@/components/daniel/DanielSignaturePreloader";
@@ -275,7 +275,7 @@ const ScrollBlurItem = ({
 };
 
 // Variantes para animação de slide direcional e desfoque nos cards da Agenda
-const agendaVariants = {
+const agendaVariants: Variants = {
   enter: (dir: number) => ({
     x: dir >= 0 ? 80 : -80,
     opacity: 0,
@@ -354,7 +354,7 @@ const heroSlides = [
 ];
 
 // Transição suave para o bloco de texto editorial da Hero (sem congelamento de GPU)
-const heroContentVariants = {
+const heroContentVariants: Variants = {
   enter: {
     opacity: 0,
     y: 20,

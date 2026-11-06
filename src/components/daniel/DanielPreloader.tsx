@@ -118,8 +118,8 @@ export const DanielPreloader: React.FC<DanielPreloaderProps> = ({ onComplete }) 
       });
 
       // Ponto inicial da pena
-      const firstPath = paths[0].el as SVGGeometryElement | null;
-      if (firstPath) {
+      const firstPath = paths[0].el;
+      if (firstPath instanceof SVGGeometryElement) {
         const startPt = firstPath.getPointAtLength(0);
         movePen(startPt.x, startPt.y);
       }

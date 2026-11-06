@@ -1,1058 +1,278 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import {
+  Play,
+  CalendarDays,
+  ArrowRight,
+  ArrowUpRight,
+  Instagram,
+  Youtube,
+  ChevronLeft,
+  ChevronRight,
+  Clock,
+  UserRound,
+} from "lucide-react";
 import SEO from "@/components/SEO";
-import Navbar from "@/components/Navbar";
-import IllustratedHero from "@/components/podcast/IllustratedHero";
-import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
-import IrisPreloader from "@/components/podcast/IrisPreloader";
-import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
-import founderPicture from "@/assets/akedah-founder.jpg";
-import danielPicture from "@/assets/imagem-daniel.webp";
-import { ChevronDown } from "lucide-react";
-import heroPodcastWelcome from "@/assets/podcast/hero-podcast-welcome.jpg";
-import heroPodcastPatrocinador from "@/assets/podcast/hero-podcast-patrocinador.jpg";
-import heroPodcastAoVivo from "@/assets/podcast/hero-podcast-aovivo.jpg";
-import heroPodcastDaniel from "@/assets/podcast/hero-podcast-daniel.jpg";
-import heroDanielYoutube from "@/assets/daniel/daniel-hero-youtube.jpg";
-import imgPodcastCortes from "@/assets/podcast/podcast-cortes.jpg";
-import imgPodcastEmPoucasPalavras from "@/assets/podcast/podcast-em-poucas-palavras.jpg";
-import imgPodcastBastidores from "@/assets/podcast/podcast-bastidores.jpg";
-import imgPodcastPatrocinadores from "@/assets/podcast/podcast-patrocinadores-hero.jpg";
-import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
+import {
+  PodcastShell,
+  Action,
+  Art,
+  ContactSection,
+  Wave,
+  Soundwave,
+  ScrollCue,
+  YOUTUBE,
+  INSTAGRAM,
+} from "@/components/podcast/IllustratedSystem";
+import { agendaPodcastCards } from "@/data/podcast-agenda";
 
-// 4 Cards da Hero Section com rotação automática a cada 5s (estilo editorial de alto impacto com paleta Akedah)
-const heroSlides = [
-  {
-    id: 1,
-    badge: "BEM-VINDO • AKEDAH PODCAST // EDIÇÃO 2026",
-    titleLine1: "A Mesa de Quem",
-    titleLine2: "Decide o Mercado",
-    descricao:
-      "Seja bem-vindo ao Akedah Podcast. O espaço definitivo onde grandes realizadores, líderes e estrategistas debatem os bastidores do mercado sem filtro.",
-    btnPrimary: { text: "Explorar Episódios", href: "#destaque" },
-    btnSecondary: { text: "Conhecer o Podcast", href: "/podcast/sobre" },
-    image: heroPodcastWelcome,
-    alt: "Akedah Podcast - Boas-vindas ao Estúdio",
-    imgPos: "object-center md:object-[center_35%]",
-  },
-  {
-    id: 2,
-    badge: "PARCERIA • EXPOSIÇÃO // CONECTE SUA MARCA",
-    titleLine1: "Seja um",
-    titleLine2: "Patrocinador Oficial",
-    descricao:
-      "Posicione sua empresa diante de líderes, empresários e tomadores de decisão qualificados. Conecte sua marca à maior audiência estratégica de negócios e visão executiva.",
-    btnPrimary: { text: "Ver Patrocinadores", href: "/podcast/patrocinadores" },
-    btnSecondary: { text: "Falar no WhatsApp", href: WHATSAPP_URL, external: true },
-    image: heroPodcastPatrocinador,
-    alt: "Akedah Podcast - Parcerias e Patrocínio Estratégico",
-    imgPos: "object-[center_30%] md:object-[center_25%]",
-  },
-  {
-    id: 3,
-    badge: "AO VIVO & GRAVADO // TRANSMISSÃO 4K HDR",
-    titleLine1: "Podcast ao Vivo",
-    titleLine2: "Último Lançamento",
-    descricao:
-      "Acompanhe nossas transmissões ao vivo ou assista na íntegra ao episódio mais recente com análises aprofundadas, debates francos e insights práticos de alto impacto.",
-    btnPrimary: { text: "Assistir Último Episódio", href: "#destaque" },
-    btnSecondary: { text: "Canal no YouTube", href: "https://www.youtube.com/@EstudioAkedah", external: true },
-    image: heroPodcastAoVivo,
-    alt: "Akedah Podcast - Transmissão Ao Vivo e Último Episódio",
-    imgPos: "object-center md:object-[center_40%]",
-  },
-  {
-    id: 4,
-    badge: "APRESENTADOR • HOST // VISÃO EXECUTIVA",
-    titleLine1: "Daniel Silva",
-    titleLine2: "Apresentador & Host",
-    descricao:
-      "Conduzido por Daniel Silva — estrategista de negócios, mentor executivo e palestrante, trazendo perguntas cirúrgicas, profundidade analítica e bagagem de mercado a cada encontro.",
-    btnPrimary: { text: "Conhecer Daniel Silva", href: "/daniel-silva" },
-    btnSecondary: { text: "Falar com Assessoria", href: WHATSAPP_URL, external: true },
-    image: heroPodcastDaniel,
-    alt: "Daniel Silva - Host e Apresentador do Akedah Podcast",
-    imgPos: "object-[center_20%] md:object-[center_15%]",
-  },
-];
-
-// Transição suave para o bloco de texto editorial da Hero (sem congelamento de GPU)
-const heroContentVariants = {
-  enter: {
-    opacity: 0,
-    y: 20,
-  },
-  center: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -16,
-    transition: {
-      duration: 0.35,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-// Variantes para animação de slide direcional e desfoque nos cards da Agenda do Podcast
-const agendaVariants = {
-  enter: (dir: number) => ({
-    x: dir >= 0 ? 80 : -80,
-    opacity: 0,
-    filter: "blur(12px)",
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    filter: "blur(0px)",
-    transition: {
-      duration: 0.5,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-  exit: (dir: number) => ({
-    x: dir >= 0 ? -80 : 80,
-    opacity: 0,
-    filter: "blur(12px)",
-    transition: {
-      duration: 0.38,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  }),
-};
-
-// 3 Conjuntos de 4 Cards (total 12 cards) com dados genéricos e fotos de alta relevância para a Agenda
-const agendaPodcastCards = [
-  // Conjunto 1 (Cards 1 a 4)
-  [
-    {
-      date: "15.AGO",
-      time: "19:00",
-      episode: "EP. 15",
-      guestName: "DANIEL SILVA",
-      role: "HOST & ESTRATEGISTA EXECUTIVO",
-      topic: "Engenharia de Vendas, Governança & Retenção de Alto Ticket",
-      image: founderPicture,
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "22.AGO",
-      time: "19:00",
-      episode: "EP. 16",
-      guestName: "CAMILA VASCONCELOS",
-      role: "FUNDADORA & C-LEVEL TECH",
-      topic: "Inteligência Artificial & Automação Operacional de Escala",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "29.AGO",
-      time: "19:00",
-      episode: "EP. 17",
-      guestName: "RODRIGO ALBUQUERQUE",
-      role: "GESTOR DE FUNDOS & M&A",
-      topic: "Fusões, Aquisições & Métricas Reais de Valuation Corporativo",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "05.SET",
-      time: "19:00",
-      episode: "EP. 18",
-      guestName: "MARIANA BITTENCOURT",
-      role: "DIRETORA DE BRANDING & GROWTH",
-      topic: "Posicionamento de Autoridade & Estratégia de Marca Premium",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-  ],
-  // Conjunto 2 (Cards 5 a 8)
-  [
-    {
-      date: "12.SET",
-      time: "19:00",
-      episode: "EP. 19",
-      guestName: "EDUARDO GUIMARÃES",
-      role: "CEO & EMPREENDEDOR SERIAL",
-      topic: "Playbooks Comerciais de 8 Dígitos e Construção de Máquina B2B",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "19.SET",
-      time: "19:00",
-      episode: "EP. 20",
-      guestName: "BEATRIZ FONTANA",
-      role: "ESPECIALISTA EM LIDERANÇA",
-      topic: "Retenção de Talentos & Cultura de Alta Performance Executiva",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "26.SET",
-      time: "19:00",
-      episode: "EP. 21",
-      guestName: "LUCAS MENDONÇA",
-      role: "CONSELHEIRO & ESTRATEGISTA",
-      topic: "Governança Familiar, Proteção Patrimonial & Sucessão",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "03.OUT",
-      time: "19:00",
-      episode: "EP. 22",
-      guestName: "JULIANA MEIRELLES",
-      role: "HEAD DE FINANÇAS CORPORATIVAS",
-      topic: "Fluxo de Caixa Blindado, Margem Líquida & Expansão Segura",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-  ],
-  // Conjunto 3 (Cards 9 a 12)
-  [
-    {
-      date: "10.OUT",
-      time: "19:00",
-      episode: "EP. 23",
-      guestName: "MARCELO FAGUNDES",
-      role: "ESTRATEGISTA DE EXPANSÃO",
-      topic: "Modelagem de Franquias, Canais de Distribuição & Escala Nacional",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "17.OUT",
-      time: "19:00",
-      episode: "EP. 24",
-      guestName: "FERNANDA PRADO",
-      role: "NEUROCIÊNCIA APLICADA A NEGÓCIOS",
-      topic: "Tomada de Decisão Sob Pressão, Clareza Mental & Negociação",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "24.OUT",
-      time: "19:00",
-      episode: "EP. 25",
-      guestName: "GUSTAVO ZANETTI",
-      role: "DIRETOR DE OPERAÇÕES LOGÍSTICAS",
-      topic: "Infraestrutura Crítica, Suprimentos & Redução de Desperdícios",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-    {
-      date: "31.OUT",
-      time: "19:00",
-      episode: "EP. 26",
-      guestName: "SOFIA BRANDÃO",
-      role: "COMPLIANCE & DIREITO EMPRESARIAL",
-      topic: "Segurança Contratual, Mitigação de Riscos & Acordos de Sócios",
-      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
-      link: WHATSAPP_URL,
-    },
-  ],
-];
-
-// 4 Seções Adicionais estilo Hero solicitadas pelo usuário (Cortes, Em Poucas Palavras, Bastidores, Patrocinadores)
-interface PodcastEditorialCard {
-  id: string;
-  number: string;
-  navLabel: string;
-  badge: string;
-  titleLine1: string; // Linha 1: Montserrat Bold
-  titleLine2: string; // Linha 2: Fonte Podcast
-  description: string;
-  btnText: string;
-  btnUrl: string;
-  btnExternal?: boolean;
-  image: string;
-  imgPos?: string;
-  alt: string;
-  orientation: "image-right" | "image-left";
-}
-
-const podcastEditorialCards: PodcastEditorialCard[] = [
+const features = [
   {
     id: "cortes",
-    number: "04",
-    navLabel: "Cortes",
-    badge: "CONHEÇA, SIGA & ASSISTA // DESTAQUES RÁPIDOS",
-    titleLine1: "Cortes Exclusivos",
-    titleLine2: "Das Entrevistas",
-    description:
-      "Acompanhe os melhores momentos, insights estratégicos e declarações marcantes dos maiores líderes e empresários do país condensados em pílulas dinâmicas e de alto impacto. Inscreva-se no canal para não perder nenhum destaque.",
-    btnText: "Assistir aos Cortes no YouTube",
-    btnUrl: "https://www.youtube.com/@EstudioAkedah",
-    btnExternal: true,
-    image: imgPodcastCortes,
-    imgPos: "object-center md:object-[center_35%]",
-    alt: "Cortes das Entrevistas - Akedah Podcast",
-    orientation: "image-right",
+    art: "clips",
+    box: "740 0 932 941",
+    title: "Cortes do canal",
+    subtitle: "Grandes momentos. Direto ao ponto.",
+    text: "Os trechos que merecem mais um play.",
+    button: "Ver cortes no YouTube",
+    url: YOUTUBE,
+    dark: false,
   },
   {
     id: "em-poucas-palavras",
-    number: "05",
-    navLabel: "Em Poucas Palavras",
-    badge: "QUADRO EXCLUSIVO // DINÂMICA DIRETA",
-    titleLine1: "Quadro Especial",
-    titleLine2: "Em Poucas Palavras",
-    description:
-      "Perguntas cirúrgicas, respostas instantâneas e revelações autênticas sem filtro. Um formato dinâmico onde nossos convidados resumem princípios inegociáveis, visões de mundo e definições de sucesso de forma rápida e memorável.",
-    btnText: "Assistir ao Quadro no YouTube",
-    btnUrl: "https://www.youtube.com/@EstudioAkedah",
-    btnExternal: true,
-    image: imgPodcastEmPoucasPalavras,
-    imgPos: "object-center md:object-[center_25%]",
-    alt: "Quadro Em Poucas Palavras - Akedah Podcast",
-    orientation: "image-left",
+    art: "words",
+    box: "720 0 952 941",
+    tag: "Quadro especial",
+    title: "Em poucas palavras",
+    text: "Poucas palavras. Novas perspectivas.",
+    button: "Assistir no YouTube",
+    url: YOUTUBE,
+    dark: true,
   },
   {
     id: "bastidores",
-    number: "06",
-    navLabel: "Bastidores",
-    badge: "MAKING OF // POR TRÁS DAS CÂMERAS",
-    titleLine1: "Fotos de Bastidores",
-    titleLine2: "Gravações do Estúdio",
-    description:
-      "Uma imersão na atmosfera que antecede o 'rec'. Confira a preparação dos convidados, o trabalho minucioso da equipe técnica e os registros fotográficos exclusivos das nossas gravações.",
-    btnText: "Ver Fotos dos Bastidores no Instagram",
-    btnUrl: "https://www.instagram.com/estudioakedah",
-    btnExternal: true,
-    image: imgPodcastBastidores,
-    imgPos: "object-center md:object-[center_35%]",
-    alt: "Bastidores e Gravações - Akedah Podcast",
-    orientation: "image-right",
+    art: "backstage",
+    box: "825 0 847 941",
+    title: "Bastidores",
+    subtitle: "A conversa começa antes do play.",
+    text: "Entre câmeras, ajustes e boas risadas.",
+    button: "Ver bastidores no YouTube",
+    url: YOUTUBE,
+    dark: false,
   },
   {
     id: "patrocinadores",
-    number: "07",
-    navLabel: "Patrocinadores",
-    badge: "MARCAS VISIONÁRIAS // PARCERIAS ESTRATÉGICAS",
-    titleLine1: "Parcerias de Valor",
-    titleLine2: "Nossos Patrocinadores",
-    description:
-      "O Akedah Podcast caminha lado a lado com empresas e líderes que moldam o mercado. Conheça as marcas oficiais que tornam possível a nossa infraestrutura de transmissão e produção cinematográfica.",
-    btnText: "Conheça Nossos Patrocinadores",
-    btnUrl: "/podcast/patrocinadores",
-    btnExternal: false,
-    image: imgPodcastPatrocinadores,
-    imgPos: "object-center md:object-[center_30%]",
-    alt: "Patrocinadores Oficiais - Akedah Podcast",
-    orientation: "image-left",
+    art: "sponsors",
+    box: "805 0 867 941",
+    title: "Conheça nossos patrocinadores",
+    text: "Descubra as marcas que fazem parte dessa conversa.",
+    button: "Conhecer patrocinadores",
+    url: "/podcast/patrocinadores",
+    dark: true,
   },
 ];
-
-// 8 Pranchetas em tela cheia do Akedah Podcast
-const podcastSections = [
-  { id: "hero", number: "01", label: "Início" },
-  { id: "destaque", number: "02", label: "Último Episódio" },
-  { id: "calendario", number: "03", label: "Programação" },
-  { id: "cortes", number: "04", label: "Cortes" },
-  { id: "em-poucas-palavras", number: "05", label: "Em Poucas Palavras" },
-  { id: "bastidores", number: "06", label: "Bastidores" },
-  { id: "patrocinadores", number: "07", label: "Patrocinadores" },
-  { id: "contato", number: "08", label: "Seja Nosso Convidado" },
-];
-
-const Podcast = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [heroSlide, setHeroSlide] = useState(0);
-  const isHoveredHeroRef = useRef(false);
-  const [[activeBlock, direction], setPage] = useState([0, 1]);
-  const isHoveredCardRef = useRef(false);
-  const [activeSection, setActiveSection] = useState(0);
-
-  const paginate = (newDirection: number) => {
-    setPage(([prev]) => {
-      const next = (prev + newDirection + agendaPodcastCards.length) % agendaPodcastCards.length;
-      return [next, newDirection];
-    });
-  };
-
-  const goToBlock = (idx: number) => {
-    setPage(([prev]) => [idx, idx >= prev ? 1 : -1]);
-  };
-
-  // Habilitar visualização de prancheta com scroll-snap apenas em telas desktop (>= 768px) igual ao site Daniel Silva
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        document.documentElement.classList.add("snap-y", "snap-proximity", "scroll-smooth");
-      } else {
-        document.documentElement.classList.remove("snap-y", "snap-proximity");
-        document.documentElement.classList.add("scroll-smooth");
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => {
-      document.documentElement.classList.remove("snap-y", "snap-proximity", "scroll-smooth");
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  // Monitorar seção ativa no scroll para sincronizar indicadores laterais
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + window.innerHeight / 2;
-      podcastSections.forEach((sec, idx) => {
-        const el = document.getElementById(sec.id);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(idx);
-          }
-        }
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Navegação suave por teclado (Setas Cima/Baixo e PageUp/PageDown)
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (window.innerWidth < 768) return;
-      if (e.key === "ArrowDown" || e.key === "PageDown") {
-        const scrollMiddle = window.scrollY + window.innerHeight / 2;
-        let currentIndex = 0;
-        podcastSections.forEach((sec, idx) => {
-          const el = document.getElementById(sec.id);
-          if (el && scrollMiddle >= el.offsetTop) {
-            currentIndex = idx;
-          }
-        });
-        if (currentIndex < podcastSections.length - 1) {
-          e.preventDefault();
-          const targetEl = document.getElementById(podcastSections[currentIndex + 1].id);
-          if (targetEl) {
-            const lenis = (window as any).lenis;
-            if (lenis) {
-              lenis.scrollTo(targetEl, { duration: 1 });
-            } else {
-              targetEl.scrollIntoView({ behavior: "smooth" });
-            }
-          }
-        }
-      } else if (e.key === "ArrowUp" || e.key === "PageUp") {
-        const scrollMiddle = window.scrollY + window.innerHeight / 2;
-        let currentIndex = 0;
-        podcastSections.forEach((sec, idx) => {
-          const el = document.getElementById(sec.id);
-          if (el && scrollMiddle >= el.offsetTop) {
-            currentIndex = idx;
-          }
-        });
-        if (currentIndex > 0) {
-          e.preventDefault();
-          const targetEl = document.getElementById(podcastSections[currentIndex - 1].id);
-          if (targetEl) {
-            const lenis = (window as any).lenis;
-            if (lenis) {
-              lenis.scrollTo(targetEl, { duration: 1 });
-            } else {
-              targetEl.scrollIntoView({ behavior: "smooth" });
-            }
-          }
-        }
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  // Timer de rotação automática dos cards da Agenda (a cada 5 segundos) com pausa no hover
-  useEffect(() => {
-    const agendaTimer = setInterval(() => {
-      if (!isHoveredCardRef.current) {
-        setPage(([prev]) => [(prev + 1) % agendaPodcastCards.length, 1]);
-      }
-    }, 5000);
-    return () => clearInterval(agendaTimer);
-  }, []);
-
-  // Pré-carregamento imediato das 4 imagens da Hero para evitar atrasos ou pop-in
-  useEffect(() => {
-    const heroImgs = [heroPodcastWelcome, heroPodcastPatrocinador, heroPodcastAoVivo, heroPodcastDaniel];
-    heroImgs.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-
-  // Timer de rotação automática dos cards da Hero (a cada 5 segundos) com pausa no hover
-  useEffect(() => {
-    const heroTimer = setInterval(() => {
-      if (!isHoveredHeroRef.current) {
-        setHeroSlide((prev) => (prev + 1) % heroSlides.length);
-      }
-    }, 5000);
-    return () => clearInterval(heroTimer);
-  }, [heroSlide]);
-
-  useEffect(() => {
-    if (window.location.hash) {
-      const targetId = window.location.hash.substring(1);
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        setTimeout(() => {
-          const lenis = (window as any).lenis;
-          if (lenis) {
-            lenis.scrollTo(targetEl, { duration: 1 });
-          } else {
-            targetEl.scrollIntoView({ behavior: "smooth" });
-          }
-        }, 150);
-        return;
-      }
-    }
-    window.scrollTo(0, 0);
-  }, []);
-
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "PodcastSeries",
-    name: "Akedah Podcast",
-    description: "A mesa de quem decide o mercado. Conversas sem roteiro com grandes realizadores sobre estratégia, escala e bastidores.",
-    url: "https://estudioakedah.com/podcast",
-    publisher: { "@type": "Organization", name: "Akedah" },
-  };
-
+export default function Podcast() {
+  const [playing, setPlaying] = useState(false);
+  const [agendaPage, setAgendaPage] = useState(0);
+  const agenda = agendaPodcastCards.flat();
+  const pages = Math.ceil(agenda.length / 3);
   return (
-    <div className="min-h-screen bg-[#1C0F0A] text-white selection:bg-[#C4550A] selection:text-white relative font-corporate">
-      {/* Tela de Carregamento Inicial com Revelação de Íris Circular */}
-      <IrisPreloader />
-
+    <PodcastShell>
       <SEO
-        title="Akedah Podcast | A Mesa de Quem Decide o Mercado"
-        description="Akedah Podcast: conversas sem roteiro com grandes realizadores sobre estratégia, escala e bastidores. Assista ao vivo e confira a programação."
-        url="https://estudioakedah.com/podcast"
-        schema={schema}
+        title="Akedah Podcast | Boas conversas. Novas perspectivas."
+        description="Histórias e ideias que conectam. Assista ao Akedah Podcast, acompanhe a agenda, os cortes e os bastidores."
       />
-      {/* Navbar padrão oculta: o Podcast possui seu cabeçalho conceitual ilustrado 100% fiel */}
-      {/* <Navbar isPodcastPage={true} /> */}
-
-      {/* Atmosfera Moderna: Fundo #1C0F0A, Spotlights Radiais e Micro-ruído SVG Inline */}
-      <PodcastAtmosphere />
-
-      {/* Indicador Flutuante Lateral no Desktop (Navegação Rápida entre as 5 Pranchetas) */}
-      <aside 
-        aria-label="Navegador de Pranchetas do Podcast"
-        className="hidden lg:flex fixed right-8 top-1/2 -translate-y-1/2 z-40 flex-col gap-3.5 bg-black/50 backdrop-blur-md p-3 rounded-full border border-white/10 shadow-2xl"
-      >
-        {podcastSections.map((sec, idx) => {
-          const isActive = activeSection === idx;
-          return (
-            <a
-              key={sec.id}
-              href={`#${sec.id}`}
-              className="group relative flex items-center justify-end"
-              aria-label={`Ir para ${sec.label}`}
-              onClick={(e) => {
-                e.preventDefault();
-                const targetEl = document.getElementById(sec.id);
-                if (targetEl) {
-                  const lenis = (window as any).lenis;
-                  if (lenis) {
-                    lenis.scrollTo(targetEl, { duration: 1 });
-                  } else {
-                    targetEl.scrollIntoView({ behavior: "smooth" });
-                  }
-                }
-              }}
-            >
-              <span className="absolute right-7 py-1 px-3 rounded-md bg-[#180F0A] border border-white/15 text-xs font-corporate font-medium tracking-widest uppercase text-white/90 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-lg">
-                {sec.number} — {sec.label}
-              </span>
-              <span
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  isActive
-                    ? "bg-[#C4550A] scale-125 shadow-[0_0_12px_rgba(196,85,10,0.8)]"
-                    : "bg-white/20 group-hover:bg-white/60"
-                }`}
-              />
-            </a>
-          );
-        })}
-      </aside>
-
-      <main className="relative z-10">
-        
-        {/* ========================================================================= */}
-        {/* 1. HERO SECTION (CAROUSEL COM 4 CARDS E SLIDE AUTOMÁTICO A CADA 5S)       */}
-        {/* ========================================================================= */}
-        <IllustratedHero isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-
-        {/* 2. DESTAQUE DO EPISÓDIO // CONVIDADO DA SEMANA (#destaque) - PLAYER EXPANDIDO EM ~70% */}
-        <section 
-          id="destaque" 
-          className="relative min-h-[100dvh] md:min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-4 sm:px-6 lg:px-8 xl:px-12 py-20 md:py-16 lg:py-0 md:snap-start md:snap-always"
-        >
-          {/* Spotlight Quente Suave Ampliada */}
-          <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_center,_rgba(196,85,10,0.18)_0%,_transparent_70%)] blur-3xl pointer-events-none -z-10" />
-
-          {/* Container Expandido (max-w-[1720px]) para acomodar o Player ~70% maior lado a lado com as informações */}
-          <div className="max-w-[1720px] w-full mx-auto relative z-10">
-            {/* Grid de 2 Colunas: Player no Lado Esquerdo (8 colunas) + Convidado & Redes no Lado Direito (4 colunas) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
-            
-            {/* LADO ESQUERDO: Player do YouTube Expandido em ~70% */}
-            <div className="lg:col-span-8 w-full flex flex-col gap-3.5">
-              <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 bg-black shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_45px_rgba(196,85,10,0.18)] ring-1 ring-white/10 relative">
-                <div className="relative aspect-video w-full overflow-hidden bg-black group rounded-2xl sm:rounded-3xl">
-                  {isPlaying ? (
-                    <iframe
-                      className="w-full h-full rounded-2xl sm:rounded-3xl"
-                      src="https://www.youtube.com/embed/nAcTWvqdc-E?autoplay=1&rel=0&modestbranding=1&si=x7bCNKiC59BwS5eL"
-                      title="Akedah Podcast Player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  ) : (
-                    <div className="relative w-full h-full">
-                      <img
-                        src="https://img.youtube.com/vi/nAcTWvqdc-E/maxresdefault.jpg"
-                        alt="Episódio em Destaque - Akedah Podcast"
-                        className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out brightness-95"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
-
-                      {/* Badge de numeração em pill glassmorphism */}
-                      <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-20 bg-black/85 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full font-corporate font-semibold text-xs sm:text-sm tracking-[0.16em] text-[#C4550A] uppercase shadow-lg">
-                        EP.14 // 4K HDR
-                      </div>
-
-                      {/* Botão de Play Estilo YouTube Redimensionado para o Player Maior */}
-                      <button
-                        type="button"
-                        onClick={() => setIsPlaying(true)}
-                        className="absolute inset-0 flex items-center justify-center group/play cursor-pointer z-20"
-                        aria-label="Assistir episódio em destaque"
-                      >
-                        <div className="w-20 h-14 sm:w-24 sm:h-16 lg:w-28 lg:h-18 bg-[#FF0000] text-white flex items-center justify-center rounded-[16px] sm:rounded-[22px] shadow-[0_12px_45px_rgba(255,0,0,0.6)] group-hover/play:scale-110 group-hover/play:bg-[#E60000] group-hover/play:shadow-[0_18px_55px_rgba(255,0,0,0.8)] transition-all duration-300">
-                          <svg className="w-8 h-8 sm:w-10 sm:h-10 fill-white ml-0.5" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Linha discreta de canal abaixo do player */}
-              <div className="flex items-center justify-between px-1 text-xs text-white/50 font-corporate font-medium tracking-wider">
-                <span className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
-                  ÚLTIMO LANÇAMENTO OFICIAL
-                </span>
-                <span className="uppercase text-xs sm:text-sm tracking-wider text-[#C4550A] font-corporate font-semibold">4K ULTRA HD • HDR</span>
-              </div>
-            </div>
-
-            {/* LADO DIREITO: Informações e Breve Descrição do Convidado + Botão para Redes Sociais */}
-            <div className="lg:col-span-4 w-full flex flex-col justify-center text-left">
-              {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
-              <h2 className="text-[24px] sm:text-[32px] md:text-[38px] lg:text-[42px] tracking-tight leading-[1.05] mb-3 text-left">
-                <span className="block font-corporate font-black text-white whitespace-nowrap">Daniel Silva</span>
-                <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">Estrategista de Negócios</span>
-              </h2>
-
-              {/* Cargo / Especialidade com Montserrat */}
-              <p className="font-corporate font-semibold text-xs sm:text-sm text-[#C4550A] tracking-[0.14em] uppercase mb-4">
-                ESTRATEGISTA DE NEGÓCIOS &amp; MENTOR EXECUTIVO
-              </p>
-
-              {/* Breve Descrição Editorial com Lora Regular */}
-              <p className="font-corporate font-normal text-white/80 text-base sm:text-lg leading-relaxed mb-8">
-                Estrategista de mercado, compositor e mentor de líderes executivos. Neste episódio, Daniel analisa os bastidores do posicionamento comercial, governança para empresas em tração e a construção de autoridade de longo prazo no cenário corporativo brasileiro.
-              </p>
-
-              {/* Botões de Ação com os Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
-              <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
-                {/* Botão Conhecer Redes Sociais do Convidado */}
-                <a
-                  href="https://www.instagram.com/estudioakedah"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#C4550A] hover:bg-[#b04b08] text-white font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.14em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2.5 group"
-                >
-                  <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                  </svg>
-                  <span>Redes do Convidado</span>
-                  <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </a>
-
-                {/* Botão Assistir no YouTube */}
-                <a
-                  href="https://www.youtube.com/@EstudioAkedah?sub_confirmation=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-transparent hover:bg-white/10 text-white border border-white/25 hover:border-white/50 font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.14em] px-6 sm:px-7 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2 group"
-                >
-                  <svg className="w-4 h-4 fill-current text-red-500 shrink-0" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                  <span>Assistir no YouTube</span>
-                </a>
-              </div>
-            </div>
-
+      <section id="hero" className="ak-hero ak-dark">
+        <div className="ak-hero-copy">
+          <h1>
+            Boas conversas.
+            <br />
+            Novas
+            <br />
+            perspectivas.
+          </h1>
+          <p>Histórias e ideias que conectam.</p>
+          <div className="ak-actions">
+            <Action href="#destaque">
+              <Play fill="currentColor" /> Assistir ao vivo
+            </Action>
+            <Action href="#calendario" outline>
+              <CalendarDays /> Ver agenda
+            </Action>
           </div>
         </div>
+        <Art
+          name="hero"
+          box="805 130 867 685"
+          className="ak-hero-art"
+          eager
+          label="Apresentadores ilustrados do Akedah Podcast em uma conversa entre ondas sonoras"
+        />
+        <Wave />
+        <ScrollCue />
       </section>
-
-      {/* 3. SEÇÃO DE ESTREIAS // AGENDA (#calendario e #agenda) */}
-      <section 
-        id="calendario" 
-        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-4 sm:px-6 lg:px-8 py-24 md:py-0 md:snap-start md:snap-always select-none"
-      >
-        <div id="agenda" className="absolute top-0 pointer-events-none" />
-
-        <div className="max-w-7xl w-full mx-auto relative z-10">
-          {/* Header da Seção: Alinhado à esquerda com Controles à direita (sem linhas divisórias arbitrárias) */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-10 w-full text-left">
-            <div className="flex flex-col items-start max-w-2xl">
-              <h2 className="text-[24px] sm:text-[32px] md:text-[40px] lg:text-[44px] tracking-tight leading-[1.05] text-left">
-                <span className="block font-corporate font-black text-white whitespace-nowrap">Próximas Estreias</span>
-                <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">Confirmadas no Estúdio</span>
-              </h2>
-            </div>
-
-            {/* Controles do Topo Direito: Indicadores de Conjuntos + Botões Circulares < e > */}
-            <div className="flex items-center justify-between sm:justify-start gap-4 sm:gap-5 w-full sm:w-auto self-start md:self-end">
-              {/* Indicadores de Paginação dos 3 Conjuntos */}
-              <div className="flex items-center gap-1.5">
-                {agendaPodcastCards.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => goToBlock(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      activeBlock === idx
-                        ? "w-7 bg-[#C4550A]"
-                        : "w-2 bg-white/20 hover:bg-white/40"
-                    }`}
-                    aria-label={`Ir para conjunto de convidados ${idx + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Botões Circulares < e > */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => paginate(-1)}
-                  aria-label="Ver convidados anteriores"
-                  className="w-10 h-10 rounded-full border border-white/20 bg-black/40 hover:bg-[#C4550A] hover:border-[#C4550A] text-white flex items-center justify-center transition-all shadow-sm active:scale-95 group"
-                >
-                  <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => paginate(1)}
-                  aria-label="Ver próximos convidados"
-                  className="w-10 h-10 rounded-full border border-white/20 bg-black/40 hover:bg-[#C4550A] hover:border-[#C4550A] text-white flex items-center justify-center transition-all shadow-sm active:scale-95 group"
-                >
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Container dos 4 Cards com Transição Animada e Pausa no Hover */}
-          <div
-            className="relative min-h-[450px] sm:min-h-[480px] lg:min-h-[450px] xl:min-h-[500px] overflow-visible sm:overflow-hidden"
-            onMouseEnter={() => { isHoveredCardRef.current = true; }}
-            onMouseLeave={() => { isHoveredCardRef.current = false; }}
-          >
-            <AnimatePresence mode="wait" custom={direction} initial={false}>
-              <motion.div
-                key={activeBlock}
-                custom={direction}
-                variants={agendaVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="flex lg:grid lg:grid-cols-4 gap-5 sm:gap-6 w-full pt-1 pb-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none"
-              >
-                {agendaPodcastCards[activeBlock].map((card, cardIdx) => (
-                  <a
-                    key={cardIdx}
-                    href={card.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group bg-[#130B07] border border-white/10 hover:border-[#C4550A]/70 rounded-[22px] sm:rounded-[26px] overflow-hidden min-h-[440px] sm:min-h-[480px] lg:min-h-[440px] xl:min-h-[490px] w-[82vw] sm:w-[44vw] lg:w-auto shrink-0 lg:shrink snap-center flex flex-col justify-between text-left transition-all duration-500 shadow-2xl hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(196,85,10,0.22)] relative"
-                  >
-                    {/* Topo do Card: Imagem de Destaque Ampla do Convidado */}
-                    <div className="relative h-52 sm:h-64 lg:h-52 xl:h-64 w-full overflow-hidden bg-[#0A0503]">
-                      <img
-                        src={card.image}
-                        alt={`Foto de ${card.guestName} - Convidado do Akedah Podcast`}
-                        loading="lazy"
-                        className="w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-700 ease-out brightness-95 contrast-[1.05]"
-                      />
-
-                      {/* Degradê sutil de transição para a base do card */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#130B07] via-[#130B07]/30 via-45% to-transparent pointer-events-none" />
-
-                      {/* Badge Flutuante: Data & Horário com Bebas Neue */}
-                      <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 shadow-lg">
-                        <span className="font-corporate font-semibold text-xs text-[#C4550A] tracking-wider uppercase">
-                          {card.date}
-                        </span>
-                        <span className="text-white/40 text-[10px]">•</span>
-                        <span className="font-corporate font-medium text-xs text-white/90 tracking-wider">
-                          {card.time}
-                        </span>
-                      </div>
-
-                      {/* Badge Flutuante: Episódio com Bebas Neue */}
-                      <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-xs font-corporate font-semibold tracking-wider text-white/90">
-                        {card.episode}
-                      </div>
-                    </div>
-
-                    {/* Corpo do Card: Informações Editoriais */}
-                    <div className="p-5 sm:p-6 pt-3 flex-1 flex flex-col justify-between">
-                      <div>
-                        {/* Papel / Especialidade com Bebas Neue */}
-                        <span className="font-corporate font-semibold text-[11px] sm:text-xs text-[#C4550A] tracking-[0.15em] uppercase block mb-1">
-                          {card.role}
-                        </span>
-
-                        {/* Nome do Convidado com Darken Jellybean */}
-                        <h3 className="font-corporate font-black text-lg sm:text-xl text-white uppercase tracking-tight leading-snug group-hover:text-[#FAF6EB] transition-colors mb-2">
-                          {card.guestName}
-                        </h3>
-
-                        {/* Tema do Episódio com Bebas Neue Regular */}
-                        <p className="font-corporate font-normal text-sm sm:text-[15px] text-white/75 leading-relaxed line-clamp-2">
-                          {card.topic}
-                        </p>
-                      </div>
-
-                      {/* Botão de Ação com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
-                      <div className="pt-5">
-                        <div className="w-full py-2.5 sm:py-3 px-4 rounded-[12px] sm:rounded-[14px] border border-white/15 bg-white/[0.04] group-hover:bg-[#C4550A] group-hover:border-[#C4550A] group-hover:text-white text-white text-xs font-corporate font-black tracking-[0.16em] uppercase flex items-center justify-center gap-2 transition-all duration-300 shadow-sm">
-                          <span>SAIBA MAIS</span>
-                          <span className="group-hover:translate-x-1 transition-transform font-bold text-sm">→</span>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Dica de arraste no mobile com Bebas Neue */}
-          <div className="flex lg:hidden items-center justify-between pt-2 px-1 text-xs font-corporate font-medium text-white/40 uppercase tracking-wider">
-            <span>Deslize para ver os convidados</span>
-            <span>← →</span>
-          </div>
-          {/* Indicador de Próxima Seção */}
-          <div className="hidden md:flex absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex-col items-center pointer-events-auto">
-            <a
-              href="#cortes"
-              onClick={(e) => {
-                e.preventDefault();
-                const targetEl = document.getElementById("cortes");
-                if (targetEl) {
-                  const lenis = (window as any).lenis;
-                  if (lenis) {
-                    lenis.scrollTo(targetEl, { duration: 1 });
-                  } else {
-                    targetEl.scrollIntoView({ behavior: "smooth" });
-                  }
-                }
-              }}
-              className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
-            >
-              <span className="text-[10px] sm:text-[11px] font-corporate font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
-                CORTES DAS ENTREVISTAS (04)
-              </span>
-              <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
-            </a>
-          </div>
+      <section id="destaque" className="ak-section ak-episode">
+        <div className="ak-section-heading">
+          <h2>Ao vivo, com você.</h2>
+          <span className="ak-tag">
+            <Play size={16} /> Último episódio
+          </span>
         </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 4 A 7. SEÇÕES EDITORIAIS ESTILO HERO EM TELA CHEIA COM IMAGEM             */}
-      {/* ========================================================================= */}
-      {podcastEditorialCards.map((card, idx) => {
-        const isImageRight = card.orientation === "image-right";
-        const nextSectionId = idx < podcastEditorialCards.length - 1 ? podcastEditorialCards[idx + 1].id : "contato";
-        const nextSectionLabel = idx < podcastEditorialCards.length - 1 ? podcastEditorialCards[idx + 1].navLabel.toUpperCase() : "SEJA NOSSO CONVIDADO";
-
-        return (
-          <section
-            key={card.id}
-            id={card.id}
-            className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 md:snap-start md:snap-always"
-          >
-            {/* Layer 1: Palco Visual com Imagem Cinematográfica em Tela Cheia */}
-            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-              {isImageRight ? (
-                <>
-                  <div className="absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-end mask-feather-mobile-bottom mask-feather-podcast">
-                    <img
-                      src={card.image}
-                      alt={card.alt}
-                      loading="lazy"
-                      className={`w-full h-full object-cover ${card.imgPos || "object-center"} filter contrast-[1.08] brightness-[0.98]`}
-                    />
-                  </div>
-                  <div className="hidden md:block absolute inset-0 bg-[#1C0F0A]/40 md:bg-transparent z-10 pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent via-65% to-[#1C0F0A]/40 z-10 pointer-events-none" />
-                  <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
-                </>
+        <div className="ak-player-grid">
+          <div className="ak-tv">
+            <div className="ak-tv-screen">
+              {playing ? (
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/nAcTWvqdc-E?autoplay=1&rel=0"
+                  title="Akedah Podcast — episódio com Daniel Silva"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
               ) : (
-                <>
-                  <div className="absolute inset-0 md:inset-auto md:left-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-start mask-feather-mobile-bottom mask-feather-podcast-left">
-                    <img
-                      src={card.image}
-                      alt={card.alt}
-                      loading="lazy"
-                      className={`w-full h-full object-cover ${card.imgPos || "object-center"} filter contrast-[1.08] brightness-[0.98]`}
-                    />
-                  </div>
-                  <div className="hidden md:block absolute inset-0 bg-[#1C0F0A]/40 md:bg-transparent z-10 pointer-events-none" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-l md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent via-65% to-[#1C0F0A]/40 z-10 pointer-events-none" />
-                  <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
-                </>
+                <button
+                  onClick={() => setPlaying(true)}
+                  aria-label="Reproduzir episódio com Daniel Silva"
+                  className="ak-video-poster"
+                >
+                  <Art name="player" box="102 281 778 388" />
+                  <span className="ak-play">
+                    <Play fill="currentColor" />
+                  </span>
+                  <span className="ak-video-label">Assistir episódio</span>
+                </button>
               )}
             </div>
-
-            {/* Layer 2: Conteúdo Editorial com Tipografia e Botões idênticos à Hero */}
-            <div
-              className={`relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-28 sm:pt-28 md:pt-20 pb-16 sm:pb-12 md:pb-8 flex ${
-                isImageRight ? "justify-start" : "justify-start md:justify-end"
-              }`}
-            >
-              <div className="max-w-3xl text-left flex flex-col items-start w-full">
-                <span className="text-[#C4550A] text-xs font-corporate font-semibold uppercase tracking-[0.2em] mb-3 block">
-                  {card.badge}
-                </span>
-
-                <h2 className="text-[28px] xs:text-[34px] sm:text-[44px] md:text-[52px] lg:text-[62px] xl:text-[70px] leading-[1.05] sm:leading-[1.0] tracking-tight mb-4 sm:mb-6 text-left">
-                  <span className="block font-corporate font-black text-white whitespace-nowrap">
-                    {card.titleLine1}
-                  </span>
-                  <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">
-                    {card.titleLine2}
-                  </span>
-                </h2>
-
-                <p className="font-corporate font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
-                  {card.description}
-                </p>
-
-                {/* Botão Único com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
-                <div className="flex items-center w-full sm:w-auto mb-6 sm:mb-8">
-                  <a
-                    href={card.btnUrl}
-                    target={card.btnExternal ? "_blank" : undefined}
-                    rel={card.btnExternal ? "noopener noreferrer" : undefined}
-                    className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-8 sm:px-10 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group cursor-pointer"
-                  >
-                    <span>{card.btnText}</span>
-                    <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">↗</span>
-                  </a>
-                </div>
-              </div>
+            <div className="ak-tv-hardware" aria-hidden="true">
+              <span />
+              <i />
+              <i />
+              <i />
             </div>
-
-            {/* Indicador de Próxima Prancheta no Rodapé */}
-            <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-auto">
+            <div className="ak-tv-caption">
+              <span>Akedah Podcast</span>
               <a
-                href={`#${nextSectionId}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const targetEl = document.getElementById(nextSectionId);
-                  if (targetEl) {
-                    const lenis = (window as any).lenis;
-                    if (lenis) {
-                      lenis.scrollTo(targetEl, { duration: 1 });
-                    } else {
-                      targetEl.scrollIntoView({ behavior: "smooth" });
-                    }
-                  }
-                }}
-                className="group flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors duration-300 cursor-pointer"
+                href="https://www.youtube.com/watch?v=nAcTWvqdc-E"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <span className="text-[10px] sm:text-[11px] font-corporate font-bold uppercase tracking-[0.2em] group-hover:text-[#C4550A] transition-colors">
-                  PRÓXIMA SEÇÃO ({nextSectionLabel})
-                </span>
-                <ChevronDown className="w-4 h-4 text-[#C4550A] animate-bounce" />
+                Abrir no YouTube <ArrowUpRight size={18} />
               </a>
             </div>
-          </section>
-        );
-      })}
-
-      {/* ========================================================================= */}
-      {/* 8. FECHAMENTO EDITORIAL DIRETAMENTE NO FUNDO (#contato)                   */}
-      {/* ========================================================================= */}
-      <section 
-        id="contato" 
-        className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 px-6 sm:px-10 lg:px-12 py-24 md:py-0 md:snap-start md:snap-always text-center"
-      >
-        {/* Spotlight Quente Motivada Centralizada */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[500px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.18)_0%,_rgba(217,119,6,0.08)_50%,_transparent_75%)] blur-3xl pointer-events-none -z-10" />
-
-        <div className="max-w-5xl w-full mx-auto relative z-10 flex flex-col items-center">
-          {/* Título Monumental com Darken Jellybean e variação em Podcast */}
-          <h2 className="text-[28px] sm:text-[42px] md:text-[54px] lg:text-[64px] tracking-tight leading-[1.05] max-w-4xl mb-4 text-center">
-            <span className="block font-corporate font-black text-white whitespace-nowrap">Quer Ser Nosso</span>
-            <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">Convidado?</span>
-          </h2>
-
-          {/* Linha de baixo em texto menor com Bebas Neue */}
-          <p className="text-white/70 text-base sm:text-lg md:text-xl font-corporate font-normal max-w-xl mb-10 leading-relaxed">
-            Entre em contato conosco
-          </p>
-
-          {/* Botão Único com Quatro Cantos Arredondados do Daniel Silva e Bebas Neue */}
+          </div>
+          <aside className="ak-guest">
+            <span className="ak-eyebrow">Neste episódio</span>
+            <div className="ak-guest-info">
+              <Art name="player" box="1084 337 230 252" className="ak-avatar" />
+              <div>
+                <h3>Daniel Silva</h3>
+                <p>
+                  Estrategista de negócios e mentor executivo. Uma conversa
+                  sobre posicionamento, governança e construção de autoridade.
+                </p>
+              </div>
+            </div>
+            <Action href={INSTAGRAM}>
+              <Instagram /> Redes do convidado <ArrowUpRight />
+            </Action>
+          </aside>
+        </div>
+        <Soundwave />
+      </section>
+      <section id="calendario" className="ak-section ak-agenda">
+        <div className="ak-agenda-heading">
           <div>
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-4 px-10 py-5 bg-[#C4550A] hover:bg-[#b04b08] text-white font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.18em] rounded-[12px] sm:rounded-[14px] shadow-2xl shadow-[#C4550A]/35 transition-all duration-300"
+            <span className="ak-tag">Agenda</span>
+            <h2>
+              Marque esse
+              <br />
+              encontro.
+            </h2>
+            <p>As próximas conversas passam por aqui.</p>
+          </div>
+          <Art
+            name="agenda"
+            box="785 0 887 475"
+            label="Calendário ilustrado envolvido por fones e ondas sonoras"
+          />
+        </div>
+        <div className="ak-agenda-controls">
+          <p>Programação do estúdio</p>
+          <div>
+            <button
+              aria-label="Convidados anteriores"
+              onClick={() => setAgendaPage((agendaPage - 1 + pages) % pages)}
             >
-              <span>FALE COM UM ESPECIALISTA</span>
-              <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-sm">↗</span>
-            </a>
+              <ChevronLeft />
+            </button>
+            <span aria-live="polite">
+              {agendaPage + 1} / {pages}
+            </span>
+            <button
+              aria-label="Próximos convidados"
+              onClick={() => setAgendaPage((agendaPage + 1) % pages)}
+            >
+              <ChevronRight />
+            </button>
           </div>
         </div>
+        <div className="ak-agenda-grid">
+          {agenda
+            .slice(agendaPage * 3, agendaPage * 3 + 3)
+            .map((guest, index) => (
+              <article className="ak-agenda-card" key={guest.episode}>
+                <Art
+                  name="agenda"
+                  box={index % 2 === 0 ? "50 500 225 315" : "594 500 220 315"}
+                  className="ak-agenda-portrait"
+                />
+                <div>
+                  <span className="ak-tag">{guest.date}</span>
+                  <h3>{guest.guestName}</h3>
+                  <p className="ak-agenda-topic">{guest.topic}</p>
+                  <p className="ak-meta">
+                    <UserRound size={15} /> {guest.episode}
+                  </p>
+                  <p className="ak-meta">
+                    <Clock size={15} /> {guest.time}
+                  </p>
+                  <Action href={guest.link} dark>
+                    Ver detalhes <ArrowRight size={18} />
+                  </Action>
+                </div>
+              </article>
+            ))}
+        </div>
+        <p className="ak-schedule-note">
+          Programação ilustrativa do site. Confirme datas e convidados com a
+          equipe.
+        </p>
+        <Soundwave />
       </section>
-
-      </main>
-    </div>
+      {features.map((feature) => (
+        <section
+          key={feature.id}
+          id={feature.id}
+          className={`ak-feature ${feature.dark ? "ak-dark" : ""}`}
+        >
+          <div className="ak-feature-copy">
+            {feature.tag && <span className="ak-tag">{feature.tag}</span>}
+            <h2>{feature.title}</h2>
+            {feature.subtitle && <h3>{feature.subtitle}</h3>}
+            <p>{feature.text}</p>
+            <Action href={feature.url} dark={!feature.dark}>
+              {feature.url.startsWith("https") && <Youtube />}
+              {feature.button}
+              {feature.url.startsWith("/") ? <ArrowRight /> : <ArrowUpRight />}
+            </Action>
+          </div>
+          <Art
+            name={feature.art}
+            box={feature.box}
+            className="ak-feature-art"
+            label={feature.title + " — ilustração original Akedah"}
+          />
+        </section>
+      ))}
+      <ContactSection />
+    </PodcastShell>
   );
-};
-
-export default Podcast;
+}
