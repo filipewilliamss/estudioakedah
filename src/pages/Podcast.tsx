@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import SEO from "@/components/SEO";
 import Navbar from "@/components/Navbar";
+import IllustratedHero from "@/components/podcast/IllustratedHero";
 import PodcastAtmosphere from "@/components/podcast/PodcastAtmosphere";
 import IrisPreloader from "@/components/podcast/IrisPreloader";
 import studioBannerImg from "@/assets/akedah-podcast-studio.jpg";
@@ -539,7 +540,8 @@ const Podcast = () => {
         url="https://estudioakedah.com/podcast"
         schema={schema}
       />
-      <Navbar isPodcastPage={true} />
+      {/* Navbar padrão oculta: o Podcast possui seu cabeçalho conceitual ilustrado 100% fiel */}
+      {/* <Navbar isPodcastPage={true} /> */}
 
       {/* Atmosfera Moderna: Fundo #1C0F0A, Spotlights Radiais e Micro-ruído SVG Inline */}
       <PodcastAtmosphere />
@@ -590,127 +592,7 @@ const Podcast = () => {
         {/* ========================================================================= */}
         {/* 1. HERO SECTION (CAROUSEL COM 4 CARDS E SLIDE AUTOMÁTICO A CADA 5S)       */}
         {/* ========================================================================= */}
-        <section 
-          id="hero"
-          className="relative min-h-[100dvh] md:h-screen w-full flex flex-col justify-end md:justify-center md:items-center overflow-hidden bg-[#1C0F0A] border-b border-white/10 md:snap-start md:snap-always"
-          onMouseEnter={() => { isHoveredHeroRef.current = true; }}
-          onMouseLeave={() => { isHoveredHeroRef.current = false; }}
-        >
-          {/* Layer 1: Background Images Stack persistente com Cross-fade suave entre os slides */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            {heroSlides.map((slide, idx) => {
-              const isActive = heroSlide === idx;
-              return (
-                <div
-                  key={slide.id}
-                  className={`absolute inset-0 md:inset-auto md:right-0 md:top-0 md:bottom-0 w-full sm:w-[85%] md:w-[75%] lg:w-[68%] xl:w-[65%] h-full flex items-start md:items-center justify-center md:justify-end mask-feather-mobile-bottom mask-feather-podcast transition-opacity duration-1000 ease-in-out ${
-                    isActive ? "opacity-100" : "opacity-0 pointer-events-none"
-                  }`}
-                  aria-hidden={!isActive}
-                >
-                  <img 
-                    src={slide.image} 
-                    alt={slide.alt} 
-                    loading="eager"
-                    decoding="async"
-                    fetchPriority={idx === 0 ? "high" : "auto"}
-                    className={`w-full h-full object-cover ${slide.imgPos} filter contrast-[1.08] brightness-[0.98] transition-transform duration-1000 ease-out ${
-                      isActive ? "scale-100" : "scale-105"
-                    }`}
-                  />
-                </div>
-              );
-            })}
-
-            {/* Overlay sutil em desktop */}
-            <div className="hidden md:block absolute inset-0 bg-[#1C0F0A]/40 md:bg-transparent z-10 pointer-events-none" />
-
-            {/* Degradê Dark Terracota: contínuo, ultra suave e sem linhas demarcadas */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1C0F0A] from-45% via-[#1C0F0A]/90 via-70% to-transparent md:bg-gradient-to-r md:from-[#1C0F0A] md:from-25% md:via-[#1C0F0A]/85 md:via-42% md:via-[#1C0F0A]/40 md:via-60% md:to-transparent md:to-78% z-10 pointer-events-none" />
-
-            {/* Degradês verticais suaves exclusivos para desktop */}
-            <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-[#1C0F0A] via-transparent via-65% to-[#1C0F0A]/40 z-10 pointer-events-none" />
-
-            {/* Glow Terracota Quente sutil motivado */}
-            <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,_rgba(196,85,10,0.22)_0%,_rgba(217,119,6,0.06)_50%,_transparent_75%)] blur-3xl pointer-events-none z-10" />
-          </div>
-
-          {/* Layer 2: Conteúdo Editorial à esquerda com AnimatePresence */}
-          <div className="relative z-20 w-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 pt-28 sm:pt-28 md:pt-20 pb-16 sm:pb-12 md:pb-8 flex justify-start">
-            <div className="max-w-3xl text-left flex flex-col items-start w-full">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={heroSlide}
-                  variants={heroContentVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="w-full flex flex-col items-start"
-                >
-                  {/* Título Estritamente em 2 Linhas: Linha 1 Montserrat Bold, Linha 2 Fonte Podcast */}
-                  <h1 className="text-[28px] xs:text-[34px] sm:text-[44px] md:text-[52px] lg:text-[62px] xl:text-[70px] leading-[1.05] sm:leading-[1.0] tracking-tight mb-4 sm:mb-6 text-left">
-                    <span className="block font-corporate font-black text-white whitespace-nowrap">
-                      {heroSlides[heroSlide].titleLine1}
-                    </span>
-                    <span className="block font-corporate font-black text-[#C4550A] whitespace-nowrap">
-                      {heroSlides[heroSlide].titleLine2}
-                    </span>
-                  </h1>
-
-                  {/* Descrição Editorial com Lora Regular */}
-                  <p className="font-corporate font-normal text-white/85 text-base sm:text-lg md:text-[19px] leading-relaxed max-w-xl text-left mb-6 sm:mb-8 md:mb-10">
-                    {heroSlides[heroSlide].descricao}
-                  </p>
-
-                  {/* Botões de Ação do Hero com Quatro Cantos Arredondados e Bebas Neue */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center w-full sm:w-auto mb-6 sm:mb-8">
-                    <a
-                      href={heroSlides[heroSlide].btnPrimary.href}
-                      target={heroSlides[heroSlide].btnPrimary.external ? "_blank" : undefined}
-                      rel={heroSlides[heroSlide].btnPrimary.external ? "noopener noreferrer" : undefined}
-                      onClick={() => {
-                        if (heroSlides[heroSlide].btnPrimary.href === "#destaque") {
-                          setIsPlaying(true);
-                        }
-                      }}
-                      className="bg-[#C4550A] text-white hover:bg-[#b04b08] border border-[#C4550A] font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 shadow-xl shadow-[#C4550A]/25 text-center justify-center inline-flex items-center gap-2 group"
-                    >
-                      <span>{heroSlides[heroSlide].btnPrimary.text}</span>
-                      <span className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300 text-sm">
-                        ↗
-                      </span>
-                    </a>
-                    <a 
-                      href={heroSlides[heroSlide].btnSecondary.href}
-                      target={heroSlides[heroSlide].btnSecondary.external ? "_blank" : undefined}
-                      rel={heroSlides[heroSlide].btnSecondary.external ? "noopener noreferrer" : undefined}
-                      className="bg-transparent text-white hover:bg-white/10 hover:border-white/60 border border-white/25 font-corporate font-bold text-xs sm:text-sm uppercase tracking-[0.16em] px-7 sm:px-9 py-3.5 sm:py-4 rounded-[12px] sm:rounded-[14px] transition-all duration-300 text-center justify-center inline-flex items-center gap-2"
-                    >
-                      <span>{heroSlides[heroSlide].btnSecondary.text}</span>
-                    </a>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Indicadores de Paginação do Carousel (4 Cards) fixos fora da troca de texto */}
-              <div className="flex items-center gap-2.5">
-                {heroSlides.map((slide, idx) => (
-                  <button
-                    key={slide.id}
-                    type="button"
-                    onClick={() => setHeroSlide(idx)}
-                    className={`h-1.5 transition-all duration-300 ${
-                      heroSlide === idx
-                        ? "w-8 bg-[#C4550A] ring-1 ring-[#C4550A]/50"
-                        : "w-2.5 bg-white/25 hover:bg-white/60"
-                    }`}
-                    aria-label={`Ver card ${idx + 1}: ${slide.titleLine1}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <IllustratedHero isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
 
         {/* 2. DESTAQUE DO EPISÓDIO // CONVIDADO DA SEMANA (#destaque) - PLAYER EXPANDIDO EM ~70% */}
         <section 
