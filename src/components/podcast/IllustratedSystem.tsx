@@ -10,7 +10,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { AKEDAH_EMAIL, WHATSAPP_URL } from "@/data/services";
-import "@fontsource/fredoka/latin-700.css";
+import { ReferenceContact, useReferenceDesktop } from "./ReferenceCanvas";
 import "@fontsource/nunito-sans/latin-400.css";
 import "@fontsource/nunito-sans/latin-700.css";
 import "@fontsource/nunito-sans/latin-900.css";
@@ -131,7 +131,7 @@ export function Soundwave() {
     </div>
   );
 }
-export function PodcastShell({ children }: { children: ReactNode }) {
+export function PodcastShell({ children, reference = false }: { children: ReactNode; reference?: boolean }) {
   const [open, setOpen] = useState(false);
   const { pathname, hash } = useLocation();
   useEffect(() => {
@@ -159,7 +159,7 @@ export function PodcastShell({ children }: { children: ReactNode }) {
       <a className="ak-skip" href="#ak-main">
         Pular para o conteúdo
       </a>
-      <header className="ak-header">
+      {!reference && <header className="ak-header">
         <Logo />
         <button
           className="ak-menu-toggle"
@@ -182,9 +182,18 @@ export function PodcastShell({ children }: { children: ReactNode }) {
           <Link to="/podcast/patrocinadores">Patrocinadores</Link>
           <Link to="/podcast/contato">Contato</Link>
         </nav>
-      </header>
+      </header>}
       <main id="ak-main">{children}</main>
-      <footer className="ak-footer">
+      {reference ? <footer className="ak-footer ak-reference-footer">
+        <nav aria-label="Outras páginas">
+          <Link to="/podcast">Início</Link>
+          <Link to="/podcast/sobre">Nossa história</Link>
+          <Link to="/podcast/patrocinadores">Patrocinadores</Link>
+          <Link to="/podcast/contato">Contato</Link>
+          <Link to="/">Estúdio Akedah</Link>
+          <Link to="/daniel-silva">Daniel Silva</Link>
+        </nav>
+      </footer> : <footer className="ak-footer">
         <Logo />
         <div>
           <strong>Boas conversas conectam.</strong>
@@ -213,11 +222,15 @@ export function PodcastShell({ children }: { children: ReactNode }) {
             <Youtube />
           </a>
         </div>
-      </footer>
+      </footer>}
     </div>
   );
 }
 export function ContactSection({ page = false }: { page?: boolean }) {
+  const referenceDesktop = useReferenceDesktop();
+  return referenceDesktop ? <ReferenceContact page={page} /> : <ResponsiveContactSection page={page} />;
+}
+function ResponsiveContactSection({ page = false }: { page?: boolean }) {
   const [prepared, setPrepared] = useState(false);
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

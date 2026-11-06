@@ -9,16 +9,23 @@ import {
 } from "@/components/podcast/IllustratedSystem";
 import { sponsorsData } from "@/data/podcast-sponsors";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
+import { ReferenceCanvas, ReferenceAction, useReferenceDesktop } from "@/components/podcast/ReferenceCanvas";
 export default function PodcastSponsors() {
+  const referenceDesktop = useReferenceDesktop();
   const [active, setActive] = useState(0);
   const sponsor = sponsorsData[active];
   return (
-    <PodcastShell>
+    <PodcastShell reference={referenceDesktop}>
       <SEO
         title="Patrocinadores | Akedah Podcast"
         description="Conheça as marcas que apoiam as conversas do Akedah Podcast e descubra como ser um patrocinador."
       />
-      <section id="vitrine" className="ak-section ak-dark">
+      <section id="vitrine" className={referenceDesktop ? "ak-sponsors-page" : "ak-section ak-dark"}>
+        {referenceDesktop ? <ReferenceCanvas name="sponsors" title="Conheça nossos patrocinadores" primary eager
+          description="Descubra as marcas que fazem parte dessa conversa.">
+          <ReferenceAction rect={[50, 524, 647, 108]} label="Conhecer patrocinadores" href="#marcas" />
+          <ReferenceAction rect={[67, 687, 389, 143]} label="Akedah Podcast — início" href="/podcast" />
+        </ReferenceCanvas> : <>
         <div className="ak-section-heading">
           <div>
             <span className="ak-tag">Patrocinadores</span>
@@ -34,6 +41,8 @@ export default function PodcastSponsors() {
         <p style={{ marginBottom: 35, fontSize: 24 }}>
           Marcas que se conectam com boas histórias.
         </p>
+        </>}
+        <div id="marcas" className={referenceDesktop ? "ak-section ak-sponsor-list" : undefined}>
         <div className="ak-sponsor-grid">
           {sponsorsData.map((item, i) => (
             <a
@@ -50,6 +59,7 @@ export default function PodcastSponsors() {
             <ArrowRight size={42} />
             <span>Sua marca pode estar aqui</span>
           </a>
+        </div>
         </div>
       </section>
       <section id="detalhes" className="ak-section">

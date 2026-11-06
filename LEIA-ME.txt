@@ -1,8 +1,0 @@
-Akedah Podcast — redesign ilustrado
-Commit: 3b300b0
-Branch local: design/akedah-ilustrado
-Este pacote contém somente os arquivos alterados, não o repositório completo.
-Aplique sobre o repositório estudioakedah; execute npm ci e npm run build.
-Validação: build e TypeScript aprovados; 8 testes aprovados.
-A prévia visual de navegador não pôde ser executada por indisponibilidade do ambiente.
-O envio ao GitHub foi bloqueado pela revisão automática e não foi concluído.

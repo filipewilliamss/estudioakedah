@@ -23,9 +23,9 @@
 .ak-site h1,
 .ak-site h2,
 .ak-site h3 {
-  font-family: "Fredoka", sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.035em;
   line-height: 1.02;
 }
 .ak-site h1,
@@ -784,7 +784,8 @@
   background: #ffe8bc;
 }
 .ak-specs strong {
-  font-family: "Fredoka";
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 900;
   font-size: 25px;
   display: block;
 }
@@ -940,7 +941,7 @@
     min-height: 600px;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 959px) {
   .ak-header {
     padding: 20px 6%;
     gap: 12px;
@@ -1268,7 +1269,7 @@
   color: #3c1b0d;
 }
 .ak-podcast-body .bg-surface .font-display {
-  font-family: "Fredoka", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 .ak-podcast-body .bg-surface button {
   background: #ff912e;
@@ -1303,13 +1304,13 @@
 .ak-hero-art {
   position: absolute;
 }
-@media (max-width: 1100px) and (min-width: 761px) {
+@media (max-width: 1100px) and (min-width: 960px) {
   .ak-agenda-card > .ak-agenda-portrait {
     height: 230px;
     min-height: 0;
   }
 }
-@media (max-width: 760px) {
+@media (max-width: 959px) {
   .ak-hero-art {
     position: relative;
   }

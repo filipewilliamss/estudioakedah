@@ -1,0 +1,105 @@
+/* Approved artwork is the desktop composition, including its original lettering.
+   Interactive HTML shares the exact 1672 × 941 coordinate system. */
+.ak-site .ak-reference {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  scroll-margin-top: 0;
+  container-type: inline-size;
+  isolation: isolate;
+}
+.ak-reference-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  user-select: none;
+}
+.ak-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+.ak-reference .ak-reference-action {
+  position: absolute;
+  display: block;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: none;
+  color: #3c1b0d;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.ak-reference .ak-reference-action:hover {
+  background: rgb(255 246 220 / 10%);
+  box-shadow: inset 0 0 0 2px rgb(255 236 201 / 50%);
+}
+.ak-reference .ak-reference-action:focus-visible,
+.ak-reference-form input:focus-visible,
+.ak-reference-form textarea:focus-visible {
+  outline: 3px solid #fff1d7;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px #a34818;
+}
+.ak-reference .ak-screen-action { border-radius: 2.2cqw; }
+.ak-reference-video { position: absolute; z-index: 4; background: #2b170d; border-radius: 2.2cqw; overflow: hidden; }
+.ak-reference-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+.ak-reference-video .ak-close-video {
+  position: absolute; top: 8px; right: 8px; border: 2px solid #f6e8c9;
+  border-radius: 50%; width: 38px; height: 38px; color: #f6e8c9;
+  background: #3c1b0d; cursor: pointer; font-size: 24px; line-height: 1;
+}
+.ak-reference-form { position: absolute; inset: 0; pointer-events: none; }
+.ak-reference-form > input,
+.ak-reference-form > textarea {
+  position: absolute; pointer-events: auto; color: #3c1b0d;
+  background: transparent; padding: .3cqw .8cqw;
+  border: 0; border-radius: .8cqw; font-size: 1.5cqw; line-height: 1.4;
+  resize: none; box-shadow: none;
+}
+.ak-reference-form > .ak-reference-action { pointer-events: auto; }
+.ak-reference-form .ak-reference-help {
+  position: absolute; top: 76.2%; left: 57.5%; width: 35.5%;
+  color: #3c1b0d; text-align: center; font-size: .75cqw;
+  visibility: hidden;
+}
+.ak-reference-form:focus-within .ak-reference-help,
+.ak-reference-form .ak-reference-help.is-prepared { visibility: visible; }
+.ak-site .ak-reference-dialog {
+  position: fixed; margin: auto; padding: 45px; width: min(1100px, 90vw);
+  max-height: 85dvh; overflow: auto; border: 3px solid #3c1b0d;
+  border-radius: 30px; color: #3c1b0d; background: #fff0d1;
+  box-shadow: 10px 12px 0 #d86d27;
+}
+.ak-reference-dialog::backdrop { background: rgb(34 16 8 / 75%); }
+.ak-site .ak-reference-dialog h2 { font-size: 36px; margin-bottom: 15px; }
+.ak-site .ak-reference-dialog h3 { font-size: 24px; margin: 15px 0; }
+.ak-reference-dialog .ak-dialog-close { position: absolute; right: 16px; top: 12px; width: 40px; height: 40px; border-radius: 50%; border: 0; color: #fff0d1; background: #3c1b0d; font-size: 28px; cursor: pointer; }
+.ak-reference-agenda-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin: 30px 0; }
+.ak-reference-agenda-list article { padding: 22px; border: 2px solid #3c1b0d; border-radius: 20px; }
+.ak-reference-agenda-list .ak-button { margin-top: 20px; font-size: 16px; }
+.ak-reference-pager { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.ak-reference-pager button { width: 44px; height: 44px; border: 2px solid #3c1b0d; border-radius: 50%; background: #ff912e; cursor: pointer; }
+.ak-site .ak-reference-footer { padding: 18px 5%; justify-content: center; }
+.ak-site .ak-reference-footer nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; font-size: 15px; }
+.ak-site .ak-reference-footer a:hover { text-decoration: underline; }
+/* The secondary routes use the same lettering weight, palette and ornaments;
+   their additional content has no separate approved artwork. */
+.ak-site .ak-sponsor-list { padding-top: 40px; }
+@media (min-width: 960px) {
+  .ak-podcast-body [aria-label="Atendimento via WhatsApp"] { display: none; }
+}

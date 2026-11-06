@@ -8,6 +8,7 @@ import {
   INSTAGRAM,
 } from "@/components/podcast/IllustratedSystem";
 import { WHATSAPP_URL, AKEDAH_EMAIL } from "@/data/services";
+import { useReferenceDesktop } from "@/components/podcast/ReferenceCanvas";
 const channels = [
   {
     name: "Comercial & patrocínios",
@@ -47,8 +48,9 @@ const channels = [
   },
 ];
 export default function PodcastContact() {
+  const referenceDesktop = useReferenceDesktop();
   return (
-    <PodcastShell>
+    <PodcastShell reference={referenceDesktop}>
       <SEO
         title="Contato | Akedah Podcast"
         description="Entre em contato para sugerir pautas, participar do Akedah Podcast ou conversar sobre patrocínios."

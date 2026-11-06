@@ -24,6 +24,8 @@ import {
   INSTAGRAM,
 } from "@/components/podcast/IllustratedSystem";
 import { agendaPodcastCards } from "@/data/podcast-agenda";
+import ReferencePodcast from "@/components/podcast/ReferencePodcast";
+import { useReferenceDesktop } from "@/components/podcast/ReferenceCanvas";
 
 const features = [
   {
@@ -71,6 +73,11 @@ const features = [
   },
 ];
 export default function Podcast() {
+  const referenceDesktop = useReferenceDesktop();
+  return referenceDesktop ? <ReferencePodcast /> : <ResponsivePodcast />;
+}
+
+function ResponsivePodcast() {
   const [playing, setPlaying] = useState(false);
   const [agendaPage, setAgendaPage] = useState(0);
   const agenda = agendaPodcastCards.flat();

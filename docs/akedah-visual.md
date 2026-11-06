@@ -1,20 +1,24 @@
-# Akedah — conversas em movimento
+# Akedah — revisão de fidelidade às referências
 
-## Direção aprovada
-A identidade segue as oito referências ilustradas fornecidas pelo cliente: campos orgânicos de bege e marrom, ondas laranja, personagens personalizados e hierarquia tipográfica arredondada. A arte é preservada por enquadramentos em CSS; textos e controles são HTML real, selecionável, acessível e responsivo.
+## Correção solicitada
+A revisão anterior recortava as ilustrações e remontava textos, cabeçalho e botões. Isso alterava a composição. Esta revisão mantém as oito artes originais completas no desktop (a partir de 960px), na proporção 1672 × 941, sem recorte, distorção, máscara, gradiente adicional ou cabeçalho acima do hero.
 
-## Sistema
-- Bege papel: #F6E8C9; marrom tinta: #3C1B0D; marrom profundo: #301609; laranja: #FF912E; terracota: #CF5A1E.
-- Fredoka 700 para títulos; Nunito Sans 400/700/900 para leitura e ações. Fontes hospedadas junto ao projeto.
-- Composição de texto à esquerda e ilustração à direita; no celular, fluxo vertical com controles legíveis.
-- Curvas, áudio e personagens são a linguagem da marca. Sem efeitos de entrada que escondam conteúdo. Foco de teclado visível, menu com estado expandido e respeito a movimento reduzido.
+Hero, player, agenda, cortes, Em poucas palavras, bastidores, chamada dos patrocinadores e contato usam respectivamente os PNGs originais em public/akedah. O arquivo hero.png foi comparado pixel a pixel à imagem de referência reenviada e é idêntico.
 
-## Escopo
-Rotas /podcast, /podcast/sobre, /podcast/historia, /podcast/patrocinadores e /podcast/contato. Ordem da principal: hero, destaque, agenda, cortes, Em poucas palavras, bastidores, patrocinadores e contato. Rotas do Estúdio, serviços, projetos e Daniel Silva são preservadas.
+## Implementação e limites
+A tipografia e os ornamentos do desktop fazem parte das artes originais. Os textos visuais dessas composições não são selecionáveis nem editáveis por CSS; mudanças futuras de copy exigem atualizar a arte. Há títulos e descrições semânticos equivalentes para leitores de tela. Links, botões, campos e o iframe do vídeo são HTML real, com foco de teclado visível. As áreas de interação são definidas em coordenadas do original e escalam juntas com a imagem.
 
-Os dados de patrocinadores e os 12 registros da agenda foram extraídos do código anterior. A agenda original contém dados genéricos: a interface indica programação ilustrativa e pede confirmação à equipe. O episódio nAcTWvqdc-E é mantido. Não há verificação de status ao vivo, portanto o player não exibe um status de transmissão falso. Os links de canais existentes são mantidos; bastidores agora aponta ao YouTube conforme o briefing.
+Abaixo de 960px, a página usa uma apresentação vertical com texto HTML, controles legíveis e as mesmas ilustrações. A fonte Fredoka foi removida da interface; Nunito Sans 900 fornece títulos menos arredondados. O layout de celular não promete reproduzir a imagem horizontal inteira em tamanho reduzido.
 
-O formulário abre o aplicativo de e-mail com destinatário, assunto e mensagem preenchidos. Não simula um envio por servidor. Há WhatsApp como alternativa. Nenhum serviço de formulário novo foi contratado.
+## Comportamento
+- Navegação principal dentro do próprio hero. Nossa história e outras páginas continuam acessíveis no rodapé auxiliar.
+- Reprodução abre o episódio existente nAcTWvqdc-E dentro da tela da TV e substitui os controles ilustrados pelos controles reais do YouTube. Um botão permite fechar a reprodução. Os textos AO VIVO da arte representam o conceito; não há consulta automática de status de transmissão. O perfil da arte é explicitamente ilustrativo e não uma informação dinâmica do convidado.
+- A agenda mantém os três cartões ilustrativos exatamente como na referência. Ver detalhes abre um diálogo com os 12 registros anteriores do site, paginação e links. Não se afirmam datas ou convidados confirmados.
+- Cortes, quadro especial e bastidores apontam ao canal do YouTube já cadastrado. Patrocinadores abre /podcast/patrocinadores.
+- O formulário usa os campos desenhados como moldura dos inputs reais. Ao enviar, prepara um e-mail para contato@akedah.com.br. A instrução de concluir o envio no aplicativo de e-mail aparece ao focar o formulário. Não há envio por servidor.
+- A página de contato reutiliza a mesma composição inteira. A página de patrocinadores começa com a arte aprovada e preserva os dados, logos e seleção dos cinco patrocinadores abaixo. Sobre/história, informações adicionais e canais de contato não têm artes específicas entre as oito referências; seus conteúdos permanecem em HTML com a mesma paleta e tipografia de apoio.
+- Rotas do Estúdio, serviços, projetos e Daniel Silva permanecem preservadas.
 
-## Referências
-Os PNGs em public/akedah são as artes originais anexadas pelo cliente. O componente Art enquadra apenas os trechos ilustrados; a interface não é uma imagem com hotspots invisíveis. Imagens abaixo da dobra têm carregamento lazy. Os arquivos originais ficam disponíveis para futura exportação otimizada, sem comprometer a fidelidade desta primeira implementação.
+## Verificação
+Testes de navegação, ordem das seções, reprodução, agenda, patrocinadores, acessibilidade dos campos e proporção das artes. TypeScript e build de produção.
+A visualização por navegador depende do serviço de preview do ambiente. Se o serviço estiver indisponível, os testes de código e a conferência dos arquivos de arte não substituem uma revisão visual no site publicado.
